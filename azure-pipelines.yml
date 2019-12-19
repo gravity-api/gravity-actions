@@ -36,9 +36,7 @@ steps:
   inputs:
     command: 'pack'
     packagesToPack: '**/Gravity.Actions.csproj'
-    nobuild: true
-    versioningScheme: 'byEnvVar'
-    versionEnvVar: 'project.build-name'
+    versioningScheme: 'byBuildNumber'
     verbosityPack: 'Diagnostic'
 
 - task: PublishBuildArtifacts@1

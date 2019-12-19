@@ -1,4 +1,4 @@
-name: Gravity.Actions_$(Year:yyyy).$(Month).$(DayOfMonth)$(Rev:.r)
+name: $(BuildNumber)
 
 pool:
   name: Default

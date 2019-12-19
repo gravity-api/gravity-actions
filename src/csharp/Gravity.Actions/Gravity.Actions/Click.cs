@@ -33,7 +33,9 @@ using System.Reflection;
 
 namespace Gravity.Services.ActionPlugins
 {
-    [Action(Name = "Click2")]
+    [Action(
+        assmebly: "Gravity.Services.ActionPlugins, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+        resource: "Gravity.Services.ActionPlugins.Documentation.click.json")]
     public class Click : ActionPlugin
     {
         // constants: arguments
@@ -48,7 +50,7 @@ namespace Gravity.Services.ActionPlugins
         /// Creates new action instance on this plugin.
         /// </summary>
         /// <param name="webDriver">WebDriver implementation by which to execute the action.</param>
-        /// <param name="webAutomation">This WebAutomation object (the original object send by the user).</param>
+        /// <param name="webAutomation">This WebAutomation object (the original object sent by the user).</param>
         public Click(IWebDriver webDriver, WebAutomation webAutomation)
             : base(webDriver, webAutomation)
         {
@@ -60,7 +62,7 @@ namespace Gravity.Services.ActionPlugins
         /// <summary>
         /// Clicks the mouse at the last known mouse coordinates or on the specified element.
         /// </summary>
-        /// <param name="actionRule">This ActionRule instance (the original object send by the user).</param>
+        /// <param name="actionRule">This ActionRule instance (the original object sent by the user).</param>
         public override void OnPerform(ActionRule actionRule)
         {
             // exit conditions

@@ -39,5 +39,17 @@ namespace Gravity.Services.ActionPlugins.Tests
             var click = new Click(driver, null);
             click.OnPerform(actionRule);
         }
+
+        [TestMethod]
+        public void ClickFlat()
+        {
+            // setup
+            var driver = new MockWebDriver();
+            var actionRule = new ActionRule();
+
+            // execute
+            var click = new Click(driver, null);
+            click.OnPerform(actionRule);
+        }
     }
 }

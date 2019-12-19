@@ -1,4 +1,4 @@
-name: $(BuildNumber)
+name: Gravity.Services.Actions_$(Year:yyyy).$(Month).$(DayOfMonth)$(Rev:.r)
 
 pool:
   name: Default
@@ -35,8 +35,9 @@ steps:
   displayName: create package
   inputs:
     command: 'pack'
-    packagesToPack: '**/Gravity.Actions.csproj'
-    versioningScheme: 'byBuildNumber'
+    packagesToPack: '**/*.csproj'
+    versioningScheme: 'byEnvVar'
+    versionEnvVar: 'Build.BuildNumber'
     verbosityPack: 'Diagnostic'
 
 - task: PublishBuildArtifacts@1

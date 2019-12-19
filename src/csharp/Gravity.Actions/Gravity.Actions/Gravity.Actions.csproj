@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net451;net46;netstandard2.0;netstandard2.1</TargetFrameworks>
+    <PackageId>Gravity.Services.Actions</PackageId>
+    <LangVersion>latest</LangVersion>
+    <Version>5.0.0</Version>
+    <Title>Gravity.Services.Actions</Title>
+    <Authors>Roei.Sabag</Authors>
+    <Description>Gravity API Actions repository. FREE register at "https://g-api.azurewebsites.net/Identity/Account/Register" in order to be able to use Gravity API</Description>
+    <PackageTags>automation,crawling,crawl,selenium,appium,automation testing,automation test,qa,gravity,gravity api,scrapping,scrap</PackageTags>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/gravity-api/gravity-actions</PackageProjectUrl>
+    <NeutralLanguage>en-US</NeutralLanguage>
+  </PropertyGroup>
+
+</Project>

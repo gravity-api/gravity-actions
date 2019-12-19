@@ -1,4 +1,6 @@
-name: Gravity.Services.Actions_$(Year:yyyy).$(Month).$(DayOfMonth)$(Rev:.r)
+# https://docs.microsoft.com/en-us/azure/devops/pipelines/build/variables?view=azure-devops&tabs=yaml
+
+name: $(project.package).$(Year:yyyy).$(Month).$(DayOfMonth)$(Rev:.r).$(Year:yyyy).$(Month).$(DayOfMonth)$(Rev:.r)
 
 pool:
   name: Default
@@ -20,7 +22,7 @@ steps:
   displayName: build projects
   inputs:
     command: 'build'
-    projects: '**/Gravity.Actions.csproj'
+    projects: '**/*.csproj'
     arguments: '--configuration $(buildConfiguration)'
 
 - task: DotNetCoreCLI@2
@@ -35,7 +37,7 @@ steps:
   displayName: create package
   inputs:
     command: 'pack'
-    packagesToPack: '**/*.csproj'
+    packagesToPack: '**/!(**/*[Tt]ests/*.csproj).csproj'
     versioningScheme: 'byEnvVar'
     versionEnvVar: 'Build.BuildNumber'
     verbosityPack: 'Diagnostic'

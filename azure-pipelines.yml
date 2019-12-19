@@ -17,7 +17,7 @@ steps:
   displayName: build projects
   inputs:
     command: 'build'
-    projects: '**/*.csproj'
+    projects: '**/Gravity.Actions.csproj'
     arguments: '--configuration $(BuildConfiguration)'
 
 - task: DotNetCoreCLI@2

@@ -1,7 +1,7 @@
+name: $(Build.DefinitionName)_$(Build.DefinitionVersion)_$(Build.RequestedFor)_$(Build.BuildId)_$(My.Variable)
+
 pool:
   name: Default
-
-name: $(project.build)
 
 steps:
 - task: DotNetCoreCLI@2

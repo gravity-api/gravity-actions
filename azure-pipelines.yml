@@ -1,6 +1,8 @@
 pool:
   name: Default
 
+name: $(project.build)
+
 steps:
 - task: DotNetCoreCLI@2
   displayName: restore dependencies

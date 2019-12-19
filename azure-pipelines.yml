@@ -38,8 +38,7 @@ steps:
   inputs:
     command: 'pack'
     packagesToPack: '**/!(*[Tt]ests)/*.csproj'
-    versioningScheme: 'byEnvVar'
-    versionEnvVar: 'Build.BuildNumber'
+    versioningScheme: 'byBuildNumber'
     verbosityPack: 'Diagnostic'
 
 - task: PublishBuildArtifacts@1

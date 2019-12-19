@@ -1,6 +1,6 @@
 # https://docs.microsoft.com/en-us/azure/devops/pipelines/build/variables?view=azure-devops&tabs=yaml
 
-name: $(project.package).$(Year:yyyy).$(Month).$(DayOfMonth)$(Rev:.r).$(Year:yyyy).$(Month).$(DayOfMonth)$(Rev:.r)
+name: $(project.package).$(Year:yyyy).$(Month).$(DayOfMonth)$(Rev:.r)
 
 pool:
   name: Default
@@ -37,7 +37,7 @@ steps:
   displayName: create package
   inputs:
     command: 'pack'
-    packagesToPack: '**/!(**/*[Tt]ests/*.csproj).csproj'
+    packagesToPack: '**/!(*[Tt]ests/*).csproj'
     versioningScheme: 'byEnvVar'
     versionEnvVar: 'Build.BuildNumber'
     verbosityPack: 'Diagnostic'

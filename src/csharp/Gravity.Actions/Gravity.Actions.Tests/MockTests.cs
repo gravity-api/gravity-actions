@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Gravity.Actions.Tests
+namespace Gravity.Services.ActionPlugins.Tests
 {
     [TestClass]
     public class MockTests

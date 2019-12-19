@@ -1,0 +1,41 @@
+pool:
+  name: Default
+
+steps:
+- task: DotNetCoreCLI@2
+  displayName: restore dependencies
+  inputs:
+    command: 'restore'
+    projects: '**/*.csproj'
+    feedsToUse: 'select'
+    vstsFeed: '6ed1caf9-de4f-48e8-8276-201533d86a19'
+    verbosityRestore: 'Diagnostic'
+
+- task: DotNetCoreCLI@2
+  displayName: build projects
+  inputs:
+    command: 'build'
+    projects: '**/*.csproj'
+    arguments: '--configuration $(BuildConfiguration)'
+
+- task: DotNetCoreCLI@2
+  displayName: execute automated testing
+  inputs:
+    command: 'test'
+    projects: '**/*[Tt]ests/*.csproj'
+    arguments: '--configuration $(BuildConfiguration)'
+    testRunTitle: 'Gravity Actions - Automation Testing $(date:yyyyMMdd)$(rev:.r)'
+
+- task: DotNetCoreCLI@2
+  displayName: create package
+  inputs:
+    command: 'pack'
+    packagesToPack: '**/*.csproj'
+    versioningScheme: 'byBuildNumber'
+
+- task: PublishBuildArtifacts@1
+  displayName: publish to azure pipelines
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'

@@ -40,10 +40,3 @@ steps:
     packagesToPack: '**/!(*[Tt]ests)/*.csproj'
     versioningScheme: 'byBuildNumber'
     verbosityPack: 'Diagnostic'
-
-- task: PublishBuildArtifacts@1
-  displayName: publish to azure pipelines
-  inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'drop'
-    publishLocation: 'Container'

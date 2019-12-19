@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29613.14
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gravity.Actions", "Gravity.Actions\Gravity.Actions.csproj", "{1C20C876-3F67-4E39-A297-FBD75A6B54DD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gravity.Services.ActionPlugins", "Gravity.Actions\Gravity.Services.ActionPlugins.csproj", "{1C20C876-3F67-4E39-A297-FBD75A6B54DD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gravity.Actions.Tests", "Gravity.Actions.Tests\Gravity.Actions.Tests.csproj", "{98367CCA-D62B-49DA-9C44-01F017C33DD3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gravity.Services.ActionPlugins.Tests", "Gravity.Actions.Tests\Gravity.Services.ActionPlugins.Tests.csproj", "{98367CCA-D62B-49DA-9C44-01F017C33DD3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

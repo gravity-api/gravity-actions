@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Gravity.Actions\Gravity.Actions.csproj" />
+    <ProjectReference Include="..\Gravity.Actions\Gravity.Services.ActionPlugins.csproj" />
   </ItemGroup>
 
 </Project>

@@ -37,7 +37,7 @@ steps:
   displayName: create package
   inputs:
     command: 'pack'
-    packagesToPack: '**/!(*[Tt]ests/*).csproj'
+    packagesToPack: '**/!(*[Tt]ests)/*.csproj'
     versioningScheme: 'byEnvVar'
     versionEnvVar: 'Build.BuildNumber'
     verbosityPack: 'Diagnostic'

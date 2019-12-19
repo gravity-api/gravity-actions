@@ -31,9 +31,10 @@ steps:
 - task: DotNetCoreCLI@2
   inputs:
     command: 'pack'
-    packagesToPack: '**/*.csproj'
-    versioningScheme: 'byEnvVar'
-    versionEnvVar: '$(project.build-name)'
+    packagesToPack: '**/Gravity.Actions.csproj'
+    configuration: '$(buildConfiguration)'
+    nobuild: true
+    versioningScheme: 'off'
     verbosityPack: 'Diagnostic'
 
 - task: PublishBuildArtifacts@1

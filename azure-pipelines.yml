@@ -31,7 +31,7 @@ steps:
     command: 'test'
     projects: '**/*[Tt]ests/*.csproj'
     arguments: '--configuration $(buildConfiguration)'
-    testRunTitle: 'Gravity Actions - Automation Testing $(date:yyyyMMdd)$(rev:.r)'
+    testRunTitle: 'Automation Testing $(Build.BuildNumber)'
 
 - task: DotNetCoreCLI@2
   displayName: create package

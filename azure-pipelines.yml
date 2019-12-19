@@ -27,11 +27,12 @@ steps:
     testRunTitle: 'Gravity Actions - Automation Testing $(date:yyyyMMdd)$(rev:.r)'
 
 - task: DotNetCoreCLI@2
-  displayName: create package
   inputs:
     command: 'pack'
     packagesToPack: '**/*.csproj'
-    versioningScheme: 'byBuildNumber'
+    versioningScheme: 'byEnvVar'
+    versionEnvVar: '$(project.build)'
+    verbosityPack: 'Diagnostic'
 
 - task: PublishBuildArtifacts@1
   displayName: publish to azure pipelines

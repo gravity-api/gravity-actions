@@ -3,6 +3,9 @@ name: Gravity.Actions_$(Year:yyyy).$(Month).$(DayOfMonth)$(Rev:.r)
 pool:
   name: Default
 
+variables:
+  buildConfiguration: 'Release'
+
 steps:
 - task: DotNetCoreCLI@2
   displayName: restore dependencies
@@ -18,23 +21,24 @@ steps:
   inputs:
     command: 'build'
     projects: '**/Gravity.Actions.csproj'
-    arguments: '--configuration $(BuildConfiguration)'
+    arguments: '--configuration $(buildConfiguration)'
 
 - task: DotNetCoreCLI@2
   displayName: execute automated testing
   inputs:
     command: 'test'
     projects: '**/*[Tt]ests/*.csproj'
-    arguments: '--configuration $(BuildConfiguration)'
+    arguments: '--configuration $(buildConfiguration)'
     testRunTitle: 'Gravity Actions - Automation Testing $(date:yyyyMMdd)$(rev:.r)'
 
 - task: DotNetCoreCLI@2
+  displayName: create package
   inputs:
     command: 'pack'
     packagesToPack: '**/Gravity.Actions.csproj'
-    configuration: '$(buildConfiguration)'
     nobuild: true
-    versioningScheme: 'off'
+    versioningScheme: 'byEnvVar'
+    versionEnvVar: 'project.build-name'
     verbosityPack: 'Diagnostic'
 
 - task: PublishBuildArtifacts@1

@@ -1,7 +1,7 @@
 ﻿/*
  * CHANGE LOG - keep only last 5 threads
  * 
- * online resources
+ * on-line resources
  */
 using Gravity.Drivers.Mock.WebDriver;
 using Gravity.Services.DataContracts;
@@ -38,6 +38,9 @@ namespace Gravity.Services.ActionPlugins.Tests
             // execute
             var click = new Click(driver, null);
             click.OnPerform(actionRule);
+
+            // assertion (no assertion here, expected is no exception)
+            Assert.IsTrue(true);
         }
 
         [TestMethod]
@@ -50,6 +53,9 @@ namespace Gravity.Services.ActionPlugins.Tests
             // execute
             var click = new Click(driver, null);
             click.OnPerform(actionRule);
+
+            // assertion (no assertion here, expected is no exception)
+            Assert.IsTrue(true);
         }
     }
 }

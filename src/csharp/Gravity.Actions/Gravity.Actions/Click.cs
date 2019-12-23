@@ -4,17 +4,17 @@
  * 2019-01-03
  *    - modify: add support for click without specified element (flat action)
  *    - modify: improve XML comments
- *    - modify: change to json resource
+ *    - modify: change to JSON resource
  *    
  * 2019-01-11
  *    - modify: override action-name using ActionType constant
  *    - modify: improve element-level action
- *    -    fix: on element action will always look for absolute XPath
+ *    -    fix: on element action always takes absolute XPath
  *    
  * 2019-08-22
- *    - modify: add support for special cases - for action only not for extraction
+ *    - modify: add support for special cases - for action only, NOT for extraction
  * 
- * online resources
+ * on-line resources
  */
 using Gravity.Drivers.Selenium;
 using Gravity.Services.Comet.Engine.Attributes;
@@ -35,7 +35,8 @@ namespace Gravity.Services.ActionPlugins
 {
     [Action(
         assmebly: "Gravity.Services.ActionPlugins, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
-        resource: "Gravity.Services.ActionPlugins.Documentation.click.json")]
+        resource: "Gravity.Services.ActionPlugins.Documentation.click.json",
+        Name = ActionType.CLICK)]
     public class Click : ActionPlugin
     {
         // constants: arguments

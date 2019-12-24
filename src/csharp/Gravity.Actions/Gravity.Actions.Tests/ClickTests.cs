@@ -1,55 +1,155 @@
 ﻿/*
  * CHANGE LOG - keep only last 5 threads
  * 
- * online resources
+ * on-line resources
  */
 using Gravity.Drivers.Mock.WebDriver;
-using Gravity.Services.DataContracts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
+using System.Collections.Generic;
 
+#pragma warning disable S4144
 namespace Gravity.Services.ActionPlugins.Tests
 {
     [TestClass]
-    public class ClickTests
+    public class ClickTests : ActionTests
     {
-        [TestMethod]
-        public void ClickPositive()
+        [DataTestMethod]
+        [DataRow("{'elementToActOn':'//positive'}")]
+        public void ClickPositive(string actionRule)
         {
-            // setup
-            var driver = new MockWebDriver();
-            var actionRule = new ActionRule { ElementToActOn = "//positive" };
-
             // execute
-            var click = new Click(driver, null);
-            click.OnPerform(actionRule);
+            GetClick(actionRule);
 
             // assertion (no assertion here, expected is no exception)
             Assert.IsTrue(true);
         }
 
-        [TestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
-        public void ClickNoElement()
+        [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
+        [DataRow("{'elementToActOn':'//none'}")]
+        public void ClickNoElement(string actionRule)
         {
-            // setup
-            var driver = new MockWebDriver();
-            var actionRule = new ActionRule { ElementToActOn = "//none" };
-
             // execute
-            var click = new Click(driver, null);
-            click.OnPerform(actionRule);
+            GetClick(actionRule);
+
+            // assertion (no assertion here, expected WebDriverTimeoutException exception)
+            Assert.IsTrue(true);
         }
 
         [TestMethod]
         public void ClickFlat()
         {
+            // execute
+            GetClick(string.Empty);
+
+            // assertion (no assertion here, expected is no exception)
+            Assert.IsTrue(true);
+        }
+
+        [DataTestMethod]
+        [DataRow("{'Argument':'{{$ --until:NoAlert}}','ElementToActOn':'//positive'}")]
+        public void ClickUntilNoAlert(string actionRule)
+        {
+            // execute
+            GetClick(actionRule, new Dictionary<string, object>
+            {
+                [MockCapabilities.HasAlert] = true
+            });
+
+            // assertion (no assertion here, expected is no exception)
+            Assert.IsTrue(true);
+        }
+
+        [DataTestMethod]
+        [DataRow("{'elementToActOn':'//positive'}")]
+        public void ClickElementAbsolutePositive(string actionRule)
+        {
             // setup
-            var driver = new MockWebDriver();
-            var actionRule = new ActionRule();
+            var element = WebDriver.FindElement(By.XPath("//positive"));
 
             // execute
-            var click = new Click(driver, null);
-            click.OnPerform(actionRule);
+            GetClick(element, actionRule);
+
+            // assertion (no assertion here, expected is no exception)
+            Assert.IsTrue(true);
+        }
+
+        [DataTestMethod]
+        [DataRow("{'elementToActOn':'.//positive'}")]
+        public void ClickElementRelativePositive(string actionRule)
+        {
+            // setup
+            var element = WebDriver.FindElement(By.XPath("//positive"));
+
+            // execute
+            GetClick(element, actionRule);
+
+            // assertion (no assertion here, expected is no exception)
+            Assert.IsTrue(true);
+        }
+
+        [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
+        [DataRow("{'elementToActOn':'//none'}")]
+        public void ClickElementAbsoluteNoElement(string actionRule)
+        {
+            // setup
+            var element = WebDriver.FindElement(By.XPath("//positive"));
+
+            // execute
+            GetClick(element, actionRule);
+
+            // assertion (no assertion here, expected is no exception)
+            Assert.IsTrue(true);
+        }
+
+        [DataTestMethod, ExpectedException(typeof(NoSuchElementException))]
+        [DataRow("{'elementToActOn':'.//none'}")]
+        public void ClickElementRelativeNoElement(string actionRule)
+        {
+            // setup
+            var element = WebDriver.FindElement(By.XPath("//positive"));
+
+            // execute
+            GetClick(element, actionRule);
+
+            // assertion (no assertion here, expected is no exception)
+            Assert.IsTrue(true);
+        }
+
+        [TestMethod]
+        public void ClickElementFlat()
+        {
+            // setup
+            var element = WebDriver.FindElement(By.XPath("//positive"));
+
+            // execute
+            GetClick(element, string.Empty);
+
+            // assertion (no assertion here, expected is no exception)
+            Assert.IsTrue(true);
+        }
+
+        // base unit test for all element actions
+        private void GetClick(IWebElement element, string actionRule, IDictionary<string, object> capabilities = null)
+        {
+            // setup
+            var _actionRule = GetActionRule(actionRule);
+
+            // execute
+            var action = ActionFactory<Click>(WebAutomation, capabilities);
+            action.OnPerform(element, _actionRule);
+        }
+
+        // base unit test for all non-element actions
+        private void GetClick(string actionRule, IDictionary<string, object> capabilities = null)
+        {
+            // setup
+            var _actionRule = GetActionRule(actionRule);
+
+            // execute
+            var action = ActionFactory<Click>(WebAutomation, capabilities);
+            action.OnPerform(_actionRule);
         }
     }
 }
+#pragma warning restore S4144

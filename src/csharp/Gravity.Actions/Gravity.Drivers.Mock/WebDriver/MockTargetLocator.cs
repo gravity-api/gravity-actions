@@ -124,7 +124,11 @@ namespace Gravity.Drivers.Mock.WebDriver
             {
                 throw new NoSuchWindowException("Mock: No Such Window Exception");
             }
-            return driver;
+
+            // switch
+            var d = (MockWebDriver)driver;
+            d.CurrentWindowHandle = windowName;
+            return d;
         }
     }
 }

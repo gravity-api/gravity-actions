@@ -76,8 +76,6 @@ namespace Gravity.Services.ActionPlugins
             {
                 return;
             }
-
-            // close the window
             WebDriver.CloseWindow(indexOut);
         }
     }

@@ -25,6 +25,8 @@ namespace Gravity.Drivers.Mock.WebDriver
         public MockWebDriver(string driverBinaries, IDictionary<string, object> capabilities)
         {
             SetChildWindows(capabilities);
+
+            CurrentWindowHandle = WindowHandles[0];
             SessionId = new SessionId($"mock-session{Guid.NewGuid()}");
             DriverBinaries = driverBinaries;
             Capabilities = capabilities;
@@ -60,7 +62,7 @@ namespace Gravity.Drivers.Mock.WebDriver
         /// Gets the current window handle, which is an opaque handle to this window that
         /// uniquely identifies it within this driver instance.
         /// </summary>
-        public string CurrentWindowHandle => $"window-{Guid.NewGuid()}";
+        public string CurrentWindowHandle { get; set; }
 
         /// <summary>
         /// Get the current driver binaries location.
@@ -106,7 +108,7 @@ namespace Gravity.Drivers.Mock.WebDriver
 
             // remove current windows
             var windowHandles = WindowHandles.ToList();
-            windowHandles.RemoveAt(0);
+            windowHandles.Remove(CurrentWindowHandle);
             WindowHandles = new ReadOnlyCollection<string>(windowHandles);
         }
 
@@ -318,7 +320,7 @@ namespace Gravity.Drivers.Mock.WebDriver
             // setup window handles
             var windowHandles = new List<string>
             {
-                CurrentWindowHandle
+                $"window-{Guid.NewGuid()}"
             };
 
             for (int i = 0; i < windows; i++)

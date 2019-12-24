@@ -75,7 +75,7 @@ namespace Gravity.Services.ActionPlugins.Tests
         /// <param name="webAutomation">Web Automation object by which to generate the action.</param>
         /// <param name="capabilities">Capabilities to add to the action Web Driver instance</param>
         /// <returns>Action plug-in instance of the specified type.</returns>
-        public T ActionFactory<T>(WebAutomation webAutomation, IDictionary<string, object> capabilities)
+        public T ActionFactory<T>(WebAutomation webAutomation, IDictionary<string, object> capabilities = null)
             where T : ActionPlugin
         {
             // setup

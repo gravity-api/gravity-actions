@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFrameworks>net451;net46;netstandard2.0;netstandard2.1</TargetFrameworks>
@@ -18,11 +18,13 @@
   <ItemGroup>
     <None Remove="Documentation\click.json" />
     <None Remove="Documentation\close-all-child-windows.json" />
+    <None Remove="Documentation\close-browser.json" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="Documentation\click.json" />
     <EmbeddedResource Include="Documentation\close-all-child-windows.json" />
+    <EmbeddedResource Include="Documentation\close-browser.json" />
   </ItemGroup>
 
   <ItemGroup>

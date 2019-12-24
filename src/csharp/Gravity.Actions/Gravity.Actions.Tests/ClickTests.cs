@@ -3,7 +3,7 @@
  * 
  * on-line resources
  */
-using Gravity.Drivers.Mock;
+using Gravity.Drivers.Mock.WebDriver;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using System.Collections.Generic;
@@ -36,12 +36,11 @@ namespace Gravity.Services.ActionPlugins.Tests
             Assert.IsTrue(true);
         }
 
-        [DataTestMethod]
-        [DataRow("")]
-        public void ClickFlat(string actionRule)
+        [TestMethod]
+        public void ClickFlat()
         {
             // execute
-            GetClick(actionRule);
+            GetClick(string.Empty);
 
             // assertion (no assertion here, expected is no exception)
             Assert.IsTrue(true);
@@ -117,15 +116,14 @@ namespace Gravity.Services.ActionPlugins.Tests
             Assert.IsTrue(true);
         }
 
-        [DataTestMethod]
-        [DataRow("")]
-        public void ClickElementFlat(string actionRule)
+        [TestMethod]
+        public void ClickElementFlat()
         {
             // setup
             var element = WebDriver.FindElement(By.XPath("//positive"));
 
             // execute
-            GetClick(element, actionRule);
+            GetClick(element, string.Empty);
 
             // assertion (no assertion here, expected is no exception)
             Assert.IsTrue(true);

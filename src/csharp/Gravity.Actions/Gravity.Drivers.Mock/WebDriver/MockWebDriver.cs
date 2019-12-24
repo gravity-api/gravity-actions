@@ -90,6 +90,14 @@ namespace Gravity.Drivers.Mock.WebDriver
         /// </summary>
         public void Close()
         {
+            // exception conditions
+            var isKey = Capabilities.ContainsKey(MockCapabilities.ThrowOnClose);
+            var isException = isKey && (bool)Capabilities[MockCapabilities.ThrowOnClose];
+            if (isException)
+            {
+                throw new WebDriverException();
+            }
+
             // exit conditions
             if (WindowHandles.Count == 0)
             {
@@ -115,6 +123,7 @@ namespace Gravity.Drivers.Mock.WebDriver
         protected virtual void Dispose(bool disposing)
         {
             // Cleanup
+            WindowHandles = new ReadOnlyCollection<string>(new List<string>());
         }
 
         /// <summary>

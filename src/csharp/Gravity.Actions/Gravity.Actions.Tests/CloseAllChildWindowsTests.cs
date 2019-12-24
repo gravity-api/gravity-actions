@@ -3,7 +3,7 @@
  * 
  * on-line resources
  */
-using Gravity.Drivers.Mock;
+using Gravity.Drivers.Mock.WebDriver;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using System.Collections.Generic;
@@ -17,12 +17,11 @@ namespace Gravity.Services.ActionPlugins.Tests
         private const string MessageNoWindows = "No child windows are currently active.";
         private const string MessageStillActive = "Some child windows are still active.";
 
-        [DataTestMethod]
-        [DataRow("")]
-        public void CloseAllPositive(string actionRule)
+        [TestMethod]
+        public void CloseAllPositive()
         {
             // setup            
-            var _actionRule = GetActionRule(actionRule);
+            var _actionRule = GetActionRule(string.Empty);
             var action = ActionFactory<CloseAllChildWindows>(WebAutomation, new Dictionary<string, object>
             {
                 [MockCapabilities.ChildWindows] = NumberOfWindows
@@ -34,7 +33,7 @@ namespace Gravity.Services.ActionPlugins.Tests
             // execute
             action.OnPerform(_actionRule);
 
-            // assert that all child windows are now closed.
+            // assert that all child windows are now closed
             Assert.IsTrue(WebDriver.WindowHandles.Count == 1, MessageStillActive);
         }
 
@@ -56,7 +55,7 @@ namespace Gravity.Services.ActionPlugins.Tests
             // execute
             action.OnPerform(element, _actionRule);
 
-            // assert that all child windows are now closed.
+            // assert that all child windows are now closed
             Assert.IsTrue(WebDriver.WindowHandles.Count == 1, MessageStillActive);
         }
     }

@@ -38,8 +38,8 @@ namespace Gravity.Drivers.Mock.WebDriver
             var d = (MockWebDriver)driver;
 
             // setup conditions
-            var hasKey = d.Capabilities.ContainsKey("has-alert");
-            var hasAlert = hasKey && (bool)d.Capabilities["has-alert"];
+            var hasKey = d.Capabilities.ContainsKey(MockCapabilities.HasAlert);
+            var hasAlert = hasKey && (bool)d.Capabilities[MockCapabilities.HasAlert];
 
             // return alert if exists
             if (hasAlert)

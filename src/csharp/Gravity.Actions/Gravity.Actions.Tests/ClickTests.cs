@@ -3,6 +3,7 @@
  * 
  * on-line resources
  */
+using Gravity.Drivers.Mock;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using System.Collections.Generic;
@@ -53,7 +54,7 @@ namespace Gravity.Services.ActionPlugins.Tests
             // execute
             GetClick(actionRule, new Dictionary<string, object>
             {
-                ["has-alert"] = true
+                [MockCapabilities.HasAlert] = true
             });
 
             // assertion (no assertion here, expected is no exception)
@@ -137,8 +138,8 @@ namespace Gravity.Services.ActionPlugins.Tests
             var _actionRule = GetActionRule(actionRule);
 
             // execute
-            var click = ActionFactory<Click>(WebAutomation, capabilities);
-            click.OnPerform(element, _actionRule);
+            var action = ActionFactory<Click>(WebAutomation, capabilities);
+            action.OnPerform(element, _actionRule);
         }
 
         // base unit test for all non-element actions
@@ -148,8 +149,8 @@ namespace Gravity.Services.ActionPlugins.Tests
             var _actionRule = GetActionRule(actionRule);
 
             // execute
-            var click = ActionFactory<Click>(WebAutomation, capabilities);
-            click.OnPerform(_actionRule);
+            var action = ActionFactory<Click>(WebAutomation, capabilities);
+            action.OnPerform(_actionRule);
         }
     }
 }

@@ -24,12 +24,7 @@ namespace Gravity.Drivers.Mock.WebDriver
 
         public MockWebDriver(string driverBinaries, IDictionary<string, object> capabilities)
         {
-            WindowHandles = new ReadOnlyCollection<string>(new List<string>
-            {
-                CurrentWindowHandle,
-                $"window-{Guid.NewGuid()}",
-                $"window-{Guid.NewGuid()}"
-            });
+            SetChildWindows(capabilities);
             SessionId = new SessionId($"mock-session{Guid.NewGuid()}");
             DriverBinaries = driverBinaries;
             Capabilities = capabilities;
@@ -96,8 +91,12 @@ namespace Gravity.Drivers.Mock.WebDriver
         public void Close()
         {
             // exit conditions
-            if (WindowHandles.Count == 0) return;
+            if (WindowHandles.Count == 0)
+            {
+                return;
+            }
 
+            // remove current windows
             var windowHandles = WindowHandles.ToList();
             windowHandles.RemoveAt(0);
             WindowHandles = new ReadOnlyCollection<string>(windowHandles);
@@ -125,7 +124,7 @@ namespace Gravity.Drivers.Mock.WebDriver
         /// <param name="script">The JavaScript code to execute.</param>
         /// <param name="args">The arguments to the script.</param>
         /// <returns>The value returned by the script.</returns>
-        public object ExecuteAsyncScript(string script, params object[] args)=> ExecuteScript(script, args);
+        public object ExecuteAsyncScript(string script, params object[] args) => ExecuteScript(script, args);
 
         /// <summary>
         /// Executes JavaScript in the context of the currently selected frame or window.
@@ -148,7 +147,7 @@ namespace Gravity.Drivers.Mock.WebDriver
             }
 
             // for scrip macro
-            if(script == "script-macro")
+            if (script == "script-macro")
             {
                 return "some text and number 777";
             }
@@ -296,6 +295,29 @@ namespace Gravity.Drivers.Mock.WebDriver
                 throw new StaleElementReferenceException("Mock: Stale Element Reference Exception");
             }
             return defaultElement;
+        }
+
+        private void SetChildWindows(IDictionary<string, object> capabilities)
+        {
+            // normalize number of child windows
+            int windows = 0;
+            if (capabilities.ContainsKey(MockCapabilities.ChildWindows))
+            {
+                int.TryParse($"{capabilities[MockCapabilities.ChildWindows]}", out windows);
+            }
+
+            // setup window handles
+            var windowHandles = new List<string>
+            {
+                CurrentWindowHandle
+            };
+
+            for (int i = 0; i < windows; i++)
+            {
+                windowHandles.Add($"window-{Guid.NewGuid()}");
+            }
+
+            WindowHandles = new ReadOnlyCollection<string>(windowHandles);
         }
     }
 }

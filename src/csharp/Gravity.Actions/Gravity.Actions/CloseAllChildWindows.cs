@@ -55,14 +55,14 @@ namespace Gravity.Services.ActionPlugins
         /// <summary>
         /// Close all open tabs/windows and switch to the main (first) window.
         /// </summary>
-        /// <param name="actionRule">The action rule on which the action is based.</param>
+        /// <param name="actionRule">This ActionRule instance (the original object send by the user).</param>
         public override void OnPerform(ActionRule actionRule) => WebDriver.CloseAllChildWindows();
 
         /// <summary>
         /// Close all open tabs/windows and switch to the main (first) window.
         /// </summary>
-        /// <param name="webElement">The web-element on which to perform the action.</param>
-        /// <param name="actionRule">The action rule on which the action is based.</param>
+        /// <param name="webElement">This WebElement instance on which to perform the action (provided by the extraction rule).</param>
+        /// <param name="actionRule">This ActionRule instance (the original object send by the user).</param>
         public override void OnPerform(IWebElement webElement, ActionRule actionRule)
         {
             WebDriver.CloseAllChildWindows();

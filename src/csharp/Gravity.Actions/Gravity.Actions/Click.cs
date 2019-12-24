@@ -14,6 +14,9 @@
  * 2019-08-22
  *    - modify: add support for special cases - for action only, NOT for extraction
  * 
+ * 2019-12-24
+ *    - modify: add constructor to override base class types
+ * 
  * on-line resources
  */
 using Gravity.Drivers.Selenium;
@@ -48,16 +51,26 @@ namespace Gravity.Services.ActionPlugins
         private IDictionary<string, string> arguments;
 
         /// <summary>
-        /// Creates new action instance on this plugin.
+        /// Creates new action instance on this plug-in.
         /// </summary>
         /// <param name="webDriver">WebDriver implementation by which to execute the action.</param>
         /// <param name="webAutomation">This WebAutomation object (the original object sent by the user).</param>
         public Click(IWebDriver webDriver, WebAutomation webAutomation)
-            : base(webDriver, webAutomation)
+            : this(webDriver, webAutomation, Utilities.GetTypes())
+        { }
+
+        /// <summary>
+        /// Creates new action instance on this plug-in.
+        /// </summary>
+        /// <param name="webDriver">WebDriver implementation by which to execute the action.</param>
+        /// <param name="webAutomation">This WebAutomation object (the original object sent by the user).</param>
+        /// <param name="types">Types from which to load plug-ins repositories</param>
+        public Click(IWebDriver webDriver, WebAutomation webAutomation, IEnumerable<Type> types)
+            : base(webDriver, webAutomation, types)
         {
             actions = new Actions(webDriver);
             wait = new WebDriverWait(webDriver, TimeSpan.FromMilliseconds(PageLoadTimeout));
-            ByFactory ??= new ByFactory(Utilities.GetTypes());
+            ByFactory ??= new ByFactory(types);
         }
 
         /// <summary>
@@ -72,7 +85,7 @@ namespace Gravity.Services.ActionPlugins
                 return;
             }
 
-            // execute spcial action
+            // execute special action
             arguments = new CliFactory(actionRule.Argument).Parse();
             if (arguments.ContainsKey(UNTIL))
             {
@@ -104,7 +117,9 @@ namespace Gravity.Services.ActionPlugins
             var by = ByFactory.Get(actionRule.Locator, actionRule.ElementToActOn);
 
             // execute action
-            var element = IsAbsoluteXPath(actionRule) ? WebDriver.GetElement(by) : webElement.FindElement(by);
+            var element = IsAbsoluteXPath(actionRule)
+                ? WebDriver.GetElement(by, TimeSpan.FromMilliseconds(ElementSearchTimeout))
+                : webElement.FindElement(by);
             element.Click();
         }
 
@@ -137,12 +152,6 @@ namespace Gravity.Services.ActionPlugins
         [Description(nameof(NoAlert))]
         private void NoAlert(ActionRule actionRule)
         {
-            // exit conditions
-            if (Flat(actionRule))
-            {
-                return;
-            }
-
             // get locator
             var by = ByFactory.Get(actionRule.Locator, actionRule.ElementToActOn);
 

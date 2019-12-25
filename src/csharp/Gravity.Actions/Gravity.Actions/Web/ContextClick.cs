@@ -20,7 +20,7 @@ using OpenQA.Selenium.Interactions;
 using System;
 using System.Collections.Generic;
 
-namespace Gravity.Services.ActionPlugins
+namespace Gravity.Services.ActionPlugins.Web
 {
     [Action(
         assmebly: "Gravity.Services.ActionPlugins, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",

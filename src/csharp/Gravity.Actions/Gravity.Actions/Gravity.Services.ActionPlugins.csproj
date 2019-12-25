@@ -32,4 +32,8 @@
   <ItemGroup>
     <PackageReference Include="Gravity.Services.Comet" Version="2019.12.25.1" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Mobile\" />
+  </ItemGroup>
 </Project>

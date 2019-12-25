@@ -4,6 +4,7 @@
  * on-line resources
  */
 using Gravity.Drivers.Mock.WebDriver;
+using Gravity.Services.ActionPlugins.Web;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using System.Collections.Generic;

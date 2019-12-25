@@ -34,7 +34,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
 
-namespace Gravity.Services.ActionPlugins
+namespace Gravity.Services.ActionPlugins.Common
 {
     [Action(
         assmebly: "Gravity.Services.ActionPlugins, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",

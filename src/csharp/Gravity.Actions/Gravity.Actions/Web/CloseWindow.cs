@@ -6,11 +6,8 @@
  *    - modify: improve XML comments
  *    
  * 2019-01-11
- *    - modify: override action-name using ActionType constant
+ *    - modify: override action-name using ActionType constant 
  * 
- * 2019-12-23
- *    - modify: add on element override to allow calling from extraction rules
- *    
  * 2019-12-24
  *    - modify: add constructor to override base class types
  *
@@ -25,20 +22,20 @@ using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 
-namespace Gravity.Services.ActionPlugins
+namespace Gravity.Services.ActionPlugins.Web
 {
     [Action(
         assmebly: "Gravity.Services.ActionPlugins, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
-        resource: "Gravity.Services.ActionPlugins.Documentation.close-all-child-windows.json",
-        Name = ActionType.CLOSE_ALL_CHILD_WINDOWS)]
-    public class CloseAllChildWindows : ActionPlugin
+        resource: "Gravity.Services.ActionPlugins.Documentation.close-browser.json",
+        Name = ActionType.CLOSE_WINDOW)]
+    public class CloseWindow : ActionPlugin
     {
         /// <summary>
         /// Creates a new instance of this plug-in.
         /// </summary>
         /// <param name="webDriver">WebDriver implementation by which to execute the action.</param>
         /// <param name="webAutomation">This WebAutomation object (the original object sent by the user).</param>
-        public CloseAllChildWindows(IWebDriver webDriver, WebAutomation webAutomation)
+        public CloseWindow(IWebDriver webDriver, WebAutomation webAutomation)
             : this(webDriver, webAutomation, Utilities.GetTypes())
         { }
 
@@ -48,27 +45,38 @@ namespace Gravity.Services.ActionPlugins
         /// <param name="webDriver">WebDriver implementation by which to execute the action.</param>
         /// <param name="webAutomation">This WebAutomation object (the original object sent by the user).</param>
         /// <param name="types">Types from which to load plug-ins repositories</param>
-        public CloseAllChildWindows(IWebDriver webDriver, WebAutomation webAutomation, IEnumerable<Type> types)
+        public CloseWindow(IWebDriver webDriver, WebAutomation webAutomation, IEnumerable<Type> types)
             : base(webDriver, webAutomation, types)
         { }
 
         /// <summary>
-        /// Close all open tabs/windows and switch to the main (first) window.
+        /// Close the given window, quitting the browser if it is the last window currently open.
         /// </summary>
         /// <param name="actionRule">This ActionRule instance (the original object send by the user).</param>
         public override void OnPerform(ActionRule actionRule)
         {
-            WebDriver.CloseAllChildWindows();
+            Close(actionRule);
         }
 
         /// <summary>
-        /// Close all open tabs/windows and switch to the main (first) window.
+        /// Close the given window, quitting the browser if it is the last window currently open.
         /// </summary>
         /// <param name="webElement">This WebElement instance on which to perform the action (provided by the extraction rule).</param>
         /// <param name="actionRule">This ActionRule instance (the original object send by the user).</param>
         public override void OnPerform(IWebElement webElement, ActionRule actionRule)
         {
-            WebDriver.CloseAllChildWindows();
+            Close(actionRule);
+        }
+
+        // close the given window, quitting the browser if it is the last window currently open
+        private void Close(ActionRule actionRule)
+        {
+            // exit conditions
+            if (!int.TryParse(actionRule.Argument, out int indexOut))
+            {
+                return;
+            }
+            WebDriver.CloseWindow(indexOut);
         }
     }
 }

@@ -12,7 +12,7 @@ using System.Collections.Generic;
 namespace Gravity.Services.ActionPlugins.Tests
 {
     [TestClass]
-    public class ContextClickTests:ActionTests
+    public class ContextClickTests : ActionTests
     {
         [DataTestMethod]
         [DataRow("{'elementToActOn':'//positive'}")]

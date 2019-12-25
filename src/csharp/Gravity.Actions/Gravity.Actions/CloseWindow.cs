@@ -1,5 +1,5 @@
 ﻿/*
- * CHANGE LOG
+ * CHANGE LOG - keep only last 5 threads
  * 
  * 2019-01-03
  *    - modify: use JSON resources
@@ -31,7 +31,7 @@ namespace Gravity.Services.ActionPlugins
     public class CloseWindow : ActionPlugin
     {
         /// <summary>
-        /// Creates new action instance on this plug-in.
+        /// Creates a new instance of this plug-in.
         /// </summary>
         /// <param name="webDriver">WebDriver implementation by which to execute the action.</param>
         /// <param name="webAutomation">This WebAutomation object (the original object sent by the user).</param>
@@ -40,7 +40,7 @@ namespace Gravity.Services.ActionPlugins
         { }
 
         /// <summary>
-        /// Creates new action instance on this plug-in.
+        /// Creates a new instance of this plug-in.
         /// </summary>
         /// <param name="webDriver">WebDriver implementation by which to execute the action.</param>
         /// <param name="webAutomation">This WebAutomation object (the original object sent by the user).</param>

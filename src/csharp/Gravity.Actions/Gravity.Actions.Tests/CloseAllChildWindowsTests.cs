@@ -20,9 +20,8 @@ namespace Gravity.Services.ActionPlugins.Tests
         [TestMethod]
         public void CloseAllPositive()
         {
-            // setup            
-            var _actionRule = GetActionRule(string.Empty);
-            var action = ActionFactory<CloseAllChildWindows>(WebAutomation, new Dictionary<string, object>
+            // open child windows
+            WebDriver = WebDriver.ApplyCapabilities(new Dictionary<string, object>
             {
                 [MockCapabilities.ChildWindows] = NumberOfWindows
             });
@@ -31,7 +30,7 @@ namespace Gravity.Services.ActionPlugins.Tests
             Assert.IsTrue(WebDriver.WindowHandles.Count > NumberOfWindows, MessageNoWindows);
 
             // execute
-            action.OnPerform(_actionRule);
+            ExecuteAction<CloseAllChildWindows>();
 
             // assert that all child windows are now closed
             Assert.IsTrue(WebDriver.WindowHandles.Count == 1, MessageStillActive);
@@ -41,19 +40,17 @@ namespace Gravity.Services.ActionPlugins.Tests
         [DataRow("{'elementToActOn':'.//positive'}")]
         public void CloseAllElementPositive(string actionRule)
         {
-            // setup            
-            var _actionRule = GetActionRule(actionRule);
-            var action = ActionFactory<CloseAllChildWindows>(WebAutomation, new Dictionary<string, object>
+            // open child windows
+            WebDriver = WebDriver.ApplyCapabilities(new Dictionary<string, object>
             {
                 [MockCapabilities.ChildWindows] = NumberOfWindows
             });
-            var element = WebDriver.FindElement(By.XPath("//positive"));
 
             // assert that at least numberOfWindows are currently active
             Assert.IsTrue(WebDriver.WindowHandles.Count > NumberOfWindows, MessageNoWindows);
 
             // execute
-            action.OnPerform(element, _actionRule);
+            ExecuteAction<CloseAllChildWindows>(By.XPath("//positive"), actionRule);
 
             // assert that all child windows are now closed
             Assert.IsTrue(WebDriver.WindowHandles.Count == 1, MessageStillActive);

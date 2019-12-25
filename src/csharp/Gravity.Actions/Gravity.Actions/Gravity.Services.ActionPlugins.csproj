@@ -19,15 +19,17 @@
     <None Remove="Documentation\click.json" />
     <None Remove="Documentation\close-all-child-windows.json" />
     <None Remove="Documentation\close-browser.json" />
+    <None Remove="Documentation\context-click.json" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="Documentation\click.json" />
     <EmbeddedResource Include="Documentation\close-all-child-windows.json" />
     <EmbeddedResource Include="Documentation\close-browser.json" />
+    <EmbeddedResource Include="Documentation\context-click.json" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Gravity.Services.Comet" Version="2019.12.19.1" />
+    <PackageReference Include="Gravity.Services.Comet" Version="2019.12.25.1" />
   </ItemGroup>
 </Project>

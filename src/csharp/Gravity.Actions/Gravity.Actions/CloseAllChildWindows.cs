@@ -34,7 +34,7 @@ namespace Gravity.Services.ActionPlugins
     public class CloseAllChildWindows : ActionPlugin
     {
         /// <summary>
-        /// Creates new action instance on this plug-in.
+        /// Creates a new instance of this plug-in.
         /// </summary>
         /// <param name="webDriver">WebDriver implementation by which to execute the action.</param>
         /// <param name="webAutomation">This WebAutomation object (the original object sent by the user).</param>
@@ -43,7 +43,7 @@ namespace Gravity.Services.ActionPlugins
         { }
 
         /// <summary>
-        /// Creates new action instance on this plug-in.
+        /// Creates a new instance of this plug-in.
         /// </summary>
         /// <param name="webDriver">WebDriver implementation by which to execute the action.</param>
         /// <param name="webAutomation">This WebAutomation object (the original object sent by the user).</param>
@@ -56,7 +56,10 @@ namespace Gravity.Services.ActionPlugins
         /// Close all open tabs/windows and switch to the main (first) window.
         /// </summary>
         /// <param name="actionRule">This ActionRule instance (the original object send by the user).</param>
-        public override void OnPerform(ActionRule actionRule) => WebDriver.CloseAllChildWindows();
+        public override void OnPerform(ActionRule actionRule)
+        {
+            WebDriver.CloseAllChildWindows();
+        }
 
         /// <summary>
         /// Close all open tabs/windows and switch to the main (first) window.

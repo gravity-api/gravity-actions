@@ -12,14 +12,14 @@ using System.Collections.Generic;
 namespace Gravity.Services.ActionPlugins.Tests
 {
     [TestClass]
-    public class ClickTests : ActionTests
+    public class ContextClickTests:ActionTests
     {
         [DataTestMethod]
         [DataRow("{'elementToActOn':'//positive'}")]
-        public void ClickPositive(string actionRule)
+        public void ContextClickPositive(string actionRule)
         {
             // execute
-            ExecuteAction<Click>(actionRule);
+            ExecuteAction<ContextClick>(actionRule);
 
             // assertion (no assertion here, expected is no exception)
             Assert.IsTrue(true);
@@ -27,20 +27,20 @@ namespace Gravity.Services.ActionPlugins.Tests
 
         [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
         [DataRow("{'elementToActOn':'//none'}")]
-        public void ClickNoElement(string actionRule)
+        public void ContextClickNoElement(string actionRule)
         {
             // execute
-            ExecuteAction<Click>(actionRule);
+            ExecuteAction<ContextClick>(actionRule);
 
             // assertion (no assertion here, expected WebDriverTimeoutException exception)
             Assert.IsTrue(true);
         }
 
         [TestMethod]
-        public void ClickFlat()
+        public void ContextClickFlat()
         {
             // execute
-            ExecuteAction<Click>();
+            ExecuteAction<ContextClick>();
 
             // assertion (no assertion here, expected is no exception)
             Assert.IsTrue(true);
@@ -48,10 +48,10 @@ namespace Gravity.Services.ActionPlugins.Tests
 
         [DataTestMethod]
         [DataRow("{'Argument':'{{$ --until:NoAlert}}','ElementToActOn':'//positive'}")]
-        public void ClickUntilNoAlert(string actionRule)
+        public void ContextClickUntilNoAlert(string actionRule)
         {
             // execute
-            ExecuteAction<Click>(actionRule, new Dictionary<string, object>
+            ExecuteAction<ContextClick>(actionRule, new Dictionary<string, object>
             {
                 [MockCapabilities.HasAlert] = true
             });
@@ -62,10 +62,10 @@ namespace Gravity.Services.ActionPlugins.Tests
 
         [DataTestMethod]
         [DataRow("{'elementToActOn':'//positive'}")]
-        public void ClickElementAbsolutePositive(string actionRule)
+        public void ContextClickElementAbsolutePositive(string actionRule)
         {
             // execute
-            ExecuteAction<Click>(MockBy.Positive(), actionRule);
+            ExecuteAction<ContextClick>(MockBy.Positive(), actionRule);
 
             // assertion (no assertion here, expected is no exception)
             Assert.IsTrue(true);
@@ -73,10 +73,10 @@ namespace Gravity.Services.ActionPlugins.Tests
 
         [DataTestMethod]
         [DataRow("{'elementToActOn':'.//positive'}")]
-        public void ClickElementRelativePositive(string actionRule)
+        public void ContextClickElementRelativePositive(string actionRule)
         {
             // execute
-            ExecuteAction<Click>(MockBy.Positive(), actionRule);
+            ExecuteAction<ContextClick>(MockBy.Positive(), actionRule);
 
             // assertion (no assertion here, expected is no exception)
             Assert.IsTrue(true);
@@ -84,10 +84,10 @@ namespace Gravity.Services.ActionPlugins.Tests
 
         [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
         [DataRow("{'elementToActOn':'//none'}")]
-        public void ClickElementAbsoluteNoElement(string actionRule)
+        public void ContextClickElementAbsoluteNoElement(string actionRule)
         {
             // execute
-            ExecuteAction<Click>(MockBy.Positive(), actionRule);
+            ExecuteAction<ContextClick>(MockBy.Positive(), actionRule);
 
             // assertion (no assertion here, expected is no exception)
             Assert.IsTrue(true);
@@ -95,20 +95,20 @@ namespace Gravity.Services.ActionPlugins.Tests
 
         [DataTestMethod, ExpectedException(typeof(NoSuchElementException))]
         [DataRow("{'elementToActOn':'.//none'}")]
-        public void ClickElementRelativeNoElement(string actionRule)
+        public void ContextClickElementRelativeNoElement(string actionRule)
         {
             // execute
-            ExecuteAction<Click>(MockBy.Positive(), actionRule);
+            ExecuteAction<ContextClick>(MockBy.Positive(), actionRule);
 
             // assertion (no assertion here, expected is no exception)
             Assert.IsTrue(true);
         }
 
         [TestMethod]
-        public void ClickElementFlat()
+        public void ContextClickElementFlat()
         {
             // execute
-            ExecuteAction<Click>(MockBy.Positive());
+            ExecuteAction<ContextClick>(MockBy.Positive());
 
             // assertion (no assertion here, expected is no exception)
             Assert.IsTrue(true);

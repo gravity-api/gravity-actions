@@ -16,15 +16,11 @@ namespace Gravity.Services.ActionPlugins.Tests
         [TestMethod]
         public void CloseBrowserPositive()
         {
-            // setup            
-            var _actionRule = GetActionRule(string.Empty);
-            var action = ActionFactory<CloseBrowser>(WebAutomation);
-
             // assert that at least browser is currently active
             Assert.IsTrue(WebDriver.WindowHandles.Count == 1);
 
             // execute
-            action.OnPerform(_actionRule);
+            ExecuteAction<CloseBrowser>();
 
             // assert that browser is currently closed
             Assert.IsTrue(WebDriver.WindowHandles.Count == 0);
@@ -33,15 +29,11 @@ namespace Gravity.Services.ActionPlugins.Tests
         [TestMethod, ExpectedException(typeof(WebDriverException))]
         public void CloseBrowserException()
         {
-            // setup            
-            var _actionRule = GetActionRule(string.Empty);
-            var action = ActionFactory<CloseBrowser>(WebAutomation, new Dictionary<string, object>
+            // execute
+            ExecuteAction<CloseBrowser>(new Dictionary<string, object>
             {
                 [MockCapabilities.ThrowOnClose] = true
             });
-
-            // execute
-            action.OnPerform(_actionRule);
         }
     }
 }

@@ -17,63 +17,56 @@ namespace Gravity.Services.ActionPlugins.Tests
         private const int NumberOfWindows = 5;
 
         [DataTestMethod]
-        [DataRow("{'Argument':'1'}")]
-        [DataRow("{'Argument':'2'}")]
-        public void CloseWindowPositive(string actionRule)
+        [DataRow("{'argument':'1'}", 1)]
+        [DataRow("{'argument':'2'}", 2)]
+        public void CloseWindowPositive(string actionRule, int windowsHandle)
         {
-            // setup            
-            var _actionRule = GetActionRule(actionRule);
-            var action = ActionFactory<CloseWindow>(WebAutomation, new Dictionary<string, object>
+            // setup
+            WebDriver = WebDriver.ApplyCapabilities(new Dictionary<string, object>
             {
                 [MockCapabilities.ChildWindows] = NumberOfWindows
             });
 
             // get window number for assertion
-            var window = WebDriver.WindowHandles[int.Parse(_actionRule.Argument)];
+            var window = WebDriver.WindowHandles[windowsHandle];
 
             // execute
-            action.OnPerform(_actionRule);
+            ExecuteAction<CloseWindow>(actionRule);
 
             // assert that the window is now closed
             Assert.IsFalse(WebDriver.WindowHandles.Any(i => i.Equals(window)));
         }
 
         [DataTestMethod]
-        [DataRow("{'Argument':'1'}")]
-        [DataRow("{'Argument':'2'}")]
-        public void CloseWindowElementPositive(string actionRule)
+        [DataRow("{'argument':'1'}", 1)]
+        [DataRow("{'argument':'2'}", 2)]
+        public void CloseWindowElementPositive(string actionRule, int windowsHandle)
         {
-            // setup            
-            var _actionRule = GetActionRule(actionRule);
-            var action = ActionFactory<CloseWindow>(WebAutomation, new Dictionary<string, object>
+            // setup
+            WebDriver = WebDriver.ApplyCapabilities(new Dictionary<string, object>
             {
                 [MockCapabilities.ChildWindows] = NumberOfWindows
             });
-            var element = WebDriver.FindElement(By.XPath("//positive"));
 
             // get window number for assertion
-            var window = WebDriver.WindowHandles[int.Parse(_actionRule.Argument)];
+            var window = WebDriver.WindowHandles[windowsHandle];
 
             // execute
-            action.OnPerform(element, _actionRule);
+            ExecuteAction<CloseWindow>(By.XPath("//positive"), actionRule);
 
             // assert that the window is now closed
             Assert.IsFalse(WebDriver.WindowHandles.Any(i => i.Equals(window)));
         }
 
         [DataTestMethod]
-        [DataRow("{'Argument':'notAnumber'}")]
+        [DataRow("{'argument':'notAnumber'}")]
         public void CloseWindowNegative(string actionRule)
         {
-            // setup            
-            var _actionRule = GetActionRule(actionRule);
-            var action = ActionFactory<CloseWindow>(WebAutomation, new Dictionary<string, object>
+            // execute
+            ExecuteAction<CloseWindow>(actionRule, new Dictionary<string, object>
             {
                 [MockCapabilities.ChildWindows] = NumberOfWindows
             });
-
-            // execute
-            action.OnPerform(_actionRule);
 
             // assert that no window has been closed
             Assert.IsTrue(WebDriver.WindowHandles.Count == NumberOfWindows + 1);

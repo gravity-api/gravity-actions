@@ -20,6 +20,7 @@
     <None Remove="Documentation\close-all-child-windows.json" />
     <None Remove="Documentation\close-browser.json" />
     <None Remove="Documentation\context-click.json" />
+    <None Remove="Documentation\double-click.json" />
   </ItemGroup>
 
   <ItemGroup>
@@ -27,6 +28,7 @@
     <EmbeddedResource Include="Documentation\close-all-child-windows.json" />
     <EmbeddedResource Include="Documentation\close-browser.json" />
     <EmbeddedResource Include="Documentation\context-click.json" />
+    <EmbeddedResource Include="Documentation\double-click.json" />
   </ItemGroup>
 
   <ItemGroup>

@@ -4,6 +4,8 @@
  * on-line resources
  */
 using Gravity.Drivers.Mock.WebDriver;
+using Gravity.Services.ActionPlugins.Common;
+using Gravity.Services.DataContracts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using System.Collections.Generic;
@@ -14,17 +16,37 @@ namespace Gravity.Services.ActionPlugins.Tests
     public class CloseBrowserTests : ActionTests
     {
         [TestMethod]
+        public void CloseBrowserCreateNoTypes()
+        {
+            ValidateAction<CloseBrowser>();
+        }
+
+        [TestMethod]
+        public void CloseBrowserCreateTypes()
+        {
+            ValidateAction<CloseBrowser>(Types);
+        }
+
+        [TestMethod]
+        public void CloseBrowserDocumentationNoTypes()
+        {
+            ValidateActionDocumentation<CloseBrowser>(ActionType.CLOSE_BROWSER);
+        }
+
+        [TestMethod]
+        public void CloseBrowserDocumentationTypes()
+        {
+            ValidateActionDocumentation<CloseBrowser>(ActionType.CLOSE_BROWSER, Types);
+        }
+
+        [TestMethod]
         public void CloseBrowserPositive()
         {
-            // setup            
-            var _actionRule = GetActionRule(string.Empty);
-            var action = ActionFactory<CloseBrowser>(WebAutomation);
-
             // assert that at least browser is currently active
             Assert.IsTrue(WebDriver.WindowHandles.Count == 1);
 
             // execute
-            action.OnPerform(_actionRule);
+            ExecuteAction<CloseBrowser>();
 
             // assert that browser is currently closed
             Assert.IsTrue(WebDriver.WindowHandles.Count == 0);
@@ -33,15 +55,11 @@ namespace Gravity.Services.ActionPlugins.Tests
         [TestMethod, ExpectedException(typeof(WebDriverException))]
         public void CloseBrowserException()
         {
-            // setup            
-            var _actionRule = GetActionRule(string.Empty);
-            var action = ActionFactory<CloseBrowser>(WebAutomation, new Dictionary<string, object>
+            // execute
+            ExecuteAction<CloseBrowser>(new Dictionary<string, object>
             {
                 [MockCapabilities.ThrowOnClose] = true
             });
-
-            // execute
-            action.OnPerform(_actionRule);
         }
     }
 }

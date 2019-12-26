@@ -163,7 +163,29 @@ namespace Gravity.Drivers.Mock.WebDriver
                 return "some text and number 777";
             }
 
-            return string.Empty;
+            // for action rule
+            if(script?.Length == 0 || script == "console.log('unit testing');")
+            {
+                return string.Empty;
+            }
+
+            // for element
+            var isArgs = args.Length == 1;
+            var isElement = isArgs && args[0].GetType() == typeof(MockWebElement);
+            var isSrc = script == "arguments[0].checked=false;";
+            if (isElement && isSrc)
+            {
+                return string.Empty;
+            }
+
+            // for ready state
+            if(script == "return document.readyState;")
+            {
+                return "complete";
+            }
+
+            // invalid script
+            throw new WebDriverException();
         }
 
         /// <summary>

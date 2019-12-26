@@ -1,0 +1,33 @@
+{
+  "name": "ContextClick",
+  "summary": "Right clicks the mouse.",
+  "description": "Right clicks the mouse at the last known mouse coordinates or on the specified element.",
+  "testOn": "https://gravitymvctestapplication.azurewebsites.net/instructor",
+  "examples": [
+    {
+      "description": "Right clicks the mouse on the specified element.",
+      "literalExample": "context click on {//form/div[6]/input}",
+      "actionExample": {
+        "actionType": "ContextClick",
+        "elementToActOn": "//form/div[6]/input"
+      },
+      "comment": "Executed on [Edit] page. Select any instructor and click on [Edit] link."
+    },
+    {
+      "description": "Right clicks the mouse at the last known mouse coordinates.",
+      "literalExample": "context click",
+      "actionExample": {
+        "actionType": "ContextClick"
+      }
+    }
+  ],
+  "properties": {
+    "elementToActOn": "The locator value by which the element will be found.",
+    "locator": "The locator type by which the element will be found."
+  },
+  "scope": [ "web" ],
+  "protocol": {
+    "endpoint": "none",
+    "w3c": "https://www.w3.org/TR/webdriver/#actions"
+  }
+}

@@ -14,38 +14,38 @@ using System.Collections.Generic;
 namespace Gravity.Services.ActionPlugins.Tests
 {
     [TestClass]
-    public class ClickTests : ActionTests
+    public class DoubleClickTests : ActionTests
     {
         [TestMethod]
-        public void ClickCreateNoTypes()
+        public void DoubleClickCreateNoTypes()
         {
-            ValidateAction<Click>();
+            ValidateAction<DoubleClick>();
         }
 
         [TestMethod]
-        public void ClickCreateTypes()
+        public void DoubleClickCreateTypes()
         {
-            ValidateAction<Click>(Types);
+            ValidateAction<DoubleClick>(Types);
         }
 
         [TestMethod]
-        public void ClickDocumentationNoTypes()
+        public void DoubleClickDocumentationNoTypes()
         {
-            ValidateActionDocumentation<Click>(ActionType.CLICK);
+            ValidateActionDocumentation<DoubleClick>(ActionType.DOUBLE_CLICK);
         }
 
         [TestMethod]
-        public void ClickDocumentationTypes()
+        public void DoubleClickDocumentationTypes()
         {
-            ValidateActionDocumentation<Click>(ActionType.CLICK, Types);
+            ValidateActionDocumentation<DoubleClick>(ActionType.DOUBLE_CLICK, Types);
         }
 
         [DataTestMethod]
         [DataRow("{'elementToActOn':'//positive'}")]
-        public void ClickPositive(string actionRule)
+        public void DoubleClickPositive(string actionRule)
         {
             // execute
-            ExecuteAction<Click>(actionRule);
+            ExecuteAction<DoubleClick>(actionRule);
 
             // assertion (no assertion here, expected is no exception)
             Assert.IsTrue(true);
@@ -53,20 +53,20 @@ namespace Gravity.Services.ActionPlugins.Tests
 
         [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
         [DataRow("{'elementToActOn':'//none'}")]
-        public void ClickNoElement(string actionRule)
+        public void DoubleClickNoElement(string actionRule)
         {
             // execute
-            ExecuteAction<Click>(actionRule);
+            ExecuteAction<DoubleClick>(actionRule);
 
             // assertion (no assertion here, expected WebDriverTimeoutException exception)
             Assert.IsTrue(true);
         }
 
         [TestMethod]
-        public void ClickFlat()
+        public void DoubleClickFlat()
         {
             // execute
-            ExecuteAction<Click>();
+            ExecuteAction<DoubleClick>();
 
             // assertion (no assertion here, expected is no exception)
             Assert.IsTrue(true);
@@ -74,10 +74,10 @@ namespace Gravity.Services.ActionPlugins.Tests
 
         [DataTestMethod]
         [DataRow("{'Argument':'{{$ --until:NoAlert}}','ElementToActOn':'//positive'}")]
-        public void ClickUntilNoAlert(string actionRule)
+        public void DoubleClickUntilNoAlert(string actionRule)
         {
             // execute
-            ExecuteAction<Click>(actionRule, new Dictionary<string, object>
+            ExecuteAction<DoubleClick>(actionRule, new Dictionary<string, object>
             {
                 [MockCapabilities.HasAlert] = true
             });
@@ -88,10 +88,10 @@ namespace Gravity.Services.ActionPlugins.Tests
 
         [DataTestMethod]
         [DataRow("{'elementToActOn':'//positive'}")]
-        public void ClickElementAbsolutePositive(string actionRule)
+        public void DoubleClickElementAbsolutePositive(string actionRule)
         {
             // execute
-            ExecuteAction<Click>(MockBy.Positive(), actionRule);
+            ExecuteAction<DoubleClick>(MockBy.Positive(), actionRule);
 
             // assertion (no assertion here, expected is no exception)
             Assert.IsTrue(true);
@@ -99,10 +99,10 @@ namespace Gravity.Services.ActionPlugins.Tests
 
         [DataTestMethod]
         [DataRow("{'elementToActOn':'.//positive'}")]
-        public void ClickElementRelativePositive(string actionRule)
+        public void DoubleClickElementRelativePositive(string actionRule)
         {
             // execute
-            ExecuteAction<Click>(MockBy.Positive(), actionRule);
+            ExecuteAction<DoubleClick>(MockBy.Positive(), actionRule);
 
             // assertion (no assertion here, expected is no exception)
             Assert.IsTrue(true);
@@ -110,10 +110,10 @@ namespace Gravity.Services.ActionPlugins.Tests
 
         [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
         [DataRow("{'elementToActOn':'//none'}")]
-        public void ClickElementAbsoluteNoElement(string actionRule)
+        public void DoubleClickElementAbsoluteNoElement(string actionRule)
         {
             // execute
-            ExecuteAction<Click>(MockBy.Positive(), actionRule);
+            ExecuteAction<DoubleClick>(MockBy.Positive(), actionRule);
 
             // assertion (no assertion here, expected is no exception)
             Assert.IsTrue(true);
@@ -121,20 +121,20 @@ namespace Gravity.Services.ActionPlugins.Tests
 
         [DataTestMethod, ExpectedException(typeof(NoSuchElementException))]
         [DataRow("{'elementToActOn':'.//none'}")]
-        public void ClickElementRelativeNoElement(string actionRule)
+        public void DoubleClickElementRelativeNoElement(string actionRule)
         {
             // execute
-            ExecuteAction<Click>(MockBy.Positive(), actionRule);
+            ExecuteAction<DoubleClick>(MockBy.Positive(), actionRule);
 
             // assertion (no assertion here, expected is no exception)
             Assert.IsTrue(true);
         }
 
         [TestMethod]
-        public void ClickElementFlat()
+        public void DoubleClickElementFlat()
         {
             // execute
-            ExecuteAction<Click>(MockBy.Positive());
+            ExecuteAction<DoubleClick>(MockBy.Positive());
 
             // assertion (no assertion here, expected is no exception)
             Assert.IsTrue(true);

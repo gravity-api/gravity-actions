@@ -4,6 +4,8 @@
  * on-line resources
  */
 using Gravity.Drivers.Mock.WebDriver;
+using Gravity.Services.ActionPlugins.Web;
+using Gravity.Services.DataContracts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using System.Collections.Generic;
@@ -18,11 +20,34 @@ namespace Gravity.Services.ActionPlugins.Tests
         private const string MessageStillActive = "Some child windows are still active.";
 
         [TestMethod]
+        public void CloseAllChildWindowsCreateNoTypes()
+        {
+            ValidateAction<CloseAllChildWindows>();
+        }
+
+        [TestMethod]
+        public void CloseAllChildWindowsCreateTypes()
+        {
+            ValidateAction<CloseAllChildWindows>(Types);
+        }
+
+        [TestMethod]
+        public void CloseAllChildWindowsDocumentationNoTypes()
+        {
+            ValidateActionDocumentation<CloseAllChildWindows>(ActionType.CLOSE_ALL_CHILD_WINDOWS);
+        }
+
+        [TestMethod]
+        public void CloseAllChildWindowsDocumentationTypes()
+        {
+            ValidateActionDocumentation<CloseAllChildWindows>(ActionType.CLOSE_ALL_CHILD_WINDOWS, Types);
+        }
+
+        [TestMethod]
         public void CloseAllPositive()
         {
-            // setup            
-            var _actionRule = GetActionRule(string.Empty);
-            var action = ActionFactory<CloseAllChildWindows>(WebAutomation, new Dictionary<string, object>
+            // open child windows
+            WebDriver = WebDriver.ApplyCapabilities(new Dictionary<string, object>
             {
                 [MockCapabilities.ChildWindows] = NumberOfWindows
             });
@@ -31,7 +56,7 @@ namespace Gravity.Services.ActionPlugins.Tests
             Assert.IsTrue(WebDriver.WindowHandles.Count > NumberOfWindows, MessageNoWindows);
 
             // execute
-            action.OnPerform(_actionRule);
+            ExecuteAction<CloseAllChildWindows>();
 
             // assert that all child windows are now closed
             Assert.IsTrue(WebDriver.WindowHandles.Count == 1, MessageStillActive);
@@ -41,19 +66,17 @@ namespace Gravity.Services.ActionPlugins.Tests
         [DataRow("{'elementToActOn':'.//positive'}")]
         public void CloseAllElementPositive(string actionRule)
         {
-            // setup            
-            var _actionRule = GetActionRule(actionRule);
-            var action = ActionFactory<CloseAllChildWindows>(WebAutomation, new Dictionary<string, object>
+            // open child windows
+            WebDriver = WebDriver.ApplyCapabilities(new Dictionary<string, object>
             {
                 [MockCapabilities.ChildWindows] = NumberOfWindows
             });
-            var element = WebDriver.FindElement(By.XPath("//positive"));
 
             // assert that at least numberOfWindows are currently active
             Assert.IsTrue(WebDriver.WindowHandles.Count > NumberOfWindows, MessageNoWindows);
 
             // execute
-            action.OnPerform(element, _actionRule);
+            ExecuteAction<CloseAllChildWindows>(By.XPath("//positive"), actionRule);
 
             // assert that all child windows are now closed
             Assert.IsTrue(WebDriver.WindowHandles.Count == 1, MessageStillActive);

@@ -5,6 +5,7 @@
  */
 using Gravity.Drivers.Mock.WebDriver;
 using Gravity.Services.ActionPlugins.Web;
+using Gravity.Services.DataContracts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using System.Collections.Generic;
@@ -16,6 +17,30 @@ namespace Gravity.Services.ActionPlugins.Tests
     public class CloseWindowTests : ActionTests
     {
         private const int NumberOfWindows = 5;
+
+        [TestMethod]
+        public void CloseWindowCreateNoTypes()
+        {
+            ValidateAction<CloseWindow>();
+        }
+
+        [TestMethod]
+        public void CloseWindowCreateTypes()
+        {
+            ValidateAction<CloseWindow>(Types);
+        }
+
+        [TestMethod]
+        public void CloseWindowDocumentationNoTypes()
+        {
+            ValidateActionDocumentation<CloseWindow>(ActionType.CLOSE_WINDOW);
+        }
+
+        [TestMethod]
+        public void CloseWindowDocumentationTypes()
+        {
+            ValidateActionDocumentation<CloseWindow>(ActionType.CLOSE_WINDOW, Types);
+        }
 
         [DataTestMethod]
         [DataRow("{'argument':'1'}", 1)]

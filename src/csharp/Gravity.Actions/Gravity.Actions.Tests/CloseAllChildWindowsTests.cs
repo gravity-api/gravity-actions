@@ -5,6 +5,7 @@
  */
 using Gravity.Drivers.Mock.WebDriver;
 using Gravity.Services.ActionPlugins.Web;
+using Gravity.Services.DataContracts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using System.Collections.Generic;
@@ -17,6 +18,30 @@ namespace Gravity.Services.ActionPlugins.Tests
         private const int NumberOfWindows = 5;
         private const string MessageNoWindows = "No child windows are currently active.";
         private const string MessageStillActive = "Some child windows are still active.";
+
+        [TestMethod]
+        public void CloseAllChildWindowsCreateNoTypes()
+        {
+            ValidateAction<CloseAllChildWindows>();
+        }
+
+        [TestMethod]
+        public void CloseAllChildWindowsCreateTypes()
+        {
+            ValidateAction<CloseAllChildWindows>(Types);
+        }
+
+        [TestMethod]
+        public void CloseAllChildWindowsDocumentationNoTypes()
+        {
+            ValidateActionDocumentation<CloseAllChildWindows>(ActionType.CLOSE_ALL_CHILD_WINDOWS);
+        }
+
+        [TestMethod]
+        public void CloseAllChildWindowsDocumentationTypes()
+        {
+            ValidateActionDocumentation<CloseAllChildWindows>(ActionType.CLOSE_ALL_CHILD_WINDOWS, Types);
+        }
 
         [TestMethod]
         public void CloseAllPositive()

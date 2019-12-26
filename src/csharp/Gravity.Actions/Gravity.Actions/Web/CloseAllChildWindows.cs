@@ -47,7 +47,7 @@ namespace Gravity.Services.ActionPlugins.Web
         /// </summary>
         /// <param name="webDriver">WebDriver implementation by which to execute the action.</param>
         /// <param name="webAutomation">This WebAutomation object (the original object sent by the user).</param>
-        /// <param name="types">Types from which to load plug-ins repositories</param>
+        /// <param name="types">Types from which to load plug-ins repositories.</param>
         public CloseAllChildWindows(IWebDriver webDriver, WebAutomation webAutomation, IEnumerable<Type> types)
             : base(webDriver, webAutomation, types)
         { }

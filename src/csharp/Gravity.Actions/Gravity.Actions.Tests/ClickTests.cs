@@ -5,6 +5,7 @@
  */
 using Gravity.Drivers.Mock.WebDriver;
 using Gravity.Services.ActionPlugins.Common;
+using Gravity.Services.DataContracts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using System.Collections.Generic;
@@ -15,6 +16,30 @@ namespace Gravity.Services.ActionPlugins.Tests
     [TestClass]
     public class ClickTests : ActionTests
     {
+        [TestMethod]
+        public void ClickCreateNoTypes()
+        {
+            ValidateAction<Click>();
+        }
+
+        [TestMethod]
+        public void ClickCreateTypes()
+        {
+            ValidateAction<Click>(Types);
+        }
+
+        [TestMethod]
+        public void ClickDocumentationNoTypes()
+        {
+            ValidateActionDocumentation<Click>(ActionType.CLICK);
+        }
+
+        [TestMethod]
+        public void ClickDocumentationTypes()
+        {
+            ValidateActionDocumentation<Click>(ActionType.CLICK, Types);
+        }
+
         [DataTestMethod]
         [DataRow("{'elementToActOn':'//positive'}")]
         public void ClickPositive(string actionRule)

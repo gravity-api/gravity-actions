@@ -5,6 +5,7 @@
  */
 using Gravity.Drivers.Mock.WebDriver;
 using Gravity.Services.ActionPlugins.Common;
+using Gravity.Services.DataContracts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 
@@ -14,6 +15,30 @@ namespace Gravity.Services.ActionPlugins.Tests
     [TestClass]
     public class ExecuteScriptTests : ActionTests
     {
+        [TestMethod]
+        public void ExecuteScriptCreateNoTypes()
+        {
+            ValidateAction<ExecuteScript>();
+        }
+
+        [TestMethod]
+        public void ExecuteScriptCreateTypes()
+        {
+            ValidateAction<ExecuteScript>(Types);
+        }
+
+        [TestMethod]
+        public void ExecuteScriptDocumentationNoTypes()
+        {
+            ValidateActionDocumentation<ExecuteScript>(ActionType.EXECUTE_SCRIPT);
+        }
+
+        [TestMethod]
+        public void ExecuteScriptDocumentationTypes()
+        {
+            ValidateActionDocumentation<ExecuteScript>(ActionType.EXECUTE_SCRIPT, Types);
+        }
+
         [DataTestMethod]
         [DataRow(@"{""argument"":""console.log('unit testing');""}")]
         public void ExecuteScriptPositive(string actionRule)

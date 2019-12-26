@@ -178,6 +178,12 @@ namespace Gravity.Drivers.Mock.WebDriver
                 return string.Empty;
             }
 
+            // for ready state
+            if(script == "return document.readyState;")
+            {
+                return "complete";
+            }
+
             // invalid script
             throw new WebDriverException();
         }

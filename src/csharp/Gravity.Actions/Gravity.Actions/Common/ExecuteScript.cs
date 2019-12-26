@@ -31,7 +31,7 @@ namespace Gravity.Services.ActionPlugins.Common
 {
     [Action(
         assmebly: "Gravity.Services.ActionPlugins, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
-        resource: "Gravity.Services.ActionPlugins.Documentation.double-click.json",
+        resource: "Gravity.Services.ActionPlugins.Documentation.execute-script.json",
         Name = ActionType.EXECUTE_SCRIPT)]
     public class ExecuteScript : ActionPlugin
     {

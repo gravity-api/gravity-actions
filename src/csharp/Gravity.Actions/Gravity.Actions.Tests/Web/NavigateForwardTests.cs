@@ -39,6 +39,13 @@ namespace Gravity.Services.ActionPlugins.Tests.Web
         }
 
         [TestMethod]
+        public void NavigateForwardDocumentationResourceFile()
+        {
+            ValidateActionDocumentation<NavigateForward>(
+                ActionType.NAVIGATE_FORWARD, Types, "navigate-forward.json");
+        }
+
+        [TestMethod]
         public void NavigateForwardPositive()
         {
             // execute

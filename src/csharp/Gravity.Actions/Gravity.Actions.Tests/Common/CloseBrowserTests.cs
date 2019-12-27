@@ -41,6 +41,13 @@ namespace Gravity.Services.ActionPlugins.Tests.Common
         }
 
         [TestMethod]
+        public void CloseBrowserDocumentationResourceFile()
+        {
+            ValidateActionDocumentation<CloseBrowser>(
+                ActionType.CLOSE_BROWSER, Types, "close-browser.json");
+        }
+
+        [TestMethod]
         public void CloseBrowserPositive()
         {
             // assert that at least browser is currently active

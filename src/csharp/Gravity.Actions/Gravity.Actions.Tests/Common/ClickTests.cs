@@ -41,6 +41,12 @@ namespace Gravity.Services.ActionPlugins.Tests.Common
             ValidateActionDocumentation<Click>(ActionType.CLICK, Types);
         }
 
+        [TestMethod]
+        public void ClickDocumentationResourceFile()
+        {
+            ValidateActionDocumentation<Click>(ActionType.CLICK, Types, "click.json");
+        }
+
         [DataTestMethod]
         [DataRow("{'elementToActOn':'//positive'}")]
         public void ClickPositive(string actionRule)

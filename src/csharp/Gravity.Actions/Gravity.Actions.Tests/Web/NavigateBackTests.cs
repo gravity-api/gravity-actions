@@ -39,6 +39,13 @@ namespace Gravity.Services.ActionPlugins.Tests.Web
         }
 
         [TestMethod]
+        public void NavigateBackDocumentationResourceFile()
+        {
+            ValidateActionDocumentation<NavigateBack>(
+                ActionType.NAVIGATE_BACK, Types, "navigate-back.json");
+        }
+
+        [TestMethod]
         public void NavigateBackPositive()
         {
             // execute

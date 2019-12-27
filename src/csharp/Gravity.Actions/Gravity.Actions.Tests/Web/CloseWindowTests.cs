@@ -43,6 +43,13 @@ namespace Gravity.Services.ActionPlugins.Tests.Web
             ValidateActionDocumentation<CloseWindow>(ActionType.CLOSE_WINDOW, Types);
         }
 
+        [TestMethod]
+        public void CloseWindowDocumentationResourceFile()
+        {
+            ValidateActionDocumentation<CloseWindow>(
+                ActionType.CLOSE_WINDOW, Types, "close-window.json");
+        }
+
         [DataTestMethod]
         [DataRow("{'argument':'1'}", 1)]
         [DataRow("{'argument':'2'}", 2)]

@@ -41,6 +41,13 @@ namespace Gravity.Services.ActionPlugins.Tests.Web
             ValidateActionDocumentation<ContextClick>(ActionType.CONTEXT_CLICK, Types);
         }
 
+        [TestMethod]
+        public void ContextClickDocumentationResourceFile()
+        {
+            ValidateActionDocumentation<ContextClick>(
+                ActionType.CONTEXT_CLICK, Types, "context-click.json");
+        }
+
         [DataTestMethod]
         [DataRow("{'elementToActOn':'//positive'}")]
         public void ContextClickPositive(string actionRule)

@@ -40,6 +40,13 @@ namespace Gravity.Services.ActionPlugins.Tests.Common
             ValidateActionDocumentation<ExecuteScript>(ActionType.EXECUTE_SCRIPT, Types);
         }
 
+        [TestMethod]
+        public void ExecuteScriptDocumentationResourceFile()
+        {
+            ValidateActionDocumentation<ExecuteScript>(
+                ActionType.EXECUTE_SCRIPT, Types, "execute-script.json");
+        }
+
         [DataTestMethod]
         [DataRow(@"{""argument"":""console.log('unit testing');""}")]
         public void ExecuteScriptPositive(string actionRule)

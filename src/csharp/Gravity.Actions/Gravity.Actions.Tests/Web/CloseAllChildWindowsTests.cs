@@ -45,6 +45,13 @@ namespace Gravity.Services.ActionPlugins.Tests.Web
         }
 
         [TestMethod]
+        public void CloseAllChildWindowsDocumentationResourceFile()
+        {
+            ValidateActionDocumentation<CloseAllChildWindows>(
+                ActionType.CLOSE_ALL_CHILD_WINDOWS, Types, "close-all-child-windows.json");
+        }
+
+        [TestMethod]
         public void CloseAllPositive()
         {
             // open child windows

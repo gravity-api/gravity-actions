@@ -41,6 +41,13 @@ namespace Gravity.Services.ActionPlugins.Tests.Common
             ValidateActionDocumentation<DoubleClick>(ActionType.DOUBLE_CLICK, Types);
         }
 
+        [TestMethod]
+        public void DoubleClickDocumentationResourceFile()
+        {
+            ValidateActionDocumentation<DoubleClick>(
+                ActionType.DOUBLE_CLICK, Types, "double-click.json");
+        }
+
         [DataTestMethod]
         [DataRow("{'elementToActOn':'//positive'}")]
         public void DoubleClickPositive(string actionRule)

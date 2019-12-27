@@ -3,45 +3,46 @@
  * 
  * on-line resources
  */
+using Gravity.Services.ActionPlugins.Tests.Base;
 using Gravity.Services.ActionPlugins.Web;
 using Gravity.Services.DataContracts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 #pragma warning disable S4144
-namespace Gravity.Services.ActionPlugins.Tests
+namespace Gravity.Services.ActionPlugins.Tests.Web
 {
     [TestClass]
-    public class NavigateForwardTests : ActionTests
+    public class NavigateBackTests : ActionTests
     {
         [TestMethod]
-        public void NavigateForwardCreateNoTypes()
+        public void NavigateBackCreateNoTypes()
         {
-            ValidateAction<NavigateForward>();
+            ValidateAction<NavigateBack>();
         }
 
         [TestMethod]
-        public void NavigateForwardCreateTypes()
+        public void NavigateBackCreateTypes()
         {
-            ValidateAction<NavigateForward>(Types);
+            ValidateAction<NavigateBack>(Types);
         }
 
         [TestMethod]
-        public void NavigateForwardDocumentationNoTypes()
+        public void NavigateBackDocumentationNoTypes()
         {
-            ValidateActionDocumentation<NavigateForward>(ActionType.NAVIGATE_FORWARD);
+            ValidateActionDocumentation<NavigateBack>(ActionType.NAVIGATE_BACK);
         }
 
         [TestMethod]
-        public void NavigateForwardDocumentationTypes()
+        public void NavigateBackDocumentationTypes()
         {
-            ValidateActionDocumentation<NavigateForward>(ActionType.NAVIGATE_FORWARD, Types);
+            ValidateActionDocumentation<NavigateBack>(ActionType.NAVIGATE_BACK, Types);
         }
 
         [TestMethod]
-        public void NavigateForwardPositive()
+        public void NavigateBackPositive()
         {
             // execute
-            ExecuteAction<NavigateForward>();
+            ExecuteAction<NavigateBack>();
 
             // assertion (no assertion here, expected is no exception)
             Assert.IsTrue(true);
@@ -49,10 +50,10 @@ namespace Gravity.Services.ActionPlugins.Tests
 
         [DataTestMethod]
         [DataRow("{'argument':'3'}")]
-        public void NavigateForwardMultiple(string actionRule)
+        public void NavigateBackMultiple(string actionRule)
         {
             // execute
-            ExecuteAction<NavigateForward>(actionRule);
+            ExecuteAction<NavigateBack>(actionRule);
 
             // assertion (no assertion here, expected is no exception)
             Assert.IsTrue(true);
@@ -60,10 +61,10 @@ namespace Gravity.Services.ActionPlugins.Tests
 
         [DataTestMethod]
         [DataRow("{'argument':'NoNumber'}")]
-        public void NavigateForwardNotNumber(string actionRule)
+        public void NavigateBackNotNumber(string actionRule)
         {
             // execute
-            ExecuteAction<NavigateForward>(actionRule);
+            ExecuteAction<NavigateBack>(actionRule);
 
             // assertion (no assertion here, expected is no exception)
             Assert.IsTrue(true);
@@ -71,10 +72,10 @@ namespace Gravity.Services.ActionPlugins.Tests
 
         [DataTestMethod]
         [DataRow("{'argument':'-1'}")]
-        public void NavigateForwardNegative(string actionRule)
+        public void NavigateBackNegative(string actionRule)
         {
             // execute
-            ExecuteAction<NavigateForward>(actionRule);
+            ExecuteAction<NavigateBack>(actionRule);
 
             // assertion (no assertion here, expected is no exception)
             Assert.IsTrue(true);

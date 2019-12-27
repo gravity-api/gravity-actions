@@ -17,9 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Common\" />
     <Folder Include="Mobile\" />
-    <Folder Include="Web\" />
   </ItemGroup>
 
 </Project>

@@ -16,4 +16,10 @@
     <ProjectReference Include="..\Gravity.Drivers.Mock\Gravity.Drivers.Mock.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Common\" />
+    <Folder Include="Mobile\" />
+    <Folder Include="Web\" />
+  </ItemGroup>
+
 </Project>

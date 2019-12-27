@@ -23,6 +23,7 @@
     <None Remove="Documentation\double-click.json" />
     <None Remove="Documentation\execute-script.json" />
     <None Remove="Documentation\navigate-back.json" />
+    <None Remove="Documentation\navigate-forward.json" />
   </ItemGroup>
 
   <ItemGroup>
@@ -33,6 +34,7 @@
     <EmbeddedResource Include="Documentation\double-click.json" />
     <EmbeddedResource Include="Documentation\execute-script.json" />
     <EmbeddedResource Include="Documentation\navigate-back.json" />
+    <EmbeddedResource Include="Documentation\navigate-forward.json" />
   </ItemGroup>
 
   <ItemGroup>

@@ -306,28 +306,25 @@ namespace Gravity.Drivers.Mock.WebDriver
                 .GetValue(by)
                 .ToString()
                 .ToLower();
-            //
-            // set default element value
-            var defaultElement = new MockWebElement("div", "Mock: Positive Element", true, true, true);
-            //
+
             // switch cases
             if (value.Contains("positive"))
             {
-                return defaultElement;
+                return new MockWebElement("div", "Mock: Positive Element", true, true, true);
             }
             if (value.Contains("negative"))
             {
-                defaultElement = new MockWebElement("div", "Mock: Negative Element", false, false, false);
+                return new MockWebElement("div", "Mock: Negative Element", false, false, false);
             }
-            if (value.Contains("none"))
+            if (value.Contains("null"))
             {
-                throw new NoSuchElementException("Mock: No Such Element Exception");
+                return default;
             }
             if (value.Contains("stale"))
             {
                 throw new StaleElementReferenceException("Mock: Stale Element Reference Exception");
             }
-            return defaultElement;
+            throw new NoSuchElementException("Mock: No Such Element Exception");
         }
 
         private void SetChildWindows(IDictionary<string, object> capabilities)

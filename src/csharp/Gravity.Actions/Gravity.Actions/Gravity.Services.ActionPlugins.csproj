@@ -25,6 +25,8 @@
     <None Remove="Documentation\execute-script.json" />
     <None Remove="Documentation\navigate-back.json" />
     <None Remove="Documentation\navigate-forward.json" />
+    <None Remove="Documentation\refresh.json" />
+    <None Remove="Documentation\register-parameter.json" />
   </ItemGroup>
 
   <ItemGroup>
@@ -37,6 +39,8 @@
     <EmbeddedResource Include="Documentation\execute-script.json" />
     <EmbeddedResource Include="Documentation\navigate-back.json" />
     <EmbeddedResource Include="Documentation\navigate-forward.json" />
+    <EmbeddedResource Include="Documentation\refresh.json" />
+    <EmbeddedResource Include="Documentation\register-parameter.json" />
   </ItemGroup>
 
   <ItemGroup>

@@ -63,9 +63,10 @@ namespace Gravity.Services.ActionPlugins.Tests.Base
         /// Executes an action plug-in of the provided type.
         /// </summary>
         /// <typeparam name="T">The type of action which will be executed.</typeparam>
-        public void ExecuteAction<T>() where T : ActionPlugin
+        public ActionPlugin ExecuteAction<T>() where T : ActionPlugin
         {
-            ExecuteAction<T>(by: default, actionRule: string.Empty, capabilities: null);
+            return ExecuteAction<T>(
+                by: default, actionRule: string.Empty, capabilities: null);
         }
 
         /// <summary>
@@ -73,10 +74,10 @@ namespace Gravity.Services.ActionPlugins.Tests.Base
         /// </summary>
         /// <typeparam name="T">The type of action which will be executed.</typeparam>
         /// <param name="actionRule">ActionRule JSON from which to create an ActionRule instance.</param>
-        public void ExecuteAction<T>(string actionRule)
+        public ActionPlugin ExecuteAction<T>(string actionRule)
             where T : ActionPlugin
         {
-            ExecuteAction<T>(by: default, actionRule: actionRule, capabilities: null);
+            return ExecuteAction<T>(by: default, actionRule: actionRule, capabilities: null);
         }
 
         /// <summary>
@@ -84,10 +85,10 @@ namespace Gravity.Services.ActionPlugins.Tests.Base
         /// </summary>
         /// <typeparam name="T">The type of action which will be executed.</typeparam>
         /// <param name="capabilities">MockWebDriver capabilities by which to create the MockWebDriver of this action.</param>
-        public void ExecuteAction<T>(IDictionary<string, object> capabilities)
+        public ActionPlugin ExecuteAction<T>(IDictionary<string, object> capabilities)
             where T : ActionPlugin
         {
-            ExecuteAction<T>(by: default, actionRule: string.Empty, capabilities: capabilities);
+            return ExecuteAction<T>(by: default, actionRule: string.Empty, capabilities: capabilities);
         }
 
         /// <summary>
@@ -95,9 +96,9 @@ namespace Gravity.Services.ActionPlugins.Tests.Base
         /// </summary>
         /// <typeparam name="T">The type of action which will be executed.</typeparam>
         /// <param name="by">WebElement instance on which to perform the action.</param>
-        public void ExecuteAction<T>(By by) where T : ActionPlugin
+        public ActionPlugin ExecuteAction<T>(By by) where T : ActionPlugin
         {
-            ExecuteAction<T>(by: by, actionRule: string.Empty, capabilities: null);
+            return ExecuteAction<T>(by: by, actionRule: string.Empty, capabilities: null);
         }
 
         /// <summary>
@@ -106,10 +107,10 @@ namespace Gravity.Services.ActionPlugins.Tests.Base
         /// <typeparam name="T">The type of action which will be executed.</typeparam>
         /// <param name="by">WebElement instance on which to perform the action.</param>
         /// <param name="actionRule">ActionRule JSON from which to create an ActionRule instance.</param>
-        public void ExecuteAction<T>(By by, string actionRule)
+        public ActionPlugin ExecuteAction<T>(By by, string actionRule)
             where T: ActionPlugin
         {
-            ExecuteAction<T>(by: by, actionRule: actionRule, capabilities: null);
+            return ExecuteAction<T>(by: by, actionRule: actionRule, capabilities: null);
         }
 
         /// <summary>
@@ -118,10 +119,10 @@ namespace Gravity.Services.ActionPlugins.Tests.Base
         /// <typeparam name="T">The type of action which will be executed.</typeparam>
         /// <param name="by">WebElement instance on which to perform the action.</param>
         /// <param name="capabilities">MockWebDriver capabilities by which to create the MockWebDriver of this action.</param>
-        public void ExecuteAction<T>(By by, IDictionary<string, object> capabilities)
+        public ActionPlugin ExecuteAction<T>(By by, IDictionary<string, object> capabilities)
             where T : ActionPlugin
         {
-            ExecuteAction<T>(by: by, actionRule: string.Empty, capabilities: capabilities);
+            return ExecuteAction<T>(by: by, actionRule: string.Empty, capabilities: capabilities);
         }
 
         /// <summary>
@@ -130,10 +131,10 @@ namespace Gravity.Services.ActionPlugins.Tests.Base
         /// <typeparam name="T">The type of action which will be executed.</typeparam>
         /// <param name="actionRule">ActionRule JSON from which to create an ActionRule instance.</param>
         /// <param name="capabilities">MockWebDriver capabilities by which to create the MockWebDriver of this action.</param>
-        public void ExecuteAction<T>(string actionRule, IDictionary<string, object> capabilities)
+        public ActionPlugin ExecuteAction<T>(string actionRule, IDictionary<string, object> capabilities)
             where T : ActionPlugin
         {
-            ExecuteAction<T>(by: default, actionRule: actionRule, capabilities: capabilities);
+            return ExecuteAction<T>(by: default, actionRule: actionRule, capabilities: capabilities);
         }
 
         /// <summary>
@@ -143,7 +144,7 @@ namespace Gravity.Services.ActionPlugins.Tests.Base
         /// <param name="by">WebElement instance on which to perform the action.</param>
         /// <param name="actionRule">ActionRule JSON from which to create an ActionRule instance.</param>
         /// <param name="capabilities">MockWebDriver capabilities by which to create the MockWebDriver of this action.</param>
-        public void ExecuteAction<T>(By by, string actionRule, IDictionary<string, object> capabilities)
+        public ActionPlugin ExecuteAction<T>(By by, string actionRule, IDictionary<string, object> capabilities)
             where T : ActionPlugin
         {
             // setup
@@ -154,10 +155,11 @@ namespace Gravity.Services.ActionPlugins.Tests.Base
             if (by == default)
             {
                 action.OnPerform(_actionRule);
-                return;
+                return action;
             }
             var element = WebDriver.FindElement(by);
             action.OnPerform(element, _actionRule);
+            return action;
         }
 
         /// <summary>

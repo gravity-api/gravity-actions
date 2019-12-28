@@ -31,7 +31,7 @@ namespace Gravity.Drivers.Mock.WebDriver
         /// <returns>A OpenQA.Selenium.By object the driver can use to find the elements.</returns>
         public static By NoSuchElement()
         {
-            return By.Id("none");
+            return By.Id("no-element");
         }
 
         /// <summary>
@@ -41,6 +41,15 @@ namespace Gravity.Drivers.Mock.WebDriver
         public static By Stale()
         {
             return By.Id("stale");
+        }
+
+        /// <summary>
+        /// Gets a mechanism to find mock element which will return null reference.
+        /// </summary>
+        /// <returns>A OpenQA.Selenium.By object the driver can use to find the elements.</returns>
+        public static By Null()
+        {
+            return By.Id("null");
         }
     }
 }

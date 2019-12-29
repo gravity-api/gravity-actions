@@ -19,6 +19,7 @@ using System.Reflection;
 
 namespace Gravity.Services.ActionPlugins.Tests.Base
 {
+    [DeploymentItem("Resources/license.lcn")]
     public abstract class ActionTests
     {
         /// <summary>
@@ -40,7 +41,18 @@ namespace Gravity.Services.ActionPlugins.Tests.Base
                 ElementSearchingTimeout = 100,
                 PageLoadTimeout = 100
             };
-            WebAutomation = new WebAutomation { EngineConfiguration = configuration };
+            var authentication = new Authentication
+            {
+                UserName = "",
+                Password = ""
+            };
+            WebAutomation = new WebAutomation
+            {
+                Authentication = authentication,
+                EngineConfiguration = configuration
+            };
+
+            // setup: web driver
             WebDriver = new MockWebDriver();
         }
 

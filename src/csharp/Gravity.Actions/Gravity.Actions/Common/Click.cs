@@ -20,6 +20,7 @@
  * on-line resources
  */
 using Gravity.Drivers.Selenium;
+using Gravity.Services.ActionPlugins.Extensions;
 using Gravity.Services.Comet.Engine.Attributes;
 using Gravity.Services.Comet.Engine.Core;
 using Gravity.Services.Comet.Engine.Extensions;
@@ -31,8 +32,6 @@ using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Reflection;
 
 namespace Gravity.Services.ActionPlugins.Common
 {
@@ -88,7 +87,7 @@ namespace Gravity.Services.ActionPlugins.Common
             arguments = new CliFactory(actionRule.Argument).Parse();
             if (arguments.ContainsKey(UNTIL))
             {
-                SpecialActionFactory(actionRule);
+                ConditionsFactory(actionRule);
                 return;
             }
 
@@ -132,18 +131,10 @@ namespace Gravity.Services.ActionPlugins.Common
         });
 
         // special actions factory
-        private void SpecialActionFactory(ActionRule actionRule)
+        private void ConditionsFactory(ActionRule actionRule)
         {
-            // setup binding flags
-            const BindingFlags B = BindingFlags.Instance | BindingFlags.NonPublic;
-            const StringComparison C = StringComparison.OrdinalIgnoreCase;
-
-            // shortcuts
-            var u = arguments[UNTIL];
-
             // get method
-            var methods = GetType().GetMethods(B).Where(i => i.GetCustomAttribute<DescriptionAttribute>() != null);
-            var method = methods.FirstOrDefault(i => i.GetCustomAttribute<DescriptionAttribute>().Description.Equals(u, C));
+            var method = GetType().GetMethodByDescription(arguments[UNTIL]);
 
             // invoke
             method.Invoke(this, new object[] { actionRule });

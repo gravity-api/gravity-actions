@@ -10,6 +10,7 @@
  * 
  * on-line resources
  */
+using Gravity.Drivers.Selenium;
 using Gravity.Services.ActionPlugins.Extensions;
 using Gravity.Services.Comet.Engine.Attributes;
 using Gravity.Services.Comet.Engine.Core;
@@ -85,12 +86,12 @@ namespace Gravity.Services.ActionPlugins.Common
             SetArguments(actionRule);
 
             // setup conditions
-            var isCondition = !string.IsNullOrEmpty(arguments[UNTIL]);
+            var isCondition = arguments.ContainsKey(UNTIL) && !string.IsNullOrEmpty(arguments[UNTIL]);
 
             // execute
             if (isCondition)
             {
-                ExecuteByCondition(webElement, actionRule);
+                ExecuteByCondition(webElement, actionRule, arguments[UNTIL]);
             }
             else
             {
@@ -118,16 +119,10 @@ namespace Gravity.Services.ActionPlugins.Common
         }
 
         // execute actions based on the given conditions
-        private void ExecuteByCondition(IWebElement webElement, ActionRule actionRule)
+        private void ExecuteByCondition(IWebElement webElement, ActionRule actionRule, string condition)
         {
-            // exit conditions
-            if (string.IsNullOrEmpty(arguments[UNTIL]))
-            {
-                return;
-            }
-
             // get method
-            var method = GetType().GetMethodByDescription(arguments[UNTIL]);
+            var method = GetType().GetMethodByDescription(condition);
 
             // initialize
             var repeatReference = 0;
@@ -156,10 +151,15 @@ namespace Gravity.Services.ActionPlugins.Common
         // update environment >> executes actions under the given action rule
         private void Execute(IWebElement webElement, IEnumerable<ActionRule> actionRules, int repeatReference)
         {
+            // setup
+            var session = WebDriver.GetSession().ToString();
+            var repeatReferenceKey = $"{AutomationEnvironment.REPEATER_POSITION_PARAM}-{session}";
+
+            // iterate
             foreach (var actionRule in actionRules)
             {
                 // update environment
-                AutomationEnvironment.SessionParams[AutomationEnvironment.REPEATER_POSITION_PARAM] = repeatReference;
+                AutomationEnvironment.SessionParams[repeatReferenceKey] = repeatReference;
                 actionRule.RepeatReference = repeatReference;
 
                 // execute actions

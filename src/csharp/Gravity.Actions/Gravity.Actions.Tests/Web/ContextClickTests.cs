@@ -117,7 +117,7 @@ namespace Gravity.Services.ActionPlugins.Tests.Web
         }
 
         [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
-        [DataRow("{'elementToActOn':'//no-element'}")]
+        [DataRow("{'elementToActOn':'//none'}")]
         public void ContextClickElementAbsoluteNoElement(string actionRule)
         {
             // execute
@@ -128,7 +128,7 @@ namespace Gravity.Services.ActionPlugins.Tests.Web
         }
 
         [DataTestMethod, ExpectedException(typeof(NoSuchElementException))]
-        [DataRow("{'elementToActOn':'.//no-element'}")]
+        [DataRow("{'elementToActOn':'.//none'}")]
         public void ContextClickElementRelativeNoElement(string actionRule)
         {
             // execute

@@ -9,21 +9,21 @@ using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
 
-namespace Gravity.Services.ActionPlugins.Extensions
+namespace Gravity.Drivers.Mock.Extensions
 {
-    public static class TypeExtensions
+    internal static class TypeExtensions
     {
         /// <summary>
         /// Gets the first method in this type with the specified <see cref="DescriptionAttribute"/> description.
         /// </summary>
         /// <param name="t">This <see cref="Type"/> instance.</param>
-        /// <param name="regex">A pattern by which to find the method.</param>
+        /// <param name="actual">A value to assert against the description (description will be matched against this value).</param>
         /// <returns>MethodInfo instance if found or null if not.</returns>
-        public static MethodInfo GetMethodByDescription(this Type t, string regex)
+        public static MethodInfo GetMethodByDescription(this Type t, string actual)
         {
             return GetMethodByDescription(
                 t: t,
-                regex: regex,
+                actual: actual,
                 flags: BindingFlags.Instance | BindingFlags.NonPublic);
         }
 
@@ -31,14 +31,14 @@ namespace Gravity.Services.ActionPlugins.Extensions
         /// Gets the first method in this type with the specified <see cref="DescriptionAttribute"/> description.
         /// </summary>
         /// <param name="t">This <see cref="Type"/> instance.</param>
-        /// <param name="regex">A pattern by which to find the method.</param>
+        /// <param name="actual">A value to assert against the description (description will be matched against this value).</param>
         /// <param name="flags">Specifies flags that control binding and the way in which the search for members and types is conducted by reflection.</param>
         /// <returns>MethodInfo instance if found or null if not.</returns>
-        public static MethodInfo GetMethodByDescription(this Type t, string regex, BindingFlags flags)
+        public static MethodInfo GetMethodByDescription(this Type t, string actual, BindingFlags flags)
         {
             return GetMethodByDescription(
                 t: t,
-                regex: regex,
+                actual: actual,
                 flags: flags,
                 comparison: RegexOptions.IgnoreCase);
         }
@@ -47,19 +47,19 @@ namespace Gravity.Services.ActionPlugins.Extensions
         /// Gets the first method in this type with the specified <see cref="DescriptionAttribute"/> description.
         /// </summary>
         /// <param name="t">This <see cref="Type"/> instance.</param>
-        /// <param name="regex">A pattern by which to find the method.</param>
+        /// <param name="actual">A value to assert against the description (description will be matched against this value).</param>
         /// <param name="flags">Specifies flags that control binding and the way in which the search for members and types is conducted by reflection.</param>
         /// <param name="comparison">Specifies the culture, case, and sort rules to be used by this search.</param>
         /// <returns>MethodInfo instance if found or null if not.</returns>
-        public static MethodInfo GetMethodByDescription(this Type t, string regex, BindingFlags flags, RegexOptions comparison)
+        public static MethodInfo GetMethodByDescription(this Type t, string actual, BindingFlags flags, RegexOptions comparison)
         {
             // shortcuts
-            var d = regex;
+            var d = actual;
             var c = comparison;
 
             // get method
             var methods = t.GetMethods(flags).Where(i => i.GetCustomAttribute<DescriptionAttribute>() != null);
-            return methods.FirstOrDefault(i => Regex.IsMatch(i.GetCustomAttribute<DescriptionAttribute>().Description, d, c));
+            return methods.FirstOrDefault(i => Regex.IsMatch(d, i.GetCustomAttribute<DescriptionAttribute>().Description, c));
         }
     }
 }

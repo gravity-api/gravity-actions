@@ -7,7 +7,7 @@
     <Version>5.0.0</Version>
     <Title>Gravity.Services.Actions</Title>
     <Authors>Roei.Sabag</Authors>
-    <Description>Gravity API Actions repository. FREE register at "https://g-api.azurewebsites.net/Identity/Account/Register" in order to be able to use Gravity API</Description>
+    <Description>Gravity API Actions repository. FREE register at "https://g-api.azurewebsites.net/Identity/Account/Register" in order to be able to use Gravity API.</Description>
     <PackageTags>automation,crawling,crawl,selenium,appium,automation testing,automation test,qa,gravity,gravity api,scrapping,scrap</PackageTags>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -29,6 +29,7 @@
     <None Remove="Documentation\register-parameter.json" />
     <None Remove="Documentation\repeat.json" />
     <None Remove="Documentation\try-click.json" />
+    <None Remove="Documentation\wait.json" />
   </ItemGroup>
 
   <ItemGroup>
@@ -45,6 +46,7 @@
     <EmbeddedResource Include="Documentation\register-parameter.json" />
     <EmbeddedResource Include="Documentation\repeat.json" />
     <EmbeddedResource Include="Documentation\try-click.json" />
+    <EmbeddedResource Include="Documentation\wait.json" />
   </ItemGroup>
 
   <ItemGroup>

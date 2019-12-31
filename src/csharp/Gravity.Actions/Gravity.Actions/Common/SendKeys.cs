@@ -93,50 +93,37 @@ namespace Gravity.Services.ActionPlugins.Common
         {
             // setup
             arguments = SetArguments(actionRule);
-
-            // setup conditions
-            var isClear = arguments.ContainsKey(Clear);
-            var isForceClear = !isClear && arguments.ContainsKey(ForceClear);
-            var isDown = arguments.ContainsKey(Down);
-            var isKeys = arguments.ContainsKey(Keystrokes);
-            var isInterval = isKeys && !isDown && arguments.ContainsKey(Interval);
-            var isUiautomator2 = !Regex.IsMatch(webAutomation.DriverParams, "uiautomator1", RegexOptions.IgnoreCase);
-            var isAndroid = isUiautomator2 && (WebDriver is AndroidDriver<IWebElement>);
-
-            // get web element into which to send the keys
-            var by = ByFactory.Get(actionRule.Locator, actionRule.ElementToActOn);
-            var element = webElement == default
-                ? WebDriver.GetElement(by, TimeSpan.FromMilliseconds(ElementSearchTimeout))
-                : webElement.FindElement(by);
+            var conditions = SetConditions();
+            var element = GetElement(webElement, actionRule);
 
             // execute: clear
-            if (isClear)
+            if (conditions["isClear"])
             {
                 element.Clear();
             }
 
             // execute: force clear
-            if (isForceClear)
+            if (conditions["isForceClear"])
             {
                 DoForceClear(element);
             }
 
             // execute: send keys with interval
-            if (isInterval)
+            if (conditions["isInterval"])
             {
                 DoInterval(element);
                 return;
             }
 
             // execute: keys combination
-            if (isDown)
+            if (conditions["isDown"])
             {
                 DoDownCombination();
                 return;
             }
 
             // keys android UIAutomator2
-            if (isAndroid)
+            if (conditions["isAndroid"])
             {
                 DoAndroid(element);
                 return;
@@ -156,6 +143,42 @@ namespace Gravity.Services.ActionPlugins.Common
             return cliFactory.CliCompliant
                 ? cliFactory.Parse()
                 : new Dictionary<string, string> { [Keystrokes] = actionRule.Argument };
+        }
+
+        // setup the different conditions for invoking SendKeys scenarios
+        private IDictionary<string, bool> SetConditions()
+        {
+            // setup conditions
+            var isClear = arguments.ContainsKey(Clear);
+            var isForceClear = !isClear && arguments.ContainsKey(ForceClear);
+            var isDown = arguments.ContainsKey(Down);
+            var isKeys = arguments.ContainsKey(Keystrokes);
+            var isInterval = isKeys && !isDown && arguments.ContainsKey(Interval);
+            var isUiautomator2 = !Regex.IsMatch(webAutomation.DriverParams, "uiautomator1", RegexOptions.IgnoreCase);
+            var isAndroid = isUiautomator2 && (WebDriver is AndroidDriver<IWebElement>);
+
+            return new Dictionary<string, bool>
+            {
+                [nameof(isClear)] = isClear,
+                [nameof(isForceClear)] = isForceClear,
+                [nameof(isDown)] = isDown,
+                [nameof(isKeys)] = isKeys,
+                [nameof(isInterval)] = isInterval,
+                [nameof(isUiautomator2)] = isUiautomator2,
+                [nameof(isAndroid)] = isAndroid
+            };
+        }
+
+        // gets web element into which to send the keys
+        private IWebElement GetElement(IWebElement webElement, ActionRule actionRule)
+        {
+            // setup locator
+            var by = ByFactory.Get(actionRule.Locator, actionRule.ElementToActOn);
+
+            // get element
+            return webElement == default
+                ? WebDriver.GetElement(by, TimeSpan.FromMilliseconds(ElementSearchTimeout))
+                : webElement.FindElement(by);
         }
 
         // CONDITIONS REPOSITORY

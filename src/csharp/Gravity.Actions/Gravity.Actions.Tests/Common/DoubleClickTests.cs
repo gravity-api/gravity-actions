@@ -9,7 +9,6 @@ using Gravity.Services.ActionPlugins.Tests.Base;
 using Gravity.Services.DataContracts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
-using System.Collections.Generic;
 
 #pragma warning disable S4144
 namespace Gravity.Services.ActionPlugins.Tests.Common
@@ -75,20 +74,6 @@ namespace Gravity.Services.ActionPlugins.Tests.Common
         {
             // execute
             ExecuteAction<DoubleClick>();
-
-            // assertion (no assertion here, expected is no exception)
-            Assert.IsTrue(true);
-        }
-
-        [DataTestMethod]
-        [DataRow("{'Argument':'{{$ --until:NoAlert}}','ElementToActOn':'//positive'}")]
-        public void DoubleClickUntilNoAlert(string actionRule)
-        {
-            // execute
-            ExecuteAction<DoubleClick>(actionRule, new Dictionary<string, object>
-            {
-                [MockCapabilities.HasAlert] = true
-            });
 
             // assertion (no assertion here, expected is no exception)
             Assert.IsTrue(true);

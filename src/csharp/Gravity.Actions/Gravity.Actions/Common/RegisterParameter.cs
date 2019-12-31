@@ -85,7 +85,7 @@ namespace Gravity.Services.ActionPlugins.Common
             });
         }
 
-        // execute register parameter sequence
+        // executes RegisterParameter routine
         private void DoRegisterParameter(ActionRule actionRule, Func<IWebElement> elementFactory)
         {
             var result = string.Empty;

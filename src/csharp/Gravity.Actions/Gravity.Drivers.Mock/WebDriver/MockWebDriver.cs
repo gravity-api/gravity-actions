@@ -176,6 +176,7 @@ namespace Gravity.Drivers.Mock.WebDriver
         /// <returns>The value returned by the script.</returns>
         public object ExecuteAsyncScript(string script, params object[] args) => ExecuteScript(script, args);
 
+        // TODO: migrate to factory
         /// <summary>
         /// Executes JavaScript in the context of the currently selected frame or window.
         /// </summary>
@@ -221,6 +222,12 @@ namespace Gravity.Drivers.Mock.WebDriver
             if(script == "return document.readyState;")
             {
                 return "complete";
+            }
+
+            // for ready state
+            if (script == "arguments[0].click();")
+            {
+                return string.Empty;
             }
 
             // invalid script

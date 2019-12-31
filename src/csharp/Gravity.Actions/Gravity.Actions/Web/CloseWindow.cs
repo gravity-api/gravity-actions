@@ -55,7 +55,7 @@ namespace Gravity.Services.ActionPlugins.Web
         /// <param name="actionRule">This ActionRule instance (the original object send by the user).</param>
         public override void OnPerform(ActionRule actionRule)
         {
-            Close(actionRule);
+            DoCloseWindow(actionRule);
         }
 
         /// <summary>
@@ -65,11 +65,11 @@ namespace Gravity.Services.ActionPlugins.Web
         /// <param name="actionRule">This ActionRule instance (the original object send by the user).</param>
         public override void OnPerform(IWebElement webElement, ActionRule actionRule)
         {
-            Close(actionRule);
+            DoCloseWindow(actionRule);
         }
 
-        // close the given window, quitting the browser if it is the last window currently open
-        private void Close(ActionRule actionRule)
+        // executes CloseWindow routine
+        private void DoCloseWindow(ActionRule actionRule)
         {
             // exit conditions
             if (!int.TryParse(actionRule.Argument, out int indexOut))

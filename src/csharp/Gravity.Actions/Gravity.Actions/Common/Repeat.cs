@@ -100,7 +100,7 @@ namespace Gravity.Services.ActionPlugins.Common
             DoRepeat(webElement: webElement, actionRule: actionRule);
         }
 
-        // execute repeat action
+        // executes Repeat routine
         private void DoRepeat(IWebElement webElement, ActionRule actionRule)
         {
             // setup

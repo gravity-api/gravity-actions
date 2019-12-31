@@ -28,6 +28,7 @@
     <None Remove="Documentation\refresh.json" />
     <None Remove="Documentation\register-parameter.json" />
     <None Remove="Documentation\repeat.json" />
+    <None Remove="Documentation\try-click.json" />
   </ItemGroup>
 
   <ItemGroup>
@@ -43,6 +44,7 @@
     <EmbeddedResource Include="Documentation\refresh.json" />
     <EmbeddedResource Include="Documentation\register-parameter.json" />
     <EmbeddedResource Include="Documentation\repeat.json" />
+    <EmbeddedResource Include="Documentation\try-click.json" />
   </ItemGroup>
 
   <ItemGroup>

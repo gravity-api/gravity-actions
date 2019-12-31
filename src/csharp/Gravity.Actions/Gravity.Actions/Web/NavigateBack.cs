@@ -52,7 +52,7 @@ namespace Gravity.Services.ActionPlugins.Web
         /// <param name="actionRule">This ActionRule instance (the original object sent by the user).</param>
         public override void OnPerform(ActionRule actionRule)
         {
-            Navigate(actionRule);
+            DoNavigateBack(actionRule);
         }
 
         /// <summary>
@@ -63,11 +63,11 @@ namespace Gravity.Services.ActionPlugins.Web
         /// <param name="actionRule">This ActionRule instance (the original object send by the user).</param>
         public override void OnPerform(IWebElement webElement, ActionRule actionRule)
         {
-            Navigate(actionRule);
+            DoNavigateBack(actionRule);
         }
 
-        // execute navigate back sequence
-        private void Navigate(ActionRule actionRule)
+        // executes NavigateBack routine
+        private void DoNavigateBack(ActionRule actionRule)
         {
             // set default value
             var iterations = 1;

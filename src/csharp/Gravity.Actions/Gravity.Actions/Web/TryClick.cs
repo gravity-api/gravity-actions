@@ -5,7 +5,7 @@
  *    - modify: improve XML comments
  *    - modify: override ActionName using ActionType constant
  *    
- * 2019-12-27
+ * 2019-12-31
  *    - modify: add constructor to override base class types
  * 
  * on-line resources
@@ -15,6 +15,7 @@ using Gravity.Services.Comet.Engine.Extensions;
 using Gravity.Services.Comet.Engine.Plugins;
 using Gravity.Services.DataContracts;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
 
@@ -22,16 +23,22 @@ namespace Gravity.Services.ActionPlugins.Web
 {
     [Action(
         assmebly: "Gravity.Services.ActionPlugins, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
-        resource: "Gravity.Services.ActionPlugins.Documentation.navigate-forward.json",
-        Name = ActionType.NAVIGATE_FORWARD)]
-    public class NavigateForward : ActionPlugin
+        resource: "Gravity.Services.ActionPlugins.Documentation.try-click.json",
+        Name = ActionType.TRY_CLICK)]
+    public class TryClick : ActionPlugin
     {
+        // constants
+        private const string SCRIPT = "arguments[0].click();";
+
+        // members: state
+        private readonly WebDriverWait wait;
+
         /// <summary>
         /// Creates a new instance of this plug-in.
         /// </summary>
         /// <param name="webDriver">WebDriver implementation by which to execute the action.</param>
         /// <param name="webAutomation">This WebAutomation object (the original object sent by the user).</param>
-        public NavigateForward(IWebDriver webDriver, WebAutomation webAutomation)
+        public TryClick(IWebDriver webDriver, WebAutomation webAutomation)
             : this(webDriver, webAutomation, Utilities.GetTypes())
         { }
 
@@ -41,50 +48,58 @@ namespace Gravity.Services.ActionPlugins.Web
         /// <param name="webDriver">WebDriver implementation by which to execute the action.</param>
         /// <param name="webAutomation">This WebAutomation object (the original object sent by the user).</param>
         /// <param name="types">Types from which to load plug-ins repositories.</param>
-        public NavigateForward(IWebDriver webDriver, WebAutomation webAutomation, IEnumerable<Type> types)
+        public TryClick(IWebDriver webDriver, WebAutomation webAutomation, IEnumerable<Type> types)
             : base(webDriver, webAutomation, types)
-        { }
+        {
+            // initialize exceptions ignore list
+            var ignoreList = new[]
+            {
+                typeof(NoSuchElementException),
+                typeof(StaleElementReferenceException),
+                typeof(WebDriverException),
+                typeof(NullReferenceException)
+            };
+
+            // setup waiter
+            wait = new WebDriverWait(webDriver, TimeSpan.FromMilliseconds(ElementSearchTimeout));
+            wait.IgnoreExceptionTypes(ignoreList);
+        }
 
         /// <summary>
-        /// Move back a single entry in the browser's history.
-        /// The action will be completed when page readyState='complete' or until page loading timeout reached.
+        /// clicks the mouse on the specified element
         /// </summary>
         /// <param name="actionRule">This ActionRule instance (the original object sent by the user).</param>
         public override void OnPerform(ActionRule actionRule)
         {
-            DoNavigateForward(actionRule);
+            wait.Until(_ => DoTryClick(webElement: default, actionRule));
         }
 
         /// <summary>
-        /// Move back a single entry in the browser's history.
-        /// The action will be completed when page readyState='complete' or until page loading timeout reached.
+        /// clicks the mouse on the specified element
         /// </summary>
         /// <param name="webElement">This WebElement instance on which to perform the action (provided by the extraction rule).</param>
         /// <param name="actionRule">This ActionRule instance (the original object send by the user).</param>
         public override void OnPerform(IWebElement webElement, ActionRule actionRule)
         {
-            DoNavigateForward(actionRule);
+            wait.Until(_ => DoTryClick(webElement: webElement, actionRule));
         }
 
-        // executes NavigateForward routine
-        private void DoNavigateForward(ActionRule actionRule)
+        // executes TryClick routine
+        private IWebDriver DoTryClick(IWebElement webElement, ActionRule actionRule)
         {
-            // set default value
-            var iterations = 1;
+            // fetch locator
+            var by = ByFactory.Get(actionRule.Locator, actionRule.ElementToActOn);
 
-            // normalize iterations
-            iterations = int.TryParse(actionRule.Argument, out int iterationsOut) ? iterationsOut : iterations;
+            // get element to act on
+            var argument = webElement == default
+                ? WebDriver.FindElement(by)
+                : webElement.FindElement(by);
 
-            // navigate
-            for (int i = 0; i < iterations; i++)
-            {
-                WebDriver.Navigate().Forward();
-                if (i >= iterations - 1)
-                {
-                    break;
-                }
-                WaitForState("complete", 200);
-            }
+            // execute script
+            ((IJavaScriptExecutor)WebDriver).ExecuteScript(SCRIPT, argument);
+
+            // for waiter condition
+            return WebDriver;
         }
     }
 }

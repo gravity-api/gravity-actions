@@ -64,7 +64,7 @@ namespace Gravity.Services.ActionPlugins.Web
             DoRefresh(actionRule);
         }
 
-        // execute navigate back sequence
+        // executes Refresh routine
         private void DoRefresh(ActionRule actionRule)
         {
             // set default value

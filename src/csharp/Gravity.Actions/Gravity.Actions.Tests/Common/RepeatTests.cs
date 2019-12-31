@@ -205,6 +205,38 @@ namespace Gravity.Services.ActionPlugins.Tests.Common
             AssertCondition(plugin);
         }
 
+        [DataTestMethod]
+        [DataRow(RepeatRuleCondition)]
+        public void RepeatConditionExists(string actionRule)
+        {
+            // parse action-rule
+            var rule = actionRule
+                .Replace("random", MockLocators.RandomNotExists)
+                .Replace("condition", "{{$ --until:exists}}");
+
+            // execute 
+            var plugin = ExecuteAction<Repeat>(rule);
+
+            // assertion
+            AssertCondition(plugin);
+        }
+
+        [DataTestMethod]
+        [DataRow(RepeatRuleCondition)]
+        public void RepeatConditionNotExists(string actionRule)
+        {
+            // parse action-rule
+            var rule = actionRule
+                .Replace("random", MockLocators.RandomExists)
+                .Replace("condition", "{{$ --until:not-exists}}");
+
+            // execute 
+            var plugin = ExecuteAction<Repeat>(rule);
+
+            // assertion
+            AssertCondition(plugin);
+        }
+
         // assert conditional repeat. since this is a 90% success rate, inconclusive assert
         // will be thrown if no actions were executed.
         private void AssertCondition(Plugin plugin)
@@ -246,7 +278,6 @@ namespace Gravity.Services.ActionPlugins.Tests.Common
             }
 
             // fetch
-            Console.WriteLine((int)AutomationEnvironment.SessionParams[K]);
             return (int)AutomationEnvironment.SessionParams[K];
         }
     }

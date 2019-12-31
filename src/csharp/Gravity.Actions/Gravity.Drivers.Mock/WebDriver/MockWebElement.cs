@@ -355,7 +355,7 @@ namespace Gravity.Drivers.Mock.WebDriver
         /// <param name="parent">Driver in use.</param>
         /// <returns>An interface through which the user controls elements on the page.</returns>
         [Description(MockLocators.RandomPositive)]
-        public static IWebElement GetRandomPositive(MockWebDriver parent) => Random(parent, 90);
+        public static IWebElement GetRandomPositive(MockWebDriver parent) => RandomElement(parent, 90);
 
         /// <summary>
         /// Gets a random element with 90% chance of getting a negative element.
@@ -363,7 +363,31 @@ namespace Gravity.Drivers.Mock.WebDriver
         /// <param name="parent">Driver in use.</param>
         /// <returns>An interface through which the user controls elements on the page.</returns>
         [Description(MockLocators.RandomNegative)]
-        public static IWebElement GetRandomNegative(MockWebDriver parent) => Random(parent, 10);
+        public static IWebElement GetRandomNegative(MockWebDriver parent) => RandomElement(parent, 10);
+
+        /// <summary>
+        /// Gets a random element with 90% chance of getting an element.
+        /// </summary>
+        /// <param name="parent">Driver in use.</param>
+        /// <returns>An interface through which the user controls elements on the page.</returns>
+        [Description(MockLocators.RandomExists)]
+        public static IWebElement GetRandomExists(MockWebDriver parent)
+        {
+            // fetch elements >> return first or null
+            return RandomElements(parent, 90).FirstOrDefault();
+        }
+
+        /// <summary>
+        /// Gets a random element with 10% chance of getting an element.
+        /// </summary>
+        /// <param name="parent">Driver in use.</param>
+        /// <returns>An interface through which the user controls elements on the page.</returns>
+        [Description(MockLocators.RandomNotExists)]
+        public static IWebElement GetRandomNotExists(MockWebDriver parent)
+        {
+            // fetch elements >> return first or null
+            return RandomElements(parent, 10).FirstOrDefault();
+        }
 
         /// <summary>
         /// Gets a random element with a configurable chance of getting a positive element.
@@ -373,11 +397,11 @@ namespace Gravity.Drivers.Mock.WebDriver
         /// <returns>An interface through which the user controls elements on the page.</returns>
         public static IWebElement GetRandom(MockWebDriver parent, int positiveRatio)
         {
-            return Random(parent, positiveRatio);
+            return RandomElement(parent, positiveRatio);
         }
 
         // gets a random element (positive or negative).
-        private static IWebElement Random(MockWebDriver parent, int positiveRatio)
+        private static IWebElement RandomElement(MockWebDriver parent, int positiveRatio)
         {
             // get score
             var score = 0;
@@ -388,6 +412,22 @@ namespace Gravity.Drivers.Mock.WebDriver
 
             // factoring
             return (score <= positiveRatio) ? Positive(parent) : Negative(parent);
+        }
+
+        // gets a random element (positive or negative).
+        private static ReadOnlyCollection<IWebElement> RandomElements(MockWebDriver parent, int existsRatio)
+        {
+            // get score
+            var score = 0;
+            lock (random)
+            {
+                score = random.Next(0, 100);
+            }
+
+            // factoring
+            return (score <= existsRatio)
+                ? new ReadOnlyCollection<IWebElement>(new List<IWebElement> { Positive(parent) })
+                : new ReadOnlyCollection<IWebElement>(new List<IWebElement>());
         }
 
         // gets a positive 'DIV' element

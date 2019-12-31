@@ -32,7 +32,7 @@ namespace Gravity.Services.ActionPlugins.Common
         Name = ActionType.REPEAT)]
     public class Repeat : ActionPlugin
     {
-        // constants: conditions
+        #region *** constants: conditions ***
         /// <summary>
         /// Constant for calling "exists" condition.
         /// </summary>
@@ -52,6 +52,7 @@ namespace Gravity.Services.ActionPlugins.Common
         /// Constant for calling "not-visible" condition.
         /// </summary>
         public const string ConditionNotVisible = "not-visible";
+        #endregion
 
         // constants: arguments
         private const string UNTIL = "until";
@@ -197,6 +198,11 @@ namespace Gravity.Services.ActionPlugins.Common
             }
         }
 
+        // UTILITIES
+        private ReadOnlyCollection<IWebElement> GetElements(IWebElement webElement, ActionRule actionRule) => webElement == default
+            ? WebDriver.FindByActionRule(ByFactory, actionRule)
+            : webElement.FindByActionRule(ByFactory, actionRule);
+
         // CONDITIONS REPOSITORY
 #pragma warning disable S1144, RCS1213, IDE0051
         [Description(ConditionExists)]
@@ -239,10 +245,5 @@ namespace Gravity.Services.ActionPlugins.Common
             return e.All(i => !i.Displayed);
         }
 #pragma warning restore
-
-        // UTILITIES
-        private ReadOnlyCollection<IWebElement> GetElements(IWebElement webElement, ActionRule actionRule) => webElement == default
-            ? WebDriver.FindByActionRule(ByFactory, actionRule)
-            : webElement.FindByActionRule(ByFactory, actionRule);
     }
 }

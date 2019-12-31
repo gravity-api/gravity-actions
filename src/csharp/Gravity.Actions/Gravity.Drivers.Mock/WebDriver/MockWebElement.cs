@@ -182,7 +182,7 @@ namespace Gravity.Drivers.Mock.WebDriver
         /// </summary>
         /// <param name="by">The locating mechanism to use.</param>
         /// <returns>The first matching OpenQA.Selenium.IWebElement on the current context.</returns>
-        public IWebElement FindElement(By by) => GetBy((MockWebDriver)WrappedDriver, by);
+        public IWebElement FindElement(By by) => GetElement((MockWebDriver)WrappedDriver, by);
 
         /// <summary>
         /// Finds the first element matching the specified link text.
@@ -278,37 +278,28 @@ namespace Gravity.Drivers.Mock.WebDriver
         /// <param name="parent">Driver in use.</param>
         /// <param name="by">The locating mechanism to use.</param>
         /// <returns>An interface through which the user controls elements on the page.</returns>
-        public static IWebElement GetBy(MockWebDriver parent, By by)
+        public static IWebElement GetElement(MockWebDriver parent, By by)
         {
-            // get the 'by' value from this locator
-            var byValue = typeof(By)
-                .GetProperties(BindingFlags.NonPublic | BindingFlags.Instance)
-                .First(p => string.Equals(p.Name, "description", StringComparison.CurrentCultureIgnoreCase))
-                .GetValue(by)
-                .ToString()
-                .ToLower();
+            return Get(parent, by);
+        }
 
-            // get factoring method
-            const BindingFlags flags = BindingFlags.Static | BindingFlags.Public;
-            var method = typeof(MockWebElement).GetMethodByDescription(byValue, flags);
+        /// <summary>
+        /// Factor a collection of <see cref="MockWebElement"/> instances based on a given locator.
+        /// </summary>
+        /// <param name="parent">Driver in use.</param>
+        /// <param name="by">The locating mechanism to use.</param>
+        /// <returns>An interface through which the user controls elements on the page.</returns>
+        public static ReadOnlyCollection<IWebElement> GetElements(MockWebDriver parent, By by)
+        {
+            // collect elements
+            var elements = new List<IWebElement>
+            {
+                Get(parent, by),
+                Get(parent, by)
+            };
 
-            // default
-            if(method == default)
-            {
-                return GetNoSuchElement();
-            }
-
-            // factor
-            try
-            {
-                return method.GetParameters().Length == 1
-                    ? (IWebElement)method.Invoke(null, new object[] { parent })
-                    : (IWebElement)method.Invoke(null, null);
-            }
-            catch (Exception e)
-            {
-                throw e.InnerException ?? e;
-            }
+            // return collection
+            return new ReadOnlyCollection<IWebElement>(elements.Where(i => i != null).ToList());
         }
 
         /// <summary>
@@ -405,6 +396,43 @@ namespace Gravity.Drivers.Mock.WebDriver
         // gets a negative 'DIV' element
         private static IWebElement Negative(MockWebDriver parent)
             => new MockWebElement(parent, tagName: "div", text: "Mock: Negative Element", enabled: false, selected: false, displayed: false);
+
+        // factor a MockWebElement instance
+        private static IWebElement Get(MockWebDriver parent, By by)
+        {
+            // get the 'by' value from this locator
+            var byValue = GetLocatorValue(by);
+
+            // get factoring method
+            const BindingFlags flags = BindingFlags.Static | BindingFlags.Public;
+            var method = typeof(MockWebElement).GetMethodByDescription(byValue, flags);
+
+            // default
+            if (method == default)
+            {
+                throw new NoSuchElementException();
+            }
+
+            // factor
+            try
+            {
+                return method.GetParameters().Length == 1
+                    ? (IWebElement)method.Invoke(null, new object[] { parent })
+                    : (IWebElement)method.Invoke(null, null);
+            }
+            catch (Exception e)
+            {
+                throw e.InnerException ?? e;
+            }
+        }
+
+        // get the 'by' value from this locator
+        private static string GetLocatorValue(By by) => typeof(By)
+            .GetProperties(BindingFlags.NonPublic | BindingFlags.Instance)
+            .First(p => string.Equals(p.Name, "description", StringComparison.CurrentCultureIgnoreCase))
+            .GetValue(by)
+            .ToString()
+            .ToLower();
         #endregion
     }
 }

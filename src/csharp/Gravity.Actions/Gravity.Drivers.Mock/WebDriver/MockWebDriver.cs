@@ -11,7 +11,6 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Reflection;
 using System.Text;
 
 namespace Gravity.Drivers.Mock.WebDriver
@@ -233,68 +232,37 @@ namespace Gravity.Drivers.Mock.WebDriver
         /// </summary>
         /// <param name="by">The locating mechanism to use.</param>
         /// <returns>The first matching OpenQA.Selenium.IWebElement on the current context.</returns>
-        public IWebElement FindElement(By by) => MockWebElement.GetBy(this, by);
+        public IWebElement FindElement(By by) => MockWebElement.GetElement(this, by);
 
         /// <summary>
         /// Finds all OpenQA.Selenium.IWebElement within the current context using the given
         /// mechanism.
         /// </summary>
         /// <param name="by">The locating mechanism to use.</param>
-        /// <returns> A System.Collections.ObjectModel.ReadOnlyCollection`1 of all OpenQA.Selenium.IWebElement
-        /// matching the current criteria, or an empty list if nothing matches.</returns>
+        /// <returns> A collections of all <see cref="IWebElement"/> matching the current criteria, or an empty list if nothing matches.</returns>
         public ReadOnlyCollection<IWebElement> FindElements(By by)
         {
-            var value = typeof(By)
-                .GetProperties(BindingFlags.NonPublic | BindingFlags.Instance)
-                .First(p => string.Equals(p.Name, "description", StringComparison.CurrentCultureIgnoreCase))
-                .GetValue(by)
-                .ToString()
-                .ToLower();
-
-            // positive collection
-            if (value.Contains("positive"))
+            try
             {
-                return new ReadOnlyCollection<IWebElement>(new List<IWebElement>
-                {
-                    new MockWebElement(this, "div", "Mock: Positive Element", true, true, true),
-                    new MockWebElement(this, "div", "Mock: Negative Element", true, true, true)
-                });
+                return MockWebElement.GetElements(this, by);
             }
-
-            // negative collection
-            if (value.Contains("negative"))
+            catch (Exception e) when (e is NoSuchElementException)
             {
-                return new ReadOnlyCollection<IWebElement>(new List<IWebElement>
-                {
-                    new MockWebElement(this, "div", "Mock: Positive Element", false, false, false),
-                    new MockWebElement(this, "div", "Mock: Negative Element", false, false, false)
-                });
+                var elements = new List<IWebElement>();
+                return new ReadOnlyCollection<IWebElement>(elements);
             }
-
-            // stale case
-            if (value.Contains("stale"))
-            {
-                throw new StaleElementReferenceException("Mock: Stale Element Reference Exception");
-            }
-
-            // empty collection
-            return new ReadOnlyCollection<IWebElement>(new List<IWebElement>());
         }
 
         /// <summary>
         /// Instructs the driver to change its settings.
         /// </summary>
-        /// <returns> An OpenQA.Selenium.IOptions object allowing the user to change the settings of
-        /// the driver.</returns>
+        /// <returns> An <see cref="IOptions"/> object allowing the user to change the settings of the driver.</returns>
         public IOptions Manage() => new MockOptions();
 
         /// <summary>
         /// Instructs the driver to navigate the browser to another location.
         /// </summary>
-        /// <returns>
-        /// An <see cref="INavigation" /> object allowing the user to access
-        /// the browser's history and to navigate to a given URL.
-        /// </returns>
+        /// <returns>An <see cref="INavigation" /> object allowing the user to access the browser's history and to navigate to a given URL.</returns>
         public INavigation Navigate() => new MockNavigation();
 
         /// <summary>
@@ -308,10 +276,7 @@ namespace Gravity.Drivers.Mock.WebDriver
         /// <summary>
         /// Instructs the driver to send future commands to a different frame or window.
         /// </summary>
-        /// <returns>
-        /// An <see cref="ITargetLocator" /> object which can be used to select
-        /// a frame or window.
-        /// </returns>
+        /// <returns>An <see cref="ITargetLocator" /> object which can be used to select a frame or window.</returns>
         public ITargetLocator SwitchTo() => new MockTargetLocator(this);
 
         /// <summary>
@@ -343,16 +308,15 @@ namespace Gravity.Drivers.Mock.WebDriver
             }
 
             // setup window handles
-            var windowHandles = new List<string>
-            {
-                $"window-{Guid.NewGuid()}"
-            };
+            var windowHandles = new List<string> { $"window-{Guid.NewGuid()}" };
 
+            // add handles for capabilities
             for (int i = 0; i < windows; i++)
             {
                 windowHandles.Add($"window-{Guid.NewGuid()}");
             }
 
+            // return a new collection with all handles
             WindowHandles = new ReadOnlyCollection<string>(windowHandles);
         }
     }

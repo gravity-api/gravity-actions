@@ -15,5 +15,7 @@ namespace Gravity.Drivers.Mock.WebDriver
         public const string Exception = "exception";
         public const string RandomPositive = "random-p";
         public const string RandomNegative = "random-n";
+        public const string RandomExists = "random-e";
+        public const string RandomNotExists = "random-x";
     }
 }

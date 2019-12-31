@@ -32,6 +32,27 @@ namespace Gravity.Services.ActionPlugins.Common
         Name = ActionType.REPEAT)]
     public class Repeat : ActionPlugin
     {
+        // constants: conditions
+        /// <summary>
+        /// Constant for calling "exists" condition.
+        /// </summary>
+        public const string ConditionExists = "exists";
+
+        /// <summary>
+        /// Constant for calling "not-exists" condition.
+        /// </summary>
+        public const string ConditionNotExists = "not-exists";
+
+        /// <summary>
+        /// Constant for calling "visible" condition.
+        /// </summary>
+        public const string ConditionVisible = "visible";
+
+        /// <summary>
+        /// Constant for calling "not-visible" condition.
+        /// </summary>
+        public const string ConditionNotVisible = "not-visible";
+
         // constants: arguments
         private const string UNTIL = "until";
         private const string ITERATIONS = "iterations";
@@ -121,8 +142,17 @@ namespace Gravity.Services.ActionPlugins.Common
         // execute actions based on the given conditions
         private void ExecuteByCondition(IWebElement webElement, ActionRule actionRule, string condition)
         {
+            // constants: logging
+            const string E = "Method for [{0}] condition was not found.";
+
             // get method
             var method = GetType().GetMethodByDescription(condition);
+
+            // exit conditions
+            if(method == null)
+            {
+                throw new InvalidOperationException(string.Format(E, condition));
+            }
 
             // initialize
             var repeatReference = 0;
@@ -169,7 +199,7 @@ namespace Gravity.Services.ActionPlugins.Common
 
         // CONDITIONS REPOSITORY
 #pragma warning disable S1144, RCS1213, IDE0051
-        [Description("exists")]
+        [Description(ConditionExists)]
         private bool ElementExists(IWebElement webElement, ActionRule actionRule)
         {
             // get elements
@@ -179,7 +209,7 @@ namespace Gravity.Services.ActionPlugins.Common
             return e.Count > 0;
         }
 
-        [Description("not-exists")]
+        [Description(ConditionNotExists)]
         private bool ElementNotExists(IWebElement webElement, ActionRule actionRule)
         {
             // get elements
@@ -189,17 +219,17 @@ namespace Gravity.Services.ActionPlugins.Common
             return e.Count == 0;
         }
 
-        [Description("visible")]
+        [Description(ConditionVisible)]
         private bool ElementVisible(IWebElement webElement, ActionRule actionRule)
         {
             // get elements
             var e = GetElements(webElement, actionRule);
 
             // assertion
-            return e.Any(i => i.Displayed);
+            return e.All(i => i.Displayed);
         }
 
-        [Description("not-visible")]
+        [Description(ConditionNotVisible)]
         private bool ElementNotVisible(IWebElement webElement, ActionRule actionRule)
         {
             // get elements

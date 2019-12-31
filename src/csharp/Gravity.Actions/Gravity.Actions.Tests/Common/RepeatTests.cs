@@ -3,12 +3,14 @@
  * 
  * on-line resources
  */
+using Gravity.Drivers.Mock.WebDriver;
 using Gravity.Drivers.Selenium;
 using Gravity.Services.ActionPlugins.Common;
 using Gravity.Services.ActionPlugins.Tests.Base;
 using Gravity.Services.Comet.Engine.Plugins;
 using Gravity.Services.DataContracts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 
 #pragma warning disable S4144
 namespace Gravity.Services.ActionPlugins.Tests.Common
@@ -16,6 +18,29 @@ namespace Gravity.Services.ActionPlugins.Tests.Common
     [TestClass]
     public class RepeatTests : ActionTests
     {
+        private const string RepeatRule = "" +
+            "{" +
+            "   'argument':'index'," +
+            "   'actions':[" +
+            "       {" +
+            "           'actionType':'Click'," +
+            "           'elementToActOn':'//positive'" +
+            "       }" +
+            "   ]" +
+            "}";
+
+        private const string RepeatRuleCondition = "" +
+            "{" +
+            "   'argument':'condition'," +
+            "   'elementToActOn':'random'," +
+            "   'actions':[" +
+            "       {" +
+            "           'actionType':'Click'," +
+            "           'elementToActOn':'//positive'" +
+            "       }" +
+            "   ]" +
+            "}";
+
         [TestMethod]
         public void RepeatCreateNoTypes()
         {
@@ -47,54 +72,182 @@ namespace Gravity.Services.ActionPlugins.Tests.Common
         }
 
         [DataTestMethod]
-        [DataRow("" +
-            "{" +
-            "   'argument':'3'," +
-            "   'actions':[" +
-            "       {" +
-            "           'actionType':'Click'," +
-            "           'elementToActOn':'//positive'" +
-            "       }" +
-            "   ]" +
-            "}")]
+        [DataRow(RepeatRule)]
         public void RepeatPositive(string actionRule)
         {
+            // parse action-rule
+            var rule = actionRule.Replace("index", "3");
+
             // execute 
-            var plugin = ExecuteAction<Repeat>(actionRule);
+            var plugin = ExecuteAction<Repeat>(rule);
 
             // assertion
             Assert.AreEqual(2, GetRptPos(plugin));
         }
 
         [DataTestMethod]
-        [DataRow("" +
-            "{" +
-            "   'argument':'{{$ --iterations:3}}'," +
-            "   'actions':[" +
-            "       {" +
-            "           'actionType':'Click'," +
-            "           'elementToActOn':'//positive'" +
-            "       }" +
-            "   ]" +
-            "}")]
+        [DataRow(RepeatRule)]
         public void RepeatIterationsPositive(string actionRule)
         {
+            // parse action-rule
+            var rule = actionRule.Replace("index", "{{$ --iterations:3}}");
+
             // execute 
-            var plugin = ExecuteAction<Repeat>(actionRule);
+            var plugin = ExecuteAction<Repeat>(rule);
 
             // assertion
             Assert.AreEqual(2, GetRptPos(plugin));
         }
 
-        // Gets the repeater position of this plug-in session (from WebDriver)
-        private dynamic GetRptPos(Plugin plugin)
+        [DataTestMethod]
+        [DataRow(RepeatRule)]
+        public void RepeatIterationsNegativeNumber(string actionRule)
         {
-            // setup
-            var session = plugin.WebDriver.GetSession().ToString();
-            var repeatReferenceKey = $"{AutomationEnvironment.REPEATER_POSITION_PARAM}-{session}";
+            // parse action-rule
+            var rule = actionRule.Replace("index", "-3");
+
+            // execute 
+            var plugin = ExecuteAction<Repeat>(rule);
+
+            // assertion
+            Assert.AreEqual(-1, GetRptPos(plugin));
+        }
+
+        [DataTestMethod]
+        [DataRow(RepeatRule)]
+        public void RepeatInvalid(string actionRule)
+        {
+            // parse action-rule
+            var rule = actionRule.Replace("index", "NotNumber");
+
+            // execute 
+            var plugin = ExecuteAction<Repeat>(rule);
+
+            // assertion
+            Assert.AreEqual(-1, GetRptPos(plugin));
+        }
+
+        [DataTestMethod]
+        [DataRow(RepeatRule)]
+        public void RepeatIterationsInvalid(string actionRule)
+        {
+            // parse action-rule
+            var rule = actionRule.Replace("index", "{{$ --iterations:NotNumber}}");
+
+            // execute 
+            var plugin = ExecuteAction<Repeat>(rule);
+
+            // assertion
+            Assert.AreEqual(-1, GetRptPos(plugin));
+        }
+
+        [DataTestMethod, ExpectedException(typeof(InvalidOperationException))]
+        [DataRow(RepeatRuleCondition)]
+        public void RepeatConditionInvalid(string actionRule)
+        {
+            // parse action-rule
+            var rule = actionRule
+                .Replace("random", MockLocators.RandomPositive)
+                .Replace("condition", "{{$ --until:NoCondition}}");
+
+            // execute 
+            var plugin = ExecuteAction<Repeat>(rule);
+
+            // assertion
+            AssertCondition(plugin, 2);
+        }
+
+        [DataTestMethod]
+        [DataRow(RepeatRuleCondition)]
+        public void RepeatIterationsCondition(string actionRule)
+        {
+            // parse action-rule
+            var rule = actionRule
+                .Replace("random", MockLocators.RandomPositive)
+                .Replace("condition", "{{$ --iterations:3 --until:not-visible}}");
+
+            // execute 
+            var plugin = ExecuteAction<Repeat>(rule);
+
+            // assertion
+            AssertCondition(plugin, 2);
+        }
+
+        [DataTestMethod]
+        [DataRow(RepeatRuleCondition)]
+        public void RepeatConditionVisible(string actionRule)
+        {
+            // parse action-rule
+            var rule = actionRule
+                .Replace("random", MockLocators.RandomNegative)
+                .Replace("condition", "{{$ --until:visible}}");
+
+            // execute 
+            var plugin = ExecuteAction<Repeat>(rule);
+
+            // assertion
+            AssertCondition(plugin);
+        }
+
+        [DataTestMethod]
+        [DataRow(RepeatRuleCondition)]
+        public void RepeatConditionNotVisible(string actionRule)
+        {
+            // parse action-rule
+            var rule = actionRule
+                .Replace("random", MockLocators.RandomPositive)
+                .Replace("condition", "{{$ --until:not-visible}}");
+
+            // execute 
+            var plugin = ExecuteAction<Repeat>(rule);
+
+            // assertion
+            AssertCondition(plugin);
+        }
+
+        // assert conditional repeat. since this is a 90% success rate, inconclusive assert
+        // will be thrown if no actions were executed.
+        private void AssertCondition(Plugin plugin)
+        {
+            AssertCondition(plugin, 0);
+        }
+
+        // assert conditional repeat. since this is a 90% success rate, inconclusive assert
+        // will be thrown if no actions were executed.
+        private static void AssertCondition(Plugin plugin, int minimumExpected)
+        {
+            // get repeat position index
+            var repeatPosition = GetRptPos(plugin);
+
+            // inconclusive (if actions were not executed (10% chance)
+            var isPosition = repeatPosition != -1;
+            var isInconclusive = isPosition && repeatPosition == minimumExpected;
+            if (isInconclusive)
+            {
+                Assert.Inconclusive("Was not able to execute Repeat actions, please rerun this test.");
+            }
+
+            // assert repeat position index
+            Assert.IsTrue(repeatPosition > minimumExpected);
+        }
+
+        // Gets the repeater position of this plug-in session (from WebDriver)
+        private static int GetRptPos(Plugin plugin)
+        {
+            // shortcuts
+            const string P = AutomationEnvironment.REPEATER_POSITION_PARAM;
+            var S = plugin.WebDriver.GetSession().ToString();
+            var K = $"{P}-{S}";
+
+            // exit conditions
+            if (!AutomationEnvironment.SessionParams.ContainsKey(K))
+            {
+                return -1;
+            }
 
             // fetch
-            return AutomationEnvironment.SessionParams[repeatReferenceKey];
+            Console.WriteLine((int)AutomationEnvironment.SessionParams[K]);
+            return (int)AutomationEnvironment.SessionParams[K];
         }
     }
 }

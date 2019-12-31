@@ -59,5 +59,17 @@ namespace Gravity.Drivers.Mock.WebDriver
         /// </summary>
         /// <returns>A <see cref="By"/> object the driver can use to find the elements.</returns>
         public static By RandomNegative() => By.Id(MockLocators.RandomNegative);
+
+        /// <summary>
+        /// Gets a mechanism to find an exists mock element with 90% success rate.
+        /// </summary>
+        /// <returns>A <see cref="By"/> object the driver can use to find the elements.</returns>
+        public static By RandomExists() => By.Id(MockLocators.RandomExists);
+
+        /// <summary>
+        /// Gets a mechanism to find an exists mock element with 10% success rate.
+        /// </summary>
+        /// <returns>A <see cref="By"/> object the driver can use to find the elements.</returns>
+        public static By RandomNotExists() => By.Id(MockLocators.RandomNotExists);
     }
 }

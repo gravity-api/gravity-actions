@@ -47,7 +47,7 @@ namespace Gravity.Services.ActionPlugins.Common
         { }
 
         /// <summary>
-        /// clicks the mouse on the specified element
+        /// Suspends the current thread for the specified amount of time.
         /// </summary>
         /// <param name="actionRule">This ActionRule instance (the original object sent by the user).</param>
         public override void OnPerform(ActionRule actionRule)
@@ -56,7 +56,7 @@ namespace Gravity.Services.ActionPlugins.Common
         }
 
         /// <summary>
-        /// clicks the mouse on the specified element
+        /// Suspends the current thread for the specified amount of time.
         /// </summary>
         /// <param name="webElement">This WebElement instance on which to perform the action (provided by the extraction rule).</param>
         /// <param name="actionRule">This ActionRule instance (the original object send by the user).</param>

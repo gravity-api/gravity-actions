@@ -97,14 +97,14 @@ namespace Gravity.Services.ActionPlugins.Common
         /// <param name="actionRule">This ActionRule instance (the original object send by the user).</param>
         public override void OnPerform(IWebElement webElement, ActionRule actionRule)
         {
-            DoRepeat(webElement: webElement, actionRule: actionRule);
+            DoRepeat(webElement, actionRule);
         }
 
         // executes Repeat routine
         private void DoRepeat(IWebElement webElement, ActionRule actionRule)
         {
             // setup
-            SetArguments(actionRule);
+            arguments = SetArguments(actionRule);
 
             // setup conditions
             var isCondition = arguments.ContainsKey(UNTIL) && !string.IsNullOrEmpty(arguments[UNTIL]);
@@ -122,16 +122,15 @@ namespace Gravity.Services.ActionPlugins.Common
         }
 
         // populate action arguments based on action rule or CLI
-        private void SetArguments(ActionRule actionRule)
+        private static IDictionary<string, string> SetArguments(ActionRule actionRule)
         {
             var cliFactory = new CliFactory(actionRule.Argument);
             if (cliFactory.CliCompliant)
             {
-                arguments = cliFactory.Parse();
-                return;
+                return cliFactory.Parse();
             }
 
-            arguments = new Dictionary<string, string>
+            return new Dictionary<string, string>
             {
                 [UNTIL] = string.Empty
             };

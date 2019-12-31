@@ -41,6 +41,13 @@ namespace Gravity.Services.ActionPlugins.Common
         Name = ActionType.CLICK)]
     public class Click : ActionPlugin
     {
+        #region *** constants: conditions ***
+        /// <summary>
+        /// Constant for calling "no-alert" condition.
+        /// </summary>
+        public const string NoAlert = "no-alert";
+        #endregion
+
         // constants: arguments
         private const string UNTIL = "until";
 
@@ -141,8 +148,8 @@ namespace Gravity.Services.ActionPlugins.Common
         }
 
 #pragma warning disable S1144, RCS1213, IDE0051
-        [Description(nameof(NoAlert))]
-        private void NoAlert(ActionRule actionRule)
+        [Description(NoAlert)]
+        private void Alert(ActionRule actionRule)
         {
             // get locator
             var by = ByFactory.Get(actionRule.Locator, actionRule.ElementToActOn);

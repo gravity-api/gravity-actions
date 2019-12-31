@@ -56,7 +56,6 @@ namespace Gravity.Services.ActionPlugins.Common
 
         // constants: arguments
         private const string UNTIL = "until";
-        private const string ITERATIONS = "iterations";
 
         // members: state
         private IDictionary<string, string> arguments;
@@ -117,7 +116,7 @@ namespace Gravity.Services.ActionPlugins.Common
             }
             else
             {
-                int.TryParse(arguments[ITERATIONS], out int iterations);
+                int.TryParse(actionRule.Argument, out int iterations);
                 ExecuteByIteration(webElement, actionRule, iterations);
             }
         }
@@ -132,10 +131,8 @@ namespace Gravity.Services.ActionPlugins.Common
                 return;
             }
 
-            int.TryParse(actionRule.Argument, out int iterations);
             arguments = new Dictionary<string, string>
             {
-                [ITERATIONS] = $"{iterations}",
                 [UNTIL] = string.Empty
             };
         }

@@ -1,4 +1,7 @@
 {
+  "cliArguments": {
+    "until": "Repeats the nested actions until a condition is met. Available conditions are: ['visible','not-visible','exists','not-exists']."
+  },
   "name": "Repeat",
   "summary": "Repeats a subset of actions.",
   "description": "Repeats a subset of actions for a given number of times or under condition is met. This action is recursive and actions subset can be another [Repeat] action.",
@@ -10,6 +13,70 @@
       "actionExample": {
         "actionType": "Repeat",
         "argument": "10",
+        "actions": [
+          {
+            "actionType": "SendKeys",
+            "argument": "a",
+            "elementToActOn": "//form/div/p/input[1]"
+          }
+        ]
+      }
+    },
+    {
+      "description": "Repeat [SendKeys] action with [a] argument into [//form/div/p/input[1]] <input>, until element [//div] is visible.",
+      "literalExample": "not supported by literal engine.",
+      "actionExample": {
+        "actionType": "Repeat",
+        "argument": "{{$ --until:visible}}",
+        "elementToActOn": "//div",
+        "actions": [
+          {
+            "actionType": "SendKeys",
+            "argument": "a",
+            "elementToActOn": "//form/div/p/input[1]"
+          }
+        ]
+      }
+    },
+    {
+      "description": "Repeat [SendKeys] action with [a] argument into [//form/div/p/input[1]] <input>, until element [//div] is not visible.",
+      "literalExample": "not supported by literal engine.",
+      "actionExample": {
+        "actionType": "Repeat",
+        "argument": "{{$ --until:not-visible}}",
+        "elementToActOn": "//div",
+        "actions": [
+          {
+            "actionType": "SendKeys",
+            "argument": "a",
+            "elementToActOn": "//form/div/p/input[1]"
+          }
+        ]
+      }
+    },
+    {
+      "description": "Repeat [SendKeys] action with [a] argument into [//form/div/p/input[1]] <input>, until element [//div] exists.",
+      "literalExample": "not supported by literal engine.",
+      "actionExample": {
+        "actionType": "Repeat",
+        "argument": "{{$ --until:exists}}",
+        "elementToActOn": "//div",
+        "actions": [
+          {
+            "actionType": "SendKeys",
+            "argument": "a",
+            "elementToActOn": "//form/div/p/input[1]"
+          }
+        ]
+      }
+    },
+    {
+      "description": "Repeat [SendKeys] action with [a] argument into [//form/div/p/input[1]] <input>, until element [//div] is not exists.",
+      "literalExample": "not supported by literal engine.",
+      "actionExample": {
+        "actionType": "Repeat",
+        "argument": "{{$ --until:not-exists}}",
+        "elementToActOn": "//div",
         "actions": [
           {
             "actionType": "SendKeys",

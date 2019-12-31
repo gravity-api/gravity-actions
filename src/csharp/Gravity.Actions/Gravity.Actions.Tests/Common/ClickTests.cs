@@ -80,7 +80,7 @@ namespace Gravity.Services.ActionPlugins.Tests.Common
         }
 
         [DataTestMethod]
-        [DataRow("{'Argument':'{{$ --until:NoAlert}}','ElementToActOn':'//positive'}")]
+        [DataRow("{'Argument':'{{$ --until:no-alert}}','ElementToActOn':'//positive'}")]
         public void ClickUntilNoAlert(string actionRule)
         {
             // execute

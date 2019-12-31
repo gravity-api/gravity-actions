@@ -87,21 +87,7 @@ namespace Gravity.Services.ActionPlugins.Tests.Common
 
         [DataTestMethod]
         [DataRow(RepeatRule)]
-        public void RepeatIterationsPositive(string actionRule)
-        {
-            // parse action-rule
-            var rule = actionRule.Replace("index", "{{$ --iterations:3}}");
-
-            // execute 
-            var plugin = ExecuteAction<Repeat>(rule);
-
-            // assertion
-            Assert.AreEqual(2, GetRptPos(plugin));
-        }
-
-        [DataTestMethod]
-        [DataRow(RepeatRule)]
-        public void RepeatIterationsNegativeNumber(string actionRule)
+        public void RepeatNegativeNumber(string actionRule)
         {
             // parse action-rule
             var rule = actionRule.Replace("index", "-3");
@@ -127,20 +113,6 @@ namespace Gravity.Services.ActionPlugins.Tests.Common
             Assert.AreEqual(-1, GetRptPos(plugin));
         }
 
-        [DataTestMethod]
-        [DataRow(RepeatRule)]
-        public void RepeatIterationsInvalid(string actionRule)
-        {
-            // parse action-rule
-            var rule = actionRule.Replace("index", "{{$ --iterations:NotNumber}}");
-
-            // execute 
-            var plugin = ExecuteAction<Repeat>(rule);
-
-            // assertion
-            Assert.AreEqual(-1, GetRptPos(plugin));
-        }
-
         [DataTestMethod, ExpectedException(typeof(InvalidOperationException))]
         [DataRow(RepeatRuleCondition)]
         public void RepeatConditionInvalid(string actionRule)
@@ -149,22 +121,6 @@ namespace Gravity.Services.ActionPlugins.Tests.Common
             var rule = actionRule
                 .Replace("random", MockLocators.RandomPositive)
                 .Replace("condition", "{{$ --until:NoCondition}}");
-
-            // execute 
-            var plugin = ExecuteAction<Repeat>(rule);
-
-            // assertion
-            AssertCondition(plugin, 2);
-        }
-
-        [DataTestMethod]
-        [DataRow(RepeatRuleCondition)]
-        public void RepeatIterationsCondition(string actionRule)
-        {
-            // parse action-rule
-            var rule = actionRule
-                .Replace("random", MockLocators.RandomPositive)
-                .Replace("condition", "{{$ --iterations:3 --until:not-visible}}");
 
             // execute 
             var plugin = ExecuteAction<Repeat>(rule);

@@ -1,6 +1,6 @@
 {
   "cliArguments": {
-    "until": "Repeats the click action until condition is met. Available conditions are: ['NoAlert']."
+    "until": "Repeats the click action until condition is met. Available conditions are: ['no-alert']."
   },
   "description": "Clicks the mouse at the last known mouse coordinates or on the specified element. If the click causes a new page to load, the OpenQA.Selenium.IWebElement.Click method will attempt to block until the page has loaded.",
   "examples": [

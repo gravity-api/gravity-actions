@@ -22,8 +22,8 @@ namespace Gravity.Services.ActionPlugins.Extensions
         public static MethodInfo GetMethodByDescription(this Type t, string regex)
         {
             return GetMethodByDescription(
-                t: t,
-                regex: regex,
+                t,
+                regex,
                 flags: BindingFlags.Instance | BindingFlags.NonPublic);
         }
 
@@ -36,11 +36,7 @@ namespace Gravity.Services.ActionPlugins.Extensions
         /// <returns>MethodInfo instance if found or null if not.</returns>
         public static MethodInfo GetMethodByDescription(this Type t, string regex, BindingFlags flags)
         {
-            return GetMethodByDescription(
-                t: t,
-                regex: regex,
-                flags: flags,
-                comparison: RegexOptions.IgnoreCase);
+            return GetMethodByDescription(t, regex, flags, comparison: RegexOptions.IgnoreCase);
         }
 
         /// <summary>

@@ -1,8 +1,12 @@
 ﻿/*
  * CHANGE LOG - keep only last 5 threads
  * 
+ * 2020-01-01
+ *    - modify: re-factor ExecuteScript to use methods factory instead of conditions
+ * 
  * on-line resources
  */
+using Gravity.Drivers.Mock.Extensions;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Internal;
@@ -10,7 +14,9 @@ using OpenQA.Selenium.Remote;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 
 namespace Gravity.Drivers.Mock.WebDriver
@@ -176,7 +182,6 @@ namespace Gravity.Drivers.Mock.WebDriver
         /// <returns>The value returned by the script.</returns>
         public object ExecuteAsyncScript(string script, params object[] args) => ExecuteScript(script, args);
 
-        // TODO: migrate to factory
         /// <summary>
         /// Executes JavaScript in the context of the currently selected frame or window.
         /// </summary>
@@ -185,53 +190,37 @@ namespace Gravity.Drivers.Mock.WebDriver
         /// <returns>The value returned by the script.</returns>
         public object ExecuteScript(string script, params object[] args)
         {
-            // for outer HTML
-            if (script == "return arguments[0].outerHTML;")
+            // exit conditions
+            if (args.Length > 0 && args.Any(i => i == null))
             {
-                return
-                    "<div mock-attribute=\"mock attribute value\">mock element inner-text" +
-                    "   <div mock-attribute=\"mock attribute value\">mock element nested inner-text</div>" +
-                    "   <positive mock-attribute=\"mock attribute value\">mock element nested inner-text</positive>" +
-                    "   <positive mock-attribute=\"mock attribute value\">mock element nested inner-text</positive>" +
-                    "   <positive mock-attribute=\"mock attribute value\">mock element nested inner-text</positive>" +
-                    "</div>";
+                throw new WebDriverTimeoutException();
             }
 
-            // for scrip macro
-            if (script == "script-macro")
+            // setup binding flags
+            const BindingFlags Flags = BindingFlags.Instance | BindingFlags.NonPublic;
+
+            // get script generating method
+            var method = GetType().GetMethodByDescription(script, Flags);
+
+            // exit conditions
+            if (method == null)
             {
-                return "some text and number 777";
+                throw new WebDriverException();
             }
 
-            // for action rule
-            if(script?.Length == 0 || script == "console.log('unit testing');")
+            // return mock script
+            try
             {
-                return string.Empty;
+                return (string)method.Invoke(this, null);
             }
-
-            // for element
-            var isArgs = args.Length == 1;
-            var isElement = isArgs && args[0].GetType() == typeof(MockWebElement);
-            var isSrc = script == "arguments[0].checked=false;";
-            if (isElement && isSrc)
+            catch (Exception e)
             {
-                return string.Empty;
+                if(e.InnerException != null)
+                {
+                    throw e.InnerException;
+                }
+                throw;
             }
-
-            // for ready state
-            if(script == "return document.readyState;")
-            {
-                return "complete";
-            }
-
-            // for ready state
-            if (script == "arguments[0].click();")
-            {
-                return string.Empty;
-            }
-
-            // invalid script
-            throw new WebDriverException();
         }
 
         /// <summary>
@@ -326,5 +315,29 @@ namespace Gravity.Drivers.Mock.WebDriver
             // return a new collection with all handles
             WindowHandles = new ReadOnlyCollection<string>(windowHandles);
         }
+
+        // EXECUTE SCRIPT FACTORY
+#pragma warning disable S3400, IDE0051
+        [Description("outerHTML")]
+        private string SrcOuterHtml() =>
+            "<div mock-attribute=\"mock attribute value\">mock element inner-text" +
+            "   <div mock-attribute=\"mock attribute value\">mock element nested inner-text</div>" +
+            "   <positive mock-attribute=\"mock attribute value\">mock element nested inner-text</positive>" +
+            "   <positive mock-attribute=\"mock attribute value\">mock element nested inner-text</positive>" +
+            "   <positive mock-attribute=\"mock attribute value\">mock element nested inner-text</positive>" +
+            "</div>";
+
+        [Description("scriptMacro")]
+        private string SrcMarco() => "some text and number 777";
+
+        [Description("readyState")]
+        private string SrcReadyState() => "complete";
+
+        [Description(".*invalid.*")]
+        private string SrcInvalid() => throw new WebDriverException();
+
+        [Description("^$|unitTesting|arguments\\[\\d+\\]\\.(?!(.*invalid.*))")]
+        private string SrcEmpty() => string.Empty;
+#pragma warning restore
     }
 }

@@ -48,7 +48,7 @@ namespace Gravity.Services.ActionPlugins.Tests.Common
         }
 
         [DataTestMethod]
-        [DataRow(@"{""argument"":""console.log('unit testing');""}")]
+        [DataRow(@"{""argument"":""console.log('unitTesting');""}")]
         public void ExecuteScriptPositive(string actionRule)
         {
             // execute
@@ -77,7 +77,7 @@ namespace Gravity.Services.ActionPlugins.Tests.Common
         }
 
         [DataTestMethod]
-        [DataRow(@"{""argument"":""{{$ --src:console.log('unit testing');}}""}")]
+        [DataRow(@"{""argument"":""{{$ --src:console.log('unitTesting');}}""}")]
         public void ExecuteScriptSrc(string actionRule)
         {
             // execute
@@ -96,7 +96,7 @@ namespace Gravity.Services.ActionPlugins.Tests.Common
         }
 
         [DataTestMethod]
-        [DataRow(@"{""argument"":""{{$ --src:console.log('unit testing'); --args:['argument',0,false]}}""}")]
+        [DataRow(@"{""argument"":""{{$ --src:console.log('unitTesting'); --args:['argument',0,false]}}""}")]
         public void ExecuteScriptSrcArgs(string actionRule)
         {
             // execute

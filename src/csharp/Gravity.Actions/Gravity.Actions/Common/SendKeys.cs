@@ -148,13 +148,16 @@ namespace Gravity.Services.ActionPlugins.Common
         // setup the different conditions for invoking SendKeys scenarios
         private IDictionary<string, bool> SetConditions()
         {
+            // setup
+            var driverParams = webAutomation.DriverParams ?? string.Empty;
+
             // setup conditions
             var isClear = arguments.ContainsKey(Clear);
             var isForceClear = !isClear && arguments.ContainsKey(ForceClear);
             var isDown = arguments.ContainsKey(Down);
             var isKeys = arguments.ContainsKey(Keystrokes);
             var isInterval = isKeys && !isDown && arguments.ContainsKey(Interval);
-            var isUiautomator2 = !Regex.IsMatch(webAutomation.DriverParams, "uiautomator1", RegexOptions.IgnoreCase);
+            var isUiautomator2 = !Regex.IsMatch(driverParams, "uiautomator1", RegexOptions.IgnoreCase);
             var isAndroid = isUiautomator2 && (WebDriver is AndroidDriver<IWebElement>);
 
             return new Dictionary<string, bool>

@@ -9,6 +9,8 @@ using Gravity.Services.DataContracts;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Internal;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace Gravity.Services.ActionPlugins.Extensions
 {
@@ -81,6 +83,34 @@ namespace Gravity.Services.ActionPlugins.Extensions
 
             // on element level
             return e.FindElements(by);
+        }
+
+        /// <summary>
+        /// Returns an indication if this <see cref="IWebDriver" /> implementation is
+        /// an <see cref="OpenQA.Selenium.Appium.AppiumDriver{W}"/> implementation
+        /// </summary>
+        /// <param name="d"></param>
+        /// <returns>True if <see cref="OpenQA.Selenium.Appium.AppiumDriver{W}"/> or False if not.</returns>
+        public static bool IsAppiumDriver(this IWebDriver d)
+        {
+            // initialize conditions
+            var isName = false;
+            var isAppium = false;
+
+            // setup name condition            
+            var type = d.GetType();
+            while (!isName && type != null && type.Name != "RemoteWebDriver" && type.Name != "Object")
+            {
+                isName = Regex.IsMatch(type.Name, "AppiumDriver`1");
+                if (isName)
+                {
+                    isAppium = typeof(IWebElement).IsAssignableFrom(type?.GenericTypeArguments?.First());
+                }
+                type = type.BaseType;
+            }
+
+            // assertion
+            return isAppium;
         }
     }
 }

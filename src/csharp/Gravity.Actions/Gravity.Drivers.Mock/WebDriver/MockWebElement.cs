@@ -90,7 +90,7 @@ namespace Gravity.Drivers.Mock.WebDriver
         public MockWebElement(MockWebDriver parent, string tagName, string text, bool enabled, bool selected, bool displayed)
         {
             // state
-            value = string.Empty;
+            value = "default";
 
             // properties
             WrappedDriver = parent;
@@ -259,6 +259,10 @@ namespace Gravity.Drivers.Mock.WebDriver
         /// <param name="text">The text to type into the element.</param>
         public void SendKeys(string text)
         {
+            if (!Displayed)
+            {
+                throw new ElementNotVisibleException();
+            }
             value = text;
         }
 

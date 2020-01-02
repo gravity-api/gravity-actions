@@ -225,6 +225,16 @@ namespace Gravity.Drivers.Mock.WebDriver
         /// <returns>The attribute's current value. Returns a null if the value is not set.</returns>
         public string GetAttribute(string attributeName)
         {
+            if (attributeName.Equals(MockLocators.Null, StringComparison.OrdinalIgnoreCase))
+            {
+                return null;
+            }
+
+            if (attributeName.Equals(MockLocators.Exception))
+            {
+                throw new WebDriverException();
+            }
+
             return attributeName.Equals(nameof(value), StringComparison.OrdinalIgnoreCase)
                 ? value
                 : $"mock attribute value {new Random().Next(0, 1000)}";

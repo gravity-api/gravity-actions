@@ -9,6 +9,7 @@ using Gravity.Services.ActionPlugins.Tests.Base;
 using Gravity.Services.DataContracts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
+using System;
 
 #pragma warning disable S4144
 namespace Gravity.Services.ActionPlugins.Tests.Common
@@ -171,6 +172,122 @@ namespace Gravity.Services.ActionPlugins.Tests.Common
 
             // execute
             ExecuteAction<SendKeys>(actionRule);
+
+            // assertion (no assertion here, expected is no exception)
+            Assert.IsTrue(true);
+        }
+
+        [DataTestMethod]
+        [DataRow("{'elementToActOn':'.//positive','argument':'unitTesting'}")]
+        public void SendKeysElementPositive(string actionRule)
+        {
+            // execute
+            ExecuteAction<SendKeys>(MockBy.Positive(), actionRule);
+
+            // assertion (no assertion here, expected is no exception)
+            Assert.IsTrue(true);
+        }
+
+        [DataTestMethod, ExpectedException(typeof(ElementNotVisibleException))]
+        [DataRow("{'elementToActOn':'.//negative','argument':'unitTesting'}")]
+        public void SendKeysElementNegative(string actionRule)
+        {
+            // execute
+            ExecuteAction<SendKeys>(MockBy.Negative(), actionRule);
+
+            // assertion (no assertion here, expected is no exception)
+            Assert.IsTrue(true);
+        }
+
+        [DataTestMethod]
+        [DataRow("{'elementToActOn':'.//positive','argument':'{{$ --keys:unitTesting --clear}}'}")]
+        public void SendKeysElementClear(string actionRule)
+        {
+            // execute
+            ExecuteAction<SendKeys>(MockBy.Positive(), actionRule);
+
+            // assertion (no assertion here, expected is no exception)
+            Assert.IsTrue(true);
+        }
+
+        [DataTestMethod]
+        [DataRow("{'elementToActOn':'.//positive','argument':'{{$ --keys:unitTesting --forceClear}}'}")]
+        public void SendKeysElementForceClear(string actionRule)
+        {
+            // execute
+            ExecuteAction<SendKeys>(MockBy.Positive(), actionRule);
+
+            // assertion (no assertion here, expected is no exception)
+            Assert.IsTrue(true);
+        }
+
+        [DataTestMethod]
+        [DataRow("{'elementToActOn':'.//positive','argument':'{{$ --keys:unitTesting --forceClear}}'}")]
+        public void SendKeysElementForceClearAppium(string actionRule)
+        {
+            // set new mock driver for mobile device
+            WebDriver = new MockAppiumDriver<IWebElement>();
+
+            // execute
+            ExecuteAction<SendKeys>(MockBy.Positive(), actionRule);
+
+            // assertion (no assertion here, expected is no exception)
+            Assert.IsTrue(true);
+        }
+
+        [DataTestMethod, ExpectedException(typeof(NullReferenceException))]
+        [DataRow("{'elementToActOn':'.//null','argument':'{{$ --keys:unitTesting --forceClear}}'}")]
+        public void SendKeysElementForceClearNull(string actionRule)
+        {
+            // execute
+            ExecuteAction<SendKeys>(MockBy.Positive(), actionRule);
+
+            // assertion (no assertion here, expected is no exception)
+            Assert.IsTrue(true);
+        }
+
+        [DataTestMethod, ExpectedException(typeof(WebDriverException))]
+        [DataRow("{'elementToActOn':'.//exception','argument':'{{$ --keys:unitTesting --forceClear}}'}")]
+        public void SendKeysElementForceClearException(string actionRule)
+        {
+            // execute
+            ExecuteAction<SendKeys>(MockBy.Positive(), actionRule);
+
+            // assertion (no assertion here, expected is no exception)
+            Assert.IsTrue(true);
+        }
+
+        [DataTestMethod]
+        [DataRow("{'elementToActOn':'.//positive','argument':'{{$ --keys:unitTesting --interval:100}}'}")]
+        public void SendKeysElementInterval(string actionRule)
+        {
+            // execute
+            ExecuteAction<SendKeys>(MockBy.Positive(), actionRule);
+
+            // assertion (no assertion here, expected is no exception)
+            Assert.IsTrue(Stopwatch.Elapsed.TotalMilliseconds > 1000);
+        }
+
+        [DataTestMethod]
+        [DataRow("{'elementToActOn':'.//positive','argument':'{{$ --down:control --keys:a}}'}")]
+        public void SendKeysElementCombination(string actionRule)
+        {
+            // execute
+            ExecuteAction<SendKeys>(MockBy.Positive(), actionRule);
+
+            // assertion (no assertion here, expected is no exception)
+            Assert.IsTrue(true);
+        }
+
+        [DataTestMethod]
+        [DataRow("{'elementToActOn':'.//positive','argument':'android'}")]
+        public void SendKeysElementAppium(string actionRule)
+        {
+            // set new mock driver for mobile device
+            WebDriver = new MockAppiumDriver<IWebElement>();
+
+            // execute
+            ExecuteAction<SendKeys>(MockBy.Positive(), actionRule);
 
             // assertion (no assertion here, expected is no exception)
             Assert.IsTrue(true);

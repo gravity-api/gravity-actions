@@ -93,7 +93,16 @@ namespace Gravity.Services.ActionPlugins.Tests.Common
         [DataTestMethod]
         [DataRow("{'elementToActOn':'//positive','argument':'{{$ --keys:unitTesting --forceClear}}'}")]
         public void SendKeysForceClearAppium(string actionRule)
-        { }
+        {
+            // set new mock driver for mobile device
+            WebDriver = new MockAppiumDriver<IWebElement>();
+
+            // execute
+            ExecuteAction<SendKeys>(actionRule);
+
+            // assertion (no assertion here, expected is no exception)
+            Assert.IsTrue(true);
+        }
 
         [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
         [DataRow("{'elementToActOn':'//null','argument':'{{$ --keys:unitTesting --forceClear}}'}")]

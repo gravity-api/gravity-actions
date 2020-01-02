@@ -20,8 +20,6 @@ using Gravity.Services.Comet.Engine.Extensions;
 using Gravity.Services.Comet.Engine.Plugins;
 using Gravity.Services.DataContracts;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Appium;
-using OpenQA.Selenium.Appium.Android;
 using OpenQA.Selenium.Interactions;
 using System;
 using System.Collections.Generic;
@@ -190,7 +188,7 @@ namespace Gravity.Services.ActionPlugins.Common
         private void DoForceClear(IWebElement webElement)
         {
             // exit conditions
-            if (WebDriver is AppiumDriver<IWebElement>)
+            if (WebDriver.IsAppiumDriver())
             {
                 return;
             }

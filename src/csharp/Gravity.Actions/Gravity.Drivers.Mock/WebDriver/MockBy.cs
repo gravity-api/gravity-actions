@@ -71,5 +71,11 @@ namespace Gravity.Drivers.Mock.WebDriver
         /// </summary>
         /// <returns>A <see cref="By"/> object the driver can use to find the elements.</returns>
         public static By RandomNotExists() => By.Id(MockLocators.RandomNotExists);
+
+        /// <summary>
+        /// Gets a mechanism to find the current focused element.
+        /// </summary>
+        /// <returns>A <see cref="By"/> object the driver can use to find the elements.</returns>
+        public static By Focused() => By.Id(MockLocators.Focused);
     }
 }

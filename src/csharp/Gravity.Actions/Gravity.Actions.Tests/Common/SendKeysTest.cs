@@ -3,6 +3,7 @@
  * 
  * on-line resources
  */
+using Gravity.Drivers.Mock.WebDriver;
 using Gravity.Services.ActionPlugins.Common;
 using Gravity.Services.ActionPlugins.Tests.Base;
 using Gravity.Services.DataContracts;
@@ -141,12 +142,30 @@ namespace Gravity.Services.ActionPlugins.Tests.Common
         [DataTestMethod]
         [DataRow("{'elementToActOn':'//positive','argument':'{{$ --down:control --keys:a}}'}")]
         public void SendKeysCombinationAppium(string actionRule)
-        { }
+        {
+            // set new mock driver for mobile device
+            WebDriver = new MockAppiumDriver<IWebElement>();
+
+            // execute
+            ExecuteAction<SendKeys>(actionRule);
+
+            // assertion (no assertion here, expected is no exception)
+            Assert.IsTrue(true);
+        }
 
         [DataTestMethod]
-        [DataRow("{'elementToActOn':'//positive','argument':'{{$ --down:control --keys:a}}'}")]
-        public void SendKeysAndroid(string actionRule)
-        { }
+        [DataRow("{'elementToActOn':'//positive','argument':'android'}")]
+        public void SendKeysAppium(string actionRule)
+        {
+            // set new mock driver for mobile device
+            WebDriver = new MockAppiumDriver<IWebElement>();
+
+            // execute
+            ExecuteAction<SendKeys>(actionRule);
+
+            // assertion (no assertion here, expected is no exception)
+            Assert.IsTrue(true);
+        }
     }
 }
 #pragma warning restore S4144

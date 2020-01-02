@@ -394,6 +394,14 @@ namespace Gravity.Drivers.Mock.WebDriver
         }
 
         /// <summary>
+        /// Gets a mechanism to find an exists mock element with 10% success rate.
+        /// </summary>
+        /// <param name="parent"></param>
+        /// <returns></returns>
+        [Description(MockLocators.Focused)]
+        public static IWebElement GetFocused(MockWebDriver parent) => Positive(parent);
+
+        /// <summary>
         /// Gets a random element with a configurable chance of getting a positive element.
         /// </summary>
         /// <param name="parent">Driver in use.</param>
@@ -403,6 +411,7 @@ namespace Gravity.Drivers.Mock.WebDriver
         {
             return RandomElement(parent, positiveRatio);
         }
+
 
         // gets a random element (positive or negative).
         private static IWebElement RandomElement(MockWebDriver parent, int positiveRatio)

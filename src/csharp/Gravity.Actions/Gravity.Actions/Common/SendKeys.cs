@@ -13,6 +13,7 @@
  * http://appium.io/docs/en/writing-running-appium/android/android-shell/
  */
 using Gravity.Drivers.Selenium;
+using Gravity.Services.ActionPlugins.Extensions;
 using Gravity.Services.Comet.Engine.Attributes;
 using Gravity.Services.Comet.Engine.Core;
 using Gravity.Services.Comet.Engine.Extensions;
@@ -158,7 +159,7 @@ namespace Gravity.Services.ActionPlugins.Common
             var isKeys = arguments.ContainsKey(Keystrokes);
             var isInterval = isKeys && !isDown && arguments.ContainsKey(Interval);
             var isUiautomator2 = !Regex.IsMatch(driverParams, "uiautomator1", RegexOptions.IgnoreCase);
-            var isAndroid = isUiautomator2 && (WebDriver is AndroidDriver<IWebElement>);
+            var isAndroid = isUiautomator2 && (WebDriver.IsAppiumDriver());
 
             return new Dictionary<string, bool>
             {
@@ -228,7 +229,7 @@ namespace Gravity.Services.ActionPlugins.Common
         private void DoDownCombination()
         {
             // exit conditions
-            if (WebDriver is AppiumDriver<IWebElement>)
+            if (WebDriver.IsAppiumDriver())
             {
                 return;
             }

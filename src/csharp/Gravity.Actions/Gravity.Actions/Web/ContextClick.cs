@@ -25,7 +25,7 @@ namespace Gravity.Services.ActionPlugins.Web
     [Action(
         assmebly: "Gravity.Services.ActionPlugins, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
         resource: "Gravity.Services.ActionPlugins.Documentation.context-click.json",
-        Name = ActionType.CONTEXT_CLICK)]
+        Name = ActionType.ContextClick)]
     public class ContextClick : ActionPlugin
     {
         // members: state

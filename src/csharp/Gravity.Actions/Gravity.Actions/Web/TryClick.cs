@@ -24,7 +24,7 @@ namespace Gravity.Services.ActionPlugins.Web
     [Action(
         assmebly: "Gravity.Services.ActionPlugins, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
         resource: "Gravity.Services.ActionPlugins.Documentation.try-click.json",
-        Name = ActionType.TRY_CLICK)]
+        Name = ActionType.TryClick)]
     public class TryClick : ActionPlugin
     {
         // constants

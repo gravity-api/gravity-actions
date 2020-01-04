@@ -28,7 +28,7 @@ namespace Gravity.Services.ActionPlugins.Common
     [Action(
         assmebly: "Gravity.Services.ActionPlugins, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
         resource: "Gravity.Services.ActionPlugins.Documentation.double-click.json",
-        Name = ActionType.DOUBLE_CLICK)]
+        Name = ActionType.DoubleClick)]
     public class DoubleClick : ActionPlugin
     {
         // members: state

@@ -1,5 +1,5 @@
 {
-  "name": "GeoLocation",
+  "name": "SetGeoLocation",
   "summary": "Sets the current GEO location.",
   "description": "Sets the current GEO location.",
   "examples": [

@@ -73,7 +73,7 @@ namespace Gravity.Services.ActionPlugins.Extensions
             var by = byFactory.Get(actionRule.Locator, actionRule.ElementToActOn);
 
             // setup conditions
-            var isAbsolutePath = actionRule.Locator == LocatorType.XPATH && actionRule.ElementToActOn.StartsWith("/");
+            var isAbsolutePath = actionRule.Locator == LocatorType.Xpath && actionRule.ElementToActOn.StartsWith("/");
 
             // find on page level
             if (isAbsolutePath)

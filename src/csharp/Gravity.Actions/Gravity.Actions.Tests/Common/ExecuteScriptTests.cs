@@ -31,20 +31,20 @@ namespace Gravity.Services.ActionPlugins.Tests.Common
         [TestMethod]
         public void ExecuteScriptDocumentationNoTypes()
         {
-            ValidateActionDocumentation<ExecuteScript>(ActionType.EXECUTE_SCRIPT);
+            ValidateActionDocumentation<ExecuteScript>(ActionType.ExecuteScript);
         }
 
         [TestMethod]
         public void ExecuteScriptDocumentationTypes()
         {
-            ValidateActionDocumentation<ExecuteScript>(ActionType.EXECUTE_SCRIPT, Types);
+            ValidateActionDocumentation<ExecuteScript>(ActionType.ExecuteScript, Types);
         }
 
         [TestMethod]
         public void ExecuteScriptDocumentationResourceFile()
         {
             ValidateActionDocumentation<ExecuteScript>(
-                ActionType.EXECUTE_SCRIPT, Types, "execute-script.json");
+                ActionType.ExecuteScript, Types, "execute-script.json");
         }
 
         [DataTestMethod]

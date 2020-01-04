@@ -32,20 +32,20 @@ namespace Gravity.Services.ActionPlugins.Tests.Web
         [TestMethod]
         public void ContextClickDocumentationNoTypes()
         {
-            ValidateActionDocumentation<ContextClick>(ActionType.CONTEXT_CLICK);
+            ValidateActionDocumentation<ContextClick>(ActionType.ContextClick);
         }
 
         [TestMethod]
         public void ContextClickDocumentationTypes()
         {
-            ValidateActionDocumentation<ContextClick>(ActionType.CONTEXT_CLICK, Types);
+            ValidateActionDocumentation<ContextClick>(ActionType.ContextClick, Types);
         }
 
         [TestMethod]
         public void ContextClickDocumentationResourceFile()
         {
             ValidateActionDocumentation<ContextClick>(
-                ActionType.CONTEXT_CLICK, Types, "context-click.json");
+                ActionType.ContextClick, Types, "context-click.json");
         }
 
         [DataTestMethod]

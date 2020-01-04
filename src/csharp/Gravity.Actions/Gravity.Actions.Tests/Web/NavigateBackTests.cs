@@ -29,20 +29,20 @@ namespace Gravity.Services.ActionPlugins.Tests.Web
         [TestMethod]
         public void NavigateBackDocumentationNoTypes()
         {
-            ValidateActionDocumentation<NavigateBack>(ActionType.NAVIGATE_BACK);
+            ValidateActionDocumentation<NavigateBack>(ActionType.NavigateBack);
         }
 
         [TestMethod]
         public void NavigateBackDocumentationTypes()
         {
-            ValidateActionDocumentation<NavigateBack>(ActionType.NAVIGATE_BACK, Types);
+            ValidateActionDocumentation<NavigateBack>(ActionType.NavigateBack, Types);
         }
 
         [TestMethod]
         public void NavigateBackDocumentationResourceFile()
         {
             ValidateActionDocumentation<NavigateBack>(
-                ActionType.NAVIGATE_BACK, Types, "navigate-back.json");
+                ActionType.NavigateBack, Types, "navigate-back.json");
         }
 
         [TestMethod]

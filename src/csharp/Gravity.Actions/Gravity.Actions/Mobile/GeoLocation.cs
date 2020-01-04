@@ -30,8 +30,8 @@ namespace Gravity.Services.ActionPlugins.Mobile
 {
     [Action(
         assmebly: "Gravity.Services.ActionPlugins, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
-        resource: "Gravity.Services.ActionPlugins.Documentation.geo-location.json",
-        Name = ActionType.GEO_LOCATION)]
+        resource: "Gravity.Services.ActionPlugins.Documentation.set-geo-location.json",
+        Name = ActionType.SetGeoLocation)]
     public class GeoLocation : ActionPlugin
     {
         // constants: messages

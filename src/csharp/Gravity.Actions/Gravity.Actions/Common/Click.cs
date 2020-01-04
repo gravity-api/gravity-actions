@@ -38,7 +38,7 @@ namespace Gravity.Services.ActionPlugins.Common
     [Action(
         assmebly: "Gravity.Services.ActionPlugins, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
         resource: "Gravity.Services.ActionPlugins.Documentation.click.json",
-        Name = ActionType.CLICK)]
+        Name = ActionType.Click)]
     public class Click : ActionPlugin
     {
         #region *** constants: conditions ***

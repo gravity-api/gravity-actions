@@ -31,20 +31,20 @@ namespace Gravity.Services.ActionPlugins.Tests.Common
         [TestMethod]
         public void DoubleClickDocumentationNoTypes()
         {
-            ValidateActionDocumentation<DoubleClick>(ActionType.DOUBLE_CLICK);
+            ValidateActionDocumentation<DoubleClick>(ActionType.DoubleClick);
         }
 
         [TestMethod]
         public void DoubleClickDocumentationTypes()
         {
-            ValidateActionDocumentation<DoubleClick>(ActionType.DOUBLE_CLICK, Types);
+            ValidateActionDocumentation<DoubleClick>(ActionType.DoubleClick, Types);
         }
 
         [TestMethod]
         public void DoubleClickDocumentationResourceFile()
         {
             ValidateActionDocumentation<DoubleClick>(
-                ActionType.DOUBLE_CLICK, Types, "double-click.json");
+                ActionType.DoubleClick, Types, "double-click.json");
         }
 
         [DataTestMethod]

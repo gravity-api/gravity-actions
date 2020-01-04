@@ -31,19 +31,19 @@ namespace Gravity.Services.ActionPlugins.Tests.Common
         [TestMethod]
         public void WaitDocumentationNoTypes()
         {
-            ValidateActionDocumentation<Wait>(ActionType.WAIT);
+            ValidateActionDocumentation<Wait>(ActionType.Wait);
         }
 
         [TestMethod]
         public void WaitDocumentationTypes()
         {
-            ValidateActionDocumentation<Wait>(ActionType.WAIT, Types);
+            ValidateActionDocumentation<Wait>(ActionType.Wait, Types);
         }
 
         [TestMethod]
         public void WaitDocumentationResourceFile()
         {
-            ValidateActionDocumentation<Wait>(ActionType.WAIT, Types, "Wait.json");
+            ValidateActionDocumentation<Wait>(ActionType.Wait, Types, "Wait.json");
         }
 
         [DataTestMethod]

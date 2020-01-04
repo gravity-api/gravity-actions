@@ -32,7 +32,7 @@ namespace Gravity.Services.ActionPlugins.Common
     [Action(
         assmebly: "Gravity.Services.ActionPlugins, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
         resource: "Gravity.Services.ActionPlugins.Documentation.send-keys.json",
-        Name = ActionType.SEND_KEYS)]
+        Name = ActionType.SendKeys)]
     public class SendKeys : ActionPlugin
     {
         // constants

@@ -29,20 +29,20 @@ namespace Gravity.Services.ActionPlugins.Tests.Web
         [TestMethod]
         public void NavigateForwardDocumentationNoTypes()
         {
-            ValidateActionDocumentation<NavigateForward>(ActionType.NAVIGATE_FORWARD);
+            ValidateActionDocumentation<NavigateForward>(ActionType.NavigateForward);
         }
 
         [TestMethod]
         public void NavigateForwardDocumentationTypes()
         {
-            ValidateActionDocumentation<NavigateForward>(ActionType.NAVIGATE_FORWARD, Types);
+            ValidateActionDocumentation<NavigateForward>(ActionType.NavigateForward, Types);
         }
 
         [TestMethod]
         public void NavigateForwardDocumentationResourceFile()
         {
             ValidateActionDocumentation<NavigateForward>(
-                ActionType.NAVIGATE_FORWARD, Types, "navigate-forward.json");
+                ActionType.NavigateForward, Types, "navigate-forward.json");
         }
 
         [TestMethod]

@@ -23,7 +23,7 @@ namespace Gravity.Services.ActionPlugins.Web
     [Action(
         assmebly: "Gravity.Services.ActionPlugins, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
         resource: "Gravity.Services.ActionPlugins.Documentation.refresh.json",
-        Name = ActionType.REFRESH)]
+        Name = ActionType.Refresh)]
     public class Refresh : ActionPlugin
     {
         /// <summary>

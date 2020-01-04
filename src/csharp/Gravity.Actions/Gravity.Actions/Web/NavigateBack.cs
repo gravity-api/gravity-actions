@@ -23,7 +23,7 @@ namespace Gravity.Services.ActionPlugins.Web
     [Action(
         assmebly: "Gravity.Services.ActionPlugins, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
         resource: "Gravity.Services.ActionPlugins.Documentation.navigate-back.json",
-        Name = ActionType.NAVIGATE_BACK)]
+        Name = ActionType.NavigateBack)]
     public class NavigateBack : ActionPlugin
     {
         /// <summary>

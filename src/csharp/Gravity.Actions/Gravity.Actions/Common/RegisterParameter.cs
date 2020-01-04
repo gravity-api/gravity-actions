@@ -26,7 +26,7 @@ namespace Gravity.Services.ActionPlugins.Common
     [Action(
         assmebly: "Gravity.Services.ActionPlugins, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
         resource: "Gravity.Services.ActionPlugins.Documentation.register-parameter.json",
-        Name = ActionType.REGISTER_PARAMETER)]
+        Name = ActionType.RegisterParameter)]
     public class RegisterParameter : ActionPlugin
     {
         /// <summary>

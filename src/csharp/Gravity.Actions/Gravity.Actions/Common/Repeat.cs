@@ -29,7 +29,7 @@ namespace Gravity.Services.ActionPlugins.Common
     [Action(
         assmebly: "Gravity.Services.ActionPlugins, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
         resource: "Gravity.Services.ActionPlugins.Documentation.repeat.json",
-        Name = ActionType.REPEAT)]
+        Name = ActionType.Repeat)]
     public class Repeat : ActionPlugin
     {
         #region *** constants: conditions ***

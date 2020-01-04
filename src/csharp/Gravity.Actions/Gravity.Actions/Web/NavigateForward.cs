@@ -23,7 +23,7 @@ namespace Gravity.Services.ActionPlugins.Web
     [Action(
         assmebly: "Gravity.Services.ActionPlugins, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
         resource: "Gravity.Services.ActionPlugins.Documentation.navigate-forward.json",
-        Name = ActionType.NAVIGATE_FORWARD)]
+        Name = ActionType.NavigateForward)]
     public class NavigateForward : ActionPlugin
     {
         /// <summary>

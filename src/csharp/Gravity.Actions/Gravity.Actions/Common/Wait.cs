@@ -24,7 +24,7 @@ namespace Gravity.Services.ActionPlugins.Common
     [Action(
         assmebly: "Gravity.Services.ActionPlugins, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
         resource: "Gravity.Services.ActionPlugins.Documentation.wait.json",
-        Name = ActionType.WAIT)]
+        Name = ActionType.Wait)]
     public class Wait : ActionPlugin
     {
         /// <summary>

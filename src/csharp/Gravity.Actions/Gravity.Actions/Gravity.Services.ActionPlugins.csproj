@@ -23,6 +23,7 @@
     <None Remove="Documentation\context-click.json" />
     <None Remove="Documentation\double-click.json" />
     <None Remove="Documentation\execute-script.json" />
+    <None Remove="Documentation\geo-location.json" />
     <None Remove="Documentation\navigate-back.json" />
     <None Remove="Documentation\navigate-forward.json" />
     <None Remove="Documentation\refresh.json" />
@@ -41,6 +42,7 @@
     <EmbeddedResource Include="Documentation\context-click.json" />
     <EmbeddedResource Include="Documentation\double-click.json" />
     <EmbeddedResource Include="Documentation\execute-script.json" />
+    <EmbeddedResource Include="Documentation\geo-location.json" />
     <EmbeddedResource Include="Documentation\navigate-back.json" />
     <EmbeddedResource Include="Documentation\navigate-forward.json" />
     <EmbeddedResource Include="Documentation\refresh.json" />
@@ -53,9 +55,5 @@
 
   <ItemGroup>
     <PackageReference Include="Gravity.Services.Comet" Version="2019.12.30.1" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Mobile\" />
   </ItemGroup>
 </Project>

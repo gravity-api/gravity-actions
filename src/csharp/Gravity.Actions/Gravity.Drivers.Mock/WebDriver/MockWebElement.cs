@@ -158,6 +158,11 @@ namespace Gravity.Drivers.Mock.WebDriver
         /// Provides location of the element using various frames of reference.
         /// </summary>
         public ICoordinates Coordinates => new MockCoordinates();
+
+        /// <summary>
+        /// Gets or sets a value indicating whether or not this element is state is invalid.
+        /// </summary>
+        public bool IsInvalidState { get; set; }
         #endregion
 
         #region *** selenium     ***
@@ -267,11 +272,17 @@ namespace Gravity.Drivers.Mock.WebDriver
         /// Simulates typing text into the element.
         /// </summary>
         /// <param name="text">The text to type into the element.</param>
+        /// <exception cref="ElementNotVisibleException">Thrown when element is not displayed (i.e. negative element).</exception>
+        /// <exception cref="InvalidElementStateException">Thrown when text="throw new InvalidElementStateException();"</exception>
         public void SendKeys(string text)
         {
             if (!Displayed)
             {
                 throw new ElementNotVisibleException();
+            }
+            if (IsInvalidState)
+            {
+                throw new InvalidElementStateException();
             }
             value = text;
         }
@@ -407,9 +418,28 @@ namespace Gravity.Drivers.Mock.WebDriver
         /// Gets a mechanism to find an exists mock element with 10% success rate.
         /// </summary>
         /// <param name="parent"></param>
-        /// <returns></returns>
+        /// <returns>An interface through which the user controls elements on the page.</returns>
         [Description(MockLocators.Focused)]
         public static IWebElement GetFocused(MockWebDriver parent) => Positive(parent);
+
+        /// <summary>
+        /// Gets an <see cref="IWebElement"/> which will throw <see cref="InvalidElementStateException"/> when
+        /// sending keys into.
+        /// </summary>
+        /// <param name="parent">Driver in use.</param>
+        /// <returns>An interface through which the user controls elements on the page.</returns>
+        [Description(MockLocators.InvalidElementState)]
+        public static IWebElement GetInvalidState(MockWebDriver parent)
+        {
+            // get a positive element
+            var element = Positive(parent);
+
+            // set element invalid state to true
+            ((MockWebElement)element).IsInvalidState = true;
+
+            // return invalid state element
+            return element;
+        }
 
         /// <summary>
         /// Gets a random element with a configurable chance of getting a positive element.
@@ -421,7 +451,6 @@ namespace Gravity.Drivers.Mock.WebDriver
         {
             return RandomElement(parent, positiveRatio);
         }
-
 
         // gets a random element (positive or negative).
         private static IWebElement RandomElement(MockWebDriver parent, int positiveRatio)

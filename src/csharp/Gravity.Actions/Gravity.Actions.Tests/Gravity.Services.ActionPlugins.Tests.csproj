@@ -17,10 +17,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Mobile\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Update="Resources\license.lcn">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

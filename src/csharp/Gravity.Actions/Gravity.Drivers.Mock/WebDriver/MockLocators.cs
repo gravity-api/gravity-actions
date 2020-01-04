@@ -18,5 +18,6 @@ namespace Gravity.Drivers.Mock.WebDriver
         public const string RandomExists = "random-e";
         public const string RandomNotExists = "random-x";
         public const string Focused = "focused";
+        public const string InvalidElementState = "invalid-state";
     }
 }

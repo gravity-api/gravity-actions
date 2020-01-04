@@ -292,6 +292,34 @@ namespace Gravity.Services.ActionPlugins.Tests.Common
             // assertion (no assertion here, expected is no exception)
             Assert.IsTrue(true);
         }
+
+        [DataTestMethod]
+        [DataRow("{'elementToActOn':'//invalid-state','argument':'android'}")]
+        public void SendKeysAppiumInvalidState(string actionRule)
+        {
+            // set new mock driver for mobile device
+            WebDriver = new MockAppiumDriver<IWebElement>();
+
+            // execute
+            ExecuteAction<SendKeys>(actionRule);
+
+            // assertion (no assertion here, expected is no exception)
+            Assert.IsTrue(true);
+        }
+
+        [DataTestMethod]
+        [DataRow("{'elementToActOn':'.//invalid-state','argument':'throw new InvalidElementStateException();'}")]
+        public void SendKeysElementAppiumInvalidState(string actionRule)
+        {
+            // set new mock driver for mobile device
+            WebDriver = new MockAppiumDriver<IWebElement>();
+
+            // execute
+            ExecuteAction<SendKeys>(MockBy.Positive(), actionRule);
+
+            // assertion (no assertion here, expected is no exception)
+            Assert.IsTrue(true);
+        }
     }
 }
 #pragma warning restore S4144

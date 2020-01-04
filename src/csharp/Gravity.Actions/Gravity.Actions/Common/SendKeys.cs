@@ -261,14 +261,21 @@ namespace Gravity.Services.ActionPlugins.Common
         // on UIAutomator2
         private void DoAndroid(IWebElement webElement)
         {
-            // focus on the element
-            new Actions(WebDriver).MoveToElement(webElement).Click().Perform();
+            try
+            {
+                webElement.SendKeys(arguments[Keystrokes]);
+            }
+            catch (Exception e) when (e is InvalidElementStateException)
+            {
+                // focus on the element
+                new Actions(WebDriver).MoveToElement(webElement).Click().Perform();
 
-            // get the focused element
-            var focusedElement = WebDriver.FindElement(By.XPath("//*[@focused='true']"));
+                // get the focused element
+                var focusedElement = WebDriver.FindElement(By.XPath("//*[@focused='true']"));
 
-            // send keystrokes
-            focusedElement.SendKeys(arguments[Keystrokes]);
+                // send keystrokes
+                focusedElement.SendKeys(arguments[Keystrokes]);
+            }
         }
     }
 }

@@ -55,7 +55,7 @@ namespace Gravity.Services.ActionPlugins.Common
         #endregion
 
         // constants: arguments
-        private const string UNTIL = "until";
+        public const string Until = "until";
 
         // members: state
         private IDictionary<string, string> arguments;
@@ -107,12 +107,12 @@ namespace Gravity.Services.ActionPlugins.Common
             arguments = SetArguments(actionRule);
 
             // setup conditions
-            var isCondition = arguments.ContainsKey(UNTIL) && !string.IsNullOrEmpty(arguments[UNTIL]);
+            var isCondition = arguments.ContainsKey(Until) && !string.IsNullOrEmpty(arguments[Until]);
 
             // execute
             if (isCondition)
             {
-                ExecuteByCondition(webElement, actionRule, arguments[UNTIL]);
+                ExecuteByCondition(webElement, actionRule, arguments[Until]);
             }
             else
             {
@@ -132,7 +132,7 @@ namespace Gravity.Services.ActionPlugins.Common
 
             return new Dictionary<string, string>
             {
-                [UNTIL] = string.Empty
+                [Until] = string.Empty
             };
         }
 

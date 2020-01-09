@@ -35,12 +35,12 @@ namespace Gravity.Services.ActionPlugins.Common
         Name = ActionType.SendKeys)]
     public class SendKeys : ActionPlugin
     {
-        // constants
-        private const string Clear = "clear";
-        private const string ForceClear = "forceClear";
-        private const string Interval = "interval";
-        private const string Keystrokes = "keys";
-        private const string Down = "down";
+        // constants: arguments
+        public const string Clear = "clear";
+        public const string ForceClear = "forceClear";
+        public const string Interval = "interval";
+        public const string Keystrokes = "keys";
+        public const string Down = "down";
 
         // members: state
         private readonly WebAutomation webAutomation;

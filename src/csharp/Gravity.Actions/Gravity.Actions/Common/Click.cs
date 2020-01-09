@@ -49,7 +49,7 @@ namespace Gravity.Services.ActionPlugins.Common
         #endregion
 
         // constants: arguments
-        private const string UNTIL = "until";
+        public const string UNTIL = "until";
 
         // members: state
         private readonly Actions actions;

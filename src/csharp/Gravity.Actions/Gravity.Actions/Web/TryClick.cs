@@ -28,7 +28,7 @@ namespace Gravity.Services.ActionPlugins.Web
     public class TryClick : ActionPlugin
     {
         // constants
-        private const string SCRIPT = "arguments[0].click();";
+        private const string Script = "arguments[0].click();";
 
         // members: state
         private readonly WebDriverWait wait;
@@ -96,7 +96,7 @@ namespace Gravity.Services.ActionPlugins.Web
                 : webElement.FindElement(by);
 
             // execute script
-            ((IJavaScriptExecutor)WebDriver).ExecuteScript(SCRIPT, argument);
+            ((IJavaScriptExecutor)WebDriver).ExecuteScript(Script, argument);
 
             // for waiter condition
             return WebDriver;

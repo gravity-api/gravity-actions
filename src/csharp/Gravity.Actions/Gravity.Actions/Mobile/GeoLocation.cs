@@ -37,10 +37,10 @@ namespace Gravity.Services.ActionPlugins.Mobile
         // constants: messages
         private const string WARN = "Action [GeoLocation] was skipped. This action is not supported by [{0}] driver.";
 
-        // constants
-        private const string Latitude = "lat";
-        private const string Longitude = "lon";
-        private const string Altitude = "alt";
+        // constants: arguments
+        public const string Latitude = "lat";
+        public const string Longitude = "lon";
+        public const string Altitude = "alt";
 
         // members: state
         private IDictionary<string, string> arguments;

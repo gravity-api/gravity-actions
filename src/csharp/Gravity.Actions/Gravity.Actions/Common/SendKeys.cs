@@ -19,11 +19,11 @@ using Gravity.Services.Comet.Engine.Core;
 using Gravity.Services.Comet.Engine.Extensions;
 using Gravity.Services.Comet.Engine.Plugins;
 using Gravity.Services.DataContracts;
+using Microsoft.Extensions.Logging;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Text.RegularExpressions;
 using System.Threading;
 
@@ -193,9 +193,6 @@ namespace Gravity.Services.ActionPlugins.Common
                 return;
             }
 
-            // constants
-            const string M1 = "WebElement does not have a [value] attribute. [ForceClear] action was not executed.";
-
             // force clear
             try
             {
@@ -209,7 +206,7 @@ namespace Gravity.Services.ActionPlugins.Common
             }
             catch (Exception e) when (e is NullReferenceException || e is WebDriverException)
             {
-                Trace.TraceWarning(M1);
+                Logger.LogWarning("WebElement does not have a [value] attribute. [ForceClear] action was not executed.");
             }
         }
 

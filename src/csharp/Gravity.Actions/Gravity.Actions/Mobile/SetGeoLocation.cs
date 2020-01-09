@@ -23,11 +23,11 @@ using Gravity.Services.Comet.Engine.Core;
 using Gravity.Services.Comet.Engine.Extensions;
 using Gravity.Services.Comet.Engine.Plugins;
 using Gravity.Services.DataContracts;
+using Microsoft.Extensions.Logging;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 
 namespace Gravity.Services.ActionPlugins.Mobile
 {
@@ -92,7 +92,7 @@ namespace Gravity.Services.ActionPlugins.Mobile
             // exit conditions
             if (!WebDriver.IsAppiumDriver())
             {
-                Trace.TraceWarning(string.Format(Warn, WebDriver.GetType().FullName));
+                Logger.LogWarning(string.Format(Warn, WebDriver.GetType().FullName));
                 return;
             }
 

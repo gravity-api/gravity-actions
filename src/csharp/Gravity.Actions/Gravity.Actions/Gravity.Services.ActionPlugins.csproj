@@ -23,6 +23,7 @@
     <None Remove="Documentation\context-click.json" />
     <None Remove="Documentation\double-click.json" />
     <None Remove="Documentation\execute-script.json" />
+    <None Remove="Documentation\keyboard.json" />
     <None Remove="Documentation\navigate-back.json" />
     <None Remove="Documentation\navigate-forward.json" />
     <None Remove="Documentation\refresh.json" />
@@ -42,6 +43,7 @@
     <EmbeddedResource Include="Documentation\context-click.json" />
     <EmbeddedResource Include="Documentation\double-click.json" />
     <EmbeddedResource Include="Documentation\execute-script.json" />
+    <EmbeddedResource Include="Documentation\keyboard.json" />
     <EmbeddedResource Include="Documentation\set-geo-location.json" />
     <EmbeddedResource Include="Documentation\navigate-back.json" />
     <EmbeddedResource Include="Documentation\navigate-forward.json" />

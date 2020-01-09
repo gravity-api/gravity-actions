@@ -13,6 +13,9 @@
  * 
  * notes
  * change to driver casting for Location implementation to an interface casting when available (DoGeoLocation)
+ * 
+ * work items
+ * TODO: use IHasLocation interface when available (DoGeoLocation)
  */
 using Gravity.Services.ActionPlugins.Extensions;
 using Gravity.Services.Comet.Engine.Attributes;
@@ -32,11 +35,8 @@ namespace Gravity.Services.ActionPlugins.Mobile
         assmebly: "Gravity.Services.ActionPlugins, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
         resource: "Gravity.Services.ActionPlugins.Documentation.set-geo-location.json",
         Name = ActionType.SetGeoLocation)]
-    public class GeoLocation : ActionPlugin
+    public class SetGeoLocation : ActionPlugin
     {
-        // constants: messages
-        private const string WARN = "Action [GeoLocation] was skipped. This action is not supported by [{0}] driver.";
-
         // constants: arguments
         public const string Latitude = "lat";
         public const string Longitude = "lon";
@@ -50,7 +50,7 @@ namespace Gravity.Services.ActionPlugins.Mobile
         /// </summary>
         /// <param name="webDriver">WebDriver implementation by which to execute the action.</param>
         /// <param name="webAutomation">This WebAutomation object (the original object sent by the user).</param>
-        public GeoLocation(IWebDriver webDriver, WebAutomation webAutomation)
+        public SetGeoLocation(IWebDriver webDriver, WebAutomation webAutomation)
             : this(webDriver, webAutomation, Utilities.GetTypes())
         { }
 
@@ -60,7 +60,7 @@ namespace Gravity.Services.ActionPlugins.Mobile
         /// <param name="webDriver">WebDriver implementation by which to execute the action.</param>
         /// <param name="webAutomation">This WebAutomation object (the original object sent by the user).</param>
         /// <param name="types">Types from which to load plug-ins repositories.</param>
-        public GeoLocation(IWebDriver webDriver, WebAutomation webAutomation, IEnumerable<Type> types)
+        public SetGeoLocation(IWebDriver webDriver, WebAutomation webAutomation, IEnumerable<Type> types)
             : base(webDriver, webAutomation, types)
         { }
 
@@ -86,10 +86,13 @@ namespace Gravity.Services.ActionPlugins.Mobile
         // sets the current GEO location
         private void DoGeoLocation(ActionRule actionRule)
         {
+            // constants: messages
+            const string Warn = "Action [GeoLocation] was skipped. This action is not supported by [{0}] driver.";
+
             // exit conditions
             if (!WebDriver.IsAppiumDriver())
             {
-                Trace.TraceWarning(string.Format(WARN, WebDriver.GetType().FullName));
+                Trace.TraceWarning(string.Format(Warn, WebDriver.GetType().FullName));
                 return;
             }
 

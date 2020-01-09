@@ -5,12 +5,13 @@
  */
 using Gravity.Drivers.Mock.WebDriver;
 using Gravity.Services.ActionPlugins.Common;
+using Gravity.Services.ActionPlugins.Tests.Base;
 using Gravity.Services.DataContracts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using System.Collections.Generic;
 
-namespace Gravity.Services.ActionPlugins.Tests
+namespace Gravity.Services.ActionPlugins.Tests.Common
 {
     [TestClass]
     public class CloseBrowserTests : ActionTests
@@ -30,13 +31,20 @@ namespace Gravity.Services.ActionPlugins.Tests
         [TestMethod]
         public void CloseBrowserDocumentationNoTypes()
         {
-            ValidateActionDocumentation<CloseBrowser>(ActionType.CLOSE_BROWSER);
+            ValidateActionDocumentation<CloseBrowser>(ActionType.CloseBrowser);
         }
 
         [TestMethod]
         public void CloseBrowserDocumentationTypes()
         {
-            ValidateActionDocumentation<CloseBrowser>(ActionType.CLOSE_BROWSER, Types);
+            ValidateActionDocumentation<CloseBrowser>(ActionType.CloseBrowser, Types);
+        }
+
+        [TestMethod]
+        public void CloseBrowserDocumentationResourceFile()
+        {
+            ValidateActionDocumentation<CloseBrowser>(
+                ActionType.CloseBrowser, Types, "close-browser.json");
         }
 
         [TestMethod]

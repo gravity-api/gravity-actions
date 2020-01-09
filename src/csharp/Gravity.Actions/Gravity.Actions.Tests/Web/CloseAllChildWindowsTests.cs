@@ -4,13 +4,15 @@
  * on-line resources
  */
 using Gravity.Drivers.Mock.WebDriver;
+using Gravity.Drivers.Mock.Extensions;
+using Gravity.Services.ActionPlugins.Tests.Base;
 using Gravity.Services.ActionPlugins.Web;
 using Gravity.Services.DataContracts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using System.Collections.Generic;
 
-namespace Gravity.Services.ActionPlugins.Tests
+namespace Gravity.Services.ActionPlugins.Tests.Web
 {
     [TestClass]
     public class CloseAllChildWindowsTests : ActionTests
@@ -34,13 +36,20 @@ namespace Gravity.Services.ActionPlugins.Tests
         [TestMethod]
         public void CloseAllChildWindowsDocumentationNoTypes()
         {
-            ValidateActionDocumentation<CloseAllChildWindows>(ActionType.CLOSE_ALL_CHILD_WINDOWS);
+            ValidateActionDocumentation<CloseAllChildWindows>(ActionType.CloseAllChildWindows);
         }
 
         [TestMethod]
         public void CloseAllChildWindowsDocumentationTypes()
         {
-            ValidateActionDocumentation<CloseAllChildWindows>(ActionType.CLOSE_ALL_CHILD_WINDOWS, Types);
+            ValidateActionDocumentation<CloseAllChildWindows>(ActionType.CloseAllChildWindows, Types);
+        }
+
+        [TestMethod]
+        public void CloseAllChildWindowsDocumentationResourceFile()
+        {
+            ValidateActionDocumentation<CloseAllChildWindows>(
+                ActionType.CloseAllChildWindows, Types, "close-all-child-windows.json");
         }
 
         [TestMethod]

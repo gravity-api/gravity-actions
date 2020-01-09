@@ -1,19 +1,15 @@
 ﻿/*
  * CHANGE LOG - keep only last 5 threads
  * 
- * 2019-01-03
- *    - modify: use JSON resources
+ * 2019-01-12
  *    - modify: improve XML comments
+ *    - modify: override ActionName using ActionType constant
  *    
- * 2019-01-11
- *    - modify: override action-name using ActionType constant 
- * 
- * 2019-12-24
+ * 2019-12-31
  *    - modify: add constructor to override base class types
- *
+ * 
  * on-line resources
  */
-using Gravity.Drivers.Selenium;
 using Gravity.Services.Comet.Engine.Attributes;
 using Gravity.Services.Comet.Engine.Extensions;
 using Gravity.Services.Comet.Engine.Plugins;
@@ -21,21 +17,22 @@ using Gravity.Services.DataContracts;
 using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
+using System.Threading;
 
-namespace Gravity.Services.ActionPlugins.Web
+namespace Gravity.Services.ActionPlugins.Common
 {
     [Action(
         assmebly: "Gravity.Services.ActionPlugins, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
-        resource: "Gravity.Services.ActionPlugins.Documentation.close-browser.json",
-        Name = ActionType.CloseWindow)]
-    public class CloseWindow : ActionPlugin
+        resource: "Gravity.Services.ActionPlugins.Documentation.wait.json",
+        Name = ActionType.Wait)]
+    public class Wait : ActionPlugin
     {
         /// <summary>
         /// Creates a new instance of this plug-in.
         /// </summary>
         /// <param name="webDriver">WebDriver implementation by which to execute the action.</param>
         /// <param name="webAutomation">This WebAutomation object (the original object sent by the user).</param>
-        public CloseWindow(IWebDriver webDriver, WebAutomation webAutomation)
+        public Wait(IWebDriver webDriver, WebAutomation webAutomation)
             : this(webDriver, webAutomation, Utilities.GetTypes())
         { }
 
@@ -45,38 +42,47 @@ namespace Gravity.Services.ActionPlugins.Web
         /// <param name="webDriver">WebDriver implementation by which to execute the action.</param>
         /// <param name="webAutomation">This WebAutomation object (the original object sent by the user).</param>
         /// <param name="types">Types from which to load plug-ins repositories.</param>
-        public CloseWindow(IWebDriver webDriver, WebAutomation webAutomation, IEnumerable<Type> types)
+        public Wait(IWebDriver webDriver, WebAutomation webAutomation, IEnumerable<Type> types)
             : base(webDriver, webAutomation, types)
         { }
 
         /// <summary>
-        /// Close the given window, quitting the browser if it is the last window currently open.
+        /// Suspends the current thread for the specified amount of time.
         /// </summary>
-        /// <param name="actionRule">This ActionRule instance (the original object send by the user).</param>
+        /// <param name="actionRule">This ActionRule instance (the original object sent by the user).</param>
         public override void OnPerform(ActionRule actionRule)
         {
-            DoCloseWindow(actionRule);
+            DoWait(actionRule);
         }
 
         /// <summary>
-        /// Close the given window, quitting the browser if it is the last window currently open.
+        /// Suspends the current thread for the specified amount of time.
         /// </summary>
         /// <param name="webElement">This WebElement instance on which to perform the action (provided by the extraction rule).</param>
         /// <param name="actionRule">This ActionRule instance (the original object send by the user).</param>
         public override void OnPerform(IWebElement webElement, ActionRule actionRule)
         {
-            DoCloseWindow(actionRule);
+            DoWait(actionRule);
         }
 
-        // executes CloseWindow routine
-        private void DoCloseWindow(ActionRule actionRule)
+        // executes Wait routine
+        private void DoWait(ActionRule actionRule)
         {
-            // exit conditions
-            if (!int.TryParse(actionRule.Argument, out int indexOut))
+            // parse waiting time
+            var isNumber = int.TryParse(actionRule.Argument, out int numberOut);
+            var isTimeSp = TimeSpan.TryParse(actionRule.Argument, out TimeSpan timespanOut);
+
+            // number handling
+            if (isNumber)
             {
-                return;
+                Thread.Sleep(numberOut);
             }
-            WebDriver.CloseWindow(indexOut);
+
+            // timespan handling
+            if (isTimeSp && !isNumber)
+            {
+                Thread.Sleep(timespanOut);
+            }
         }
     }
 }

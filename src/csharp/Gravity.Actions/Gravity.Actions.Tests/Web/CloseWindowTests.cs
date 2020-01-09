@@ -4,6 +4,8 @@
  * on-line resources
  */
 using Gravity.Drivers.Mock.WebDriver;
+using Gravity.Drivers.Mock.Extensions;
+using Gravity.Services.ActionPlugins.Tests.Base;
 using Gravity.Services.ActionPlugins.Web;
 using Gravity.Services.DataContracts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -11,7 +13,7 @@ using OpenQA.Selenium;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Gravity.Services.ActionPlugins.Tests
+namespace Gravity.Services.ActionPlugins.Tests.Web
 {
     [TestClass]
     public class CloseWindowTests : ActionTests
@@ -33,13 +35,20 @@ namespace Gravity.Services.ActionPlugins.Tests
         [TestMethod]
         public void CloseWindowDocumentationNoTypes()
         {
-            ValidateActionDocumentation<CloseWindow>(ActionType.CLOSE_WINDOW);
+            ValidateActionDocumentation<CloseWindow>(ActionType.CloseWindow);
         }
 
         [TestMethod]
         public void CloseWindowDocumentationTypes()
         {
-            ValidateActionDocumentation<CloseWindow>(ActionType.CLOSE_WINDOW, Types);
+            ValidateActionDocumentation<CloseWindow>(ActionType.CloseWindow, Types);
+        }
+
+        [TestMethod]
+        public void CloseWindowDocumentationResourceFile()
+        {
+            ValidateActionDocumentation<CloseWindow>(
+                ActionType.CloseWindow, Types, "close-window.json");
         }
 
         [DataTestMethod]

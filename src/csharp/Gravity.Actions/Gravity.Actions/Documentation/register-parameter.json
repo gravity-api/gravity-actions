@@ -1,0 +1,58 @@
+{
+  "name": "RegisterParameter",
+  "summary": "Save a parameter under session params collection.",
+  "description": "Save a parameter under session params collection. This action supports locators, elements, attributes, regular expressions and macros.",
+  "testOn": "https://gravitymvctestapplication.azurewebsites.net/instructor",
+  "examples": [
+    {
+      "description": "Save [//tr[1]/td[2]] inner text into [first-name] session parameter.",
+      "literalExample": "register parameter {first-name} take element {//tr[1]/td[2]} inner text",
+      "actionExample": {
+        "actionType": "RegisterParameter",
+        "argument": "first-name",
+        "elementToActOn": "//tr[1]/td[2]"
+      }
+    },
+    {
+      "description": "Save the href attribute value of [//tr[1]/td[6]/a[1]] into [link] session parameter.",
+      "literalExample": "register parameter {link} take element {//tr[1]/td[6]/a[1]} from {href} attribute",
+      "actionExample": {
+        "actionType": "RegisterParameter",
+        "argument": "link",
+        "elementToActOn": "//tr[1]/td[6]/a[1]",
+        "elementAttributeToActOn": "href"
+      }
+    },
+    {
+      "description": "Save the first match to [Abe] of element [//tr[1]/td[1]] inner text, into [regex] session parameter.",
+      "literalExample": "register parameter {first-name} take element {//tr[1]/td[2]} inner text filter with {Abe} pattern",
+      "actionExample": {
+        "actionType": "RegisterParameter",
+        "argument": "regex",
+        "elementToActOn": "//tr[1]/td[1]",
+        "regularExpression": "Abe"
+      }
+    },
+    {
+      "description": "Saves the current date into [date] session parameter with [yyyy-MM-dd] format.",
+      "literalExample": "register parameter {date} take {{$date --format:yyyy-MM-dd}}",
+      "actionExample": {
+        "actionType": "RegisterParameter",
+        "argument": "date",
+        "elementToActOn": "{{$date --format:yyyy-MM-dd}}"
+      }
+    }
+  ],
+  "properties": {
+    "elementToActOn": "The locator value by which the element will be found.",
+    "locator": "The locator type by which the element will be found.",
+    "elementAttributeToActOn": "The element attribute from which to extract information for action execution. If not specified, information will be taken from the element inner text.",
+    "regularExpression": "A pattern by which the extracted information will be evaluated. Returns the first match.",
+    "argument": "Parameter name. Please note, if the name already exists, the new call will override the existing value."
+  },
+  "scope": [ "web", "mobile-web", "mobile-native" ],
+  "protocol": {
+    "endpoint": "none",
+    "w3c": "none"
+  }
+}

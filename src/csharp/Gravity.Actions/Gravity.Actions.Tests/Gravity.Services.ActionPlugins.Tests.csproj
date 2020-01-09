@@ -16,4 +16,10 @@
     <ProjectReference Include="..\Gravity.Drivers.Mock\Gravity.Drivers.Mock.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Resources\license.lcn">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

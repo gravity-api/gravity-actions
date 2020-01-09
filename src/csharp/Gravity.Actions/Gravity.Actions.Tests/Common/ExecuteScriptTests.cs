@@ -5,12 +5,13 @@
  */
 using Gravity.Drivers.Mock.WebDriver;
 using Gravity.Services.ActionPlugins.Common;
+using Gravity.Services.ActionPlugins.Tests.Base;
 using Gravity.Services.DataContracts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 
 #pragma warning disable S4144
-namespace Gravity.Services.ActionPlugins.Tests
+namespace Gravity.Services.ActionPlugins.Tests.Common
 {
     [TestClass]
     public class ExecuteScriptTests : ActionTests
@@ -30,17 +31,24 @@ namespace Gravity.Services.ActionPlugins.Tests
         [TestMethod]
         public void ExecuteScriptDocumentationNoTypes()
         {
-            ValidateActionDocumentation<ExecuteScript>(ActionType.EXECUTE_SCRIPT);
+            ValidateActionDocumentation<ExecuteScript>(ActionType.ExecuteScript);
         }
 
         [TestMethod]
         public void ExecuteScriptDocumentationTypes()
         {
-            ValidateActionDocumentation<ExecuteScript>(ActionType.EXECUTE_SCRIPT, Types);
+            ValidateActionDocumentation<ExecuteScript>(ActionType.ExecuteScript, Types);
+        }
+
+        [TestMethod]
+        public void ExecuteScriptDocumentationResourceFile()
+        {
+            ValidateActionDocumentation<ExecuteScript>(
+                ActionType.ExecuteScript, Types, "execute-script.json");
         }
 
         [DataTestMethod]
-        [DataRow(@"{""argument"":""console.log('unit testing');""}")]
+        [DataRow(@"{""argument"":""console.log('unitTesting');""}")]
         public void ExecuteScriptPositive(string actionRule)
         {
             // execute
@@ -69,7 +77,7 @@ namespace Gravity.Services.ActionPlugins.Tests
         }
 
         [DataTestMethod]
-        [DataRow(@"{""argument"":""{{$ --src:console.log('unit testing');}}""}")]
+        [DataRow(@"{""argument"":""{{$ --src:console.log('unitTesting');}}""}")]
         public void ExecuteScriptSrc(string actionRule)
         {
             // execute
@@ -88,7 +96,7 @@ namespace Gravity.Services.ActionPlugins.Tests
         }
 
         [DataTestMethod]
-        [DataRow(@"{""argument"":""{{$ --src:console.log('unit testing'); --args:['argument',0,false]}}""}")]
+        [DataRow(@"{""argument"":""{{$ --src:console.log('unitTesting'); --args:['argument',0,false]}}""}")]
         public void ExecuteScriptSrcArgs(string actionRule)
         {
             // execute

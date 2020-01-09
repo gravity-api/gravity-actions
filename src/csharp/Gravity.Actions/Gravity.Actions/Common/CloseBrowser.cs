@@ -29,7 +29,7 @@ namespace Gravity.Services.ActionPlugins.Common
     [Action(
         assmebly: "Gravity.Services.ActionPlugins, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
         resource: "Gravity.Services.ActionPlugins.Documentation.close-browser.json",
-        Name = ActionType.CLOSE_BROWSER)]
+        Name = ActionType.CloseBrowser)]
     public class CloseBrowser : ActionPlugin
     {
         /// <summary>

@@ -32,12 +32,12 @@ namespace Gravity.Services.ActionPlugins.Common
     [Action(
         assmebly: "Gravity.Services.ActionPlugins, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
         resource: "Gravity.Services.ActionPlugins.Documentation.execute-script.json",
-        Name = ActionType.EXECUTE_SCRIPT)]
+        Name = ActionType.ExecuteScript)]
     public class ExecuteScript : ActionPlugin
     {
-        // constants
-        private const string SRC = "src";
-        private const string ARGS = "args";
+        // constants: arguments
+        public const string Src = "src";
+        public const string Args = "args";
 
         /// <summary>
         /// Creates a new instance of this plug-in.
@@ -67,11 +67,11 @@ namespace Gravity.Services.ActionPlugins.Common
             // setup
             var srcArgs = GetArguments(actionRule);
             var cliArgs = new CliFactory(actionRule.Argument).Parse();
-            var src = cliArgs.ContainsKey(SRC) ? cliArgs[SRC] : actionRule.Argument;
+            var src = cliArgs.ContainsKey(Src) ? cliArgs[Src] : actionRule.Argument;
 
-            if (cliArgs.ContainsKey(ARGS))
+            if (cliArgs.ContainsKey(Args))
             {
-                var a = JsonConvert.DeserializeObject<object[]>(cliArgs[ARGS]);
+                var a = JsonConvert.DeserializeObject<object[]>(cliArgs[Args]);
                 srcArgs.AddRange(a);
             }
 

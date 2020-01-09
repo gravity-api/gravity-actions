@@ -1,16 +1,6 @@
 ﻿/*
  * CHANGE LOG - keep only last 5 threads
  * 
- * 2019-01-03
- *    - modify: use JSON resources
- *    - modify: improve XML comments
- *    
- * 2019-01-11
- *    - modify: override action-name using ActionType constant 
- * 
- * 2019-12-24
- *    - modify: add constructor to override base class types
- *
  * on-line resources
  */
 using Gravity.Drivers.Selenium;
@@ -26,16 +16,16 @@ namespace Gravity.Services.ActionPlugins.Web
 {
     [Action(
         assmebly: "Gravity.Services.ActionPlugins, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
-        resource: "Gravity.Services.ActionPlugins.Documentation.close-browser.json",
-        Name = ActionType.CloseWindow)]
-    public class CloseWindow : ActionPlugin
+        resource: "Gravity.Services.ActionPlugins.Documentation.keyboard.json",
+        Name = ActionType.Keyboard)]
+    public class Keyboard : ActionPlugin
     {
         /// <summary>
         /// Creates a new instance of this plug-in.
         /// </summary>
         /// <param name="webDriver">WebDriver implementation by which to execute the action.</param>
         /// <param name="webAutomation">This WebAutomation object (the original object sent by the user).</param>
-        public CloseWindow(IWebDriver webDriver, WebAutomation webAutomation)
+        public Keyboard(IWebDriver webDriver, WebAutomation webAutomation)
             : this(webDriver, webAutomation, Utilities.GetTypes())
         { }
 
@@ -45,38 +35,42 @@ namespace Gravity.Services.ActionPlugins.Web
         /// <param name="webDriver">WebDriver implementation by which to execute the action.</param>
         /// <param name="webAutomation">This WebAutomation object (the original object sent by the user).</param>
         /// <param name="types">Types from which to load plug-ins repositories.</param>
-        public CloseWindow(IWebDriver webDriver, WebAutomation webAutomation, IEnumerable<Type> types)
+        public Keyboard(IWebDriver webDriver, WebAutomation webAutomation, IEnumerable<Type> types)
             : base(webDriver, webAutomation, types)
         { }
 
         /// <summary>
-        /// Close the given window, quitting the browser if it is the last window currently open.
+        /// Press a keyboard key on the provided element.
         /// </summary>
-        /// <param name="actionRule">This ActionRule instance (the original object send by the user).</param>
+        /// <param name="actionRule">This ActionRule instance (the original object sent by the user).</param>
         public override void OnPerform(ActionRule actionRule)
         {
-            DoCloseWindow(actionRule);
+            DoKeyboard(webElement: default, actionRule);
         }
 
         /// <summary>
-        /// Close the given window, quitting the browser if it is the last window currently open.
+        /// Press a keyboard key on the provided element.
         /// </summary>
         /// <param name="webElement">This WebElement instance on which to perform the action (provided by the extraction rule).</param>
-        /// <param name="actionRule">This ActionRule instance (the original object send by the user).</param>
+        /// <param name="actionRule">This ActionRule instance (the original object sent by the user).</param>
         public override void OnPerform(IWebElement webElement, ActionRule actionRule)
         {
-            DoCloseWindow(actionRule);
+            DoKeyboard(webElement, actionRule);
         }
 
-        // executes CloseWindow routine
-        private void DoCloseWindow(ActionRule actionRule)
+        // executes Keyboard routine
+        private void DoKeyboard(IWebElement webElement, ActionRule actionRule)
         {
-            // exit conditions
-            if (!int.TryParse(actionRule.Argument, out int indexOut))
-            {
-                return;
-            }
-            WebDriver.CloseWindow(indexOut);
+            // fetch locator
+            var by = ByFactory.Get(actionRule.Locator, actionRule.ElementToActOn);
+
+            // get element to act on
+            var element = webElement == default
+                ? WebDriver.GetElement(by, TimeSpan.FromMilliseconds(ElementSearchTimeout))
+                : webElement.FindElement(by);
+
+            // execute action
+            element.SendKeys(GetKey(actionRule.Argument));
         }
     }
 }

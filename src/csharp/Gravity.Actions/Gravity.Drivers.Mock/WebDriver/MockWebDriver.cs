@@ -1,10 +1,20 @@
-﻿using OpenQA.Selenium;
+﻿/*
+ * CHANGE LOG - keep only last 5 threads
+ * 
+ * 2020-01-01
+ *    - modify: re-factor ExecuteScript to use methods factory instead of conditions
+ * 
+ * on-line resources
+ */
+using Gravity.Drivers.Mock.Extensions;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Internal;
 using OpenQA.Selenium.Remote;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -16,22 +26,39 @@ namespace Gravity.Drivers.Mock.WebDriver
     /// </summary>
     public class MockWebDriver : IWebDriver, IJavaScriptExecutor, IHasSessionId, IActionExecutor, IHasInputDevices
     {
+        #region *** constructors ***
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MockWebDriver"/> class.
+        /// </summary>
         public MockWebDriver() : this(".") { }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MockWebDriver"/> class.
+        /// </summary>
+        /// <param name="driverBinaries">The full path to the directory containing driver executables.</param>
         public MockWebDriver(string driverBinaries)
             : this(driverBinaries, new Dictionary<string, object>())
         { }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MockWebDriver"/> class.
+        /// </summary>
+        /// <param name="driverBinaries">The full path to the directory containing driver executables.</param>
+        /// <param name="capabilities">A collection containing the desired capabilities of this <see cref="MockWebDriver"/>.</param>
         public MockWebDriver(string driverBinaries, IDictionary<string, object> capabilities)
         {
+            // setup
             SetChildWindows(capabilities);
 
+            // state
             CurrentWindowHandle = WindowHandles[0];
-            SessionId = new SessionId($"mock-session{Guid.NewGuid()}");
+            SessionId = new SessionId($"mock-{Guid.NewGuid()}");
             DriverBinaries = driverBinaries;
             Capabilities = capabilities;
         }
+        #endregion
 
+        #region *** properties   ***
         /// <summary>
         /// Gets or sets the URL the browser is currently displaying.
         /// </summary>
@@ -79,14 +106,28 @@ namespace Gravity.Drivers.Mock.WebDriver
         /// </summary>
         public SessionId SessionId { get; }
 
-        public IKeyboard Keyboard => new MockKeyboard();
-
-        public IMouse Mouse => new MockMouse();
-
+        /// <summary>
+        /// Gets a value indicating whether this object is a valid action executor. 
+        /// </summary>
         public bool IsActionExecutor => true;
 
+        /// <summary>
+        /// Gets a collection containing the desired capabilities of this <see cref="MockWebDriver"/>.
+        /// </summary>
         public IDictionary<string, object> Capabilities { get; }
 
+        /// <summary>
+        /// Provides methods representing basic keyboard actions.
+        /// </summary>
+        public IKeyboard Keyboard => new MockKeyboard();
+
+        /// <summary>
+        /// Provides methods representing basic mouse actions.
+        /// </summary>
+        public IMouse Mouse => new MockMouse();
+        #endregion
+
+        #region *** selenium     ***
         /// <summary>
         /// Close the current window, quitting the browser if it is the last window currently open.
         /// </summary>
@@ -122,9 +163,13 @@ namespace Gravity.Drivers.Mock.WebDriver
             GC.SuppressFinalize(this);
         }
 
+        /// <summary>
+        /// Performs application-defined tasks associated with freeing, releasing, or resetting
+        /// unmanaged resources.
+        /// </summary>
+        /// <param name="disposing">True to perform cleanup associated tasks.</param>
         protected virtual void Dispose(bool disposing)
         {
-            // Cleanup
             WindowHandles = new ReadOnlyCollection<string>(new List<string>());
         }
 
@@ -145,47 +190,37 @@ namespace Gravity.Drivers.Mock.WebDriver
         /// <returns>The value returned by the script.</returns>
         public object ExecuteScript(string script, params object[] args)
         {
-            // for outer HTML
-            if (script == "return arguments[0].outerHTML;")
+            // exit conditions
+            if (args.Length > 0 && args.Any(i => i == null))
             {
-                return
-                    "<div mock-attribute=\"mock attribute value\">mock element inner-text" +
-                    "   <div mock-attribute=\"mock attribute value\">mock element nested inner-text</div>" +
-                    "   <positive mock-attribute=\"mock attribute value\">mock element nested inner-text</positive>" +
-                    "   <positive mock-attribute=\"mock attribute value\">mock element nested inner-text</positive>" +
-                    "   <positive mock-attribute=\"mock attribute value\">mock element nested inner-text</positive>" +
-                    "</div>";
+                throw new WebDriverTimeoutException();
             }
 
-            // for scrip macro
-            if (script == "script-macro")
+            // setup binding flags
+            const BindingFlags Flags = BindingFlags.Instance | BindingFlags.NonPublic;
+
+            // get script generating method
+            var method = GetType().GetMethodByDescription(script, Flags);
+
+            // exit conditions
+            if (method == null)
             {
-                return "some text and number 777";
+                throw new WebDriverException();
             }
 
-            // for action rule
-            if(script?.Length == 0 || script == "console.log('unit testing');")
+            // return mock script
+            try
             {
-                return string.Empty;
+                return (string)method.Invoke(this, null);
             }
-
-            // for element
-            var isArgs = args.Length == 1;
-            var isElement = isArgs && args[0].GetType() == typeof(MockWebElement);
-            var isSrc = script == "arguments[0].checked=false;";
-            if (isElement && isSrc)
+            catch (Exception e)
             {
-                return string.Empty;
+                if(e.InnerException != null)
+                {
+                    throw e.InnerException;
+                }
+                throw;
             }
-
-            // for ready state
-            if(script == "return document.readyState;")
-            {
-                return "complete";
-            }
-
-            // invalid script
-            throw new WebDriverException();
         }
 
         /// <summary>
@@ -193,143 +228,72 @@ namespace Gravity.Drivers.Mock.WebDriver
         /// </summary>
         /// <param name="by">The locating mechanism to use.</param>
         /// <returns>The first matching OpenQA.Selenium.IWebElement on the current context.</returns>
-        public IWebElement FindElement(By by)
-        {
-            return ElementFactory(by);
-        }
+        public IWebElement FindElement(By by) => MockWebElement.GetElement(this, by);
 
         /// <summary>
         /// Finds all OpenQA.Selenium.IWebElement within the current context using the given
         /// mechanism.
         /// </summary>
         /// <param name="by">The locating mechanism to use.</param>
-        /// <returns> A System.Collections.ObjectModel.ReadOnlyCollection`1 of all OpenQA.Selenium.IWebElement
-        /// matching the current criteria, or an empty list if nothing matches.</returns>
+        /// <returns> A collections of all <see cref="IWebElement"/> matching the current criteria, or an empty list if nothing matches.</returns>
         public ReadOnlyCollection<IWebElement> FindElements(By by)
         {
-            var value = typeof(By)
-                .GetProperties(BindingFlags.NonPublic | BindingFlags.Instance)
-                .First(p => string.Equals(p.Name, "description", StringComparison.CurrentCultureIgnoreCase))
-                .GetValue(by)
-                .ToString()
-                .ToLower();
-            //
-            // set default elements value
-            var defaultElements = new ReadOnlyCollection<IWebElement>(new List<IWebElement>
+            try
             {
-                new MockWebElement("div", "Mock: Positive Element", true, true, true),
-                new MockWebElement("div", "Mock: Negative Element", false, false, false)
-            });
-            //
-            // switch cases
-            if (value.Contains("positive"))
-            {
-                defaultElements = new ReadOnlyCollection<IWebElement>(new List<IWebElement>
-                {
-                    new MockWebElement("div", "Mock: Positive Element", true, true, true),
-                    new MockWebElement("div", "Mock: Negative Element", true, true, true)
-                });
+                return MockWebElement.GetElements(this, by);
             }
-            if (value.Contains("negative"))
+            catch (Exception e) when (e is NoSuchElementException)
             {
-                defaultElements = new ReadOnlyCollection<IWebElement>(new List<IWebElement>
-                {
-                    new MockWebElement("div", "Mock: Positive Element", false, false, false),
-                    new MockWebElement("div", "Mock: Negative Element", false, false, false)
-                });
+                var elements = new List<IWebElement>();
+                return new ReadOnlyCollection<IWebElement>(elements);
             }
-            if (value.Contains("none"))
-            {
-                throw new NoSuchElementException("Mock: No Such Element Exception");
-            }
-            return defaultElements;
         }
 
         /// <summary>
         /// Instructs the driver to change its settings.
         /// </summary>
-        /// <returns> An OpenQA.Selenium.IOptions object allowing the user to change the settings of
-        /// the driver.</returns>
-        public IOptions Manage()
-        {
-            return new MockOptions();
-        }
+        /// <returns> An <see cref="IOptions"/> object allowing the user to change the settings of the driver.</returns>
+        public IOptions Manage() => new MockOptions();
 
         /// <summary>
         /// Instructs the driver to navigate the browser to another location.
         /// </summary>
-        /// <returns>
-        /// An <see cref="INavigation" /> object allowing the user to access
-        /// the browser's history and to navigate to a given URL.
-        /// </returns>
-        public INavigation Navigate()
-        {
-            return new MockNavigation();
-        }
+        /// <returns>An <see cref="INavigation" /> object allowing the user to access the browser's history and to navigate to a given URL.</returns>
+        public INavigation Navigate() => new MockNavigation();
 
         /// <summary>
         /// Quits this driver, closing every associated window.
         /// </summary>
         public void Quit()
         {
-            // Method intentionally left empty.
+            // mock method - should not do anything
         }
 
         /// <summary>
         /// Instructs the driver to send future commands to a different frame or window.
         /// </summary>
-        /// <returns>
-        /// An <see cref="T:OpenQA.Selenium.ITargetLocator" /> object which can be used to select
-        /// a frame or window.
-        /// </returns>
-        public ITargetLocator SwitchTo()
-        {
-            return new MockTargetLocator(this);
-        }
+        /// <returns>An <see cref="ITargetLocator" /> object which can be used to select a frame or window.</returns>
+        public ITargetLocator SwitchTo() => new MockTargetLocator(this);
 
+        /// <summary>
+        /// Performs the specified list of actions with this action executor.
+        /// </summary>
+        /// <param name="actionSequenceList">The list of action sequences to perform.</param>
         public void PerformActions(IList<ActionSequence> actionSequenceList)
         {
             // mock method - should not do anything
         }
 
+        /// <summary>
+        /// Resets the input state of the action executor.
+        /// </summary>
         public void ResetInputState()
         {
             // mock method - should not do anything
         }
+        #endregion
 
-        public static IWebElement ElementFactory(By by)
-        {
-            // get 'by' information
-            var value = typeof(By)
-                .GetProperties(BindingFlags.NonPublic | BindingFlags.Instance)
-                .First(p => string.Equals(p.Name, "description", StringComparison.CurrentCultureIgnoreCase))
-                .GetValue(by)
-                .ToString()
-                .ToLower();
-            //
-            // set default element value
-            var defaultElement = new MockWebElement("div", "Mock: Positive Element", true, true, true);
-            //
-            // switch cases
-            if (value.Contains("positive"))
-            {
-                return defaultElement;
-            }
-            if (value.Contains("negative"))
-            {
-                defaultElement = new MockWebElement("div", "Mock: Negative Element", false, false, false);
-            }
-            if (value.Contains("none"))
-            {
-                throw new NoSuchElementException("Mock: No Such Element Exception");
-            }
-            if (value.Contains("stale"))
-            {
-                throw new StaleElementReferenceException("Mock: Stale Element Reference Exception");
-            }
-            return defaultElement;
-        }
-
+        // sets child windows based on provided capabilities
         private void SetChildWindows(IDictionary<string, object> capabilities)
         {
             // normalize number of child windows
@@ -340,17 +304,40 @@ namespace Gravity.Drivers.Mock.WebDriver
             }
 
             // setup window handles
-            var windowHandles = new List<string>
-            {
-                $"window-{Guid.NewGuid()}"
-            };
+            var windowHandles = new List<string> { $"window-{Guid.NewGuid()}" };
 
+            // add handles for capabilities
             for (int i = 0; i < windows; i++)
             {
                 windowHandles.Add($"window-{Guid.NewGuid()}");
             }
 
+            // return a new collection with all handles
             WindowHandles = new ReadOnlyCollection<string>(windowHandles);
         }
+
+        // EXECUTE SCRIPT FACTORY
+#pragma warning disable S3400, IDE0051
+        [Description("outerHTML")]
+        private string SrcOuterHtml() =>
+            "<div mock-attribute=\"mock attribute value\">mock element inner-text" +
+            "   <div mock-attribute=\"mock attribute value\">mock element nested inner-text</div>" +
+            "   <positive mock-attribute=\"mock attribute value\">mock element nested inner-text</positive>" +
+            "   <positive mock-attribute=\"mock attribute value\">mock element nested inner-text</positive>" +
+            "   <positive mock-attribute=\"mock attribute value\">mock element nested inner-text</positive>" +
+            "</div>";
+
+        [Description("scriptMacro")]
+        private string SrcMarco() => "some text and number 777";
+
+        [Description("readyState")]
+        private string SrcReadyState() => "complete";
+
+        [Description(".*invalid.*")]
+        private string SrcInvalid() => throw new WebDriverException();
+
+        [Description("^$|unitTesting|arguments\\[\\d+\\]\\.(?!(.*invalid.*))")]
+        private string SrcEmpty() => string.Empty;
+#pragma warning restore
     }
 }

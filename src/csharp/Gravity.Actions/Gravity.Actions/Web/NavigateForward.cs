@@ -1,19 +1,15 @@
 ﻿/*
  * CHANGE LOG - keep only last 5 threads
  * 
- * 2019-01-03
- *    - modify: use JSON resources
+ * 2019-01-12
  *    - modify: improve XML comments
+ *    - modify: override ActionName using ActionType constant
  *    
- * 2019-01-11
- *    - modify: override action-name using ActionType constant 
- * 
- * 2019-12-24
+ * 2019-12-27
  *    - modify: add constructor to override base class types
- *
+ * 
  * on-line resources
  */
-using Gravity.Drivers.Selenium;
 using Gravity.Services.Comet.Engine.Attributes;
 using Gravity.Services.Comet.Engine.Extensions;
 using Gravity.Services.Comet.Engine.Plugins;
@@ -26,16 +22,16 @@ namespace Gravity.Services.ActionPlugins.Web
 {
     [Action(
         assmebly: "Gravity.Services.ActionPlugins, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
-        resource: "Gravity.Services.ActionPlugins.Documentation.close-browser.json",
-        Name = ActionType.CloseWindow)]
-    public class CloseWindow : ActionPlugin
+        resource: "Gravity.Services.ActionPlugins.Documentation.navigate-forward.json",
+        Name = ActionType.NavigateForward)]
+    public class NavigateForward : ActionPlugin
     {
         /// <summary>
         /// Creates a new instance of this plug-in.
         /// </summary>
         /// <param name="webDriver">WebDriver implementation by which to execute the action.</param>
         /// <param name="webAutomation">This WebAutomation object (the original object sent by the user).</param>
-        public CloseWindow(IWebDriver webDriver, WebAutomation webAutomation)
+        public NavigateForward(IWebDriver webDriver, WebAutomation webAutomation)
             : this(webDriver, webAutomation, Utilities.GetTypes())
         { }
 
@@ -45,38 +41,50 @@ namespace Gravity.Services.ActionPlugins.Web
         /// <param name="webDriver">WebDriver implementation by which to execute the action.</param>
         /// <param name="webAutomation">This WebAutomation object (the original object sent by the user).</param>
         /// <param name="types">Types from which to load plug-ins repositories.</param>
-        public CloseWindow(IWebDriver webDriver, WebAutomation webAutomation, IEnumerable<Type> types)
+        public NavigateForward(IWebDriver webDriver, WebAutomation webAutomation, IEnumerable<Type> types)
             : base(webDriver, webAutomation, types)
         { }
 
         /// <summary>
-        /// Close the given window, quitting the browser if it is the last window currently open.
+        /// Move back a single entry in the browser's history.
+        /// The action will be completed when page readyState='complete' or until page loading timeout reached.
         /// </summary>
-        /// <param name="actionRule">This ActionRule instance (the original object send by the user).</param>
+        /// <param name="actionRule">This ActionRule instance (the original object sent by the user).</param>
         public override void OnPerform(ActionRule actionRule)
         {
-            DoCloseWindow(actionRule);
+            DoNavigateForward(actionRule);
         }
 
         /// <summary>
-        /// Close the given window, quitting the browser if it is the last window currently open.
+        /// Move back a single entry in the browser's history.
+        /// The action will be completed when page readyState='complete' or until page loading timeout reached.
         /// </summary>
         /// <param name="webElement">This WebElement instance on which to perform the action (provided by the extraction rule).</param>
         /// <param name="actionRule">This ActionRule instance (the original object send by the user).</param>
         public override void OnPerform(IWebElement webElement, ActionRule actionRule)
         {
-            DoCloseWindow(actionRule);
+            DoNavigateForward(actionRule);
         }
 
-        // executes CloseWindow routine
-        private void DoCloseWindow(ActionRule actionRule)
+        // executes NavigateForward routine
+        private void DoNavigateForward(ActionRule actionRule)
         {
-            // exit conditions
-            if (!int.TryParse(actionRule.Argument, out int indexOut))
+            // set default value
+            var iterations = 1;
+
+            // normalize iterations
+            iterations = int.TryParse(actionRule.Argument, out int iterationsOut) ? iterationsOut : iterations;
+
+            // navigate
+            for (int i = 0; i < iterations; i++)
             {
-                return;
+                WebDriver.Navigate().Forward();
+                if (i >= iterations - 1)
+                {
+                    break;
+                }
+                WaitForState("complete", 200);
             }
-            WebDriver.CloseWindow(indexOut);
         }
     }
 }

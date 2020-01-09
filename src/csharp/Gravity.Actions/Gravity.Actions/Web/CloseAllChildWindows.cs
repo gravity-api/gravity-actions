@@ -30,7 +30,7 @@ namespace Gravity.Services.ActionPlugins.Web
     [Action(
         assmebly: "Gravity.Services.ActionPlugins, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
         resource: "Gravity.Services.ActionPlugins.Documentation.close-all-child-windows.json",
-        Name = ActionType.CLOSE_ALL_CHILD_WINDOWS)]
+        Name = ActionType.CloseAllChildWindows)]
     public class CloseAllChildWindows : ActionPlugin
     {
         /// <summary>

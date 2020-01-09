@@ -1,45 +1,44 @@
 ﻿/*
- * CHANGE LOG
+ * CHANGE LOG - keep only last 5 threads
  * 
- * 2019-01-03
- *    - modify: add support for double-click without specified element (flat action)
+ * 2019-01-12
  *    - modify: improve XML comments
+ *    - modify: override ActionName using ActionType constant
  *    
- * 2019-01-11
- *    - modify: override action-name using ActionType constant 
- * 
- * 2019-12-25
+ * 2019-12-31
  *    - modify: add constructor to override base class types
  * 
  * on-line resources
  */
-using Gravity.Drivers.Selenium;
 using Gravity.Services.Comet.Engine.Attributes;
 using Gravity.Services.Comet.Engine.Extensions;
 using Gravity.Services.Comet.Engine.Plugins;
 using Gravity.Services.DataContracts;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Interactions;
+using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
 
-namespace Gravity.Services.ActionPlugins.Common
+namespace Gravity.Services.ActionPlugins.Web
 {
     [Action(
         assmebly: "Gravity.Services.ActionPlugins, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
-        resource: "Gravity.Services.ActionPlugins.Documentation.double-click.json",
-        Name = ActionType.DoubleClick)]
-    public class DoubleClick : ActionPlugin
+        resource: "Gravity.Services.ActionPlugins.Documentation.try-click.json",
+        Name = ActionType.TryClick)]
+    public class TryClick : ActionPlugin
     {
+        // constants
+        private const string Script = "arguments[0].click();";
+
         // members: state
-        private readonly Actions actions;
+        private readonly WebDriverWait wait;
 
         /// <summary>
         /// Creates a new instance of this plug-in.
         /// </summary>
         /// <param name="webDriver">WebDriver implementation by which to execute the action.</param>
         /// <param name="webAutomation">This WebAutomation object (the original object sent by the user).</param>
-        public DoubleClick(IWebDriver webDriver, WebAutomation webAutomation)
+        public TryClick(IWebDriver webDriver, WebAutomation webAutomation)
             : this(webDriver, webAutomation, Utilities.GetTypes())
         { }
 
@@ -49,62 +48,58 @@ namespace Gravity.Services.ActionPlugins.Common
         /// <param name="webDriver">WebDriver implementation by which to execute the action.</param>
         /// <param name="webAutomation">This WebAutomation object (the original object sent by the user).</param>
         /// <param name="types">Types from which to load plug-ins repositories.</param>
-        public DoubleClick(IWebDriver webDriver, WebAutomation webAutomation, IEnumerable<Type> types)
+        public TryClick(IWebDriver webDriver, WebAutomation webAutomation, IEnumerable<Type> types)
             : base(webDriver, webAutomation, types)
         {
-            actions = new Actions(webDriver);
+            // initialize exceptions ignore list
+            var ignoreList = new[]
+            {
+                typeof(NoSuchElementException),
+                typeof(StaleElementReferenceException),
+                typeof(WebDriverException),
+                typeof(NullReferenceException)
+            };
+
+            // setup waiter
+            wait = new WebDriverWait(webDriver, TimeSpan.FromMilliseconds(ElementSearchTimeout));
+            wait.IgnoreExceptionTypes(ignoreList);
         }
 
         /// <summary>
-        /// Clicks the mouse at the last known mouse coordinates or on the specified element.
+        /// Clicks the mouse on the specified element.
         /// </summary>
         /// <param name="actionRule">This ActionRule instance (the original object sent by the user).</param>
         public override void OnPerform(ActionRule actionRule)
         {
-            // exit conditions
-            if (Flat(actionRule))
-            {
-                return;
-            }
-
-            // get locator
-            var by = ByFactory.Get(actionRule.Locator, actionRule.ElementToActOn);
-
-            // execute action
-            var element = WebDriver.GetElement(by, TimeSpan.FromMilliseconds(ElementSearchTimeout));
-            actions.DoubleClick(element).Build().Perform();
+            wait.Until(_ => DoTryClick(webElement: default, actionRule));
         }
 
         /// <summary>
-        /// Clicks the mouse at the last known mouse coordinates or on the specified element.
+        /// Clicks the mouse on the specified element.
         /// </summary>
         /// <param name="webElement">This WebElement instance on which to perform the action (provided by the extraction rule).</param>
         /// <param name="actionRule">This ActionRule instance (the original object send by the user).</param>
         public override void OnPerform(IWebElement webElement, ActionRule actionRule)
         {
-            // exit conditions
-            if (Flat(actionRule))
-            {
-                return;
-            }
-
-            // get locator
-            var by = ByFactory.Get(actionRule.Locator, actionRule.ElementToActOn);
-
-            // get element
-            var element = IsAbsoluteXPath(actionRule)
-                ? WebDriver.GetElement(by, TimeSpan.FromMilliseconds(ElementSearchTimeout))
-                : webElement.FindElement(by);
-
-            // execute action
-            actions.DoubleClick(element).Build().Perform();
+            wait.Until(_ => DoTryClick(webElement: webElement, actionRule));
         }
 
-        // execute flat action
-        private bool Flat(ActionRule actionRule) => WasFlatAction(actionRule, () =>
+        // executes TryClick routine
+        private IWebDriver DoTryClick(IWebElement webElement, ActionRule actionRule)
         {
-            actions.Click().Build().Perform();
-            return true;
-        });
+            // fetch locator
+            var by = ByFactory.Get(actionRule.Locator, actionRule.ElementToActOn);
+
+            // get element to act on
+            var argument = webElement == default
+                ? WebDriver.FindElement(by)
+                : webElement.FindElement(by);
+
+            // execute script
+            ((IJavaScriptExecutor)WebDriver).ExecuteScript(Script, argument);
+
+            // for waiter condition
+            return WebDriver;
+        }
     }
 }

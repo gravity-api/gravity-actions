@@ -1,13 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net451;net46;netstandard2.0;netstandard2.1</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
     <PackageId>Gravity.Services.Actions</PackageId>
     <LangVersion>latest</LangVersion>
     <Version>5.0.0</Version>
     <Title>Gravity.Services.Actions</Title>
     <Authors>Roei.Sabag</Authors>
-    <Description>Gravity API Actions repository. FREE register at "https://g-api.azurewebsites.net/Identity/Account/Register" in order to be able to use Gravity API</Description>
+    <Description>Gravity API Actions repository. FREE register at "https://g-api.azurewebsites.net/Identity/Account/Register" in order to be able to use Gravity API.</Description>
     <PackageTags>automation,crawling,crawl,selenium,appium,automation testing,automation test,qa,gravity,gravity api,scrapping,scrap</PackageTags>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -19,27 +19,45 @@
     <None Remove="Documentation\click.json" />
     <None Remove="Documentation\close-all-child-windows.json" />
     <None Remove="Documentation\close-browser.json" />
+    <None Remove="Documentation\close-window.json" />
     <None Remove="Documentation\context-click.json" />
     <None Remove="Documentation\double-click.json" />
     <None Remove="Documentation\execute-script.json" />
+    <None Remove="Documentation\keyboard.json" />
     <None Remove="Documentation\navigate-back.json" />
+    <None Remove="Documentation\navigate-forward.json" />
+    <None Remove="Documentation\refresh.json" />
+    <None Remove="Documentation\register-parameter.json" />
+    <None Remove="Documentation\repeat.json" />
+    <None Remove="Documentation\send-keys.json" />
+    <None Remove="Documentation\set-geo-location.json" />
+    <None Remove="Documentation\try-click.json" />
+    <None Remove="Documentation\wait.json" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="Documentation\click.json" />
     <EmbeddedResource Include="Documentation\close-all-child-windows.json" />
     <EmbeddedResource Include="Documentation\close-browser.json" />
+    <EmbeddedResource Include="Documentation\close-window.json" />
     <EmbeddedResource Include="Documentation\context-click.json" />
     <EmbeddedResource Include="Documentation\double-click.json" />
     <EmbeddedResource Include="Documentation\execute-script.json" />
+    <EmbeddedResource Include="Documentation\keyboard.json" />
+    <EmbeddedResource Include="Documentation\set-geo-location.json" />
     <EmbeddedResource Include="Documentation\navigate-back.json" />
+    <EmbeddedResource Include="Documentation\navigate-forward.json" />
+    <EmbeddedResource Include="Documentation\refresh.json" />
+    <EmbeddedResource Include="Documentation\register-parameter.json" />
+    <EmbeddedResource Include="Documentation\repeat.json" />
+    <EmbeddedResource Include="Documentation\send-keys.json" />
+    <EmbeddedResource Include="Documentation\try-click.json" />
+    <EmbeddedResource Include="Documentation\wait.json" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Gravity.Services.Comet" Version="2019.12.25.1" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Mobile\" />
+    <PackageReference Include="Gravity.Services.Comet" Version="2020.1.9.5" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="3.1.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="3.1.0" />
   </ItemGroup>
 </Project>

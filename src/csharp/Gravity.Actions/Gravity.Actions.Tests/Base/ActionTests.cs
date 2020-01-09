@@ -2,8 +2,10 @@
  * CHANGE LOG - keep only last 5 threads
  * 
  * on-line resources
+ * https://dev.to/franndotexe/mstest-v2---new-old-kid-on-the-block
  */
 using Gravity.Drivers.Mock.WebDriver;
+using Gravity.Drivers.Mock.Extensions;
 using Gravity.Services.Comet.Engine.Attributes;
 using Gravity.Services.Comet.Engine.Extensions;
 using Gravity.Services.Comet.Engine.Plugins;
@@ -13,11 +15,14 @@ using Newtonsoft.Json;
 using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Diagnostics;
 
-namespace Gravity.Services.ActionPlugins.Tests
+namespace Gravity.Services.ActionPlugins.Tests.Base
 {
+    [DeploymentItem("Resources/license.lcn")]
     public abstract class ActionTests
     {
         /// <summary>
@@ -39,8 +44,22 @@ namespace Gravity.Services.ActionPlugins.Tests
                 ElementSearchingTimeout = 100,
                 PageLoadTimeout = 100
             };
-            WebAutomation = new WebAutomation { EngineConfiguration = configuration };
+            var authentication = new Authentication
+            {
+                UserName = "",
+                Password = ""
+            };
+            WebAutomation = new WebAutomation
+            {
+                Authentication = authentication,
+                EngineConfiguration = configuration
+            };
+
+            // setup: web driver
             WebDriver = new MockWebDriver();
+
+            // setup: timer
+            Stopwatch = new Stopwatch();
         }
 
         /// <summary>
@@ -59,12 +78,18 @@ namespace Gravity.Services.ActionPlugins.Tests
         public MockWebDriver WebDriver { get; set; }
 
         /// <summary>
+        /// Gets the <see cref="Stopwatch"/> object used by this instance
+        /// </summary>
+        public Stopwatch Stopwatch { get; }
+
+        /// <summary>
         /// Executes an action plug-in of the provided type.
         /// </summary>
         /// <typeparam name="T">The type of action which will be executed.</typeparam>
-        public void ExecuteAction<T>() where T : ActionPlugin
+        public ActionPlugin ExecuteAction<T>() where T : ActionPlugin
         {
-            ExecuteAction<T>(by: default, actionRule: string.Empty, capabilities: null);
+            return ExecuteAction<T>(
+                by: default, actionRule: string.Empty, capabilities: null);
         }
 
         /// <summary>
@@ -72,10 +97,10 @@ namespace Gravity.Services.ActionPlugins.Tests
         /// </summary>
         /// <typeparam name="T">The type of action which will be executed.</typeparam>
         /// <param name="actionRule">ActionRule JSON from which to create an ActionRule instance.</param>
-        public void ExecuteAction<T>(string actionRule)
+        public ActionPlugin ExecuteAction<T>(string actionRule)
             where T : ActionPlugin
         {
-            ExecuteAction<T>(by: default, actionRule: actionRule, capabilities: null);
+            return ExecuteAction<T>(by: default, actionRule: actionRule, capabilities: null);
         }
 
         /// <summary>
@@ -83,10 +108,10 @@ namespace Gravity.Services.ActionPlugins.Tests
         /// </summary>
         /// <typeparam name="T">The type of action which will be executed.</typeparam>
         /// <param name="capabilities">MockWebDriver capabilities by which to create the MockWebDriver of this action.</param>
-        public void ExecuteAction<T>(IDictionary<string, object> capabilities)
+        public ActionPlugin ExecuteAction<T>(IDictionary<string, object> capabilities)
             where T : ActionPlugin
         {
-            ExecuteAction<T>(by: default, actionRule: string.Empty, capabilities: capabilities);
+            return ExecuteAction<T>(by: default, actionRule: string.Empty, capabilities: capabilities);
         }
 
         /// <summary>
@@ -94,9 +119,9 @@ namespace Gravity.Services.ActionPlugins.Tests
         /// </summary>
         /// <typeparam name="T">The type of action which will be executed.</typeparam>
         /// <param name="by">WebElement instance on which to perform the action.</param>
-        public void ExecuteAction<T>(By by) where T : ActionPlugin
+        public ActionPlugin ExecuteAction<T>(By by) where T : ActionPlugin
         {
-            ExecuteAction<T>(by: by, actionRule: string.Empty, capabilities: null);
+            return ExecuteAction<T>(by: by, actionRule: string.Empty, capabilities: null);
         }
 
         /// <summary>
@@ -105,10 +130,10 @@ namespace Gravity.Services.ActionPlugins.Tests
         /// <typeparam name="T">The type of action which will be executed.</typeparam>
         /// <param name="by">WebElement instance on which to perform the action.</param>
         /// <param name="actionRule">ActionRule JSON from which to create an ActionRule instance.</param>
-        public void ExecuteAction<T>(By by, string actionRule)
+        public ActionPlugin ExecuteAction<T>(By by, string actionRule)
             where T: ActionPlugin
         {
-            ExecuteAction<T>(by: by, actionRule: actionRule, capabilities: null);
+            return ExecuteAction<T>(by: by, actionRule: actionRule, capabilities: null);
         }
 
         /// <summary>
@@ -117,10 +142,10 @@ namespace Gravity.Services.ActionPlugins.Tests
         /// <typeparam name="T">The type of action which will be executed.</typeparam>
         /// <param name="by">WebElement instance on which to perform the action.</param>
         /// <param name="capabilities">MockWebDriver capabilities by which to create the MockWebDriver of this action.</param>
-        public void ExecuteAction<T>(By by, IDictionary<string, object> capabilities)
+        public ActionPlugin ExecuteAction<T>(By by, IDictionary<string, object> capabilities)
             where T : ActionPlugin
         {
-            ExecuteAction<T>(by: by, actionRule: string.Empty, capabilities: capabilities);
+            return ExecuteAction<T>(by: by, actionRule: string.Empty, capabilities: capabilities);
         }
 
         /// <summary>
@@ -129,10 +154,10 @@ namespace Gravity.Services.ActionPlugins.Tests
         /// <typeparam name="T">The type of action which will be executed.</typeparam>
         /// <param name="actionRule">ActionRule JSON from which to create an ActionRule instance.</param>
         /// <param name="capabilities">MockWebDriver capabilities by which to create the MockWebDriver of this action.</param>
-        public void ExecuteAction<T>(string actionRule, IDictionary<string, object> capabilities)
+        public ActionPlugin ExecuteAction<T>(string actionRule, IDictionary<string, object> capabilities)
             where T : ActionPlugin
         {
-            ExecuteAction<T>(by: default, actionRule: actionRule, capabilities: capabilities);
+            return ExecuteAction<T>(by: default, actionRule: actionRule, capabilities: capabilities);
         }
 
         /// <summary>
@@ -142,21 +167,31 @@ namespace Gravity.Services.ActionPlugins.Tests
         /// <param name="by">WebElement instance on which to perform the action.</param>
         /// <param name="actionRule">ActionRule JSON from which to create an ActionRule instance.</param>
         /// <param name="capabilities">MockWebDriver capabilities by which to create the MockWebDriver of this action.</param>
-        public void ExecuteAction<T>(By by, string actionRule, IDictionary<string, object> capabilities)
+        public ActionPlugin ExecuteAction<T>(By by, string actionRule, IDictionary<string, object> capabilities)
             where T : ActionPlugin
         {
             // setup
             var _actionRule = GetActionRule(actionRule);
             var action = ActionFactory<T>(WebAutomation, capabilities, Types);
 
+            // timer: setup
+            Stopwatch.Restart();
+            Stopwatch.Start();
+
             // execute
             if (by == default)
             {
                 action.OnPerform(_actionRule);
-                return;
+                return action;
             }
             var element = WebDriver.FindElement(by);
             action.OnPerform(element, _actionRule);
+
+            // timer: stop
+            Stopwatch.Stop();
+
+            // return the executed plug-in instance.
+            return action;
         }
 
         /// <summary>
@@ -177,11 +212,33 @@ namespace Gravity.Services.ActionPlugins.Tests
         /// <param name="types">Types from which to load plug-ins repositories.</param>
         public void ValidateActionDocumentation<T>(string pluginName, IEnumerable<Type> types) where T : ActionPlugin
         {
+            ValidateActionDocumentation<T>(pluginName, types, string.Empty);
+        }
+
+        /// <summary>
+        /// Validate if an action plug in documentation was correctly generated (!= default) and have loaded relevant properties.
+        /// </summary>
+        /// <typeparam name="T">ActionPlugin type to generate.</typeparam>
+        /// <param name="pluginName">The plug-in name to validate against the documentation.</param>
+        /// <param name="types">Types from which to load plug-ins repositories.</param>
+        /// <param name="resource">Resource file name by which to validate ActionAttribute.</param>
+        public void ValidateActionDocumentation<T>(string pluginName, IEnumerable<Type> types, string resource)
+            where T : ActionPlugin
+        {
             // get action
             var action = ActionFactory<T>(webAutomation: WebAutomation, capabilities: default, types: types);
 
             // get action attribute
             var attribute = action.GetType().GetCustomAttribute<ActionAttribute>();
+
+            // verify resource
+            if (!string.IsNullOrEmpty(resource))
+            {
+                var assembly = typeof(T).Assembly;
+                var actionAttribute = ReadEmbeddedResource<ActionAttribute>(assembly, resource);
+                var isName = attribute.Name.Equals(actionAttribute.Name);
+                Assert.IsTrue(isName, "Plug-in name does not match to action name in resource file.");
+            }
 
             // validation
             Assert.IsTrue(!string.IsNullOrEmpty(attribute.Description), "Plug-in must have a description.");
@@ -289,6 +346,43 @@ namespace Gravity.Services.ActionPlugins.Tests
 
             // generate
             return (T)Activator.CreateInstance(typeof(T), arguments);
+        }
+
+        /// <summary>
+        /// Reads an embedded resource and attempts to deserialize it into the given type.
+        /// Assuming this is a JSON file.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="assembly">Assembly from which to read the resource.</param>
+        /// <param name="name">Resource name, name must match the resource file name.</param>
+        public static T ReadEmbeddedResource<T>(Assembly assembly, string name)
+        {
+            var resource = ReadEmbeddedResource(assembly, name);
+            return JsonConvert.DeserializeObject<T>(resource);
+        }
+
+        /// <summary>
+        /// Reads an embedded resource.
+        /// </summary>
+        /// <param name="assembly">Assembly from which to read the resource.</param>
+        /// <param name="name">Resource name, name must match the resource file name.</param>
+        public static string ReadEmbeddedResource(Assembly assembly, string name)
+        {
+            if (string.IsNullOrEmpty(name))
+            {
+                return string.Empty;
+            }
+
+            var fileReference = Array
+                .Find(assembly.GetManifestResourceNames(), i => i.EndsWith(Path.GetFileName(name), StringComparison.OrdinalIgnoreCase));
+            if (string.IsNullOrEmpty(fileReference))
+            {
+                return string.Empty;
+            }
+
+            using Stream stream = assembly.GetManifestResourceStream(fileReference);
+            using StreamReader reader = new StreamReader(stream);
+            return reader.ReadToEnd();
         }
     }
 }

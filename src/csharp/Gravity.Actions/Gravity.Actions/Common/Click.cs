@@ -20,6 +20,7 @@
  * on-line resources
  */
 using Gravity.Drivers.Selenium;
+using Gravity.Services.ActionPlugins.Extensions;
 using Gravity.Services.Comet.Engine.Attributes;
 using Gravity.Services.Comet.Engine.Core;
 using Gravity.Services.Comet.Engine.Extensions;
@@ -31,19 +32,24 @@ using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Reflection;
 
 namespace Gravity.Services.ActionPlugins.Common
 {
     [Action(
         assmebly: "Gravity.Services.ActionPlugins, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
         resource: "Gravity.Services.ActionPlugins.Documentation.click.json",
-        Name = ActionType.CLICK)]
+        Name = ActionType.Click)]
     public class Click : ActionPlugin
     {
+        #region *** constants: conditions ***
+        /// <summary>
+        /// Constant for calling "no-alert" condition.
+        /// </summary>
+        public const string NoAlert = "no-alert";
+        #endregion
+
         // constants: arguments
-        private const string UNTIL = "until";
+        public const string UNTIL = "until";
 
         // members: state
         private readonly Actions actions;
@@ -88,7 +94,7 @@ namespace Gravity.Services.ActionPlugins.Common
             arguments = new CliFactory(actionRule.Argument).Parse();
             if (arguments.ContainsKey(UNTIL))
             {
-                SpecialActionFactory(actionRule);
+                ConditionsFactory(actionRule);
                 return;
             }
 
@@ -132,26 +138,18 @@ namespace Gravity.Services.ActionPlugins.Common
         });
 
         // special actions factory
-        private void SpecialActionFactory(ActionRule actionRule)
+        private void ConditionsFactory(ActionRule actionRule)
         {
-            // setup binding flags
-            const BindingFlags B = BindingFlags.Instance | BindingFlags.NonPublic;
-            const StringComparison C = StringComparison.OrdinalIgnoreCase;
-
-            // shortcuts
-            var u = arguments[UNTIL];
-
             // get method
-            var methods = GetType().GetMethods(B).Where(i => i.GetCustomAttribute<DescriptionAttribute>() != null);
-            var method = methods.FirstOrDefault(i => i.GetCustomAttribute<DescriptionAttribute>().Description.Equals(u, C));
+            var method = GetType().GetMethodByDescription(arguments[UNTIL]);
 
             // invoke
             method.Invoke(this, new object[] { actionRule });
         }
 
 #pragma warning disable S1144, RCS1213, IDE0051
-        [Description(nameof(NoAlert))]
-        private void NoAlert(ActionRule actionRule)
+        [Description(NoAlert)]
+        private void Alert(ActionRule actionRule)
         {
             // get locator
             var by = ByFactory.Get(actionRule.Locator, actionRule.ElementToActOn);

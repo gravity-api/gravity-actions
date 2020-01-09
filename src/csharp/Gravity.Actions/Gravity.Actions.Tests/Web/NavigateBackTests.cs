@@ -1,9 +1,15 @@
-﻿using Gravity.Services.ActionPlugins.Web;
+﻿/*
+ * CHANGE LOG - keep only last 5 threads
+ * 
+ * on-line resources
+ */
+using Gravity.Services.ActionPlugins.Tests.Base;
+using Gravity.Services.ActionPlugins.Web;
 using Gravity.Services.DataContracts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 #pragma warning disable S4144
-namespace Gravity.Services.ActionPlugins.Tests
+namespace Gravity.Services.ActionPlugins.Tests.Web
 {
     [TestClass]
     public class NavigateBackTests : ActionTests
@@ -23,13 +29,20 @@ namespace Gravity.Services.ActionPlugins.Tests
         [TestMethod]
         public void NavigateBackDocumentationNoTypes()
         {
-            ValidateActionDocumentation<NavigateBack>(ActionType.NAVIGATE_BACK);
+            ValidateActionDocumentation<NavigateBack>(ActionType.NavigateBack);
         }
 
         [TestMethod]
         public void NavigateBackDocumentationTypes()
         {
-            ValidateActionDocumentation<NavigateBack>(ActionType.NAVIGATE_BACK, Types);
+            ValidateActionDocumentation<NavigateBack>(ActionType.NavigateBack, Types);
+        }
+
+        [TestMethod]
+        public void NavigateBackDocumentationResourceFile()
+        {
+            ValidateActionDocumentation<NavigateBack>(
+                ActionType.NavigateBack, Types, "navigate-back.json");
         }
 
         [TestMethod]

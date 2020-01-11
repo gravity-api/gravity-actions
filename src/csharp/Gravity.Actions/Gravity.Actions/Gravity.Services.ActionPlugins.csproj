@@ -22,6 +22,7 @@
     <None Remove="Documentation\close-window.json" />
     <None Remove="Documentation\context-click.json" />
     <None Remove="Documentation\double-click.json" />
+    <None Remove="Documentation\elements-listener.json" />
     <None Remove="Documentation\execute-script.json" />
     <None Remove="Documentation\keyboard.json" />
     <None Remove="Documentation\navigate-back.json" />
@@ -36,6 +37,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Documentation\elements-listener.json" />
     <EmbeddedResource Include="Documentation\click.json" />
     <EmbeddedResource Include="Documentation\close-all-child-windows.json" />
     <EmbeddedResource Include="Documentation\close-browser.json" />

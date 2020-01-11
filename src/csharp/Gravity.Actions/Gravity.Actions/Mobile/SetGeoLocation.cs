@@ -1,18 +1,15 @@
 ﻿/*
  * CHANGE LOG - keep only last 5 threads
  * 
- * 2019-02-19
- *    - modify: improve XML comments
- *    - modify: override action-name using ActionType constant
- *    
  * 2019-12-31
  *    - modify: add constructor to override base class types
  * 
+ * 2019-02-19
+ *    - modify: improve XML comments
+ *    - modify: override action-name using ActionType constant
+ * 
  * on-line resources
  * http://appium.io/docs/en/writing-running-appium/android/android-shell/
- * 
- * notes
- * change to driver casting for Location implementation to an interface casting when available (DoGeoLocation)
  * 
  * work items
  * TODO: use IHasLocation interface when available (DoGeoLocation)

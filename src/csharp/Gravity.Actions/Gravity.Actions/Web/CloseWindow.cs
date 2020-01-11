@@ -1,16 +1,16 @@
 ﻿/*
  * CHANGE LOG - keep only last 5 threads
  * 
+ * 2019-12-24
+ *    - modify: add constructor to override base class types
+ *    
+ * 2019-01-11
+ *    - modify: override action-name using ActionType constant
+ *    
  * 2019-01-03
  *    - modify: use JSON resources
  *    - modify: improve XML comments
  *    
- * 2019-01-11
- *    - modify: override action-name using ActionType constant 
- * 
- * 2019-12-24
- *    - modify: add constructor to override base class types
- *
  * on-line resources
  */
 using Gravity.Drivers.Selenium;

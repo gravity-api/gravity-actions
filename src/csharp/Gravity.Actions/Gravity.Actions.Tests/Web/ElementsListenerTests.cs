@@ -5,11 +5,7 @@
  */
 using Gravity.Services.ActionPlugins.Tests.Base;
 using Gravity.Services.ActionPlugins.Web;
-using Gravity.Services.DataContracts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 #pragma warning disable S4144
 namespace Gravity.Services.ActionPlugins.Tests.Web

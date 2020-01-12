@@ -65,7 +65,9 @@ namespace Gravity.Services.ActionPlugins.Web
         /// <param name="types">Types from which to load plug-ins repositories.</param>
         public ElementsListener(IWebDriver webDriver, WebAutomation webAutomation, IEnumerable<Type> types)
             : base(webDriver, webAutomation, types)
-        { }
+        {
+            ActionFactory ??= GravityUtilities.GetActionFactory(webDriver, webAutomation, types);
+        }
 
         /// <summary>
         /// Listens to an element appearance in the DOM. Use this method to send and action into an 
@@ -94,7 +96,8 @@ namespace Gravity.Services.ActionPlugins.Web
             var childActionRule = new ActionRule
             {
                 ActionType = arguments[ActionToPerform],
-                Argument = childActionArgument
+                Argument = childActionArgument,
+                Actions = actionRule.Actions
             };
 
             // execute listener
@@ -192,7 +195,7 @@ namespace Gravity.Services.ActionPlugins.Web
             // complex arguments
             var args = JsonConvert.DeserializeObject<Dictionary<string, string>>(arguments[Arguments]);
             const string command = "{{$ [arguments]}}";
-            if (args.Count == 0)
+            if (args == null)
             {
                 return string.Empty;
             }

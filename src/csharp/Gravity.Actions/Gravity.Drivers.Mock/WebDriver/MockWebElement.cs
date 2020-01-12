@@ -179,6 +179,7 @@ namespace Gravity.Drivers.Mock.WebDriver
         /// </summary>
         public void Click()
         {
+            var a = "";
             // mock method - should not do anything
         }
 
@@ -403,7 +404,7 @@ namespace Gravity.Drivers.Mock.WebDriver
         }
 
         /// <summary>
-        /// Gets a random element with 10% chance of getting an element.
+        /// Gets a random element with 1% chance of getting an element.
         /// </summary>
         /// <param name="parent">Driver in use.</param>
         /// <returns>An interface through which the user controls elements on the page.</returns>
@@ -411,7 +412,7 @@ namespace Gravity.Drivers.Mock.WebDriver
         public static IWebElement GetRandomNotExists(MockWebDriver parent)
         {
             // fetch elements >> return first or null
-            return RandomElements(parent, 10).FirstOrDefault();
+            return RandomElements(parent, 1).FirstOrDefault();
         }
 
         /// <summary>

@@ -30,7 +30,7 @@ namespace Gravity.Services.ActionPlugins.Tests.Base
         /// </summary>
         static ActionTests()
         {
-            Types = Utilities.GetTypes();
+            Types = Utilities.GetTypes().Where(i => !i.FullName.Contains("Gravity.Services.Comet.Engine.Browser"));
         }
 
         /// <summary>

@@ -1,13 +1,17 @@
 ﻿/*
  * CHANGE LOG - keep only last 5 threads
  * 
+ * 2020-01-13
+ *    - modify: add on-element event (action can now be executed on the element without searching for a child)
+ *    - modify: use FindByActionRule/GetByActionRule methods to reduce code base and increase code usage
+ *    
+ * 2019-12-31
+ *    - modify: add constructor to override base class types
+ *    
  * 2019-01-12
  *    - modify: improve XML comments
  *    - modify: override ActionName using ActionType constant
  *    - modify: code cleaning
- *    
- * 2019-12-31
- *    - modify: add constructor to override base class types
  * 
  * on-line resources
  * http://appium.io/docs/en/writing-running-appium/android/android-shell/
@@ -35,12 +39,33 @@ namespace Gravity.Services.ActionPlugins.Common
         Name = ActionType.SendKeys)]
     public class SendKeys : ActionPlugin
     {
-        // constants: arguments
+        #region *** constants: arguments  ***
+        /// <summary>
+        /// Clears the element value, before typing into it.
+        /// </summary>
         public const string Clear = "clear";
+
+        /// <summary>
+        /// Clears the element value using <backspace> key, performing the clearing using real keyboard actions.
+        /// This action is not supported on [mobile-native] applications.
+        /// </summary>
         public const string ForceClear = "forceClear";
+
+        /// <summary>
+        /// The interval time between each character typing.
+        /// </summary>
         public const string Interval = "interval";
+
+        /// <summary>
+        /// The text to type into the element.
+        /// </summary>
         public const string Keystrokes = "keys";
+
+        /// <summary>
+        /// Array of keys to press down while sending keys (use for simulate [control]+a, [control]+[shift]+[delete], etc.
+        /// </summary>
         public const string Down = "down";
+        #endregion
 
         // members: state
         private readonly WebAutomation webAutomation;
@@ -74,7 +99,7 @@ namespace Gravity.Services.ActionPlugins.Common
         /// <param name="actionRule">This ActionRule instance (the original object sent by the user).</param>
         public override void OnPerform(ActionRule actionRule)
         {
-            DoSendKeys(webElement: default, actionRule);
+            DoAction(webElement: default, actionRule);
         }
 
         /// <summary>
@@ -84,16 +109,19 @@ namespace Gravity.Services.ActionPlugins.Common
         /// <param name="actionRule">This ActionRule instance (the original object send by the user).</param>
         public override void OnPerform(IWebElement webElement, ActionRule actionRule)
         {
-            DoSendKeys(webElement, actionRule);
+            DoAction(webElement, actionRule);
         }
 
         // executes SendKeys routine
-        private void DoSendKeys(IWebElement webElement, ActionRule actionRule)
+        private void DoAction(IWebElement webElement, ActionRule actionRule)
         {
-            // setup
+            // setup            
             arguments = SetArguments(actionRule);
             var conditions = SetConditions();
-            var element = GetElement(webElement, actionRule);
+            var timeout = TimeSpan.FromMilliseconds(ElementSearchTimeout);
+            var element = webElement != default
+                ? webElement.GetElementByActionRule(ByFactory, actionRule, timeout)
+                : WebDriver.GetElementByActionRule(ByFactory, actionRule, timeout);
 
             // execute: clear
             if (conditions["isClear"])
@@ -169,18 +197,6 @@ namespace Gravity.Services.ActionPlugins.Common
                 [nameof(isUiautomator2)] = isUiautomator2,
                 [nameof(isAndroid)] = isAndroid
             };
-        }
-
-        // gets web element into which to send the keys
-        private IWebElement GetElement(IWebElement webElement, ActionRule actionRule)
-        {
-            // setup locator
-            var by = ByFactory.Get(actionRule.Locator, actionRule.ElementToActOn);
-
-            // get element
-            return webElement == default
-                ? WebDriver.GetElement(by, TimeSpan.FromMilliseconds(ElementSearchTimeout))
-                : webElement.FindElement(by);
         }
 
         // CONDITIONS REPOSITORY

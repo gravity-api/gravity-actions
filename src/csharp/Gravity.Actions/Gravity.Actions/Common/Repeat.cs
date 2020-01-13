@@ -1,12 +1,16 @@
 ﻿/*
  * CHANGE LOG - keep only last 5 threads
  * 
- * 2019-01-12
- *    - modify: improve XML comments
- *    - modify: override ActionName using ActionType constant
+ * 2020-01-13
+ *    - modify: add on-element event (action can now be executed on the element without searching for a child)
+ *    - modify: use FindByActionRule/GetByActionRule methods to reduce code base and increase code usage
  *    
  * 2019-12-29
  *    - modify: add constructor to override base class types
+ *    
+ * 2019-01-12
+ *    - modify: improve XML comments
+ *    - modify: override ActionName using ActionType constant
  * 
  * on-line resources
  */
@@ -54,8 +58,12 @@ namespace Gravity.Services.ActionPlugins.Common
         public const string ConditionNotVisible = "not-visible";
         #endregion
 
-        // constants: arguments
+        #region *** constants: arguments  ***
+        /// <summary>
+        /// Repeats the nested actions until a condition is met. Available conditions are: ['visible','not-visible','exists','not-exists'].
+        /// </summary>
         public const string Until = "until";
+        #endregion
 
         // members: state
         private IDictionary<string, string> arguments;
@@ -87,7 +95,7 @@ namespace Gravity.Services.ActionPlugins.Common
         /// <param name="actionRule">This ActionRule instance (the original object send by the user).</param>
         public override void OnPerform(ActionRule actionRule)
         {
-            DoRepeat(webElement: default, actionRule: actionRule);
+            DoAction(webElement: default, actionRule: actionRule);
         }
 
         /// <summary>
@@ -97,11 +105,11 @@ namespace Gravity.Services.ActionPlugins.Common
         /// <param name="actionRule">This ActionRule instance (the original object send by the user).</param>
         public override void OnPerform(IWebElement webElement, ActionRule actionRule)
         {
-            DoRepeat(webElement, actionRule);
+            DoAction(webElement, actionRule);
         }
 
         // executes Repeat routine
-        private void DoRepeat(IWebElement webElement, ActionRule actionRule)
+        private void DoAction(IWebElement webElement, ActionRule actionRule)
         {
             // setup
             arguments = SetArguments(actionRule);
@@ -146,7 +154,7 @@ namespace Gravity.Services.ActionPlugins.Common
             var method = GetType().GetMethodByDescription(condition);
 
             // exit conditions
-            if(method == null)
+            if (method == null)
             {
                 throw new InvalidOperationException(string.Format(E, condition));
             }
@@ -196,8 +204,8 @@ namespace Gravity.Services.ActionPlugins.Common
 
         // UTILITIES
         private ReadOnlyCollection<IWebElement> GetElements(IWebElement webElement, ActionRule actionRule) => webElement == default
-            ? WebDriver.FindByActionRule(ByFactory, actionRule)
-            : webElement.FindByActionRule(ByFactory, actionRule);
+            ? WebDriver.FindElementsByActionRule(ByFactory, actionRule)
+            : webElement.FindElementsByActionRule(ByFactory, actionRule);
 
         // CONDITIONS REPOSITORY
 #pragma warning disable S1144, RCS1213, IDE0051

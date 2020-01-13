@@ -179,7 +179,6 @@ namespace Gravity.Drivers.Mock.WebDriver
         /// </summary>
         public void Click()
         {
-            var a = "";
             // mock method - should not do anything
         }
 

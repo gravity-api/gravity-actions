@@ -1,21 +1,25 @@
 ﻿/*
  * CHANGE LOG - keep only last 5 threads
  * 
- * 2019-01-03
- *    - modify: add support for click without specified element (flat action)
- *    - modify: improve XML comments
- *    - modify: change to JSON resource
+ * 2020-01-13
+ *    - modify: add on-element event (action can now be executed on the element without searching for a child)
+ *    - modify: use FindByActionRule/GetByActionRule methods to reduce code base and increase code usage
+ *    
+ * 2019-12-24
+ *    - modify: add constructor to override base class types
+ *    
+ * 2019-08-22
+ *    - modify: add support for special cases - for action only, NOT for extraction
  *    
  * 2019-01-11
  *    - modify: override action-name using ActionType constant
  *    - modify: improve element-level action
- *    -    fix: on element action always takes absolute XPath
+ *    -    fix: on element action always takes absolute XPath 
  *    
- * 2019-08-22
- *    - modify: add support for special cases - for action only, NOT for extraction
- * 
- * 2019-12-24
- *    - modify: add constructor to override base class types
+ * 2019-01-03
+ *    - modify: add support for click without specified element (flat action)
+ *    - modify: improve XML comments
+ *    - modify: change to JSON resource
  * 
  * on-line resources
  */
@@ -48,8 +52,12 @@ namespace Gravity.Services.ActionPlugins.Common
         public const string NoAlert = "no-alert";
         #endregion
 
-        // constants: arguments
-        public const string UNTIL = "until";
+        #region *** constants: arguments  ***
+        /// <summary>
+        /// Repeats the click action until condition is met. Available conditions are: ['no-alert'].
+        /// </summary>
+        public const string Until = "until";
+        #endregion
 
         // members: state
         private readonly Actions actions;
@@ -84,25 +92,7 @@ namespace Gravity.Services.ActionPlugins.Common
         /// <param name="actionRule">This ActionRule instance (the original object sent by the user).</param>
         public override void OnPerform(ActionRule actionRule)
         {
-            // exit conditions
-            if (Flat(actionRule))
-            {
-                return;
-            }
-
-            // execute special action
-            arguments = new CliFactory(actionRule.Argument).Parse();
-            if (arguments.ContainsKey(UNTIL))
-            {
-                ConditionsFactory(actionRule);
-                return;
-            }
-
-            // get locator
-            var by = ByFactory.Get(actionRule.Locator, actionRule.ElementToActOn);
-
-            // execute action
-            WebDriver.GetElement(by, TimeSpan.FromMilliseconds(ElementSearchTimeout)).Click();
+            DoAction(webElement: default, actionRule);
         }
 
         /// <summary>
@@ -112,57 +102,72 @@ namespace Gravity.Services.ActionPlugins.Common
         /// <param name="actionRule">This ActionRule instance (the original object send by the user).</param>
         public override void OnPerform(IWebElement webElement, ActionRule actionRule)
         {
-            // exit conditions
-            if (Flat(actionRule))
+            DoAction(webElement, actionRule);
+        }
+
+        // executes action routine
+        private void DoAction(IWebElement webElement, ActionRule actionRule)
+        {
+            // parse arguments
+            arguments = new CliFactory(actionRule.Argument).Parse();
+
+            // flat conditions
+            if (PluginUtilities.IsFlatAction(webElement, actionRule))
             {
+                actions.Click().Build().Perform();
                 return;
             }
 
-            // get locator
-            var by = ByFactory.Get(actionRule.Locator, actionRule.ElementToActOn);
+            // special actions conditions
+            if (arguments.ContainsKey(Until))
+            {
+                ConditionsFactory(webElement, actionRule, arguments[Until]);
+                return;
+            }
 
-            // get element
-            var element = IsAbsoluteXPath(actionRule)
-                ? WebDriver.GetElement(by, TimeSpan.FromMilliseconds(ElementSearchTimeout))
-                : webElement.FindElement(by);
+            // on element action
+            var timeout = TimeSpan.FromMilliseconds(ElementSearchTimeout);
+            if (webElement != default)
+            {
+                webElement.GetElementByActionRule(ByFactory, actionRule, timeout).Click();
+                return;
+            }
 
-            // execute action
-            element.Click();
+            // default
+            WebDriver.GetElementByActionRule(ByFactory, actionRule, timeout).Click();
         }
 
-        // execute flat action
-        private bool Flat(ActionRule actionRule) => WasFlatAction(actionRule, () =>
-        {
-            actions.Click().Build().Perform();
-            return true;
-        });
-
         // special actions factory
-        private void ConditionsFactory(ActionRule actionRule)
+        private void ConditionsFactory(IWebElement webElement, ActionRule actionRule, string condition)
         {
             // get method
-            var method = GetType().GetMethodByDescription(arguments[UNTIL]);
+            var method = GetType().GetMethodByDescription(condition);
 
             // invoke
-            method.Invoke(this, new object[] { actionRule });
+            method.Invoke(this, new object[] { webElement, actionRule });
         }
 
 #pragma warning disable S1144, RCS1213, IDE0051
         [Description(NoAlert)]
-        private void Alert(ActionRule actionRule)
+        private void Alert(IWebElement webElement, ActionRule actionRule)
         {
-            // get locator
-            var by = ByFactory.Get(actionRule.Locator, actionRule.ElementToActOn);
+            // setup
+            var timeout = TimeSpan.FromMilliseconds(ElementSearchTimeout);
 
             // click until condition met or timeout reached
             wait.Until(webDriver =>
             {
-                webDriver.GetElement(by).Click();
+                var element = webElement != default
+                    ? webElement.GetElementByActionRule(ByFactory, actionRule, timeout)
+                    : WebDriver.GetElementByActionRule(ByFactory, actionRule, timeout);
+                element.Click();
+
                 if (webDriver.HasAlert())
                 {
                     webDriver.SwitchTo().Alert().Dismiss();
                     return null;
                 }
+
                 return webDriver;
             });
         }

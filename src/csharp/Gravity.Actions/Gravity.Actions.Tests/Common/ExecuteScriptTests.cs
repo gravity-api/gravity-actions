@@ -118,7 +118,7 @@ namespace Gravity.Services.ActionPlugins.Tests.Common
         }
 
         [DataTestMethod]
-        [DataRow(@"{""argument"":""checked=false;""}")]
+        [DataRow(@"{""argument"":""log('unitTesting');""}")]
         public void ExecuteScriptElementNoDot(string actionRule)
         {
             // execute

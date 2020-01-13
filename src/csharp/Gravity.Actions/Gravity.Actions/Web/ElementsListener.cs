@@ -146,20 +146,21 @@ namespace Gravity.Services.ActionPlugins.Web
             arguments = new CliFactory(cli).Parse();
 
             // set defaults: interval
-            if (!arguments.ContainsKey(Interval))
-            {
-                arguments[Interval] = "3000";
-            }
+            arguments[Interval] = !arguments.ContainsKey(Interval)
+                ? $"{ElementSearchTimeout}"
+                : arguments[Interval];
+
             // set defaults: action
             if (!arguments.ContainsKey(ActionToPerform))
             {
                 arguments[ActionToPerform] = "Click";
             }
+
             // set defaults: action
-            if (!arguments.ContainsKey(ListenerTimout))
-            {
-                arguments[ListenerTimout] = "600000";
-            }
+            arguments[ListenerTimout] = !arguments.ContainsKey(ListenerTimout)
+                ? $"{PageLoadTimeout}"
+                : arguments[ListenerTimout];
+
             // set defaults: arguments
             if (!arguments.ContainsKey(Arguments))
             {
@@ -172,13 +173,13 @@ namespace Gravity.Services.ActionPlugins.Web
         private TimeSpan GetTimeSapnFromArgument(string argument)
         {
             var interval = TimeSpan.FromMilliseconds(0);
-            if (TimeSpan.TryParse(arguments[argument], out TimeSpan timeSpanOut))
-            {
-                return timeSpanOut;
-            }
-            else if (int.TryParse(arguments[argument], out int intOut))
+            if (uint.TryParse(arguments[argument], out uint intOut))
             {
                 return TimeSpan.FromMilliseconds(intOut);
+            }
+            else if (TimeSpan.TryParse(arguments[argument], out TimeSpan timeSpanOut))
+            {
+                return timeSpanOut;
             }
             return interval;
         }

@@ -65,7 +65,7 @@ namespace Gravity.Services.ActionPlugins.Common
         /// <param name="actionRule">This ActionRule instance (the original object sent by the user).</param>
         public override void OnPerform(ActionRule actionRule)
         {
-            DoAction(default, actionRule);
+            DoAction(webElement: default, actionRule);
         }
 
         /// <summary>

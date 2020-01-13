@@ -44,16 +44,16 @@ namespace Gravity.Services.ActionPlugins.Tests.Web
                 "ElementsListener", Types, "elements-listener.json");
         }
 
-        [DataTestMethod]
-        [DataRow("{'argument':'{{$ --action:Click}}','ElementToActOn':'//positive'}")]
-        public void ElementsListenerClickPositive(string actionRule)
-        {
-            // execute
-            ExecuteAction<ElementsListener>(actionRule);
+        //[DataTestMethod]
+        //[DataRow("{'argument':'{{$ --action:Click}}','ElementToActOn':'//positive'}")]
+        //public void ElementsListenerClickPositive(string actionRule)
+        //{
+        //    // execute
+        //    ExecuteAction<ElementsListener>(actionRule);
 
-            // assertion (no assertion here, expected is no exception)
-            Assert.IsTrue(true);
-        }
+        //    // assertion (no assertion here, expected is no exception)
+        //    Assert.IsTrue(true);
+        //}
     }
 }
 #pragma warning restore S4144

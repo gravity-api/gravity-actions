@@ -117,7 +117,7 @@ namespace Gravity.Services.ActionPlugins.Tests.Web
         }
 
         [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
-        [DataRow("{'elementToActOn':'//none'}")]
+        [DataRow("{'elementToActOn':'//none','locator':'" + LocatorType.Xpath + "'}")]
         public void ContextClickElementAbsoluteNoElement(string actionRule)
         {
             // execute

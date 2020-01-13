@@ -1,15 +1,16 @@
 ﻿/*
  * CHANGE LOG - keep only last 5 threads
  * 
+ * 2019-12-31
+ *    - modify: add constructor to override base class types
+ *    
  * 2019-01-12
  *    - modify: improve XML comments
  *    - modify: override ActionName using ActionType constant
- *    
- * 2019-12-31
- *    - modify: add constructor to override base class types
  * 
  * on-line resources
  */
+using Gravity.Services.ActionPlugins.Extensions;
 using Gravity.Services.Comet.Engine.Attributes;
 using Gravity.Services.Comet.Engine.Extensions;
 using Gravity.Services.Comet.Engine.Plugins;
@@ -71,7 +72,7 @@ namespace Gravity.Services.ActionPlugins.Web
         /// <param name="actionRule">This ActionRule instance (the original object sent by the user).</param>
         public override void OnPerform(ActionRule actionRule)
         {
-            wait.Until(_ => DoTryClick(webElement: default, actionRule));
+            DoAction(webElement: default, actionRule);
         }
 
         /// <summary>
@@ -81,25 +82,31 @@ namespace Gravity.Services.ActionPlugins.Web
         /// <param name="actionRule">This ActionRule instance (the original object send by the user).</param>
         public override void OnPerform(IWebElement webElement, ActionRule actionRule)
         {
-            wait.Until(_ => DoTryClick(webElement: webElement, actionRule));
+            DoAction(webElement, actionRule);
         }
 
         // executes TryClick routine
-        private IWebDriver DoTryClick(IWebElement webElement, ActionRule actionRule)
+        private void DoAction(IWebElement webElement, ActionRule actionRule)
         {
-            // fetch locator
-            var by = ByFactory.Get(actionRule.Locator, actionRule.ElementToActOn);
+            // setup
+            var timeout = TimeSpan.FromMilliseconds(ElementSearchTimeout);
 
-            // get element to act on
-            var argument = webElement == default
-                ? WebDriver.FindElement(by)
-                : webElement.FindElement(by);
+            wait.Until(_ =>
+            {
+                // fetch locator
+                var by = ByFactory.Get(actionRule.Locator, actionRule.ElementToActOn);
 
-            // execute script
-            ((IJavaScriptExecutor)WebDriver).ExecuteScript(Script, argument);
+                // get element to act on
+                var element = webElement != default
+                    ? webElement.GetElementByActionRule(ByFactory, actionRule, timeout)
+                    : WebDriver.GetElementByActionRule(ByFactory, actionRule, timeout);
 
-            // for waiter condition
-            return WebDriver;
+                // execute script
+                ((IJavaScriptExecutor)WebDriver).ExecuteScript(Script, element);
+
+                // for waiter condition
+                return WebDriver;
+            });
         }
     }
 }

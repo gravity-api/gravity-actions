@@ -1,12 +1,12 @@
 ﻿/*
  * CHANGE LOG - keep only last 5 threads
  * 
+ * 2019-12-27
+ *    - modify: add constructor to override base class types
+ *    
  * 2019-01-12
  *    - modify: improve XML comments
  *    - modify: override ActionName using ActionType constant
- *    
- * 2019-12-27
- *    - modify: add constructor to override base class types
  * 
  * on-line resources
  */
@@ -52,7 +52,7 @@ namespace Gravity.Services.ActionPlugins.Web
         /// <param name="actionRule">This ActionRule instance (the original object sent by the user).</param>
         public override void OnPerform(ActionRule actionRule)
         {
-            DoNavigateForward(actionRule);
+            DoAction(actionRule);
         }
 
         /// <summary>
@@ -63,11 +63,11 @@ namespace Gravity.Services.ActionPlugins.Web
         /// <param name="actionRule">This ActionRule instance (the original object send by the user).</param>
         public override void OnPerform(IWebElement webElement, ActionRule actionRule)
         {
-            DoNavigateForward(actionRule);
+            DoAction(actionRule);
         }
 
         // executes NavigateForward routine
-        private void DoNavigateForward(ActionRule actionRule)
+        private void DoAction(ActionRule actionRule)
         {
             // set default value
             var iterations = 1;

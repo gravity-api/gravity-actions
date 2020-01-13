@@ -1,17 +1,20 @@
 ﻿/*
  * CHANGE LOG - keep only last 5 threads
- * 
- * 2019-01-11
- *    - modify: improve XML comments
+ *
+ * 2020-01-13
+ *    - modify: add on-element event (action can now be executed on the element without searching for a child)
+ *    - modify: use FindByActionRule/GetByActionRule methods to reduce code base and increase code usage
  *    
  * 2019-12-24
  *    - modify: add constructor to override base class types
+ *    
+ * 2019-01-11
+ *    - modify: improve XML comments
  *
  * on-line resources
  */
-using Gravity.Drivers.Selenium;
+using Gravity.Services.ActionPlugins.Extensions;
 using Gravity.Services.Comet.Engine.Attributes;
-using Gravity.Services.Comet.Engine.Core;
 using Gravity.Services.Comet.Engine.Extensions;
 using Gravity.Services.Comet.Engine.Plugins;
 using Gravity.Services.DataContracts;
@@ -58,18 +61,7 @@ namespace Gravity.Services.ActionPlugins.Web
         /// <param name="actionRule">This ActionRule instance (the original object sent by the user).</param>
         public override void OnPerform(ActionRule actionRule)
         {
-            // exit conditions
-            if (Flat(actionRule))
-            {
-                return;
-            }
-
-            // get locator
-            var by = ByFactory.Get(actionRule.Locator, actionRule.ElementToActOn);
-
-            // execute action
-            var element = WebDriver.GetElement(by, TimeSpan.FromMilliseconds(ElementSearchTimeout));
-            actions.ContextClick(element).Build().Perform();
+            DoAction(webElement: default, actionRule);
         }
 
         /// <summary>
@@ -79,27 +71,28 @@ namespace Gravity.Services.ActionPlugins.Web
         /// <param name="actionRule">This ActionRule instance (the original object send by the user).</param>
         public override void OnPerform(IWebElement webElement, ActionRule actionRule)
         {
-            // exit conditions
-            if (Flat(actionRule))
+            DoAction(webElement, actionRule);
+        }
+
+        // executes action routine
+        private void DoAction(IWebElement webElement, ActionRule actionRule)
+        {
+            // flat conditions
+            if (PluginUtilities.IsFlatAction(webElement, actionRule))
             {
+                actions.ContextClick().Build().Perform();
                 return;
             }
 
-            // get locator
-            var by = ByFactory.Get(actionRule.Locator, actionRule.ElementToActOn);
+            // setup
+            var timeout = TimeSpan.FromMilliseconds(ElementSearchTimeout);
 
-            // execute action
-            var element = IsAbsoluteXPath(actionRule)
-                ? WebDriver.GetElement(by, TimeSpan.FromMilliseconds(ElementSearchTimeout))
-                : webElement.FindElement(by);
+            // on element action
+            var element = webElement != default
+                ? webElement.GetElementByActionRule(ByFactory, actionRule, timeout)
+                : WebDriver.GetElementByActionRule(ByFactory, actionRule, timeout);
+
             actions.ContextClick(element).Build().Perform();
         }
-
-        // execute flat action
-        private bool Flat(ActionRule actionRule) => WasFlatAction(actionRule, () =>
-        {
-            actions.ContextClick().Build().Perform();
-            return true;
-        });
     }
 }

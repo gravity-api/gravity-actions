@@ -1,10 +1,6 @@
 ﻿/*
  * CHANGE LOG - keep only last 5 threads
- * 
- * 2020-01-13
- *    - modify: add on-element event (action can now be executed on the element without searching for a child)
- *    - modify: use FindByActionRule/GetByActionRule methods to reduce code base and increase code usage
- * 
+ *  
  * 2019-02-19
  *    - modify: improve XML comments
  *    - modify: override action-name using ActionType constant

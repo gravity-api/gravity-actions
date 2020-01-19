@@ -179,7 +179,10 @@ namespace Gravity.Drivers.Mock.WebDriver
         /// </summary>
         public void Click()
         {
-            // mock method - should not do anything
+            if (!Displayed)
+            {
+                throw new ElementNotVisibleException();
+            }
         }
 
         /// <summary>

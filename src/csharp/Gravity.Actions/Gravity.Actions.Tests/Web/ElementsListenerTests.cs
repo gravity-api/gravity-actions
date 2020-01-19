@@ -44,16 +44,82 @@ namespace Gravity.Services.ActionPlugins.Tests.Web
                 "ElementsListener", Types, "elements-listener.json");
         }
 
-        //[DataTestMethod]
-        //[DataRow("{'argument':'{{$ --action:Click}}','ElementToActOn':'//positive'}")]
-        //public void ElementsListenerClickPositive(string actionRule)
-        //{
-        //    // execute
-        //    ExecuteAction<ElementsListener>(actionRule);
+        [DataTestMethod]
+        [DataRow("{'argument':'{{$ --action:Click}}','ElementToActOn':'//positive'}")]
+        public void ElementsListenerClickPositive(string actionRule)
+        {
+            // execute
+            ExecuteAction<ElementsListener>(actionRule);
 
-        //    // assertion (no assertion here, expected is no exception)
-        //    Assert.IsTrue(true);
-        //}
+            // assertion (no assertion here, expected is no exception)
+            Assert.IsTrue(true);
+        }
+
+        [DataTestMethod]
+        [DataRow("{'argument':'{{$ --action:Click}}','ElementToActOn':'//null'}")]
+        public void ElementsListenerClickNull(string actionRule)
+        {
+            // execute
+            ExecuteAction<ElementsListener>(actionRule);
+
+            // assertion (no assertion here, expected is no exception)
+            Assert.IsTrue(true);
+        }
+
+        [DataTestMethod]
+        [DataRow("{'argument':'{{$ --action:Click}}','ElementToActOn':'//stale'}")]
+        public void ElementsListenerClickStale(string actionRule)
+        {
+            // execute
+            ExecuteAction<ElementsListener>(actionRule);
+
+            // assertion (no assertion here, expected is no exception)
+            Assert.IsTrue(true);
+        }
+
+        [DataTestMethod]
+        [DataRow("{'argument':'{{$ --action:Click}}','ElementToActOn':'//none'}")]
+        public void ElementsListenerClickNoElement(string actionRule)
+        {
+            // execute
+            ExecuteAction<ElementsListener>(actionRule);
+
+            // assertion (no assertion here, expected is no exception)
+            Assert.IsTrue(true);
+        }
+
+        [DataTestMethod]
+        [DataRow("{'argument':'{{$ --action:Click}}','ElementToActOn':'//negative'}")]
+        public void ElementsListenerClickNoNegative(string actionRule)
+        {
+            // execute
+            ExecuteAction<ElementsListener>(actionRule);
+
+            // assertion (no assertion here, expected is no exception)
+            Assert.IsTrue(true);
+        }
+
+        [DataTestMethod]
+        [DataRow("{'ElementToActOn':'//positive'}")]
+        public void ElementsListenerClickNoArguments(string actionRule)
+        {
+            // execute
+            ExecuteAction<ElementsListener>(actionRule);
+
+            // assertion (no assertion here, expected is no exception)
+            Assert.IsTrue(true);
+        }
+
+        [DataTestMethod]
+        [DataRow("{'argument':'{{$ --action:SendKeys --args:{\"keys\":\"automation\"}}}','ElementToActOn':'//positive'}")]
+        public void ElementsListenerSendKeysPositive(string actionRule)
+        {
+            // execute
+            ExecuteAction<ElementsListener>(actionRule);
+
+            // assertion (no assertion here, expected is no exception)
+            Assert.IsTrue(true);
+        }
     }
 }
 #pragma warning restore S4144

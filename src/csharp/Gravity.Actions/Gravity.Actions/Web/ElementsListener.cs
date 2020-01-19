@@ -102,7 +102,7 @@ namespace Gravity.Services.ActionPlugins.Web
 
             // execute listener
             var expire = 0;
-            while (WebDriver != null || expire <= expiration)
+            while (WebDriver != null && expire <= expiration)
             {
                 // execute heartbeat
                 DoListenerHeartbeat(childActionRule, by, interval);
@@ -127,9 +127,7 @@ namespace Gravity.Services.ActionPlugins.Web
                     }
                 }
             }
-            catch (Exception e) when (e is NullReferenceException
-                || e is NoSuchElementException
-                || e is StaleElementReferenceException)
+            catch (Exception e) when (e is NoSuchElementException || e is StaleElementReferenceException)
             {
                 Logger.LogDebug("No elements found, ElementsListener is still running.");
             }

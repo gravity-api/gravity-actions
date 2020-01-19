@@ -1,6 +1,9 @@
 ﻿/*
  * CHANGE LOG - keep only last 5 threads
  * 
+ * 2020-01-19
+ *    -    fix: bug - default action did not send keys from arguments[Keystrokes]
+ * 
  * 2020-01-13
  *    - modify: add on-element event (action can now be executed on the element without searching for a child)
  *    - modify: use FindByActionRule/GetByActionRule methods to reduce code base and increase code usage
@@ -157,7 +160,7 @@ namespace Gravity.Services.ActionPlugins.Common
             }
 
             // execute: default
-            element.SendKeys(actionRule.Argument);
+            element.SendKeys(arguments[Keystrokes]);
         }
 
         // populate action arguments based on action rule or CLI

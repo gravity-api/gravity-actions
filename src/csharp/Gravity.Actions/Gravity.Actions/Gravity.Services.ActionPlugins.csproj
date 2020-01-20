@@ -24,6 +24,7 @@
     <None Remove="Documentation\double-click.json" />
     <None Remove="Documentation\elements-listener.json" />
     <None Remove="Documentation\execute-script.json" />
+    <None Remove="Documentation\get-screenshot.json" />
     <None Remove="Documentation\keyboard.json" />
     <None Remove="Documentation\navigate-back.json" />
     <None Remove="Documentation\navigate-forward.json" />
@@ -45,6 +46,7 @@
     <EmbeddedResource Include="Documentation\context-click.json" />
     <EmbeddedResource Include="Documentation\double-click.json" />
     <EmbeddedResource Include="Documentation\execute-script.json" />
+    <EmbeddedResource Include="Documentation\get-screenshot.json" />
     <EmbeddedResource Include="Documentation\keyboard.json" />
     <EmbeddedResource Include="Documentation\set-geo-location.json" />
     <EmbeddedResource Include="Documentation\navigate-back.json" />

@@ -20,7 +20,7 @@ namespace Gravity.Drivers.Mock.WebDriver
     /// <summary>
     /// Defines the interface through which the user controls elements on the page.
     /// </summary>
-    public class MockWebElement : IWebElement, IWrapsDriver, ILocatable, IFindsByLinkText
+    public class MockWebElement : IWebElement, IWrapsDriver, ILocatable, IFindsByLinkText, ITakesScreenshot
     {
         // members: static
         private static readonly Random random = new Random();
@@ -297,6 +297,12 @@ namespace Gravity.Drivers.Mock.WebDriver
         {
             // mock method - should not do anything
         }
+
+        /// <summary>
+        /// Gets a <see cref="Screenshot"/> object representing the image of the page on the screen.
+        /// </summary>
+        /// <returns>A <see cref="Screenshot"/> object containing the image.</returns>
+        public Screenshot GetScreenshot() => new MockScreenshot(string.Empty);
         #endregion
 
         #region *** factory      ***

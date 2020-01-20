@@ -24,7 +24,7 @@ namespace Gravity.Drivers.Mock.WebDriver
     /// <summary>
     /// Defines the interface through which the user controls the browser.
     /// </summary>
-    public class MockWebDriver : IWebDriver, IJavaScriptExecutor, IHasSessionId, IActionExecutor, IHasInputDevices
+    public class MockWebDriver : IWebDriver, IJavaScriptExecutor, IHasSessionId, IActionExecutor, IHasInputDevices, ITakesScreenshot
     {
         #region *** constructors ***
         /// <summary>
@@ -291,6 +291,12 @@ namespace Gravity.Drivers.Mock.WebDriver
         {
             // mock method - should not do anything
         }
+
+        /// <summary>
+        /// Gets a <see cref="Screenshot"/> object representing the image of the page on the screen.
+        /// </summary>
+        /// <returns>A <see cref="Screenshot"/> object containing the image.</returns>
+        public Screenshot GetScreenshot() => new MockScreenshot(string.Empty);
         #endregion
 
         // sets child windows based on provided capabilities

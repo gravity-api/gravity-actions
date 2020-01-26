@@ -15,7 +15,7 @@ using System;
 namespace Gravity.Services.ActionPlugins.Tests.Common
 {
     [TestClass]
-    public class SendKeysTest : ActionTests
+    public class SendKeysTests : ActionTests
     {
         [TestMethod]
         public void SendKeysCreateNoTypes()

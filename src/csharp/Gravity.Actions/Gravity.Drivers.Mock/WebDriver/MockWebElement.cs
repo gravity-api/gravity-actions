@@ -20,7 +20,7 @@ namespace Gravity.Drivers.Mock.WebDriver
     /// <summary>
     /// Defines the interface through which the user controls elements on the page.
     /// </summary>
-    public class MockWebElement : IWebElement, IWrapsDriver, ILocatable, IFindsByLinkText
+    public class MockWebElement : IWebElement, IWrapsDriver, ILocatable, IFindsByLinkText, ITakesScreenshot
     {
         // members: static
         private static readonly Random random = new Random();
@@ -179,7 +179,10 @@ namespace Gravity.Drivers.Mock.WebDriver
         /// </summary>
         public void Click()
         {
-            // mock method - should not do anything
+            if (!Displayed)
+            {
+                throw new ElementNotVisibleException();
+            }
         }
 
         /// <summary>
@@ -294,6 +297,12 @@ namespace Gravity.Drivers.Mock.WebDriver
         {
             // mock method - should not do anything
         }
+
+        /// <summary>
+        /// Gets a <see cref="Screenshot"/> object representing the image of the page on the screen.
+        /// </summary>
+        /// <returns>A <see cref="Screenshot"/> object containing the image.</returns>
+        public Screenshot GetScreenshot() => new MockScreenshot(string.Empty);
         #endregion
 
         #region *** factory      ***
@@ -403,7 +412,7 @@ namespace Gravity.Drivers.Mock.WebDriver
         }
 
         /// <summary>
-        /// Gets a random element with 10% chance of getting an element.
+        /// Gets a random element with 1% chance of getting an element.
         /// </summary>
         /// <param name="parent">Driver in use.</param>
         /// <returns>An interface through which the user controls elements on the page.</returns>
@@ -411,7 +420,7 @@ namespace Gravity.Drivers.Mock.WebDriver
         public static IWebElement GetRandomNotExists(MockWebDriver parent)
         {
             // fetch elements >> return first or null
-            return RandomElements(parent, 10).FirstOrDefault();
+            return RandomElements(parent, 1).FirstOrDefault();
         }
 
         /// <summary>

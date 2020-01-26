@@ -1,9 +1,13 @@
 ﻿/*
  * CHANGE LOG - keep only last 5 threads
  * 
+ * 2020-01-13
+ *    - modify: add on-element event (action can now be executed on the element without searching for a child)
+ *    - modify: use FindByActionRule/GetByActionRule methods to reduce code base and increase code usage
+ *    
  * on-line resources
  */
-using Gravity.Drivers.Selenium;
+using Gravity.Services.ActionPlugins.Extensions;
 using Gravity.Services.Comet.Engine.Attributes;
 using Gravity.Services.Comet.Engine.Extensions;
 using Gravity.Services.Comet.Engine.Plugins;
@@ -45,7 +49,7 @@ namespace Gravity.Services.ActionPlugins.Web
         /// <param name="actionRule">This ActionRule instance (the original object sent by the user).</param>
         public override void OnPerform(ActionRule actionRule)
         {
-            DoKeyboard(webElement: default, actionRule);
+            DoAction(webElement: default, actionRule);
         }
 
         /// <summary>
@@ -55,19 +59,19 @@ namespace Gravity.Services.ActionPlugins.Web
         /// <param name="actionRule">This ActionRule instance (the original object sent by the user).</param>
         public override void OnPerform(IWebElement webElement, ActionRule actionRule)
         {
-            DoKeyboard(webElement, actionRule);
+            DoAction(webElement, actionRule);
         }
 
-        // executes Keyboard routine
-        private void DoKeyboard(IWebElement webElement, ActionRule actionRule)
+        // executes action routine
+        private void DoAction(IWebElement webElement, ActionRule actionRule)
         {
-            // fetch locator
-            var by = ByFactory.Get(actionRule.Locator, actionRule.ElementToActOn);
+            // setup
+            var timeout = TimeSpan.FromMilliseconds(ElementSearchTimeout);
 
-            // get element to act on
-            var element = webElement == default
-                ? WebDriver.GetElement(by, TimeSpan.FromMilliseconds(ElementSearchTimeout))
-                : webElement.FindElement(by);
+            // on element action
+            var element = webElement != default
+                ? webElement.GetElementByActionRule(ByFactory, actionRule, timeout)
+                : WebDriver.GetElementByActionRule(ByFactory, actionRule, timeout);
 
             // execute action
             element.SendKeys(GetKey(actionRule.Argument));

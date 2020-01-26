@@ -1,17 +1,21 @@
 ﻿/*
  * CHANGE LOG - keep only last 5 threads
  * 
+ * 2020-01-13
+ *    - modify: add on-element event (action can now be executed on the element without searching for a child)
+ *    - modify: use FindByActionRule/GetByActionRule methods to reduce code base and increase code usage
+ *    
+ * 2019-12-28
+ *    - modify: add constructor to override base class types
+ *    
  * 2019-01-12
  *    - modify: improve XML comments
  *    - modify: override ActionName using ActionType constant
  *    - modify: code cleaning
  *    
- * 2019-12-28
- *    - modify: add constructor to override base class types
- * 
  * on-line resources
  */
-using Gravity.Drivers.Selenium;
+using Gravity.Services.ActionPlugins.Extensions;
 using Gravity.Services.Comet.Engine.Attributes;
 using Gravity.Services.Comet.Engine.Extensions;
 using Gravity.Services.Comet.Engine.Plugins;
@@ -55,14 +59,7 @@ namespace Gravity.Services.ActionPlugins.Common
         /// <param name="actionRule">This ActionRule instance (the original object sent by the user).</param>
         public override void OnPerform(ActionRule actionRule)
         {
-            DoRegisterParameter(actionRule, () =>
-            {
-                // get locator
-                var by = ByFactory.Get(actionRule.Locator, actionRule.ElementToActOn);
-
-                // get element
-                return WebDriver.GetElement(by, TimeSpan.FromMilliseconds(ElementSearchTimeout));
-            });
+            DoAction(default, actionRule);
         }
 
         /// <summary>
@@ -73,31 +70,26 @@ namespace Gravity.Services.ActionPlugins.Common
         /// <param name="actionRule">This ActionRule instance (the original object send by the user).</param>
         public override void OnPerform(IWebElement webElement, ActionRule actionRule)
         {
-            DoRegisterParameter(actionRule, () =>
-            {
-                // get locator
-                var by = ByFactory.Get(actionRule.Locator, actionRule.ElementToActOn);
-
-                // get element
-                return IsAbsoluteXPath(actionRule)
-                    ? WebDriver.GetElement(by, TimeSpan.FromMilliseconds(ElementSearchTimeout))
-                    : webElement.FindElement(by);
-            });
+            DoAction(webElement, actionRule);
         }
 
-        // executes RegisterParameter routine
-        private void DoRegisterParameter(ActionRule actionRule, Func<IWebElement> elementFactory)
+        // executes action routine
+        private void DoAction(IWebElement webElement, ActionRule actionRule)
         {
+            // setup
             var result = string.Empty;
+            var timeout = TimeSpan.FromMilliseconds(ElementSearchTimeout);
             try
             {
                 // get element
-                var element = elementFactory.Invoke();
+                var element = webElement != default
+                    ? webElement.GetElementByActionRule(ByFactory, actionRule, timeout)
+                    : WebDriver.GetElementByActionRule(ByFactory, actionRule, timeout);
 
                 // get parameter value
                 result = GetTextOrAttribute(element, actionRule);
             }
-            catch (Exception e) when (e is NoSuchElementException ||e is WebDriverTimeoutException)
+            catch (Exception e) when (e is NoSuchElementException || e is WebDriverTimeoutException)
             {
                 result = Regex.Match(actionRule.ElementToActOn, actionRule.RegularExpression).Value;
                 throw;

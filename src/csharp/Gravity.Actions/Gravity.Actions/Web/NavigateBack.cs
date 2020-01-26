@@ -1,13 +1,13 @@
 ﻿/*
  * CHANGE LOG - keep only last 5 threads
  * 
+ * 2019-12-24
+ *    - modify: add constructor to override base class types
+ *    
  * 2019-01-12
  *    - modify: improve XML comments
  *    - modify: override action-name using ActionType constant
  *    
- * 2019-12-24
- *    - modify: add constructor to override base class types
- * 
  * on-line resources
  */
 using Gravity.Services.Comet.Engine.Attributes;
@@ -52,7 +52,7 @@ namespace Gravity.Services.ActionPlugins.Web
         /// <param name="actionRule">This ActionRule instance (the original object sent by the user).</param>
         public override void OnPerform(ActionRule actionRule)
         {
-            DoNavigateBack(actionRule);
+            DoAction(actionRule);
         }
 
         /// <summary>
@@ -63,11 +63,11 @@ namespace Gravity.Services.ActionPlugins.Web
         /// <param name="actionRule">This ActionRule instance (the original object send by the user).</param>
         public override void OnPerform(IWebElement webElement, ActionRule actionRule)
         {
-            DoNavigateBack(actionRule);
+            DoAction(actionRule);
         }
 
-        // executes NavigateBack routine
-        private void DoNavigateBack(ActionRule actionRule)
+        // executes action routine
+        private void DoAction(ActionRule actionRule)
         {
             // set default value
             var iterations = 1;

@@ -22,7 +22,9 @@
     <None Remove="Documentation\close-window.json" />
     <None Remove="Documentation\context-click.json" />
     <None Remove="Documentation\double-click.json" />
+    <None Remove="Documentation\elements-listener.json" />
     <None Remove="Documentation\execute-script.json" />
+    <None Remove="Documentation\get-screenshot.json" />
     <None Remove="Documentation\keyboard.json" />
     <None Remove="Documentation\navigate-back.json" />
     <None Remove="Documentation\navigate-forward.json" />
@@ -36,6 +38,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Documentation\elements-listener.json" />
     <EmbeddedResource Include="Documentation\click.json" />
     <EmbeddedResource Include="Documentation\close-all-child-windows.json" />
     <EmbeddedResource Include="Documentation\close-browser.json" />
@@ -43,6 +46,7 @@
     <EmbeddedResource Include="Documentation\context-click.json" />
     <EmbeddedResource Include="Documentation\double-click.json" />
     <EmbeddedResource Include="Documentation\execute-script.json" />
+    <EmbeddedResource Include="Documentation\get-screenshot.json" />
     <EmbeddedResource Include="Documentation\keyboard.json" />
     <EmbeddedResource Include="Documentation\set-geo-location.json" />
     <EmbeddedResource Include="Documentation\navigate-back.json" />
@@ -56,8 +60,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Gravity.Services.Comet" Version="2020.1.9.5" />
-    <PackageReference Include="Microsoft.Extensions.Logging" Version="3.1.0" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="3.1.0" />
+    <PackageReference Include="Gravity.Services.Comet" Version="2020.1.22.1" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="3.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="3.1.1" />
   </ItemGroup>
 </Project>

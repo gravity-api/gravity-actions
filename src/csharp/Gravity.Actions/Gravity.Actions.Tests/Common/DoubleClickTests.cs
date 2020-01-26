@@ -102,7 +102,7 @@ namespace Gravity.Services.ActionPlugins.Tests.Common
         }
 
         [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
-        [DataRow("{'elementToActOn':'//none'}")]
+        [DataRow("{'elementToActOn':'//none','locator':'" + LocatorType.Xpath + "'}")]
         public void DoubleClickElementAbsoluteNoElement(string actionRule)
         {
             // execute
@@ -128,6 +128,27 @@ namespace Gravity.Services.ActionPlugins.Tests.Common
         {
             // execute
             ExecuteAction<DoubleClick>(MockBy.Positive());
+
+            // assertion (no assertion here, expected is no exception)
+            Assert.IsTrue(true);
+        }
+
+        [TestMethod]
+        public void DoubleClickElementFlatNull()
+        {
+            // execute
+            ExecuteAction<DoubleClick>(MockBy.Null());
+
+            // assertion (no assertion here, expected is no exception)
+            Assert.IsTrue(true);
+        }
+
+        [TestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
+        [DataRow("{'elementToActOn':'.//none'}")]
+        public void DoubleClickElementFlatNullElement(string actionRule)
+        {
+            // execute
+            ExecuteAction<DoubleClick>(MockBy.Null(), actionRule);
 
             // assertion (no assertion here, expected is no exception)
             Assert.IsTrue(true);

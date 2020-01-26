@@ -7,12 +7,18 @@ using Gravity.Services.ActionPlugins.Common;
 using Gravity.Services.ActionPlugins.Tests.Base;
 using Gravity.Services.DataContracts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using OpenQA.Selenium;
+using System.IO;
 
+#pragma warning disable S4144
 namespace Gravity.Services.ActionPlugins.Tests.Common
 {
     [TestClass]
     public class GetScreenshotTests : ActionTests
     {
+        // members: constants
+        private const string OutputDir = "GetScreenshot";
+
         [TestMethod]
         public void GetScreenshotCreateNoTypes()
         {
@@ -42,5 +48,196 @@ namespace Gravity.Services.ActionPlugins.Tests.Common
         {
             ValidateActionDocumentation<GetScreenshot>(ActionType.GetScreenshot, Types, "get-screenshot.json");
         }
+
+        [DataTestMethod]
+        [DataRow("{'actionType':'GetScreenshot','argument':'" + OutputDir + "/image-a.png'}")]
+        public void GetScreenshotDriverPositivePng(string actionRule)
+        {
+            // execute
+            var screenshot = ExecuteAction<GetScreenshot>(actionRule)
+                .ExtractionResults[0]
+                .Entities[0]
+                .EntityContentEntries["screenshot"];
+
+            // assertion
+            Assert.IsTrue(File.Exists($"{OutputDir}/image-a.png"));
+            Assert.IsTrue(screenshot.Contains("image-a.png"));
+        }
+
+        [DataTestMethod]
+        [DataRow("{'actionType':'GetScreenshot','argument':'" + OutputDir + "/image-b.png','elementToActOn':'//positive'}")]
+        public void GetScreenshotElementToActOnPositivePng(string actionRule)
+        {
+            // execute
+            var screenshot = ExecuteAction<GetScreenshot>(actionRule)
+                .ExtractionResults[0]
+                .Entities[0]
+                .EntityContentEntries["screenshot"];
+
+            // assertion (no assertion here, expected is no exception)
+            Assert.IsTrue(File.Exists($"{OutputDir}/image-b.png"));
+            Assert.IsTrue(screenshot.Contains("image-b.png"));
+        }
+
+        [DataTestMethod]
+        [DataRow("{'actionType':'GetScreenshot','argument':'" + OutputDir + "/image-a.bmp'}")]
+        public void GetScreenshotDriverPositiveBmp(string actionRule)
+        {
+            // execute
+            var screenshot = ExecuteAction<GetScreenshot>(actionRule)
+                .ExtractionResults[0]
+                .Entities[0]
+                .EntityContentEntries["screenshot"];
+
+            // assertion
+            Assert.IsTrue(File.Exists($"{OutputDir}/image-a.png"));
+            Assert.IsTrue(screenshot.Contains("image-a.png"));
+        }
+
+        [DataTestMethod]
+        [DataRow("{'actionType':'GetScreenshot','argument':'" + OutputDir + "/image-b.bmp','elementToActOn':'//positive'}")]
+        public void GetScreenshotElementToActOnPositiveBmp(string actionRule)
+        {
+            // execute
+            var screenshot = ExecuteAction<GetScreenshot>(actionRule)
+                .ExtractionResults[0]
+                .Entities[0]
+                .EntityContentEntries["screenshot"];
+
+            // assertion (no assertion here, expected is no exception)
+            Assert.IsTrue(File.Exists($"{OutputDir}/image-b.png"));
+            Assert.IsTrue(screenshot.Contains("image-b.png"));
+        }
+
+        [DataTestMethod]
+        [DataRow("{'actionType':'GetScreenshot','argument':'" + OutputDir + "/image-a.gif'}")]
+        public void GetScreenshotDriverPositiveGif(string actionRule)
+        {
+            // execute
+            var screenshot = ExecuteAction<GetScreenshot>(actionRule)
+                .ExtractionResults[0]
+                .Entities[0]
+                .EntityContentEntries["screenshot"];
+
+            // assertion
+            Assert.IsTrue(File.Exists($"{OutputDir}/image-a.png"));
+            Assert.IsTrue(screenshot.Contains("image-a.png"));
+        }
+
+        [DataTestMethod]
+        [DataRow("{'actionType':'GetScreenshot','argument':'" + OutputDir + "/image-b.gif','elementToActOn':'//positive'}")]
+        public void GetScreenshotElementToActOnPositiveGif(string actionRule)
+        {
+            // execute
+            var screenshot = ExecuteAction<GetScreenshot>(actionRule)
+                .ExtractionResults[0]
+                .Entities[0]
+                .EntityContentEntries["screenshot"];
+
+            // assertion (no assertion here, expected is no exception)
+            Assert.IsTrue(File.Exists($"{OutputDir}/image-b.png"));
+            Assert.IsTrue(screenshot.Contains("image-b.png"));
+        }
+
+        [DataTestMethod]
+        [DataRow("{'actionType':'GetScreenshot','argument':'" + OutputDir + "/image-a.tiff'}")]
+        public void GetScreenshotDriverPositiveTiff(string actionRule)
+        {
+            // execute
+            var screenshot = ExecuteAction<GetScreenshot>(actionRule)
+                .ExtractionResults[0]
+                .Entities[0]
+                .EntityContentEntries["screenshot"];
+
+            // assertion
+            Assert.IsTrue(File.Exists($"{OutputDir}/image-a.png"));
+            Assert.IsTrue(screenshot.Contains("image-a.png"));
+        }
+
+        [DataTestMethod]
+        [DataRow("{'actionType':'GetScreenshot','argument':'" + OutputDir + "/image-b.tiff','elementToActOn':'//positive'}")]
+        public void GetScreenshotElementToActOnPositiveTiff(string actionRule)
+        {
+            // execute
+            var screenshot = ExecuteAction<GetScreenshot>(actionRule)
+                .ExtractionResults[0]
+                .Entities[0]
+                .EntityContentEntries["screenshot"];
+
+            // assertion (no assertion here, expected is no exception)
+            Assert.IsTrue(File.Exists($"{OutputDir}/image-b.png"));
+            Assert.IsTrue(screenshot.Contains("image-b.png"));
+        }
+
+        [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
+        [DataRow("{'actionType':'GetScreenshot','argument':'" + OutputDir + "/image-b.png','elementToActOn':'//null'}")]
+        public void GetScreenshotElementToActOnNull(string actionRule)
+        {
+            // execute
+            var screenshot = ExecuteAction<GetScreenshot>(actionRule)
+                .ExtractionResults[0]
+                .Entities[0]
+                .EntityContentEntries["screenshot"];
+
+            // assertion (no assertion here, expected is no exception)
+            Assert.IsTrue(File.Exists($"{OutputDir}/image-b.png"));
+            Assert.IsTrue(screenshot.Contains("image-b.png"));
+        }
+
+        [DataTestMethod]
+        [DataRow("{'actionType':'GetScreenshot','argument':'" + OutputDir + "/image-b.png','elementToActOn':'//negative'}")]
+        public void GetScreenshotElementToActOnNegative(string actionRule)
+        {
+            // execute
+            var screenshot = ExecuteAction<GetScreenshot>(actionRule)
+                .ExtractionResults[0]
+                .Entities[0]
+                .EntityContentEntries["screenshot"];
+
+            // assertion (no assertion here, expected is no exception)
+            Assert.IsTrue(File.Exists($"{OutputDir}/image-b.png"));
+            Assert.IsTrue(screenshot.Contains("image-b.png"));
+        }
+
+        [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
+        [DataRow("{'actionType':'GetScreenshot','argument':'" + OutputDir + "/image-b.png','elementToActOn':'//stale'}")]
+        public void GetScreenshotElementToActOnStale(string actionRule)
+        {
+            // execute
+            var screenshot = ExecuteAction<GetScreenshot>(actionRule)
+                .ExtractionResults[0]
+                .Entities[0]
+                .EntityContentEntries["screenshot"];
+
+            // assertion (no assertion here, expected is no exception)
+            Assert.IsTrue(File.Exists($"{OutputDir}/image-b.png"));
+            Assert.IsTrue(screenshot.Contains("image-b.png"));
+        }
+
+        [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
+        [DataRow("{'actionType':'GetScreenshot','argument':'" + OutputDir + "/image-b.png','elementToActOn':'//none'}")]
+        public void GetScreenshotElementToActOnNone(string actionRule)
+        {
+            // execute
+            var screenshot = ExecuteAction<GetScreenshot>(actionRule)
+                .ExtractionResults[0]
+                .Entities[0]
+                .EntityContentEntries["screenshot"];
+
+            // assertion (no assertion here, expected is no exception)
+            Assert.IsTrue(File.Exists($"{OutputDir}/image-b.png"));
+            Assert.IsTrue(screenshot.Contains("image-b.png"));
+        }
+
+        [TestCleanup]
+        public void Cleanup()
+        {
+            if (!Directory.Exists(OutputDir))
+            {
+                return;
+            }
+            Directory.Delete(path: OutputDir, recursive: true);
+        }
     }
 }
+#pragma warning restore

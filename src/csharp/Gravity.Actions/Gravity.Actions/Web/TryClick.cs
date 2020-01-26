@@ -93,9 +93,6 @@ namespace Gravity.Services.ActionPlugins.Web
 
             wait.Until(_ =>
             {
-                // fetch locator
-                var by = ByFactory.Get(actionRule.Locator, actionRule.ElementToActOn);
-
                 // get element to act on
                 var element = webElement != default
                     ? webElement.GetElementByActionRule(ByFactory, actionRule, timeout)

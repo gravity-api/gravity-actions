@@ -24,6 +24,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 
+#pragma warning disable S4144
 namespace Gravity.Services.ActionPlugins.Common
 {
     [Action(
@@ -57,7 +58,7 @@ namespace Gravity.Services.ActionPlugins.Common
         /// <param name="actionRule">This ActionRule instance (the original object sent by the user).</param>
         public override void OnPerform(ActionRule actionRule)
         {
-            DoAction(webElement: default, actionRule, TimeSpan.FromSeconds(ElementSearchTimeout));
+            DoAction(webElement: default, actionRule, TimeSpan.FromMilliseconds(ElementSearchTimeout));
         }
 
         /// <summary>
@@ -67,7 +68,7 @@ namespace Gravity.Services.ActionPlugins.Common
         /// <param name="actionRule">This ActionRule instance (the original object sent by the user).</param>
         public override void OnPerform(IWebElement webElement, ActionRule actionRule)
         {
-            DoAction(webElement, actionRule, TimeSpan.FromSeconds(ElementSearchTimeout));
+            DoAction(webElement, actionRule, TimeSpan.FromMilliseconds(ElementSearchTimeout));
         }
 
         // execute action routine
@@ -80,20 +81,17 @@ namespace Gravity.Services.ActionPlugins.Common
             // take from driver
             if (webElement == default && string.IsNullOrEmpty(actionRule.ElementToActOn))
             {
-                ((ITakesScreenshot)WebDriver)
-                    .GetScreenshot()
-                    .SaveAsFile(fileName: file, format);
-                return;
+                ((ITakesScreenshot)WebDriver).GetScreenshot().SaveAsFile(fileName: file, format);
             }
-
             // take from element
-            var element = webElement != default
-                ? webElement.GetElementByActionRule(ByFactory, actionRule, timeout)
-                : WebDriver.GetElementByActionRule(ByFactory, actionRule, timeout);
+            else
+            {
+                var element = webElement != default
+                    ? webElement.GetElementByActionRule(ByFactory, actionRule, timeout)
+                    : WebDriver.GetElementByActionRule(ByFactory, actionRule, timeout);
 
-            ((ITakesScreenshot)element)
-                .GetScreenshot()
-                .SaveAsFile(fileName: file, format);
+                ((ITakesScreenshot)element).GetScreenshot().SaveAsFile(fileName: file, format);
+            }
 
             // add file to extraction results
             AddToExtraction(file);
@@ -102,10 +100,10 @@ namespace Gravity.Services.ActionPlugins.Common
         // get image format factory
         private static ScreenshotImageFormat GetFormat(string file) => (Path.GetExtension(file).ToUpper()) switch
         {
-            "BMP" => ScreenshotImageFormat.Bmp,
-            "GIF" => ScreenshotImageFormat.Gif,
-            "JPEG" => ScreenshotImageFormat.Jpeg,
-            "TIFF" => ScreenshotImageFormat.Tiff,
+            ".BMP" => ScreenshotImageFormat.Png,
+            ".GIF" => ScreenshotImageFormat.Png,
+            ".JPEG" => ScreenshotImageFormat.Png,
+            ".TIFF" => ScreenshotImageFormat.Png,
             _ => ScreenshotImageFormat.Png,
         };
 
@@ -122,7 +120,9 @@ namespace Gravity.Services.ActionPlugins.Common
             var nformat = $"{format}".ToLower();
 
             // return new file name
-            return CreatePath($@"{folder}\{name}.{nformat}");
+            return string.IsNullOrEmpty(folder)
+                ? $"{name}.{nformat}"
+                : CreatePath($@"{folder}\{name}.{nformat}");
         }
 
         // creates a path if not exists before saving the image file
@@ -152,3 +152,4 @@ namespace Gravity.Services.ActionPlugins.Common
         }
     }
 }
+#pragma warning restore

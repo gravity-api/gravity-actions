@@ -56,7 +56,7 @@ namespace Gravity.Services.ActionPlugins.Tests.Mobile
             // execute
             ExecuteAction<SetGeoLocation>(actionRule);
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion
             var isLat = ((MockAppiumDriver<IWebElement>)WebDriver).Location.Latitude == 5.5;
             var isLon = ((MockAppiumDriver<IWebElement>)WebDriver).Location.Longitude == 0.0;
             var isAlt = ((MockAppiumDriver<IWebElement>)WebDriver).Location.Altitude == 0.0;
@@ -74,7 +74,7 @@ namespace Gravity.Services.ActionPlugins.Tests.Mobile
             // execute
             ExecuteAction<SetGeoLocation>(actionRule);
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion
             var isLat = ((MockAppiumDriver<IWebElement>)WebDriver).Location.Latitude == 0.0;
             var isLon = ((MockAppiumDriver<IWebElement>)WebDriver).Location.Longitude == 5.5;
             var isAlt = ((MockAppiumDriver<IWebElement>)WebDriver).Location.Altitude == 0.0;
@@ -92,7 +92,7 @@ namespace Gravity.Services.ActionPlugins.Tests.Mobile
             // execute
             ExecuteAction<SetGeoLocation>(actionRule);
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion
             var isLat = ((MockAppiumDriver<IWebElement>)WebDriver).Location.Latitude == 0.0;
             var isLon = ((MockAppiumDriver<IWebElement>)WebDriver).Location.Longitude == 0.0;
             var isAlt = ((MockAppiumDriver<IWebElement>)WebDriver).Location.Altitude == 5.5;
@@ -110,7 +110,7 @@ namespace Gravity.Services.ActionPlugins.Tests.Mobile
             // execute
             ExecuteAction<SetGeoLocation>(actionRule);
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion
             var isLat = ((MockAppiumDriver<IWebElement>)WebDriver).Location.Latitude == 0.0;
             var isLon = ((MockAppiumDriver<IWebElement>)WebDriver).Location.Longitude == 0.0;
             var isAlt = ((MockAppiumDriver<IWebElement>)WebDriver).Location.Altitude == 0.0;
@@ -128,7 +128,7 @@ namespace Gravity.Services.ActionPlugins.Tests.Mobile
             // execute
             ExecuteAction<SetGeoLocation>(actionRule);
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion
             var isLat = ((MockAppiumDriver<IWebElement>)WebDriver).Location.Latitude == 0.0;
             var isLon = ((MockAppiumDriver<IWebElement>)WebDriver).Location.Longitude == 5.5;
             var isAlt = ((MockAppiumDriver<IWebElement>)WebDriver).Location.Altitude == 6.5;
@@ -146,12 +146,22 @@ namespace Gravity.Services.ActionPlugins.Tests.Mobile
             // execute
             ExecuteAction<SetGeoLocation>(actionRule);
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion
             var isLat = ((MockAppiumDriver<IWebElement>)WebDriver).Location.Latitude == 7.5;
             var isLon = ((MockAppiumDriver<IWebElement>)WebDriver).Location.Longitude == 5.5;
             var isAlt = ((MockAppiumDriver<IWebElement>)WebDriver).Location.Altitude == 6.5;
 
             Assert.IsTrue(isLat && isLon && isAlt);
+        }
+
+        [TestMethod]
+        public void GeoLocationNoIHasLocation()
+        {
+            // execute
+            ExecuteAction<SetGeoLocation>();
+
+            // assertion (no assertion here, expected is no exception)
+            Assert.IsTrue(true);
         }
     }
 }

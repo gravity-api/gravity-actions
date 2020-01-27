@@ -8,6 +8,9 @@
  */
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
+using OpenQA.Selenium.Appium.Interfaces;
+using OpenQA.Selenium.Remote;
+using System.Collections.Generic;
 
 #pragma warning disable S2326
 namespace Gravity.Drivers.Mock.WebDriver
@@ -15,7 +18,7 @@ namespace Gravity.Drivers.Mock.WebDriver
     /// <summary>
     /// Defines the interface through which the user controls a mobile device.
     /// </summary>
-    public class MockAppiumDriver<W> : MockWebDriver where W : IWebElement
+    public class MockAppiumDriver<W> : MockWebDriver, IHidesKeyboard where W : IWebElement
     {
         /// <summary>
         /// Gets or sets the GEO location of this device
@@ -26,6 +29,35 @@ namespace Gravity.Drivers.Mock.WebDriver
             Latitude = 0.0,
             Longitude = 0.0
         };
+
+        /// <summary>
+        /// Executes appium command against appium server.
+        /// </summary>
+        /// <param name="commandName">Command to execute.</param>
+        /// <param name="parameters">Command parameters.</param>
+        /// <returns>Handles responses from the browser.</returns>
+        public Response Execute(string commandName, Dictionary<string, object> parameters)
+        {
+            return new Response();
+        }
+
+        /// <summary>
+        /// Executes appium command against appium server.
+        /// </summary>
+        /// <param name="driverCommand">Driver command to execute.</param>
+        /// <returns>Handles responses from the browser.</returns>
+        public Response Execute(string driverCommand)
+        {
+            return new Response();
+        }
+
+        /// <summary>
+        /// Hide soft keyboard.
+        /// </summary>
+        public void HideKeyboard()
+        {
+            // mock method - should not do anything
+        }
     }
 }
 #pragma warning restore

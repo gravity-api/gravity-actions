@@ -1,0 +1,19 @@
+{
+  "name": "HideKeyboard",
+  "summary": "Hide soft keyboard.",
+  "description": "Hide soft keyboard.",
+  "examples": [
+    {
+      "description": "Hide soft keyboard.",
+      "literalExample": "hide keyboard",
+      "actionExample": {
+        "actionType": "HideKeyboard"
+      }
+    }
+  ],
+  "scope": [ "mobile-web", "mobile-native" ],
+  "protocol": {
+    "endpoint": "/session/{session-id}/appium/device/hide_keyboard",
+    "w3c": "none"
+  }
+}

@@ -1,7 +1,7 @@
 ﻿using OpenQA.Selenium;
 using System;
 
-namespace Gravity.Drivers.Mock.WebDriver
+namespace OpenQA.Selenium.Mock
 {
     /// <summary>
     /// Defines an interface allowing the user to access the browser's history and to

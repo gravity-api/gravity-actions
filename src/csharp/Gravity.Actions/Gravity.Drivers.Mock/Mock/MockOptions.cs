@@ -1,6 +1,6 @@
 ﻿using OpenQA.Selenium;
 
-namespace Gravity.Drivers.Mock.WebDriver
+namespace OpenQA.Selenium.Mock
 {
     /// <summary>
     /// Defines an interface allowing the user to set options on the browser.

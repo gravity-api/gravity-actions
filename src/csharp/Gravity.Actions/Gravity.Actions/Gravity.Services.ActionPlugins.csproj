@@ -27,6 +27,7 @@
     <None Remove="Documentation\get-screenshot.json" />
     <None Remove="Documentation\hide-keyboard.json" />
     <None Remove="Documentation\keyboard.json" />
+    <None Remove="Documentation\long-swipe.json" />
     <None Remove="Documentation\navigate-back.json" />
     <None Remove="Documentation\navigate-forward.json" />
     <None Remove="Documentation\refresh.json" />
@@ -50,6 +51,7 @@
     <EmbeddedResource Include="Documentation\get-screenshot.json" />
     <EmbeddedResource Include="Documentation\hide-keyboard.json" />
     <EmbeddedResource Include="Documentation\keyboard.json" />
+    <EmbeddedResource Include="Documentation\long-swipe.json" />
     <EmbeddedResource Include="Documentation\set-geo-location.json" />
     <EmbeddedResource Include="Documentation\navigate-back.json" />
     <EmbeddedResource Include="Documentation\navigate-forward.json" />

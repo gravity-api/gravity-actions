@@ -1,4 +1,4 @@
-﻿namespace Gravity.Drivers.Mock.WebDriver
+﻿namespace OpenQA.Selenium.Mock
 {
     public static class MockCapabilities
     {

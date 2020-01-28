@@ -3,7 +3,7 @@
  * 
  * on-line resources
  */
-using Gravity.Drivers.Mock.WebDriver;
+using OpenQA.Selenium.Mock;
 using Gravity.Services.ActionPlugins.Tests.Base;
 using Gravity.Services.ActionPlugins.Web;
 using Gravity.Services.DataContracts;
@@ -18,35 +18,22 @@ namespace Gravity.Services.ActionPlugins.Tests.Web
     public class KeyboardTests : ActionTests
     {
         [TestMethod]
-        public void KeyboardCreateNoTypes()
-        {
-            ValidateAction<Keyboard>();
-        }
+        public void KeyboardCreateNoTypes() => ValidateAction<Keyboard>();
 
         [TestMethod]
-        public void KeyboardCreateTypes()
-        {
-            ValidateAction<Keyboard>(Types);
-        }
+        public void KeyboardCreateTypes() => ValidateAction<Keyboard>(Types);
 
         [TestMethod]
         public void KeyboardDocumentationNoTypes()
-        {
-            ValidateActionDocumentation<Keyboard>(ActionType.Keyboard);
-        }
+            => ValidateActionDocumentation<Keyboard>(ActionType.Keyboard);
 
         [TestMethod]
         public void KeyboardDocumentationTypes()
-        {
-            ValidateActionDocumentation<Keyboard>(ActionType.Keyboard, Types);
-        }
+            => ValidateActionDocumentation<Keyboard>(ActionType.Keyboard, Types);
 
         [TestMethod]
         public void KeyboardDocumentationResourceFile()
-        {
-            ValidateActionDocumentation<Keyboard>(
-                ActionType.Keyboard, Types, "Keyboard.json");
-        }
+            => ValidateActionDocumentation<Keyboard>(ActionType.Keyboard, Types, "Keyboard.json");
 
         [DataTestMethod]
         [DataRow("{'elementToActOn':'//positive','argument':'Enter'}")]

@@ -1,6 +1,6 @@
 ﻿using OpenQA.Selenium;
 
-namespace Gravity.Drivers.Mock.WebDriver
+namespace OpenQA.Selenium.Mock
 {
     /// <summary>
     /// Defines the interface through which the user can locate a given frame or window.

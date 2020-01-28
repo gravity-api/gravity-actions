@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 
-namespace Gravity.Drivers.Mock.WebDriver
+namespace OpenQA.Selenium.Mock
 {
     /// <summary>
     /// Defines an interface allowing the user to manipulate cookies on the current page.

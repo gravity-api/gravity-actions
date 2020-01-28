@@ -1,7 +1,7 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions.Internal;
 
-namespace Gravity.Drivers.Mock.WebDriver
+namespace OpenQA.Selenium.Mock
 {
     /// <summary>
     /// Provides methods representing basic mouse actions.

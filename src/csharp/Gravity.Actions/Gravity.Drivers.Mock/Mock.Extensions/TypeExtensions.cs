@@ -9,7 +9,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
 
-namespace Gravity.Drivers.Mock.Extensions
+namespace OpenQA.Selenium.Mock.Extensions
 {
     internal static class TypeExtensions
     {

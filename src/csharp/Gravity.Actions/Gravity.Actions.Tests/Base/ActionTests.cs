@@ -4,8 +4,6 @@
  * on-line resources
  * https://dev.to/franndotexe/mstest-v2---new-old-kid-on-the-block
  */
-using Gravity.Drivers.Mock.WebDriver;
-using Gravity.Drivers.Mock.Extensions;
 using Gravity.Services.Comet.Engine.Attributes;
 using Gravity.Services.Comet.Engine.Extensions;
 using Gravity.Services.Comet.Engine.Plugins;
@@ -13,6 +11,8 @@ using Gravity.Services.DataContracts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Mock;
+using OpenQA.Selenium.Mock.Extensions;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -131,7 +131,7 @@ namespace Gravity.Services.ActionPlugins.Tests.Base
         /// <param name="by">WebElement instance on which to perform the action.</param>
         /// <param name="actionRule">ActionRule JSON from which to create an ActionRule instance.</param>
         public ActionPlugin ExecuteAction<T>(By by, string actionRule)
-            where T: ActionPlugin
+            where T : ActionPlugin
         {
             return ExecuteAction<T>(by: by, actionRule: actionRule, capabilities: null);
         }
@@ -334,7 +334,7 @@ namespace Gravity.Services.ActionPlugins.Tests.Base
             where T : ActionPlugin
         {
             // setup
-            if(capabilities != default)
+            if (capabilities != default)
             {
                 WebDriver = WebDriver.ApplyCapabilities(capabilities);
             }
@@ -374,7 +374,7 @@ namespace Gravity.Services.ActionPlugins.Tests.Base
             }
 
             var fileReference = Array
-                .Find(assembly.GetManifestResourceNames(), i => i.EndsWith(Path.GetFileName(name), StringComparison.OrdinalIgnoreCase));
+                .Find(assembly.GetManifestResourceNames(), i => i.EndsWith($".{Path.GetFileName(name)}", StringComparison.OrdinalIgnoreCase));
             if (string.IsNullOrEmpty(fileReference))
             {
                 return string.Empty;

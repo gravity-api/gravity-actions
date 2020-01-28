@@ -5,7 +5,7 @@
  */
 using OpenQA.Selenium;
 
-namespace Gravity.Drivers.Mock.WebDriver
+namespace OpenQA.Selenium.Mock
 {
     /// <summary>
     /// Represents an image of the page currently loaded in the browser.

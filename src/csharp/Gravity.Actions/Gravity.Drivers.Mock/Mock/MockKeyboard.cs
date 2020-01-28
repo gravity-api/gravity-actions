@@ -1,6 +1,6 @@
 ﻿using OpenQA.Selenium;
 
-namespace Gravity.Drivers.Mock.WebDriver
+namespace OpenQA.Selenium.Mock
 {
     /// <summary>
     /// Provides methods representing basic keyboard actions.

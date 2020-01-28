@@ -1,7 +1,7 @@
 ﻿using OpenQA.Selenium.Interactions.Internal;
 using System.Drawing;
 
-namespace Gravity.Drivers.Mock.WebDriver
+namespace OpenQA.Selenium.Mock
 {
     /// <summary>
     /// Provides location of the element using various frames of reference.

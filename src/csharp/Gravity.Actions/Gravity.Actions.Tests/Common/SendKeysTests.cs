@@ -3,13 +3,14 @@
  * 
  * on-line resources
  */
-using Gravity.Drivers.Mock.WebDriver;
+using OpenQA.Selenium.Appium.Mock;
 using Gravity.Services.ActionPlugins.Common;
 using Gravity.Services.ActionPlugins.Tests.Base;
 using Gravity.Services.DataContracts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using System;
+using OpenQA.Selenium.Mock;
 
 #pragma warning disable S4144
 namespace Gravity.Services.ActionPlugins.Tests.Common

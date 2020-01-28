@@ -3,7 +3,6 @@
  * 
  * on-line resources
  */
-using OpenQA.Selenium;
 using OpenQA.Selenium.Internal;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -13,9 +12,9 @@ using System;
 using System.ComponentModel;
 using System.Reflection;
 using System.Linq;
-using Gravity.Drivers.Mock.Extensions;
+using OpenQA.Selenium.Mock.Extensions;
 
-namespace Gravity.Drivers.Mock.WebDriver
+namespace OpenQA.Selenium.Mock
 {
     /// <summary>
     /// Defines the interface through which the user controls elements on the page.

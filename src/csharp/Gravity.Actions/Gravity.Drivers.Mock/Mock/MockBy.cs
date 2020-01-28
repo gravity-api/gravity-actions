@@ -5,7 +5,7 @@
  */
 using OpenQA.Selenium;
 
-namespace Gravity.Drivers.Mock.WebDriver
+namespace OpenQA.Selenium.Mock
 {
     /// <summary>
     /// Provides a mechanism by which to find elements within a document.

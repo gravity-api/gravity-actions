@@ -6,10 +6,9 @@
  * 
  * on-line resources
  */
-using Gravity.Drivers.Mock.Extensions;
-using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Internal;
+using OpenQA.Selenium.Mock.Extensions;
 using OpenQA.Selenium.Remote;
 using System;
 using System.Collections.Generic;
@@ -19,7 +18,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 
-namespace Gravity.Drivers.Mock.WebDriver
+namespace OpenQA.Selenium.Mock
 {
     /// <summary>
     /// Defines the interface through which the user controls the browser.

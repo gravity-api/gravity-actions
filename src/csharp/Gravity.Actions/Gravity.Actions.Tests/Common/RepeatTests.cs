@@ -3,7 +3,7 @@
  * 
  * on-line resources
  */
-using Gravity.Drivers.Mock.WebDriver;
+using OpenQA.Selenium.Mock;
 using Gravity.Drivers.Selenium;
 using Gravity.Services.ActionPlugins.Common;
 using Gravity.Services.ActionPlugins.Tests.Base;

@@ -1,7 +1,7 @@
 ﻿using OpenQA.Selenium;
 using System.Drawing;
 
-namespace Gravity.Drivers.Mock.WebDriver
+namespace OpenQA.Selenium.Mock
 {
     /// <summary>
     /// Provides methods for getting and setting the size and position of the browser

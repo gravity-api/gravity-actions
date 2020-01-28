@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gravity.Services.ActionPlug
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gravity.Services.ActionPlugins.Tests", "Gravity.Actions.Tests\Gravity.Services.ActionPlugins.Tests.csproj", "{98367CCA-D62B-49DA-9C44-01F017C33DD3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gravity.Drivers.Mock", "Gravity.Drivers.Mock\Gravity.Drivers.Mock.csproj", "{2D623A4E-7676-4834-9703-EC79C1ED6E67}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gravity.Drivers.Mock", "Gravity.Drivers.Mock\Gravity.Drivers.Mock.csproj", "{2D623A4E-7676-4834-9703-EC79C1ED6E67}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

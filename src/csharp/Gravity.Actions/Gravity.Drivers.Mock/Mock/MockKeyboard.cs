@@ -1,6 +1,4 @@
-﻿using OpenQA.Selenium;
-
-namespace OpenQA.Selenium.Mock
+﻿namespace OpenQA.Selenium.Mock
 {
     /// <summary>
     /// Provides methods representing basic keyboard actions.

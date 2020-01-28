@@ -1,5 +1,4 @@
-﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Interactions.Internal;
+﻿using OpenQA.Selenium.Interactions.Internal;
 
 namespace OpenQA.Selenium.Mock
 {

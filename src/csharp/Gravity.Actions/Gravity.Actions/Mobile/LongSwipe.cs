@@ -2,6 +2,9 @@
  * CHANGE LOG - keep only last 5 threads
  * 
  * on-line resources
+ * 
+ * work items
+ * TODO: simplify LoadArguments methods when factoring conditions
  */
 using Gravity.Drivers.Selenium;
 using Gravity.Services.Comet.Engine.Attributes;
@@ -137,6 +140,14 @@ namespace Gravity.Services.ActionPlugins.Mobile
             {
                 arguments[Target] = actionRule.ElementToActOn;
             }
+            if (isSource && !isTarget && !isElement)
+            {
+                arguments[Target] = "0,0";
+            }
+            if (!isSource && isTarget && !isElement)
+            {
+                arguments[Source] = "0,0";
+            }
             if (!isSource && !isTarget && isElement)
             {
                 arguments[Source] = actionRule.ElementToActOn;
@@ -144,8 +155,8 @@ namespace Gravity.Services.ActionPlugins.Mobile
             }
             if (!isSource && !isTarget && !isElement)
             {
-                arguments[Source] = "0";
-                arguments[Target] = "0";
+                arguments[Source] = "0,0";
+                arguments[Target] = "0,0";
             }
         }
 

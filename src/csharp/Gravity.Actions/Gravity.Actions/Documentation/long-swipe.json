@@ -21,7 +21,7 @@
     },
     {
       "description": "Swipes the element [//button] to [x,y-position:200,200].",
-      "literalExample": "long swipe {{$ --source://button --target:200,200}}",
+      "literalExample": "long swipe {{$ --target:200,200}}",
       "actionExample": {
         "actionType": "LongSwipe",
         "elementToActOn": "//button",
@@ -38,18 +38,18 @@
     },
     {
       "description": "Swipes from [x,y-position:200,200] onto element [//div]",
-      "literalExample": "long swipe {{$ --source:200,200 --target://myElement}}",
+      "literalExample": "long swipe {{$ --source:200,200 --target://div}}",
       "actionExample": {
         "actionType": "LongSwipe",
-        "argument": "{{$ --source:200,200 --target://myElement}}"
+        "argument": "{{$ --source:200,200 --target://div}}"
       }
     },
     {
       "description": "Swipes from [x,y-position:200,200] onto element [//div]",
-      "literalExample": "long swipe {{$ --source:200,200 --target://myElement}}",
+      "literalExample": "long swipe {{$ --source:200,200}}",
       "actionExample": {
         "actionType": "LongSwipe",
-        "elementToActOn": "//myElement",
+        "elementToActOn": "//div",
         "argument": "{{$ --source:200,200}}"
       }
     }

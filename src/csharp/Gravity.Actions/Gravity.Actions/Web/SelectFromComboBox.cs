@@ -85,7 +85,7 @@ namespace Gravity.Services.ActionPlugins.Web
         private void SelectFactory(SelectElement selectElement, ActionRule actionRule)
         {
             // exit conditions
-            var isSelectAll = SelectAll(selectElement, actionRule);
+            var isSelectAll = SelectOptions(selectElement, actionRule);
             if (isSelectAll)
             {
                 return;
@@ -114,7 +114,7 @@ namespace Gravity.Services.ActionPlugins.Web
         }
 
         // select all options which their text match to the action-rule regular-expression
-        private bool SelectAll(SelectElement selectElement, ActionRule actionRule)
+        private bool SelectOptions(SelectElement selectElement, ActionRule actionRule)
         {
             // load arguments
             var arguments = new CliFactory(actionRule.Argument).Parse();

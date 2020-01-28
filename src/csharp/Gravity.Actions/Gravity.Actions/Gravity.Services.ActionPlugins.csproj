@@ -33,6 +33,7 @@
     <None Remove="Documentation\refresh.json" />
     <None Remove="Documentation\register-parameter.json" />
     <None Remove="Documentation\repeat.json" />
+    <None Remove="Documentation\select-from-combo-box.json" />
     <None Remove="Documentation\send-keys.json" />
     <None Remove="Documentation\set-geo-location.json" />
     <None Remove="Documentation\try-click.json" />
@@ -52,6 +53,7 @@
     <EmbeddedResource Include="Documentation\hide-keyboard.json" />
     <EmbeddedResource Include="Documentation\keyboard.json" />
     <EmbeddedResource Include="Documentation\long-swipe.json" />
+    <EmbeddedResource Include="Documentation\select-from-combo-box.json" />
     <EmbeddedResource Include="Documentation\set-geo-location.json" />
     <EmbeddedResource Include="Documentation\navigate-back.json" />
     <EmbeddedResource Include="Documentation\navigate-forward.json" />

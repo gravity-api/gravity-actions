@@ -19,5 +19,8 @@ namespace OpenQA.Selenium.Mock
         public const string RandomNotExists = "random-x";
         public const string Focused = "focused";
         public const string InvalidElementState = "invalid-state";
+        public const string SelectElement = "select-element";
+        public const string SelectElementNoOptions = "select-element-no-options";
+        public const string Option = "option";
     }
 }

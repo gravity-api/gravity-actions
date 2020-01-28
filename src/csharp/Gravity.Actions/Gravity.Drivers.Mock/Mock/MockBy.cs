@@ -13,9 +13,27 @@ namespace OpenQA.Selenium.Mock
     public static class MockBy
     {
         /// <summary>
+        /// Gets elements with <option> tag.
+        /// </summary>
+        /// <returns>A <see cref="By"/> object the driver can use to find the elements.</returns>
+        public static By Option() => By.Id(MockLocators.Option);
+
+        /// <summary>
+        /// Gets a mechanism to find a valid 'select' element (positive).
+        /// </summary>
+        /// <returns>A <see cref="By"/> object the driver can use to find the elements.</returns>
+        public static By SelectElement() => By.Id(MockLocators.SelectElement);
+
+        /// <summary>
+        /// Gets a mechanism to find a valid 'select' element (positive) with no options.
+        /// </summary>
+        /// <returns>A <see cref="By"/> object the driver can use to find the elements.</returns>
+        public static By SelectElementNoOptions() => By.Id(MockLocators.SelectElement);
+
+        /// <summary>
         /// Gets a mechanism to find a valid mock element (positive).
         /// </summary>
-        /// <returns>A OpenQA.Selenium.By object the driver can use to find the elements.</returns>
+        /// <returns>A <see cref="By"/> object the driver can use to find the elements.</returns>
         public static By Positive() => By.Id(MockLocators.Positive);
 
         /// <summary>

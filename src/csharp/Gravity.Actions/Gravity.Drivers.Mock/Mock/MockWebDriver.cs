@@ -243,8 +243,7 @@ namespace OpenQA.Selenium.Mock
             }
             catch (Exception e) when (e is NoSuchElementException)
             {
-                var elements = new List<IWebElement>();
-                return new ReadOnlyCollection<IWebElement>(elements);
+                return new ReadOnlyCollection<IWebElement>(new List<IWebElement>());
             }
         }
 

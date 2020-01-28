@@ -208,11 +208,14 @@ namespace OpenQA.Selenium.Mock
         /// <returns>A ReadOnlyCollection of all <see cref="IWebElement"/> matching the current criteria, or an empty list if nothing matches.</returns>
         public ReadOnlyCollection<IWebElement> FindElements(By by)
         {
-            return new ReadOnlyCollection<IWebElement>(new List<IWebElement>
+            try
             {
-                new MockWebElement((MockWebDriver)WrappedDriver, "div", "Mock: Positive Element", true, true, true),
-                new MockWebElement((MockWebDriver)WrappedDriver,"div", "Mock: Negative Element", false, false, false)
-            });
+                return GetElements(parent: (MockWebDriver)WrappedDriver, by);
+            }
+            catch (Exception e) when (e is NoSuchElementException)
+            {
+                return new ReadOnlyCollection<IWebElement>(new List<IWebElement>());
+            }
         }
 
         /// <summary>
@@ -448,6 +451,21 @@ namespace OpenQA.Selenium.Mock
             // return invalid state element
             return element;
         }
+
+        /// <summary>
+        /// Provides a convenience method for manipulating selections of options in an HTML <select> element.
+        /// </summary>
+        /// <param name="parent">Driver in use.</param>
+        /// <returns>An interface through which the user controls elements on the page.</returns>
+        [Description(MockLocators.SelectElement)]
+        public static IWebElement GetSelectElement(MockWebDriver parent) => new MockWebElement(parent, tagName: "select");
+
+        /// <summary>
+        /// Gets an element with <option> tag.
+        /// </summary>
+        /// <returns>An interface through which the user controls elements on the page.</returns>
+        [Description(MockLocators.Option)]
+        public static IWebElement GetOptions(MockWebDriver parent) => new MockWebElement(parent, tagName: "option");
 
         /// <summary>
         /// Gets a random element with a configurable chance of getting a positive element.

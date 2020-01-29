@@ -245,6 +245,11 @@ namespace OpenQA.Selenium.Mock
                 throw new WebDriverException();
             }
 
+            if (attributeName.Equals(MockLocators.Index))
+            {
+                return "0";
+            }
+
             return attributeName.Equals(nameof(value), StringComparison.OrdinalIgnoreCase)
                 ? value
                 : $"mock attribute value {new Random().Next(0, 1000)}";

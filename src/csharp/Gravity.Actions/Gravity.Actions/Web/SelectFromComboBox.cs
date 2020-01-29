@@ -13,6 +13,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text.RegularExpressions;
 
 namespace Gravity.Services.ActionPlugins.Web
@@ -77,70 +78,68 @@ namespace Gravity.Services.ActionPlugins.Web
                 ? webElement.GetElementByActionRule(ByFactory, actionRule, timeout)
                 : WebDriver.GetElementByActionRule(ByFactory, actionRule, timeout);
 
+            var selectElement = new SelectElement(element);
+
             // execute action routine
-            SelectFactory(selectElement: new SelectElement(element), actionRule);
+            SelectFactory(selectElement, actionRule);
         }
 
         // execute relevant select method based on action rule on the given select element
         private void SelectFactory(SelectElement selectElement, ActionRule actionRule)
         {
-            // exit conditions
-            var isSelectAll = SelectOptions(selectElement, actionRule);
-            if (isSelectAll)
-            {
-                return;
-            }
-
-            // factory
-            switch (actionRule.ElementAttributeToActOn.ToUpper())
-            {
-                default:
-                {
-                    selectElement.SelectByText(actionRule.Argument);
-                    break;
-                }
-                case "INDEX":
-                {
-                    var index = int.TryParse(actionRule.Argument, out int indexOut) ? indexOut : 0;
-                    selectElement.SelectByIndex(index);
-                    break;
-                }
-                case "VALUE":
-                {
-                    selectElement.SelectByValue(actionRule.Argument);
-                    break;
-                }
-            }
-        }
-
-        // select all options which their text match to the action-rule regular-expression
-        private bool SelectOptions(SelectElement selectElement, ActionRule actionRule)
-        {
             // load arguments
             var arguments = new CliFactory(actionRule.Argument).Parse();
 
-            // exit conditions
-            if (!arguments.ContainsKey(All))
-            {
-                return false;
-            }
+            // get description
+            var description = arguments.ContainsKey(All)
+                ? "ALL"
+                : actionRule.ElementAttributeToActOn.ToUpper();
 
-            // iterate
+            description = string.IsNullOrEmpty(description) ? "DEFAULT" : description;
+
+            // get select method > align description
+            var method = GetType().GetMethodByDescription(description);
+
+            // execute
+            method.Invoke(this, new object[] { selectElement, actionRule });
+        }
+
+#pragma warning disable S1144, RCS1213, IDE0051
+        // select all options by the text displayed
+        [Description("DEFAULT")]
+        private void Select00(SelectElement selectElement, ActionRule actionRule)
+        {
+            selectElement.SelectByText(actionRule.Argument);
+        }
+
+        // select the option by the index, as determined by the "index" attribute of the element
+        [Description("INDEX")]
+        private void Select01(SelectElement selectElement, ActionRule actionRule)
+        {
+            var index = int.TryParse(actionRule.Argument, out int indexOut) ? indexOut : 0;
+            selectElement.SelectByIndex(index);
+        }
+
+        // select an option by the value
+        [Description("VALUE")]
+        private void Select02(SelectElement selectElement, ActionRule actionRule)
+        {
+            selectElement.SelectByValue(actionRule.Argument);
+        }
+
+        // select all options which their text match to the action-rule regular-expression
+        [Description("ALL")]
+        private void Select03(SelectElement selectElement, ActionRule actionRule)
+        {
             foreach (var option in selectElement.Options)
             {
-                SelectOption(option, actionRule.RegularExpression);
+                if (!Regex.IsMatch(option.Text, actionRule.RegularExpression))
+                {
+                    return;
+                }
+                ((IJavaScriptExecutor)WebDriver).ExecuteScript("arguments[0].selected=true;", option);
             }
-            return true;
         }
-
-        // select a single option which their text match to the action-rule regular-expression
-        private void SelectOption(IWebElement option, string regex)
-        {
-            if (!Regex.IsMatch(option.Text, regex))
-            {
-                return;
-            }
-            ((IJavaScriptExecutor)WebDriver).ExecuteScript("arguments[0].selected=true;", option);
-        }
+#pragma warning restore
     }
 }

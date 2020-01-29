@@ -22,5 +22,6 @@ namespace OpenQA.Selenium.Mock
         public const string SelectElement = "select-element";
         public const string SelectElementNoOptions = "select-element-no-options";
         public const string Option = "option";
+        public const string Index = "index";
     }
 }

@@ -5,14 +5,14 @@
  */
 using OpenQA.Selenium.Mock;
 using Gravity.Services.ActionPlugins.Common;
-using Gravity.Services.ActionPlugins.Tests.Base;
+using Gravity.Services.ActionPlugins.UnitTests.Base;
 using Gravity.Services.DataContracts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using System;
 using System.Text.RegularExpressions;
 
-namespace Gravity.Services.ActionPlugins.Tests.Common
+namespace Gravity.Services.ActionPlugins.UnitTests.Common
 {
     [TestClass]
     public class RegisterParameterTests : ActionTests

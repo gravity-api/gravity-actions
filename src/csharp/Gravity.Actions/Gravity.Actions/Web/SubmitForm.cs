@@ -1,22 +1,14 @@
 ﻿/*
  * CHANGE LOG - keep only last 5 threads
  * 
- * 2019-12-31
- *    - modify: add constructor to override base class types
- *    
- * 2019-01-12
- *    - modify: improve XML comments
- *    - modify: override ActionName using ActionType constant
- * 
  * on-line resources
  */
-using Gravity.Services.ActionPlugins.Extensions;
+using Gravity.Drivers.Selenium;
 using Gravity.Services.Comet.Engine.Attributes;
 using Gravity.Services.Comet.Engine.Extensions;
 using Gravity.Services.Comet.Engine.Plugins;
 using Gravity.Services.DataContracts;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
 
@@ -24,22 +16,16 @@ namespace Gravity.Services.ActionPlugins.Web
 {
     [Action(
         assmebly: "Gravity.Services.ActionPlugins, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
-        resource: "Gravity.Services.ActionPlugins.Documentation.try-click.json",
-        Name = ActionType.TryClick)]
-    public class TryClick : ActionPlugin
+        resource: "Gravity.Services.ActionPlugins.Documentation.submit-form.json",
+        Name = ActionType.SubmitForm)]
+    public class SubmitForm : ActionPlugin
     {
-        // constants
-        private const string Script = "arguments[0].click();";
-
-        // members: state
-        private readonly WebDriverWait wait;
-
         /// <summary>
         /// Creates a new instance of this plug-in.
         /// </summary>
         /// <param name="webDriver">WebDriver implementation by which to execute the action.</param>
         /// <param name="webAutomation">This WebAutomation object (the original object sent by the user).</param>
-        public TryClick(IWebDriver webDriver, WebAutomation webAutomation)
+        public SubmitForm(IWebDriver webDriver, WebAutomation webAutomation)
             : this(webDriver, webAutomation, Utilities.GetTypes())
         { }
 
@@ -49,22 +35,9 @@ namespace Gravity.Services.ActionPlugins.Web
         /// <param name="webDriver">WebDriver implementation by which to execute the action.</param>
         /// <param name="webAutomation">This WebAutomation object (the original object sent by the user).</param>
         /// <param name="types">Types from which to load plug-ins repositories.</param>
-        public TryClick(IWebDriver webDriver, WebAutomation webAutomation, IEnumerable<Type> types)
+        public SubmitForm(IWebDriver webDriver, WebAutomation webAutomation, IEnumerable<Type> types)
             : base(webDriver, webAutomation, types)
-        {
-            // initialize exceptions ignore list
-            var ignoreList = new[]
-            {
-                typeof(NoSuchElementException),
-                typeof(StaleElementReferenceException),
-                typeof(WebDriverException),
-                typeof(NullReferenceException)
-            };
-
-            // setup waiter
-            wait = new WebDriverWait(webDriver, TimeSpan.FromMilliseconds(ElementSearchTimeout));
-            wait.IgnoreExceptionTypes(ignoreList);
-        }
+        { }
 
         /// <summary>
         /// Clicks the mouse on the specified element.
@@ -72,7 +45,7 @@ namespace Gravity.Services.ActionPlugins.Web
         /// <param name="actionRule">This ActionRule instance (the original object sent by the user).</param>
         public override void OnPerform(ActionRule actionRule)
         {
-            DoAction(webElement: default, actionRule);
+            DoAction(actionRule);
         }
 
         /// <summary>
@@ -82,28 +55,24 @@ namespace Gravity.Services.ActionPlugins.Web
         /// <param name="actionRule">This ActionRule instance (the original object send by the user).</param>
         public override void OnPerform(IWebElement webElement, ActionRule actionRule)
         {
-            DoAction(webElement, actionRule);
+            DoAction(actionRule);
         }
 
         // executes action routine
-        private void DoAction(IWebElement webElement, ActionRule actionRule)
+        private void DoAction(ActionRule actionRule)
         {
-            // setup
-            var timeout = TimeSpan.FromMilliseconds(ElementSearchTimeout);
+            // parse form index
+            var isNumeric = int.TryParse(actionRule.Argument, out int indexOut);
 
-            wait.Until(_ =>
+            // submit by index
+            if (isNumeric)
             {
-                // get element to act on
-                var element = webElement != default
-                    ? webElement.GetElementByActionRule(ByFactory, actionRule, timeout)
-                    : WebDriver.GetElementByActionRule(ByFactory, actionRule, timeout);
+                WebDriver.SubmitForm(indexOut);
+                return;
+            }
 
-                // execute script
-                ((IJavaScriptExecutor)WebDriver).ExecuteScript(Script, element);
-
-                // for waiter condition
-                return WebDriver;
-            });
+            // submit by form id
+            WebDriver.SubmitForm(actionRule.Argument);
         }
     }
 }

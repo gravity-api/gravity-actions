@@ -3,12 +3,12 @@
  * 
  * on-line resources
  */
-using Gravity.Services.ActionPlugins.Tests.Base;
+using Gravity.Services.ActionPlugins.UnitTests.Base;
 using Gravity.Services.ActionPlugins.Web;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 #pragma warning disable S4144
-namespace Gravity.Services.ActionPlugins.Tests.Web
+namespace Gravity.Services.ActionPlugins.UnitTests.Web
 {
     [TestClass]
     public class ElementsListenerTests : ActionTests

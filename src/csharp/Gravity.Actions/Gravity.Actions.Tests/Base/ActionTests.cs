@@ -20,7 +20,7 @@ using System.Linq;
 using System.Reflection;
 using System.Diagnostics;
 
-namespace Gravity.Services.ActionPlugins.Tests.Base
+namespace Gravity.Services.ActionPlugins.UnitTests.Base
 {
     [DeploymentItem("Resources/license.lcn")]
     public abstract class ActionTests

@@ -340,7 +340,7 @@ namespace OpenQA.Selenium.Mock
         [Description(".*invalid.*")]
         private string SrcInvalid() => throw new WebDriverException();
 
-        [Description("^$|unitTesting|arguments\\[\\d+\\]\\.(?!(.*invalid.*))")]
+        [Description("^$|unitTesting|arguments\\[\\d+\\]\\.(?!(.*invalid.*))|^document.forms.*.submit.*.;$")]
         private string SrcEmpty() => string.Empty;
 #pragma warning restore
     }

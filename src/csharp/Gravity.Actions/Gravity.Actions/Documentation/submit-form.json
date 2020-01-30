@@ -1,0 +1,42 @@
+{
+  "name": "SubmitForm",
+  "summary": "Submits the form (same as clicking the Submit button).",
+  "description": "Submits the form (same as clicking the Submit button).",
+  "testOn": "https://gravitymvctestapplication.azurewebsites.net/student",
+  "examples": [
+    {
+      "description": "Submits the form with [searchForm] id.",
+      "literalExample": "submit form {searchForm}",
+      "actionExample": {
+        "actionType": "SubmitForm",
+        "argument": "searchForm"
+      }
+    },
+    {
+      "description": "Submits the form which it's index is [0] (counting from the first form in the DOM).",
+      "literalExample": "submit form {1}",
+      "actionExample": {
+        "actionType": "SubmitForm",
+        "argument": "0"
+      }
+    },
+    {
+      "description": "Submits [//form]",
+      "literalExample": "submit form on {//form}",
+      "actionExample": {
+        "actionType": "SubmitForm",
+        "elementToActOn": "//form"
+      }
+    }
+  ],
+  "properties": {
+    "elementToActOn": "The locator value by which the element will be found.",
+    "locator": "The locator type by which the element will be found.",
+    "argument": "The (zero based) index of the form or it's [id] property."
+  },
+  "scope": [ "web", "mobile-web" ],
+  "protocol": {
+    "endpoint": "/session/{session-id}/execute/sync",
+    "w3c": "https://www.w3.org/TR/webdriver/#execute-script"
+  }
+}

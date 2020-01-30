@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.29613.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gravity.Services.ActionPlugins", "Gravity.Actions\Gravity.Services.ActionPlugins.csproj", "{1C20C876-3F67-4E39-A297-FBD75A6B54DD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gravity.Services.ActionPlugins.Tests", "Gravity.Actions.Tests\Gravity.Services.ActionPlugins.Tests.csproj", "{98367CCA-D62B-49DA-9C44-01F017C33DD3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gravity.Services.ActionPlugins.UnitTests", "Gravity.Actions.Tests\Gravity.Services.ActionPlugins.UnitTests.csproj", "{98367CCA-D62B-49DA-9C44-01F017C33DD3}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gravity.Drivers.Mock", "Gravity.Drivers.Mock\Gravity.Drivers.Mock.csproj", "{2D623A4E-7676-4834-9703-EC79C1ED6E67}"
 EndProject

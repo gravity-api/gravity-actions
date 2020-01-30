@@ -5,14 +5,14 @@
  */
 using OpenQA.Selenium.Mock;
 using OpenQA.Selenium.Mock.Extensions;
-using Gravity.Services.ActionPlugins.Tests.Base;
+using Gravity.Services.ActionPlugins.UnitTests.Base;
 using Gravity.Services.ActionPlugins.Web;
 using Gravity.Services.DataContracts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using System.Collections.Generic;
 
-namespace Gravity.Services.ActionPlugins.Tests.Web
+namespace Gravity.Services.ActionPlugins.UnitTests.Web
 {
     [TestClass]
     public class CloseAllChildWindowsTests : ActionTests

@@ -36,6 +36,7 @@
     <None Remove="Documentation\select-from-combo-box.json" />
     <None Remove="Documentation\send-keys.json" />
     <None Remove="Documentation\set-geo-location.json" />
+    <None Remove="Documentation\submit-form.json" />
     <None Remove="Documentation\try-click.json" />
     <None Remove="Documentation\wait.json" />
   </ItemGroup>
@@ -61,13 +62,13 @@
     <EmbeddedResource Include="Documentation\register-parameter.json" />
     <EmbeddedResource Include="Documentation\repeat.json" />
     <EmbeddedResource Include="Documentation\send-keys.json" />
+    <EmbeddedResource Include="Documentation\submit-form.json" />
     <EmbeddedResource Include="Documentation\try-click.json" />
     <EmbeddedResource Include="Documentation\wait.json" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Gravity.Services.Comet" Version="2020.1.22.1" />
-    <PackageReference Include="Microsoft.Extensions.Logging" Version="3.1.1" />
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="3.1.1" />
   </ItemGroup>
 </Project>

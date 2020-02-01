@@ -10,6 +10,7 @@
  * 
  * on-line resources
  */
+using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Actions.Extensions;
 using Gravity.Services.Comet.Engine.Attributes;
 using Gravity.Services.Comet.Engine.Extensions;
@@ -25,7 +26,7 @@ namespace Gravity.Plugins.Actions.Web
     [Action(
         assmebly: "Gravity.Plugins.Actions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
         resource: "Gravity.Plugins.Actions.Documentation.try-click.json",
-        Name = ActionType.TryClick)]
+        Name = ActionPlugins.TryClick)]
     public class TryClick : ActionPlugin
     {
         // constants

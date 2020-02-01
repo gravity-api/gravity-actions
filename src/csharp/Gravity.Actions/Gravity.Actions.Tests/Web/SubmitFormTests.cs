@@ -3,9 +3,9 @@
  * 
  * on-line resources
  */
+using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Actions.UnitTests.Base;
 using Gravity.Plugins.Actions.Web;
-using Gravity.Services.DataContracts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium.Mock;
 
@@ -23,16 +23,16 @@ namespace Gravity.Plugins.Actions.UnitTests.Web
 
         [TestMethod]
         public void SubmitFormDocumentationNoTypes()
-            => ValidateActionDocumentation<SubmitForm>(ActionType.SubmitForm);
+            => ValidateActionDocumentation<SubmitForm>(ActionPlugins.SubmitForm);
 
         [TestMethod]
         public void SubmitFormDocumentationTypes()
-            => ValidateActionDocumentation<SubmitForm>(ActionType.SubmitForm, Types);
+            => ValidateActionDocumentation<SubmitForm>(ActionPlugins.SubmitForm, Types);
 
         [TestMethod]
         public void SubmitFormDocumentationResourceFile()
         {
-            ValidateActionDocumentation<SubmitForm>(ActionType.SubmitForm, Types, "submit-form.json");
+            ValidateActionDocumentation<SubmitForm>(ActionPlugins.SubmitForm, Types, "submit-form.json");
         }
 
         [DataTestMethod]

@@ -16,6 +16,7 @@
  *    
  * on-line resources
  */
+using Gravity.Plugins.Actions.Contracts;
 using Gravity.Services.Comet.Engine.Attributes;
 using Gravity.Services.Comet.Engine.Extensions;
 using Gravity.Services.Comet.Engine.Plugins;
@@ -29,7 +30,7 @@ namespace Gravity.Plugins.Actions.Common
     [Action(
         assmebly: "Gravity.Plugins.Actions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
         resource: "Gravity.Plugins.Actions.Documentation.close-browser.json",
-        Name = ActionType.CloseBrowser)]
+        Name = ActionPlugins.CloseBrowser)]
     public class CloseBrowser : ActionPlugin
     {
         /// <summary>

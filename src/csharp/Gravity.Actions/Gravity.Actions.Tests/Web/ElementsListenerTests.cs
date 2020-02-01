@@ -3,6 +3,7 @@
  * 
  * on-line resources
  */
+using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Actions.UnitTests.Base;
 using Gravity.Plugins.Actions.Web;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -28,20 +29,20 @@ namespace Gravity.Plugins.Actions.UnitTests.Web
         [TestMethod]
         public void ElementsListenerDocumentationNoTypes()
         {
-            ValidateActionDocumentation<ElementsListener>("ElementsListener");
+            ValidateActionDocumentation<ElementsListener>(ActionPlugins.ElementsListener);
         }
 
         [TestMethod]
         public void ElementsListenerDocumentationTypes()
         {
-            ValidateActionDocumentation<ElementsListener>("ElementsListener", Types);
+            ValidateActionDocumentation<ElementsListener>(ActionPlugins.ElementsListener, Types);
         }
 
         [TestMethod]
         public void ElementsListenerDocumentationResourceFile()
         {
             ValidateActionDocumentation<ElementsListener>(
-                "ElementsListener", Types, "elements-listener.json");
+                ActionPlugins.ElementsListener, Types, "elements-listener.json");
         }
 
         [DataTestMethod]

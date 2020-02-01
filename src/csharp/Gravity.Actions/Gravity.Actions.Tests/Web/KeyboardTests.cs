@@ -6,10 +6,10 @@
 using OpenQA.Selenium.Mock;
 using Gravity.Plugins.Actions.UnitTests.Base;
 using Gravity.Plugins.Actions.Web;
-using Gravity.Services.DataContracts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using System;
+using Gravity.Plugins.Actions.Contracts;
 
 #pragma warning disable S4144
 namespace Gravity.Plugins.Actions.UnitTests.Web
@@ -25,15 +25,15 @@ namespace Gravity.Plugins.Actions.UnitTests.Web
 
         [TestMethod]
         public void KeyboardDocumentationNoTypes()
-            => ValidateActionDocumentation<Keyboard>(ActionType.Keyboard);
+            => ValidateActionDocumentation<Keyboard>(ActionPlugins.Keyboard);
 
         [TestMethod]
         public void KeyboardDocumentationTypes()
-            => ValidateActionDocumentation<Keyboard>(ActionType.Keyboard, Types);
+            => ValidateActionDocumentation<Keyboard>(ActionPlugins.Keyboard, Types);
 
         [TestMethod]
         public void KeyboardDocumentationResourceFile()
-            => ValidateActionDocumentation<Keyboard>(ActionType.Keyboard, Types, "Keyboard.json");
+            => ValidateActionDocumentation<Keyboard>(ActionPlugins.Keyboard, Types, "Keyboard.json");
 
         [DataTestMethod]
         [DataRow("{'elementToActOn':'//positive','argument':'Enter'}")]

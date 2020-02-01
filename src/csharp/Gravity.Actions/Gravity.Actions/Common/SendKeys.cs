@@ -20,6 +20,7 @@
  * http://appium.io/docs/en/writing-running-appium/android/android-shell/
  */
 using Gravity.Drivers.Selenium;
+using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Actions.Extensions;
 using Gravity.Services.Comet.Engine.Attributes;
 using Gravity.Services.Comet.Engine.Core;
@@ -35,6 +36,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Threading;
+
 using SeleniumActions = OpenQA.Selenium.Interactions.Actions;
 
 namespace Gravity.Plugins.Actions.Common
@@ -42,7 +44,7 @@ namespace Gravity.Plugins.Actions.Common
     [Action(
         assmebly: "Gravity.Plugins.Actions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
         resource: "Gravity.Plugins.Actions.Documentation.send-keys.json",
-        Name = ActionType.SendKeys)]
+        Name = ActionPlugins.SendKeys)]
     public class SendKeys : ActionPlugin
     {
         #region *** constants: arguments  ***

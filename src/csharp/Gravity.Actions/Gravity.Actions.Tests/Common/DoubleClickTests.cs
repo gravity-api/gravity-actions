@@ -9,6 +9,7 @@ using Gravity.Plugins.Actions.UnitTests.Base;
 using Gravity.Services.DataContracts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
+using Gravity.Plugins.Actions.Contracts;
 
 #pragma warning disable S4144
 namespace Gravity.Plugins.Actions.UnitTests.Common
@@ -31,20 +32,20 @@ namespace Gravity.Plugins.Actions.UnitTests.Common
         [TestMethod]
         public void DoubleClickDocumentationNoTypes()
         {
-            ValidateActionDocumentation<DoubleClick>(ActionType.DoubleClick);
+            ValidateActionDocumentation<DoubleClick>(ActionPlugins.DoubleClick);
         }
 
         [TestMethod]
         public void DoubleClickDocumentationTypes()
         {
-            ValidateActionDocumentation<DoubleClick>(ActionType.DoubleClick, Types);
+            ValidateActionDocumentation<DoubleClick>(ActionPlugins.DoubleClick, Types);
         }
 
         [TestMethod]
         public void DoubleClickDocumentationResourceFile()
         {
             ValidateActionDocumentation<DoubleClick>(
-                ActionType.DoubleClick, Types, "double-click.json");
+                ActionPlugins.DoubleClick, Types, "double-click.json");
         }
 
         [DataTestMethod]

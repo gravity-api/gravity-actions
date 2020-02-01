@@ -4,8 +4,8 @@
  * on-line resources
  */
 using Gravity.Plugins.Actions.Common;
+using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Actions.UnitTests.Base;
-using Gravity.Services.DataContracts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 #pragma warning disable S4144
@@ -31,19 +31,19 @@ namespace Gravity.Plugins.Actions.UnitTests.Common
         [TestMethod]
         public void WaitDocumentationNoTypes()
         {
-            ValidateActionDocumentation<Wait>(ActionType.Wait);
+            ValidateActionDocumentation<Wait>(ActionPlugins.Wait);
         }
 
         [TestMethod]
         public void WaitDocumentationTypes()
         {
-            ValidateActionDocumentation<Wait>(ActionType.Wait, Types);
+            ValidateActionDocumentation<Wait>(ActionPlugins.Wait, Types);
         }
 
         [TestMethod]
         public void WaitDocumentationResourceFile()
         {
-            ValidateActionDocumentation<Wait>(ActionType.Wait, Types, "Wait.json");
+            ValidateActionDocumentation<Wait>(ActionPlugins.Wait, Types, "Wait.json");
         }
 
         [DataTestMethod]

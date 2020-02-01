@@ -10,6 +10,7 @@ using Gravity.Services.DataContracts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using System.Collections.Generic;
+using Gravity.Plugins.Actions.Contracts;
 
 #pragma warning disable S4144
 namespace Gravity.Plugins.Actions.UnitTests.Common
@@ -32,19 +33,19 @@ namespace Gravity.Plugins.Actions.UnitTests.Common
         [TestMethod]
         public void ClickDocumentationNoTypes()
         {
-            ValidateActionDocumentation<Click>(ActionType.Click);
+            ValidateActionDocumentation<Click>(ActionPlugins.Click);
         }
 
         [TestMethod]
         public void ClickDocumentationTypes()
         {
-            ValidateActionDocumentation<Click>(ActionType.Click, Types);
+            ValidateActionDocumentation<Click>(ActionPlugins.Click, Types);
         }
 
         [TestMethod]
         public void ClickDocumentationResourceFile()
         {
-            ValidateActionDocumentation<Click>(ActionType.Click, Types, "click.json");
+            ValidateActionDocumentation<Click>(ActionPlugins.Click, Types, "click.json");
         }
 
         [DataTestMethod]

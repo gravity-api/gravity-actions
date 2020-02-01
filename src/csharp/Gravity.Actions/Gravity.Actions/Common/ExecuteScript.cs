@@ -21,6 +21,7 @@
  * on-line resources
  */
 using Gravity.Drivers.Selenium;
+using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Actions.Extensions;
 using Gravity.Services.Comet.Engine.Attributes;
 using Gravity.Services.Comet.Engine.Core;
@@ -37,7 +38,7 @@ namespace Gravity.Plugins.Actions.Common
     [Action(
         assmebly: "Gravity.Plugins.Actions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
         resource: "Gravity.Plugins.Actions.Documentation.execute-script.json",
-        Name = ActionType.ExecuteScript)]
+        Name = ActionPlugins.ExecuteScript)]
     public class ExecuteScript : ActionPlugin
     {
         #region *** constants: arguments  ***

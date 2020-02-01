@@ -4,9 +4,10 @@
  * on-line resources
  * 
  * work items
- * TODO: simplify LoadArguments methods when factoring conditions
+ * TODO: simplify LoadArguments methods with factoring conditions
  */
 using Gravity.Drivers.Selenium;
+using Gravity.Plugins.Actions.Contracts;
 using Gravity.Services.Comet.Engine.Attributes;
 using Gravity.Services.Comet.Engine.Core;
 using Gravity.Services.Comet.Engine.Extensions;
@@ -24,7 +25,7 @@ namespace Gravity.Plugins.Actions.Mobile
     [Action(
         assmebly: "Gravity.Plugins.Actions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
         resource: "Gravity.Plugins.Actions.Documentation.long-swipe.json",
-        Name = ActionType.LongSwipe)]
+        Name = ActionPlugins.LongSwipe)]
     public class LongSwipe : ActionPlugin
     {
         #region *** constants: arguments  ***

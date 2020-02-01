@@ -7,10 +7,10 @@ using OpenQA.Selenium.Mock;
 using OpenQA.Selenium.Mock.Extensions;
 using Gravity.Plugins.Actions.UnitTests.Base;
 using Gravity.Plugins.Actions.Web;
-using Gravity.Services.DataContracts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using System.Collections.Generic;
+using Gravity.Plugins.Actions.Contracts;
 
 namespace Gravity.Plugins.Actions.UnitTests.Web
 {
@@ -36,20 +36,20 @@ namespace Gravity.Plugins.Actions.UnitTests.Web
         [TestMethod]
         public void CloseAllChildWindowsDocumentationNoTypes()
         {
-            ValidateActionDocumentation<CloseAllChildWindows>(ActionType.CloseAllChildWindows);
+            ValidateActionDocumentation<CloseAllChildWindows>(ActionPlugins.CloseAllChildWindows);
         }
 
         [TestMethod]
         public void CloseAllChildWindowsDocumentationTypes()
         {
-            ValidateActionDocumentation<CloseAllChildWindows>(ActionType.CloseAllChildWindows, Types);
+            ValidateActionDocumentation<CloseAllChildWindows>(ActionPlugins.CloseAllChildWindows, Types);
         }
 
         [TestMethod]
         public void CloseAllChildWindowsDocumentationResourceFile()
         {
             ValidateActionDocumentation<CloseAllChildWindows>(
-                ActionType.CloseAllChildWindows, Types, "close-all-child-windows.json");
+                ActionPlugins.CloseAllChildWindows, Types, "close-all-child-windows.json");
         }
 
         [TestMethod]

@@ -14,6 +14,7 @@
  * on-line resources
  */
 using Gravity.Drivers.Selenium;
+using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Actions.Extensions;
 using Gravity.Services.Comet.Engine.Attributes;
 using Gravity.Services.Comet.Engine.Extensions;
@@ -30,7 +31,7 @@ namespace Gravity.Plugins.Actions.Common
     [Action(
         assmebly: "Gravity.Plugins.Actions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
         resource: "Gravity.Plugins.Actions.Documentation.get-screenshot.json",
-        Name = ActionType.GetScreenshot)]
+        Name = ActionPlugins.GetScreenshot)]
     public class GetScreenshot : ActionPlugin
     {
         /// <summary>

@@ -10,6 +10,7 @@ using Gravity.Services.DataContracts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using System.IO;
+using Gravity.Plugins.Actions.Contracts;
 
 #pragma warning disable S4144
 namespace Gravity.Plugins.Actions.UnitTests.Common
@@ -35,19 +36,19 @@ namespace Gravity.Plugins.Actions.UnitTests.Common
         [TestMethod]
         public void GetScreenshotDocumentationNoTypes()
         {
-            ValidateActionDocumentation<GetScreenshot>(ActionType.GetScreenshot);
+            ValidateActionDocumentation<GetScreenshot>(ActionPlugins.GetScreenshot);
         }
 
         [TestMethod]
         public void GetScreenshotDocumentationTypes()
         {
-            ValidateActionDocumentation<GetScreenshot>(ActionType.GetScreenshot, Types);
+            ValidateActionDocumentation<GetScreenshot>(ActionPlugins.GetScreenshot, Types);
         }
 
         [TestMethod]
         public void GetScreenshotDocumentationResourceFile()
         {
-            ValidateActionDocumentation<GetScreenshot>(ActionType.GetScreenshot, Types, "get-screenshot.json");
+            ValidateActionDocumentation<GetScreenshot>(ActionPlugins.GetScreenshot, Types, "get-screenshot.json");
         }
 
         [DataTestMethod]

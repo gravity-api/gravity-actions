@@ -11,6 +11,7 @@ using Gravity.Services.Comet.Engine.Plugins;
 using Gravity.Services.DataContracts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using Gravity.Plugins.Actions.Contracts;
 
 #pragma warning disable S4144
 namespace Gravity.Plugins.Actions.UnitTests.Common
@@ -56,19 +57,19 @@ namespace Gravity.Plugins.Actions.UnitTests.Common
         [TestMethod]
         public void RepeatDocumentationNoTypes()
         {
-            ValidateActionDocumentation<Repeat>(ActionType.Repeat);
+            ValidateActionDocumentation<Repeat>(ActionPlugins.Repeat);
         }
 
         [TestMethod]
         public void RepeatDocumentationTypes()
         {
-            ValidateActionDocumentation<Repeat>(ActionType.Repeat, Types);
+            ValidateActionDocumentation<Repeat>(ActionPlugins.Repeat, Types);
         }
 
         [TestMethod]
         public void RepeatDocumentationResourceFile()
         {
-            ValidateActionDocumentation<Repeat>(ActionType.Repeat, Types, "repeat.json");
+            ValidateActionDocumentation<Repeat>(ActionPlugins.Repeat, Types, "repeat.json");
         }
 
         [DataTestMethod]

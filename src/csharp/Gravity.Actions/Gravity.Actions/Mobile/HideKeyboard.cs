@@ -2,10 +2,8 @@
  * CHANGE LOG - keep only last 5 threads
  * 
  * on-line resources
- * 
- * work items
- * TODO: implement new IHidesKeyboard functionality when ready
  */
+using Gravity.Plugins.Actions.Contracts;
 using Gravity.Services.Comet.Engine.Attributes;
 using Gravity.Services.Comet.Engine.Extensions;
 using Gravity.Services.Comet.Engine.Plugins;
@@ -21,7 +19,7 @@ namespace Gravity.Plugins.Actions.Mobile
     [Action(
         assmebly: "Gravity.Plugins.Actions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
         resource: "Gravity.Plugins.Actions.Documentation.hide-keyboard.json",
-        Name = ActionType.HideKeyboard)]
+        Name = ActionPlugins.HideKeyboard)]
     public class HideKeyboard : ActionPlugin
     {
         /// <summary>

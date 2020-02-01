@@ -6,11 +6,11 @@
 using OpenQA.Selenium.Appium.Mock;
 using Gravity.Plugins.Actions.Common;
 using Gravity.Plugins.Actions.UnitTests.Base;
-using Gravity.Services.DataContracts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using System;
 using OpenQA.Selenium.Mock;
+using Gravity.Plugins.Actions.Contracts;
 
 #pragma warning disable S4144
 namespace Gravity.Plugins.Actions.UnitTests.Common
@@ -33,19 +33,19 @@ namespace Gravity.Plugins.Actions.UnitTests.Common
         [TestMethod]
         public void SendKeysDocumentationNoTypes()
         {
-            ValidateActionDocumentation<SendKeys>(ActionType.SendKeys);
+            ValidateActionDocumentation<SendKeys>(ActionPlugins.SendKeys);
         }
 
         [TestMethod]
         public void SendKeysDocumentationTypes()
         {
-            ValidateActionDocumentation<SendKeys>(ActionType.SendKeys, Types);
+            ValidateActionDocumentation<SendKeys>(ActionPlugins.SendKeys, Types);
         }
 
         [TestMethod]
         public void SendKeysDocumentationResourceFile()
         {
-            ValidateActionDocumentation<SendKeys>(ActionType.SendKeys, Types, "send-keys.json");
+            ValidateActionDocumentation<SendKeys>(ActionPlugins.SendKeys, Types, "send-keys.json");
         }
 
         [DataTestMethod]

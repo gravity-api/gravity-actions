@@ -7,11 +7,11 @@ using OpenQA.Selenium.Mock;
 using OpenQA.Selenium.Mock.Extensions;
 using Gravity.Plugins.Actions.UnitTests.Base;
 using Gravity.Plugins.Actions.Web;
-using Gravity.Services.DataContracts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using System.Collections.Generic;
 using System.Linq;
+using Gravity.Plugins.Actions.Contracts;
 
 namespace Gravity.Plugins.Actions.UnitTests.Web
 {
@@ -35,20 +35,20 @@ namespace Gravity.Plugins.Actions.UnitTests.Web
         [TestMethod]
         public void CloseWindowDocumentationNoTypes()
         {
-            ValidateActionDocumentation<CloseWindow>(ActionType.CloseWindow);
+            ValidateActionDocumentation<CloseWindow>(ActionPlugins.CloseWindow);
         }
 
         [TestMethod]
         public void CloseWindowDocumentationTypes()
         {
-            ValidateActionDocumentation<CloseWindow>(ActionType.CloseWindow, Types);
+            ValidateActionDocumentation<CloseWindow>(ActionPlugins.CloseWindow, Types);
         }
 
         [TestMethod]
         public void CloseWindowDocumentationResourceFile()
         {
             ValidateActionDocumentation<CloseWindow>(
-                ActionType.CloseWindow, Types, "close-window.json");
+                ActionPlugins.CloseWindow, Types, "close-window.json");
         }
 
         [DataTestMethod]

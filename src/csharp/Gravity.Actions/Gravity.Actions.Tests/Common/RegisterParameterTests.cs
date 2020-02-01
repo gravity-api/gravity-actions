@@ -11,6 +11,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using System;
 using System.Text.RegularExpressions;
+using Gravity.Plugins.Actions.Contracts;
 
 namespace Gravity.Plugins.Actions.UnitTests.Common
 {
@@ -32,22 +33,20 @@ namespace Gravity.Plugins.Actions.UnitTests.Common
         [TestMethod]
         public void RegisterParameterDocumentationNoTypes()
         {
-            ValidateActionDocumentation<RegisterParameter>(
-                ActionType.RegisterParameter);
+            ValidateActionDocumentation<RegisterParameter>(ActionPlugins.RegisterParameter);
         }
 
         [TestMethod]
         public void RegisterParameterDocumentationTypes()
         {
-            ValidateActionDocumentation<RegisterParameter>(
-                ActionType.RegisterParameter, Types);
+            ValidateActionDocumentation<RegisterParameter>(ActionPlugins.RegisterParameter, Types);
         }
 
         [TestMethod]
         public void RegisterParameterDocumentationResourceFile()
         {
             ValidateActionDocumentation<RegisterParameter>(
-                ActionType.RegisterParameter, Types, "register-parameter.json");
+                ActionPlugins.RegisterParameter, Types, "register-parameter.json");
         }
 
         [DataTestMethod]

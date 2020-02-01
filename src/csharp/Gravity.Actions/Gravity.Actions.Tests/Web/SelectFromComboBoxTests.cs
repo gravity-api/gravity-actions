@@ -3,9 +3,9 @@
  * 
  * on-line resources
  */
+using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Actions.UnitTests.Base;
 using Gravity.Plugins.Actions.Web;
-using Gravity.Services.DataContracts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Mock;
@@ -25,15 +25,15 @@ namespace Gravity.Plugins.Actions.UnitTests.Web
 
         [TestMethod]
         public void SelectFromComboBoxDocumentationNoTypes()
-            => ValidateActionDocumentation<SelectFromComboBox>(ActionType.SelectFromComboBox);
+            => ValidateActionDocumentation<SelectFromComboBox>(ActionPlugins.SelectFromComboBox);
 
         [TestMethod]
         public void SelectFromComboBoxDocumentationTypes()
-            => ValidateActionDocumentation<SelectFromComboBox>(ActionType.SelectFromComboBox, Types);
+            => ValidateActionDocumentation<SelectFromComboBox>(ActionPlugins.SelectFromComboBox, Types);
 
         [TestMethod]
         public void SelectFromComboBoxDocumentationResourceFile()
-            => ValidateActionDocumentation<SelectFromComboBox>(ActionType.SelectFromComboBox, Types, "select-from-combo-box.json");
+            => ValidateActionDocumentation<SelectFromComboBox>(ActionPlugins.SelectFromComboBox, Types, "select-from-combo-box.json");
 
         [DataTestMethod]
         [DataRow("{'elementToActOn':'//select-element','argument':'Mock: Positive Element'}")]

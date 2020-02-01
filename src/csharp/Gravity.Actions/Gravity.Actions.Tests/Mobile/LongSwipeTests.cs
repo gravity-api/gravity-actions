@@ -3,9 +3,9 @@
  * 
  * on-line resources
  */
+using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Actions.Mobile;
 using Gravity.Plugins.Actions.UnitTests.Base;
-using Gravity.Services.DataContracts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Mock;
@@ -26,15 +26,15 @@ namespace Gravity.Plugins.Actions.UnitTests.Mobile
 
         [TestMethod]
         public void LongSwipeDocumentationNoTypes()
-            => ValidateActionDocumentation<LongSwipe>(ActionType.LongSwipe);
+            => ValidateActionDocumentation<LongSwipe>(ActionPlugins.LongSwipe);
 
         [TestMethod]
         public void LongSwipeDocumentationTypes()
-            => ValidateActionDocumentation<LongSwipe>(ActionType.LongSwipe, Types);
+            => ValidateActionDocumentation<LongSwipe>(ActionPlugins.LongSwipe, Types);
 
         [TestMethod]
         public void LongSwipeDocumentationResourceFile()
-            => ValidateActionDocumentation<LongSwipe>(ActionType.LongSwipe, Types, "long-swipe.json");
+            => ValidateActionDocumentation<LongSwipe>(ActionPlugins.LongSwipe, Types, "long-swipe.json");
 
         [DataTestMethod]
         [DataRow("{'argument':'{{$ --source:100,100 --target:200,200}}'}")]

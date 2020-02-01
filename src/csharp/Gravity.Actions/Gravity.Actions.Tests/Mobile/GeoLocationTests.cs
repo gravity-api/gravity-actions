@@ -3,9 +3,9 @@
  * 
  * on-line resources
  */
+using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Actions.Mobile;
 using Gravity.Plugins.Actions.UnitTests.Base;
-using Gravity.Services.DataContracts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Mock;
@@ -31,19 +31,19 @@ namespace Gravity.Plugins.Actions.UnitTests.Mobile
         [TestMethod]
         public void GeoLocationDocumentationNoTypes()
         {
-            ValidateActionDocumentation<SetGeoLocation>(ActionType.SetGeoLocation);
+            ValidateActionDocumentation<SetGeoLocation>(ActionPlugins.SetGeoLocation);
         }
 
         [TestMethod]
         public void GeoLocationDocumentationTypes()
         {
-            ValidateActionDocumentation<SetGeoLocation>(ActionType.SetGeoLocation, Types);
+            ValidateActionDocumentation<SetGeoLocation>(ActionPlugins.SetGeoLocation, Types);
         }
 
         [TestMethod]
         public void GeoLocationDocumentationResourceFile()
         {
-            ValidateActionDocumentation<SetGeoLocation>(ActionType.SetGeoLocation, Types, "set-geo-location.json");
+            ValidateActionDocumentation<SetGeoLocation>(ActionPlugins.SetGeoLocation, Types, "set-geo-location.json");
         }
 
         [DataTestMethod]

@@ -14,6 +14,7 @@
  * work items
  * TODO: use IHasLocation interface when available (DoGeoLocation)
  */
+using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Actions.Extensions;
 using Gravity.Services.Comet.Engine.Attributes;
 using Gravity.Services.Comet.Engine.Core;
@@ -31,7 +32,7 @@ namespace Gravity.Plugins.Actions.Mobile
     [Action(
         assmebly: "Gravity.Plugins.Actions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
         resource: "Gravity.Plugins.Actions.Documentation.set-geo-location.json",
-        Name = ActionType.SetGeoLocation)]
+        Name = ActionPlugins.SetGeoLocation)]
     public class SetGeoLocation : ActionPlugin
     {
         #region *** constants: arguments  ***

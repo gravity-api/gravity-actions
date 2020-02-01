@@ -6,9 +6,9 @@
 using OpenQA.Selenium.Mock;
 using Gravity.Plugins.Actions.Common;
 using Gravity.Plugins.Actions.UnitTests.Base;
-using Gravity.Services.DataContracts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
+using Gravity.Plugins.Actions.Contracts;
 
 #pragma warning disable S4144
 namespace Gravity.Plugins.Actions.UnitTests.Common
@@ -31,20 +31,20 @@ namespace Gravity.Plugins.Actions.UnitTests.Common
         [TestMethod]
         public void ExecuteScriptDocumentationNoTypes()
         {
-            ValidateActionDocumentation<ExecuteScript>(ActionType.ExecuteScript);
+            ValidateActionDocumentation<ExecuteScript>(ActionPlugins.ExecuteScript);
         }
 
         [TestMethod]
         public void ExecuteScriptDocumentationTypes()
         {
-            ValidateActionDocumentation<ExecuteScript>(ActionType.ExecuteScript, Types);
+            ValidateActionDocumentation<ExecuteScript>(ActionPlugins.ExecuteScript, Types);
         }
 
         [TestMethod]
         public void ExecuteScriptDocumentationResourceFile()
         {
             ValidateActionDocumentation<ExecuteScript>(
-                ActionType.ExecuteScript, Types, "execute-script.json");
+                ActionPlugins.ExecuteScript, Types, "execute-script.json");
         }
 
         [DataTestMethod]

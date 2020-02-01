@@ -6,9 +6,9 @@
 using OpenQA.Selenium.Mock;
 using Gravity.Plugins.Actions.UnitTests.Base;
 using Gravity.Plugins.Actions.Web;
-using Gravity.Services.DataContracts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
+using Gravity.Plugins.Actions.Contracts;
 
 #pragma warning disable S4144
 namespace Gravity.Plugins.Actions.UnitTests.Web
@@ -31,20 +31,20 @@ namespace Gravity.Plugins.Actions.UnitTests.Web
         [TestMethod]
         public void TryClickDocumentationNoTypes()
         {
-            ValidateActionDocumentation<TryClick>(ActionType.TryClick);
+            ValidateActionDocumentation<TryClick>(ActionPlugins.TryClick);
         }
 
         [TestMethod]
         public void TryClickDocumentationTypes()
         {
-            ValidateActionDocumentation<TryClick>(ActionType.TryClick, Types);
+            ValidateActionDocumentation<TryClick>(ActionPlugins.TryClick, Types);
         }
 
         [TestMethod]
         public void TryClickDocumentationResourceFile()
         {
             ValidateActionDocumentation<TryClick>(
-                ActionType.TryClick, Types, "try-click.json");
+                ActionPlugins.TryClick, Types, "try-click.json");
         }
 
         [DataTestMethod]

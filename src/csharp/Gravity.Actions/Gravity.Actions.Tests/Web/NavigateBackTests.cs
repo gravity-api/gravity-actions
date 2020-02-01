@@ -3,9 +3,9 @@
  * 
  * on-line resources
  */
+using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Actions.UnitTests.Base;
 using Gravity.Plugins.Actions.Web;
-using Gravity.Services.DataContracts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 #pragma warning disable S4144
@@ -29,20 +29,20 @@ namespace Gravity.Plugins.Actions.UnitTests.Web
         [TestMethod]
         public void NavigateBackDocumentationNoTypes()
         {
-            ValidateActionDocumentation<NavigateBack>(ActionType.NavigateBack);
+            ValidateActionDocumentation<NavigateBack>(ActionPlugins.NavigateBack);
         }
 
         [TestMethod]
         public void NavigateBackDocumentationTypes()
         {
-            ValidateActionDocumentation<NavigateBack>(ActionType.NavigateBack, Types);
+            ValidateActionDocumentation<NavigateBack>(ActionPlugins.NavigateBack, Types);
         }
 
         [TestMethod]
         public void NavigateBackDocumentationResourceFile()
         {
             ValidateActionDocumentation<NavigateBack>(
-                ActionType.NavigateBack, Types, "navigate-back.json");
+                ActionPlugins.NavigateBack, Types, "navigate-back.json");
         }
 
         [TestMethod]

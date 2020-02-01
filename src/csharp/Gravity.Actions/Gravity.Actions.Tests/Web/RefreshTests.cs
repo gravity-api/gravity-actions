@@ -3,9 +3,9 @@
  * 
  * on-line resources
  */
+using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Actions.UnitTests.Base;
 using Gravity.Plugins.Actions.Web;
-using Gravity.Services.DataContracts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 #pragma warning disable S4144
@@ -29,20 +29,19 @@ namespace Gravity.Plugins.Actions.UnitTests.Web
         [TestMethod]
         public void RefreshDocumentationNoTypes()
         {
-            ValidateActionDocumentation<Refresh>(ActionType.Refresh);
+            ValidateActionDocumentation<Refresh>(ActionPlugins.Refresh);
         }
 
         [TestMethod]
         public void RefreshDocumentationTypes()
         {
-            ValidateActionDocumentation<Refresh>(ActionType.Refresh, Types);
+            ValidateActionDocumentation<Refresh>(ActionPlugins.Refresh, Types);
         }
 
         [TestMethod]
         public void RefreshDocumentationResourceFile()
         {
-            ValidateActionDocumentation<Refresh>(
-                ActionType.Refresh, Types, "refresh.json");
+            ValidateActionDocumentation<Refresh>(ActionPlugins.Refresh, Types, "refresh.json");
         }
 
         [TestMethod]

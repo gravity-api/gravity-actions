@@ -6,10 +6,10 @@
 using OpenQA.Selenium.Mock;
 using Gravity.Plugins.Actions.Mobile;
 using Gravity.Plugins.Actions.UnitTests.Base;
-using Gravity.Services.DataContracts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Mock;
+using Gravity.Plugins.Actions.Contracts;
 
 #pragma warning disable S4144
 namespace Gravity.Plugins.Actions.UnitTests.Mobile
@@ -32,20 +32,20 @@ namespace Gravity.Plugins.Actions.UnitTests.Mobile
         [TestMethod]
         public void HideKeyboardDocumentationNoTypes()
         {
-            ValidateActionDocumentation<HideKeyboard>(ActionType.HideKeyboard);
+            ValidateActionDocumentation<HideKeyboard>(ActionPlugins.HideKeyboard);
         }
 
         [TestMethod]
         public void HideKeyboardDocumentationTypes()
         {
-            ValidateActionDocumentation<HideKeyboard>(ActionType.HideKeyboard, Types);
+            ValidateActionDocumentation<HideKeyboard>(ActionPlugins.HideKeyboard, Types);
         }
 
         [TestMethod]
         public void HideKeyboardDocumentationResourceFile()
         {
             ValidateActionDocumentation<HideKeyboard>(
-                ActionType.HideKeyboard, Types, "hide-keyboard.json");
+                ActionPlugins.HideKeyboard, Types, "hide-keyboard.json");
         }
 
         [TestMethod]

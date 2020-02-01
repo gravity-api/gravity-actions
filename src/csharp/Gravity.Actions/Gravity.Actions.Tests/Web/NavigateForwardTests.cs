@@ -3,9 +3,9 @@
  * 
  * on-line resources
  */
+using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Actions.UnitTests.Base;
 using Gravity.Plugins.Actions.Web;
-using Gravity.Services.DataContracts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 #pragma warning disable S4144
@@ -29,20 +29,20 @@ namespace Gravity.Plugins.Actions.UnitTests.Web
         [TestMethod]
         public void NavigateForwardDocumentationNoTypes()
         {
-            ValidateActionDocumentation<NavigateForward>(ActionType.NavigateForward);
+            ValidateActionDocumentation<NavigateForward>(ActionPlugins.NavigateForward);
         }
 
         [TestMethod]
         public void NavigateForwardDocumentationTypes()
         {
-            ValidateActionDocumentation<NavigateForward>(ActionType.NavigateForward, Types);
+            ValidateActionDocumentation<NavigateForward>(ActionPlugins.NavigateForward, Types);
         }
 
         [TestMethod]
         public void NavigateForwardDocumentationResourceFile()
         {
             ValidateActionDocumentation<NavigateForward>(
-                ActionType.NavigateForward, Types, "navigate-forward.json");
+                ActionPlugins.NavigateForward, Types, "navigate-forward.json");
         }
 
         [TestMethod]

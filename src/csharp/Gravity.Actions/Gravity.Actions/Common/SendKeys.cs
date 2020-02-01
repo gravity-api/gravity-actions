@@ -18,9 +18,6 @@
  * 
  * on-line resources
  * http://appium.io/docs/en/writing-running-appium/android/android-shell/
- * 
- * work items
- * TODO: better factoring on DoAction(IWebElement webElement, ActionRule actionRule)
  */
 using Gravity.Drivers.Selenium;
 using Gravity.Plugins.Actions.Extensions;
@@ -33,6 +30,9 @@ using Microsoft.Extensions.Logging;
 using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Threading;
 using SeleniumActions = OpenQA.Selenium.Interactions.Actions;
@@ -118,52 +118,26 @@ namespace Gravity.Plugins.Actions.Common
             DoAction(webElement, actionRule);
         }
 
-        // executes SendKeys routine
+        // executes action routine
         private void DoAction(IWebElement webElement, ActionRule actionRule)
         {
             // setup            
             arguments = SetArguments(actionRule);
-            var conditions = SetConditions();
-            var timeout = TimeSpan.FromMilliseconds(ElementSearchTimeout);
-            var element = webElement != default
-                ? webElement.GetElementByActionRule(ByFactory, actionRule, timeout)
-                : WebDriver.GetElementByActionRule(ByFactory, actionRule, timeout);
-
-            // execute: clear
-            if (conditions["isClear"])
-            {
-                element.Clear();
-            }
-
-            // execute: force clear
-            if (conditions["isForceClear"])
-            {
-                DoForceClear(element);
-            }
-
-            // execute: send keys with interval
-            if (conditions["isInterval"])
-            {
-                DoInterval(element);
-                return;
-            }
-
-            // execute: keys combination
-            if (conditions["isDown"])
-            {
-                DoDownCombination();
-                return;
-            }
-
-            // keys android UIAutomator2
-            if (conditions["isAndroid"])
-            {
-                DoAndroid(element);
-                return;
-            }
+            var conditions = SetConditions().Where(i => i.Value);
+            var regex = conditions.Any() ? string.Join("|", conditions.Select(i => i.Key)) : string.Empty;
+            var element = GetElementUnderAutomation(webElement, actionRule);
 
             // execute: default
-            element.SendKeys(arguments[Keystrokes]);
+            if (string.IsNullOrEmpty(regex))
+            {
+                element.SendKeys(arguments[Keystrokes]);
+                return;
+            }
+
+            foreach (var method in GetType().GetMethodsByDescription(regex))
+            {
+                DoActionIteration(method, webElement: element);
+            }
         }
 
         // populate action arguments based on action rule or CLI
@@ -188,8 +162,7 @@ namespace Gravity.Plugins.Actions.Common
             var isClear = arguments.ContainsKey(Clear);
             var isForceClear = !isClear && arguments.ContainsKey(ForceClear);
             var isDown = arguments.ContainsKey(Down);
-            var isKeys = arguments.ContainsKey(Keystrokes);
-            var isInterval = isKeys && !isDown && arguments.ContainsKey(Interval);
+            var isInterval = !isDown && arguments.ContainsKey(Interval);
             var isUiautomator2 = !Regex.IsMatch(driverParams, "uiautomator1", RegexOptions.IgnoreCase);
             var isAndroid = isUiautomator2 && (WebDriver.IsAppiumDriver());
 
@@ -198,15 +171,37 @@ namespace Gravity.Plugins.Actions.Common
                 [nameof(isClear)] = isClear,
                 [nameof(isForceClear)] = isForceClear,
                 [nameof(isDown)] = isDown,
-                [nameof(isKeys)] = isKeys,
                 [nameof(isInterval)] = isInterval,
-                [nameof(isUiautomator2)] = isUiautomator2,
                 [nameof(isAndroid)] = isAndroid
             };
         }
 
+        // get a web element to interact with
+        private IWebElement GetElementUnderAutomation(IWebElement webElement, ActionRule actionRule)
+        {
+            var timeout = TimeSpan.FromMilliseconds(ElementSearchTimeout);
+            return webElement != default
+                ? webElement.GetElementByActionRule(ByFactory, actionRule, timeout)
+                : WebDriver.GetElementByActionRule(ByFactory, actionRule, timeout);
+        }
+
+        // executes a single send keys method
+        private void DoActionIteration(MethodInfo method, IWebElement webElement)
+        {
+            if (method.GetParameters().Length == 0)
+            {
+                method.Invoke(obj: this, parameters: null);
+                return;
+            }
+            method.Invoke(obj: this, parameters: new object[] { webElement });
+        }
+
         // CONDITIONS REPOSITORY
-        // force to clear the element value by sending <Backspace> strokes
+#pragma warning disable S1144, RCS1213, IDE0051
+        [Description("isClear")]
+        private void DoClear(IWebElement webElement) => webElement.Clear();
+
+        [Description("isForceClear")]
         private void DoForceClear(IWebElement webElement)
         {
             // exit conditions
@@ -232,7 +227,7 @@ namespace Gravity.Plugins.Actions.Common
             }
         }
 
-        // simulates typing text into the element with time interval between each keystroke
+        [Description("isInterval")]
         private void DoInterval(IWebElement webElement)
         {
             // parse typing interval
@@ -242,7 +237,7 @@ namespace Gravity.Plugins.Actions.Common
             webElement.SendKeysWithInterval(arguments[Keystrokes], intervalOut);
         }
 
-        // holds down a combination of keys before sending keystrokes
+        [Description("isDown")]
         private void DoDownCombination()
         {
             // exit conditions
@@ -276,8 +271,7 @@ namespace Gravity.Plugins.Actions.Common
             actions.Build().Perform();
         }
 
-        // simulates typing text into the element using ADB shell to bypass some end cases application bugs
-        // on UIAutomator2
+        [Description("isAndroid")]
         private void DoAndroid(IWebElement webElement)
         {
             try
@@ -297,4 +291,5 @@ namespace Gravity.Plugins.Actions.Common
             }
         }
     }
+#pragma warning restore
 }

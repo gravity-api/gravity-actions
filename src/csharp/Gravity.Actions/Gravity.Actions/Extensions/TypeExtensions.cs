@@ -23,10 +23,11 @@ namespace Gravity.Plugins.Actions.Extensions
         /// <returns><see cref="MethodInfo"/> instance if found or null if not.</returns>
         public static MethodInfo GetMethodByDescription(this Type t, string regex)
         {
-            return GetMethodByDescription(
+            return GetByDescription(
                 t,
                 regex,
-                flags: BindingFlags.Instance | BindingFlags.NonPublic);
+                flags: BindingFlags.Instance | BindingFlags.NonPublic,
+                comparison: RegexOptions.IgnoreCase).FirstOrDefault();
         }
 
         /// <summary>
@@ -38,7 +39,7 @@ namespace Gravity.Plugins.Actions.Extensions
         /// <returns><see cref="MethodInfo"/> instance if found or null if not.</returns>
         public static MethodInfo GetMethodByDescription(this Type t, string regex, BindingFlags flags)
         {
-            return GetMethodByDescription(t, regex, flags, comparison: RegexOptions.IgnoreCase);
+            return GetByDescription(t, regex, flags, comparison: RegexOptions.IgnoreCase).FirstOrDefault();
         }
 
         /// <summary>
@@ -51,13 +52,59 @@ namespace Gravity.Plugins.Actions.Extensions
         /// <returns><see cref="MethodInfo"/> instance if found or null if not.</returns>
         public static MethodInfo GetMethodByDescription(this Type t, string regex, BindingFlags flags, RegexOptions comparison)
         {
+            return GetByDescription(t, regex, flags, comparison).FirstOrDefault();
+        }
+
+        /// <summary>
+        /// Gets all methods in this type with the specified <see cref="DescriptionAttribute"/> description.
+        /// </summary>
+        /// <param name="t">This <see cref="Type"/> instance.</param>
+        /// <param name="regex">A pattern by which to find the method.</param>
+        /// <returns>A collection of <see cref="MethodInfo"/> instance if found or null if not.</returns>
+        public static IEnumerable<MethodInfo> GetMethodsByDescription(this Type t, string regex)
+        {
+            return GetByDescription(
+                t,
+                regex,
+                flags: BindingFlags.Instance | BindingFlags.NonPublic,
+                comparison: RegexOptions.IgnoreCase);
+        }
+
+        /// <summary>
+        /// Gets all methods in this type with the specified <see cref="DescriptionAttribute"/> description.
+        /// </summary>
+        /// <param name="t">This <see cref="Type"/> instance.</param>
+        /// <param name="regex">A pattern by which to find the method.</param>
+        /// <param name="flags">Specifies flags that control binding and the way in which the search for members and types is conducted by reflection.</param>
+        /// <returns>A collection of <see cref="MethodInfo"/> instance if found or null if not.</returns>
+        public static IEnumerable<MethodInfo> GetMethodsByDescription(this Type t, string regex, BindingFlags flags)
+        {
+            return GetByDescription(t, regex, flags, comparison: RegexOptions.IgnoreCase);
+        }
+
+        /// <summary>
+        /// Gets all methods in this type with the specified <see cref="DescriptionAttribute"/> description.
+        /// </summary>
+        /// <param name="t">This <see cref="Type"/> instance.</param>
+        /// <param name="regex">A pattern by which to find the method.</param>
+        /// <param name="flags">Specifies flags that control binding and the way in which the search for members and types is conducted by reflection.</param>
+        /// <param name="comparison">Specifies the culture, case, and sort rules to be used by this search.</param>
+        /// <returns>A collection of <see cref="MethodInfo"/> instance if found or null if not.</returns>
+        public static IEnumerable<MethodInfo> GetMethodsByDescription(this Type t, string regex, BindingFlags flags, RegexOptions comparison)
+        {
+            return GetByDescription(t, regex, flags, comparison);
+        }
+
+        // get all methods with matching description
+        private static IEnumerable<MethodInfo> GetByDescription(this Type t, string regex, BindingFlags flags, RegexOptions comparison)
+        {
             // shortcuts
             var d = regex;
             var c = comparison;
 
             // get method
             var methods = t.GetMethods(flags).Where(i => i.GetCustomAttribute<DescriptionAttribute>() != null);
-            return methods.FirstOrDefault(i => Regex.IsMatch(i.GetCustomAttribute<DescriptionAttribute>().Description, d, c));
+            return methods.Where(i => Regex.IsMatch(i.GetCustomAttribute<DescriptionAttribute>().Description, d, c));
         }
         #endregion
 
@@ -70,7 +117,7 @@ namespace Gravity.Plugins.Actions.Extensions
         /// <returns><see cref="MethodInfo"/> instance if found or null if not.</returns>
         public static MethodInfo GetMethodByName(this Type t, string regex)
         {
-            return Get(
+            return GetByName(
                 t,
                 regex,
                 flags: BindingFlags.Instance | BindingFlags.NonPublic,
@@ -86,7 +133,7 @@ namespace Gravity.Plugins.Actions.Extensions
         /// <returns><see cref="MethodInfo"/> instance if found or null if not.</returns>
         public static MethodInfo GetMethodByName(this Type t, string regex, BindingFlags flags)
         {
-            return Get(t, regex, flags, comparison: RegexOptions.IgnoreCase).FirstOrDefault();
+            return GetByName(t, regex, flags, comparison: RegexOptions.IgnoreCase).FirstOrDefault();
         }
 
         /// <summary>
@@ -99,7 +146,7 @@ namespace Gravity.Plugins.Actions.Extensions
         /// <returns><see cref="MethodInfo"/> instance if found or null if not.</returns>
         public static MethodInfo GetMethodByName(this Type t, string regex, BindingFlags flags, RegexOptions comparison)
         {
-            return Get(t, regex, flags, comparison).FirstOrDefault();
+            return GetByName(t, regex, flags, comparison).FirstOrDefault();
         }
 
         /// <summary>
@@ -110,7 +157,7 @@ namespace Gravity.Plugins.Actions.Extensions
         /// <returns>A collection of <see cref="MethodInfo"/> if found or an empty collection if not.</returns>
         public static IEnumerable<MethodInfo> GetMethodsByName(this Type t, string regex)
         {
-            return Get(
+            return GetByName(
                 t,
                 regex,
                 flags: BindingFlags.Instance | BindingFlags.NonPublic,
@@ -126,7 +173,7 @@ namespace Gravity.Plugins.Actions.Extensions
         /// <returns>A collection of <see cref="MethodInfo"/> if found or an empty collection if not.</returns>
         public static IEnumerable<MethodInfo> GetMethodsByName(this Type t, string regex, BindingFlags flags)
         {
-            return Get(t, regex, flags, comparison: RegexOptions.IgnoreCase);
+            return GetByName(t, regex, flags, comparison: RegexOptions.IgnoreCase);
         }
 
         /// <summary>
@@ -139,11 +186,11 @@ namespace Gravity.Plugins.Actions.Extensions
         /// <returns>A collection of <see cref="MethodInfo"/> if found or an empty collection if not.</returns>
         public static IEnumerable<MethodInfo> GetMethodsByName(this Type t, string regex, BindingFlags flags, RegexOptions comparison)
         {
-            return Get(t, regex, flags, comparison);
+            return GetByName(t, regex, flags, comparison);
         }
 
         // get all methods with matching names
-        private static IEnumerable<MethodInfo> Get(Type t, string regex, BindingFlags flags, RegexOptions comparison)
+        private static IEnumerable<MethodInfo> GetByName(Type t, string regex, BindingFlags flags, RegexOptions comparison)
         {
             // shortcuts
             var d = regex;

@@ -236,7 +236,7 @@ namespace Gravity.Plugins.Actions.UnitTests.Common
             Assert.IsTrue(true);
         }
 
-        [DataTestMethod, ExpectedException(typeof(NullReferenceException))]
+        [DataTestMethod]
         [DataRow("{'elementToActOn':'.//null','argument':'{{$ --keys:unitTesting --forceClear}}'}")]
         public void SendKeysElementForceClearNull(string actionRule)
         {

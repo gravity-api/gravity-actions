@@ -3,13 +3,13 @@
  * 
  * on-line resources
  */
-using Gravity.Services.ActionPlugins.Common;
-using Gravity.Services.ActionPlugins.UnitTests.Base;
+using Gravity.Plugins.Actions.Common;
+using Gravity.Plugins.Actions.UnitTests.Base;
 using Gravity.Services.DataContracts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 #pragma warning disable S4144
-namespace Gravity.Services.ActionPlugins.UnitTests.Common
+namespace Gravity.Plugins.Actions.UnitTests.Common
 {
     [TestClass]
     public class WaitTests : ActionTests

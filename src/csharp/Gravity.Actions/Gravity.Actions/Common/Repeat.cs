@@ -15,7 +15,7 @@
  * on-line resources
  */
 using Gravity.Drivers.Selenium;
-using Gravity.Services.ActionPlugins.Extensions;
+using Gravity.Plugins.Actions.Extensions;
 using Gravity.Services.Comet.Engine.Attributes;
 using Gravity.Services.Comet.Engine.Core;
 using Gravity.Services.Comet.Engine.Extensions;
@@ -28,11 +28,11 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 
-namespace Gravity.Services.ActionPlugins.Common
+namespace Gravity.Plugins.Actions.Common
 {
     [Action(
-        assmebly: "Gravity.Services.ActionPlugins, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
-        resource: "Gravity.Services.ActionPlugins.Documentation.repeat.json",
+        assmebly: "Gravity.Plugins.Actions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+        resource: "Gravity.Plugins.Actions.Documentation.repeat.json",
         Name = ActionType.Repeat)]
     public class Repeat : ActionPlugin
     {

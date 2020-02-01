@@ -7,7 +7,7 @@
  *    
  * on-line resources
  */
-using Gravity.Services.ActionPlugins.Extensions;
+using Gravity.Plugins.Actions.Extensions;
 using Gravity.Services.Comet.Engine.Attributes;
 using Gravity.Services.Comet.Engine.Extensions;
 using Gravity.Services.Comet.Engine.Plugins;
@@ -16,11 +16,11 @@ using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 
-namespace Gravity.Services.ActionPlugins.Web
+namespace Gravity.Plugins.Actions.Web
 {
     [Action(
-        assmebly: "Gravity.Services.ActionPlugins, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
-        resource: "Gravity.Services.ActionPlugins.Documentation.keyboard.json",
+        assmebly: "Gravity.Plugins.Actions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+        resource: "Gravity.Plugins.Actions.Documentation.keyboard.json",
         Name = ActionType.Keyboard)]
     public class Keyboard : ActionPlugin
     {

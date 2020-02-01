@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 
-namespace Gravity.Services.ActionPlugins.Extensions
+namespace Gravity.Plugins.Actions.Extensions
 {
     public static class StringExtensions
     {

@@ -10,7 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 
-namespace Gravity.Services.ActionPlugins.Extensions
+namespace Gravity.Plugins.Actions.Extensions
 {
     public static class GravityUtilities
     {

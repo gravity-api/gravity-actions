@@ -3,14 +3,14 @@
  * 
  * on-line resources
  */
-using Gravity.Services.ActionPlugins.UnitTests.Base;
-using Gravity.Services.ActionPlugins.Web;
+using Gravity.Plugins.Actions.UnitTests.Base;
+using Gravity.Plugins.Actions.Web;
 using Gravity.Services.DataContracts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium.Mock;
 
 #pragma warning disable S4144
-namespace Gravity.Services.ActionPlugins.UnitTests.Web
+namespace Gravity.Plugins.Actions.UnitTests.Web
 {
     [TestClass]
     public class SubmitFormTests: ActionTests

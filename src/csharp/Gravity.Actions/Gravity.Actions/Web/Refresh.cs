@@ -18,11 +18,11 @@ using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 
-namespace Gravity.Services.ActionPlugins.Web
+namespace Gravity.Plugins.Actions.Web
 {
     [Action(
-        assmebly: "Gravity.Services.ActionPlugins, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
-        resource: "Gravity.Services.ActionPlugins.Documentation.refresh.json",
+        assmebly: "Gravity.Plugins.Actions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+        resource: "Gravity.Plugins.Actions.Documentation.refresh.json",
         Name = ActionType.Refresh)]
     public class Refresh : ActionPlugin
     {

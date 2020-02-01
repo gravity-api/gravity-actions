@@ -16,7 +16,7 @@
  * work items
  * TODO: change name to be ActionType constant when available
  */
-using Gravity.Services.ActionPlugins.Extensions;
+using Gravity.Plugins.Actions.Extensions;
 using Gravity.Services.Comet.Engine.Attributes;
 using Gravity.Services.Comet.Engine.Core;
 using Gravity.Services.Comet.Engine.Extensions;
@@ -30,11 +30,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 
-namespace Gravity.Services.ActionPlugins.Web
+namespace Gravity.Plugins.Actions.Web
 {
     [Action(
-        assmebly: "Gravity.Services.ActionPlugins, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
-        resource: "Gravity.Services.ActionPlugins.Documentation.elements-listener.json",
+        assmebly: "Gravity.Plugins.Actions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+        resource: "Gravity.Plugins.Actions.Documentation.elements-listener.json",
         Name = "ElementsListener")]
     public class ElementsListener : ActionPlugin
     {

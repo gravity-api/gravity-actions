@@ -24,11 +24,11 @@ using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 
-namespace Gravity.Services.ActionPlugins.Common
+namespace Gravity.Plugins.Actions.Common
 {
     [Action(
-        assmebly: "Gravity.Services.ActionPlugins, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
-        resource: "Gravity.Services.ActionPlugins.Documentation.close-browser.json",
+        assmebly: "Gravity.Plugins.Actions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+        resource: "Gravity.Plugins.Actions.Documentation.close-browser.json",
         Name = ActionType.CloseBrowser)]
     public class CloseBrowser : ActionPlugin
     {

@@ -24,24 +24,24 @@
  * on-line resources
  */
 using Gravity.Drivers.Selenium;
-using Gravity.Services.ActionPlugins.Extensions;
+using Gravity.Plugins.Actions.Extensions;
 using Gravity.Services.Comet.Engine.Attributes;
 using Gravity.Services.Comet.Engine.Core;
 using Gravity.Services.Comet.Engine.Extensions;
 using Gravity.Services.Comet.Engine.Plugins;
 using Gravity.Services.DataContracts;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using SeleniumActions = OpenQA.Selenium.Interactions.Actions;
 
-namespace Gravity.Services.ActionPlugins.Common
+namespace Gravity.Plugins.Actions.Common
 {
     [Action(
-        assmebly: "Gravity.Services.ActionPlugins, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
-        resource: "Gravity.Services.ActionPlugins.Documentation.click.json",
+        assmebly: "Gravity.Plugins.Actions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+        resource: "Gravity.Plugins.Actions.Documentation.click.json",
         Name = ActionType.Click)]
     public class Click : ActionPlugin
     {
@@ -60,7 +60,7 @@ namespace Gravity.Services.ActionPlugins.Common
         #endregion
 
         // members: state
-        private readonly Actions actions;
+        private readonly SeleniumActions actions;
         private readonly WebDriverWait wait;
         private IDictionary<string, string> arguments;
 
@@ -82,7 +82,7 @@ namespace Gravity.Services.ActionPlugins.Common
         public Click(IWebDriver webDriver, WebAutomation webAutomation, IEnumerable<Type> types)
             : base(webDriver, webAutomation, types)
         {
-            actions = new Actions(webDriver);
+            actions = new SeleniumActions(webDriver);
             wait = new WebDriverWait(webDriver, TimeSpan.FromMilliseconds(PageLoadTimeout));
         }
 

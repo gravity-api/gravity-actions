@@ -19,7 +19,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text.RegularExpressions;
 
-namespace Gravity.Services.ActionPlugins.Extensions
+namespace Gravity.Plugins.Actions.Extensions
 {
     public static class SeleniumExtensions
     {

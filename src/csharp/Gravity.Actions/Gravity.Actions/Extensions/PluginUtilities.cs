@@ -6,7 +6,7 @@
 using Gravity.Services.DataContracts;
 using OpenQA.Selenium;
 
-namespace Gravity.Services.ActionPlugins.Extensions
+namespace Gravity.Plugins.Actions.Extensions
 {
     public static class PluginUtilities
     {

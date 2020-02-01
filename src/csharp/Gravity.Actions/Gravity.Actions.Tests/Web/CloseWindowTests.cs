@@ -5,15 +5,15 @@
  */
 using OpenQA.Selenium.Mock;
 using OpenQA.Selenium.Mock.Extensions;
-using Gravity.Services.ActionPlugins.UnitTests.Base;
-using Gravity.Services.ActionPlugins.Web;
+using Gravity.Plugins.Actions.UnitTests.Base;
+using Gravity.Plugins.Actions.Web;
 using Gravity.Services.DataContracts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Gravity.Services.ActionPlugins.UnitTests.Web
+namespace Gravity.Plugins.Actions.UnitTests.Web
 {
     [TestClass]
     public class CloseWindowTests : ActionTests

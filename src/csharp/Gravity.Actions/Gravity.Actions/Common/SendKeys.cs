@@ -18,9 +18,12 @@
  * 
  * on-line resources
  * http://appium.io/docs/en/writing-running-appium/android/android-shell/
+ * 
+ * work items
+ * TODO: better factoring on DoAction(IWebElement webElement, ActionRule actionRule)
  */
 using Gravity.Drivers.Selenium;
-using Gravity.Services.ActionPlugins.Extensions;
+using Gravity.Plugins.Actions.Extensions;
 using Gravity.Services.Comet.Engine.Attributes;
 using Gravity.Services.Comet.Engine.Core;
 using Gravity.Services.Comet.Engine.Extensions;
@@ -28,17 +31,17 @@ using Gravity.Services.Comet.Engine.Plugins;
 using Gravity.Services.DataContracts;
 using Microsoft.Extensions.Logging;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Interactions;
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Threading;
+using SeleniumActions = OpenQA.Selenium.Interactions.Actions;
 
-namespace Gravity.Services.ActionPlugins.Common
+namespace Gravity.Plugins.Actions.Common
 {
     [Action(
-        assmebly: "Gravity.Services.ActionPlugins, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
-        resource: "Gravity.Services.ActionPlugins.Documentation.send-keys.json",
+        assmebly: "Gravity.Plugins.Actions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+        resource: "Gravity.Plugins.Actions.Documentation.send-keys.json",
         Name = ActionType.SendKeys)]
     public class SendKeys : ActionPlugin
     {
@@ -252,7 +255,7 @@ namespace Gravity.Services.ActionPlugins.Common
             var keysDown = arguments[Down].Split(',');
 
             // initialize actions
-            var actions = new Actions(WebDriver);
+            var actions = new SeleniumActions(WebDriver);
 
             // down-keys
             foreach (var i in keysDown)
@@ -284,7 +287,7 @@ namespace Gravity.Services.ActionPlugins.Common
             catch (Exception e) when (e is InvalidElementStateException)
             {
                 // focus on the element
-                new Actions(WebDriver).MoveToElement(webElement).Click().Perform();
+                new SeleniumActions(WebDriver).MoveToElement(webElement).Click().Perform();
 
                 // get the focused element
                 var focusedElement = WebDriver.FindElement(By.XPath("//*[@focused='true']"));

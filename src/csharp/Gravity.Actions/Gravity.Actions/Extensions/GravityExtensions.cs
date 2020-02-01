@@ -8,7 +8,7 @@ using System;
 using OpenQA.Selenium;
 using Gravity.Services.Comet.Engine.Extensions;
 
-namespace Gravity.Services.ActionPlugins.Extensions
+namespace Gravity.Plugins.Actions.Extensions
 {
     public static class GravityExtensions
     {

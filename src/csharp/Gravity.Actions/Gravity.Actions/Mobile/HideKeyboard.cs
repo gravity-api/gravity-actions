@@ -16,11 +16,11 @@ using OpenQA.Selenium.Appium.Interfaces;
 using System;
 using System.Collections.Generic;
 
-namespace Gravity.Services.ActionPlugins.Mobile
+namespace Gravity.Plugins.Actions.Mobile
 {
     [Action(
-        assmebly: "Gravity.Services.ActionPlugins, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
-        resource: "Gravity.Services.ActionPlugins.Documentation.hide-keyboard.json",
+        assmebly: "Gravity.Plugins.Actions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+        resource: "Gravity.Plugins.Actions.Documentation.hide-keyboard.json",
         Name = ActionType.HideKeyboard)]
     public class HideKeyboard : ActionPlugin
     {

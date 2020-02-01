@@ -21,7 +21,7 @@
  * on-line resources
  */
 using Gravity.Drivers.Selenium;
-using Gravity.Services.ActionPlugins.Extensions;
+using Gravity.Plugins.Actions.Extensions;
 using Gravity.Services.Comet.Engine.Attributes;
 using Gravity.Services.Comet.Engine.Core;
 using Gravity.Services.Comet.Engine.Extensions;
@@ -32,11 +32,11 @@ using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 
-namespace Gravity.Services.ActionPlugins.Common
+namespace Gravity.Plugins.Actions.Common
 {
     [Action(
-        assmebly: "Gravity.Services.ActionPlugins, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
-        resource: "Gravity.Services.ActionPlugins.Documentation.execute-script.json",
+        assmebly: "Gravity.Plugins.Actions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+        resource: "Gravity.Plugins.Actions.Documentation.execute-script.json",
         Name = ActionType.ExecuteScript)]
     public class ExecuteScript : ActionPlugin
     {

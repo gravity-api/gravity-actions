@@ -14,7 +14,7 @@
  * on-line resources
  */
 using Gravity.Drivers.Selenium;
-using Gravity.Services.ActionPlugins.Extensions;
+using Gravity.Plugins.Actions.Extensions;
 using Gravity.Services.Comet.Engine.Attributes;
 using Gravity.Services.Comet.Engine.Extensions;
 using Gravity.Services.Comet.Engine.Plugins;
@@ -25,11 +25,11 @@ using System.Collections.Generic;
 using System.IO;
 
 #pragma warning disable S4144
-namespace Gravity.Services.ActionPlugins.Common
+namespace Gravity.Plugins.Actions.Common
 {
     [Action(
-        assmebly: "Gravity.Services.ActionPlugins, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
-        resource: "Gravity.Services.ActionPlugins.Documentation.get-screenshot.json",
+        assmebly: "Gravity.Plugins.Actions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+        resource: "Gravity.Plugins.Actions.Documentation.get-screenshot.json",
         Name = ActionType.GetScreenshot)]
     public class GetScreenshot : ActionPlugin
     {

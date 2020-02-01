@@ -3,15 +3,15 @@
  * 
  * on-line resources
  */
-using Gravity.Services.ActionPlugins.Mobile;
-using Gravity.Services.ActionPlugins.UnitTests.Base;
+using Gravity.Plugins.Actions.Mobile;
+using Gravity.Plugins.Actions.UnitTests.Base;
 using Gravity.Services.DataContracts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Mock;
 
 #pragma warning disable S4144
-namespace Gravity.Services.ActionPlugins.UnitTests.Mobile
+namespace Gravity.Plugins.Actions.UnitTests.Mobile
 {
     [TestClass]
     public class GeoLocationTests : ActionTests

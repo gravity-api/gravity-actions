@@ -18,11 +18,11 @@ using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 
-namespace Gravity.Services.ActionPlugins.Web
+namespace Gravity.Plugins.Actions.Web
 {
     [Action(
-        assmebly: "Gravity.Services.ActionPlugins, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
-        resource: "Gravity.Services.ActionPlugins.Documentation.navigate-back.json",
+        assmebly: "Gravity.Plugins.Actions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+        resource: "Gravity.Plugins.Actions.Documentation.navigate-back.json",
         Name = ActionType.NavigateBack)]
     public class NavigateBack : ActionPlugin
     {

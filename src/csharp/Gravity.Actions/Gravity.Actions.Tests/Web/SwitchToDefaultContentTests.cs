@@ -31,20 +31,20 @@ namespace Gravity.Plugins.Actions.UnitTests.Web
         [TestMethod]
         public void SwitchToDefaultContentDocumentationNoTypes()
         {
-            ValidateActionDocumentation<SwitchToDefaultContent>(ActionPlugins.SwitchToDefaultContent);
+            ValidateActionDocumentation<SwitchToDefaultContent>(WebPlugins.SwitchToDefaultContent);
         }
 
         [TestMethod]
         public void SwitchToDefaultContentDocumentationTypes()
         {
-            ValidateActionDocumentation<SwitchToDefaultContent>(ActionPlugins.SwitchToDefaultContent, Types);
+            ValidateActionDocumentation<SwitchToDefaultContent>(WebPlugins.SwitchToDefaultContent, Types);
         }
 
         [TestMethod]
         public void SwitchToDefaultContentDocumentationResourceFile()
         {
             ValidateActionDocumentation<SwitchToDefaultContent>(
-                ActionPlugins.SwitchToDefaultContent, Types, "switch-to-default-content.json");
+                WebPlugins.SwitchToDefaultContent, Types, "switch-to-default-content.json");
         }
 
         [TestMethod]

@@ -31,19 +31,19 @@ namespace Gravity.Plugins.Actions.UnitTests.Mobile
         [TestMethod]
         public void GeoLocationDocumentationNoTypes()
         {
-            ValidateActionDocumentation<SetGeoLocation>(ActionPlugins.SetGeoLocation);
+            ValidateActionDocumentation<SetGeoLocation>(MobilePlugins.SetGeoLocation);
         }
 
         [TestMethod]
         public void GeoLocationDocumentationTypes()
         {
-            ValidateActionDocumentation<SetGeoLocation>(ActionPlugins.SetGeoLocation, Types);
+            ValidateActionDocumentation<SetGeoLocation>(MobilePlugins.SetGeoLocation, Types);
         }
 
         [TestMethod]
         public void GeoLocationDocumentationResourceFile()
         {
-            ValidateActionDocumentation<SetGeoLocation>(ActionPlugins.SetGeoLocation, Types, "set-geo-location.json");
+            ValidateActionDocumentation<SetGeoLocation>(MobilePlugins.SetGeoLocation, Types, "set-geo-location.json");
         }
 
         [DataTestMethod]

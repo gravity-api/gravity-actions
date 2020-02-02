@@ -22,7 +22,7 @@ namespace Gravity.Plugins.Actions.Web
     [Action(
         assmebly: "Gravity.Plugins.Actions, Version=5.0.0.0, Culture=neutral, PublicKeyToken=null",
         resource: "Gravity.Plugins.Actions.Documentation.switch-to-alert.json",
-        Name = ActionPlugins.SwitchToAlert)]
+        Name = WebPlugins.SwitchToAlert)]
     public class SwitchToAlert : ActionPlugin
     {
         #region *** constants: arguments  ***

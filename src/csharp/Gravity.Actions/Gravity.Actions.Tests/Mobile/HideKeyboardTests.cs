@@ -32,20 +32,20 @@ namespace Gravity.Plugins.Actions.UnitTests.Mobile
         [TestMethod]
         public void HideKeyboardDocumentationNoTypes()
         {
-            ValidateActionDocumentation<HideKeyboard>(ActionPlugins.HideKeyboard);
+            ValidateActionDocumentation<HideKeyboard>(MobilePlugins.HideKeyboard);
         }
 
         [TestMethod]
         public void HideKeyboardDocumentationTypes()
         {
-            ValidateActionDocumentation<HideKeyboard>(ActionPlugins.HideKeyboard, Types);
+            ValidateActionDocumentation<HideKeyboard>(MobilePlugins.HideKeyboard, Types);
         }
 
         [TestMethod]
         public void HideKeyboardDocumentationResourceFile()
         {
             ValidateActionDocumentation<HideKeyboard>(
-                ActionPlugins.HideKeyboard, Types, "hide-keyboard.json");
+                MobilePlugins.HideKeyboard, Types, "hide-keyboard.json");
         }
 
         [TestMethod]

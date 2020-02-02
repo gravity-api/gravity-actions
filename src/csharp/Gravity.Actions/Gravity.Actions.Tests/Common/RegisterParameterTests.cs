@@ -33,20 +33,20 @@ namespace Gravity.Plugins.Actions.UnitTests.Common
         [TestMethod]
         public void RegisterParameterDocumentationNoTypes()
         {
-            ValidateActionDocumentation<RegisterParameter>(ActionPlugins.RegisterParameter);
+            ValidateActionDocumentation<RegisterParameter>(CommonPlugins.RegisterParameter);
         }
 
         [TestMethod]
         public void RegisterParameterDocumentationTypes()
         {
-            ValidateActionDocumentation<RegisterParameter>(ActionPlugins.RegisterParameter, Types);
+            ValidateActionDocumentation<RegisterParameter>(CommonPlugins.RegisterParameter, Types);
         }
 
         [TestMethod]
         public void RegisterParameterDocumentationResourceFile()
         {
             ValidateActionDocumentation<RegisterParameter>(
-                ActionPlugins.RegisterParameter, Types, "register-parameter.json");
+                CommonPlugins.RegisterParameter, Types, "register-parameter.json");
         }
 
         [DataTestMethod]

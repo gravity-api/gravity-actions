@@ -25,15 +25,15 @@ namespace Gravity.Plugins.Actions.UnitTests.Web
 
         [TestMethod]
         public void SelectFromComboBoxDocumentationNoTypes()
-            => ValidateActionDocumentation<SelectFromComboBox>(ActionPlugins.SelectFromComboBox);
+            => ValidateActionDocumentation<SelectFromComboBox>(WebPlugins.SelectFromComboBox);
 
         [TestMethod]
         public void SelectFromComboBoxDocumentationTypes()
-            => ValidateActionDocumentation<SelectFromComboBox>(ActionPlugins.SelectFromComboBox, Types);
+            => ValidateActionDocumentation<SelectFromComboBox>(WebPlugins.SelectFromComboBox, Types);
 
         [TestMethod]
         public void SelectFromComboBoxDocumentationResourceFile()
-            => ValidateActionDocumentation<SelectFromComboBox>(ActionPlugins.SelectFromComboBox, Types, "select-from-combo-box.json");
+            => ValidateActionDocumentation<SelectFromComboBox>(WebPlugins.SelectFromComboBox, Types, "select-from-combo-box.json");
 
         [DataTestMethod]
         [DataRow("{'elementToActOn':'//select-element','argument':'Mock: Positive Element'}")]

@@ -29,7 +29,7 @@ namespace Gravity.Plugins.Actions.Common
     [Action(
         assmebly: "Gravity.Plugins.Actions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
         resource: "Gravity.Plugins.Actions.Documentation.wait.json",
-        Name = ActionPlugins.Wait)]
+        Name = CommonPlugins.Wait)]
     public class Wait : ActionPlugin
     {
         /// <summary>

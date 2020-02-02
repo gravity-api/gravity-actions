@@ -57,19 +57,19 @@ namespace Gravity.Plugins.Actions.UnitTests.Common
         [TestMethod]
         public void RepeatDocumentationNoTypes()
         {
-            ValidateActionDocumentation<Repeat>(ActionPlugins.Repeat);
+            ValidateActionDocumentation<Repeat>(CommonPlugins.Repeat);
         }
 
         [TestMethod]
         public void RepeatDocumentationTypes()
         {
-            ValidateActionDocumentation<Repeat>(ActionPlugins.Repeat, Types);
+            ValidateActionDocumentation<Repeat>(CommonPlugins.Repeat, Types);
         }
 
         [TestMethod]
         public void RepeatDocumentationResourceFile()
         {
-            ValidateActionDocumentation<Repeat>(ActionPlugins.Repeat, Types, "repeat.json");
+            ValidateActionDocumentation<Repeat>(CommonPlugins.Repeat, Types, "repeat.json");
         }
 
         [DataTestMethod]

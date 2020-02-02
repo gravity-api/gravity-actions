@@ -17,7 +17,7 @@ namespace Gravity.Plugins.Actions.Web
     [Action(
         assmebly: "Gravity.Plugins.Actions, Version=5.0.0.0, Culture=neutral, PublicKeyToken=null",
         resource: "Gravity.Plugins.Actions.Documentation.switch-to-default-content.json",
-        Name = ActionPlugins.SwitchToDefaultContent)]
+        Name = WebPlugins.SwitchToDefaultContent)]
     public class SwitchToDefaultContent : ActionPlugin
     {
         /// <summary>

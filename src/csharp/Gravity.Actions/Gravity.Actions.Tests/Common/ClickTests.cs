@@ -33,19 +33,19 @@ namespace Gravity.Plugins.Actions.UnitTests.Common
         [TestMethod]
         public void ClickDocumentationNoTypes()
         {
-            ValidateActionDocumentation<Click>(ActionPlugins.Click);
+            ValidateActionDocumentation<Click>(CommonPlugins.Click);
         }
 
         [TestMethod]
         public void ClickDocumentationTypes()
         {
-            ValidateActionDocumentation<Click>(ActionPlugins.Click, Types);
+            ValidateActionDocumentation<Click>(CommonPlugins.Click, Types);
         }
 
         [TestMethod]
         public void ClickDocumentationResourceFile()
         {
-            ValidateActionDocumentation<Click>(ActionPlugins.Click, Types, "click.json");
+            ValidateActionDocumentation<Click>(CommonPlugins.Click, Types, "click.json");
         }
 
         [DataTestMethod]

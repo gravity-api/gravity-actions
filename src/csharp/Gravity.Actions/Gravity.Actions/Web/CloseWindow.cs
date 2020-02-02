@@ -28,7 +28,7 @@ namespace Gravity.Plugins.Actions.Web
     [Action(
         assmebly: "Gravity.Plugins.Actions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
         resource: "Gravity.Plugins.Actions.Documentation.close-browser.json",
-        Name = ActionPlugins.CloseWindow)]
+        Name = WebPlugins.CloseWindow)]
     public class CloseWindow : ActionPlugin
     {
         /// <summary>

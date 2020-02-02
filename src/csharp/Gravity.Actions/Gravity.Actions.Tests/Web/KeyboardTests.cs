@@ -25,15 +25,15 @@ namespace Gravity.Plugins.Actions.UnitTests.Web
 
         [TestMethod]
         public void KeyboardDocumentationNoTypes()
-            => ValidateActionDocumentation<Keyboard>(ActionPlugins.Keyboard);
+            => ValidateActionDocumentation<Keyboard>(WebPlugins.Keyboard);
 
         [TestMethod]
         public void KeyboardDocumentationTypes()
-            => ValidateActionDocumentation<Keyboard>(ActionPlugins.Keyboard, Types);
+            => ValidateActionDocumentation<Keyboard>(WebPlugins.Keyboard, Types);
 
         [TestMethod]
         public void KeyboardDocumentationResourceFile()
-            => ValidateActionDocumentation<Keyboard>(ActionPlugins.Keyboard, Types, "Keyboard.json");
+            => ValidateActionDocumentation<Keyboard>(WebPlugins.Keyboard, Types, "Keyboard.json");
 
         [DataTestMethod]
         [DataRow("{'elementToActOn':'//positive','argument':'Enter'}")]

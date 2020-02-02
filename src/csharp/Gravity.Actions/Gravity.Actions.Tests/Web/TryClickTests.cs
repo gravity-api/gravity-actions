@@ -31,20 +31,20 @@ namespace Gravity.Plugins.Actions.UnitTests.Web
         [TestMethod]
         public void TryClickDocumentationNoTypes()
         {
-            ValidateActionDocumentation<TryClick>(ActionPlugins.TryClick);
+            ValidateActionDocumentation<TryClick>(WebPlugins.TryClick);
         }
 
         [TestMethod]
         public void TryClickDocumentationTypes()
         {
-            ValidateActionDocumentation<TryClick>(ActionPlugins.TryClick, Types);
+            ValidateActionDocumentation<TryClick>(WebPlugins.TryClick, Types);
         }
 
         [TestMethod]
         public void TryClickDocumentationResourceFile()
         {
             ValidateActionDocumentation<TryClick>(
-                ActionPlugins.TryClick, Types, "try-click.json");
+                WebPlugins.TryClick, Types, "try-click.json");
         }
 
         [DataTestMethod]

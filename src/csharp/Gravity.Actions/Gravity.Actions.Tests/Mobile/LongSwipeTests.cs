@@ -26,15 +26,15 @@ namespace Gravity.Plugins.Actions.UnitTests.Mobile
 
         [TestMethod]
         public void LongSwipeDocumentationNoTypes()
-            => ValidateActionDocumentation<LongSwipe>(ActionPlugins.LongSwipe);
+            => ValidateActionDocumentation<LongSwipe>(MobilePlugins.LongSwipe);
 
         [TestMethod]
         public void LongSwipeDocumentationTypes()
-            => ValidateActionDocumentation<LongSwipe>(ActionPlugins.LongSwipe, Types);
+            => ValidateActionDocumentation<LongSwipe>(MobilePlugins.LongSwipe, Types);
 
         [TestMethod]
         public void LongSwipeDocumentationResourceFile()
-            => ValidateActionDocumentation<LongSwipe>(ActionPlugins.LongSwipe, Types, "long-swipe.json");
+            => ValidateActionDocumentation<LongSwipe>(MobilePlugins.LongSwipe, Types, "long-swipe.json");
 
         [DataTestMethod]
         [DataRow("{'argument':'{{$ --source:100,100 --target:200,200}}'}")]

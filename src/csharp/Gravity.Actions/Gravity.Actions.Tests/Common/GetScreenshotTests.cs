@@ -36,19 +36,19 @@ namespace Gravity.Plugins.Actions.UnitTests.Common
         [TestMethod]
         public void GetScreenshotDocumentationNoTypes()
         {
-            ValidateActionDocumentation<GetScreenshot>(ActionPlugins.GetScreenshot);
+            ValidateActionDocumentation<GetScreenshot>(CommonPlugins.GetScreenshot);
         }
 
         [TestMethod]
         public void GetScreenshotDocumentationTypes()
         {
-            ValidateActionDocumentation<GetScreenshot>(ActionPlugins.GetScreenshot, Types);
+            ValidateActionDocumentation<GetScreenshot>(CommonPlugins.GetScreenshot, Types);
         }
 
         [TestMethod]
         public void GetScreenshotDocumentationResourceFile()
         {
-            ValidateActionDocumentation<GetScreenshot>(ActionPlugins.GetScreenshot, Types, "get-screenshot.json");
+            ValidateActionDocumentation<GetScreenshot>(CommonPlugins.GetScreenshot, Types, "get-screenshot.json");
         }
 
         [DataTestMethod]

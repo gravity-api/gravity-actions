@@ -19,7 +19,7 @@ namespace Gravity.Plugins.Actions.Mobile
     [Action(
         assmebly: "Gravity.Plugins.Actions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
         resource: "Gravity.Plugins.Actions.Documentation.hide-keyboard.json",
-        Name = ActionPlugins.HideKeyboard)]
+        Name = MobilePlugins.HideKeyboard)]
     public class HideKeyboard : ActionPlugin
     {
         /// <summary>

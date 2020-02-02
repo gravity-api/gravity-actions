@@ -23,16 +23,16 @@ namespace Gravity.Plugins.Actions.UnitTests.Web
 
         [TestMethod]
         public void SubmitFormDocumentationNoTypes()
-            => ValidateActionDocumentation<SubmitForm>(ActionPlugins.SubmitForm);
+            => ValidateActionDocumentation<SubmitForm>(WebPlugins.SubmitForm);
 
         [TestMethod]
         public void SubmitFormDocumentationTypes()
-            => ValidateActionDocumentation<SubmitForm>(ActionPlugins.SubmitForm, Types);
+            => ValidateActionDocumentation<SubmitForm>(WebPlugins.SubmitForm, Types);
 
         [TestMethod]
         public void SubmitFormDocumentationResourceFile()
         {
-            ValidateActionDocumentation<SubmitForm>(ActionPlugins.SubmitForm, Types, "submit-form.json");
+            ValidateActionDocumentation<SubmitForm>(WebPlugins.SubmitForm, Types, "submit-form.json");
         }
 
         [DataTestMethod]

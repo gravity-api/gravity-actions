@@ -29,20 +29,20 @@ namespace Gravity.Plugins.Actions.UnitTests.Web
         [TestMethod]
         public void ElementsListenerDocumentationNoTypes()
         {
-            ValidateActionDocumentation<ElementsListener>(ActionPlugins.ElementsListener);
+            ValidateActionDocumentation<ElementsListener>(WebPlugins.ElementsListener);
         }
 
         [TestMethod]
         public void ElementsListenerDocumentationTypes()
         {
-            ValidateActionDocumentation<ElementsListener>(ActionPlugins.ElementsListener, Types);
+            ValidateActionDocumentation<ElementsListener>(WebPlugins.ElementsListener, Types);
         }
 
         [TestMethod]
         public void ElementsListenerDocumentationResourceFile()
         {
             ValidateActionDocumentation<ElementsListener>(
-                ActionPlugins.ElementsListener, Types, "elements-listener.json");
+                WebPlugins.ElementsListener, Types, "elements-listener.json");
         }
 
         [DataTestMethod]

@@ -25,17 +25,17 @@ namespace Gravity.Plugins.Actions.UnitTests.Web
 
         [TestMethod]
         public void SwitchToAlertDocumentationNoTypes()
-            => ValidateActionDocumentation<SwitchToAlert>(ActionPlugins.SwitchToAlert);
+            => ValidateActionDocumentation<SwitchToAlert>(WebPlugins.SwitchToAlert);
 
         [TestMethod]
         public void SwitchToAlertDocumentationTypes()
-            => ValidateActionDocumentation<SwitchToAlert>(ActionPlugins.SwitchToAlert, Types);
+            => ValidateActionDocumentation<SwitchToAlert>(WebPlugins.SwitchToAlert, Types);
 
         [TestMethod]
         public void SwitchToAlertDocumentationResourceFile()
         {
             ValidateActionDocumentation<SwitchToAlert>(
-                ActionPlugins.SwitchToAlert, Types, "switch-to-alert.json");
+                WebPlugins.SwitchToAlert, Types, "switch-to-alert.json");
         }
 
         [DataTestMethod]

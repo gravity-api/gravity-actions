@@ -35,20 +35,20 @@ namespace Gravity.Plugins.Actions.UnitTests.Web
         [TestMethod]
         public void CloseWindowDocumentationNoTypes()
         {
-            ValidateActionDocumentation<CloseWindow>(ActionPlugins.CloseWindow);
+            ValidateActionDocumentation<CloseWindow>(WebPlugins.CloseWindow);
         }
 
         [TestMethod]
         public void CloseWindowDocumentationTypes()
         {
-            ValidateActionDocumentation<CloseWindow>(ActionPlugins.CloseWindow, Types);
+            ValidateActionDocumentation<CloseWindow>(WebPlugins.CloseWindow, Types);
         }
 
         [TestMethod]
         public void CloseWindowDocumentationResourceFile()
         {
             ValidateActionDocumentation<CloseWindow>(
-                ActionPlugins.CloseWindow, Types, "close-window.json");
+                WebPlugins.CloseWindow, Types, "close-window.json");
         }
 
         [DataTestMethod]

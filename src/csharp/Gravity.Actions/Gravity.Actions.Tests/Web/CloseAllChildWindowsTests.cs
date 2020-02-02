@@ -36,20 +36,20 @@ namespace Gravity.Plugins.Actions.UnitTests.Web
         [TestMethod]
         public void CloseAllChildWindowsDocumentationNoTypes()
         {
-            ValidateActionDocumentation<CloseAllChildWindows>(ActionPlugins.CloseAllChildWindows);
+            ValidateActionDocumentation<CloseAllChildWindows>(WebPlugins.CloseAllChildWindows);
         }
 
         [TestMethod]
         public void CloseAllChildWindowsDocumentationTypes()
         {
-            ValidateActionDocumentation<CloseAllChildWindows>(ActionPlugins.CloseAllChildWindows, Types);
+            ValidateActionDocumentation<CloseAllChildWindows>(WebPlugins.CloseAllChildWindows, Types);
         }
 
         [TestMethod]
         public void CloseAllChildWindowsDocumentationResourceFile()
         {
             ValidateActionDocumentation<CloseAllChildWindows>(
-                ActionPlugins.CloseAllChildWindows, Types, "close-all-child-windows.json");
+                WebPlugins.CloseAllChildWindows, Types, "close-all-child-windows.json");
         }
 
         [TestMethod]

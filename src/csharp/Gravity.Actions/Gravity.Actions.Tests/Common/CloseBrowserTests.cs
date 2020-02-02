@@ -31,20 +31,20 @@ namespace Gravity.Plugins.Actions.UnitTests.Common
         [TestMethod]
         public void CloseBrowserDocumentationNoTypes()
         {
-            ValidateActionDocumentation<CloseBrowser>(ActionPlugins.CloseBrowser);
+            ValidateActionDocumentation<CloseBrowser>(CommonPlugins.CloseBrowser);
         }
 
         [TestMethod]
         public void CloseBrowserDocumentationTypes()
         {
-            ValidateActionDocumentation<CloseBrowser>(ActionPlugins.CloseBrowser, Types);
+            ValidateActionDocumentation<CloseBrowser>(CommonPlugins.CloseBrowser, Types);
         }
 
         [TestMethod]
         public void CloseBrowserDocumentationResourceFile()
         {
             ValidateActionDocumentation<CloseBrowser>(
-                ActionPlugins.CloseBrowser, Types, "close-browser.json");
+                CommonPlugins.CloseBrowser, Types, "close-browser.json");
         }
 
         [TestMethod]

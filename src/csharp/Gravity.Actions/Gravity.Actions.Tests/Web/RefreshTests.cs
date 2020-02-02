@@ -29,19 +29,19 @@ namespace Gravity.Plugins.Actions.UnitTests.Web
         [TestMethod]
         public void RefreshDocumentationNoTypes()
         {
-            ValidateActionDocumentation<Refresh>(ActionPlugins.Refresh);
+            ValidateActionDocumentation<Refresh>(WebPlugins.Refresh);
         }
 
         [TestMethod]
         public void RefreshDocumentationTypes()
         {
-            ValidateActionDocumentation<Refresh>(ActionPlugins.Refresh, Types);
+            ValidateActionDocumentation<Refresh>(WebPlugins.Refresh, Types);
         }
 
         [TestMethod]
         public void RefreshDocumentationResourceFile()
         {
-            ValidateActionDocumentation<Refresh>(ActionPlugins.Refresh, Types, "refresh.json");
+            ValidateActionDocumentation<Refresh>(WebPlugins.Refresh, Types, "refresh.json");
         }
 
         [TestMethod]

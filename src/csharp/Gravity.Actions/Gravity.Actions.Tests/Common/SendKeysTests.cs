@@ -33,19 +33,19 @@ namespace Gravity.Plugins.Actions.UnitTests.Common
         [TestMethod]
         public void SendKeysDocumentationNoTypes()
         {
-            ValidateActionDocumentation<SendKeys>(ActionPlugins.SendKeys);
+            ValidateActionDocumentation<SendKeys>(CommonPlugins.SendKeys);
         }
 
         [TestMethod]
         public void SendKeysDocumentationTypes()
         {
-            ValidateActionDocumentation<SendKeys>(ActionPlugins.SendKeys, Types);
+            ValidateActionDocumentation<SendKeys>(CommonPlugins.SendKeys, Types);
         }
 
         [TestMethod]
         public void SendKeysDocumentationResourceFile()
         {
-            ValidateActionDocumentation<SendKeys>(ActionPlugins.SendKeys, Types, "send-keys.json");
+            ValidateActionDocumentation<SendKeys>(CommonPlugins.SendKeys, Types, "send-keys.json");
         }
 
         [DataTestMethod]

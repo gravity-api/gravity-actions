@@ -55,7 +55,7 @@ namespace Gravity.Plugins.Actions.Common
         /// <summary>
         /// Quits this driver, closing every associated window.
         /// </summary>
-        /// <param name="actionRule">This ActionRule instance (the original object send by the user).</param>
+        /// <param name="actionRule">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
         public override void OnPerform(ActionRule actionRule)
         {
             try

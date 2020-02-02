@@ -16,7 +16,7 @@
  *
  * on-line resources
  */
-using Gravity.Drivers.Selenium;
+using OpenQA.Selenium.Extensions;
 using Gravity.Plugins.Actions.Contracts;
 using Gravity.Services.Comet.Engine.Attributes;
 using Gravity.Services.Comet.Engine.Extensions;
@@ -56,7 +56,7 @@ namespace Gravity.Plugins.Actions.Web
         /// <summary>
         /// Close all open tabs/windows and switch to the main (first) window.
         /// </summary>
-        /// <param name="actionRule">This ActionRule instance (the original object send by the user).</param>
+        /// <param name="actionRule">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
         public override void OnPerform(ActionRule actionRule)
         {
             WebDriver.CloseAllChildWindows();
@@ -65,8 +65,8 @@ namespace Gravity.Plugins.Actions.Web
         /// <summary>
         /// Close all open tabs/windows and switch to the main (first) window.
         /// </summary>
-        /// <param name="webElement">This WebElement instance on which to perform the action (provided by the extraction rule).</param>
-        /// <param name="actionRule">This ActionRule instance (the original object send by the user).</param>
+        /// <param name="webElement">This <see cref="IWebElement"/> instance on which to perform the action (provided by the extraction rule).</param>
+        /// <param name="actionRule">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
         public override void OnPerform(IWebElement webElement, ActionRule actionRule)
         {
             WebDriver.CloseAllChildWindows();

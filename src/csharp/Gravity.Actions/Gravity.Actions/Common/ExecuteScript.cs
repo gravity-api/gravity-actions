@@ -20,7 +20,6 @@
  * 
  * on-line resources
  */
-using Gravity.Drivers.Selenium;
 using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Actions.Extensions;
 using Gravity.Services.Comet.Engine.Attributes;
@@ -75,7 +74,7 @@ namespace Gravity.Plugins.Actions.Common
         /// <summary>
         /// Executes JavaScript in the context of the currently selected frame or window.
         /// </summary>
-        /// <param name="actionRule">This ActionRule instance (the original object sent by the user).</param>
+        /// <param name="actionRule">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
         public override void OnPerform(ActionRule actionRule)
         {
             DoAction(default, actionRule);
@@ -84,8 +83,8 @@ namespace Gravity.Plugins.Actions.Common
         /// <summary>
         /// Executes JavaScript in the context of the currently selected element.
         /// </summary>
-        /// <param name="webElement">This WebElement instance on which to perform the action (provided by the extraction rule).</param>
-        /// <param name="actionRule">This ActionRule instance (the original object send by the user).</param>
+        /// <param name="webElement">This <see cref="IWebElement"/> instance on which to perform the action (provided by the extraction rule).</param>
+        /// <param name="actionRule">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
         /// <remarks>This action assumes that the element is already found and selected. You need to provide the code after the ".".</remarks>
         /// <example>{ "argument": ".checked = true" } The element will be injected before the ".".</example>
         public override void OnPerform(IWebElement webElement, ActionRule actionRule)
@@ -115,7 +114,7 @@ namespace Gravity.Plugins.Actions.Common
             }
 
             // execute script
-            WebDriver.ExecuteScript(jscript, srcArgs.ToArray());
+            ((IJavaScriptExecutor)WebDriver).ExecuteScript(jscript, srcArgs.ToArray());
         }
 
         // parse script arguments from action-rule

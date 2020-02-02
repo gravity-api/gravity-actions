@@ -72,7 +72,7 @@ namespace Gravity.Plugins.Actions.Web
         /// unexpected element. Sample, listen to a "Close" button of an unexpected pop-up banner which might block
         /// the user interface and send a "Click" action to it when found.
         /// </summary>
-        /// <param name="actionRule">This ActionRule instance (the original object sent by the user).</param>
+        /// <param name="actionRule">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
         /// <remarks>Only works with action which overrides <see cref="ActionPlugin.OnPerform(IWebElement, ActionRule)"/>.</remarks>
         public override void OnPerform(ActionRule actionRule)
         {

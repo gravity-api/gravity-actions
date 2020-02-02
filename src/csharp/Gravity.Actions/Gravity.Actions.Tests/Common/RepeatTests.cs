@@ -4,7 +4,6 @@
  * on-line resources
  */
 using OpenQA.Selenium.Mock;
-using Gravity.Drivers.Selenium;
 using Gravity.Plugins.Actions.Common;
 using Gravity.Plugins.Actions.UnitTests.Base;
 using Gravity.Services.Comet.Engine.Plugins;
@@ -12,6 +11,7 @@ using Gravity.Services.DataContracts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using Gravity.Plugins.Actions.Contracts;
+using OpenQA.Selenium.Extensions;
 
 #pragma warning disable S4144
 namespace Gravity.Plugins.Actions.UnitTests.Common

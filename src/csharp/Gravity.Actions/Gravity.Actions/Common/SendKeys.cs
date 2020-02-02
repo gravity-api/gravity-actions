@@ -19,7 +19,7 @@
  * on-line resources
  * http://appium.io/docs/en/writing-running-appium/android/android-shell/
  */
-using Gravity.Drivers.Selenium;
+using OpenQA.Selenium.Extensions;
 using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Actions.Extensions;
 using Gravity.Services.Comet.Engine.Attributes;
@@ -104,7 +104,7 @@ namespace Gravity.Plugins.Actions.Common
         /// <summary>
         /// Simulates typing text into the element.
         /// </summary>
-        /// <param name="actionRule">This ActionRule instance (the original object sent by the user).</param>
+        /// <param name="actionRule">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
         public override void OnPerform(ActionRule actionRule)
         {
             DoAction(webElement: default, actionRule);
@@ -113,8 +113,8 @@ namespace Gravity.Plugins.Actions.Common
         /// <summary>
         /// Simulates typing text into the element.
         /// </summary>
-        /// <param name="webElement">This WebElement instance on which to perform the action (provided by the extraction rule).</param>
-        /// <param name="actionRule">This ActionRule instance (the original object send by the user).</param>
+        /// <param name="webElement">This <see cref="IWebElement"/> instance on which to perform the action (provided by the extraction rule).</param>
+        /// <param name="actionRule">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
         public override void OnPerform(IWebElement webElement, ActionRule actionRule)
         {
             DoAction(webElement, actionRule);
@@ -236,7 +236,7 @@ namespace Gravity.Plugins.Actions.Common
             int.TryParse(arguments[Interval], out int intervalOut);
 
             // execute action
-            webElement.SendKeysWithInterval(arguments[Keystrokes], intervalOut);
+            webElement.DelayedSendKeys(arguments[Keystrokes], intervalOut);
         }
 
         [Description("isDown")]

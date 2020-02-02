@@ -7,7 +7,7 @@
  * TODO: merge GetElementByActionRule(this IWebElement e, ByFactory byFactory, ActionRule actionRule, TimeSpan timeout)
  *         and FindElementByActionRule(this IWebElement e, ByFactory byFactory, ActionRule actionRule)
  */
-using Gravity.Drivers.Selenium;
+using OpenQA.Selenium.Extensions;
 using Gravity.Services.Comet.Engine.Core;
 using Gravity.Services.Comet.Engine.Extensions;
 using Gravity.Services.DataContracts;

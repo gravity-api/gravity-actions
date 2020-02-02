@@ -70,7 +70,7 @@ namespace Gravity.Plugins.Actions.Web
         /// <summary>
         /// Clicks the mouse on the specified element.
         /// </summary>
-        /// <param name="actionRule">This ActionRule instance (the original object sent by the user).</param>
+        /// <param name="actionRule">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
         public override void OnPerform(ActionRule actionRule)
         {
             DoAction(webElement: default, actionRule);
@@ -79,8 +79,8 @@ namespace Gravity.Plugins.Actions.Web
         /// <summary>
         /// Clicks the mouse on the specified element.
         /// </summary>
-        /// <param name="webElement">This WebElement instance on which to perform the action (provided by the extraction rule).</param>
-        /// <param name="actionRule">This ActionRule instance (the original object send by the user).</param>
+        /// <param name="webElement">This <see cref="IWebElement"/> instance on which to perform the action (provided by the extraction rule).</param>
+        /// <param name="actionRule">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
         public override void OnPerform(IWebElement webElement, ActionRule actionRule)
         {
             DoAction(webElement, actionRule);

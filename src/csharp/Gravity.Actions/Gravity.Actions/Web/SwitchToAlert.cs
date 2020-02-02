@@ -6,6 +6,7 @@
 using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Actions.Extensions;
 using Gravity.Services.Comet.Engine.Attributes;
+using Gravity.Services.Comet.Engine.Core;
 using Gravity.Services.Comet.Engine.Extensions;
 using Gravity.Services.Comet.Engine.Plugins;
 using Gravity.Services.DataContracts;
@@ -19,11 +20,28 @@ using System.Reflection;
 namespace Gravity.Plugins.Actions.Web
 {
     [Action(
-        assmebly: "Gravity.Plugins.Actions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+        assmebly: "Gravity.Plugins.Actions, Version=5.0.0.0, Culture=neutral, PublicKeyToken=null",
         resource: "Gravity.Plugins.Actions.Documentation.switch-to-alert.json",
         Name = ActionPlugins.SwitchToAlert)]
     public class SwitchToAlert : ActionPlugin
     {
+        #region *** constants: arguments  ***
+        /// <summary>
+        /// User name in an alert prompting for credentials.
+        /// </summary>
+        public const string User = "user";
+
+        /// <summary>
+        /// Password in an alert prompting for credentials.
+        /// </summary>
+        public const string Password = "pass";
+
+        /// <summary>
+        /// Keys to send to the alert.
+        /// </summary>
+        public const string Keys = "keys";
+        #endregion
+
         // members: state
         private IDictionary<string, string> arguments;
 
@@ -74,6 +92,9 @@ namespace Gravity.Plugins.Actions.Web
                 return;
             }
 
+            // arguments
+            arguments = new CliFactory(actionRule.Argument).Parse();
+
             // execute
             foreach (var method in GetType().GetMethodsByDescription(regex: actionRule.Argument))
             {
@@ -101,10 +122,30 @@ namespace Gravity.Plugins.Actions.Web
         private void Accept() => WebDriver.SwitchTo().Alert().Accept();
 
         [Description("--user:[^(--)]*|--pass:[^(--)]*")]
-        private void Credentials(ActionRule actionRule) { }
+        private void Credentials()
+        {
+            // parameters
+            var user = arguments.ContainsKey(User) ? arguments[User] : string.Empty;
+            var pass = arguments.ContainsKey(Password) ? arguments[Password] : string.Empty;
+
+            // set user
+            WebDriver
+                .SwitchTo()
+                .Alert()
+                .SetAuthenticationCredentials(userName: user, password: pass);
+        }
 
         [Description("--keys:[^(--)]*")]
-        private void SendKeys(ActionRule actionRule) { }
+        private void SendKeys()
+        {
+            if (!arguments.ContainsKey(Keys))
+            {
+                return;
+            }
+
+            // set keys
+            WebDriver.SwitchTo().Alert().SendKeys(arguments[Keys]);
+        }
 #pragma warning restore
     }
 }

@@ -52,7 +52,7 @@
   "cliArguments": {
     "keys": "Keys to send to the alert.",
     "user": "User name in an alert prompting for credentials.",
-    "password": "Password name in an alert prompting for credentials."
+    "password": "Password in an alert prompting for credentials."
   },
   "protocol": {
     "endpoint": "/session/{session-id}/alert/{action}",

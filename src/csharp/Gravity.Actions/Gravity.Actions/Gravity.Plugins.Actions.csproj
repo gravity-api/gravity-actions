@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <None Remove="Documentation\switch-to-alert.json" />
+    <None Remove="Documentation\switch-to-default-content.json" />
   </ItemGroup>
 
   <ItemGroup>
@@ -41,6 +42,7 @@
     <EmbeddedResource Include="Documentation\send-keys.json" />
     <EmbeddedResource Include="Documentation\submit-form.json" />
     <EmbeddedResource Include="Documentation\switch-to-alert.json" />
+    <EmbeddedResource Include="Documentation\switch-to-default-content.json" />
     <EmbeddedResource Include="Documentation\try-click.json" />
     <EmbeddedResource Include="Documentation\wait.json" />
   </ItemGroup>

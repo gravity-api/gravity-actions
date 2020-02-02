@@ -75,6 +75,9 @@ namespace Gravity.Plugins.Actions.Contracts
         public const string SwitchToAlert = "SwitchToAlert";
 
         [DataMember]
+        public const string SwitchToDefaultContent = "SwitchToDefaultContent";
+
+        [DataMember]
         public const string TryClick = "TryClick";
 
         [DataMember]

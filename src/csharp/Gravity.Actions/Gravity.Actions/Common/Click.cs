@@ -42,7 +42,7 @@ using SeleniumActions = OpenQA.Selenium.Interactions.Actions;
 namespace Gravity.Plugins.Actions.Common
 {
     [Action(
-        assmebly: "Gravity.Plugins.Actions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+        assmebly: "Gravity.Plugins.Actions, Version=5.0.0.0, Culture=neutral, PublicKeyToken=null",
         resource: "Gravity.Plugins.Actions.Documentation.click.json",
         Name = ActionPlugins.Click)]
     public class Click : ActionPlugin

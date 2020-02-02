@@ -3,6 +3,9 @@
  *
  * on-line resources
  */
+using Gravity.Plugins.Actions.Contracts;
+using Gravity.Plugins.Actions.Extensions;
+using Gravity.Services.Comet.Engine.Attributes;
 using Gravity.Services.Comet.Engine.Extensions;
 using Gravity.Services.Comet.Engine.Plugins;
 using Gravity.Services.DataContracts;
@@ -10,11 +13,20 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Extensions;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Reflection;
 
 namespace Gravity.Plugins.Actions.Web
 {
-    public class SwitchToAlert: ActionPlugin
+    [Action(
+        assmebly: "Gravity.Plugins.Actions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+        resource: "Gravity.Plugins.Actions.Documentation.switch-to-alert.json",
+        Name = ActionPlugins.SwitchToAlert)]
+    public class SwitchToAlert : ActionPlugin
     {
+        // members: state
+        private IDictionary<string, string> arguments;
+
         /// <summary>
         /// Creates a new instance of this plug-in.
         /// </summary>
@@ -62,23 +74,37 @@ namespace Gravity.Plugins.Actions.Web
                 return;
             }
 
-            // parse argument
-            var alert = WebDriver.SwitchTo().Alert();
-            switch (actionRule.Argument.ToUpper())
+            // execute
+            foreach (var method in GetType().GetMethodsByDescription(regex: actionRule.Argument))
             {
-                // dismiss the alert
-                case "DISMISS":
-                    alert.Dismiss();
-                    break;
-                // accept the alert
-                case "ACCEPT":
-                    alert.Accept();
-                    break;
-                // default: dismiss the alert
-                default:
-                    //ProcessCli(alert, actionRule);
-                    break;
+                DoMethod(method, actionRule);
             }
         }
+
+        // executes a single method routine
+        private void DoMethod(MethodInfo method, ActionRule actionRule)
+        {
+            if (method.GetParameters().Length == 0)
+            {
+                method.Invoke(obj: this, parameters: null);
+                return;
+            }
+            method.Invoke(obj: this, parameters: new object[] { actionRule });
+        }
+
+        // FACTORY
+#pragma warning disable S1144, RCS1213, IDE0051
+        [Description("^dismiss$")]
+        private void Dismiss() => WebDriver.SwitchTo().Alert().Dismiss();
+
+        [Description("^accept$")]
+        private void Accept() => WebDriver.SwitchTo().Alert().Accept();
+
+        [Description("--user:[^(--)]*|--pass:[^(--)]*")]
+        private void Credentials(ActionRule actionRule) { }
+
+        [Description("--keys:[^(--)]*")]
+        private void SendKeys(ActionRule actionRule) { }
+#pragma warning restore
     }
 }

@@ -13,7 +13,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Gravity.Actions\Gravity.Plugins.Actions.csproj" />
-    <ProjectReference Include="..\Gravity.Drivers.Mock\Gravity.Drivers.Mock.csproj" />
   </ItemGroup>
 
   <ItemGroup>

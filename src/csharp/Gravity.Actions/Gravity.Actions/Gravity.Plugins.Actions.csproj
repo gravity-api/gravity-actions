@@ -5,7 +5,7 @@
     <PackageId>Gravity.Plugins.Actions</PackageId>
     <LangVersion>latest</LangVersion>
     <Title>Gravity API - Action Plugins Package</Title>
-    <Authors>Roei.Sabag</Authors>
+    <Authors>Gravity-API Community</Authors>
     <Description>Gravity API Actions repository. FREE register at "https://g-api.azurewebsites.net/Identity/Account/Register" in order to be able to use Gravity API.</Description>
     <PackageTags>automation,crawling,crawl,selenium,appium,automation testing,automation test,qa,gravity,gravity api,scrapping,scrap</PackageTags>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
@@ -13,6 +13,10 @@
     <PackageProjectUrl>https://github.com/gravity-api/gravity-actions</PackageProjectUrl>
     <NeutralLanguage>en-US</NeutralLanguage>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Documentation\switch-to-alert.json" />
+  </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="Documentation\elements-listener.json" />
@@ -36,13 +40,14 @@
     <EmbeddedResource Include="Documentation\repeat.json" />
     <EmbeddedResource Include="Documentation\send-keys.json" />
     <EmbeddedResource Include="Documentation\submit-form.json" />
+    <EmbeddedResource Include="Documentation\switch-to-alert.json" />
     <EmbeddedResource Include="Documentation\try-click.json" />
     <EmbeddedResource Include="Documentation\wait.json" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Gravity.Core" Version="2020.2.2.1" />
-    <PackageReference Include="Gravity.Services.Comet" Version="2020.1.22.1" />
+    <PackageReference Include="Gravity.Core" Version="2020.2.2.2" />
+    <PackageReference Include="Gravity.Services.Comet" Version="2020.2.2.1" />
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="3.1.1" />
   </ItemGroup>
 </Project>

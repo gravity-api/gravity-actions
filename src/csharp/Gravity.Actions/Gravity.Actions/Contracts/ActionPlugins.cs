@@ -72,6 +72,9 @@ namespace Gravity.Plugins.Actions.Contracts
         public const string SubmitForm = "SubmitForm";
 
         [DataMember]
+        public const string SwitchToAlert = "SwitchToAlert";
+
+        [DataMember]
         public const string TryClick = "TryClick";
 
         [DataMember]

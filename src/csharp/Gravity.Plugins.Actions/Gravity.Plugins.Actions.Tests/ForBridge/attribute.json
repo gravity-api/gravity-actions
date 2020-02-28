@@ -1,0 +1,5 @@
+{
+  "name": "GenericActionName",
+  "aliases": [ "AliasOne", "alias one", "alias_one" ],
+  "pluginType": "Action"
+}

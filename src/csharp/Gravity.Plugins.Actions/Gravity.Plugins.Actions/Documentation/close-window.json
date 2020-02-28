@@ -11,6 +11,7 @@
     }
   ],
   "name": "CloseWindow",
+  "pluginType": "Action",
   "properties": {
     "argument": "The window (zero based) index while 0 is the first (main) window."
   },

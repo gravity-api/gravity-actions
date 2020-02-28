@@ -1,8 +1,5 @@
 {
-  "name": "NavigateBack",
-  "summary": "Move back a single entry in the browser's history.",
   "description": "Move back a single entry in the browser's history. The action will be completed when page ready state equal [complete] or until page loading timeout reached.",
-  "testOn": "https://gravitymvctestapplication.azurewebsites.net/instructor",
   "examples": [
     {
       "description": "Move back a single entry in the browser's history.",
@@ -20,12 +17,16 @@
       }
     }
   ],
+  "name": "NavigateBack",
+  "pluginType": "Action",
   "properties": {
     "argument": "The number of pages to navigate back. Will trigger a [back] call for each time, with a silent wait between intervals."
   },
-  "scope": [ "web", "mobile-web" ],
   "protocol": {
     "endpoint": "/session/{session-id}/back",
     "w3c": "https://www.w3.org/TR/webdriver/#back"
-  }
+  },
+  "scope": [ "web", "mobile-web" ],
+  "summary": "Move back a single entry in the browser's history.",
+  "testOn": "https://gravitymvctestapplication.azurewebsites.net/instructor"
 }

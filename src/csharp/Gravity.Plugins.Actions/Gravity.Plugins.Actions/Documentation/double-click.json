@@ -1,8 +1,5 @@
 {
-  "name": "DoubleClick",
-  "summary": "Double clicks the mouse.",
   "description": "Double clicks the mouse at the last known mouse coordinates or on the specified element. If the click causes a new page to load, the OpenQA.Selenium.IWebElement.Click method will attempt to block until the page has loaded.",
-  "testOn": "https://gravitymvctestapplication.azurewebsites.net/instructor",
   "examples": [
     {
       "description": "Double clicks the mouse on the specified element.",
@@ -21,13 +18,17 @@
       }
     }
   ],
+  "name": "DoubleClick",
+  "pluginType": "Action",
   "properties": {
     "elementToActOn": "The locator value by which the element will be found.",
     "locator": "The locator type by which the element will be found."
   },
-  "scope": [ "web", "mobile-web", "mobile-native" ],
   "protocol": {
     "endpoint": "none",
     "w3c": "https://www.w3.org/TR/webdriver/#actions"
-  }
+  },
+  "scope": [ "web", "mobile-web", "mobile-native" ],
+  "summary": "Double clicks the mouse.",
+  "testOn": "https://gravitymvctestapplication.azurewebsites.net/instructor"
 }

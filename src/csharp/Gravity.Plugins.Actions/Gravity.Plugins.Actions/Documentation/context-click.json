@@ -1,8 +1,5 @@
 {
-  "name": "ContextClick",
-  "summary": "Right clicks the mouse.",
   "description": "Right clicks the mouse at the last known mouse coordinates or on the specified element.",
-  "testOn": "https://gravitymvctestapplication.azurewebsites.net/instructor",
   "examples": [
     {
       "description": "Right clicks the mouse on the specified element.",
@@ -21,13 +18,17 @@
       }
     }
   ],
+  "name": "ContextClick",
+  "pluginType": "Action",
   "properties": {
     "elementToActOn": "The locator value by which the element will be found.",
     "locator": "The locator type by which the element will be found."
   },
-  "scope": [ "web" ],
   "protocol": {
     "endpoint": "none",
     "w3c": "https://www.w3.org/TR/webdriver/#actions"
-  }
+  },
+  "scope": [ "web" ],
+  "summary": "Right clicks the mouse.",
+  "testOn": "https://gravitymvctestapplication.azurewebsites.net/instructor"
 }

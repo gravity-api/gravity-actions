@@ -38,6 +38,12 @@ namespace Gravity.Plugins.Actions.Contracts
         public const string SendKeys = "SendKeys";
 
         [DataMember]
+        public const string TrySendKeys = "TrySendKeys";
+
+        [DataMember]
         public const string Wait = "Wait";
+
+        [DataMember]
+        public const string WaitForElement = "WaitForElement";
     }
 }

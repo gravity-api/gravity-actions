@@ -1,6 +1,9 @@
 {
-  "name": "SetGeoLocation",
-  "summary": "Sets the current GEO location.",
+  "cliArguments": {
+    "lat": "The desired GEO location latitude.",
+    "lon": "The desired GEO location longitude.",
+    "alt": "The desired GEO location altitude (optional)."
+  },
   "description": "Sets the current GEO location.",
   "examples": [
     {
@@ -12,17 +15,15 @@
       }
     }
   ],
+  "name": "SetGeoLocation",
+  "pluginType": "Action",
   "properties": {
     "argument": "The desired GEO location latitude, longitude and altitude"
-  },
-  "scope": [ "mobile-web", "mobile-native" ],
-  "cliArguments": {
-    "lat": "The desired GEO location latitude.",
-    "lon": "The desired GEO location longitude.",
-    "alt": "The desired GEO location altitude (optional)."
   },
   "protocol": {
     "endpoint": "/session/{session-id}/location",
     "w3c": "none"
-  }
+  },
+  "scope": [ "mobile-web", "mobile-native" ],
+  "summary": "Sets the current GEO location."
 }

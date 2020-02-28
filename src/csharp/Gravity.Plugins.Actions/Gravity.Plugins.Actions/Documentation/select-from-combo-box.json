@@ -1,0 +1,72 @@
+{
+  "cliArguments": {
+    "all": "Tells the engine to select all options (if this is a multi selection box)."
+  },
+  "description": "Provides a convenience method for manipulating selections of options in an HTML select element. This action supports different selection options as well as multiple selection based on a pattern.",
+  "examples": [
+    {
+      "description": "Select an option by the value.",
+      "literalExample": "select from combo box on {//select} from {value} {4}",
+      "actionExample": {
+        "actionType": "SelectFromComboBox",
+        "argument": "4",
+        "elementToActOn": "//select",
+        "elementAttributeToActOn": "value"
+      }
+    },
+    {
+      "description": "Select the option by the index, as determined by the [index] attribute of the element.",
+      "literalExample": "select from combo box on {//select} from {index} {1}",
+      "actionExample": {
+        "actionType": "SelectFromComboBox",
+        "argument": "1",
+        "elementToActOn": "//select",
+        "elementAttributeToActOn": "index"
+      }
+    },
+    {
+      "description": "Select all options by the text displayed (exact match only).",
+      "literalExample": "select from combo box {Economics} on {//select}",
+      "actionExample": {
+        "actionType": "SelectFromComboBox",
+        "argument": "Economics",
+        "elementToActOn": "//select"
+      }
+    },
+    {
+      "description": "Select all options (if this is a multi selection box).",
+      "literalExample": "select from combo box {{$ --all}} on {//select}",
+      "actionExample": {
+        "actionType": "SelectFromComboBox",
+        "argument": "{{$ --all}}",
+        "elementToActOn": "//select"
+      }
+    },
+    {
+      "description": "Select all options which their text can be matched with the given pattern.",
+      "literalExample": "select from combo box {{$ --all}} on {//select} filter with {Eco} pattern.",
+      "actionExample": {
+        "actionType": "SelectFromComboBox",
+        "argument": "{{$ --all}}",
+        "elementToActOn": "//select",
+        "regularExpression": "Eco"
+      }
+    }
+  ],
+  "name": "SelectFromComboBox",
+  "pluginType": "Action",
+  "properties": {
+    "elementToActOn": "The locator value by which the element will be found.",
+    "locator": "The locator type by which the element will be found.",
+    "elementAttributeToActOn": "The element attribute from which to extract information for action execution. If not specified, information will be taken from the element inner text.",
+    "regularExpression": "A pattern by which the extracted information will be evaluated. Returns the first match.",
+    "argument": "The value to be used by the requested selecting attribute."
+  },
+  "protocol": {
+    "endpoint": "none",
+    "w3c": "none"
+  },
+  "scope": [ "web", "mobile-web" ],
+  "summary": "Provides a convenience method for manipulating selections of options in an HTML <select> element.",
+  "testOn": "https://gravitymvctestapplication.azurewebsites.net/course"
+}

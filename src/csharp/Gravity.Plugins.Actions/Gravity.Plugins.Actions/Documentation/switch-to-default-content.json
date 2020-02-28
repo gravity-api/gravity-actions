@@ -1,0 +1,21 @@
+{
+  "description": "Selects either the first frame on the page or the main document when a page contains frames.",
+  "examples": [
+    {
+      "description": "Selects either the first frame on the page or the main document when a page contains frames.",
+      "literalExample": "switch to default content.",
+      "actionExample": {
+        "actionType": "SwitchToDefaultContent"
+      }
+    }
+  ],
+  "name": "SwitchToDefaultContent",
+  "pluginType": "Action",
+  "protocol": {
+    "endpoint": "none",
+    "w3c": "none"
+  },
+  "scope": [ "web", "mobile-web" ],
+  "summary": "Selects either the first frame on the page or the main document when a page contains frames.",
+  "testOn": "https://gravitymvctestapplication.azurewebsites.net/instructor"
+}

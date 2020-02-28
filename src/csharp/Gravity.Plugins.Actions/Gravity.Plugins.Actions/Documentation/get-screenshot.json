@@ -1,0 +1,36 @@
+{
+  "description": "Gets a OpenQA.Selenium.Screenshot object representing the image of the page on and saves the screenshot to a file, overwriting the file if it already exists.",
+  "examples": [
+    {
+      "description": "Saves a web driver screenshot as [page.png] (you can use different format, see below) to the given path (whole page - not including address bar).",
+      "literalExample": "get screenshot {C:\\my-images\\page.png}",
+      "actionExample": {
+        "actionType": "GetScreenshot",
+        "argument": "C:\\my-images\\page.png"
+      }
+    },
+    {
+      "description": "Saves a web element screenshot as [element.bmp] to the given path (you can use different format, see below).",
+      "literalExample": "get screenshot {C:\\my-images\\element.bmp} on {//h2}",
+      "actionExample": {
+        "actionType": "GetScreenshot",
+        "argument": "C:\\my-images\\page.bmp",
+        "elementToActOn": "//h2"
+      }
+    }
+  ],
+  "name": "GetScreenshot",
+  "pluginType": "Action",
+  "properties": {
+    "elementToActOn": "The locator value by which the element will be found.",
+    "locator": "The locator type by which the element will be found.",
+    "argument": "The full path and file name to save the screenshot to. Support formats ['BMP','GIF','JPEG','TIFF','PNG']."
+  },
+  "protocol": {
+    "endpoint": "/session/{session-id}/screenshot | /session/{session-id}/element/{element-id}/screenshot",
+    "w3c": "https://www.w3.org/TR/webdriver/#screen-capture"
+  },
+  "scope": [ "web", "mobile-web", "mobile-native" ],
+  "summary": "Gets and saves a screenshot to a file.",
+  "testOn": "https://gravitymvctestapplication.azurewebsites.net/instructor"
+}

@@ -1,0 +1,48 @@
+{
+  "cliArguments": {
+    "keys": "The text to type into the element.",
+    "clear": "Clears the element value, before typing into it.",
+    "interval": "The interval time between each character typing."
+  },
+  "description": "Simulates typing text into the element. This actions supports typing interval and various clearing options.",
+  "examples": [
+    {
+      "description": "Type [Alexander] into [//form//p/input[1]] text input.",
+      "literalExample": "try send keys {Alexander} into {//form//p/input[1]}",
+      "actionExample": {
+        "actionType": "SendKeys",
+        "argument": "Alexander",
+        "elementToActOn": "//form//p/input[1]"
+      }
+    },
+    {
+      "description": "Type [Alexander] into [//form//p/input[1]] text input, after clearing the existing value.",
+      "literalExample": "try send keys {{$ --keys:Alexander --clear}} into {//form//p/input[1]}",
+      "actionExample": {
+        "actionType": "SendKeys",
+        "argument": "{{$ --keys:gravity api --clear}}",
+        "elementToActOn": "//form//p/input[1]"
+      }
+    },
+    {
+      "description": "Type [Alexander] into [//form//p/input[1]] text input with [100ms] interval between each char.",
+      "literalExample": "try send keys {{$ --keys:Alexander --interval:100}} into {//form//p/input[1]}",
+      "actionExample": {
+        "actionType": "SendKeys",
+        "argument": "{{$ --keys:Alexander --interval:100}}"
+      }
+    }
+  ],
+  "name": "TrySendKeys",
+  "properties": {
+    "elementToActOn": "The locator value by which the element will be found.",
+    "locator": "The locator type by which the element will be found.",
+    "argument": "The text to type into the element."
+  },
+  "protocol": {
+    "endpoint": "/session/{session-id}/element/{element-id}/value",
+    "w3c": "https://www.w3.org/TR/webdriver/#element-send-keys"
+  },
+  "scope": [ "web", "mobile-web", "mobile-native" ],
+  "summary": "Simulates typing text into the element."
+}

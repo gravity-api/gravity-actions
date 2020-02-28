@@ -1,0 +1,70 @@
+{
+  "name": "LongSwipe",
+  "summary": "Swipes the screen by a given coordinates or elements.",
+  "description": "Swipes the screen by a given coordinates or elements, using a long-press. This action supports swiping element to element, element to coordinates and vice versa.",
+  "examples": [
+    {
+      "description": "Swipes the screen from [x,y-position:100,100] to [x,y-position: 200,200].",
+      "literalExample": "long swipe {{$ --source:100,100 --target:200,200}}",
+      "actionExample": {
+        "actionType": "LongSwipe",
+        "argument": "{{$ --source:100,100 --target:200,200}}"
+      }
+    },
+    {
+      "description": "Swipes the element [//button] to [x,y-position:200,200].",
+      "literalExample": "long swipe {{$ --source://button --target:200,200}}",
+      "actionExample": {
+        "actionType": "LongSwipe",
+        "argument": "{{$ --source://button --target:200,200}}"
+      }
+    },
+    {
+      "description": "Swipes the element [//button] to [x,y-position:200,200].",
+      "literalExample": "long swipe {{$ --target:200,200}}",
+      "actionExample": {
+        "actionType": "LongSwipe",
+        "elementToActOn": "//button",
+        "argument": "{{$ --target:200,200}}"
+      }
+    },
+    {
+      "description": "Swipes the element [//button] onto element [//div].",
+      "literalExample": "long swipe {{$ --source://button --target://div}}",
+      "actionExample": {
+        "actionType": "LongSwipe",
+        "argument": "{{$ --source://button --target://div}}"
+      }
+    },
+    {
+      "description": "Swipes from [x,y-position:200,200] onto element [//div]",
+      "literalExample": "long swipe {{$ --source:200,200 --target://div}}",
+      "actionExample": {
+        "actionType": "LongSwipe",
+        "argument": "{{$ --source:200,200 --target://div}}"
+      }
+    },
+    {
+      "description": "Swipes from [x,y-position:200,200] onto element [//div]",
+      "literalExample": "long swipe {{$ --source:200,200}}",
+      "actionExample": {
+        "actionType": "LongSwipe",
+        "elementToActOn": "//div",
+        "argument": "{{$ --source:200,200}}"
+      }
+    }
+  ],
+  "properties": {
+    "locator": "The locator type by which the element will be found.",
+    "argument": "The CLI information for this swipe action."
+  },
+  "scope": [ "mobile-native" ],
+  "cliArguments": {
+    "source": "The source [x,y] coordinates or element locator value to swipe from.",
+    "target": "The target [x,y] coordinates or element locator value to swipe to."
+  },
+  "protocol": {
+    "endpoint": "none",
+    "w3c": "https://www.w3.org/TR/webdriver/#actions"
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "cliArguments": {
+    "until": "Repeats the click action until condition is met. Available conditions are: ['no-alert']."
+  },
+  "description": "Clicks the mouse at the last known mouse coordinates or on the specified element. If the click causes a new page to load, the OpenQA.Selenium.IWebElement.Click method will attempt to block until the page has loaded.",
+  "examples": [
+    {
+      "actionExample": {
+        "actionType": "click",
+        "elementToActOn": "(//table//a)[1]"
+      },
+      "comment": "Executed on [Edit] page. Select any instructor and click on [Edit] link.",
+      "description": "Clicks the mouse on the specified element.",
+      "literalExample": "click on {(//table//a)[1]}"
+    },
+    {
+      "actionExample": {
+        "actionType": "Click"
+      },
+      "description": "Clicks the mouse at the last known mouse coordinates.",
+      "literalExample": "click"
+    },
+    {
+      "actionExample": {
+        "actionType": "Click",
+        "argument": "{{$ --until:noalert}}",
+        "elementToActOn": "(//table//a)[1]"
+      },
+      "description": "Clicks the mouse on the specified element. If alert is present after that click, it will be dismissed and the click action repeats. The action repeats until no alert or until page load timeout reached.",
+      "literalExample": "click {{$ --until:noalert}} on {(//table//a)[1]}"
+    }
+  ],
+  "name": "Click",
+  "pluginType": "Action",
+  "properties": {
+    "argument": "Click action conditions and additional information.",
+    "elementToActOn": "The locator value by which the element will be found.",
+    "locator": "The locator type by which the element will be found."
+  },
+  "protocol": {
+    "endpoint": "none",
+    "w3c": "https://www.w3.org/TR/webdriver/#actions"
+  },
+  "scope": [ "web", "mobile-web", "mobile-native" ],
+  "summary": "Clicks the mouse at the last known mouse coordinates or on the specified element.",
+  "testOn": "https://gravitymvctestapplication.azurewebsites.net/instructor"
+}

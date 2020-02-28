@@ -1,0 +1,32 @@
+{
+  "description": "Refreshes the current page. The action will be completed when page ready state [complete] or until page loading timeout reached.",
+  "examples": [
+    {
+      "description": "Refreshes the current page.",
+      "literalExample": "refresh",
+      "actionExample": {
+        "actionType": "Refresh"
+      }
+    },
+    {
+      "description": "Refreshes the current page 3 times.",
+      "literalExample": "refresh {3} times",
+      "actionExample": {
+        "actionType": "Refresh",
+        "argument": "3"
+      }
+    }
+  ],
+  "name": "Refresh",
+  "pluginType": "Action",
+  "properties": {
+    "argument": "The number of page refreshes. Will trigger a [refresh] call for each time, with a silent wait between intervals."
+  },
+  "protocol": {
+    "endpoint": "/session/{session-id}/refresh",
+    "w3c": "https://www.w3.org/TR/webdriver/#refresh"
+  },
+  "scope": [ "web", "mobile-web" ],
+  "summary": "Refreshes the current page.",
+  "testOn": "https://gravitymvctestapplication.azurewebsites.net/instructor"
+}

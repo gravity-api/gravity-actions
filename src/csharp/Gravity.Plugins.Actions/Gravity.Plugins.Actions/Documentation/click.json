@@ -31,7 +31,6 @@
     }
   ],
   "name": "Click",
-  "pluginType": "Action",
   "properties": {
     "argument": "Click action conditions and additional information.",
     "elementToActOn": "The locator value by which the element will be found.",

@@ -10,7 +10,6 @@
     }
   ],
   "name": "CloseAllChildWindows",
-  "pluginType": "Action",
   "protocol": {
     "endpoint": "/session/{session-id}/window",
     "w3c": "https://www.w3.org/TR/webdriver/#close-window"

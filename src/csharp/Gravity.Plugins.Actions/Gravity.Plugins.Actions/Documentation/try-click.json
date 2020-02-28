@@ -1,5 +1,8 @@
 {
+  "name": "TryClick",
+  "summary": "Simulates a mouse-click on an element.",
   "description": "Simulates a mouse-click on an element. This method can be used to execute a click on an element as if the user manually clicked on it. If the click causes a new page to load, the OpenQA.Selenium.IWebElement.Click method will attempt to block until the page has loaded.",
+  "testOn": "https://gravitymvctestapplication.azurewebsites.net/instructor",
   "examples": [
     {
       "description": "Clicks the mouse on the specified element.",
@@ -10,17 +13,13 @@
       }
     }
   ],
-  "name": "TryClick",
-  "pluginType": "Action",
   "properties": {
     "elementToActOn": "The locator value by which the element will be found.",
     "locator": "The locator type by which the element will be found."
   },
+  "scope": [ "web", "mobile-web" ],
   "protocol": {
     "endpoint": "/session/{session-id}/execute/sync",
     "w3c": "https://www.w3.org/TR/webdriver/#execute-script"
-  },
-  "scope": [ "web", "mobile-web" ],
-  "summary": "Simulates a mouse-click on an element.",
-  "testOn": "https://gravitymvctestapplication.azurewebsites.net/instructor"
+  }
 }

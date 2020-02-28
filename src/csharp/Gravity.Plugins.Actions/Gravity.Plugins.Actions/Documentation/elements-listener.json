@@ -13,7 +13,6 @@
     }
   ],
   "name": "ElementsListener",
-  "pluginType": "Action",
   "properties": {
     "argument": "The amount of milliseconds interval between each elements search.",
     "elementToActOn": "The locator value by which the element will be found.",

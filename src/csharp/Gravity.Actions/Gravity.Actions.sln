@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29613.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gravity.Services.ActionPlugins", "Gravity.Actions\Gravity.Services.ActionPlugins.csproj", "{1C20C876-3F67-4E39-A297-FBD75A6B54DD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gravity.Services.ActionPlugins.Tests", "Gravity.Actions.Tests\Gravity.Services.ActionPlugins.Tests.csproj", "{98367CCA-D62B-49DA-9C44-01F017C33DD3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gravity.Drivers.Mock", "Gravity.Drivers.Mock\Gravity.Drivers.Mock.csproj", "{2D623A4E-7676-4834-9703-EC79C1ED6E67}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1C20C876-3F67-4E39-A297-FBD75A6B54DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C20C876-3F67-4E39-A297-FBD75A6B54DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C20C876-3F67-4E39-A297-FBD75A6B54DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C20C876-3F67-4E39-A297-FBD75A6B54DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{98367CCA-D62B-49DA-9C44-01F017C33DD3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98367CCA-D62B-49DA-9C44-01F017C33DD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98367CCA-D62B-49DA-9C44-01F017C33DD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98367CCA-D62B-49DA-9C44-01F017C33DD3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D623A4E-7676-4834-9703-EC79C1ED6E67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D623A4E-7676-4834-9703-EC79C1ED6E67}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D623A4E-7676-4834-9703-EC79C1ED6E67}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D623A4E-7676-4834-9703-EC79C1ED6E67}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {101E768A-2BB7-4A6C-90E0-1364EA614E26}
+	EndGlobalSection
+EndGlobal

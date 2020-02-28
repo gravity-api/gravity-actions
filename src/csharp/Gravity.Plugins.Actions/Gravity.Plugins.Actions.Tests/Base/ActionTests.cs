@@ -435,5 +435,32 @@ namespace Gravity.Plugins.Actions.UnitTests.Base
             return reader.ReadToEnd();
         }
         #endregion
+
+        #region *** testing        ***
+        /// <summary>
+        /// Executes a tests by a given number of attempts.
+        /// </summary>
+        /// <param name="attempts">Number of attempts if the test fails.</param>
+        /// <param name="test">Delegate to execute the test.</param>
+        public static void Execute(int attempts, Action test)
+        {
+            for (int i = 0; i < attempts; i++)
+            {
+                try
+                {
+                    test.Invoke();
+                    return;
+                }
+                catch (Exception e) when (e != null)
+                {
+                    Console.WriteLine($"Failed on attempt [{i + 1}] out of [{attempts}].");
+                    if (i == attempts - 1)
+                    {
+                        throw;
+                    }
+                }
+            }
+        }
+        #endregion
     }
 }

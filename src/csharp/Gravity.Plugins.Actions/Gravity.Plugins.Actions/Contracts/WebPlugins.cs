@@ -62,6 +62,9 @@ namespace Gravity.Plugins.Actions.Contracts
         public const string UploadFile = "UploadFile";
 
         [DataMember]
+        public const string WaitForPage = "WaitForPage";
+
+        [DataMember]
         public const string WaitForUrl = "WaitForUrl";
     }
 }

@@ -243,27 +243,6 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             // fetch
             return (int)AutomationEnvironment.SessionParams[K];
         }
-
-        // execute tests with retry
-        private void Execute(int attempts, Action test)
-        {
-            for (int i = 0; i < attempts; i++)
-            {
-                try
-                {
-                    test.Invoke();
-                    return;
-                }
-                catch (Exception e) when (e != null)
-                {
-                    Console.WriteLine($"Failed on attempt [{i}] out of [{attempts}].");
-                    if (i == attempts - 1)
-                    {
-                        throw e;
-                    }
-                }
-            }
-        }
     }
 }
 #pragma warning restore S4144

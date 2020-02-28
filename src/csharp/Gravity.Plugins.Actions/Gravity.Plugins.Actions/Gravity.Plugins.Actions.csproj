@@ -20,6 +20,7 @@
     <None Remove="Documentation\try-send-keys.json" />
     <None Remove="Documentation\upload-file.json" />
     <None Remove="Documentation\wait-for-element.json" />
+    <None Remove="Documentation\wait-for-page.json" />
     <None Remove="Documentation\wait-for-url.json" />
   </ItemGroup>
 
@@ -53,6 +54,7 @@
     <EmbeddedResource Include="Documentation\try-send-keys.json" />
     <EmbeddedResource Include="Documentation\upload-file.json" />
     <EmbeddedResource Include="Documentation\wait-for-element.json" />
+    <EmbeddedResource Include="Documentation\wait-for-page.json" />
     <EmbeddedResource Include="Documentation\wait-for-url.json" />
     <EmbeddedResource Include="Documentation\wait.json" />
   </ItemGroup>

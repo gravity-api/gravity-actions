@@ -37,14 +37,14 @@ namespace Gravity.Plugins.Actions.Components
         /// Has not started loading yet.
         /// </summary>
         public const string Uninitialized = "uninitialized";
+
+        /// <summary>
+        /// Always <see cref="false"/>.
+        /// </summary>
+        public const string False = "false";
         #endregion
 
         #region *** constructors ***
-        /// <summary>
-        /// Creates a new instance of <see cref="PageStateFactory"/> (with 15sec default timeout).
-        /// </summary>
-        public PageStateFactory()
-        { }
         #endregion
 
         #region *** factor       ***
@@ -90,6 +90,10 @@ namespace Gravity.Plugins.Actions.Components
         [Description(Uninitialized)]
         private bool StateUninitialized(IWebDriver driver)
             => CompareState(driver, expectedState: Uninitialized);
+
+        [Description(False)]
+        private bool StateFalse(IWebDriver driver)
+            => CompareState(driver, expectedState: "false");
 
         private static bool CompareState(IWebDriver driver, string expectedState)
         {

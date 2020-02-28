@@ -7,8 +7,15 @@ pool:
 
 variables:
   buildConfiguration: 'Release'
+  dotnetSdkVersion: '3.1.102'
 
 steps:
+steps:
+- task: DotNetCoreInstaller@0
+  displayName: 'use .NET Core SDK $(dotnetSdkVersion)'
+  inputs:
+    version: '$(dotnetSdkVersion)'
+
 - task: DotNetCoreCLI@2
   displayName: restore dependencies
   inputs:

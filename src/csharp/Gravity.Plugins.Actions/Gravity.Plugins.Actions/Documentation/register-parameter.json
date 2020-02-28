@@ -1,8 +1,5 @@
 {
-  "name": "RegisterParameter",
-  "summary": "Save a parameter under session params collection.",
-  "description": "Save a parameter under session params collection. This action supports locators, elements, attributes, regular expressions and macros.",
-  "testOn": "https://gravitymvctestapplication.azurewebsites.net/instructor",
+  "description": "Save a parameter under session parameters collection. This action supports locators, elements, attributes, regular expressions and macros.",
   "examples": [
     {
       "description": "Save [//tr[1]/td[2]] inner text into [first-name] session parameter.",
@@ -43,6 +40,8 @@
       }
     }
   ],
+  "name": "RegisterParameter",
+  "pluginType": "Action",
   "properties": {
     "elementToActOn": "The locator value by which the element will be found.",
     "locator": "The locator type by which the element will be found.",
@@ -50,9 +49,11 @@
     "regularExpression": "A pattern by which the extracted information will be evaluated. Returns the first match.",
     "argument": "Parameter name. Please note, if the name already exists, the new call will override the existing value."
   },
-  "scope": [ "web", "mobile-web", "mobile-native" ],
   "protocol": {
     "endpoint": "none",
     "w3c": "none"
-  }
+  },
+  "scope": [ "web", "mobile-web", "mobile-native" ],
+  "summary": "Save a parameter under session parameters collection.",
+  "testOn": "https://gravitymvctestapplication.azurewebsites.net/instructor"
 }

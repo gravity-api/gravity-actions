@@ -1,0 +1,43 @@
+{
+  "description": "Select a frame by its (zero-based) index or by its name or ID or using its previously located OpenQA.Selenium.IWebElement.",
+  "examples": [
+    {
+      "description": "Select a frame by its (zero-based) index.",
+      "literalExample": "switch to frame {0}",
+      "actionExample": {
+        "actionType": "SwitchToFrame",
+        "argument": "0"
+      }
+    },
+    {
+      "description": "Select a frame by its name or ID.",
+      "literalExample": "switch to frame {main-frame}",
+      "actionExample": {
+        "actionType": "SwitchToFrame",
+        "argument": "main-frame"
+      }
+    },
+    {
+      "description": "Select a frame using its previously located OpenQA.Selenium.IWebElement.",
+      "literalExample": "switch to frame on {//frame}",
+      "actionExample": {
+        "actionType": "SwitchToFrame",
+        "elementToActOn": "//frame"
+      }
+    }
+  ],
+  "name": "SwitchToFrame",
+  "pluginType": "Action",
+  "properties": {
+    "elementToActOn": "The locator value by which the element will be found.",
+    "locator": "The locator type by which the element will be found.",
+    "argument": "The (zero-based) index, name or ID of the frame."
+  },
+  "protocol": {
+    "endpoint": "/session/{session-id}/frame",
+    "w3c": "https://www.w3.org/TR/webdriver1/#switch-to-frame"
+  },
+  "scope": [ "web", "mobile-web" ],
+  "summary": "Select a frame, changing web-driver context to the new selected frame.",
+  "testOn": "https://gravitymvctestapplication.azurewebsites.net/instructor"
+}

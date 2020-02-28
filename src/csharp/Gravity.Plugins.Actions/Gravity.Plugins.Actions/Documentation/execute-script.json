@@ -1,8 +1,9 @@
 {
-  "name": "ExecuteScript",
-  "summary": "Executes JavaScript in the context of the currently selected frame or window.",
+  "cliArguments": {
+    "src": "The JavaScript code to execute.",
+    "args": "Object array to pass into this script."
+  },
   "description": "Executes JavaScript in the context of the currently selected frame or window.",
-  "testOn": "https://gravitymvctestapplication.azurewebsites.net/student",
   "examples": [
     {
       "description": "Trigger alert dialog window.",
@@ -46,18 +47,18 @@
       }
     }
   ],
+  "name": "ExecuteScript",
+  "pluginType": "Action",
   "properties": {
     "elementToActOn": "The locator value by which the element will be found.",
     "locator": "The locator type by which the element will be found.",
     "argument": "The JavaScript code to execute."
   },
-  "scope": [ "web", "mobile-web" ],
-  "cliArguments": {
-    "src": "The JavaScript code to execute.",
-    "args": "Object array to pass into this script."
-  },
   "protocol": {
     "endpoint": "/session/{session-id}/execute/sync",
     "w3c": "https://www.w3.org/TR/webdriver/#execute-script"
-  }
+  },
+  "scope": [ "web", "mobile-web" ],
+  "summary": "Executes JavaScript in the context of the currently selected frame or window.",
+  "testOn": "https://gravitymvctestapplication.azurewebsites.net/student"
 }

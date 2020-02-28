@@ -8,8 +8,6 @@
  *         and FindElementByActionRule(this IWebElement e, ByFactory byFactory, ActionRule actionRule)
  */
 using OpenQA.Selenium.Extensions;
-using Gravity.Services.Comet.Engine.Core;
-using Gravity.Services.Comet.Engine.Extensions;
 using Gravity.Services.DataContracts;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Internal;
@@ -18,6 +16,8 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text.RegularExpressions;
+using Gravity.Plugins.Utilities.Selenium;
+using Gravity.Plugins.Extensions;
 
 namespace Gravity.Plugins.Actions.Extensions
 {
@@ -35,7 +35,7 @@ namespace Gravity.Plugins.Actions.Extensions
         {
             return GetElementByActionRule(
                 d,
-                byFactory: new ByFactory(Utilities.GetTypes()),
+                byFactory: new ByFactory(Misc.GetTypes()),
                 actionRule,
                 timeout);
         }
@@ -68,7 +68,7 @@ namespace Gravity.Plugins.Actions.Extensions
         {
             return GetElementByActionRule(
                 e,
-                byFactory: new ByFactory(Utilities.GetTypes()),
+                byFactory: new ByFactory(Misc.GetTypes()),
                 actionRule,
                 timeout);
         }
@@ -102,7 +102,7 @@ namespace Gravity.Plugins.Actions.Extensions
             }
 
             // on element level
-            return e.FindElement(by);
+            return e?.FindElement(by);
         }
 
         /// <summary>
@@ -115,7 +115,7 @@ namespace Gravity.Plugins.Actions.Extensions
         {
             return FindElementByActionRule(
                 d,
-                byFactory: new ByFactory(Utilities.GetTypes()),
+                byFactory: new ByFactory(Misc.GetTypes()),
                 actionRule);
         }
 
@@ -145,7 +145,7 @@ namespace Gravity.Plugins.Actions.Extensions
         {
             return FindElementByActionRule(
                 e,
-                byFactory: new ByFactory(Utilities.GetTypes()),
+                byFactory: new ByFactory(Misc.GetTypes()),
                 actionRule);
         }
 
@@ -160,10 +160,10 @@ namespace Gravity.Plugins.Actions.Extensions
         {
             // on-element conditions
             var isOnElement = e != default && !string.IsNullOrEmpty(actionRule.ElementToActOn);
-            if (isOnElement)
-            {
-                return e;
-            }
+            //if (isOnElement)
+            //{
+            //    return e;
+            //}
 
             // get locator
             var by = byFactory.Get(actionRule.Locator, actionRule.ElementToActOn);
@@ -178,7 +178,7 @@ namespace Gravity.Plugins.Actions.Extensions
             }
 
             // on element level
-            return e.FindElement(by);
+            return e?.FindElement(by);
         }
 
         /// <summary>
@@ -191,7 +191,7 @@ namespace Gravity.Plugins.Actions.Extensions
         {
             return FindElementsByActionRule(
                 d,
-                byFactory: new ByFactory(Utilities.GetTypes()),
+                byFactory: new ByFactory(Misc.GetTypes()),
                 actionRule);
         }
 
@@ -221,7 +221,7 @@ namespace Gravity.Plugins.Actions.Extensions
         {
             return FindElementsByActionRule(
                 e,
-                byFactory: new ByFactory(Utilities.GetTypes()),
+                byFactory: new ByFactory(Misc.GetTypes()),
                 actionRule);
         }
 
@@ -254,7 +254,7 @@ namespace Gravity.Plugins.Actions.Extensions
             }
 
             // on element level
-            return e.FindElements(by);
+            return e?.FindElements(by);
         }
 
         /// <summary>

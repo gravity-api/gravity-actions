@@ -1,11 +1,8 @@
 {
   "cliArguments": {
-    "until": "Repeats the nested actions until a condition is met. Available conditions are: ['visible','not-visible','exists','not-exists']."
+    "until": "Repeats the nested actions until a condition is met. Available conditions are: ['visible','hidden','exists','not_exists']."
   },
-  "name": "Repeat",
-  "summary": "Repeats a subset of actions.",
   "description": "Repeats a subset of actions for a given number of times or under condition is met. This action is recursive and actions subset can be another [Repeat] action.",
-  "testOn": "https://gravitymvctestapplication.azurewebsites.net/student",
   "examples": [
     {
       "description": "Repeat [SendKeys] action with [a] argument into [//form/div/p/input[1]] <input>, 10 times.",
@@ -113,13 +110,17 @@
       }
     }
   ],
+  "name": "Repeat",
+  "pluginType": "Action",
   "properties": {
     "argument": "Number of times to repeat the actions subset.",
     "actions": "Actions subset to repeat."
   },
-  "scope": [ "web", "mobile-web", "mobile-native" ],
   "protocol": {
     "endpoint": "none",
     "w3c": "none"
-  }
+  },
+  "scope": [ "web", "mobile-web", "mobile-native" ],
+  "summary": "Repeats a subset of actions.",
+  "testOn": "https://gravitymvctestapplication.azurewebsites.net/student"
 }

@@ -1,8 +1,5 @@
 {
-  "name": "NavigateForward",
-  "summary": "Move forward a single entry in the browser's history.",
   "description": "Move forward a single entry in the browser's history. The action will be completed when page ready state [complete] or until page loading timeout reached.",
-  "testOn": "https://gravitymvctestapplication.azurewebsites.net/instructor",
   "examples": [
     {
       "description": "Move forward a single entry in the browser's history.",
@@ -20,12 +17,16 @@
       }
     }
   ],
+  "name": "NavigateForward",
+  "pluginType": "Action",
   "properties": {
     "argument": "The number of pages to navigate forward. Will trigger a [forward] call for each time, with a silent wait between intervals."
   },
-  "scope": [ "web", "mobile-web" ],
   "protocol": {
     "endpoint": "/session/{session-id}/forward",
     "w3c": "https://www.w3.org/TR/webdriver/#forward"
-  }
+  },
+  "scope": [ "web", "mobile-web" ],
+  "summary": "Move forward a single entry in the browser's history.",
+  "testOn": "https://gravitymvctestapplication.azurewebsites.net/instructor"
 }

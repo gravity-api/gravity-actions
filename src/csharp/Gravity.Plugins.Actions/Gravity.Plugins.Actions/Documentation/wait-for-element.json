@@ -1,0 +1,99 @@
+{
+  "cliArguments": {
+    "until": "Element condition to meet. Available values ['exists', 'visible', 'stale', 'enabled', 'attribute', 'text', 'hidden'].",
+    "timeout": "Timeout to wait before throwing [TimeoutException], value can be TimeSpan [hh:mm:ss] or in millisecond [3000]. If not provided, default will be [ElementSearchTimeout]."
+  },
+  "description": "Wait until the provided element conditions are met.",
+  "examples": [
+    {
+      "description": "Wait for [//main/p/a] to be exist in the DOM or until [ElementSearchTimeout] reached.",
+      "literalExample": "wait for element on {//main/p/a}",
+      "actionExample": {
+        "actionType": "WaitForElement",
+        "elementToActOn": "//main/p/a"
+      }
+    },
+    {
+      "description": "Wait for [//main/p/a] to be exist in the DOM and displayed or until [ElementSearchTimeout] reached.",
+      "literalExample": "wait for element {{$ --until:visible}} on {//main/p/a}",
+      "actionExample": {
+        "actionType": "",
+        "argument": "{{$ --until:visible}}",
+        "elementToActOn": "//main/p/a"
+      }
+    },
+    {
+      "description": "Wait for [//main/p/a] to be stale (StaleElementReferenceException is thrown) or until [5000ms] timeout reached.",
+      "literalExample": "wait for element {{$ --until:stale --timeout:5000}} on {//main/p/a}",
+      "actionExample": {
+        "actionType": "WaitForElement",
+        "argument": "{{$ --until:stale --timeout:5000}}",
+        "elementToActOn": "//main/p/a"
+      }
+    },
+    {
+      "description": "Wait for [//main/p/a] to be exist in the DOM, displayed and enabled or until [1min] timeout reached.",
+      "literalExample": "wait for element {{$ --until:enabled --timeout:00:01:00}} on {//main/p/a}",
+      "actionExample": {
+        "actionType": "WaitForElement",
+        "argument": "{{$ --until:enabled --timeout:00:01:00}}",
+        "elementToActOn": "//main/p/a"
+      }
+    },
+    {
+      "description": "Wait for [//main/p/a] to be exist in the DOM but not displayed or until 1min timeout reached.",
+      "literalExample": "wait for element {{$ --until:hidden --timeout:00:01:00}} on {//main/p/a}",
+      "actionExample": {
+        "actionType": "WaitForElement",
+        "argument": "{{$ --until:hidden --timeout:00:01:00}}",
+        "elementToActOn": "//main/p/a"
+      }
+    },
+    {
+      "description": "Wait for [//main/p/a] to be exist in the DOM and it's @name attribute to match [Create] or until [1min] timeout reached.",
+      "literalExample": "wait for element {{$ --until:attribute --timeout:00:01:00}} on {//main/p/a}",
+      "actionExample": {
+        "actionType": "WaitForElement",
+        "argument": "{{$ --until:attribute --timeout:00:01:00}}",
+        "elementToActOn": "//main/p/a",
+        "elementAttributeToActOn": "href",
+        "regularExpression": "Create"
+      }
+    },
+    {
+      "description": "Wait for [//main/p/a] to be exist in the DOM and it's inner text to match [Create] or until [1min] timeout reached.",
+      "literalExample": "wait for element {{$ --until:text --timeout:00:01:00}} on {//main/p/a}",
+      "actionExample": {
+        "actionType": "WaitForElement",
+        "argument": "{{$ --until:text --timeout:00:01:00}}",
+        "elementToActOn": "//main/p/a",
+        "regularExpression": "Create"
+      }
+    },
+    {
+      "description": "Wait for [//main/p/a] to not exists in the DOM (NoSuchElementException is thrown) or until [5000ms] timeout reached.",
+      "literalExample": "wait for element {{$ --until:notexists --timeout:5000}} on {//main/p/a}",
+      "actionExample": {
+        "actionType": "WaitForElement",
+        "argument": "{{$ --until:notexists --timeout:5000}}",
+        "elementToActOn": "//main/p/a"
+      }
+    }
+  ],
+  "name": "WaitForElement",
+  "pluginType": "Action",
+  "properties": {
+    "elementToActOn": "The locator value by which the element will be found.",
+    "locator": "The locator type by which the element will be found.",
+    "elementAttributeToActOn": "The element attribute from which to extract information for action execution. If not specified, information will be taken from the element inner text.",
+    "regularExpression": "A pattern by which the extracted information will be evaluated. Returns the first match.",
+    "argument": "The assertion condition, operator and expected value."
+  },
+  "protocol": {
+    "endpoint": "none",
+    "w3c": "none"
+  },
+  "scope": [ "web", "mobile-web", "mobile-native" ],
+  "summary": "Wait until the provided element conditions are met.",
+  "testOn": "https://gravitymvctestapplication.azurewebsites.net/instructor"
+}

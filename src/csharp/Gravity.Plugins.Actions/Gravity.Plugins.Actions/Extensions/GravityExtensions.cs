@@ -6,7 +6,7 @@
 using Gravity.Services.DataContracts;
 using System;
 using OpenQA.Selenium;
-using Gravity.Services.Comet.Engine.Extensions;
+using Gravity.Plugins.Extensions;
 
 namespace Gravity.Plugins.Actions.Extensions
 {
@@ -33,7 +33,7 @@ namespace Gravity.Plugins.Actions.Extensions
         {
             extraction.OrbitSession = new OrbitSession
             {
-                MachineIp = Utilities.GetLocalEndpoint(),
+                MachineIp = Misc.GetLocalEndpoint(),
                 MachineName = Environment.MachineName,
                 SessionsId = session
             };

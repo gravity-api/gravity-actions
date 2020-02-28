@@ -10,6 +10,7 @@
     }
   ],
   "name": "CloseBrowser",
+  "pluginType": "Action",
   "protocol": {
     "endpoint": "/session/{session-id}",
     "w3c": "https://www.w3.org/TR/webdriver/#delete-session"

@@ -1,8 +1,10 @@
 {
-  "name": "SwitchToAlert",
-  "summary": "Switches to the currently active modal dialog for this particular driver instance.",
+  "cliArguments": {
+    "keys": "Keys to send to the alert.",
+    "user": "User name in an alert prompting for credentials.",
+    "password": "Password in an alert prompting for credentials."
+  },
   "description": "Switches to the currently active modal dialog for this particular driver instance.",
-  "testOn": "https://gravitymvctestapplication.azurewebsites.net/instructor",
   "examples": [
     {
       "description": "Dismisses the alert.",
@@ -45,17 +47,16 @@
       }
     }
   ],
+  "name": "SwitchToAlert",
   "properties": {
     "argument": "The action that will be taken on the alert dialog."
-  },
-  "scope": [ "web" ],
-  "cliArguments": {
-    "keys": "Keys to send to the alert.",
-    "user": "User name in an alert prompting for credentials.",
-    "password": "Password in an alert prompting for credentials."
   },
   "protocol": {
     "endpoint": "/session/{session-id}/alert/{action}",
     "w3c": "https://www.w3.org/TR/webdriver/#user-prompts"
-  }
+  },
+  "pluginType": "Action",
+  "scope": [ "web" ],
+  "summary": "Switches to the currently active modal dialog for this particular driver instance.",
+  "testOn": "https://gravitymvctestapplication.azurewebsites.net/instructor"
 }

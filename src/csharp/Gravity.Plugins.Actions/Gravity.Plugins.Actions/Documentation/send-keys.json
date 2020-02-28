@@ -1,8 +1,12 @@
 {
-  "name": "SendKeys",
-  "summary": "Simulates typing text into the element.",
+  "cliArguments": {
+    "keys": "The text to type into the element.",
+    "clear": "Clears the element value, before typing into it.",
+    "forceClear": "Clears the element value using <backspace> key, performing the clearing using real keyboard actions. This action is not supported on [mobile-native] applications.",
+    "interval": "The interval time between each character typing.",
+    "down": "Array of keys to press down while sending keys (use for simulate [ctrl]+a, [ctrl]+[shift]+[delete], etc."
+  },
   "description": "Simulates typing text into the element. This actions supports typing interval and various clearing options.",
-  "testOn": "https://gravitymvctestapplication.azurewebsites.net/student",
   "examples": [
     {
       "description": "Type [Alexander] into [//form//p/input[1]] text input.",
@@ -55,21 +59,18 @@
       }
     }
   ],
+  "name": "SendKeys",
+  "pluginType": "Action",
   "properties": {
     "elementToActOn": "The locator value by which the element will be found.",
     "locator": "The locator type by which the element will be found.",
     "argument": "The text to type into the element."
   },
-  "scope": [ "web", "mobile-web", "mobile-native" ],
-  "cliArguments": {
-    "keys": "The text to type into the element.",
-    "clear": "Clears the element value, before typing into it.",
-    "forceClear": "Clears the element value using <backspace> key, performing the clearing using real keyboard actions. This action is not supported on [mobile-native] applications.",
-    "interval": "The interval time between each character typing.",
-    "down": "Array of keys to press down while sending keys (use for simulate [ctrl]+a, [ctrl]+[shift]+[delete], etc."
-  },
   "protocol": {
     "endpoint": "/session/{session-id}/element/{element-id}/value",
     "w3c": "https://www.w3.org/TR/webdriver/#element-send-keys"
-  }
+  },
+  "scope": [ "web", "mobile-web", "mobile-native" ],
+  "summary": "Simulates typing text into the element.",
+  "testOn": "https://gravitymvctestapplication.azurewebsites.net/student"
 }

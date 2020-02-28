@@ -1,6 +1,4 @@
 {
-  "name": "HideKeyboard",
-  "summary": "Hide soft keyboard.",
   "description": "Hide soft keyboard.",
   "examples": [
     {
@@ -11,9 +9,12 @@
       }
     }
   ],
-  "scope": [ "mobile-web", "mobile-native" ],
+  "name": "HideKeyboard",
+  "pluginType": "Action",
   "protocol": {
     "endpoint": "/session/{session-id}/appium/device/hide_keyboard",
     "w3c": "none"
-  }
+  },
+  "scope": [ "mobile-web", "mobile-native" ],
+  "summary": "Hide soft keyboard."
 }

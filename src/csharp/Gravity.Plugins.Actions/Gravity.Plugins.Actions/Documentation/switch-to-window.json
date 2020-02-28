@@ -1,6 +1,4 @@
 {
-  "name": "SwitchToWindow",
-  "summary": "Switches the focus of future commands for this driver to the window with the given (zero based) index.",
   "description": "Switches the focus of future commands for this driver to the window with the given (zero based) index. If the index is too high, the last windows will be selected. If it is too low, the main window will be selected.",
   "examples": [
     {
@@ -12,12 +10,15 @@
       }
     }
   ],
+  "name": "SwitchToWindow",
+  "pluginType": "Action",
   "properties": {
     "argument": "The (zero-based) index of the window."
   },
-  "scope": [ "web", "mobile-web" ],
   "protocol": {
     "endpoint": "/session/{session-id}/window",
     "w3c": "https://www.w3.org/TR/webdriver/#switch-to-window"
-  }
+  },
+  "scope": [ "web", "mobile-web" ],
+  "summary": "Switches the focus of future commands for this driver to the window with the given (zero based) index."
 }

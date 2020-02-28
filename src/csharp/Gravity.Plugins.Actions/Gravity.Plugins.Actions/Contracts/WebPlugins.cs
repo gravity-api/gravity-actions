@@ -50,9 +50,18 @@ namespace Gravity.Plugins.Actions.Contracts
         public const string SwitchToDefaultContent = "SwitchToDefaultContent";
 
         [DataMember]
+        public const string SwitchToFrame = "SwitchToFrame";
+
+        [DataMember]
         public const string SwitchToWindow = "SwitchToWindow";
 
         [DataMember]
         public const string TryClick = "TryClick";
+
+        [DataMember]
+        public const string UploadFile = "UploadFile";
+
+        [DataMember]
+        public const string WaitForUrl = "WaitForUrl";
     }
 }

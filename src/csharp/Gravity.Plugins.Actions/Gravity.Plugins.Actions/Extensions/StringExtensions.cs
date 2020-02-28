@@ -40,5 +40,32 @@ namespace Gravity.Plugins.Actions.Extensions
             }
             return false;
         }
+
+        /// <summary>
+        /// Attempts to create a <see cref="TimeSpan"/> object from the given string. If the string is
+        /// an integer, it will be considered as milliseconds.
+        /// </summary>
+        /// <param name="str">The <see cref="string"/> from which to parse a new <see cref="TimeSpan"/>.</param>
+        /// <returns>New <see cref="TimeSpan"/> instance.</returns>
+        public static TimeSpan AsTimeSpan(this string str)
+        {
+            var isNumber = double.TryParse(str, out double numberOut);
+            var isTimeSp = TimeSpan.TryParse(str, out TimeSpan timespanOut);
+
+            // number handling
+            if (isNumber)
+            {
+                return TimeSpan.FromMilliseconds(numberOut);
+            }
+
+            // timespan handling
+            if (isTimeSp)
+            {
+                return timespanOut;
+            }
+
+            // default timespan
+            return default;
+        }
     }
 }

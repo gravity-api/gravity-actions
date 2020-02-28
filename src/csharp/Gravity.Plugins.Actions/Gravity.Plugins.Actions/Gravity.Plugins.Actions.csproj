@@ -15,13 +15,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Documentation\switch-to-frame.json" />
     <None Remove="Documentation\switch-to-window.json" />
-    <None Remove="Documentation\try-send-keys.json" />
-    <None Remove="Documentation\upload-file.json" />
-    <None Remove="Documentation\wait-for-element.json" />
-    <None Remove="Documentation\wait-for-page.json" />
-    <None Remove="Documentation\wait-for-url.json" />
   </ItemGroup>
 
   <ItemGroup>
@@ -48,22 +42,14 @@
     <EmbeddedResource Include="Documentation\submit-form.json" />
     <EmbeddedResource Include="Documentation\switch-to-alert.json" />
     <EmbeddedResource Include="Documentation\switch-to-default-content.json" />
-    <EmbeddedResource Include="Documentation\switch-to-frame.json" />
     <EmbeddedResource Include="Documentation\switch-to-window.json" />
     <EmbeddedResource Include="Documentation\try-click.json" />
-    <EmbeddedResource Include="Documentation\try-send-keys.json" />
-    <EmbeddedResource Include="Documentation\upload-file.json" />
-    <EmbeddedResource Include="Documentation\wait-for-element.json" />
-    <EmbeddedResource Include="Documentation\wait-for-page.json" />
-    <EmbeddedResource Include="Documentation\wait-for-url.json" />
     <EmbeddedResource Include="Documentation\wait.json" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Gravity.Core" Version="2020.2.12.1" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Gravity.Plugins\Gravity.Plugins.csproj" />
+    <PackageReference Include="Gravity.Core" Version="2020.2.2.2" />
+    <PackageReference Include="Gravity.Services.Comet" Version="2020.2.2.1" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="3.1.1" />
   </ItemGroup>
 </Project>

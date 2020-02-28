@@ -1,5 +1,8 @@
 {
+  "name": "Wait",
+  "summary": "Suspends the current thread for the specified amount of time.",
   "description": "Suspends the current thread for the specified amount of time.",
+  "testOn": "https://gravitymvctestapplication.azurewebsites.net/instructor",
   "examples": [
     {
       "description": "Suspends the current thread for 3000ms (3s).",
@@ -18,16 +21,12 @@
       }
     }
   ],
-  "name": "Wait",
-  "pluginType": "Action",
   "properties": {
     "argument": "The amount of time for which the thread is suspended."
   },
+  "scope": [ "web", "mobile-web", "mobile-native" ],
   "protocol": {
     "endpoint": "none",
     "w3c": "none"
-  },
-  "scope": [ "web", "mobile-web", "mobile-native" ],
-  "summary": "Suspends the current thread for the specified amount of time.",
-  "testOn": "https://gravitymvctestapplication.azurewebsites.net/instructor"
+  }
 }

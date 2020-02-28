@@ -1,8 +1,8 @@
 {
-  "cliArguments": {
-    "all": "Tells the engine to select all options (if this is a multi selection box)."
-  },
+  "name": "SelectFromComboBox",
+  "summary": "Provides a convenience method for manipulating selections of options in an HTML <select> element.",
   "description": "Provides a convenience method for manipulating selections of options in an HTML select element. This action supports different selection options as well as multiple selection based on a pattern.",
+  "testOn": "https://gravitymvctestapplication.azurewebsites.net/course",
   "examples": [
     {
       "description": "Select an option by the value.",
@@ -53,8 +53,6 @@
       }
     }
   ],
-  "name": "SelectFromComboBox",
-  "pluginType": "Action",
   "properties": {
     "elementToActOn": "The locator value by which the element will be found.",
     "locator": "The locator type by which the element will be found.",
@@ -62,11 +60,12 @@
     "regularExpression": "A pattern by which the extracted information will be evaluated. Returns the first match.",
     "argument": "The value to be used by the requested selecting attribute."
   },
+  "scope": [ "web", "mobile-web" ],
+  "cliArguments": {
+    "all": "Tells the engine to select all options (if this is a multi selection box)."
+  },
   "protocol": {
     "endpoint": "none",
     "w3c": "none"
-  },
-  "scope": [ "web", "mobile-web" ],
-  "summary": "Provides a convenience method for manipulating selections of options in an HTML <select> element.",
-  "testOn": "https://gravitymvctestapplication.azurewebsites.net/course"
+  }
 }

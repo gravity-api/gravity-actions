@@ -7,8 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gravity.Plugins.Actions", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gravity.Plugins.Actions.UnitTests", "Gravity.Plugins.Actions.Tests\Gravity.Plugins.Actions.UnitTests.csproj", "{F2EE3CDA-B6B1-4EEF-B71C-B79D220B42F2}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gravity.Plugins", "Gravity.Plugins\Gravity.Plugins.csproj", "{638E4D5C-6DA6-4C42-B90C-87F866A1B11B}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,10 +21,6 @@ Global
 		{F2EE3CDA-B6B1-4EEF-B71C-B79D220B42F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F2EE3CDA-B6B1-4EEF-B71C-B79D220B42F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F2EE3CDA-B6B1-4EEF-B71C-B79D220B42F2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{638E4D5C-6DA6-4C42-B90C-87F866A1B11B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{638E4D5C-6DA6-4C42-B90C-87F866A1B11B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{638E4D5C-6DA6-4C42-B90C-87F866A1B11B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{638E4D5C-6DA6-4C42-B90C-87F866A1B11B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

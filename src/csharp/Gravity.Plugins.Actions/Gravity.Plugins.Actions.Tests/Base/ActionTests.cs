@@ -4,6 +4,9 @@
  * on-line resources
  * https://dev.to/franndotexe/mstest-v2---new-old-kid-on-the-block
  */
+using Gravity.Services.Comet.Engine.Attributes;
+using Gravity.Services.Comet.Engine.Extensions;
+using Gravity.Services.Comet.Engine.Plugins;
 using Gravity.Services.DataContracts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
@@ -16,21 +19,20 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Diagnostics;
-using Gravity.Plugins.Base;
-using Gravity.Plugins.Attributes;
 
 namespace Gravity.Plugins.Actions.UnitTests.Base
 {
     [DeploymentItem("Resources/license.lcn")]
     public abstract class ActionTests
     {
-        #region *** constants      ***
-        private const string ActionMethodName = "OnPerform";
+        /// <summary>
+        /// Set all static members of this action tests.
+        /// </summary>
+        static ActionTests()
+        {
+            Types = Utilities.GetTypes().Where(i => !i.FullName.Contains("Gravity.Services.Comet.Engine.Browser"));
+        }
 
-        private const StringComparison Compare = StringComparison.OrdinalIgnoreCase;
-        #endregion
-
-        #region *** constructors   ***
         /// <summary>
         /// Creates a new instance of this action tests.
         /// </summary>
@@ -59,9 +61,12 @@ namespace Gravity.Plugins.Actions.UnitTests.Base
             // setup: timer
             Stopwatch = new Stopwatch();
         }
-        #endregion
 
-        #region *** properties     ***
+        /// <summary>
+        /// Gets the types repository loaded for all tests in this domain.
+        /// </summary>
+        public static IEnumerable<Type> Types { get; }
+
         /// <summary>
         /// Gets a basic web automation instance for all tests in this domain
         /// </summary>
@@ -73,198 +78,141 @@ namespace Gravity.Plugins.Actions.UnitTests.Base
         public MockWebDriver WebDriver { get; set; }
 
         /// <summary>
-        /// Gets the <see cref="System.Diagnostics.Stopwatch"/> object used by this instance
+        /// Gets the <see cref="Stopwatch"/> object used by this instance
         /// </summary>
         public Stopwatch Stopwatch { get; }
-        #endregion
 
-        #region *** execute plugin ***
         /// <summary>
-        /// Executes an action <see cref="Plugin"/> of the provided type.
+        /// Executes an action plug-in of the provided type.
         /// </summary>
-        /// <typeparam name="T">The <see cref="Type"/> of action which will be executed.</typeparam>
-        public Plugin ExecuteAction<T>() where T : Plugin
+        /// <typeparam name="T">The type of action which will be executed.</typeparam>
+        public ActionPlugin ExecuteAction<T>() where T : ActionPlugin
         {
-            return DoExecuteAction<T>(
+            return ExecuteAction<T>(
                 by: default, actionRule: string.Empty, capabilities: null);
         }
 
         /// <summary>
-        /// Executes an action <see cref="Plugin"/> of the provided type.
+        /// Executes an action plug-in of the provided type.
         /// </summary>
-        /// <typeparam name="T">The <see cref="Type"/> of action which will be executed.</typeparam>
-        /// <param name="actionRule">ActionRule JSON from which to create an <see cref="ActionRule"/> instance.</param>
-        public Plugin ExecuteAction<T>(string actionRule)
-            where T : Plugin
+        /// <typeparam name="T">The type of action which will be executed.</typeparam>
+        /// <param name="actionRule">ActionRule JSON from which to create an ActionRule instance.</param>
+        public ActionPlugin ExecuteAction<T>(string actionRule)
+            where T : ActionPlugin
         {
-            return DoExecuteAction<T>(by: default, actionRule: actionRule, capabilities: null);
+            return ExecuteAction<T>(by: default, actionRule: actionRule, capabilities: null);
         }
 
         /// <summary>
-        /// Executes an action <see cref="Plugin"/> of the provided type.
+        /// Executes an action plug-in of the provided type.
         /// </summary>
-        /// <typeparam name="T">The <see cref="Type"/> of action which will be executed.</typeparam>
-        /// <param name="capabilities"><see cref="MockCapabilities"/> capabilities by which to create the <see cref="MockWebDriver"/> of this action.</param>
-        public Plugin ExecuteAction<T>(IDictionary<string, object> capabilities)
-            where T : Plugin
+        /// <typeparam name="T">The type of action which will be executed.</typeparam>
+        /// <param name="capabilities">MockWebDriver capabilities by which to create the MockWebDriver of this action.</param>
+        public ActionPlugin ExecuteAction<T>(IDictionary<string, object> capabilities)
+            where T : ActionPlugin
         {
-            return DoExecuteAction<T>(by: default, actionRule: string.Empty, capabilities: capabilities);
+            return ExecuteAction<T>(by: default, actionRule: string.Empty, capabilities: capabilities);
         }
 
         /// <summary>
-        /// Executes an action <see cref="Plugin"/> of the provided type.
+        /// Executes an action plug-in of the provided type.
         /// </summary>
-        /// <typeparam name="T">The <see cref="Type"/> of action which will be executed.</typeparam>
-        /// <param name="by">Provides a mechanism by which to find elements within a document.</param>
-        public Plugin ExecuteAction<T>(By by) where T : Plugin
+        /// <typeparam name="T">The type of action which will be executed.</typeparam>
+        /// <param name="by">WebElement instance on which to perform the action.</param>
+        public ActionPlugin ExecuteAction<T>(By by) where T : ActionPlugin
         {
-            return DoExecuteAction<T>(by: by, actionRule: string.Empty, capabilities: null);
+            return ExecuteAction<T>(by: by, actionRule: string.Empty, capabilities: null);
         }
 
         /// <summary>
-        /// Executes an action <see cref="Plugin"/> of the provided type.
+        /// Executes an action plug-in of the provided type.
         /// </summary>
-        /// <typeparam name="T">The <see cref="Type"/> of action which will be executed.</typeparam>
-        /// <param name="by">Provides a mechanism by which to find elements within a document.</param>
-        /// <param name="actionRule">ActionRule JSON from which to create an <see cref="ActionRule"/> instance.</param>
-        public Plugin ExecuteAction<T>(By by, string actionRule)
-            where T : Plugin
+        /// <typeparam name="T">The type of action which will be executed.</typeparam>
+        /// <param name="by">WebElement instance on which to perform the action.</param>
+        /// <param name="actionRule">ActionRule JSON from which to create an ActionRule instance.</param>
+        public ActionPlugin ExecuteAction<T>(By by, string actionRule)
+            where T : ActionPlugin
         {
-            return DoExecuteAction<T>(by: by, actionRule: actionRule, capabilities: null);
+            return ExecuteAction<T>(by: by, actionRule: actionRule, capabilities: null);
         }
 
         /// <summary>
-        /// Executes an action <see cref="Plugin"/> of the provided type.
+        /// Executes an action plug-in of the provided type.
         /// </summary>
-        /// <typeparam name="T">The <see cref="Type"/> of action which will be executed.</typeparam>
-        /// <param name="by">Provides a mechanism by which to find elements within a document.</param>
-        /// <param name="capabilities"><see cref="MockCapabilities"/> capabilities by which to create the <see cref="MockWebDriver"/> of this action.</param>
-        public Plugin ExecuteAction<T>(By by, IDictionary<string, object> capabilities)
-            where T : Plugin
+        /// <typeparam name="T">The type of action which will be executed.</typeparam>
+        /// <param name="by">WebElement instance on which to perform the action.</param>
+        /// <param name="capabilities">MockWebDriver capabilities by which to create the MockWebDriver of this action.</param>
+        public ActionPlugin ExecuteAction<T>(By by, IDictionary<string, object> capabilities)
+            where T : ActionPlugin
         {
-            return DoExecuteAction<T>(by: by, actionRule: string.Empty, capabilities: capabilities);
+            return ExecuteAction<T>(by: by, actionRule: string.Empty, capabilities: capabilities);
         }
 
         /// <summary>
-        /// Executes an action <see cref="Plugin"/> of the provided type.
+        /// Executes an action plug-in of the provided type.
         /// </summary>
-        /// <typeparam name="T">The <see cref="Type"/> of action which will be executed.</typeparam>
-        /// <param name="actionRule">ActionRule JSON from which to create an <see cref="ActionRule"/> instance.</param>
-        /// <param name="capabilities"><see cref="MockCapabilities"/> capabilities by which to create the <see cref="MockWebDriver"/> of this action.</param>
-        public Plugin ExecuteAction<T>(string actionRule, IDictionary<string, object> capabilities)
-            where T : Plugin
+        /// <typeparam name="T">The type of action which will be executed.</typeparam>
+        /// <param name="actionRule">ActionRule JSON from which to create an ActionRule instance.</param>
+        /// <param name="capabilities">MockWebDriver capabilities by which to create the MockWebDriver of this action.</param>
+        public ActionPlugin ExecuteAction<T>(string actionRule, IDictionary<string, object> capabilities)
+            where T : ActionPlugin
         {
-            return DoExecuteAction<T>(by: default, actionRule: actionRule, capabilities: capabilities);
+            return ExecuteAction<T>(by: default, actionRule: actionRule, capabilities: capabilities);
         }
 
         /// <summary>
-        /// Executes an action <see cref="Plugin"/> of the provided type.
+        /// Executes an action plug-in of the provided type.
         /// </summary>
-        /// <typeparam name="T">The <see cref="Type"/> of action which will be executed.</typeparam>
-        /// <param name="by">Provides a mechanism by which to find elements within a document.</param>
-        /// <param name="actionRule">ActionRule JSON from which to create an <see cref="ActionRule"/> instance.</param>
-        /// <param name="capabilities"><see cref="MockCapabilities"/> capabilities by which to create the <see cref="MockWebDriver"/> of this action.</param>
-        public Plugin ExecuteAction<T>(By by, string actionRule, IDictionary<string, object> capabilities)
-            where T : Plugin
-        {
-            return DoExecuteAction<T>(by, actionRule, capabilities);
-        }
-
-        // executes an action plug-in of the provided type.
-        private Plugin DoExecuteAction<T>(By by, string actionRule, IDictionary<string, object> capabilities)
-            where T : Plugin
+        /// <typeparam name="T">The type of action which will be executed.</typeparam>
+        /// <param name="by">WebElement instance on which to perform the action.</param>
+        /// <param name="actionRule">ActionRule JSON from which to create an ActionRule instance.</param>
+        /// <param name="capabilities">MockWebDriver capabilities by which to create the MockWebDriver of this action.</param>
+        public ActionPlugin ExecuteAction<T>(By by, string actionRule, IDictionary<string, object> capabilities)
+            where T : ActionPlugin
         {
             // setup
-            var onActionRule = GetActionRule(actionRule);
-            var plugin = ActionFactory<T>(WebAutomation, capabilities);
-
-            // setup conditions
-            var isGeneric = plugin is GenericPlugin;
-            var isWebDriver = plugin is WebDriverActionPlugin;
+            var _actionRule = GetActionRule(actionRule);
+            var action = ActionFactory<T>(WebAutomation, capabilities, Types);
 
             // timer: setup
             Stopwatch.Restart();
             Stopwatch.Start();
 
             // execute
-            try
+            if (by == default)
             {
-                if (isWebDriver)
-                {
-                    ExecuteWebDriverPlugin(plugin, actionRule: onActionRule, by);
-                }
+                action.OnPerform(_actionRule);
+                return action;
+            }
+            var element = WebDriver.FindElement(by);
+            action.OnPerform(element, _actionRule);
 
-                if (isGeneric)
-                {
-                    ExecuteGenericPlugin(plugin, actionRule: onActionRule);
-                }
-            }
-            finally
-            {
-                // timer: stop
-                Stopwatch.Stop();
-            }
+            // timer: stop
+            Stopwatch.Stop();
 
             // return the executed plug-in instance.
-            return plugin;
+            return action;
         }
 
-        // executes web-driver action plugin
-        private void ExecuteWebDriverPlugin(Plugin plugin, ActionRule actionRule, By by)
-        {
-            // get arguments
-            var arguments = by == default
-                ? new object[] { actionRule }
-                : new object[] { actionRule, WebDriver.FindElement(by) };
-
-            // execute
-            ExecutePlugin(plugin, arguments);
-        }
-
-        // executes generic action plugin
-        private static void ExecuteGenericPlugin(Plugin plugin, ActionRule actionRule)
-        {
-            // get arguments
-            var arguments = actionRule == default
-                ? null
-                : new object[] { actionRule };
-
-            // execute
-            ExecutePlugin(plugin, arguments);
-        }
-
-        private static void ExecutePlugin(Plugin plugin, object[] arguments)
-        {
-            try
-            {
-                // get method
-                var method = Array.Find(plugin
-                    .GetType()
-                    .GetMethods(), i => i.Name.Equals(ActionMethodName, Compare) && i.GetParameters().Length == arguments.Length);
-
-                // execute
-                method.Invoke(plugin, arguments);
-            }
-            catch (Exception e)
-            {
-                if (e.InnerException != null)
-                {
-                    throw e.InnerException;
-                }
-                throw;
-            }
-        }
-        #endregion
-
-        #region *** documentation  ***
         /// <summary>
         /// Validate if an action plug in documentation was correctly generated (!= default) and have loaded relevant properties.
         /// </summary>
         /// <typeparam name="T">ActionPlugin type to generate.</typeparam>
         /// <param name="pluginName">The plug-in name to validate against the documentation.</param>
-        public void ValidateActionDocumentation<T>(string pluginName) where T : Plugin
+        public void ValidateActionDocumentation<T>(string pluginName) where T : ActionPlugin
         {
-            DoValidateActionDocumentation<T>(pluginName, resource: default);
+            ValidateActionDocumentation<T>(pluginName, default);
+        }
+
+        /// <summary>
+        /// Validate if an action plug in documentation was correctly generated (!= default) and have loaded relevant properties.
+        /// </summary>
+        /// <typeparam name="T">ActionPlugin type to generate.</typeparam>
+        /// <param name="pluginName">The plug-in name to validate against the documentation.</param>
+        /// <param name="types">Types from which to load plug-ins repositories.</param>
+        public void ValidateActionDocumentation<T>(string pluginName, IEnumerable<Type> types) where T : ActionPlugin
+        {
+            ValidateActionDocumentation<T>(pluginName, types, string.Empty);
         }
 
         /// <summary>
@@ -274,26 +222,20 @@ namespace Gravity.Plugins.Actions.UnitTests.Base
         /// <param name="pluginName">The plug-in name to validate against the documentation.</param>
         /// <param name="types">Types from which to load plug-ins repositories.</param>
         /// <param name="resource">Resource file name by which to validate ActionAttribute.</param>
-        public void ValidateActionDocumentation<T>(string pluginName, string resource)
-            where T : Plugin
-        {
-            DoValidateActionDocumentation<T>(pluginName, resource);
-        }
-
-        private void DoValidateActionDocumentation<T>(string pluginName, string resource)
-            where T : Plugin
+        public void ValidateActionDocumentation<T>(string pluginName, IEnumerable<Type> types, string resource)
+            where T : ActionPlugin
         {
             // get action
-            var action = ActionFactory<T>(webAutomation: WebAutomation, capabilities: default);
+            var action = ActionFactory<T>(webAutomation: WebAutomation, capabilities: default, types: types);
 
             // get action attribute
-            var attribute = action.GetType().GetCustomAttribute<PluginAttribute>();
+            var attribute = action.GetType().GetCustomAttribute<ActionAttribute>();
 
             // verify resource
             if (!string.IsNullOrEmpty(resource))
             {
                 var assembly = typeof(T).Assembly;
-                var actionAttribute = ReadEmbeddedResource<PluginAttribute>(assembly, resource);
+                var actionAttribute = ReadEmbeddedResource<ActionAttribute>(assembly, resource);
                 var isName = attribute.Name.Equals(actionAttribute.Name);
                 Assert.IsTrue(isName, "Plug-in name does not match to action name in resource file.");
             }
@@ -304,35 +246,33 @@ namespace Gravity.Plugins.Actions.UnitTests.Base
             Assert.IsTrue(attribute.Name.Equals(pluginName), "Plug-in name does not match to action name.");
             Assert.IsTrue(attribute.Examples.Length > 0, "Plug-in must have at least one example.");
         }
-        #endregion
 
-        #region *** documentation  ***
         /// <summary>
         /// Validate if an action plug in was correctly generated (!= default) and have loaded relevant properties.
         /// </summary>
         /// <typeparam name="T">ActionPlugin type to generate.</typeparam>
-        public void ValidateAction<T>() where T : Plugin
+        public void ValidateAction<T>() where T : ActionPlugin
+        {
+            ValidateAction<T>(types: default);
+        }
+
+        /// <summary>
+        /// Validate if an action plug in was correctly generated (!= default) and have loaded relevant properties.
+        /// </summary>
+        /// <typeparam name="T">ActionPlugin type to generate.</typeparam>
+        /// <param name="types">Types from which to load plug-ins repositories.</param>
+        public void ValidateAction<T>(IEnumerable<Type> types) where T : ActionPlugin
         {
             // get action
-            var action = ActionFactory<T>(webAutomation: WebAutomation, capabilities: default);
-
-            // get properties
-            var byFactory = action.GetType().GetProperty("ByFactory");
-            var webDriver = action.GetType().GetProperty("WebDriver");
+            var action = ActionFactory<T>(webAutomation: WebAutomation, capabilities: default, types: types);
 
             // validation
             Assert.IsTrue(action != default(T), "Action plug-in was not generated correctly.");
-            Assert.IsTrue(Plugin.Types.Any(), "Action plug-in types were not loaded.");
-
-            if (action is WebDriverActionPlugin)
-            {
-                Assert.IsTrue(byFactory?.GetValue(action) != null, "Action plug-in ByFactory was not generated correctly.");
-                Assert.IsTrue(webDriver?.GetValue(action) != null, "Action plug-in WebDriver was not generated correctly.");
-            }
+            Assert.IsTrue(action.Types.Any(), "Action plug-in types were not loaded.");
+            Assert.IsTrue(action.ByFactory != null, "Action plug-in ByFactory was not generated correctly.");
+            Assert.IsTrue(action.WebDriver != default, "Action plug-in WebDriver was not generated correctly.");
         }
-        #endregion
 
-        #region *** action rule    ***
         /// <summary>
         /// Gets an action rule object out of action rule JSON (deserialize).
         /// </summary>
@@ -346,17 +286,15 @@ namespace Gravity.Plugins.Actions.UnitTests.Base
             }
             return JsonConvert.DeserializeObject<ActionRule>(actionRule);
         }
-        #endregion
 
-        #region *** action factory ***
         /// <summary>
         /// Generates an action based on the provided type
         /// </summary>
         /// <typeparam name="T">Action type from which to generate the action.</typeparam>
         /// <returns>Action plug-in instance of the specified type.</returns>
-        public T ActionFactory<T>() where T : Plugin
+        public T ActionFactory<T>() where T : ActionPlugin
         {
-            return ActionFactory<T>(WebAutomation, capabilities: default);
+            return ActionFactory<T>(WebAutomation, default, default);
         }
 
         /// <summary>
@@ -366,9 +304,9 @@ namespace Gravity.Plugins.Actions.UnitTests.Base
         /// <param name="webAutomation">Web Automation object by which to generate the action.</param>
         /// <returns>Action plug-in instance of the specified type.</returns>
         public T ActionFactory<T>(WebAutomation webAutomation)
-            where T : Plugin
+            where T : ActionPlugin
         {
-            return ActionFactory<T>(webAutomation, capabilities: default);
+            return ActionFactory<T>(webAutomation, default, default);
         }
 
         /// <summary>
@@ -379,7 +317,21 @@ namespace Gravity.Plugins.Actions.UnitTests.Base
         /// <param name="capabilities">Capabilities to add to the action Web Driver instance</param>
         /// <returns>Action plug-in instance of the specified type.</returns>
         public T ActionFactory<T>(WebAutomation webAutomation, IDictionary<string, object> capabilities)
-            where T : Plugin
+            where T : ActionPlugin
+        {
+            return ActionFactory<T>(webAutomation, capabilities, default);
+        }
+
+        /// <summary>
+        /// Generates an action based on the provided type
+        /// </summary>
+        /// <typeparam name="T">Action type from which to generate the action.</typeparam>
+        /// <param name="webAutomation">Web Automation object by which to generate the action.</param>
+        /// <param name="capabilities">Capabilities to add to the action Web Driver instance</param>
+        /// <param name="types">Types from which to load plug-ins repositories.</param>
+        /// <returns>Action plug-in instance of the specified type.</returns>
+        public T ActionFactory<T>(WebAutomation webAutomation, IDictionary<string, object> capabilities, IEnumerable<Type> types)
+            where T : ActionPlugin
         {
             // setup
             if (capabilities != default)
@@ -388,16 +340,14 @@ namespace Gravity.Plugins.Actions.UnitTests.Base
             }
 
             // generate constructor arguments
-            var arguments = WebDriver == default
-                ? new object[] { webAutomation }
-                : new object[] { webAutomation, WebDriver };
+            var arguments = (types == default || !types.Any())
+                ? new object[] { WebDriver, webAutomation }
+                : new object[] { WebDriver, webAutomation, types };
 
             // generate
             return (T)Activator.CreateInstance(typeof(T), arguments);
         }
-        #endregion
 
-        #region *** resources      ***
         /// <summary>
         /// Reads an embedded resource and attempts to deserialize it into the given type.
         /// Assuming this is a JSON file.
@@ -434,33 +384,5 @@ namespace Gravity.Plugins.Actions.UnitTests.Base
             using StreamReader reader = new StreamReader(stream);
             return reader.ReadToEnd();
         }
-        #endregion
-
-        #region *** testing        ***
-        /// <summary>
-        /// Executes a tests by a given number of attempts.
-        /// </summary>
-        /// <param name="attempts">Number of attempts if the test fails.</param>
-        /// <param name="test">Delegate to execute the test.</param>
-        public static void Execute(int attempts, Action test)
-        {
-            for (int i = 0; i < attempts; i++)
-            {
-                try
-                {
-                    test.Invoke();
-                    return;
-                }
-                catch (Exception e) when (e != null)
-                {
-                    Console.WriteLine($"Failed on attempt [{i + 1}] out of [{attempts}].");
-                    if (i == attempts - 1)
-                    {
-                        throw;
-                    }
-                }
-            }
-        }
-        #endregion
     }
 }

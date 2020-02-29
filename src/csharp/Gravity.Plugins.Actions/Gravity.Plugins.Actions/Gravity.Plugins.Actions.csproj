@@ -15,6 +15,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Documentation\scroll.json" />
     <None Remove="Documentation\switch-to-frame.json" />
     <None Remove="Documentation\switch-to-window.json" />
     <None Remove="Documentation\try-send-keys.json" />
@@ -37,6 +38,7 @@
     <EmbeddedResource Include="Documentation\hide-keyboard.json" />
     <EmbeddedResource Include="Documentation\keyboard.json" />
     <EmbeddedResource Include="Documentation\long-swipe.json" />
+    <EmbeddedResource Include="Documentation\scroll.json" />
     <EmbeddedResource Include="Documentation\select-from-combo-box.json" />
     <EmbeddedResource Include="Documentation\set-geo-location.json" />
     <EmbeddedResource Include="Documentation\navigate-back.json" />

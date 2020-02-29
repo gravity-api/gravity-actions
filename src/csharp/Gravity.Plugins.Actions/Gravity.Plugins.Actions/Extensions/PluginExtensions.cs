@@ -21,6 +21,12 @@ namespace Gravity.Plugins.Actions.Extensions
         /// <returns>The first matching <see cref="IWebElement"/> on the current context.</returns>
         public static IWebElement ConditionalGetElement(this WebDriverActionPlugin plugin, IWebElement element, ActionRule actionRule)
         {
+            // exit conditions
+            if(element == default && string.IsNullOrEmpty(actionRule.ElementToActOn))
+            {
+                return default;
+            }
+
             // setup
             var searchTimeout = plugin.WebAutomation.EngineConfiguration.ElementSearchingTimeout;
             var timeout = TimeSpan.FromMilliseconds(searchTimeout);

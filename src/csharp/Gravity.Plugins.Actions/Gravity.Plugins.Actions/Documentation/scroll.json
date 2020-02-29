@@ -1,0 +1,72 @@
+{
+  "cliArguments": {
+    "left": {
+      "description": "The pixel along the horizontal axis of the document/element that you want displayed in the upper left."
+    },
+    "top": {
+      "description": "The pixel along the vertical axis of the document/element that you want displayed in the upper left."
+    },
+    "behavior": {
+      "description": "Specifies whether the scrolling should animate smoothly, or happen instantly in a single jump.",
+      "values": [ "smooth", "auto" ]
+    }
+  },
+  "description": "Scrolls the window or element to a particular set of coordinates inside a given window or element.",
+  "examples": [
+    {
+      "description": "Scrolls [//div] element overflow by 1000 pixels from top.",
+      "literalExample": "scroll on {//div} {1000} pixels from top",
+      "actionExample": {
+        "actionType": "Scroll",
+        "argument": "1000",
+        "elementToActOn": "//div"
+      }
+    },
+    {
+      "description": "Scrolls the page overflow by 1000 pixels from top.",
+      "literalExample": "scroll page {1000} pixels from top",
+      "actionExample": {
+        "actionType": "Scroll",
+        "argument": "1000"
+      }
+    },
+    {
+      "description": "Scrolls the page overflow by 100 pixels from top and 100 pixels from left.",
+      "literalExample": "scroll page overflow 'by {{$ --left:100 --top:100}}",
+      "actionExample": {
+        "actionType": "Scroll",
+        "argument": "{{$ --left:100 --top:100}}"
+      }
+    },
+    {
+      "description": "Smoothly Scrolls the page overflow by 100 pixels from top and 100 pixels from left.",
+      "literalExample": "scroll page overflow 'by {{$ --left:100 --top:100 --behavior:smooth}}",
+      "actionExample": {
+        "actionType": "Scroll",
+        "argument": "{{$ --left:100 --top:100 --behavior:smooth}}"
+      }
+    },
+    {
+      "description": "Smoothly Scrolls [//div] element overflow by 100 pixels from top and 100 pixels from left.",
+      "literalExample": "scroll on {//div} overflow 'by {{$ --left:100 --top:100 --behavior:smooth}}",
+      "actionExample": {
+        "actionType": "Scroll",
+        "argument": "{{$ --left:100 --top:100 --behavior:smooth}}"
+      }
+    }
+  ],
+  "name": "Scroll",
+  "pluginType": "Action",
+  "properties": {
+    "elementToActOn": "The locator value by which the element will be found.",
+    "locator": "The locator type by which the element will be found.",
+    "argument": "The coordinate to scroll to, along the y-axis (vertical), in pixels and the coordinate to scroll to, along the x-axis (horizontal), in pixels."
+  },
+  "protocol": {
+    "endpoint": "/session/{session-id}/execute/sync",
+    "w3c": "https://www.w3.org/TR/webdriver/#execute-script"
+  },
+  "scope": [ "web", "mobile-web" ],
+  "summary": "Scrolls the window or element to a particular set of coordinates inside a given window or element.",
+  "testOn": "https://gravitymvctestapplication.azurewebsites.net/instructor"
+}

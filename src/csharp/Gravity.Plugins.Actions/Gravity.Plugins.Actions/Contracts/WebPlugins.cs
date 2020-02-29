@@ -38,6 +38,9 @@ namespace Gravity.Plugins.Actions.Contracts
         public const string Refresh = "Refresh";
 
         [DataMember]
+        public const string Scroll = "Scroll";
+
+        [DataMember]
         public const string SelectFromComboBox = "SelectFromComboBox";
 
         [DataMember]

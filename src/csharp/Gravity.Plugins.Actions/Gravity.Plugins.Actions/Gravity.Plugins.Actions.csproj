@@ -15,6 +15,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Documentation\move-to-element.json" />
     <None Remove="Documentation\scroll.json" />
     <None Remove="Documentation\swipe.json" />
     <None Remove="Documentation\switch-to-frame.json" />
@@ -38,6 +39,7 @@
     <EmbeddedResource Include="Documentation\get-screenshot.json" />
     <EmbeddedResource Include="Documentation\hide-keyboard.json" />
     <EmbeddedResource Include="Documentation\keyboard.json" />
+    <EmbeddedResource Include="Documentation\move-to-element.json" />
     <EmbeddedResource Include="Documentation\swipe.json" />
     <EmbeddedResource Include="Documentation\long-swipe.json" />
     <EmbeddedResource Include="Documentation\scroll.json" />

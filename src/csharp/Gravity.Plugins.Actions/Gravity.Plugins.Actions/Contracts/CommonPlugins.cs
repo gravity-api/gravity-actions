@@ -29,6 +29,9 @@ namespace Gravity.Plugins.Actions.Contracts
         public const string GetScreenshot = "GetScreenshot";
 
         [DataMember]
+        public const string MoveToElement = "MoveToElement";
+
+        [DataMember]
         public const string RegisterParameter = "RegisterParameter";
 
         [DataMember]

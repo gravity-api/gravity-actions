@@ -1,0 +1,26 @@
+{
+  "description": "Moves the mouse to the specified element. This action will trigger [mouseover] event.",
+  "examples": [
+    {
+      "description": "Moves the mouse to the specified element.",
+      "literalExample": "move to element on {//tr[1]/td[6]/a[1]}",
+      "actionExample": {
+        "actionType": "MoveToElement",
+        "elementToActOn": "//tr[1]/td[6]/a[1]"
+      }
+    }
+  ],
+  "name": "MoveToElement",
+  "pluginType": "Action",
+  "properties": {
+    "elementToActOn": "The locator value by which the element will be found.",
+    "locator": "The locator type by which the element will be found."
+  },
+  "protocol": {
+    "endpoint": "none",
+    "w3c": "https://www.w3.org/TR/webdriver/#actions"
+  },
+  "scope": [ "web", "mobile-web", "mobile-native" ],
+  "summary": "Moves the mouse to the specified element.",
+  "testOn": "https://gravitymvctestapplication.azurewebsites.net/instructor"
+}

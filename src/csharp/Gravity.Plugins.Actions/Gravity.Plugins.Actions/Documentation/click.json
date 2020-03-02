@@ -1,6 +1,9 @@
 {
   "cliArguments": {
-    "until": "Repeats the click action until condition is met. Available conditions are: ['no-alert']."
+    "until": {
+      "description": "Repeats the click action until condition is met.",
+      "values": [ "no_alert" ]
+    }
   },
   "description": "Clicks the mouse at the last known mouse coordinates or on the specified element. If the click causes a new page to load, the OpenQA.Selenium.IWebElement.Click method will attempt to block until the page has loaded.",
   "examples": [
@@ -23,17 +26,17 @@
     {
       "actionExample": {
         "actionType": "Click",
-        "argument": "{{$ --until:noalert}}",
+        "argument": "{{$ --until:no_alert}}",
         "elementToActOn": "(//table//a)[1]"
       },
       "description": "Clicks the mouse on the specified element. If alert is present after that click, it will be dismissed and the click action repeats. The action repeats until no alert or until page load timeout reached.",
-      "literalExample": "click {{$ --until:noalert}} on {(//table//a)[1]}"
+      "literalExample": "click {{$ --until:no_alert}} on {(//table//a)[1]}"
     }
   ],
   "name": "Click",
   "pluginType": "Action",
   "properties": {
-    "argument": "Click action conditions and additional information.",
+    "argument": "Plugin conditions and additional information.",
     "elementToActOn": "The locator value by which the element will be found.",
     "locator": "The locator type by which the element will be found."
   },

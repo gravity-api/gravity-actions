@@ -6,25 +6,25 @@
  * work items
  * TODO: simplify LoadArguments methods with factoring conditions
  */
-using OpenQA.Selenium.Extensions;
 using Gravity.Plugins.Actions.Contracts;
+using Gravity.Plugins.Attributes;
 using Gravity.Plugins.Base;
 using Gravity.Services.DataContracts;
 using Microsoft.Extensions.Logging;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Interfaces;
 using OpenQA.Selenium.Appium.MultiTouch;
+using OpenQA.Selenium.Extensions;
 using System;
 using System.Collections.Generic;
-using Gravity.Plugins.Attributes;
 
 namespace Gravity.Plugins.Actions.UiMobile
 {
     [Plugin(
         assembly: "Gravity.Plugins.Actions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
-        resource: "Gravity.Plugins.Actions.Documentation.long-swipe.json",
-        Name = MobilePlugins.LongSwipe)]
-    public class LongSwipe : WebDriverActionPlugin
+        resource: "Gravity.Plugins.Actions.Documentation.swipe.json",
+        Name = MobilePlugins.Swipe)]
+    public class Swipe : WebDriverActionPlugin
     {
         #region *** arguments    ***
         /// <summary>
@@ -48,7 +48,7 @@ namespace Gravity.Plugins.Actions.UiMobile
         /// </summary>
         /// <param name="webAutomation">This <see cref="WebAutomation"/> object (the original object sent by the user).</param>
         /// <param name="driver"><see cref="IWebDriver"/> implementation by which to execute the action.</param>
-        public LongSwipe(WebAutomation webAutomation, IWebDriver driver)
+        public Swipe(WebAutomation webAutomation, IWebDriver driver)
             : base(webAutomation, driver)
         { }
         #endregion
@@ -173,13 +173,13 @@ namespace Gravity.Plugins.Actions.UiMobile
             // web element
             if (source is IWebElement element)
             {
-                actions.LongPress(element);
+                actions.Press(element);
                 return;
             }
 
             // coordinates
             var coordinates = source as double[];
-            actions.LongPress(coordinates[0], coordinates[1]);
+            actions.Press(coordinates[0], coordinates[1]);
         }
 
         // executes target actions

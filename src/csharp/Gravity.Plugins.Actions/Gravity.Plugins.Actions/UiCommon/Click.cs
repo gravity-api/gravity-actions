@@ -49,7 +49,7 @@ namespace Gravity.Plugins.Actions.UiCommon
         /// <summary>
         /// Constant for calling "no-alert" condition.
         /// </summary>
-        public const string NoAlert = "no-alert";
+        public const string NoAlert = "no_alert";
         #endregion
 
         #region *** constants: arguments  ***

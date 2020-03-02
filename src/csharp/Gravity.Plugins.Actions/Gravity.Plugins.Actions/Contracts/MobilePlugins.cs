@@ -21,5 +21,8 @@ namespace Gravity.Plugins.Actions.Contracts
 
         [DataMember]
         public const string SetGeoLocation = "SetGeoLocation";
+
+        [DataMember]
+        public const string Swipe = "Swipe";
     }
 }

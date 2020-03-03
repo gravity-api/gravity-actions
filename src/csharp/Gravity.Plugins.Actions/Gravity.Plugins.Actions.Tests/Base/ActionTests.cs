@@ -430,7 +430,7 @@ namespace Gravity.Plugins.Actions.UnitTests.Base
                 return string.Empty;
             }
 
-            using Stream stream = assembly.GetManifestResourceStream(fileReference);
+            var stream = assembly.GetManifestResourceStream(fileReference);
             using StreamReader reader = new StreamReader(stream);
             return reader.ReadToEnd();
         }

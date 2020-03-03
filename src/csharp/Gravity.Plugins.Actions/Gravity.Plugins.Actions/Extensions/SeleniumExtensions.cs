@@ -158,13 +158,6 @@ namespace Gravity.Plugins.Actions.Extensions
         /// <returns>An <see cref="IWebElement"/> interface through which the user controls elements on the page.</returns>
         public static IWebElement FindElementByActionRule(this IWebElement e, ByFactory byFactory, ActionRule actionRule)
         {
-            // on-element conditions
-            var isOnElement = e != default && !string.IsNullOrEmpty(actionRule.ElementToActOn);
-            //if (isOnElement)
-            //{
-            //    return e;
-            //}
-
             // get locator
             var by = byFactory.Get(actionRule.Locator, actionRule.ElementToActOn);
 

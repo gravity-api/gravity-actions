@@ -32,7 +32,7 @@ namespace Gravity.Plugins.Actions.UiCommon
         Name = CommonPlugins.Repeat)]
     public class Repeat : WebDriverActionPlugin
     {
-        #region *** constants: arguments  ***
+        #region *** arguments    ***
         /// <summary>
         /// Repeats the nested actions until a condition is met. Available conditions are: ['visible','hidden','exists','not_exists'].
         /// </summary>
@@ -43,7 +43,7 @@ namespace Gravity.Plugins.Actions.UiCommon
         private IDictionary<string, string> arguments;
         private readonly PluginFactory pluginFactory;
 
-        #region *** constructors          ***
+        #region *** constructors ***
         /// <summary>
         /// Creates a new instance of this plugin.
         /// </summary>
@@ -116,11 +116,11 @@ namespace Gravity.Plugins.Actions.UiCommon
         private void ExecuteByCondition(ActionRule actionRule, IWebElement element)
         {
             // setup
-            var factory = new ElementStateFactory(driver: WebDriver, types: Types);
+            var factory = new WebDriverStateFactory(driver: WebDriver, types: Types);
 
             // initialize
             var repeatReference = 0;
-            var conditionMet = factory.Factor(arguments[Until], new object[] { actionRule, element });
+            var conditionMet = factory.Factor(actionRule.Argument, new object[] { actionRule, element });
 
             // iterate            
             while (!conditionMet)
@@ -129,7 +129,7 @@ namespace Gravity.Plugins.Actions.UiCommon
                 Execute(element, actionRule.Actions, repeatReference++);
 
                 // update state
-                conditionMet = factory.Factor(arguments[Until], new object[] { actionRule, element });
+                conditionMet = factory.Factor(actionRule.Argument, new object[] { actionRule, element });
             }
         }
 

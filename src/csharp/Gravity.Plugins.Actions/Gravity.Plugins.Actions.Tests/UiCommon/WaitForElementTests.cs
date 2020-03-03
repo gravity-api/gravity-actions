@@ -467,9 +467,9 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
 
         [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
         [DataRow(@"{'elementToActOn':'.//none','argument':'{{$ --until:attribute}}','regularExpression':'^mock attribute value \\d+$'}")]
-        //[DataRow(@"{'elementToActOn':'.//stale','argument':'{{$ --until:attribute}}','regularExpression':'^mock attribute value \\d+$'}")]
-        //[DataRow(@"{'elementToActOn':'.//null','argument':'{{$ --until:attribute}}','regularExpression':'^mock attribute value \\d+$'}")]
-        //[DataRow(@"{'elementToActOn':'.//exception','argument':'{{$ --until:attribute}}','regularExpression':'^mock attribute value \\d+$'}")]
+        [DataRow(@"{'elementToActOn':'.//stale','argument':'{{$ --until:attribute}}','regularExpression':'^mock attribute value \\d+$'}")]
+        [DataRow(@"{'elementToActOn':'.//null','argument':'{{$ --until:attribute}}','regularExpression':'^mock attribute value \\d+$'}")]
+        [DataRow(@"{'elementToActOn':'.//exception','argument':'{{$ --until:attribute}}','regularExpression':'^mock attribute value \\d+$'}")]
         public void WaitForElementOnElementAttributeTimeouts(string actionRule)
         {
             // execute 

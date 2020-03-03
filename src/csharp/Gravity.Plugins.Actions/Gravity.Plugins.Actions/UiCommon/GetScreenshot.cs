@@ -93,11 +93,7 @@ namespace Gravity.Plugins.Actions.UiCommon
         // get image format factory
         private static ScreenshotImageFormat GetFormat(string file) => (Path.GetExtension(file).ToUpper()) switch
         {
-            ".BMP" => ScreenshotImageFormat.Png,
-            ".GIF" => ScreenshotImageFormat.Png,
-            ".JPEG" => ScreenshotImageFormat.Png,
-            ".TIFF" => ScreenshotImageFormat.Png,
-            _ => ScreenshotImageFormat.Png,
+            _ => ScreenshotImageFormat.Png
         };
 
         // get new file name

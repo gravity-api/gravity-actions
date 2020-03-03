@@ -19,7 +19,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
     [TestClass]
     public class RepeatTests : ActionTests
     {
-        private const int Attempts = 5;
+        private const int Attempts = 10;
 
         private const string RepeatRule = "" +
             "{" +

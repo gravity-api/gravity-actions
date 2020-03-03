@@ -13,6 +13,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Gravity.Plugins.Actions.UiCommon
 {
@@ -79,13 +80,13 @@ namespace Gravity.Plugins.Actions.UiCommon
         private void DoAction(ActionRule actionRule, IWebElement element)
         {
             // setup
-            var arguments = GetArguments(actionRule);
-            var factory = new ElementStateFactory(driver: WebDriver, types: Types);
+            var cli = GetCli(actionRule);
+            var factory = new WebDriverStateFactory(driver: WebDriver, types: Types);
             var wait = new WebDriverWait(WebDriver, timeout);
 
             // wait
             var isWait = wait.Until(_
-                => factory.Factor(arguments[Until], new object[] { actionRule, element }));
+                => factory.Factor(cli, new object[] { actionRule, element }));
 
             // results
             if (isWait)
@@ -95,7 +96,7 @@ namespace Gravity.Plugins.Actions.UiCommon
             throw new WebDriverTimeoutException();
         }
 
-        private IDictionary<string, string> GetArguments(ActionRule actionRule)
+        private string GetCli(ActionRule actionRule)
         {
             var arguments = CliFactory.Parse(actionRule.Argument);
 
@@ -110,7 +111,10 @@ namespace Gravity.Plugins.Actions.UiCommon
             {
                 timeout = arguments[Timeout].AsTimeSpan();
             }
-            return arguments;
+
+            // compose
+            var inner = string.Join(" ", arguments.Select(i => $"--{i.Key}:{i.Value}"));
+            return "{{$ " + inner + "}}";
         }
     }
 }

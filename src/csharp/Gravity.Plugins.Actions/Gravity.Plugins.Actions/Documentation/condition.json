@@ -1,0 +1,1333 @@
+{
+  "cliArguments": {
+    "attribute": {
+      "description": "Return [true] if the [ActionRule.ElementAttributeToActOn] value meets a condition. The text based conditions are case sensitive.",
+      "values": [
+        { "eq": "The attribute value and the provided value (expected) are equal." },
+        { "ne": "The attribute value and the provided value (expected) are not equal." },
+        { "match": "The attribute value matches to [ActionRule.RegularExpression] property." },
+        { "not_match": "The attribute value does not match to [ActionRule.RegularExpression] property." },
+        { "gt": "Applies for numbers only: The attribute value is greater than provided value (expected)." },
+        { "lt": "Applies for numbers only: The attribute value is lower than provided value (expected)." },
+        { "ge": "Applies for numbers only: The attribute value is greater or equal to the provided value (expected)." },
+        { "le": "Applies for numbers only: The attribute value is lower or equal to the provided value (expected)." }
+      ]
+    },
+    "count": {
+      "description": "Return [true] if the [ActionRule.ElementToActOn] count (total elements found by the locator) meets a condition. The text based conditions are case sensitive.",
+      "values": [
+        { "eq": "The actual count and the provided value (expected) are equal." },
+        { "ne": "The actual count and the provided value (expected) are not equal." },
+        { "match": "The actual count matches to [ActionRule.RegularExpression] property." },
+        { "not_match": "The actual count does not match to [ActionRule.RegularExpression] property." },
+        { "gt": "Applies for numbers only: The actual count is greater than provided value (expected)." },
+        { "lt": "Applies for numbers only: The actual count is lower than provided value (expected)." },
+        { "ge": "Applies for numbers only: The actual count is greater or equal to the provided value (expected)." },
+        { "le": "Applies for numbers only: The actual count is lower or equal to the provided value (expected)." }
+      ]
+    },
+    "disabled": {
+      "description": "Return [true] if the element exists in the DOM and it is not enabled."
+    },
+    "driver": {
+      "description": "Return [true] if the [IWebDriver.FullName] value meets a condition. The text based conditions are case sensitive.",
+      "values": [
+        { "eq": "The driver full name value and the provided value (expected) are equal." },
+        { "ne": "The driver full name value and the provided value (expected) are not equal." },
+        { "match": "The driver full name value matches to [ActionRule.RegularExpression] property." },
+        { "not_match": "The driver full name value does not match to [ActionRule.RegularExpression] property." },
+        { "gt": "Applies for numbers only: The driver full name value is greater than provided value (expected)." },
+        { "lt": "Applies for numbers only: The driver full name value is lower than provided value (expected)." },
+        { "ge": "Applies for numbers only: The driver full name value is greater or equal to the provided value (expected)." },
+        { "le": "Applies for numbers only: The driver full name value is lower or equal to the provided value (expected)." }
+      ]
+    },
+    "enabled": {
+      "description": "Return [true] if the element exists in the DOM and it is enabled."
+    },
+    "exists": {
+      "description": "Return [true] if the element exists in the DOM."
+    },
+    "hidden": {
+      "description": "Return [true] if the element exists in the DOM and it is not visible."
+    },
+    "not_exists": {
+      "description": "Return [true] if the element does not exists in the DOM."
+    },
+    "selected": {
+      "description": "Return [true] if the element exists in the DOM and it is selected."
+    },
+    "stale": {
+      "description": "Return [true] if the element is stale (element reference out dated or broken)."
+    },
+    "text": {
+      "description": "Return [true] if the [ActionRule.ElementToActOn] inner text meets a condition. The text based conditions are case sensitive.",
+      "values": [
+        { "eq": "The text value and the provided value (expected) are equal." },
+        { "ne": "The text value and the provided value (expected) are not equal." },
+        { "match": "The text value matches to [ActionRule.RegularExpression] property." },
+        { "not_match": "The text value does not match to [ActionRule.RegularExpression] property." },
+        { "gt": "Applies for numbers only: The text value is greater than provided value (expected)." },
+        { "lt": "Applies for numbers only: The text value is lower than provided value (expected)." },
+        { "ge": "Applies for numbers only: The text value is greater or equal to the provided value (expected)." },
+        { "le": "Applies for numbers only: The text value is lower or equal to the provided value (expected)." }
+      ]
+    },
+    "title": {
+      "description": "Return [true] if the [IWebDriver.Title] value meets a condition. The text based conditions are case sensitive.",
+      "values": [
+        { "eq": "The title and the provided value (expected) are equal." },
+        { "ne": "The title and the provided value (expected) are not equal." },
+        { "match": "The title matches to [ActionRule.RegularExpression] property." },
+        { "not_match": "The title does not match to [ActionRule.RegularExpression] property." },
+        { "gt": "Applies for numbers only: The title is greater than provided value (expected)." },
+        { "lt": "Applies for numbers only: The title is lower than provided value (expected)." },
+        { "ge": "Applies for numbers only: The title is greater or equal to the provided value (expected)." },
+        { "le": "Applies for numbers only: The title is lower or equal to the provided value (expected)." }
+      ]
+    },
+    "url": {
+      "description": "Return [true] if the [IWebDriver.Url] value meets a condition. The text based conditions are case sensitive.",
+      "values": [
+        { "eq": "The URL and the provided value (expected) are equal." },
+        { "ne": "The URL and the provided value (expected) are not equal." },
+        { "match": "The URL matches to [ActionRule.RegularExpression] property." },
+        { "not_match": "The URL does not match to [ActionRule.RegularExpression] property." },
+        { "gt": "Applies for numbers only: The URL is greater than provided value (expected)." },
+        { "lt": "Applies for numbers only: The URL is lower than provided value (expected)." },
+        { "ge": "Applies for numbers only: The URL is greater or equal to the provided value (expected)." },
+        { "le": "Applies for numbers only: The URL is lower or equal to the provided value (expected)." }
+      ]
+    },
+    "visible": {
+      "description": "Return [true] if the element exists in the DOM and it is visible (height and width are greater than 0)."
+    },
+    "windows_count": {
+      "description": "Return [true] if the [IWebDriver.WindowHandles] count (total open tabs/windows) meets a condition. The text based conditions are case sensitive.",
+      "values": [
+        { "eq": "The actual count and the provided value (expected) are equal." },
+        { "ne": "The actual count and the provided value (expected) are not equal." },
+        { "match": "The actual count matches to [ActionRule.RegularExpression] property." },
+        { "not_match": "The actual count does not match to [ActionRule.RegularExpression] property." },
+        { "gt": "Applies for numbers only: The actual count is greater than provided value (expected)." },
+        { "lt": "Applies for numbers only: The actual count is lower than provided value (expected)." },
+        { "ge": "Applies for numbers only: The actual count is greater or equal to the provided value (expected)." },
+        { "le": "Applies for numbers only: The actual count is lower or equal to the provided value (expected)." }
+      ]
+    }
+  },
+  "description": "Allows a sub set of actions execution, based on a given condition. The sub set actions will be executed if the condition result is [true].",
+  "examples": [
+    {
+      "description": "Executes nested actions if [class] attribute of an element equals [active].",
+      "literalExample": "not supported by literal engine.",
+      "actionExample": {
+        "actionType": "Condition",
+        "argument": "{{$ --attribute --eq:active}}",
+        "elementToActOn": "//form/div[6]/input",
+        "elementAttributeToActOn": "class",
+        "actions": [
+          {
+            "actionType": "Click",
+            "elementToActOn": "//form/div[6]/input"
+          },
+          {
+            "actionType": "Click",
+            "elementToActOn": "//main/p/a"
+          }
+        ]
+      }
+    },
+    {
+      "description": "Executes nested actions if [class] attribute of an element not equals [active].",
+      "literalExample": "not supported by literal engine.",
+      "actionExample": {
+        "actionType": "Condition",
+        "argument": "{{$ --attribute --ne:active}}",
+        "elementToActOn": "//form/div[6]/input",
+        "elementAttributeToActOn": "class",
+        "actions": [
+          {
+            "actionType": "Click",
+            "elementToActOn": "//form/div[6]/input"
+          },
+          {
+            "actionType": "Click",
+            "elementToActOn": "//main/p/a"
+          }
+        ]
+      }
+    },
+    {
+      "description": "Executes nested actions if [class] attribute of an element matches [^active$].",
+      "literalExample": "not supported by literal engine.",
+      "actionExample": {
+        "actionType": "Condition",
+        "argument": "{{$ --attribute --match:^active$}}",
+        "elementToActOn": "//form/div[6]/input",
+        "elementAttributeToActOn": "class",
+        "actions": [
+          {
+            "actionType": "Click",
+            "elementToActOn": "//form/div[6]/input"
+          },
+          {
+            "actionType": "Click",
+            "elementToActOn": "//main/p/a"
+          }
+        ]
+      }
+    },
+    {
+      "description": "Executes nested actions if [class] attribute of an element not match [^active$].",
+      "literalExample": "not supported by literal engine.",
+      "actionExample": {
+        "actionType": "Condition",
+        "argument": "{{$ --attribute --not_match:^active$}}",
+        "elementToActOn": "//form/div[6]/input",
+        "elementAttributeToActOn": "class",
+        "actions": [
+          {
+            "actionType": "Click",
+            "elementToActOn": "//form/div[6]/input"
+          },
+          {
+            "actionType": "Click",
+            "elementToActOn": "//main/p/a"
+          }
+        ]
+      }
+    },
+    {
+      "description": "Executes nested actions if [id] attribute of an element is greater than [1].",
+      "literalExample": "not supported by literal engine.",
+      "actionExample": {
+        "actionType": "Condition",
+        "argument": "{{$ --attribute --gt:1}}",
+        "elementToActOn": "//form/div[6]/input",
+        "elementAttributeToActOn": "id",
+        "actions": [
+          {
+            "actionType": "Click",
+            "elementToActOn": "//form/div[6]/input"
+          },
+          {
+            "actionType": "Click",
+            "elementToActOn": "//main/p/a"
+          }
+        ]
+      }
+    },
+    {
+      "description": "Executes nested actions if [id] attribute of an element is lower than [1].",
+      "literalExample": "not supported by literal engine.",
+      "actionExample": {
+        "actionType": "Condition",
+        "argument": "{{$ --attribute --lt:1}}",
+        "elementToActOn": "//form/div[6]/input",
+        "elementAttributeToActOn": "id",
+        "actions": [
+          {
+            "actionType": "Click",
+            "elementToActOn": "//form/div[6]/input"
+          },
+          {
+            "actionType": "Click",
+            "elementToActOn": "//main/p/a"
+          }
+        ]
+      }
+    },
+    {
+      "description": "Executes nested actions if [id] attribute of an element is greater or equal than [1].",
+      "literalExample": "not supported by literal engine.",
+      "actionExample": {
+        "actionType": "Condition",
+        "argument": "{{$ --attribute --ge:1}}",
+        "elementToActOn": "//form/div[6]/input",
+        "elementAttributeToActOn": "id",
+        "actions": [
+          {
+            "actionType": "Click",
+            "elementToActOn": "//form/div[6]/input"
+          },
+          {
+            "actionType": "Click",
+            "elementToActOn": "//main/p/a"
+          }
+        ]
+      }
+    },
+    {
+      "description": "Executes nested actions if [id] attribute of an element is lower or equal than [1].",
+      "literalExample": "not supported by literal engine.",
+      "actionExample": {
+        "actionType": "Condition",
+        "argument": "{{$ --attribute --le:1}}",
+        "elementToActOn": "//form/div[6]/input",
+        "elementAttributeToActOn": "id",
+        "actions": [
+          {
+            "actionType": "Click",
+            "elementToActOn": "//form/div[6]/input"
+          },
+          {
+            "actionType": "Click",
+            "elementToActOn": "//main/p/a"
+          }
+        ]
+      }
+    },
+    {
+      "description": "Executes nested actions if [//form/div[6]/input] elements count equals [0].",
+      "literalExample": "not supported by literal engine.",
+      "actionExample": {
+        "actionType": "Condition",
+        "argument": "{{$ --count --eq:0}}",
+        "elementToActOn": "//form/div[6]/input",
+        "actions": [
+          {
+            "actionType": "Click",
+            "elementToActOn": "//form/div[6]/input"
+          },
+          {
+            "actionType": "Click",
+            "elementToActOn": "//main/p/a"
+          }
+        ]
+      }
+    },
+    {
+      "description": "Executes nested actions if [//form/div[6]/input] elements count not equals [0].",
+      "literalExample": "not supported by literal engine.",
+      "actionExample": {
+        "actionType": "Condition",
+        "argument": "{{$ --count --ne:0}}",
+        "elementToActOn": "//form/div[6]/input",
+        "actions": [
+          {
+            "actionType": "Click",
+            "elementToActOn": "//form/div[6]/input"
+          },
+          {
+            "actionType": "Click",
+            "elementToActOn": "//main/p/a"
+          }
+        ]
+      }
+    },
+    {
+      "description": "Executes nested actions if [//form/div[6]/input] elements count matches [\\d+].",
+      "literalExample": "not supported by literal engine.",
+      "actionExample": {
+        "actionType": "Condition",
+        "argument": "{{$ --count --match:\\d+}}",
+        "elementToActOn": "//form/div[6]/input",
+        "actions": [
+          {
+            "actionType": "Click",
+            "elementToActOn": "//form/div[6]/input"
+          },
+          {
+            "actionType": "Click",
+            "elementToActOn": "//main/p/a"
+          }
+        ]
+      }
+    },
+    {
+      "description": "Executes nested actions if [//form/div[6]/input] elements count not match [\\d+].",
+      "literalExample": "not supported by literal engine.",
+      "actionExample": {
+        "actionType": "Condition",
+        "argument": "{{$ --count --not_match:\\d+}}",
+        "elementToActOn": "//form/div[6]/input",
+        "actions": [
+          {
+            "actionType": "Click",
+            "elementToActOn": "//form/div[6]/input"
+          },
+          {
+            "actionType": "Click",
+            "elementToActOn": "//main/p/a"
+          }
+        ]
+      }
+    },
+    {
+      "description": "Executes nested actions if [//form/div[6]/input] elements count is greater than [1].",
+      "literalExample": "not supported by literal engine.",
+      "actionExample": {
+        "actionType": "Condition",
+        "argument": "{{$ --count --gt:1}}",
+        "elementToActOn": "//form/div[6]/input",
+        "actions": [
+          {
+            "actionType": "Click",
+            "elementToActOn": "//form/div[6]/input"
+          },
+          {
+            "actionType": "Click",
+            "elementToActOn": "//main/p/a"
+          }
+        ]
+      }
+    },
+    {
+      "description": "Executes nested actions if [//form/div[6]/input] elements count is lower than [1].",
+      "literalExample": "not supported by literal engine.",
+      "actionExample": {
+        "actionType": "Condition",
+        "argument": "{{$ --count --lt:1}}",
+        "elementToActOn": "//form/div[6]/input",
+        "actions": [
+          {
+            "actionType": "Click",
+            "elementToActOn": "//form/div[6]/input"
+          },
+          {
+            "actionType": "Click",
+            "elementToActOn": "//main/p/a"
+          }
+        ]
+      }
+    },
+    {
+      "description": "Executes nested actions if [//form/div[6]/input] elements count is greater or equal than [1].",
+      "literalExample": "not supported by literal engine.",
+      "actionExample": {
+        "actionType": "Condition",
+        "argument": "{{$ --count --ge:1}}",
+        "elementToActOn": "//form/div[6]/input",
+        "actions": [
+          {
+            "actionType": "Click",
+            "elementToActOn": "//form/div[6]/input"
+          },
+          {
+            "actionType": "Click",
+            "elementToActOn": "//main/p/a"
+          }
+        ]
+      }
+    },
+    {
+      "description": "Executes nested actions if [//form/div[6]/input] elements count is lower or equal than [1].",
+      "literalExample": "not supported by literal engine.",
+      "actionExample": {
+        "actionType": "Condition",
+        "argument": "{{$ --count --le:1}}",
+        "elementToActOn": "//form/div[6]/input",
+        "actions": [
+          {
+            "actionType": "Click",
+            "elementToActOn": "//form/div[6]/input"
+          },
+          {
+            "actionType": "Click",
+            "elementToActOn": "//main/p/a"
+          }
+        ]
+      }
+    },
+    {
+      "description": "Executes nested actions if <input> element is [disabled].",
+      "literalExample": "not supported by literal engine.",
+      "actionExample": {
+        "actionType": "Condition",
+        "argument": "{{$ --disabled}}",
+        "elementToActOn": "//form/div[6]/input",
+        "action": [
+          {
+            "actionType": "Click",
+            "elementToActOn": "//form/div[6]/input"
+          },
+          {
+            "actionType": "Click",
+            "elementToActOn": "//main/p/a"
+          }
+        ]
+      }
+    },
+    {
+      "description": "Executes nested actions if [IWebDriver.FullName] equals [OpenQA.Selenium.Chrome.ChromeDriver].",
+      "literalExample": "not supported by literal engine.",
+      "actionExample": {
+        "actionType": "Condition",
+        "argument": "{{$ --driver --eq:OpenQA.Selenium.Chrome.ChromeDriver}}",
+        "actions": [
+          {
+            "actionType": "Click",
+            "elementToActOn": "//form/div[6]/input"
+          },
+          {
+            "actionType": "Click",
+            "elementToActOn": "//main/p/a"
+          }
+        ]
+      }
+    },
+    {
+      "description": "Executes nested actions if [IWebDriver.FullName] not equals [OpenQA.Selenium.Chrome.ChromeDriver].",
+      "literalExample": "not supported by literal engine.",
+      "actionExample": {
+        "actionType": "Condition",
+        "argument": "{{$ --driver --ne:OpenQA.Selenium.Chrome.ChromeDriver}}",
+        "actions": [
+          {
+            "actionType": "Click",
+            "elementToActOn": "//form/div[6]/input"
+          },
+          {
+            "actionType": "Click",
+            "elementToActOn": "//main/p/a"
+          }
+        ]
+      }
+    },
+    {
+      "description": "Executes nested actions if [IWebDriver.FullName] matches [ChromeDriver].",
+      "literalExample": "not supported by literal engine.",
+      "actionExample": {
+        "actionType": "Condition",
+        "argument": "{{$ --driver --match:ChromeDriver}}",
+        "actions": [
+          {
+            "actionType": "Click",
+            "elementToActOn": "//form/div[6]/input"
+          },
+          {
+            "actionType": "Click",
+            "elementToActOn": "//main/p/a"
+          }
+        ]
+      }
+    },
+    {
+      "description": "Executes nested actions if [IWebDriver.FullName] not match [ChromeDriver].",
+      "literalExample": "not supported by literal engine.",
+      "actionExample": {
+        "actionType": "Condition",
+        "argument": "{{$ --driver --not_match:ChromeDriver}}",
+        "actions": [
+          {
+            "actionType": "Click",
+            "elementToActOn": "//form/div[6]/input"
+          },
+          {
+            "actionType": "Click",
+            "elementToActOn": "//main/p/a"
+          }
+        ]
+      }
+    },
+    {
+      "description": "Executes nested actions if [IWebDriver.FullName] is greater than [1].",
+      "literalExample": "not supported by literal engine.",
+      "actionExample": {
+        "actionType": "Condition",
+        "argument": "{{$ --driver --gt:1}}",
+        "actions": [
+          {
+            "actionType": "Click",
+            "elementToActOn": "//form/div[6]/input"
+          },
+          {
+            "actionType": "Click",
+            "elementToActOn": "//main/p/a"
+          }
+        ]
+      }
+    },
+    {
+      "description": "Executes nested actions if [IWebDriver.FullName] is lower than [1].",
+      "literalExample": "not supported by literal engine.",
+      "actionExample": {
+        "actionType": "Condition",
+        "argument": "{{$ --driver --lt:1}}",
+        "actions": [
+          {
+            "actionType": "Click",
+            "elementToActOn": "//form/div[6]/input"
+          },
+          {
+            "actionType": "Click",
+            "elementToActOn": "//main/p/a"
+          }
+        ]
+      }
+    },
+    {
+      "description": "Executes nested actions if [IWebDriver.FullName] is greater or equal than [1].",
+      "literalExample": "not supported by literal engine.",
+      "actionExample": {
+        "actionType": "Condition",
+        "argument": "{{$ --driver --ge:1}}",
+        "actions": [
+          {
+            "actionType": "Click",
+            "elementToActOn": "//form/div[6]/input"
+          },
+          {
+            "actionType": "Click",
+            "elementToActOn": "//main/p/a"
+          }
+        ]
+      }
+    },
+    {
+      "description": "Executes nested actions if [IWebDriver.FullName] is lower or equal than [1].",
+      "literalExample": "not supported by literal engine.",
+      "actionExample": {
+        "actionType": "Condition",
+        "argument": "{{$ --driver --le:1}}",
+        "actions": [
+          {
+            "actionType": "Click",
+            "elementToActOn": "//form/div[6]/input"
+          },
+          {
+            "actionType": "Click",
+            "elementToActOn": "//main/p/a"
+          }
+        ]
+      }
+    },
+    {
+      "description": "Executes nested actions if <input> element is [enabled].",
+      "literalExample": "not supported by literal engine.",
+      "actionExample": {
+        "actionType": "Condition",
+        "argument": "{{$ --enabled}}",
+        "elementToActOn": "//form/div[6]/input",
+        "action": [
+          {
+            "actionType": "Click",
+            "elementToActOn": "//form/div[6]/input"
+          },
+          {
+            "actionType": "Click",
+            "elementToActOn": "//main/p/a"
+          }
+        ]
+      }
+    },
+    {
+      "description": "Executes nested actions if <input> element is [exists].",
+      "literalExample": "not supported by literal engine.",
+      "actionExample": {
+        "actionType": "Condition",
+        "argument": "{{$ --exists}}",
+        "elementToActOn": "//form/div[6]/input",
+        "action": [
+          {
+            "actionType": "Click",
+            "elementToActOn": "//form/div[6]/input"
+          },
+          {
+            "actionType": "Click",
+            "elementToActOn": "//main/p/a"
+          }
+        ]
+      }
+    },
+    {
+      "description": "Executes nested actions if <input> element is [hidden].",
+      "literalExample": "not supported by literal engine.",
+      "actionExample": {
+        "actionType": "Condition",
+        "argument": "{{$ --hidden}}",
+        "elementToActOn": "//form/div[6]/input",
+        "action": [
+          {
+            "actionType": "Click",
+            "elementToActOn": "//form/div[6]/input"
+          },
+          {
+            "actionType": "Click",
+            "elementToActOn": "//main/p/a"
+          }
+        ]
+      }
+    },
+    {
+      "description": "Executes nested actions if <input> element is [not_exists].",
+      "literalExample": "not supported by literal engine.",
+      "actionExample": {
+        "actionType": "Condition",
+        "argument": "{{$ --not_exists}}",
+        "elementToActOn": "//form/div[6]/input",
+        "action": [
+          {
+            "actionType": "Click",
+            "elementToActOn": "//form/div[6]/input"
+          },
+          {
+            "actionType": "Click",
+            "elementToActOn": "//main/p/a"
+          }
+        ]
+      }
+    },
+    {
+      "description": "Executes nested actions if <input> element is [selected].",
+      "literalExample": "not supported by literal engine.",
+      "actionExample": {
+        "actionType": "Condition",
+        "argument": "{{$ --selected}}",
+        "elementToActOn": "//form/div[6]/input",
+        "action": [
+          {
+            "actionType": "Click",
+            "elementToActOn": "//form/div[6]/input"
+          },
+          {
+            "actionType": "Click",
+            "elementToActOn": "//main/p/a"
+          }
+        ]
+      }
+    },
+    {
+      "description": "Executes nested actions if <input> element is [stale].",
+      "literalExample": "not supported by literal engine.",
+      "actionExample": {
+        "actionType": "Condition",
+        "argument": "{{$ --stale}}",
+        "elementToActOn": "//form/div[6]/input",
+        "action": [
+          {
+            "actionType": "Click",
+            "elementToActOn": "//form/div[6]/input"
+          },
+          {
+            "actionType": "Click",
+            "elementToActOn": "//main/p/a"
+          }
+        ]
+      }
+    },
+    {
+      "description": "Executes nested actions if [//form/div[6]] inner text equals [active].",
+      "literalExample": "not supported by literal engine.",
+      "actionExample": {
+        "actionType": "Condition",
+        "argument": "{{$ --text --eq:active}}",
+        "elementToActOn": "//form/div[6]",
+        "actions": [
+          {
+            "actionType": "Click",
+            "elementToActOn": "//form/div[6]/input"
+          },
+          {
+            "actionType": "Click",
+            "elementToActOn": "//main/p/a"
+          }
+        ]
+      }
+    },
+    {
+      "description": "Executes nested actions if [//form/div[6]] inner text not equals [active].",
+      "literalExample": "not supported by literal engine.",
+      "actionExample": {
+        "actionType": "Condition",
+        "argument": "{{$ --text --ne:active}}",
+        "elementToActOn": "//form/div[6]",
+        "actions": [
+          {
+            "actionType": "Click",
+            "elementToActOn": "//form/div[6]/input"
+          },
+          {
+            "actionType": "Click",
+            "elementToActOn": "//main/p/a"
+          }
+        ]
+      }
+    },
+    {
+      "description": "Executes nested actions if [//form/div[6]] inner text matches [^active$].",
+      "literalExample": "not supported by literal engine.",
+      "actionExample": {
+        "actionType": "Condition",
+        "argument": "{{$ --text --match:^active$}}",
+        "elementToActOn": "//form/div[6]",
+        "actions": [
+          {
+            "actionType": "Click",
+            "elementToActOn": "//form/div[6]/input"
+          },
+          {
+            "actionType": "Click",
+            "elementToActOn": "//main/p/a"
+          }
+        ]
+      }
+    },
+    {
+      "description": "Executes nested actions if [//form/div[6]] inner text not match [^active$].",
+      "literalExample": "not supported by literal engine.",
+      "actionExample": {
+        "actionType": "Condition",
+        "argument": "{{$ --text --not_match:^active$}}",
+        "elementToActOn": "//form/div[6]",
+        "actions": [
+          {
+            "actionType": "Click",
+            "elementToActOn": "//form/div[6]/input"
+          },
+          {
+            "actionType": "Click",
+            "elementToActOn": "//main/p/a"
+          }
+        ]
+      }
+    },
+    {
+      "description": "Executes nested actions if [//form/div[6]] inner text is greater than [1].",
+      "literalExample": "not supported by literal engine.",
+      "actionExample": {
+        "actionType": "Condition",
+        "argument": "{{$ --text --gt:1}}",
+        "elementToActOn": "//form/div[6]",
+        "actions": [
+          {
+            "actionType": "Click",
+            "elementToActOn": "//form/div[6]/input"
+          },
+          {
+            "actionType": "Click",
+            "elementToActOn": "//main/p/a"
+          }
+        ]
+      }
+    },
+    {
+      "description": "Executes nested actions if [//form/div[6]] inner text is lower than [1].",
+      "literalExample": "not supported by literal engine.",
+      "actionExample": {
+        "actionType": "Condition",
+        "argument": "{{$ --text --lt:1}}",
+        "elementToActOn": "//form/div[6]",
+        "actions": [
+          {
+            "actionType": "Click",
+            "elementToActOn": "//form/div[6]/input"
+          },
+          {
+            "actionType": "Click",
+            "elementToActOn": "//main/p/a"
+          }
+        ]
+      }
+    },
+    {
+      "description": "Executes nested actions if [//form/div[6]] inner text is greater or equal than [1].",
+      "literalExample": "not supported by literal engine.",
+      "actionExample": {
+        "actionType": "Condition",
+        "argument": "{{$ --text --ge:1}}",
+        "elementToActOn": "//form/div[6]",
+        "actions": [
+          {
+            "actionType": "Click",
+            "elementToActOn": "//form/div[6]/input"
+          },
+          {
+            "actionType": "Click",
+            "elementToActOn": "//main/p/a"
+          }
+        ]
+      }
+    },
+    {
+      "description": "Executes nested actions if [//form/div[6]] inner text is lower or equal than [1].",
+      "literalExample": "not supported by literal engine.",
+      "actionExample": {
+        "actionType": "Condition",
+        "argument": "{{$ --text --le:1}}",
+        "elementToActOn": "//form/div[6]",
+        "actions": [
+          {
+            "actionType": "Click",
+            "elementToActOn": "//form/div[6]/input"
+          },
+          {
+            "actionType": "Click",
+            "elementToActOn": "//main/p/a"
+          }
+        ]
+      }
+    },
+    {
+      "description": "Executes nested actions if [IWebDriver.Title] equals [active].",
+      "literalExample": "not supported by literal engine.",
+      "actionExample": {
+        "actionType": "Condition",
+        "argument": "{{$ --title --eq:active}}",
+        "actions": [
+          {
+            "actionType": "Click",
+            "elementToActOn": "//form/div[6]/input"
+          },
+          {
+            "actionType": "Click",
+            "elementToActOn": "//main/p/a"
+          }
+        ]
+      }
+    },
+    {
+      "description": "Executes nested actions if [IWebDriver.Title] not equals [active].",
+      "literalExample": "not supported by literal engine.",
+      "actionExample": {
+        "actionType": "Condition",
+        "argument": "{{$ --title --ne:active}}",
+        "actions": [
+          {
+            "actionType": "Click",
+            "elementToActOn": "//form/div[6]/input"
+          },
+          {
+            "actionType": "Click",
+            "elementToActOn": "//main/p/a"
+          }
+        ]
+      }
+    },
+    {
+      "description": "Executes nested actions if [IWebDriver.Title] matches [^active$].",
+      "literalExample": "not supported by literal engine.",
+      "actionExample": {
+        "actionType": "Condition",
+        "argument": "{{$ --title --match:^active$}}",
+        "actions": [
+          {
+            "actionType": "Click",
+            "elementToActOn": "//form/div[6]/input"
+          },
+          {
+            "actionType": "Click",
+            "elementToActOn": "//main/p/a"
+          }
+        ]
+      }
+    },
+    {
+      "description": "Executes nested actions if [IWebDriver.Title] not match [^active$].",
+      "literalExample": "not supported by literal engine.",
+      "actionExample": {
+        "actionType": "Condition",
+        "argument": "{{$ --title --not_match:^active$}}",
+        "actions": [
+          {
+            "actionType": "Click",
+            "elementToActOn": "//form/div[6]/input"
+          },
+          {
+            "actionType": "Click",
+            "elementToActOn": "//main/p/a"
+          }
+        ]
+      }
+    },
+    {
+      "description": "Executes nested actions if [IWebDriver.Title] is greater than [1].",
+      "literalExample": "not supported by literal engine.",
+      "actionExample": {
+        "actionType": "Condition",
+        "argument": "{{$ --title --gt:1}}",
+        "actions": [
+          {
+            "actionType": "Click",
+            "elementToActOn": "//form/div[6]/input"
+          },
+          {
+            "actionType": "Click",
+            "elementToActOn": "//main/p/a"
+          }
+        ]
+      }
+    },
+    {
+      "description": "Executes nested actions if [IWebDriver.Title] is lower than [1].",
+      "literalExample": "not supported by literal engine.",
+      "actionExample": {
+        "actionType": "Condition",
+        "argument": "{{$ --title --lt:1}}",
+        "actions": [
+          {
+            "actionType": "Click",
+            "elementToActOn": "//form/div[6]/input"
+          },
+          {
+            "actionType": "Click",
+            "elementToActOn": "//main/p/a"
+          }
+        ]
+      }
+    },
+    {
+      "description": "Executes nested actions if [IWebDriver.Title] is greater or equal than [1].",
+      "literalExample": "not supported by literal engine.",
+      "actionExample": {
+        "actionType": "Condition",
+        "argument": "{{$ --title --ge:1}}",
+        "actions": [
+          {
+            "actionType": "Click",
+            "elementToActOn": "//form/div[6]/input"
+          },
+          {
+            "actionType": "Click",
+            "elementToActOn": "//main/p/a"
+          }
+        ]
+      }
+    },
+    {
+      "description": "Executes nested actions if [IWebDriver.Title] is lower or equal than [1].",
+      "literalExample": "not supported by literal engine.",
+      "actionExample": {
+        "actionType": "Condition",
+        "argument": "{{$ --title --le:1}}",
+        "elementToActOn": "//form/div[6]",
+        "actions": [
+          {
+            "actionType": "Click",
+            "elementToActOn": "//form/div[6]/input"
+          },
+          {
+            "actionType": "Click",
+            "elementToActOn": "//main/p/a"
+          }
+        ]
+      }
+    },
+    {
+      "description": "Executes nested actions if [IWebDriver.Url] equals [active].",
+      "literalExample": "not supported by literal engine.",
+      "actionExample": {
+        "actionType": "Condition",
+        "argument": "{{$ --url --eq:active}}",
+        "actions": [
+          {
+            "actionType": "Click",
+            "elementToActOn": "//form/div[6]/input"
+          },
+          {
+            "actionType": "Click",
+            "elementToActOn": "//main/p/a"
+          }
+        ]
+      }
+    },
+    {
+      "description": "Executes nested actions if [IWebDriver.Url] not equals [active].",
+      "literalExample": "not supported by literal engine.",
+      "actionExample": {
+        "actionType": "Condition",
+        "argument": "{{$ --url --ne:active}}",
+        "actions": [
+          {
+            "actionType": "Click",
+            "elementToActOn": "//form/div[6]/input"
+          },
+          {
+            "actionType": "Click",
+            "elementToActOn": "//main/p/a"
+          }
+        ]
+      }
+    },
+    {
+      "description": "Executes nested actions if [IWebDriver.Url] matches [^active$].",
+      "literalExample": "not supported by literal engine.",
+      "actionExample": {
+        "actionType": "Condition",
+        "argument": "{{$ --url --match:^active$}}",
+        "actions": [
+          {
+            "actionType": "Click",
+            "elementToActOn": "//form/div[6]/input"
+          },
+          {
+            "actionType": "Click",
+            "elementToActOn": "//main/p/a"
+          }
+        ]
+      }
+    },
+    {
+      "description": "Executes nested actions if [IWebDriver.Url] not match [^active$].",
+      "literalExample": "not supported by literal engine.",
+      "actionExample": {
+        "actionType": "Condition",
+        "argument": "{{$ --url --not_match:^active$}}",
+        "actions": [
+          {
+            "actionType": "Click",
+            "elementToActOn": "//form/div[6]/input"
+          },
+          {
+            "actionType": "Click",
+            "elementToActOn": "//main/p/a"
+          }
+        ]
+      }
+    },
+    {
+      "description": "Executes nested actions if [IWebDriver.Url] is greater than [1].",
+      "literalExample": "not supported by literal engine.",
+      "actionExample": {
+        "actionType": "Condition",
+        "argument": "{{$ --url --gt:1}}",
+        "actions": [
+          {
+            "actionType": "Click",
+            "elementToActOn": "//form/div[6]/input"
+          },
+          {
+            "actionType": "Click",
+            "elementToActOn": "//main/p/a"
+          }
+        ]
+      }
+    },
+    {
+      "description": "Executes nested actions if [IWebDriver.Url] is lower than [1].",
+      "literalExample": "not supported by literal engine.",
+      "actionExample": {
+        "actionType": "Condition",
+        "argument": "{{$ --url --lt:1}}",
+        "actions": [
+          {
+            "actionType": "Click",
+            "elementToActOn": "//form/div[6]/input"
+          },
+          {
+            "actionType": "Click",
+            "elementToActOn": "//main/p/a"
+          }
+        ]
+      }
+    },
+    {
+      "description": "Executes nested actions if [IWebDriver.Url] is greater or equal than [1].",
+      "literalExample": "not supported by literal engine.",
+      "actionExample": {
+        "actionType": "Condition",
+        "argument": "{{$ --url --ge:1}}",
+        "actions": [
+          {
+            "actionType": "Click",
+            "elementToActOn": "//form/div[6]/input"
+          },
+          {
+            "actionType": "Click",
+            "elementToActOn": "//main/p/a"
+          }
+        ]
+      }
+    },
+    {
+      "description": "Executes nested actions if [IWebDriver.Url] is lower or equal than [1].",
+      "literalExample": "not supported by literal engine.",
+      "actionExample": {
+        "actionType": "Condition",
+        "argument": "{{$ --url --le:1}}",
+        "elementToActOn": "//form/div[6]",
+        "actions": [
+          {
+            "actionType": "Click",
+            "elementToActOn": "//form/div[6]/input"
+          },
+          {
+            "actionType": "Click",
+            "elementToActOn": "//main/p/a"
+          }
+        ]
+      }
+    },
+    {
+      "description": "Executes nested actions if <input> element is [visible].",
+      "literalExample": "not supported by literal engine.",
+      "actionExample": {
+        "actionType": "Condition",
+        "argument": "{{$ --visible}}",
+        "elementToActOn": "//form/div[6]/input",
+        "action": [
+          {
+            "actionType": "Click",
+            "elementToActOn": "//form/div[6]/input"
+          },
+          {
+            "actionType": "Click",
+            "elementToActOn": "//main/p/a"
+          }
+        ]
+      }
+    },
+    {
+      "description": "Executes nested actions if [IWebDriver.WindowHandles] count equals [0].",
+      "literalExample": "not supported by literal engine.",
+      "actionExample": {
+        "actionType": "Condition",
+        "argument": "{{$ --windows_count --eq:0}}",
+        "actions": [
+          {
+            "actionType": "Click",
+            "elementToActOn": "//form/div[6]/input"
+          },
+          {
+            "actionType": "Click",
+            "elementToActOn": "//main/p/a"
+          }
+        ]
+      }
+    },
+    {
+      "description": "Executes nested actions if [IWebDriver.WindowHandles] count not equals [0].",
+      "literalExample": "not supported by literal engine.",
+      "actionExample": {
+        "actionType": "Condition",
+        "argument": "{{$ --windows_count --ne:0}}",
+        "actions": [
+          {
+            "actionType": "Click",
+            "elementToActOn": "//form/div[6]/input"
+          },
+          {
+            "actionType": "Click",
+            "elementToActOn": "//main/p/a"
+          }
+        ]
+      }
+    },
+    {
+      "description": "Executes nested actions if [IWebDriver.WindowHandles] count matches [\\d+].",
+      "literalExample": "not supported by literal engine.",
+      "actionExample": {
+        "actionType": "Condition",
+        "argument": "{{$ --windows_count --match:\\d+}}",
+        "actions": [
+          {
+            "actionType": "Click",
+            "elementToActOn": "//form/div[6]/input"
+          },
+          {
+            "actionType": "Click",
+            "elementToActOn": "//main/p/a"
+          }
+        ]
+      }
+    },
+    {
+      "description": "Executes nested actions if [IWebDriver.WindowHandles] count not match [\\d+].",
+      "literalExample": "not supported by literal engine.",
+      "actionExample": {
+        "actionType": "Condition",
+        "argument": "{{$ --windows_count --not_match:\\d+}}",
+        "actions": [
+          {
+            "actionType": "Click",
+            "elementToActOn": "//form/div[6]/input"
+          },
+          {
+            "actionType": "Click",
+            "elementToActOn": "//main/p/a"
+          }
+        ]
+      }
+    },
+    {
+      "description": "Executes nested actions if [IWebDriver.WindowHandles] count is greater than [1].",
+      "literalExample": "not supported by literal engine.",
+      "actionExample": {
+        "actionType": "Condition",
+        "argument": "{{$ --windows_count --gt:1}}",
+        "actions": [
+          {
+            "actionType": "Click",
+            "elementToActOn": "//form/div[6]/input"
+          },
+          {
+            "actionType": "Click",
+            "elementToActOn": "//main/p/a"
+          }
+        ]
+      }
+    },
+    {
+      "description": "Executes nested actions if [IWebDriver.WindowHandles] count is lower than [1].",
+      "literalExample": "not supported by literal engine.",
+      "actionExample": {
+        "actionType": "Condition",
+        "argument": "{{$ --windows_count --lt:1}}",
+        "actions": [
+          {
+            "actionType": "Click",
+            "elementToActOn": "//form/div[6]/input"
+          },
+          {
+            "actionType": "Click",
+            "elementToActOn": "//main/p/a"
+          }
+        ]
+      }
+    },
+    {
+      "description": "Executes nested actions if [IWebDriver.WindowHandles] count is greater or equal than [1].",
+      "literalExample": "not supported by literal engine.",
+      "actionExample": {
+        "actionType": "Condition",
+        "argument": "{{$ --windows_count --ge:1}}",
+        "actions": [
+          {
+            "actionType": "Click",
+            "elementToActOn": "//form/div[6]/input"
+          },
+          {
+            "actionType": "Click",
+            "elementToActOn": "//main/p/a"
+          }
+        ]
+      }
+    },
+    {
+      "description": "Executes nested actions if [IWebDriver.WindowHandles] count is lower or equal than [1].",
+      "literalExample": "not supported by literal engine.",
+      "actionExample": {
+        "actionType": "Condition",
+        "argument": "{{$ --windows_count --le:1}}",
+        "actions": [
+          {
+            "actionType": "Click",
+            "elementToActOn": "//form/div[6]/input"
+          },
+          {
+            "actionType": "Click",
+            "elementToActOn": "//main/p/a"
+          }
+        ]
+      }
+    }
+  ],
+  "name": "Condition",
+  "pluginType": "Action",
+  "properties": {
+    "elementToActOn": "The locator value by which the element will be found.",
+    "locator": "The locator type by which the element will be found.",
+    "elementAttributeToActOn": "The element attribute from which to extract information for action execution. If not specified, information will be taken from the element inner text.",
+    "regularExpression": "A pattern by which the extracted information will be evaluated. Returns the first match.",
+    "argument": "The assertion condition, operator and expected value.",
+    "actions": "The sub set actions to execute when condition is met."
+  },
+  "protocol": {
+    "endpoint": "none",
+    "w3c": "none"
+  },
+  "scope": [ "web", "mobile-web", "mobile-native" ],
+  "summary": "Allows a sub set of actions execution, based on a given condition.",
+  "testOn": "https://gravitymvctestapplication.azurewebsites.net/instructor"
+}

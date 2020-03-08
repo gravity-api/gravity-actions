@@ -2,7 +2,9 @@
   "cliArguments": {
     "until": {
       "description": "Repeats the click action until condition is met.",
-      "values": [ "no_alert" ]
+      "values": [
+        { "no_alert": "Click and dismiss alert if present. Repeats until no alert or until page load timeout reached." }
+      ]
     }
   },
   "description": "Clicks the mouse at the last known mouse coordinates or on the specified element. If the click causes a new page to load, the OpenQA.Selenium.IWebElement.Click method will attempt to block until the page has loaded.",

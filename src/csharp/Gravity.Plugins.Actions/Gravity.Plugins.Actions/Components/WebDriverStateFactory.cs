@@ -93,6 +93,21 @@ namespace Gravity.Plugins.Actions.Components
         /// Assert that count of the given elements (total) meets a condition.
         /// </summary>
         public const string Count = "count";
+
+        /// <summary>
+        /// Assert that <see cref="IWebDriver.Url"/> meets a condition.
+        /// </summary>
+        public const string Url = "url";
+
+        /// <summary>
+        /// Assert that <see cref="IWebDriver.Title"/> meets a condition.
+        /// </summary>
+        public const string Title = "title";
+
+        /// <summary>
+        /// Assert that <see cref="IWebDriver.WindowHandles"/> count meets a condition.
+        /// </summary>
+        public const string WindowsCount = "windows_count";
         #endregion        
 
         // members: state
@@ -405,11 +420,11 @@ namespace Gravity.Plugins.Actions.Components
         });
 
         [Description(Driver)]
-        private IDictionary<string, object> DriverType(ActionRule actionRule, IWebElement element)
+        private IDictionary<string, object> DriverType()
             => AssertState(() =>
         {
             // get actual
-            var actual = ConditionalGetElement(actionRule, element).Text;
+            var actual = driver.GetType().FullName;
 
             // get operator method
             var method = GetType().GetMethodByDescription(arguments[StateProperties.Operator]);
@@ -438,7 +453,7 @@ namespace Gravity.Plugins.Actions.Components
             var method = GetType().GetMethodByDescription(arguments[StateProperties.Operator]);
 
             // invoke
-            var evaluation = (bool)method.Invoke(this, new object[] { actual, arguments[StateProperties.Expected] });
+            var evaluation = (bool)method.Invoke(this, new object[] { $"{actual}", arguments[StateProperties.Expected] });
 
             // compose
             return new Dictionary<string, object>
@@ -449,6 +464,75 @@ namespace Gravity.Plugins.Actions.Components
                 [StateProperties.Operator] = arguments[StateProperties.Operator]
             };
         });
+
+        [Description(Url)]
+        private IDictionary<string, object> PageUrl()
+            => AssertState(() =>
+            {
+                // get actual
+                var actual = driver.Url;
+
+                // get operator method
+                var method = GetType().GetMethodByDescription(arguments[StateProperties.Operator]);
+
+                // invoke
+                var evaluation = (bool)method.Invoke(this, new object[] { actual, arguments[StateProperties.Expected] });
+
+                // compose
+                return new Dictionary<string, object>
+                {
+                    [StateProperties.Evaluation] = evaluation,
+                    [StateProperties.Expected] = arguments[StateProperties.Expected],
+                    [StateProperties.Actual] = actual,
+                    [StateProperties.Operator] = arguments[StateProperties.Operator]
+                };
+            });
+
+        [Description(Title)]
+        private IDictionary<string, object> PageTitle()
+            => AssertState(() =>
+            {
+                // get actual
+                var actual = driver.Title;
+
+                // get operator method
+                var method = GetType().GetMethodByDescription(arguments[StateProperties.Operator]);
+
+                // invoke
+                var evaluation = (bool)method.Invoke(this, new object[] { actual, arguments[StateProperties.Expected] });
+
+                // compose
+                return new Dictionary<string, object>
+                {
+                    [StateProperties.Evaluation] = evaluation,
+                    [StateProperties.Expected] = arguments[StateProperties.Expected],
+                    [StateProperties.Actual] = actual,
+                    [StateProperties.Operator] = arguments[StateProperties.Operator]
+                };
+            });
+
+        [Description(WindowsCount)]
+        private IDictionary<string, object> DriverWindowsCount()
+            => AssertState(() =>
+            {
+                // get actual
+                var actual = driver.WindowHandles.Count;
+
+                // get operator method
+                var method = GetType().GetMethodByDescription(arguments[StateProperties.Operator]);
+
+                // invoke
+                var evaluation = (bool)method.Invoke(this, new object[] { $"{actual}", arguments[StateProperties.Expected] });
+
+                // compose
+                return new Dictionary<string, object>
+                {
+                    [StateProperties.Evaluation] = evaluation,
+                    [StateProperties.Expected] = arguments[StateProperties.Expected],
+                    [StateProperties.Actual] = actual,
+                    [StateProperties.Operator] = arguments[StateProperties.Operator]
+                };
+            });
 
         // gets an element by action rule and element
         private IWebElement ConditionalGetElement(ActionRule actionRule, IWebElement element)
@@ -518,7 +602,7 @@ namespace Gravity.Plugins.Actions.Components
             return isActual && isExpected && (actualOut > expectedOut);
         }
 
-        [Description(Contracts.OperatorType.GreaterThan)]
+        [Description(Contracts.OperatorType.LowerThan)]
         private bool LowerThan(string actual, string expected)
         {
             // get as numbers

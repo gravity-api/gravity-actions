@@ -15,6 +15,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Documentation\condition.json" />
     <None Remove="Documentation\move-to-element.json" />
     <None Remove="Documentation\scroll.json" />
     <None Remove="Documentation\swipe.json" />
@@ -28,6 +29,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Documentation\condition.json" />
     <EmbeddedResource Include="Documentation\elements-listener.json" />
     <EmbeddedResource Include="Documentation\click.json" />
     <EmbeddedResource Include="Documentation\close-all-child-windows.json" />

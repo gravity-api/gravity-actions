@@ -230,9 +230,8 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         private static int GetRptPos(Plugin plugin)
         {
             // shortcuts
-            const string P = AutomationEnvironment.REPEATER_POSITION_PARAM;
             var S = ((WebDriverActionPlugin)plugin).WebDriver.GetSession().ToString();
-            var K = $"{P}-{S}";
+            var K = $"rptpos_{S}";
 
             // exit conditions
             if (!AutomationEnvironment.SessionParams.ContainsKey(K))

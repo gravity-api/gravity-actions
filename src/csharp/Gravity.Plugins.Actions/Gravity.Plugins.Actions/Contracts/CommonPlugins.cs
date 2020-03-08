@@ -20,6 +20,9 @@ namespace Gravity.Plugins.Actions.Contracts
         public const string CloseBrowser = "CloseBrowser";
 
         [DataMember]
+        public const string Condition = "Condition";
+
+        [DataMember]
         public const string DoubleClick = "DoubleClick";
 
         [DataMember]

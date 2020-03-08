@@ -123,7 +123,7 @@ namespace Gravity.Plugins.Actions.UiCommon
             var conditionMet = factory.Factor(actionRule.Argument, new object[] { actionRule, element });
 
             // iterate            
-            while (!conditionMet)
+            while (!(bool)conditionMet["evaluation"])
             {
                 // execute actions
                 Execute(element, actionRule.Actions, repeatReference++);
@@ -147,7 +147,7 @@ namespace Gravity.Plugins.Actions.UiCommon
         {
             // setup
             var session = WebDriver.GetSession().ToString();
-            var repeatReferenceKey = $"{AutomationEnvironment.REPEATER_POSITION_PARAM}-{session}";
+            var repeatReferenceKey = $"rptpos_{session}";
 
             // iterate
             foreach (var actionRule in actionRules)

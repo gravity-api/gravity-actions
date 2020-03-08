@@ -12,7 +12,6 @@ using Gravity.Services.DataContracts;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace Gravity.Plugins.Actions.UiCommon
@@ -86,7 +85,7 @@ namespace Gravity.Plugins.Actions.UiCommon
 
             // wait
             var isWait = wait.Until(_
-                => factory.Factor(cli, new object[] { actionRule, element }));
+                => (bool)factory.Factor(cli, new object[] { actionRule, element })["evaluation"]);
 
             // results
             if (isWait)

@@ -1,6 +1,9 @@
 ﻿/*
  * CHANGE LOG - keep only last 5 threads
  * 
+ * 2020-04-03
+ *    - modify: add support for literal and CLI
+ * 
  * 2020-01-13
  *    - modify: add on-element event (action can now be executed on the element without searching for a child)
  *    - modify: use FindByActionRule/GetByActionRule methods to reduce code base and increase code usage
@@ -19,9 +22,11 @@ using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Actions.Extensions;
 using Gravity.Plugins.Attributes;
 using Gravity.Plugins.Base;
+using Gravity.Plugins.Contracts;
 using Gravity.Services.DataContracts;
 using OpenQA.Selenium;
 using System;
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
 namespace Gravity.Plugins.Actions.UiCommon
@@ -50,7 +55,7 @@ namespace Gravity.Plugins.Actions.UiCommon
         /// <param name="actionRule">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
         public override void OnPerform(ActionRule actionRule)
         {
-            DoAction(element: default, actionRule);
+            DoAction(actionRule, element: default);
         }
 
         /// <summary>
@@ -61,21 +66,31 @@ namespace Gravity.Plugins.Actions.UiCommon
         /// <param name="element">This <see cref="IWebElement"/> instance on which to perform the action (provided by the extraction rule).</param>
         public override void OnPerform(ActionRule actionRule, IWebElement element)
         {
-            DoAction(element, actionRule);
+            DoAction(actionRule, element);
         }
 
         // executes action routine
-        private void DoAction(IWebElement element, ActionRule actionRule)
+        private void DoAction(ActionRule actionRule, IWebElement element)
         {
-            // setup
+            // load arguments
+            var arguments = CliFactory.Parse(actionRule.Argument);
+
+            // exit conditions
+            if (TryGetFromCli(arguments))
+            {
+                return;
+            }
+
+            // by name
+            var key = arguments.ContainsKey("key") ? arguments["key"] : actionRule.Argument;
             var result = string.Empty;
             try
             {
                 // get element
-                var webElement = this.ConditionalGetElement(element, actionRule);
+                var onElement = this.ConditionalGetElement(element, actionRule);
 
                 // get parameter value
-                result = GetTextOrAttribute(webElement, actionRule);
+                result = GetTextOrAttribute(actionRule, element: onElement);
             }
             catch (Exception e) when (e is NoSuchElementException || e is WebDriverTimeoutException)
             {
@@ -90,15 +105,15 @@ namespace Gravity.Plugins.Actions.UiCommon
             finally
             {
                 // save the value
-                AutomationEnvironment.SessionParams[actionRule.Argument] = result;
+                EnvironmentContext.ApplicationParams[key] = result;
             }
         }
 
         // get text value from element inner-text or specified attribute
-        private static string GetTextOrAttribute(IWebElement webElement, ActionRule actionRule)
+        private static string GetTextOrAttribute(ActionRule actionRule, IWebElement element)
         {
             // exit conditions
-            if (webElement == null)
+            if (element == null)
             {
                 return string.Empty;
             }
@@ -106,11 +121,11 @@ namespace Gravity.Plugins.Actions.UiCommon
             // text conditions
             if (string.IsNullOrEmpty(actionRule.ElementAttributeToActOn))
             {
-                return Regex.Match(webElement.Text, actionRule.RegularExpression).Value;
+                return Regex.Match(element.Text, actionRule.RegularExpression).Value;
             }
 
             // get from element attribute
-            var attributeValue = webElement.GetAttribute(actionRule.ElementAttributeToActOn);
+            var attributeValue = element.GetAttribute(actionRule.ElementAttributeToActOn);
             return Regex.Match(attributeValue, actionRule.RegularExpression).Value;
         }
 
@@ -125,6 +140,28 @@ namespace Gravity.Plugins.Actions.UiCommon
 
             // save empty value
             AutomationEnvironment.SessionParams[actionRule.Argument] = string.Empty;
+        }
+
+        private static bool TryGetFromCli(IDictionary<string, string> arguments)
+        {
+            // setup conditions
+            var isKey = arguments.ContainsKey("key");
+            var isValue = arguments.ContainsKey("value");
+
+            // by CLI
+            if (isKey && isValue)
+            {
+                EnvironmentContext.ApplicationParams[arguments["key"]] = arguments["value"];
+                return true;
+            }
+            if (!isKey && isValue)
+            {
+                throw new ArgumentException(
+                    "You must provide a [key] to application argument {{$ --key:my_parameter --value:1}}");
+            }
+
+            // only key or no key provided
+            return false;
         }
     }
 }

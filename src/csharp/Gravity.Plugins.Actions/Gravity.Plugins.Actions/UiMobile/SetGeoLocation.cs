@@ -17,12 +17,12 @@
 using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Actions.Extensions;
 using Gravity.Plugins.Base;
-using Gravity.Services.DataContracts;
 using Microsoft.Extensions.Logging;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
 using System.Collections.Generic;
 using Gravity.Plugins.Attributes;
+using Gravity.Plugins.Contracts;
 
 namespace Gravity.Plugins.Actions.UiMobile
 {
@@ -32,7 +32,7 @@ namespace Gravity.Plugins.Actions.UiMobile
         Name = MobilePlugins.SetGeoLocation)]
     public class SetGeoLocation : WebDriverActionPlugin
     {
-        #region *** constants: arguments  ***
+        #region *** arguments    ***
         /// <summary>
         /// The desired GEO location latitude.
         /// </summary>
@@ -52,7 +52,7 @@ namespace Gravity.Plugins.Actions.UiMobile
         // members: state
         private IDictionary<string, string> arguments;
 
-        #region *** constructors          ***
+        #region *** constructors ***
         /// <summary>
         /// Creates a new instance of this plugin.
         /// </summary>

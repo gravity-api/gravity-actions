@@ -15,9 +15,9 @@
  */
 using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Base;
-using Gravity.Services.DataContracts;
 using OpenQA.Selenium;
 using Gravity.Plugins.Attributes;
+using Gravity.Plugins.Contracts;
 
 namespace Gravity.Plugins.Actions.UiWeb
 {

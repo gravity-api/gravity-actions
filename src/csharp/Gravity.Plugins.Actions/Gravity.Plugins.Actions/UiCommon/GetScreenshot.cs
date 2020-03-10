@@ -16,13 +16,13 @@
 using OpenQA.Selenium.Extensions;
 using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Actions.Extensions;
-using Gravity.Services.DataContracts;
 using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using Gravity.Plugins.Attributes;
 using Gravity.Plugins.Base;
+using Gravity.Plugins.Contracts;
 
 #pragma warning disable S4144
 namespace Gravity.Plugins.Actions.UiCommon
@@ -130,7 +130,7 @@ namespace Gravity.Plugins.Actions.UiCommon
             {
                 ["screenshot"] = file
             };
-            var imageEntity = new Entity { EntityContentEntries = imageEntry };
+            var imageEntity = new Entity { EntityContent = imageEntry };
 
             // create an extraction entity
             var imageExtraction = new Extraction().GetDefault(WebDriver?.GetSession()?.ToString());

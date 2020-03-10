@@ -9,7 +9,6 @@
 using OpenQA.Selenium.Extensions;
 using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Base;
-using Gravity.Services.DataContracts;
 using Microsoft.Extensions.Logging;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Interfaces;
@@ -17,6 +16,7 @@ using OpenQA.Selenium.Appium.MultiTouch;
 using System;
 using System.Collections.Generic;
 using Gravity.Plugins.Attributes;
+using Gravity.Plugins.Contracts;
 
 namespace Gravity.Plugins.Actions.UiMobile
 {

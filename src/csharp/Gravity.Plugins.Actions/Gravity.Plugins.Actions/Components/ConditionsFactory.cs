@@ -5,7 +5,6 @@
  */
 using Gravity.Plugins.Extensions;
 using Gravity.Plugins.Utilities.Selenium;
-using Gravity.Services.DataContracts;
 using Gravity.Plugins.Actions.Extensions;
 using OpenQA.Selenium;
 using System;
@@ -15,10 +14,11 @@ using System.Text.RegularExpressions;
 using System.Linq;
 using Gravity.Plugins.Utilities;
 using System.Collections.ObjectModel;
+using Gravity.Plugins.Contracts;
 
 namespace Gravity.Plugins.Actions.Components
 {
-    public class WebDriverStateFactory
+    public class ConditionsFactory
     {
         #region *** constants    ***
         internal static class StateProperties
@@ -118,18 +118,18 @@ namespace Gravity.Plugins.Actions.Components
 
         #region *** constructors ***
         /// <summary>
-        /// Creates a new instance of <see cref="WebDriverStateFactory"/> (with 15sec default timeout).
+        /// Creates a new instance of <see cref="ConditionsFactory"/> (with 15sec default timeout).
         /// </summary>
         /// <param name="driver"><see cref="IWebDriver"/> implementation by which to execute the action.</param>
-        public WebDriverStateFactory(IWebDriver driver)
+        public ConditionsFactory(IWebDriver driver)
             : this(driver, Misc.GetTypes()) { }
 
         /// <summary>
-        /// Creates a new instance of <see cref="WebDriverStateFactory"/> (with 15sec default timeout).
+        /// Creates a new instance of <see cref="ConditionsFactory"/> (with 15sec default timeout).
         /// </summary>
         /// <param name="driver"><see cref="IWebDriver"/> implementation by which to execute the action.</param>
         /// <param name="types">A collection of <see cref="Type"/> under which to search for <see cref="StateMethodAttribute"/> methods.</param>
-        public WebDriverStateFactory(IWebDriver driver, IEnumerable<Type> types)
+        public ConditionsFactory(IWebDriver driver, IEnumerable<Type> types)
         {
             this.driver = driver;
             byFactory = new ByFactory(types);
@@ -147,14 +147,14 @@ namespace Gravity.Plugins.Actions.Components
         public IDictionary<string, object> Factor(string conditionCli, object[] parameters)
         {
             // get conditions
-            SetArguments(conditionCli);
+            arguments = GetArguments(conditionCli);
 
             // get state method
             var method = GetType().GetMethodByDescription(arguments["until"]);
 
             if(method == null)
             {
-                throw new InvalidOperationException($"Method [{conditionCli}] was not found under [{nameof(WebDriverStateFactory)}].");
+                throw new InvalidOperationException($"Method [{conditionCli}] was not found under [{nameof(ConditionsFactory)}].");
             }
 
             // normalize parameters
@@ -164,34 +164,42 @@ namespace Gravity.Plugins.Actions.Components
             return (Dictionary<string, object>)method.Invoke(obj: this, parameters);
         }
 
-        private void SetArguments(string cli)
+        /// <summary>
+        /// Gets an arguments collection based on conditional CLI.
+        /// </summary>
+        /// <param name="cli">CLI to factor arguments from.</param>
+        /// <returns>Arguments collection</returns>
+        public IDictionary<string, string> GetArguments(string cli)
         {
             // constants
             const string Until = "until";
             const string OperatorRegex = "^eq$|^ne$|^gt$|^ge$|^lt$|^le$|^match$|^notmatch$";
 
             // get conditions
-            arguments = cliFactory.Parse(cli);
+            var args = cliFactory.Parse(cli);
 
             // argument: until
-            if (!arguments.ContainsKey(Until))
+            if (!args.ContainsKey(Until))
             {
-                arguments[Until] = arguments
+                args[Until] = args
                     .FirstOrDefault(i => string.IsNullOrEmpty(i.Value)).Key ?? string.Empty;
             }
 
             // argument: operator
-            var @operator = arguments.FirstOrDefault(i => Regex.IsMatch(i.Key, OperatorRegex));
+            var @operator = args.FirstOrDefault(i => Regex.IsMatch(i.Key, OperatorRegex));
             if(@operator.Key == null)
             {
-                arguments[StateProperties.Operator] = "match";
-                arguments[StateProperties.Expected] = ".*";
+                args[StateProperties.Operator] = "match";
+                args[StateProperties.Expected] = ".*";
             }
             else
             {
-                arguments[StateProperties.Operator] = @operator.Key;
-                arguments[StateProperties.Expected] = @operator.Value;
+                args[StateProperties.Operator] = @operator.Key;
+                args[StateProperties.Expected] = @operator.Value;
             }
+
+            // result
+            return args;
         }
         #endregion
 

@@ -14,6 +14,9 @@ namespace Gravity.Plugins.Actions.Contracts
     public static class CommonPlugins
     {
         [DataMember]
+        public const string Assert = "Assert";
+
+        [DataMember]
         public const string Click = "Click";
 
         [DataMember]

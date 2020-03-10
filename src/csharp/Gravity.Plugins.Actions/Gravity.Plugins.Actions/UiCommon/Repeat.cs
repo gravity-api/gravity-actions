@@ -16,13 +16,13 @@
  */
 using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Base;
-using Gravity.Services.DataContracts;
 using OpenQA.Selenium;
 using Gravity.Plugins.Attributes;
 using System.Collections.Generic;
 using OpenQA.Selenium.Extensions;
 using Gravity.Plugins.Engine;
 using Gravity.Plugins.Actions.Components;
+using Gravity.Plugins.Contracts;
 
 namespace Gravity.Plugins.Actions.UiCommon
 {
@@ -116,7 +116,7 @@ namespace Gravity.Plugins.Actions.UiCommon
         private void ExecuteByCondition(ActionRule actionRule, IWebElement element)
         {
             // setup
-            var factory = new WebDriverStateFactory(driver: WebDriver, types: Types);
+            var factory = new ConditionsFactory(driver: WebDriver, types: Types);
 
             // initialize
             var repeatReference = 0;
@@ -153,7 +153,7 @@ namespace Gravity.Plugins.Actions.UiCommon
             foreach (var actionRule in actionRules)
             {
                 // update environment
-                AutomationEnvironment.SessionParams[repeatReferenceKey] = repeatReference;
+                EnvironmentContext.ApplicationParams[repeatReferenceKey] = repeatReference;
                 actionRule.RepeatReference = repeatReference;
 
                 // execute actions

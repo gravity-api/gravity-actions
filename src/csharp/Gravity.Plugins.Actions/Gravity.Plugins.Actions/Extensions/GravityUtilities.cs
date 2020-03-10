@@ -3,8 +3,7 @@
  * 
  * on-line resources
  */
-using Gravity.Services.DataContracts;
-using Gravity.Services.DataContracts.Internal;
+using Gravity.Plugins.Contracts;
 using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;

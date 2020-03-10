@@ -1316,12 +1316,12 @@
   "name": "Condition",
   "pluginType": "Action",
   "properties": {
+    "actions": "The sub set actions to execute when condition is met.",
+    "argument": "The assertion condition, operator and expected value.",
+    "elementAttributeToActOn": "The element attribute from which to extract information for action execution. If not specified, information will be taken from the element inner text.",
     "elementToActOn": "The locator value by which the element will be found.",
     "locator": "The locator type by which the element will be found.",
-    "elementAttributeToActOn": "The element attribute from which to extract information for action execution. If not specified, information will be taken from the element inner text.",
-    "regularExpression": "A pattern by which the extracted information will be evaluated. Returns the first match.",
-    "argument": "The assertion condition, operator and expected value.",
-    "actions": "The sub set actions to execute when condition is met."
+    "regularExpression": "A pattern by which the extracted information will be evaluated. Returns the first match."
   },
   "protocol": {
     "endpoint": "none",

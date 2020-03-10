@@ -6,7 +6,7 @@
 using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Attributes;
 using Gravity.Plugins.Base;
-using Gravity.Services.DataContracts;
+using Gravity.Plugins.Contracts;
 using Microsoft.Extensions.Logging;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Interfaces;

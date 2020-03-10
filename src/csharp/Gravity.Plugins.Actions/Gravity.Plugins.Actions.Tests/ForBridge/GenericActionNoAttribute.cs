@@ -5,7 +5,6 @@
  */
 using Gravity.Plugins.Base;
 using Gravity.Plugins.Contracts;
-using Gravity.Services.DataContracts;
 
 namespace Gravity.Plugins.UnitTests.Mocks.Plugins
 {

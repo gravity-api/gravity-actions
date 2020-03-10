@@ -8,7 +8,7 @@ using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Actions.Extensions;
 using Gravity.Plugins.Attributes;
 using Gravity.Plugins.Base;
-using Gravity.Services.DataContracts;
+using Gravity.Plugins.Contracts;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
@@ -80,7 +80,7 @@ namespace Gravity.Plugins.Actions.UiCommon
         {
             // setup
             var cli = GetCli(actionRule);
-            var factory = new WebDriverStateFactory(driver: WebDriver, types: Types);
+            var factory = new ConditionsFactory(driver: WebDriver, types: Types);
             var wait = new WebDriverWait(WebDriver, timeout);
 
             // wait

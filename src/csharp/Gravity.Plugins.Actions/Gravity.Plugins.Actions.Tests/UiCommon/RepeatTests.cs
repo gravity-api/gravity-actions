@@ -6,12 +6,13 @@
 using OpenQA.Selenium.Mock;
 using Gravity.Plugins.Actions.UiCommon;
 using Gravity.Plugins.Actions.UnitTests.Base;
-using Gravity.Services.DataContracts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Base;
 using OpenQA.Selenium.Extensions;
+using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
+using Gravity.Plugins.Contracts;
 
 #pragma warning disable S4144
 namespace Gravity.Plugins.Actions.UnitTests.UiCommon
@@ -234,13 +235,13 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             var K = $"rptpos_{S}";
 
             // exit conditions
-            if (!AutomationEnvironment.SessionParams.ContainsKey(K))
+            if (!EnvironmentContext.ApplicationParams.ContainsKey(K))
             {
                 return -1;
             }
 
             // fetch
-            return (int)AutomationEnvironment.SessionParams[K];
+            return (int)EnvironmentContext.ApplicationParams[K];
         }
     }
 }

@@ -10,7 +10,8 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using System.IO;
 using Gravity.Plugins.Actions.Contracts;
-using Gravity.Plugins.Base;
+using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
+using System.Linq;
 
 #pragma warning disable S4144
 namespace Gravity.Plugins.Actions.UnitTests.UiCommon
@@ -304,8 +305,8 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             return plugin
                 .ExtractionResults
                 .ToArray()[0]
-                .Entities[0]
-                .EntityContentEntries["screenshot"];
+                .Entities.ElementAt(0)
+                .EntityContent["screenshot"];
         }
     }
 }

@@ -23,11 +23,11 @@
 using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Actions.Extensions;
 using Gravity.Plugins.Base;
-using Gravity.Services.DataContracts;
 using Newtonsoft.Json;
 using OpenQA.Selenium;
 using System.Collections.Generic;
 using Gravity.Plugins.Attributes;
+using Gravity.Plugins.Contracts;
 
 namespace Gravity.Plugins.Actions.UiCommon
 {

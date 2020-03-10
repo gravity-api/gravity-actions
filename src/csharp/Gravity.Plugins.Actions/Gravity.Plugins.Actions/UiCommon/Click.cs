@@ -27,7 +27,6 @@ using OpenQA.Selenium.Extensions;
 using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Actions.Extensions;
 using Gravity.Plugins.Base;
-using Gravity.Services.DataContracts;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
@@ -36,6 +35,7 @@ using System.ComponentModel;
 using SeleniumActions = OpenQA.Selenium.Interactions.Actions;
 using Gravity.Plugins.Attributes;
 using Gravity.Plugins.Extensions;
+using Gravity.Plugins.Contracts;
 
 namespace Gravity.Plugins.Actions.UiCommon
 {

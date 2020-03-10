@@ -8,7 +8,6 @@
  *         and FindElementByActionRule(this IWebElement e, ByFactory byFactory, ActionRule actionRule)
  */
 using OpenQA.Selenium.Extensions;
-using Gravity.Services.DataContracts;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Internal;
 using System;
@@ -18,6 +17,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using Gravity.Plugins.Utilities.Selenium;
 using Gravity.Plugins.Extensions;
+using Gravity.Plugins.Contracts;
 
 namespace Gravity.Plugins.Actions.Extensions
 {

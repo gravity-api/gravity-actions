@@ -12,6 +12,7 @@ using System;
 using System.Text.RegularExpressions;
 using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Contracts;
+using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
 
 #pragma warning disable S4144
 namespace Gravity.Plugins.Actions.UnitTests.UiCommon

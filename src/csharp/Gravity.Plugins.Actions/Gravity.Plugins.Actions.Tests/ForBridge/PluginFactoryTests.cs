@@ -6,9 +6,9 @@
  * 
  * on-line resources
  */
+using Gravity.Plugins.Contracts;
 using Gravity.Plugins.Engine;
 using Gravity.Plugins.UnitTests.Mocks.Plugins;
-using Gravity.Services.DataContracts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 

@@ -4,7 +4,7 @@
  * on-line resources
  */
 using Gravity.Plugins.Base;
-using Gravity.Services.DataContracts;
+using Gravity.Plugins.Contracts;
 using OpenQA.Selenium;
 using System;
 

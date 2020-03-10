@@ -5,7 +5,6 @@
  */
 using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Base;
-using Gravity.Services.DataContracts;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Extensions;
 using System.Collections.Generic;
@@ -13,6 +12,7 @@ using System.ComponentModel;
 using System.Reflection;
 using Gravity.Plugins.Attributes;
 using Gravity.Plugins.Extensions;
+using Gravity.Plugins.Contracts;
 
 namespace Gravity.Plugins.Actions.UiWeb
 {

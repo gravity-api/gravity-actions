@@ -24,7 +24,6 @@ using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Actions.Extensions;
 using Gravity.Plugins.Attributes;
 using Gravity.Plugins.Base;
-using Gravity.Services.DataContracts;
 using Microsoft.Extensions.Logging;
 using OpenQA.Selenium;
 using System;
@@ -38,6 +37,7 @@ using System.Threading;
 // consolidate references
 using SeleniumActions = OpenQA.Selenium.Interactions.Actions;
 using Gravity.Plugins.Extensions;
+using Gravity.Plugins.Contracts;
 
 namespace Gravity.Plugins.Actions.UiCommon
 {
@@ -148,14 +148,14 @@ namespace Gravity.Plugins.Actions.UiCommon
         private IDictionary<string, bool> SetConditions()
         {
             // setup
-            var driverParams = WebAutomation.DriverParams ?? string.Empty;
+            var driverParams = WebAutomation.DriverParams ?? new Dictionary<string, object>();
 
             // setup conditions
             var isClear = arguments.ContainsKey(Clear);
             var isForceClear = !isClear && arguments.ContainsKey(ForceClear);
             var isDown = arguments.ContainsKey(Down);
             var isInterval = !isDown && arguments.ContainsKey(Interval);
-            var isUiautomator2 = !Regex.IsMatch(driverParams, "uiautomator1", RegexOptions.IgnoreCase);
+            var isUiautomator2 = driverParams.Values.Any(i => !Regex.IsMatch($"{i}", "uiautomator1", RegexOptions.IgnoreCase));
             var isAndroid = isUiautomator2 && (WebDriver.IsAppiumDriver());
 
             return new Dictionary<string, bool>

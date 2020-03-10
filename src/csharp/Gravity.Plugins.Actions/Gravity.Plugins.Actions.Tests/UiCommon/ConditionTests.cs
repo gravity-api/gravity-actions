@@ -9,6 +9,7 @@ using Gravity.Plugins.Actions.UnitTests.Base;
 using Gravity.Plugins.Contracts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium.Mock;
+using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
 
 namespace Gravity.Plugins.Actions.UnitTests.UiCommon
 {

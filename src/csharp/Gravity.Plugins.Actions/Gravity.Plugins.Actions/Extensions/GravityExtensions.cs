@@ -3,10 +3,10 @@
  * 
  * on-line resources
  */
-using Gravity.Services.DataContracts;
 using System;
 using OpenQA.Selenium;
 using Gravity.Plugins.Extensions;
+using Gravity.Plugins.Contracts;
 
 namespace Gravity.Plugins.Actions.Extensions
 {

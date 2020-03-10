@@ -6,7 +6,6 @@
 using Gravity.Plugins.Attributes;
 using Gravity.Plugins.Base;
 using Gravity.Plugins.Contracts;
-using Gravity.Services.DataContracts;
 using System.Collections.Generic;
 
 namespace Gravity.Plugins.UnitTests.Mocks.Plugins
@@ -61,7 +60,7 @@ namespace Gravity.Plugins.UnitTests.Mocks.Plugins
                 {
                     new Entity
                     {
-                        EntityContentEntries = new Dictionary<string, string>
+                        EntityContent = new Dictionary<string, string>
                         {
                             [key] = value
                         }

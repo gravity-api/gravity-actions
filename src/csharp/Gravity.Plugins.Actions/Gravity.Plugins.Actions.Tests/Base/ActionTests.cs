@@ -4,7 +4,6 @@
  * on-line resources
  * https://dev.to/franndotexe/mstest-v2---new-old-kid-on-the-block
  */
-using Gravity.Services.DataContracts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
 using OpenQA.Selenium;
@@ -18,6 +17,7 @@ using System.Reflection;
 using System.Diagnostics;
 using Gravity.Plugins.Base;
 using Gravity.Plugins.Attributes;
+using Gravity.Plugins.Contracts;
 
 namespace Gravity.Plugins.Actions.UnitTests.Base
 {

@@ -2,26 +2,26 @@
  * CHANGE LOG - keep only last 5 threads
  * 
  * on-line resources
- * 
- * work items:
- * TODO: better SendKeys - do not create SendKeys instance on every iteration
  */
+using Gravity.Plugins.Actions.Components;
 using Gravity.Plugins.Actions.Contracts;
-using Gravity.Plugins.Actions.Extensions;
 using Gravity.Plugins.Attributes;
 using Gravity.Plugins.Base;
 using Gravity.Plugins.Contracts;
+using Gravity.Plugins.Extensions;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Extensions;
 using OpenQA.Selenium.Support.UI;
 using System;
+using System.Collections.Generic;
 
 namespace Gravity.Plugins.Actions.UiCommon
 {
     [Plugin(
         assembly: "Gravity.Plugins.Actions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
-        resource: "Gravity.Plugins.Actions.Documentation.try-send-keys.json",
-        Name = CommonPlugins.TrySendKeys)]
-    public class TrySendKeys : WebDriverActionPlugin
+        resource: "Gravity.Plugins.Actions.Documentation.assert.json",
+        Name = CommonPlugins.Assert)]
+    public class Assert : WebDriverActionPlugin
     {
         #region *** constructors ***
         /// <summary>
@@ -29,13 +29,14 @@ namespace Gravity.Plugins.Actions.UiCommon
         /// </summary>
         /// <param name="webAutomation">This <see cref="WebAutomation"/> object (the original object sent by the user).</param>
         /// <param name="driver"><see cref="IWebDriver"/> implementation by which to execute the action.</param>
-        public TrySendKeys(WebAutomation webAutomation, IWebDriver driver)
+        public Assert(WebAutomation webAutomation, IWebDriver driver)
             : base(webAutomation, driver)
         { }
         #endregion
 
         /// <summary>
-        /// Simulates typing text into the element.
+        /// Allows a sub set of actions execution, based on a given condition.
+        /// The sub set actions will be executed if the condition result is <see cref="true"/>.
         /// </summary>
         /// <param name="actionRule">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
         public override void OnPerform(ActionRule actionRule)
@@ -44,7 +45,8 @@ namespace Gravity.Plugins.Actions.UiCommon
         }
 
         /// <summary>
-        /// Simulates typing text into the element.
+        /// Allows a sub set of actions execution, based on a given condition.
+        /// The sub set actions will be executed if the condition result is <see cref="true"/>.
         /// </summary>
         /// <param name="actionRule">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
         /// <param name="element">This <see cref="IWebElement"/> instance on which to perform the action (provided by the extraction rule).</param>
@@ -53,34 +55,35 @@ namespace Gravity.Plugins.Actions.UiCommon
             DoAction(actionRule, element);
         }
 
-        // executes action routine
+        // executes Wait routine
         private void DoAction(ActionRule actionRule, IWebElement element)
         {
             // setup
             var wait = new WebDriverWait(
                 WebDriver, TimeSpan.FromMilliseconds(WebAutomation.EngineConfiguration.ElementSearchingTimeout));
+            var conditionsFactory = new ConditionsFactory(WebDriver, Types);
+            IDictionary<string, object> assertion = new Dictionary<string, object>();
 
-            // persist send keys
-            wait.Until(d => SendKeys(actionRule, element, driver: d));
-        }
-
-        // performs a click and return the clicked element
-        private bool SendKeys(ActionRule actionRule, IWebElement element, IWebDriver driver)
-        {
+            // execute assertion
             try
             {
-                // get element to act on
-                var onElement = this.ConditionalGetElement(element, actionRule);
-
-                // execute SendKeys action (reuse of existing action)
-                var sendKeys = new SendKeys(WebAutomation, driver);
-                sendKeys.Perform(actionRule, onElement);
-                return true;
+                assertion = wait.Until(d
+                    => new ConditionsFactory(d, Types).Factor(actionRule.Argument, new object[] { actionRule, element }));
             }
             catch (Exception e) when (e != null)
             {
-                return false;
+                assertion["evaluation"] = false;
             }
+
+            // add to extractions
+            var orbitSession = new OrbitSession
+            {
+                MachineIp = Misc.GetLocalEndpoint(),
+                MachineName = System.Environment.MachineName,
+                SessionsId = WebDriver?.GetSession()?.ToString()
+            };
+
+            //Extraction
         }
     }
 }

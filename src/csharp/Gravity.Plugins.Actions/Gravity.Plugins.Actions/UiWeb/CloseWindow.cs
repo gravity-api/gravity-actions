@@ -15,10 +15,10 @@
  */
 using OpenQA.Selenium.Extensions;
 using Gravity.Plugins.Actions.Contracts;
-using Gravity.Services.DataContracts;
 using OpenQA.Selenium;
 using Gravity.Plugins.Attributes;
 using Gravity.Plugins.Base;
+using Gravity.Plugins.Contracts;
 
 namespace Gravity.Plugins.Actions.UiWeb
 {

@@ -1,6 +1,7 @@
-﻿using Gravity.Plugins.Engine;
-using Gravity.Services.DataContracts;
+﻿using Gravity.Plugins.Contracts;
+using Gravity.Plugins.Engine;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Linq;
 
 namespace Gravity.Plugins.UnitTests.Engine
 {
@@ -25,7 +26,7 @@ namespace Gravity.Plugins.UnitTests.Engine
             };
 
             var actual = new AutomationExecutor(automation).Execute();
-            Assert.IsTrue(actual.Extractions.Length == 7);
+            Assert.IsTrue(actual.Extractions.Count() == 7);
         }
     }
 }

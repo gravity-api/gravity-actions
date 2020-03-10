@@ -3,7 +3,7 @@
  * 
  * on-line resources
  */
-using Gravity.Services.DataContracts;
+using Gravity.Plugins.Contracts;
 using OpenQA.Selenium;
 
 namespace Gravity.Plugins.Actions.Extensions
@@ -14,7 +14,6 @@ namespace Gravity.Plugins.Actions.Extensions
         /// Gets an assertion if the action described under this element and/or action rule is
         /// a flat action (non element action)
         /// </summary>
-        /// <param name="webElement"><see cref="IWebElement"/> to assert.</param>
         /// <param name="actionRule"><see cref="ActionRule"/> to assert.</param>
         /// <returns>True if this is a flat action (no element); False if not.</returns>
         public static bool IsFlatAction(ActionRule actionRule)

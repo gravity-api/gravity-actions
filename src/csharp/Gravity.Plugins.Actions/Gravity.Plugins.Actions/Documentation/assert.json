@@ -1,0 +1,138 @@
+{
+  "cliArguments": {
+    "eq": "Equals (=).",
+    "ne": "Not equals (!= | <>).",
+    "gt": "Greater than (>).",
+    "ge": "Greater than or equal (>=).",
+    "lt": "Less than (<).",
+    "le": "Less than or equal (<=).",
+    "match": "Returns true when string matches regex.",
+    "notmatch": "Returns true when string does not match regex.",
+    "url": "Takes the current page url as the actual result, ignoring elementToActOn.",
+    "title": "Takes the current page title as the actual result, ignoring elementToActOn.",
+    "count": "Takes the count of the elements found by elementToActOn as the actual result.",
+    "driver": "Takes the current web-driver implementation name.",
+    "attribute": "boolean: Assert that element attribute matches regex.",
+    "enabled": "boolean: Assert element [enabled] state.",
+    "exists": "boolean: Assert element [exists] state.",
+    "stale": "boolean: Assert element [stale] state.",
+    "text": "boolean: Assert that element [inner-text] matches regex.",
+    "visible": "boolean: Assert element [visible] state.",
+    "selected": "boolean: Assert element [selected] state."
+  },
+  "description": "Asserts that a given value meets a condition. That value can be for an instance, element text, element attribute, element status or current address. This action can be extended by decorating Gravity.Services.Comet.Engine.Attributes.AssertMethodAttribute over a method which returns a string.",
+  "examples": [
+    {
+      "actionExample": {
+        "actionType": "Assert",
+        "argument": "{{$ --url --eq:https://gravitymvctestapplication.azurewebsites.net/instructor}}"
+      },
+      "description": "Asserts that the current url EQUAL (eq) [https://gravitymvctestapplication.azurewebsites.net/instructor].",
+      "literalExample": "verify that {url} equal {https://gravitymvctestapplication.azurewebsites.net/instructor}"
+    },
+    {
+      "actionExample": {
+        "actionType": "Assert",
+        "argument": "{{$ --title --eq:Instructors - Contoso University}}"
+      },
+      "description": "Asserts that the current page title EQUAL (eq) [Instructors - Contoso University]. The comparison is case sensitive.",
+      "literalExample": "verify that {title} equal {Instructors - Contoso University}"
+    },
+    {
+      "actionExample": {
+        "actionType": "Assert",
+        "argument": "{{$ --count --gt:0}}",
+        "elementToActOn": "//li"
+      },
+      "description": "Asserts that <li> elements count is GREATER THAN (gt) [0].",
+      "literalExample": "verify that {count} of {//li} is greater than {0}"
+    },
+    {
+      "actionExample": {
+        "actionType": "Assert",
+        "argument": "{{$ --attribute --eq:true}}",
+        "elementAttributeToActOn": "class",
+        "elementToActOn": "//li",
+        "regularExpression": "nav-item"
+      },
+      "description": "Asserts that <li> class attribute match [nav-item]. Returns [true] if the value match [nav-item] or [false] if not. This action can be applies on any element with any attribute.",
+      "literalExample": "verify that {attribute} from {class} of {//li} filter with {nav-item} equal {true}"
+    },
+    {
+      "actionExample": {
+        "actionType": "Assert",
+        "argument": "{{$ --enabled --eq:true}}",
+        "elementToActOn": "//form/div[6]/input"
+      },
+      "comment": "Executed on [Edit] page. Select any instructor and click on [Edit] link.",
+      "description": "Asserts that <input> element [enabled] state equals true (element is enabled). Returns [true] if element is enabled or [false] if not.",
+      "literalExample": "verify that {enabled} state of {//form/div[6]/input} equal {true}"
+    },
+    {
+      "description": "Asserts that <button> element exists in the DOM. Returns [true] if exists or [false] if not. This assertion will wait until element searching timeout before returning.",
+      "literalExample": "verify that {exists} state of {//button} equal {true}",
+      "actionExample": {
+        "actionType": "Assert",
+        "argument": "{{$ --exists --eq:true}}",
+        "elementToActOn": "//button"
+      },
+      "comment": "Executed on [Edit] page. Select any instructor and click on [Edit] link."
+    },
+    {
+      "actionExample": {
+        "actionType": "Assert",
+        "argument": "{{$ --stale --eq:false}}",
+        "elementToActOn": "//button"
+      },
+      "comment": "Executed on [Edit] page. Select any instructor and click on [Edit] link.",
+      "description": "Asserts that <button> element status is not [stale]. Returns [true] if not stale or [false] if stale. This assertion will wait until element searching timeout before returning.",
+      "literalExample": "verify that {stale} state of {//button} equal {false}"
+    },
+    {
+      "actionExample": {
+        "actionType": "Assert",
+        "argument": "{{$ --text --notmatch}}",
+        "elementToActOn": "//li/a",
+        "regularExpression": "^\\d+$"
+      },
+      "description": "Asserts that <a> inner-text is not a number. Returns [true] if the value is not a number or [false] if value is a number.",
+      "literalExample": "verify that {text} of {//li/a} not match {^\\d+$}"
+    },
+    {
+      "actionExample": {
+        "actionType": "Assert",
+        "argument": "{{$ --visible --eq:false}}",
+        "elementToActOn": "//button"
+      },
+      "comment": "Executed on [Edit] page. Select any instructor and click on [Edit] link.",
+      "description": "Asserts that <button> element status is not [visible] (element is not visible, but exists in the DOM). Returns [true] if not visible or [false] if visible.",
+      "literalExample": "verify that {visible} state of {//button} equal {false}"
+    },
+    {
+      "actionExample": {
+        "actionType": "Assert",
+        "argument": "{{$ --selected --eq:false}}",
+        "elementToActOn": "(//form/div[5]//input)[1]"
+      },
+      "comment": "Executed on [Edit] page. Select any instructor and click on [Edit] link.",
+      "description": "Asserts that <input> element status is not [selected] (element is not selected). Returns [true] if not selected or [false] if selected.",
+      "literalExample": "verify that {selected} state of {(//form/div[5]//input)[1]} is {false}"
+    }
+  ],
+  "name": "Assert",
+  "pluginType": "Action",
+  "properties": {
+    "argument": "The assertion condition, operator and expected value.",
+    "elementAttributeToActOn": "The element attribute from which to extract information for action execution. If not specified, information will be taken from the element inner text.",
+    "elementToActOn": "The locator value by which the element will be found.",
+    "locator": "The locator type by which the element will be found.",
+    "regularExpression": "A pattern by which the extracted information will be evaluated. Returns the first match."
+  },
+  "protocol": {
+    "endpoint": "none",
+    "w3c": "none"
+  },
+  "scope": [ "web", "mobile-web", "mobile-native" ],
+  "summary": "Asserts that a given value meets a condition.",
+  "testOn": "https://gravitymvctestapplication.azurewebsites.net/instructor"
+}

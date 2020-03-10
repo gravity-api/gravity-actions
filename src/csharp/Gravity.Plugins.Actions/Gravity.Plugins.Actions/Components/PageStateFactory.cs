@@ -61,7 +61,7 @@ namespace Gravity.Plugins.Actions.Components
 
             if (method == null)
             {
-                throw new InvalidOperationException($"Method [{name}] was not found under [{nameof(WebDriverStateFactory)}].");
+                throw new InvalidOperationException($"Method [{name}] was not found under [{nameof(ConditionsFactory)}].");
             }
 
             // execute state method

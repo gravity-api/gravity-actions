@@ -9,7 +9,6 @@ using Gravity.Plugins.Actions.UnitTests.Base;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Mock;
-using System;
 
 #pragma warning disable S4144
 namespace Gravity.Plugins.Actions.UnitTests.UiWeb

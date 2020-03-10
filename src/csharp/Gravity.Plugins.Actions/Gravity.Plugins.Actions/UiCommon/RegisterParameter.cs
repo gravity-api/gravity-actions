@@ -23,7 +23,6 @@ using Gravity.Plugins.Actions.Extensions;
 using Gravity.Plugins.Attributes;
 using Gravity.Plugins.Base;
 using Gravity.Plugins.Contracts;
-using Gravity.Services.DataContracts;
 using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
@@ -130,7 +129,7 @@ namespace Gravity.Plugins.Actions.UiCommon
         }
 
         // handles register-parameter errors
-        private static void ErrorHandle(ActionRule actionRule)
+        private void ErrorHandle(ActionRule actionRule)
         {
             // exit conditions
             if (string.IsNullOrEmpty(actionRule.Argument))
@@ -139,7 +138,7 @@ namespace Gravity.Plugins.Actions.UiCommon
             }
 
             // save empty value
-            AutomationEnvironment.SessionParams[actionRule.Argument] = string.Empty;
+            Environment.SessionParams[actionRule.Argument] = string.Empty;
         }
 
         private static bool TryGetFromCli(IDictionary<string, string> arguments)

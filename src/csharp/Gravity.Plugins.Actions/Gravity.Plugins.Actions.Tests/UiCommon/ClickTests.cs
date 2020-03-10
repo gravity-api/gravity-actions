@@ -6,11 +6,12 @@
 using OpenQA.Selenium.Mock;
 using Gravity.Plugins.Actions.UiCommon;
 using Gravity.Plugins.Actions.UnitTests.Base;
-using Gravity.Services.DataContracts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using System.Collections.Generic;
 using Gravity.Plugins.Actions.Contracts;
+using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
+using Gravity.Plugins.Contracts;
 
 #pragma warning disable S4144
 namespace Gravity.Plugins.Actions.UnitTests.UiCommon

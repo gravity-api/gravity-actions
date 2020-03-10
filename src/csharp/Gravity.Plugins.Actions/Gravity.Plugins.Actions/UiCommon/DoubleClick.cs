@@ -21,7 +21,7 @@ using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Actions.Extensions;
 using Gravity.Plugins.Attributes;
 using Gravity.Plugins.Base;
-using Gravity.Services.DataContracts;
+using Gravity.Plugins.Contracts;
 using OpenQA.Selenium;
 using System;
 

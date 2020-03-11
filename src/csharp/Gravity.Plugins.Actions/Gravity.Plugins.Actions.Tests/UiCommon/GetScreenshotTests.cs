@@ -306,7 +306,8 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
                 .ExtractionResults
                 .ToArray()[0]
                 .Entities.ElementAt(0)
-                .EntityContent["screenshot"];
+                .EntityContent["screenshot"]
+                .ToString();
         }
     }
 }

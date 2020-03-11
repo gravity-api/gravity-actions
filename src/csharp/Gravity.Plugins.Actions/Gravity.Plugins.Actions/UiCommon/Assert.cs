@@ -5,10 +5,10 @@
  */
 using Gravity.Plugins.Actions.Components;
 using Gravity.Plugins.Actions.Contracts;
+using Gravity.Plugins.Actions.Extensions;
 using Gravity.Plugins.Attributes;
 using Gravity.Plugins.Base;
 using Gravity.Plugins.Contracts;
-using Gravity.Plugins.Extensions;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Extensions;
 using OpenQA.Selenium.Support.UI;
@@ -61,8 +61,7 @@ namespace Gravity.Plugins.Actions.UiCommon
             // setup
             var wait = new WebDriverWait(
                 WebDriver, TimeSpan.FromMilliseconds(WebAutomation.EngineConfiguration.ElementSearchingTimeout));
-            var conditionsFactory = new ConditionsFactory(WebDriver, Types);
-            IDictionary<string, object> assertion = new Dictionary<string, object>();
+            IDictionary<string, object> assertion = null;
 
             // execute assertion
             try
@@ -72,18 +71,17 @@ namespace Gravity.Plugins.Actions.UiCommon
             }
             catch (Exception e) when (e != null)
             {
+                assertion ??= new Dictionary<string, object>();
                 assertion["evaluation"] = false;
             }
 
             // add to extractions
-            var orbitSession = new OrbitSession
+            var extraction = new Extraction().GetDefault($"{WebDriver?.GetSession()}");
+            extraction.Entities = new[]
             {
-                MachineIp = Misc.GetLocalEndpoint(),
-                MachineName = System.Environment.MachineName,
-                SessionsId = WebDriver?.GetSession()?.ToString()
+                new Entity { EntityContent =  assertion}
             };
-
-            //Extraction
+            ExtractionResults.Add(extraction);
         }
     }
 }

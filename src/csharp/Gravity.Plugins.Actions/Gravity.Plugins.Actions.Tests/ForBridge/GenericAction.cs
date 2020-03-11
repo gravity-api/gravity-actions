@@ -60,7 +60,7 @@ namespace Gravity.Plugins.UnitTests.Mocks.Plugins
                 {
                     new Entity
                     {
-                        EntityContent = new Dictionary<string, string>
+                        EntityContent = new Dictionary<string, object>
                         {
                             [key] = value
                         }

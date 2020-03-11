@@ -126,7 +126,7 @@ namespace Gravity.Plugins.Actions.UiCommon
         private void AddToExtraction(string file)
         {
             // setup
-            var imageEntry = new Dictionary<string, string>
+            var imageEntry = new Dictionary<string, object>
             {
                 ["screenshot"] = file
             };

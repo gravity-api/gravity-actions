@@ -27,7 +27,7 @@ namespace Gravity.Plugins.Actions.UiWeb
 {
     [Plugin(
         assembly: "Gravity.Plugins.Actions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
-        resource: "Gravity.Plugins.Actions.Documentation.close-all-child-windows.json",
+        resource: "Gravity.Plugins.Actions.Documentation.close_all_child_windows.json",
         Name = WebPlugins.CloseAllChildWindows)]
     public class CloseAllChildWindows : WebDriverActionPlugin
     {

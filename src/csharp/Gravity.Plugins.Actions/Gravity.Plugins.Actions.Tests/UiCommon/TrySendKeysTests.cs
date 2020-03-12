@@ -33,7 +33,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         [TestMethod]
         public void TrySendKeysDocumentationResourceFile()
         {
-            ValidateActionDocumentation<TrySendKeys>(CommonPlugins.TrySendKeys, "try-send-keys.json");
+            ValidateActionDocumentation<TrySendKeys>(CommonPlugins.TrySendKeys, "try_send_keys.json");
         }
 
         [DataTestMethod]

@@ -33,7 +33,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         public void CloseBrowserDocumentationResourceFile()
         {
             ValidateActionDocumentation<CloseBrowser>(
-                CommonPlugins.CloseBrowser, "close-browser.json");
+                CommonPlugins.CloseBrowser, "close_browser.json");
         }
 
         [TestMethod]

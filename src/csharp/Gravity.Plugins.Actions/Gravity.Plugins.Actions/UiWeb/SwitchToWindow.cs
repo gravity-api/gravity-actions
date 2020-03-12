@@ -14,7 +14,7 @@ namespace Gravity.Plugins.Actions.UiWeb
 {
     [Plugin(
         assembly: "Gravity.Plugins.Actions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
-        resource: "Gravity.Plugins.Actions.Documentation.switch-to-window.json",
+        resource: "Gravity.Plugins.Actions.Documentation.switch_to_window.json",
         Name = WebPlugins.SwitchToWindow)]
     public class SwitchToWindow : WebDriverActionPlugin
     {

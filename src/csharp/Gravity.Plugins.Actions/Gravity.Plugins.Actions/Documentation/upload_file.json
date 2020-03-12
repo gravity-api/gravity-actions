@@ -20,7 +20,7 @@
   },
   "protocol": {
     "endpoint": "/session/{session-id}/execute/sync",
-    "w3c": "https://w3c.github.io/webdriver/#executing-script"
+    "w3c": "https://w3c.github.io/webdriver/#execute-script"
   },
   "scope": [ "web" ],
   "summary": "Allows to set [input-file] element with file to upload (bypass all native dialogs).",

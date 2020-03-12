@@ -19,7 +19,7 @@ namespace Gravity.Plugins.Actions.UiCommon
 {
     [Plugin(
         assembly: "Gravity.Plugins.Actions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
-        resource: "Gravity.Plugins.Actions.Documentation.try-send-keys.json",
+        resource: "Gravity.Plugins.Actions.Documentation.try_send_keys.json",
         Name = CommonPlugins.TrySendKeys)]
     public class TrySendKeys : WebDriverActionPlugin
     {

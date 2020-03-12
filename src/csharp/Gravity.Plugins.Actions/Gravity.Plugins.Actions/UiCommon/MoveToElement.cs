@@ -14,7 +14,7 @@ namespace Gravity.Plugins.Actions.UiCommon
 {
     [Plugin(
         assembly: "Gravity.Plugins.Actions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
-        resource: "Gravity.Plugins.Actions.Documentation.move-to-element.json",
+        resource: "Gravity.Plugins.Actions.Documentation.move_to_element.json",
         Name = CommonPlugins.MoveToElement)]
     public class MoveToElement : WebDriverActionPlugin
     {

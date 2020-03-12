@@ -20,7 +20,7 @@ namespace Gravity.Plugins.Actions.UiWeb
 {
     [Plugin(
         assembly: "Gravity.Plugins.Actions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
-        resource: "Gravity.Plugins.Actions.Documentation.navigate-back.json",
+        resource: "Gravity.Plugins.Actions.Documentation.navigate_back.json",
         Name = WebPlugins.NavigateBack)]
     public class NavigateBack : WebDriverActionPlugin
     {

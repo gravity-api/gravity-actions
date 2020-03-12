@@ -34,7 +34,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         public void SwitchToWindowDocumentationResourceFile()
         {
             ValidateActionDocumentation<SwitchToWindow>(
-                WebPlugins.SwitchToWindow, "switch-to-window.json");
+                WebPlugins.SwitchToWindow, "switch_to_window.json");
         }
 
         [DataTestMethod]

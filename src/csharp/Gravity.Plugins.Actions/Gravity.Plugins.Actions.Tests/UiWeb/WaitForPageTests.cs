@@ -40,7 +40,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         [TestMethod]
         public void WaitForPageDocumentationResourceFile()
         {
-            ValidateActionDocumentation<WaitForPage>(WebPlugins.WaitForPage, "wait-for-page.json");
+            ValidateActionDocumentation<WaitForPage>(WebPlugins.WaitForPage, "wait_for_page.json");
         }
 
         [TestMethod]

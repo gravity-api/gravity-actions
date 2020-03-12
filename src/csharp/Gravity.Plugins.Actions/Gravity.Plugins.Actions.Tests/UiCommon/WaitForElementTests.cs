@@ -35,7 +35,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         public void WaitForElementDocumentationResourceFile()
         {
             ValidateActionDocumentation<WaitForElement>(
-                CommonPlugins.WaitForElement, "wait-for-element.json");
+                CommonPlugins.WaitForElement, "wait_for_element.json");
         }
 
         [DataTestMethod]

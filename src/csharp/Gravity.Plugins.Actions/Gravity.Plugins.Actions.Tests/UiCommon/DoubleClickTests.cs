@@ -34,7 +34,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         public void DoubleClickDocumentationResourceFile()
         {
             ValidateActionDocumentation<DoubleClick>(
-                CommonPlugins.DoubleClick, "double-click.json");
+                CommonPlugins.DoubleClick, "double_click.json");
         }
 
         [DataTestMethod]

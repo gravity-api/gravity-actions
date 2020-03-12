@@ -33,7 +33,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiMobile
         public void HideKeyboardDocumentationResourceFile()
         {
             ValidateActionDocumentation<HideKeyboard>(
-                MobilePlugins.HideKeyboard, "hide-keyboard.json");
+                MobilePlugins.HideKeyboard, "hide_keyboard.json");
         }
 
         [TestMethod]

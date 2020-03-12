@@ -31,7 +31,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         public void SwitchToFrameDocumentationResourceFile()
         {
             ValidateActionDocumentation<SwitchToFrame>(
-                WebPlugins.SwitchToFrame, "switch-to-frame.json");
+                WebPlugins.SwitchToFrame, "switch_to_frame.json");
         }
 
         [DataTestMethod]

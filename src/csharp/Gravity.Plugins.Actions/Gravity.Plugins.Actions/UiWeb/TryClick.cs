@@ -23,7 +23,7 @@ namespace Gravity.Plugins.Actions.UiWeb
 {
     [Plugin(
         assembly: "Gravity.Plugins.Actions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
-        resource: "Gravity.Plugins.Actions.Documentation.try-click.json",
+        resource: "Gravity.Plugins.Actions.Documentation.try_click.json",
         Name = WebPlugins.TryClick)]
     public class TryClick : WebDriverActionPlugin
     {

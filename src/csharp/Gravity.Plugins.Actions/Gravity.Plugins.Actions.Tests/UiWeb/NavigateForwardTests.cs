@@ -30,7 +30,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         public void NavigateForwardDocumentationResourceFile()
         {
             ValidateActionDocumentation<NavigateForward>(
-                WebPlugins.NavigateForward, "navigate-forward.json");
+                WebPlugins.NavigateForward, "navigate_forward.json");
         }
 
         [TestMethod]

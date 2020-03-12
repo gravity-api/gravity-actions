@@ -26,7 +26,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
 
         [TestMethod]
         public void SelectFromComboBoxDocumentationResourceFile()
-            => ValidateActionDocumentation<SelectFromComboBox>(WebPlugins.SelectFromComboBox, "select-from-combo-box.json");
+            => ValidateActionDocumentation<SelectFromComboBox>(WebPlugins.SelectFromComboBox, "select_from_combo_box.json");
 
         [DataTestMethod]
         [DataRow("{'elementToActOn':'//select-element','argument':'Mock: Positive Element'}")]

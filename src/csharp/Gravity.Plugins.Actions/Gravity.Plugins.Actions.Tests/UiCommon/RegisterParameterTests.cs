@@ -36,7 +36,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         public void RegisterParameterDocumentationResourceFile()
         {
             ValidateActionDocumentation<RegisterParameter>(
-                CommonPlugins.RegisterParameter, "register-parameter.json");
+                CommonPlugins.RegisterParameter, "register_parameter.json");
         }
 
         [DataTestMethod]

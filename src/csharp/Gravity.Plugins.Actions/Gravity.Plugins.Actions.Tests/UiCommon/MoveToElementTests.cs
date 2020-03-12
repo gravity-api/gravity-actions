@@ -34,7 +34,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         public void MoveToElementDocumentationResourceFile()
         {
             ValidateActionDocumentation<MoveToElement>(
-                CommonPlugins.MoveToElement, "move-to-element.json");
+                CommonPlugins.MoveToElement, "move_to_element.json");
         }
 
         [DataTestMethod]

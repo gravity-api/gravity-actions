@@ -30,7 +30,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         public void ElementsListenerDocumentationResourceFile()
         {
             ValidateActionDocumentation<ElementsListener>(
-                WebPlugins.ElementsListener, "elements-listener.json");
+                WebPlugins.ElementsListener, "elements_listener.json");
         }
 
         [DataTestMethod]

@@ -25,7 +25,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         [TestMethod]
         public void SubmitFormDocumentationResourceFile()
         {
-            ValidateActionDocumentation<SubmitForm>(WebPlugins.SubmitForm, "submit-form.json");
+            ValidateActionDocumentation<SubmitForm>(WebPlugins.SubmitForm, "submit_form.json");
         }
 
         [DataTestMethod]

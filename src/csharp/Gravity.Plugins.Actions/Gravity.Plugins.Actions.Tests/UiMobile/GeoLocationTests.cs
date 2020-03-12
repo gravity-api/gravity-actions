@@ -31,7 +31,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiMobile
         [TestMethod]
         public void GeoLocationDocumentationResourceFile()
         {
-            ValidateActionDocumentation<SetGeoLocation>(MobilePlugins.SetGeoLocation, "set-geo-location.json");
+            ValidateActionDocumentation<SetGeoLocation>(MobilePlugins.SetGeoLocation, "set_geo_location.json");
         }
 
         [DataTestMethod]

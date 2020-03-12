@@ -28,7 +28,7 @@ namespace Gravity.Plugins.Actions.UiMobile
 {
     [Plugin(
         assembly: "Gravity.Plugins.Actions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
-        resource: "Gravity.Plugins.Actions.Documentation.set-geo-location.json",
+        resource: "Gravity.Plugins.Actions.Documentation.set_geo_location.json",
         Name = MobilePlugins.SetGeoLocation)]
     public class SetGeoLocation : WebDriverActionPlugin
     {

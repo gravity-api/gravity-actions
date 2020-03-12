@@ -38,7 +38,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         public void GetScreenshotDocumentationResourceFile()
         {
             ValidateActionDocumentation<GetScreenshot>(
-                CommonPlugins.GetScreenshot, "get-screenshot.json");
+                CommonPlugins.GetScreenshot, "get_screenshot.json");
         }
 
         [DataTestMethod]

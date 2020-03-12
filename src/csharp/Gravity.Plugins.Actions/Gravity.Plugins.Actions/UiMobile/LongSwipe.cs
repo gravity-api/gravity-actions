@@ -22,7 +22,7 @@ namespace Gravity.Plugins.Actions.UiMobile
 {
     [Plugin(
         assembly: "Gravity.Plugins.Actions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
-        resource: "Gravity.Plugins.Actions.Documentation.long-swipe.json",
+        resource: "Gravity.Plugins.Actions.Documentation.long_swipe.json",
         Name = MobilePlugins.LongSwipe)]
     public class LongSwipe : WebDriverActionPlugin
     {

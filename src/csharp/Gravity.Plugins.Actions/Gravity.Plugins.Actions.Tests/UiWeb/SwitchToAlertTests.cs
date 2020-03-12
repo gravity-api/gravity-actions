@@ -28,7 +28,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         public void SwitchToAlertDocumentationResourceFile()
         {
             ValidateActionDocumentation<SwitchToAlert>(
-                WebPlugins.SwitchToAlert, "switch-to-alert.json");
+                WebPlugins.SwitchToAlert, "switch_to_alert.json");
         }
 
         [DataTestMethod]

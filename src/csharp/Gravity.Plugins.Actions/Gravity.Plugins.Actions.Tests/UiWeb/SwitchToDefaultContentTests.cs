@@ -32,7 +32,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         public void SwitchToDefaultContentDocumentationResourceFile()
         {
             ValidateActionDocumentation<SwitchToDefaultContent>(
-                WebPlugins.SwitchToDefaultContent, "switch-to-default-content.json");
+                WebPlugins.SwitchToDefaultContent, "switch_to_default_content.json");
         }
 
         [TestMethod]

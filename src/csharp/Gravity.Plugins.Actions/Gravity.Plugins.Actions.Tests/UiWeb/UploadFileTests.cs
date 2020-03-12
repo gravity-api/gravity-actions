@@ -29,7 +29,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         [TestMethod]
         public void UploadFileDocumentationResourceFile()
         {
-            ValidateActionDocumentation<UploadFile>(WebPlugins.UploadFile, "upload-file.json");
+            ValidateActionDocumentation<UploadFile>(WebPlugins.UploadFile, "upload_file.json");
         }
 
         [DataTestMethod]

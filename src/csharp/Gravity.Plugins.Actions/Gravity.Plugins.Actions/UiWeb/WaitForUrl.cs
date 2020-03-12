@@ -17,7 +17,7 @@ namespace Gravity.Plugins.Actions.UiWeb
 {
     [Plugin(
         assembly: "Gravity.Plugins.Actions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
-        resource: "Gravity.Plugins.Actions.Documentation.wait-for-url.json",
+        resource: "Gravity.Plugins.Actions.Documentation.wait_for_url.json",
         Name = WebPlugins.WaitForUrl)]
     public class WaitForUrl : WebDriverActionPlugin
     {

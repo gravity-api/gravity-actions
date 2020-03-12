@@ -33,7 +33,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         public void ExecuteScriptDocumentationResourceFile()
         {
             ValidateActionDocumentation<ExecuteScript>(
-                CommonPlugins.ExecuteScript, "execute-script.json");
+                CommonPlugins.ExecuteScript, "execute_script.json");
         }
 
         [DataTestMethod]

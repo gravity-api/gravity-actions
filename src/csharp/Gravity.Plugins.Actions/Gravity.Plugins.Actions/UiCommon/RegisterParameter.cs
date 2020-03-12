@@ -32,7 +32,7 @@ namespace Gravity.Plugins.Actions.UiCommon
 {
     [Plugin(
         assembly: "Gravity.Plugins.Actions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
-        resource: "Gravity.Plugins.Actions.Documentation.register-parameter.json",
+        resource: "Gravity.Plugins.Actions.Documentation.register_parameter.json",
         Name = CommonPlugins.RegisterParameter)]
     public class RegisterParameter : WebDriverActionPlugin
     {
@@ -128,7 +128,7 @@ namespace Gravity.Plugins.Actions.UiCommon
             return Regex.Match(attributeValue, actionRule.RegularExpression).Value;
         }
 
-        // handles register-parameter errors
+        // handles register_parameter errors
         private void ErrorHandle(ActionRule actionRule)
         {
             // exit conditions

@@ -36,7 +36,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         public void CloseWindowDocumentationResourceFile()
         {
             ValidateActionDocumentation<CloseWindow>(
-                WebPlugins.CloseWindow, "close-window.json");
+                WebPlugins.CloseWindow, "close_window.json");
         }
 
         [DataTestMethod]

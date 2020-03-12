@@ -30,7 +30,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         public void NavigateBackDocumentationResourceFile()
         {
             ValidateActionDocumentation<NavigateBack>(
-                WebPlugins.NavigateBack, "navigate-back.json");
+                WebPlugins.NavigateBack, "navigate_back.json");
         }
 
         [TestMethod]

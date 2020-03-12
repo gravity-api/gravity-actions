@@ -31,7 +31,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         [TestMethod]
         public void WaitForUrlDocumentationResourceFile()
         {
-            ValidateActionDocumentation<WaitForUrl>(WebPlugins.WaitForUrl, "wait-for-url.json");
+            ValidateActionDocumentation<WaitForUrl>(WebPlugins.WaitForUrl, "wait_for_url.json");
         }
 
         [DataTestMethod]

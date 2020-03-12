@@ -27,7 +27,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiMobile
 
         [TestMethod]
         public void LongSwipeDocumentationResourceFile()
-            => ValidateActionDocumentation<LongSwipe>(MobilePlugins.LongSwipe, "long-swipe.json");
+            => ValidateActionDocumentation<LongSwipe>(MobilePlugins.LongSwipe, "long_swipe.json");
 
         [DataTestMethod]
         [DataRow("{'argument':'{{$ --source:100,100 --target:200,200}}'}")]

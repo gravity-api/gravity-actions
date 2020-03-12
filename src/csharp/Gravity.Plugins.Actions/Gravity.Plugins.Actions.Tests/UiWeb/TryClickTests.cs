@@ -31,7 +31,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         [TestMethod]
         public void TryClickDocumentationResourceFile()
         {
-            ValidateActionDocumentation<TryClick>(WebPlugins.TryClick, "try-click.json");
+            ValidateActionDocumentation<TryClick>(WebPlugins.TryClick, "try_click.json");
         }
 
         [DataTestMethod]

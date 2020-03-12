@@ -15,58 +15,44 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Documentation\assert.json" />
-    <None Remove="Documentation\condition.json" />
-    <None Remove="Documentation\move-to-element.json" />
-    <None Remove="Documentation\scroll.json" />
-    <None Remove="Documentation\swipe.json" />
-    <None Remove="Documentation\switch-to-frame.json" />
-    <None Remove="Documentation\switch-to-window.json" />
-    <None Remove="Documentation\try-send-keys.json" />
-    <None Remove="Documentation\upload-file.json" />
-    <None Remove="Documentation\wait-for-element.json" />
-    <None Remove="Documentation\wait-for-page.json" />
-    <None Remove="Documentation\wait-for-url.json" />
-  </ItemGroup>
-
-  <ItemGroup>
     <EmbeddedResource Include="Documentation\assert.json" />
+    <EmbeddedResource Include="Documentation\close_all_child_windows.json" />
+    <EmbeddedResource Include="Documentation\close_browser.json" />
+    <EmbeddedResource Include="Documentation\close_window.json" />
     <EmbeddedResource Include="Documentation\condition.json" />
-    <EmbeddedResource Include="Documentation\elements-listener.json" />
     <EmbeddedResource Include="Documentation\click.json" />
-    <EmbeddedResource Include="Documentation\close-all-child-windows.json" />
-    <EmbeddedResource Include="Documentation\close-browser.json" />
-    <EmbeddedResource Include="Documentation\close-window.json" />
-    <EmbeddedResource Include="Documentation\context-click.json" />
-    <EmbeddedResource Include="Documentation\double-click.json" />
-    <EmbeddedResource Include="Documentation\execute-script.json" />
-    <EmbeddedResource Include="Documentation\get-screenshot.json" />
-    <EmbeddedResource Include="Documentation\hide-keyboard.json" />
+    <EmbeddedResource Include="Documentation\context_click.json" />
+    <EmbeddedResource Include="Documentation\double_click.json" />
+    <EmbeddedResource Include="Documentation\elements_listener.json" />
+    <EmbeddedResource Include="Documentation\execute_script.json" />
+    <EmbeddedResource Include="Documentation\get_screenshot.json" />
+    <EmbeddedResource Include="Documentation\go_to_url.json" />
+    <EmbeddedResource Include="Documentation\hide_keyboard.json" />
     <EmbeddedResource Include="Documentation\keyboard.json" />
-    <EmbeddedResource Include="Documentation\move-to-element.json" />
+    <EmbeddedResource Include="Documentation\long_swipe.json" />
+    <EmbeddedResource Include="Documentation\move_to_element.json" />
+    <EmbeddedResource Include="Documentation\navigate_back.json" />
+    <EmbeddedResource Include="Documentation\navigate_forward.json" />
+    <EmbeddedResource Include="Documentation\register_parameter.json" />
+    <EmbeddedResource Include="Documentation\select_from_combo_box.json" />
+    <EmbeddedResource Include="Documentation\send_keys.json" />
+    <EmbeddedResource Include="Documentation\set_geo_location.json" />
+    <EmbeddedResource Include="Documentation\submit_form.json" />
     <EmbeddedResource Include="Documentation\swipe.json" />
-    <EmbeddedResource Include="Documentation\long-swipe.json" />
     <EmbeddedResource Include="Documentation\scroll.json" />
-    <EmbeddedResource Include="Documentation\select-from-combo-box.json" />
-    <EmbeddedResource Include="Documentation\set-geo-location.json" />
-    <EmbeddedResource Include="Documentation\navigate-back.json" />
-    <EmbeddedResource Include="Documentation\navigate-forward.json" />
     <EmbeddedResource Include="Documentation\refresh.json" />
-    <EmbeddedResource Include="Documentation\register-parameter.json" />
     <EmbeddedResource Include="Documentation\repeat.json" />
-    <EmbeddedResource Include="Documentation\send-keys.json" />
-    <EmbeddedResource Include="Documentation\submit-form.json" />
-    <EmbeddedResource Include="Documentation\switch-to-alert.json" />
-    <EmbeddedResource Include="Documentation\switch-to-default-content.json" />
-    <EmbeddedResource Include="Documentation\switch-to-frame.json" />
-    <EmbeddedResource Include="Documentation\switch-to-window.json" />
-    <EmbeddedResource Include="Documentation\try-click.json" />
-    <EmbeddedResource Include="Documentation\try-send-keys.json" />
-    <EmbeddedResource Include="Documentation\upload-file.json" />
-    <EmbeddedResource Include="Documentation\wait-for-element.json" />
-    <EmbeddedResource Include="Documentation\wait-for-page.json" />
-    <EmbeddedResource Include="Documentation\wait-for-url.json" />
+    <EmbeddedResource Include="Documentation\switch_to_alert.json" />
+    <EmbeddedResource Include="Documentation\switch_to_default_content.json" />
+    <EmbeddedResource Include="Documentation\switch_to_frame.json" />
+    <EmbeddedResource Include="Documentation\switch_to_window.json" />
+    <EmbeddedResource Include="Documentation\try_click.json" />
+    <EmbeddedResource Include="Documentation\try_send_keys.json" />
+    <EmbeddedResource Include="Documentation\upload_file.json" />
     <EmbeddedResource Include="Documentation\wait.json" />
+    <EmbeddedResource Include="Documentation\wait_for_element.json" />
+    <EmbeddedResource Include="Documentation\wait_for_page.json" />
+    <EmbeddedResource Include="Documentation\wait_for_url.json" />
   </ItemGroup>
 
   <ItemGroup>

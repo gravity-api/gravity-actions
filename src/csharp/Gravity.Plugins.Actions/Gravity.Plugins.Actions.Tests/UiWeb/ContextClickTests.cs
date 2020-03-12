@@ -34,7 +34,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         public void ContextClickDocumentationResourceFile()
         {
             ValidateActionDocumentation<ContextClick>(
-                WebPlugins.ContextClick, "context-click.json");
+                WebPlugins.ContextClick, "context_click.json");
         }
 
         [DataTestMethod]

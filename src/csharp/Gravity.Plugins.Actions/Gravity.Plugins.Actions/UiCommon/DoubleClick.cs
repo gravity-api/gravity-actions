@@ -12,7 +12,7 @@
  *    - modify: override action-name using ActionType constant
  *    
  * 2019-01-03
- *    - modify: add support for double-click without specified element (flat action)
+ *    - modify: add support for double_click without specified element (flat action)
  *    - modify: improve XML comments
  *
  * on-line resources
@@ -32,7 +32,7 @@ namespace Gravity.Plugins.Actions.UiCommon
 {
     [Plugin(
         assembly: "Gravity.Plugins.Actions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
-        resource: "Gravity.Plugins.Actions.Documentation.double-click.json",
+        resource: "Gravity.Plugins.Actions.Documentation.double_click.json",
         Name = CommonPlugins.DoubleClick)]
     public class DoubleClick : WebDriverActionPlugin
     {

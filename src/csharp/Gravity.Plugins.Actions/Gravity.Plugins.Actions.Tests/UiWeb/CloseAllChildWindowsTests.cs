@@ -37,7 +37,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         public void CloseAllChildWindowsDocumentationResourceFile()
         {
             ValidateActionDocumentation<CloseAllChildWindows>(
-                WebPlugins.CloseAllChildWindows, "close-all-child-windows.json");
+                WebPlugins.CloseAllChildWindows, "close_all_child_windows.json");
         }
 
         [TestMethod]

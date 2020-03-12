@@ -1,9 +1,13 @@
 {
+  "aliases": [ "Navigate", "Open", "GoTo" ],
   "cliArguments": {
     "blank": {
       "description": "Opens the URL address using [_blank] property (under new tab or window)."
     },
     "url": {
+      "description": "The URL address to navigate to."
+    },
+    "user": {
       "description": "The URL address to navigate to."
     }
   },

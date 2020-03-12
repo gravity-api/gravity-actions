@@ -26,6 +26,9 @@ namespace Gravity.Plugins.Actions.Contracts
         public const string ElementsListener = "ElementsListener";
 
         [DataMember]
+        public const string GoToUrl = "GoToUrl";
+
+        [DataMember]
         public const string Keyboard = "Keyboard";
 
         [DataMember]

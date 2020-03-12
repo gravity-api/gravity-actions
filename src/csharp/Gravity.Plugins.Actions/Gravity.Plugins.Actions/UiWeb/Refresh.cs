@@ -10,11 +10,14 @@
  * 
  * on-line resources
  */
+using Gravity.Plugins.Actions.Components;
 using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Attributes;
 using Gravity.Plugins.Base;
 using Gravity.Plugins.Contracts;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
+using System;
 
 namespace Gravity.Plugins.Actions.UiWeb
 {
@@ -57,8 +60,15 @@ namespace Gravity.Plugins.Actions.UiWeb
         // executes Refresh routine
         private void DoAction(ActionRule actionRule)
         {
-            // set default value
+            // setup
             var iterations = 1;
+            var factory = new PageStateFactory();
+            var timout = TimeSpan.FromMilliseconds(WebAutomation.EngineConfiguration.ElementSearchingTimeout);
+            var wait = new WebDriverWait(WebDriver, timout);
+            wait.IgnoreExceptionTypes(new[]
+            {
+                typeof(WebDriverException)
+            });
 
             // normalize iterations
             iterations = int.TryParse(actionRule.Argument, out int iterationsOut) ? iterationsOut : iterations;
@@ -71,7 +81,9 @@ namespace Gravity.Plugins.Actions.UiWeb
                 {
                     break;
                 }
-                WaitForReadyState("complete", 200);
+                // wait
+                wait.Until(driver
+                    => factory.Factor("complete", new object[] { driver }));
             }
         }
     }

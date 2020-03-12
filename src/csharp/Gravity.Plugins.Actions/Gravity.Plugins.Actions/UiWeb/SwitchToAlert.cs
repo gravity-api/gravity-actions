@@ -22,7 +22,7 @@ namespace Gravity.Plugins.Actions.UiWeb
         Name = WebPlugins.SwitchToAlert)]
     public class SwitchToAlert : WebDriverActionPlugin
     {
-        #region *** constants: arguments  ***
+        #region *** arguments    ***
         /// <summary>
         /// User name in an alert prompting for credentials.
         /// </summary>
@@ -42,7 +42,7 @@ namespace Gravity.Plugins.Actions.UiWeb
         // members: state
         private IDictionary<string, string> arguments;
 
-        #region *** constructors          ***
+        #region *** constructors ***
         /// <summary>
         /// Creates a new instance of this plugin.
         /// </summary>

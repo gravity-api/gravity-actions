@@ -306,7 +306,7 @@ namespace Gravity.Plugins.Actions.UnitTests.Base
         }
         #endregion
 
-        #region *** documentation  ***
+        #region *** creation       ***
         /// <summary>
         /// Validate if an action plug in was correctly generated (!= default) and have loaded relevant properties.
         /// </summary>

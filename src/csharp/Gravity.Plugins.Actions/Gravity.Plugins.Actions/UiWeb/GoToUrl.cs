@@ -102,7 +102,10 @@ namespace Gravity.Plugins.Actions.UiWeb
             var onElement = this.ConditionalGetElement(element, actionRule);
 
             // exit conditions
-            if (onElement == default)
+            var isOnElement = onElement != default;
+            var isUrlArgument = arguments.ContainsKey(Url) && !string.IsNullOrEmpty(arguments[Url]);
+
+            if ((isOnElement && isUrlArgument) || !isOnElement)
             {
                 return arguments[Url];
             }
@@ -117,20 +120,8 @@ namespace Gravity.Plugins.Actions.UiWeb
         // generates new window (or tab - depends on your browser) and switch to it
         private void OpenUnderNewTab()
         {
-            // get current windows count
-            var totalWindows = WebDriver.WindowHandles.Count;
-
             // open new blank-tab
             ((IJavaScriptExecutor)WebDriver).ExecuteScript("window.open('about:blank', '_blank');");
-
-            // get current windows count
-            var totalWindowsNext = WebDriver.WindowHandles.Count;
-
-            // exit condition
-            if (totalWindows == totalWindowsNext)
-            {
-                return;
-            }
 
             // switch to the new tab
             SwitchToNewTab();

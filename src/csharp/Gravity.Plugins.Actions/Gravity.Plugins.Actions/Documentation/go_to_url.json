@@ -22,7 +22,7 @@
       }
     },
     {
-      "description": "Navigate to [https://gravitymvctestapplication.azurewebsites.net/instructor] using [_blank] operation (new tab or window).",
+      "description": "Navigate to [https://www.google.com] using [_blank] operation (new tab or window).",
       "literalExample": "go to url {{$ --url:https://www.google.com --blank}}",
       "actionExample": {
         "actionType": "GoToUrl",
@@ -30,11 +30,11 @@
       }
     },
     {
-      "description": "Navigate to [https://gravitymvctestapplication.azurewebsites.net/instructor] and apply credentials into alert (if exists).",
-      "literalExample": "go to url {{$ --url:https://gravitymvctestapplication.azurewebsites.net/instructor --user:myUesr --password:myPassword}}",
+      "description": "Navigate to [https://www.google.com] and apply credentials into alert (if exists).",
+      "literalExample": "go to url {{$ --url:https://www.google.com --user:myUesr --password:myPassword}}",
       "actionExample": {
         "actionType": "GoToUrl",
-        "argument": "{{$ --url:https://gravitymvctestapplication.azurewebsites.net/instructor --user:myUesr --password:myPassword}}"
+        "argument": "{{$ --url:https://www.google.com --user:myUesr --password:myPassword}}"
       }
     },
     {

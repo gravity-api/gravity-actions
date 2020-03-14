@@ -1,13 +1,10 @@
 {
-  "aliases": [ "Navigate", "Open", "GoTo" ],
+  "aliases": [ "NavigateTo", "Open", "GoTo" ],
   "cliArguments": {
     "blank": {
       "description": "Opens the URL address using [_blank] property (under new tab or window)."
     },
     "url": {
-      "description": "The URL address to navigate to."
-    },
-    "user": {
       "description": "The URL address to navigate to."
     }
   },
@@ -27,14 +24,6 @@
       "actionExample": {
         "actionType": "GoToUrl",
         "argument": "{{$ --url:https://www.google.com --blank}}"
-      }
-    },
-    {
-      "description": "Navigate to [https://www.google.com] and apply credentials into alert (if exists).",
-      "literalExample": "go to url {{$ --url:https://www.google.com --user:myUesr --password:myPassword}}",
-      "actionExample": {
-        "actionType": "GoToUrl",
-        "argument": "{{$ --url:https://www.google.com --user:myUesr --password:myPassword}}"
       }
     },
     {

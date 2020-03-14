@@ -65,7 +65,7 @@ namespace Gravity.Plugins.Actions.UiWeb
             // setup
             var iterations = 1;
             var factory = new PageStateFactory();
-            var timout = TimeSpan.FromMilliseconds(WebAutomation.EngineConfiguration.ElementSearchingTimeout);
+            var timout = TimeSpan.FromMilliseconds(WebAutomation.EngineConfiguration.PageLoadTimeout);
             var wait = new WebDriverWait(WebDriver, timout);
             wait.IgnoreExceptionTypes(new[]
             {

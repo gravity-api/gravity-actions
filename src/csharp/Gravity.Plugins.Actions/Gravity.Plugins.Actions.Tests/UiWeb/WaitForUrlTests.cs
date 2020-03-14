@@ -35,7 +35,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'regularExpression':'mockgravityapiurl'}")]
+        [DataRow("{'regularExpression':'positive.io'}")]
         public void WaitForUrlPositive(string actionRule)
         {
             // execute
@@ -57,10 +57,10 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'argument':'2000','regularExpression':'mockgravityapiurl'}")]
-        [DataRow("{'argument':'00:00:02','regularExpression':'mockgravityapiurl'}")]
-        [DataRow("{'argument':'{{$ --timeout:2000}}','regularExpression':'mockgravityapiurl'}")]
-        [DataRow("{'argument':'{{$ --timeout:00:00:02}}','regularExpression':'mockgravityapiurl'}")]
+        [DataRow("{'argument':'2000','regularExpression':'positive.io'}")]
+        [DataRow("{'argument':'00:00:02','regularExpression':'positive.io'}")]
+        [DataRow("{'argument':'{{$ --timeout:2000}}','regularExpression':'positive.io'}")]
+        [DataRow("{'argument':'{{$ --timeout:00:00:02}}','regularExpression':'positive.io'}")]
         public void WaitForUrlPositiveTimeout(string actionRule)
         {
             // execute
@@ -85,7 +85,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'regularExpression':'mockgravityapiurl'}")]
+        [DataRow("{'regularExpression':'positive.io'}")]
         public void WaitForUrlElementPositive(string actionRule)
         {
             // execute
@@ -96,7 +96,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         }
 
         [DataTestMethod, ExpectedException(typeof(NoSuchElementException))]
-        [DataRow("{'regularExpression':'mockgravityapiurl'}")]
+        [DataRow("{'regularExpression':'positive.io'}")]
         public void WaitForUrlElementNone(string actionRule)
         {
             // execute
@@ -107,7 +107,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'regularExpression':'mockgravityapiurl'}")]
+        [DataRow("{'regularExpression':'positive.io'}")]
         public void WaitForUrlElementNull(string actionRule)
         {
             // execute
@@ -118,7 +118,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         }
 
         [DataTestMethod, ExpectedException(typeof(StaleElementReferenceException))]
-        [DataRow("{'regularExpression':'mockgravityapiurl'}")]
+        [DataRow("{'regularExpression':'positive.io'}")]
         public void WaitForUrlElementStale(string actionRule)
         {
             // execute
@@ -129,7 +129,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         }
 
         [DataTestMethod, ExpectedException(typeof(WebDriverException))]
-        [DataRow("{'regularExpression':'mockgravityapiurl'}")]
+        [DataRow("{'regularExpression':'positive.io'}")]
         public void WaitForUrlElementException(string actionRule)
         {
             // execute
@@ -151,10 +151,10 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'argument':'2000','regularExpression':'mockgravityapiurl'}")]
-        [DataRow("{'argument':'00:00:02','regularExpression':'mockgravityapiurl'}")]
-        [DataRow("{'argument':'{{$ --timeout:2000}}','regularExpression':'mockgravityapiurl'}")]
-        [DataRow("{'argument':'{{$ --timeout:00:00:02}}','regularExpression':'mockgravityapiurl'}")]
+        [DataRow("{'argument':'2000','regularExpression':'positive.io'}")]
+        [DataRow("{'argument':'00:00:02','regularExpression':'positive.io'}")]
+        [DataRow("{'argument':'{{$ --timeout:2000}}','regularExpression':'positive.io'}")]
+        [DataRow("{'argument':'{{$ --timeout:00:00:02}}','regularExpression':'positive.io'}")]
         public void WaitForUrlElementPositiveTimeout(string actionRule)
         {
             // execute

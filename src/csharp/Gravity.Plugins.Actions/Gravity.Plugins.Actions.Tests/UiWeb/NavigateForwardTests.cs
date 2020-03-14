@@ -14,6 +14,18 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
     [TestClass]
     public class NavigateForwardTests : ActionTests
     {
+        [TestInitialize]
+        public void Setup()
+        {
+            WebAutomation.EngineConfiguration.PageLoadTimeout = 15000;
+        }
+
+        [TestCleanup]
+        public void Cleanup()
+        {
+            WebAutomation.EngineConfiguration.PageLoadTimeout = 100;
+        }
+
         [TestMethod]
         public void NavigateForwardCreate()
         {

@@ -396,10 +396,10 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         }
 
         [DataTestMethod]
-        [DataRow(ActionRuleArgumentOperator, "eq", "http://mockgravityapiurl.com/")]
-        [DataRow(ActionRuleArgumentOperator, "ne", "http://com.mockgravityapiurl/")]
-        [DataRow(ActionRuleArgumentOperator, "match", "mockgravityapiurl")]
-        [DataRow(ActionRuleArgumentOperator, "not_match", "com.mockgravityapiurl")]
+        [DataRow(ActionRuleArgumentOperator, "eq", "http://positive.io/")]
+        [DataRow(ActionRuleArgumentOperator, "ne", "http://io.positive/")]
+        [DataRow(ActionRuleArgumentOperator, "match", "positive.io")]
+        [DataRow(ActionRuleArgumentOperator, "not_match", "io.positive")]
         public void AssertUrl(string actionRule, string onOperator, string onOperatorExpected)
         {
             // execute

@@ -55,17 +55,6 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         }
 
         [TestMethod]
-        [DataRow("{'argument':'{{$ --url:http://noaddress.io --user:myUesr --password:myPassword}}'}")]
-        public void GoToUrlCredentials(string actionRule)
-        {
-            // execute
-            ExecuteAction<GoToUrl>(actionRule);
-
-            // assertion
-            Assert.AreEqual(expected: "http://noaddress.io", actual: WebDriver.Url);
-        }
-
-        [TestMethod]
         [DataRow("{'argument':'{{$ --url:http://noaddress.io --blank}}'}")]
         public void GoToUrlNewTab(string actionRule)
         {

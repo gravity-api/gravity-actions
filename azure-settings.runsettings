@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RunSettings>
+  <TestRunParameters>
+    <Parameter name="Grid.Endpoint" value="http://localhost:4444/wd/hub" />
+    <Parameter name="Build.Number" value="development" />
+    <Parameter name="Project.Name" value="Gravity API - Action Plugins Package" />
+  </TestRunParameters>
+
+  <MSTest>
+    <Parallelize>
+      <Workers>10</Workers>
+      <Scope>MethodLevel</Scope>
+    </Parallelize>
+  </MSTest>
+</RunSettings>

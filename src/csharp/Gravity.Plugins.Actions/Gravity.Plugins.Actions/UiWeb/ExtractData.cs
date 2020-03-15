@@ -77,7 +77,7 @@ namespace Gravity.Plugins.Actions.UiWeb
             }
         }
 
-        #region *** Data Extraction        ***
+        #region *** Data Extraction         ***
         private void DoExtraction(ExtractionRule extractionRule, string key)
         {
             // setup
@@ -108,7 +108,7 @@ namespace Gravity.Plugins.Actions.UiWeb
         }
         #endregion
 
-        #region *** Data Extraction Source ***
+        #region *** Data Extraction Source  ***
         private Entity DoContentEntriesFromSource(ExtractionRule extractionRule, HtmlNode cachedElement, int index)
         {
             // setup
@@ -154,7 +154,10 @@ namespace Gravity.Plugins.Actions.UiWeb
         }
         #endregion
 
-        #region *** HTML/Elements Cache    ***
+        #region *** Data Extraction Element ***
+        #endregion
+
+        #region *** HTML/Elements Cache     ***
         private IEnumerable<HtmlNode> CacheRootElements(ExtractionRule extractionRule, bool isFromSource)
         {
             // setup
@@ -176,7 +179,7 @@ namespace Gravity.Plugins.Actions.UiWeb
         }
         #endregion
 
-        #region *** Extraction Rules       ***
+        #region *** Extraction Rules        ***
         private IEnumerable<ExtractionRule> GetExtractionRules(ActionRule actionRule)
         {
             // setup

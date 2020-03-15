@@ -15,6 +15,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Documentation\extract_data.json" />
+  </ItemGroup>
+
+  <ItemGroup>
     <EmbeddedResource Include="Documentation\assert.json" />
     <EmbeddedResource Include="Documentation\close_all_child_windows.json" />
     <EmbeddedResource Include="Documentation\close_browser.json" />
@@ -25,6 +29,7 @@
     <EmbeddedResource Include="Documentation\double_click.json" />
     <EmbeddedResource Include="Documentation\elements_listener.json" />
     <EmbeddedResource Include="Documentation\execute_script.json" />
+    <EmbeddedResource Include="Documentation\extract_data.json" />
     <EmbeddedResource Include="Documentation\get_screenshot.json" />
     <EmbeddedResource Include="Documentation\go_to_url.json" />
     <EmbeddedResource Include="Documentation\hide_keyboard.json" />
@@ -57,6 +62,7 @@
 
   <ItemGroup>
     <PackageReference Include="Gravity.Core" Version="2020.2.12.1" />
+    <PackageReference Include="HtmlAgilityPack" Version="1.11.22" />
   </ItemGroup>
 
   <ItemGroup>

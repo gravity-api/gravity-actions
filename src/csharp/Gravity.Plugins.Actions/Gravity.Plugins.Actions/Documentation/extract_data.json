@@ -1,0 +1,13 @@
+{
+  "name": "ExtractData",
+  "summary": "",
+  "description": "",
+  "examples": [
+  ],
+  "properties": {},
+  "scope": [ "web", "mobile-web", "mobile-native" ],
+  "protocol": {
+    "endpoint": "none",
+    "w3c": "none"
+  }
+}

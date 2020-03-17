@@ -14,6 +14,7 @@ using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
 namespace Gravity.Plugins.Actions.UnitTests.UiCommon
 {
     [TestClass]
+    [DoNotParallelize]
     public class ConditionTests : ActionTests
     {
         private const string TestKey = "test_key";

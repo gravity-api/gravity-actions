@@ -1,13 +1,216 @@
 {
   "cliArguments": {
   },
-  "description": "Executes the extraction rule collection under provided under WebAutomation and return or populates the data collected.",
+  "description": "Executes the extraction rule collection under provided under WebAutomation and return or populates the data collected. Due to the nature of this action, it supports only XPath locator.",
   "examples": [
     {
       "actionExample": {
         "actionType": "ExtractData"
       },
-      "description": "",
+      "extractionExample": {
+        "pageSource": true,
+        "rootElementToExtractFrom": "//div",
+        "elementsToExtract": [
+          {
+            "key": "data"
+          }
+        ]
+      },
+      "description": "Extracts the inner text of all root elements, found in the page source.",
+      "literalExample": "not supported by literal engine."
+    },
+    {
+      "actionExample": {
+        "actionType": "ExtractData"
+      },
+      "extractionExample": {
+        "pageSource": true,
+        "rootElementToExtractFrom": "//div",
+        "elementsToExtract": [
+          {
+            "regularExpression": "foo bar",
+            "key": "data"
+          }
+        ]
+      },
+      "description": "Extracts the inner text of all root elements, found in the page source and apply a pattern on it.",
+      "literalExample": "not supported by literal engine."
+    },
+    {
+      "actionExample": {
+        "actionType": "ExtractData"
+      },
+      "extractionExample": {
+        "pageSource": true,
+        "rootElementToExtractFrom": "//div",
+        "elementsToExtract": [
+          {
+            "elementAttributeToActOn": "class",
+            "key": "data"
+          }
+        ]
+      },
+      "description": "Extracts a value from a given attribute for all root elements, found in the page source.",
+      "literalExample": "not supported by literal engine."
+    },
+    {
+      "actionExample": {
+        "actionType": "ExtractData"
+      },
+      "extractionExample": {
+        "pageSource": true,
+        "rootElementToExtractFrom": "//div",
+        "elementsToExtract": [
+          {
+            "elementAttributeToActOn": "class",
+            "regularExpression": "foo bar",
+            "key": "data"
+          }
+        ]
+      },
+      "description": "Extracts a value from a given attribute for all root elements, found in the page source and apply a pattern on it.",
+      "literalExample": "not supported by literal engine."
+    },
+    {
+      "actionExample": {
+        "actionType": "ExtractData"
+      },
+      "extractionExample": {
+        "pageSource": true,
+        "rootElementToExtractFrom": "//div",
+        "elementsToExtract": [
+          {
+            "elementToActOn": "./span[1]",
+            "key": "data"
+          }
+        ]
+      },
+      "description": "Extracts the inner text of the given element under all root elements, found in the page source.",
+      "literalExample": "not supported by literal engine."
+    },
+    {
+      "actionExample": {
+        "actionType": "ExtractData"
+      },
+      "extractionExample": {
+        "pageSource": true,
+        "rootElementToExtractFrom": "//div",
+        "elementsToExtract": [
+          {
+            "elementToActOn": "./span[1]",
+            "regularExpression": "foo bar",
+            "key": "data"
+          }
+        ]
+      },
+      "description": "Extracts the inner text of the given element under all root elements, found in the page source and apply a pattern on it.",
+      "literalExample": "not supported by literal engine."
+    },
+    {
+      "actionExample": {
+        "actionType": "ExtractData"
+      },
+      "extractionExample": {
+        "pageSource": true,
+        "rootElementToExtractFrom": "//div",
+        "elementsToExtract": [
+          {
+            "elementToActOn": "./span[1]",
+            "elementAttributeToActOn": "class",
+            "key": "data"
+          }
+        ]
+      },
+      "description": "Extracts the inner text of the given element under all root elements, found in the page source and apply a pattern on it.",
+      "literalExample": "not supported by literal engine."
+    },
+    {
+      "actionExample": {
+        "actionType": "ExtractData"
+      },
+      "extractionExample": {
+        "pageSource": true,
+        "rootElementToExtractFrom": "//div",
+        "elementsToExtract": [
+          {
+            "elementToActOn": "./span[1]",
+            "elementAttributeToActOn": "class",
+            "regularExpression": "foo bar",
+            "key": "data"
+          }
+        ]
+      },
+      "description": "Extracts the attribute value of the given element under all root elements, found in the page source and apply a pattern on it.",
+      "literalExample": "not supported by literal engine."
+    },
+    {
+      "actionExample": {
+        "actionType": "ExtractData"
+      },
+      "extractionExample": {
+        "pageSource": true,
+        "rootElementToExtractFrom": "//div",
+        "elementsToExtract": [
+          {
+            "elementAttributeToActOn": "html",
+            "key": "data"
+          }
+        ]
+      },
+      "description": "Extracts the outer HTML of all root elements.",
+      "literalExample": "not supported by literal engine."
+    },
+    {
+      "actionExample": {
+        "actionType": "ExtractData"
+      },
+      "extractionExample": {
+        "pageSource": true,
+        "rootElementToExtractFrom": "//div",
+        "elementsToExtract": [
+          {
+            "elementToActOn": "./span[1]",
+            "elementAttributeToActOn": "html",
+            "key": "data"
+          }
+        ]
+      },
+      "description": "Extracts the outer HTML of the given element under all root elements.",
+      "literalExample": "not supported by literal engine."
+    },
+    {
+      "actionExample": {
+        "actionType": "ExtractData"
+      },
+      "extractionExample": {
+        "pageSource": true,
+        "rootElementToExtractFrom": "//div",
+        "elementsToExtract": [
+          {
+            "elementToActOn": "//p[1]",
+            "key": "data"
+          }
+        ]
+      },
+      "description": "Extracts inner text of the given absolute element for all root elements (will be the same for all extractions on the same page).",
+      "literalExample": "not supported by literal engine."
+    },
+    {
+      "actionExample": {
+        "actionType": "ExtractData"
+      },
+      "extractionExample": {
+        "pageSource": true,
+        "rootElementToExtractFrom": "//div",
+        "elementsToExtract": [
+          {
+            "elementToActOn": "//p[1]",
+            "elementAttributeToActOn": "id",
+            "key": "data"
+          }
+        ]
+      },
+      "description": "Extracts the attribute value of the given absolute element for all root elements (will be the same for all extractions on the same page).",
       "literalExample": "not supported by literal engine."
     }
   ],

@@ -17,6 +17,7 @@ using System.Linq;
 namespace Gravity.Plugins.Actions.UnitTests.UiCommon
 {
     [TestClass]
+    [DoNotParallelize]
     public class GetScreenshotTests : ActionTests
     {
         // members: constants

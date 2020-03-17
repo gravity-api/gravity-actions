@@ -8,12 +8,15 @@ using Gravity.Plugins.Actions.Extensions;
 using Gravity.Plugins.Attributes;
 using Gravity.Plugins.Base;
 using Gravity.Plugins.Contracts;
+using Gravity.Plugins.Extensions;
 using HtmlAgilityPack;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Extensions;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Reflection;
 using System.Text.RegularExpressions;
 
 namespace Gravity.Plugins.Actions.UiWeb
@@ -81,17 +84,17 @@ namespace Gravity.Plugins.Actions.UiWeb
         private void DoExtraction(ExtractionRule extractionRule, string key)
         {
             // setup
-            var rootElements = GetRootElements(extractionRule);
-            var cachedElements = CacheRootElements(extractionRule, isFromSource: extractionRule.PageSource);
+            var webElements = GetRootElements(extractionRule);
+            var domElements = CacheRootElements(extractionRule, isFromSource: extractionRule.PageSource);
             var results = new List<Entity>();
 
             // extract from source
             if (extractionRule.PageSource)
             {
-                for (int i = 0; i < cachedElements.Count(); i++)
+                for (int i = 0; i < domElements.Count(); i++)
                 {
                     results.Add(DoContentEntriesFromSource(
-                        extractionRule, cachedElement: cachedElements.ElementAt(i), i));
+                        extractionRule, domElement: domElements.ElementAt(i), i));
                 }
             }
 
@@ -109,7 +112,7 @@ namespace Gravity.Plugins.Actions.UiWeb
         #endregion
 
         #region *** Data Extraction Source  ***
-        private Entity DoContentEntriesFromSource(ExtractionRule extractionRule, HtmlNode cachedElement, int index)
+        private Entity DoContentEntriesFromSource(ExtractionRule extractionRule, HtmlNode domElement, int index)
         {
             // setup
             var entity = new Entity()
@@ -121,7 +124,7 @@ namespace Gravity.Plugins.Actions.UiWeb
             // extract
             foreach (var entry in extractionRule.ElementsToExtract)
             {
-                var contentEntry = DoContentEntryFromSource(entry, cachedElement);
+                var contentEntry = DoContentEntryFromSource(entry, domElement);
                 entity.EntityContent[contentEntry.Key] = contentEntry.Value;
             }
 
@@ -129,23 +132,29 @@ namespace Gravity.Plugins.Actions.UiWeb
             return entity;
         }
 
-        private static KeyValuePair<string, object> DoContentEntryFromSource(ContentEntry entry, HtmlNode cachedElement)
+        private KeyValuePair<string, object> DoContentEntryFromSource(ContentEntry entry, HtmlNode domElement)
         {
             // setup
-            var htmlNode = cachedElement;
+            var htmlNode = domElement;
 
             // if not self, take from element or from page
             if (!string.IsNullOrEmpty(entry.ElementToActOn))
             {
                 htmlNode = entry.ElementToActOn.IsXpath(isRelative: true)
-                    ? cachedElement.SelectSingleNode(entry.ElementToActOn)
-                    : cachedElement.OwnerDocument.DocumentNode.SelectSingleNode(entry.ElementToActOn);
+                    ? domElement.SelectSingleNode(entry.ElementToActOn)
+                    : domElement.OwnerDocument.DocumentNode.SelectSingleNode(entry.ElementToActOn);
+            }
+
+            // exit conditions
+            if(htmlNode == default)
+            {
+                return new KeyValuePair<string, object>(key: entry.Key, value: string.Empty);
             }
 
             // get value, take text or attribute
             var value = string.IsNullOrEmpty(entry.ElementAttributeToActOn)
                 ? htmlNode.InnerText
-                : htmlNode.GetAttributeValue(name: entry.ElementAttributeToActOn, def: string.Empty);
+                : GetAttributeValue(element: htmlNode, attribute: entry.ElementAttributeToActOn);
 
             // result
             return new KeyValuePair<string, object>(
@@ -209,6 +218,54 @@ namespace Gravity.Plugins.Actions.UiWeb
             }
             return extractionsList;
         }
+
+        private string GetAttributeValue(IWebElement element, string attribute)
+        {
+            // special
+            var attributeMethod = GetSpecialAttributeMethod<IWebElement>(attribute);
+
+            // value
+            return attributeMethod != default
+                ? (string)attributeMethod.Invoke(this, new[] { element })
+                : element.GetAttribute(attributeName: attribute);
+        }
+
+        private string GetAttributeValue(HtmlNode element, string attribute)
+        {
+            // special
+            var attributeMethod = GetSpecialAttributeMethod<HtmlNode>(attribute);
+
+            // value
+            return attributeMethod != default
+                ? (string)attributeMethod.Invoke(this, new[] { element })
+                : element.GetAttributeValue(name: attribute, def: string.Empty);
+        }
+        #endregion
+
+#pragma warning disable IDE0051
+        #region *** Special Attributes      ***
+        [Description("html")]
+        private string Html(IWebElement element) => element.GetSource();
+
+        [Description("html")]
+        private string Html(HtmlNode element) => element.OuterHtml;
+
+        private MethodInfo GetSpecialAttributeMethod<T>(string attribute)
+        {
+            // get methods
+            var methods = this.GetType().GetMethodsByDescription(regex: attribute);
+
+            // exit conditions
+            if (!methods.Any())
+            {
+                return default;
+            }
+
+            // find method by element type
+            return methods
+                .FirstOrDefault(i => i.GetParameters().First(p => p.Name == "element").ParameterType == typeof(T));
+        }
         #endregion
     }
+#pragma warning restore
 }

@@ -15,7 +15,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Documentation\extract_data.json" />
+    <None Remove="Documentation\extract_dom_data.json" />
+    <None Remove="Documentation\extract_from_source.json" />
   </ItemGroup>
 
   <ItemGroup>
@@ -29,7 +30,8 @@
     <EmbeddedResource Include="Documentation\double_click.json" />
     <EmbeddedResource Include="Documentation\elements_listener.json" />
     <EmbeddedResource Include="Documentation\execute_script.json" />
-    <EmbeddedResource Include="Documentation\extract_data.json" />
+    <EmbeddedResource Include="Documentation\extract_dom_data.json" />
+    <EmbeddedResource Include="Documentation\extract_from_source.json" />
     <EmbeddedResource Include="Documentation\get_screenshot.json" />
     <EmbeddedResource Include="Documentation\go_to_url.json" />
     <EmbeddedResource Include="Documentation\hide_keyboard.json" />

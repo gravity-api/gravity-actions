@@ -5,8 +5,11 @@
  */
 using Gravity.Plugins.Base;
 using Gravity.Plugins.Contracts;
+using Gravity.Plugins.Extensions;
 using OpenQA.Selenium;
 using System;
+using System.Linq;
+using System.Reflection;
 
 namespace Gravity.Plugins.Actions.Extensions
 {
@@ -35,6 +38,30 @@ namespace Gravity.Plugins.Actions.Extensions
             return element != default
                 ? element.GetElementByActionRule(plugin.ByFactory, actionRule, timeout)
                 : plugin.WebDriver.GetElementByActionRule(plugin.ByFactory, actionRule, timeout);
+        }
+
+        /// <summary>
+        /// Gets a <see cref="MemberInfo"/> based on a given <see cref="Plugin"/> and when the method [element]
+        /// parameter type is the same as T type.
+        /// </summary>
+        /// <typeparam name="T">The [element] parameter type to find.</typeparam>
+        /// <param name="plugin">This <see cref="Plugin"/> under which to find the method.</param>
+        /// <param name="attribute">The special attribute method description.</param>
+        /// <returns><see cref="MemberInfo"/> based on a given <see cref="Plugin"/>.</returns>
+        public static MethodInfo GetSpecialAttributeMethod<T>(this Plugin plugin, string attribute)
+        {
+            // get methods
+            var methods = plugin.GetType().GetMethodsByDescription(regex: attribute);
+
+            // exit conditions
+            if (!methods.Any())
+            {
+                return default;
+            }
+
+            // find method by element type
+            return methods
+                .FirstOrDefault(i => i.GetParameters().First(p => p.Name == "element").ParameterType == typeof(T));
         }
     }
 }

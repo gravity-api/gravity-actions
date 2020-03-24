@@ -15,7 +15,7 @@
  * on-line resources
  */
 using Gravity.Plugins.Actions.Contracts;
-using Gravity.Plugins.Actions.Extensions;
+using Gravity.Plugins.Extensions;
 using Gravity.Plugins.Attributes;
 using Gravity.Plugins.Base;
 using Gravity.Plugins.Contracts;

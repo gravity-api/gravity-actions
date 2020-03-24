@@ -1,52 +1,34 @@
-﻿/*
- * CHANGE LOG - keep only last 5 threads
- * 
- * on-line resources
- */
-using Gravity.Plugins.Actions.Contracts;
-using Gravity.Plugins.Extensions;
+﻿using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Attributes;
 using Gravity.Plugins.Base;
 using Gravity.Plugins.Contracts;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Support.UI;
+using OpenQA.Selenium.Extensions;
 using System;
-using System.Text.RegularExpressions;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Gravity.Plugins.Actions.UiWeb
 {
     [Plugin(
         assembly: "Gravity.Plugins.Actions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
-        resource: "Gravity.Plugins.Actions.Documentation.wait_for_url.json",
-        Name = WebPlugins.WaitForUrl)]
-    public class WaitForUrl : WebDriverActionPlugin
+        resource: "Gravity.Plugins.Actions.Documentation.extract_dom_data.json",
+        Name = WebPlugins.ExtractDomData)]
+    public class ExtractFromDom : WebDriverActionPlugin
     {
-        #region *** arguments    ***
-        /// <summary>
-        /// Timeout to wait before throwing [TimeoutException], value can be TimeSpan [hh:mm:ss] or in millisecond [3000].
-        /// If not provided, default will be [PageLoadTimeout].
-        /// </summary>
-        public const string Timeout = "timeout";
-        #endregion
-
-        // members: state
-        private TimeSpan timeout;
-
         #region *** constructors ***
         /// <summary>
         /// Creates a new instance of this plugin.
         /// </summary>
         /// <param name="webAutomation">This <see cref="WebAutomation"/> object (the original object sent by the user).</param>
         /// <param name="driver"><see cref="IWebDriver"/> implementation by which to execute the action.</param>
-        public WaitForUrl(WebAutomation webAutomation, IWebDriver driver)
+        public ExtractFromDom(WebAutomation webAutomation, IWebDriver driver)
             : base(webAutomation, driver)
-        {
-            timeout = TimeSpan.FromMilliseconds(WebAutomation.EngineConfiguration.PageLoadTimeout);
-        }
+        { }
         #endregion
 
         /// <summary>
-        /// Wait until the provided URL conditions are met.
+        /// Executes <see cref="ExtractionRule"/> collection under this <see cref="Plugin.WebAutomation"/>.
         /// </summary>
         /// <param name="actionRule">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
         public override void OnPerform(ActionRule actionRule)
@@ -55,7 +37,7 @@ namespace Gravity.Plugins.Actions.UiWeb
         }
 
         /// <summary>
-        /// Wait until the provided URL conditions are met.
+        /// Executes <see cref="ExtractionRule"/> collection under this <see cref="Plugin.WebAutomation"/>.
         /// </summary>
         /// <param name="actionRule">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
         /// <param name="element">This <see cref="IWebElement"/> instance on which to perform the action (provided by the extraction rule).</param>
@@ -66,19 +48,17 @@ namespace Gravity.Plugins.Actions.UiWeb
 
         // executes action routine
         private void DoAction(ActionRule actionRule)
+        { }
+
+        #region *** HTML/Elements Cache     ***
+        private IEnumerable<IWebElement> GetRootElements(ExtractionRule extractionRule)
         {
             // setup
-            var arguments = CliFactory.Parse(actionRule.Argument);
-            if (arguments.ContainsKey(Timeout))
-            {
-                timeout = arguments[Timeout].AsTimeSpan();
-            }
+            var by = By.XPath(extractionRule.RootElementToExtractFrom);
 
-            var wait = new WebDriverWait(WebDriver, timeout);
-
-            // wait
-            wait.Until(driver
-                => Regex.IsMatch(driver.Url, actionRule.RegularExpression));
+            // result
+            return WebDriver.GetElements(by);
         }
+        #endregion
     }
 }

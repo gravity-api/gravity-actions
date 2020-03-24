@@ -18,6 +18,7 @@ using System.Diagnostics;
 using Gravity.Plugins.Base;
 using Gravity.Plugins.Attributes;
 using Gravity.Plugins.Contracts;
+using System.Data.SqlClient;
 
 namespace Gravity.Plugins.Actions.UnitTests.Base
 {
@@ -460,6 +461,39 @@ namespace Gravity.Plugins.Actions.UnitTests.Base
                     }
                 }
             }
+        }
+        #endregion
+
+        #region *** utilities      ***
+        /// <summary>
+        /// Drops an existing SQL database.
+        /// </summary>
+        /// <param name="connectionString">SQL Database connection string.</param>
+        public static void DropDatabase(string connectionString)
+        {
+            // setup
+            var builder = new SqlConnectionStringBuilder(connectionString);
+            var command =
+                " USE [master]; " +
+                $"IF EXISTS (SELECT [name] FROM sys.databases WHERE [name] = '{builder.InitialCatalog}')" +
+                " BEGIN" +
+                $"    ALTER DATABASE [{builder.InitialCatalog}] SET SINGLE_USER WITH ROLLBACK IMMEDIATE;" +
+                $"    DROP DATABASE [{builder.InitialCatalog}];" +
+                " END";
+
+            // clear initial catalog if exists
+            builder.Remove("Initial Catalog");
+
+            // setup connection
+            using var connection = new SqlConnection(connectionString: builder.ConnectionString.Replace(@"\\", @"\"));
+            connection.Open();
+
+            // setup SQL command
+            var sqlCommand = new SqlCommand(cmdText: "EXEC sp_executesql @script", connection);
+            sqlCommand.Parameters.AddWithValue(parameterName: "script", value: command);
+
+            // create database if not exists
+            sqlCommand.ExecuteNonQuery();
         }
         #endregion
     }

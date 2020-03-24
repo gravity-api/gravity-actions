@@ -7,18 +7,25 @@ using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Actions.UiWeb;
 using Gravity.Plugins.Actions.UnitTests.Base;
 using Gravity.Plugins.Contracts;
+using Gravity.Plugins.Extensions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
+using System;
+using System.Data;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text.RegularExpressions;
 
 #pragma warning disable S4144
 namespace Gravity.Plugins.Actions.UnitTests.UiWeb
 {
     [TestClass]
-    public class ExtractDataTests : ActionTests
+    [DoNotParallelize]
+    public class ExtractFromSourceTests : ActionTests
     {
         // members state
+        private static TestContext staticContext;
         private const string PageSource =
             "<html>" +
             "    <head>" +
@@ -47,6 +54,27 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
             "    </body>" +
             "</html>";
 
+        public TestContext TestContext { get; set; }
+
+        [ClassInitialize]
+        public static void Init(TestContext context)
+        {
+            staticContext = context;
+        }
+
+        [ClassCleanup]
+        public static void Dispose()
+        {
+            // database
+            DropDatabase($"{staticContext.Properties["Data.ConnectionString"]}");
+
+            // data files
+            if (Directory.Exists("Data"))
+            {
+                Directory.Delete(path: "Data", true);
+            }
+        }
+
         [TestInitialize]
         public void Setup()
         {
@@ -54,21 +82,15 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         }
 
         [TestMethod]
-        public void ExtractDataCreate() => ValidateAction<ExtractData>();
+        public void ExtractDataCreate() => ValidateAction<ExtractFromSource>();
 
         [TestMethod]
         public void ExtractDataDocumentation()
-            => ValidateActionDocumentation<ExtractData>(WebPlugins.ExtractData);
+            => ValidateActionDocumentation<ExtractFromSource>(WebPlugins.ExtractFromSource);
 
         [TestMethod]
         public void ExtractDataDocumentationResourceFile()
-            => ValidateActionDocumentation<ExtractData>(WebPlugins.ExtractData, "extract_data.json");
-
-        #region *** extract from element ***
-        #endregion
-
-        #region *** extract with actions ***
-        #endregion
+            => ValidateActionDocumentation<ExtractFromSource>(WebPlugins.ExtractFromSource, "extract_from_source.json");
 
         #region *** extract from source  ***
         // 0: extracts inner text of all root elements
@@ -318,6 +340,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
             Assert.IsTrue(actual);
         }
 
+        // 0: extracts attribute value of the given absolute element for all root elements
         [DataTestMethod]
         [DataRow("" +
             "{" +
@@ -341,6 +364,226 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         }
         #endregion
 
+        #region *** extract into SQL     ***
+        // 0: extracts inner text of all root elements and save it to SQL Server.
+        //    the saving will be done when the extraction rule execution completed.
+        [DataTestMethod]
+        [DataRow("" +
+            "{" +
+            "    'dataSource': {" +
+            "        'type':'SQLServer'," +
+            "        'source':'[Data.ConnectionString]'," +
+            "        'repository':'[Data.Repository]'" +
+            "    }," +
+            "    'pageSource':true," +
+            "    'rootElementToExtractFrom':'//positive'," +
+            "    'elementsToExtract': [" +
+            "        {" +
+            "            'key':'data'" +
+            "        }" +
+            "    ]" +
+            "}")]
+        public void SaveToSqlServer(string extractionRule)
+        {
+            // setup
+            extractionRule =
+                SetSqlDataSource(extractionRule, repository: MethodBase.GetCurrentMethod().Name);
+
+            // execute
+            var isExtract = DoCsvExtract(extractionRule);
+
+            // assertion
+            Assert.IsTrue(isExtract);
+        }
+
+        // 0: extracts inner text of all root elements and save it to SQL Server.
+        //    the saving will be done when the content entry execution completed.
+        [DataTestMethod]
+        [DataRow("" +
+            "{" +
+            "    'dataSource': {" +
+            "        'type':'SQLServer'," +
+            "        'source':'[Data.ConnectionString]'," +
+            "        'repository':'[Data.Repository]'," +
+            "        'writePerEntity':true" +
+            "    }," +
+            "    'pageSource':true," +
+            "    'rootElementToExtractFrom':'//positive'," +
+            "    'elementsToExtract': [" +
+            "        {" +
+            "            'key':'data'" +
+            "        }" +
+            "    ]" +
+            "}")]
+        public void SaveToSqlServerPerEntity(string extractionRule)
+        {
+            // setup
+            extractionRule =
+                SetSqlDataSource(extractionRule, repository: MethodBase.GetCurrentMethod().Name);
+
+            // execute
+            var isExtract = DoCsvExtract(extractionRule);
+
+            // assertion
+            Assert.IsTrue(isExtract);
+        }
+
+        // 0: extracts inner text of all root elements and save it to SQL Server.
+        //    the saving will be done when the extraction rule execution completed.
+        [DataTestMethod]
+        [DataRow("" +
+            "{" +
+            "    'dataSource': {" +
+            "        'type':'SQLServer'," +
+            "        'source':'[Data.ConnectionString]'," +
+            "        'repository':'[Data.Repository]'" +
+            "    }," +
+            "    'pageSource':true," +
+            "    'rootElementToExtractFrom':'//positive'," +
+            "    'elementsToExtract': [" +
+            "        {" +
+            "            'key':'data'" +
+            "        }" +
+            "    ]" +
+            "}")]
+        public void SaveToSqlServerNoSource(string extractionRule)
+        {
+            // setup
+            extractionRule = extractionRule
+                .Replace(oldValue: "[Data.Repository]", newValue: MethodBase.GetCurrentMethod().Name);
+
+            // execute
+            var isExtract = DoCsvExtract(extractionRule);
+
+            // assertion
+            Assert.IsFalse(isExtract);
+        }
+
+        // 0: extracts inner text of all root elements and save it to SQL Server.
+        //    the saving will be done when the extraction rule execution completed.
+        [DataTestMethod]
+        [DataRow("" +
+            "{" +
+            "    'dataSource': {" +
+            "        'type':'SQLServer'," +
+            "        'source':'[Data.ConnectionString]'," +
+            "        'repository':'[Data.Repository]'" +
+            "    }," +
+            "    'pageSource':true," +
+            "    'rootElementToExtractFrom':'//positive'," +
+            "    'elementsToExtract': [" +
+            "        {" +
+            "            'key':'data'" +
+            "        }" +
+            "    ]" +
+            "}")]
+        public void SaveToSqlServerNoRepository(string extractionRule)
+        {
+            // setup
+            extractionRule = extractionRule
+                .Replace(oldValue: "[Data.ConnectionString]", newValue: $"{TestContext.Properties["Data.ConnectionString"]}");
+
+            // execute
+            var isExtract = DoCsvExtract(extractionRule);
+
+            // assertion
+            Assert.IsFalse(isExtract);
+        }
+        #endregion
+
+        #region *** extract into CSV     ***
+        // 0: extracts inner text of all root elements and save it to SQL Server.
+        //    the saving will be done when the extraction rule execution completed.
+        [DataTestMethod]
+        [DataRow("" +
+            "{" +
+            "    'dataSource': {" +
+            "        'type':'CSV'," +
+            "        'source':'data/[File.Name].csv'" +
+            "    }," +
+            "    'pageSource':true," +
+            "    'rootElementToExtractFrom':'//positive'," +
+            "    'elementsToExtract': [" +
+            "        {" +
+            "            'key':'data'" +
+            "        }" +
+            "    ]" +
+            "}")]
+        public void SaveToCsv(string extractionRule)
+        {
+            // setup
+            extractionRule = extractionRule
+                .Replace(oldValue: "[File.Name]", newValue: MethodBase.GetCurrentMethod().Name);
+
+            // execute
+            var isExtract = DoCsvExtract(extractionRule);
+
+            // assertion
+            Assert.IsTrue(isExtract);
+        }
+
+        // 0: extracts inner text of all root elements and save it to SQL Server.
+        //    the saving will be done when the content entry execution completed.
+        [DataTestMethod]
+        [DataRow("" +
+            "{" +
+            "    'dataSource': {" +
+            "        'type':'CSV'," +
+            "        'source':'data/[File.Name].csv'," +
+            "        'writePerEntity':true" +
+            "    }," +
+            "    'pageSource':true," +
+            "    'rootElementToExtractFrom':'//positive'," +
+            "    'elementsToExtract': [" +
+            "        {" +
+            "            'key':'data'" +
+            "        }" +
+            "    ]" +
+            "}")]
+        public void SaveToCsvPerEntity(string extractionRule)
+        {
+            // setup
+            extractionRule = extractionRule
+                .Replace(oldValue: "[File.Name]", newValue: MethodBase.GetCurrentMethod().Name);
+
+            // execute
+            var isExtract = DoCsvExtract(extractionRule);
+
+            // assertion
+            Assert.IsTrue(isExtract);
+        }
+
+        // 0: extracts inner text of all root elements and save it to SQL Server.
+        //    the saving will be done when the extraction rule execution completed.
+        [DataTestMethod, ExpectedException(typeof(ArgumentException))]
+        [DataRow("" +
+            "{" +
+            "    'dataSource': {" +
+            "        'type':'CSV'," +
+            "        'source':''" +
+            "    }," +
+            "    'pageSource':true," +
+            "    'rootElementToExtractFrom':'//positive'," +
+            "    'elementsToExtract': [" +
+            "        {" +
+            "            'key':'data'" +
+            "        }" +
+            "    ]" +
+            "}")]
+        public void SaveToCsvNoSource(string extractionRule)
+        {
+            // setup
+            extractionRule = extractionRule
+                .Replace(oldValue: "[File.Name]", newValue: MethodBase.GetCurrentMethod().Name);
+
+            // execute
+            var isExtract = DoCsvExtract(extractionRule);
+
+            // assertion
+            Assert.IsFalse(isExtract);
+        }
+        #endregion
+
         // executes extraction rule and validates counts and data
         private bool DoExtract(string extractionRule, string expected)
         {
@@ -348,7 +591,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
             SetExtractionRules(extractionRule);
 
             // execute
-            var plugin = ExecuteAction<ExtractData>();
+            var plugin = ExecuteAction<ExtractFromSource>();
 
             // setup conditions
             var isCount = plugin.ExtractionResults.First().Entities.Count() == 3;
@@ -361,6 +604,28 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
             return isCount && isData;
         }
 
+        // executes extraction rule and validates against data source
+        private bool DoCsvExtract(string extractionRule)
+        {
+            // setup
+            SetExtractionRules(extractionRule);
+            var dataSource = WebAutomation.Extractions.ElementAt(0).DataSource;
+
+            // execute
+            var plugin = ExecuteAction<ExtractFromSource>();
+
+            // results
+            var expected = plugin.ExtractionResults.First().ToDataTable();
+            var actual = new DataTable().Load(dataSource);
+
+            // comparing
+            var sExpected = new string(JsonConvert.SerializeObject(expected).OrderBy(i => i).ToArray());
+            var sActual = new string(JsonConvert.SerializeObject(actual).OrderBy(i => i).ToArray());
+
+            // assertion
+            return sExpected.Equals(sActual, StringComparison.Ordinal);
+        }
+
         // set extraction rule for currently running web automation
         private void SetExtractionRules(string extractionRule)
         {
@@ -369,6 +634,14 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
 
             // apply
             WebAutomation.Extractions = new[] { rule };
+        }
+
+        // replace placeholder for extraction rules data source
+        private string SetSqlDataSource(string extractionRule, string repository)
+        {
+            return extractionRule
+                .Replace(oldValue: "[Data.ConnectionString]", newValue: $"{TestContext.Properties["Data.ConnectionString"]}")
+                .Replace(oldValue: "[Data.Repository]", newValue: repository);
         }
     }
 }

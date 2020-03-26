@@ -299,6 +299,129 @@
       },
       "description": "Extracts inner text of all root elements and save it to a CSV file. The saving will be done when the content entry execution completed. If the file or folder(s) does not exists, Gravity will create them.",
       "literalExample": "not supported by literal engine."
+    },
+    {
+      "actionExample": {
+        "actionType": "ExtractFromSource"
+      },
+      "extractionExample": {
+        "dataSource": {
+          "type": "JSON",
+          "source": "Data/foo.json"
+        },
+        "pageSource": true,
+        "rootElementToExtractFrom": "//div",
+        "elementsToExtract": [
+          {
+            "key": "data"
+          }
+        ]
+      },
+      "description": "Extracts inner text of all root elements and save it to a JSON file. The saving will be done when the extraction rule execution completed. If the file or folder(s) does not exists, Gravity will create them.",
+      "literalExample": "not supported by literal engine."
+    },
+    {
+      "actionExample": {
+        "actionType": "ExtractFromSource"
+      },
+      "extractionExample": {
+        "dataSource": {
+          "type": "JSON",
+          "source": "Data/foo.json",
+          "writePerEntity": true
+        },
+        "pageSource": true,
+        "rootElementToExtractFrom": "//div",
+        "elementsToExtract": [
+          {
+            "key": "data"
+          }
+        ]
+      },
+      "description": "Extracts inner text of all root elements and save it to a JSON file. The saving will be done when the content entry execution completed. If the file or folder(s) does not exists, Gravity will create them.",
+      "literalExample": "not supported by literal engine."
+    },
+    {
+      "actionExample": {
+        "actionType": "ExtractFromSource"
+      },
+      "extractionExample": {
+        "dataSource": {
+          "type": "XML",
+          "source": "Data/foo.xml"
+        },
+        "pageSource": true,
+        "rootElementToExtractFrom": "//div",
+        "elementsToExtract": [
+          {
+            "key": "data"
+          }
+        ]
+      },
+      "description": "Extracts inner text of all root elements and save it to a XML file. The saving will be done when the extraction rule execution completed. If the file or folder(s) does not exists, Gravity will create them.",
+      "literalExample": "not supported by literal engine."
+    },
+    {
+      "actionExample": {
+        "actionType": "ExtractFromSource"
+      },
+      "extractionExample": {
+        "dataSource": {
+          "type": "XML",
+          "source": "Data/foo.xml",
+          "writePerEntity": true
+        },
+        "pageSource": true,
+        "rootElementToExtractFrom": "//div",
+        "elementsToExtract": [
+          {
+            "key": "data"
+          }
+        ]
+      },
+      "description": "Extracts inner text of all root elements and save it to a XML file. The saving will be done when the content entry execution completed. If the file or folder(s) does not exists, Gravity will create them.",
+      "literalExample": "not supported by literal engine."
+    },
+    {
+      "actionExample": {
+        "actionType": "ExtractFromSource"
+      },
+      "extractionExample": {
+        "dataSource": {
+          "type": "RestApi",
+          "source": "http://foo-bar.io/data"
+        },
+        "pageSource": true,
+        "rootElementToExtractFrom": "//div",
+        "elementsToExtract": [
+          {
+            "key": "data"
+          }
+        ]
+      },
+      "description": "Extracts inner text of all root elements and send it to a Rest API using HTTP post. The saving will be done when the extraction rule execution completed.",
+      "literalExample": "not supported by literal engine."
+    },
+    {
+      "actionExample": {
+        "actionType": "ExtractFromSource"
+      },
+      "extractionExample": {
+        "dataSource": {
+          "type": "XML",
+          "source": "Data/foo.xml",
+          "writePerEntity": true
+        },
+        "pageSource": true,
+        "rootElementToExtractFrom": "//div",
+        "elementsToExtract": [
+          {
+            "key": "data"
+          }
+        ]
+      },
+      "description": "Extracts inner text of all root elements and send it to a Rest API using HTTP post. The saving will be done when the content entry execution completed.",
+      "literalExample": "not supported by literal engine."
     }
   ],
   "name": "ExtractFromSource",

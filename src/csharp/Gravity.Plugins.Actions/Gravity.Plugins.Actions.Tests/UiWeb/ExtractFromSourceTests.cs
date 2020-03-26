@@ -492,7 +492,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         #endregion
 
         #region *** extract into CSV     ***
-        // 0: extracts inner text of all root elements and save it to SQL Server.
+        // 0: extracts inner text of all root elements and save it to a CSV file.
         //    the saving will be done when the extraction rule execution completed.
         [DataTestMethod]
         [DataRow("" +
@@ -522,7 +522,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
             Assert.IsTrue(isExtract);
         }
 
-        // 0: extracts inner text of all root elements and save it to SQL Server.
+        // 0: extracts inner text of all root elements and save it to a CSV file.
         //    the saving will be done when the content entry execution completed.
         [DataTestMethod]
         [DataRow("" +
@@ -553,7 +553,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
             Assert.IsTrue(isExtract);
         }
 
-        // 0: extracts inner text of all root elements and save it to SQL Server.
+        // 0: extracts inner text of all root elements and save it to a CSV file.
         //    the saving will be done when the extraction rule execution completed.
         [DataTestMethod, ExpectedException(typeof(ArgumentException))]
         [DataRow("" +
@@ -571,6 +571,192 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
             "    ]" +
             "}")]
         public void SaveToCsvNoSource(string extractionRule)
+        {
+            // setup
+            extractionRule = extractionRule
+                .Replace(oldValue: "[File.Name]", newValue: MethodBase.GetCurrentMethod().Name);
+
+            // execute
+            var isExtract = DoCsvExtract(extractionRule);
+
+            // assertion
+            Assert.IsFalse(isExtract);
+        }
+        #endregion
+
+        #region *** extract into JSON    ***
+        // 0: extracts inner text of all root elements and save it to a JSON file.
+        //    the saving will be done when the extraction rule execution completed.
+        [DataTestMethod]
+        [DataRow("" +
+            "{" +
+            "    'dataSource': {" +
+            "        'type':'JSON'," +
+            "        'source':'data/[File.Name].json'" +
+            "    }," +
+            "    'pageSource':true," +
+            "    'rootElementToExtractFrom':'//positive'," +
+            "    'elementsToExtract': [" +
+            "        {" +
+            "            'key':'data'" +
+            "        }" +
+            "    ]" +
+            "}")]
+        public void SaveToJson(string extractionRule)
+        {
+            // setup
+            extractionRule = extractionRule
+                .Replace(oldValue: "[File.Name]", newValue: MethodBase.GetCurrentMethod().Name);
+
+            // execute
+            var isExtract = DoCsvExtract(extractionRule);
+
+            // assertion
+            Assert.IsTrue(isExtract);
+        }
+
+        // 0: extracts inner text of all root elements and save it to a JSON file.
+        //    the saving will be done when the content entry execution completed.
+        [DataTestMethod]
+        [DataRow("" +
+            "{" +
+            "    'dataSource': {" +
+            "        'type':'JSON'," +
+            "        'source':'data/[File.Name].json'," +
+            "        'writePerEntity':true" +
+            "    }," +
+            "    'pageSource':true," +
+            "    'rootElementToExtractFrom':'//positive'," +
+            "    'elementsToExtract': [" +
+            "        {" +
+            "            'key':'data'" +
+            "        }" +
+            "    ]" +
+            "}")]
+        public void SaveToJsonPerEntity(string extractionRule)
+        {
+            // setup
+            extractionRule = extractionRule
+                .Replace(oldValue: "[File.Name]", newValue: MethodBase.GetCurrentMethod().Name);
+
+            // execute
+            var isExtract = DoCsvExtract(extractionRule);
+
+            // assertion
+            Assert.IsTrue(isExtract);
+        }
+
+        // 0: extracts inner text of all root elements and save it to a JSON file.
+        //    the saving will be done when the extraction rule execution completed.
+        [DataTestMethod, ExpectedException(typeof(ArgumentException))]
+        [DataRow("" +
+            "{" +
+            "    'dataSource': {" +
+            "        'type':'JSON'," +
+            "        'source':''" +
+            "    }," +
+            "    'pageSource':true," +
+            "    'rootElementToExtractFrom':'//positive'," +
+            "    'elementsToExtract': [" +
+            "        {" +
+            "            'key':'data'" +
+            "        }" +
+            "    ]" +
+            "}")]
+        public void SaveToJsonNoSource(string extractionRule)
+        {
+            // setup
+            extractionRule = extractionRule
+                .Replace(oldValue: "[File.Name]", newValue: MethodBase.GetCurrentMethod().Name);
+
+            // execute
+            var isExtract = DoCsvExtract(extractionRule);
+
+            // assertion
+            Assert.IsFalse(isExtract);
+        }
+        #endregion
+
+        #region *** extract into XML     ***
+        // 0: extracts inner text of all root elements and save it to a XML file.
+        //    the saving will be done when the extraction rule execution completed.
+        [DataTestMethod]
+        [DataRow("" +
+            "{" +
+            "    'dataSource': {" +
+            "        'type':'XML'," +
+            "        'source':'data/[File.Name].xml'" +
+            "    }," +
+            "    'pageSource':true," +
+            "    'rootElementToExtractFrom':'//positive'," +
+            "    'elementsToExtract': [" +
+            "        {" +
+            "            'key':'data'" +
+            "        }" +
+            "    ]" +
+            "}")]
+        public void SaveToXml(string extractionRule)
+        {
+            // setup
+            extractionRule = extractionRule
+                .Replace(oldValue: "[File.Name]", newValue: MethodBase.GetCurrentMethod().Name);
+
+            // execute
+            var isExtract = DoCsvExtract(extractionRule);
+
+            // assertion
+            Assert.IsTrue(isExtract);
+        }
+
+        // 0: extracts inner text of all root elements and save it to a XML file.
+        //    the saving will be done when the content entry execution completed.
+        [DataTestMethod]
+        [DataRow("" +
+            "{" +
+            "    'dataSource': {" +
+            "        'type':'XML'," +
+            "        'source':'data/[File.Name].xml'," +
+            "        'writePerEntity':true" +
+            "    }," +
+            "    'pageSource':true," +
+            "    'rootElementToExtractFrom':'//positive'," +
+            "    'elementsToExtract': [" +
+            "        {" +
+            "            'key':'data'" +
+            "        }" +
+            "    ]" +
+            "}")]
+        public void SaveToXmlPerEntity(string extractionRule)
+        {
+            // setup
+            extractionRule = extractionRule
+                .Replace(oldValue: "[File.Name]", newValue: MethodBase.GetCurrentMethod().Name);
+
+            // execute
+            var isExtract = DoCsvExtract(extractionRule);
+
+            // assertion
+            Assert.IsTrue(isExtract);
+        }
+
+        // 0: extracts inner text of all root elements and save it to a XML file.
+        //    the saving will be done when the extraction rule execution completed.
+        [DataTestMethod, ExpectedException(typeof(ArgumentException))]
+        [DataRow("" +
+            "{" +
+            "    'dataSource': {" +
+            "        'type':'XML'," +
+            "        'source':''" +
+            "    }," +
+            "    'pageSource':true," +
+            "    'rootElementToExtractFrom':'//positive'," +
+            "    'elementsToExtract': [" +
+            "        {" +
+            "            'key':'data'" +
+            "        }" +
+            "    ]" +
+            "}")]
+        public void SaveToXmlNoSource(string extractionRule)
         {
             // setup
             extractionRule = extractionRule

@@ -136,86 +136,19 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             Assert.IsTrue(actual);
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        // 0: extracts inner text of the given element under all root elements
-        [DataTestMethod]
-        [DataRow("" +
-            "{" +
-            "    'pageSource':true," +
-            "    'rootElementToExtractFrom':'//div'," +
-            "    'elementsToExtract': [" +
-            "        {" +
-            "            'elementToActOn':'./span[1]'," +
-            "            'key':'data'" +
-            "        }" +
-            "    ]" +
-            "}", "^child div 1 inner text$")]
-        public void ExtractFromDomElementText(string extractionRule, string expected)
-        {
-            // execute
-            var actual = DoExtract(extractionRule, expected);
-
-            // assertion
-            Assert.IsTrue(actual);
-        }
-
         // 0: extracts inner text of the given element under all root elements and apply a pattern on it
         [DataTestMethod]
         [DataRow("" +
             "{" +
-            "    'pageSource':true," +
-            "    'rootElementToExtractFrom':'//div'," +
+            "    'rootElementToExtractFrom':'//positive'," +
             "    'elementsToExtract': [" +
             "        {" +
-            "            'elementToActOn':'./span[1]'," +
-            @"           'regularExpression':'child div \\d'," +
+            "            'elementToActOn':'./negative[1]'," +
+            "            'regularExpression':'Negative Element'," +
             "            'key':'data'" +
             "        }" +
             "    ]" +
-            "}", @"^child div \d$")]
+            "}", "^Negative Element$")]
         public void ExtractFromDomElementTextPattern(string extractionRule, string expected)
         {
             // execute
@@ -225,21 +158,41 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             Assert.IsTrue(actual);
         }
 
-        // 0: extracts a value from a given attribute of the given element under all root elements
+        // 0: extracts inner text of the given element under all root elements
         [DataTestMethod]
         [DataRow("" +
             "{" +
-            "    'pageSource':true," +
-            "    'rootElementToExtractFrom':'//div'," +
+            "    'rootElementToExtractFrom':'//positive'," +
             "    'elementsToExtract': [" +
             "        {" +
-            "            'elementToActOn':'./span[1]'," +
-            "            'elementAttributeToActOn':'id'," +
+            "            'elementToActOn':'./negative[1]'," +
             "            'key':'data'" +
             "        }" +
             "    ]" +
-            "}", @"^childDiv\d+$")]
-        public void ExtractFromDomElementAttribute(string extractionRule, string expected)
+            "}", "^Mock: Negative Element$")]
+        public void ExtractFromDomElementText(string extractionRule, string expected)
+        {
+            // execute
+            var actual = DoExtract(extractionRule, expected);
+
+            // assertion
+            Assert.IsTrue(actual);
+        }
+
+        // 0: extracts the outer HTML of the given element under all root elements.
+        [DataTestMethod]
+        [DataRow("" +
+            "{" +
+            "    'rootElementToExtractFrom':'//positive'," +
+            "    'elementsToExtract': [" +
+            "        {" +
+            "            'elementToActOn':'./negative[1]'," +
+            "            'elementAttributeToActOn':'html'," +
+            "            'key':'data'" +
+            "        }" +
+            "    ]" +
+            "}", "mock element inner-text")]
+        public void ExtractFromDomElementOuterHtml(string extractionRule, string expected)
         {
             // execute
             var actual = DoExtract(extractionRule, expected);
@@ -252,12 +205,11 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         [DataTestMethod]
         [DataRow("" +
             "{" +
-            "    'pageSource':true," +
-            "    'rootElementToExtractFrom':'//div'," +
+            "    'rootElementToExtractFrom':'//positive'," +
             "    'elementsToExtract': [" +
             "        {" +
-            "            'elementToActOn':'./span[1]'," +
-            "            'elementAttributeToActOn':'id'," +
+            "            'elementToActOn':'./negative[1]'," +
+            "            'elementAttributeToActOn':'class'," +
             @"           'regularExpression':'\\d+'," +
             "            'key':'data'" +
             "        }" +
@@ -272,21 +224,20 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             Assert.IsTrue(actual);
         }
 
-        // 0: extracts the outer HTML of the given element under all root elements.
+        // 0: extracts a value from a given attribute of the given element under all root elements
         [DataTestMethod]
         [DataRow("" +
             "{" +
-            "    'pageSource':true," +
-            "    'rootElementToExtractFrom':'//div'," +
+            "    'rootElementToExtractFrom':'//positive'," +
             "    'elementsToExtract': [" +
             "        {" +
-            "            'elementToActOn':'./span[1]'," +
-            "            'elementAttributeToActOn':'html'," +
+            "            'elementToActOn':'./negative[1]'," +
+            "            'elementAttributeToActOn':'class'," +
             "            'key':'data'" +
             "        }" +
             "    ]" +
-            "}", "span id=")]
-        public void ExtractFromDomElementOuterHtml(string extractionRule, string expected)
+            "}", @"^mock attribute value \d+$")]
+        public void ExtractFromDomElementAttribute(string extractionRule, string expected)
         {
             // execute
             var actual = DoExtract(extractionRule, expected);
@@ -299,15 +250,14 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         [DataTestMethod]
         [DataRow("" +
             "{" +
-            "    'pageSource':true," +
-            "    'rootElementToExtractFrom':'//div'," +
+            "    'rootElementToExtractFrom':'//positive'," +
             "    'elementsToExtract': [" +
             "        {" +
-            "            'elementToActOn':'//p[1]'," +
+            "            'elementToActOn':'//negative[1]'," +
             "            'key':'data'" +
             "        }" +
             "    ]" +
-            "}", "^mock, page level paragraph, inner text$")]
+            "}", "^Mock: Negative Element$")]
         public void ExtractFromDomElementAbsoluteText(string extractionRule, string expected)
         {
             // execute
@@ -321,16 +271,15 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         [DataTestMethod]
         [DataRow("" +
             "{" +
-            "    'pageSource':true," +
-            "    'rootElementToExtractFrom':'//div'," +
+            "    'rootElementToExtractFrom':'//positive'," +
             "    'elementsToExtract': [" +
             "        {" +
-            "            'elementToActOn':'//p[1]'," +
-            "            'elementAttributeToActOn':'id'," +
+            "            'elementToActOn':'//negative[1]'," +
+            "            'elementAttributeToActOn':'class'," +
             "            'key':'data'" +
             "        }" +
             "    ]" +
-            "}", @"pageLevel\d+$")]
+            "}", @"^mock attribute value \d+$")]
         public void ExtractFromDomElementAbsoluteAttribute(string extractionRule, string expected)
         {
             // execute
@@ -340,9 +289,6 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             Assert.IsTrue(actual);
         }
         #endregion
-
-
-
 
         // executes extraction rule and validates counts and data
         private bool DoExtract(string extractionRule, string expected)

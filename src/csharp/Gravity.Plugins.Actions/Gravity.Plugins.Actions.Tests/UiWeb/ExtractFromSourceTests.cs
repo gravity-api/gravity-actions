@@ -25,7 +25,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
     public class ExtractFromSourceTests : ActionTests
     {
         // members state
-        private static TestContext staticContext;
+        private static string connectionString;
         private const string PageSource =
             "<html>" +
             "    <head>" +
@@ -59,14 +59,15 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         [ClassInitialize]
         public static void Init(TestContext context)
         {
-            staticContext = context;
+            connectionString =
+                $"{context.Properties["Data.ConnectionString"]}".Replace("[catalog]", "ExtractFromSourceTests");
         }
 
         [ClassCleanup]
         public static void Dispose()
         {
             // database
-            DropDatabase($"{staticContext.Properties["Data.ConnectionString"]}");
+            DropDatabase(connectionString);
 
             // data files
             if (Directory.Exists("Data"))
@@ -362,6 +363,28 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
             // assertion
             Assert.IsTrue(actual);
         }
+
+        // 0: extracts inner text of all root elements and apply a pattern on it
+        [DataTestMethod]
+        [DataRow("" +
+            "{" +
+            "    'pageSource':false," +
+            "    'rootElementToExtractFrom':'//positive'," +
+            "    'elementsToExtract': [" +
+            "        {" +
+            "            'regularExpression':'mock element nested inner'," +
+            "            'key':'data'" +
+            "        }" +
+            "    ]" +
+            "}", "^mock element nested inner$")]
+        public void ExtractFromSourcePageSourceFalse(string extractionRule, string expected)
+        {
+            // execute
+            var actual = DoExtract(extractionRule, expected);
+
+            // assertion
+            Assert.IsTrue(actual);
+        }
         #endregion
 
         #region *** extract into SQL     ***
@@ -383,14 +406,14 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
             "        }" +
             "    ]" +
             "}")]
-        public void SaveToSqlServer(string extractionRule)
+        public void ExtractFromSourceSaveToSqlServer(string extractionRule)
         {
             // setup
             extractionRule =
                 SetSqlDataSource(extractionRule, repository: MethodBase.GetCurrentMethod().Name);
 
             // execute
-            var isExtract = DoCsvExtract(extractionRule);
+            var isExtract = DoDataExtract(extractionRule);
 
             // assertion
             Assert.IsTrue(isExtract);
@@ -415,14 +438,14 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
             "        }" +
             "    ]" +
             "}")]
-        public void SaveToSqlServerPerEntity(string extractionRule)
+        public void ExtractFromSourceSaveToSqlServerPerEntity(string extractionRule)
         {
             // setup
             extractionRule =
                 SetSqlDataSource(extractionRule, repository: MethodBase.GetCurrentMethod().Name);
 
             // execute
-            var isExtract = DoCsvExtract(extractionRule);
+            var isExtract = DoDataExtract(extractionRule);
 
             // assertion
             Assert.IsTrue(isExtract);
@@ -446,14 +469,14 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
             "        }" +
             "    ]" +
             "}")]
-        public void SaveToSqlServerNoSource(string extractionRule)
+        public void ExtractFromSourceSaveToSqlServerNoSource(string extractionRule)
         {
             // setup
             extractionRule = extractionRule
                 .Replace(oldValue: "[Data.Repository]", newValue: MethodBase.GetCurrentMethod().Name);
 
             // execute
-            var isExtract = DoCsvExtract(extractionRule);
+            var isExtract = DoDataExtract(extractionRule);
 
             // assertion
             Assert.IsFalse(isExtract);
@@ -477,14 +500,14 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
             "        }" +
             "    ]" +
             "}")]
-        public void SaveToSqlServerNoRepository(string extractionRule)
+        public void ExtractFromSourceSaveToSqlServerNoRepository(string extractionRule)
         {
             // setup
             extractionRule = extractionRule
                 .Replace(oldValue: "[Data.ConnectionString]", newValue: $"{TestContext.Properties["Data.ConnectionString"]}");
 
             // execute
-            var isExtract = DoCsvExtract(extractionRule);
+            var isExtract = DoDataExtract(extractionRule);
 
             // assertion
             Assert.IsFalse(isExtract);
@@ -499,7 +522,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
             "{" +
             "    'dataSource': {" +
             "        'type':'CSV'," +
-            "        'source':'data/[File.Name].csv'" +
+            "        'source':'data/extract_from_source/[File.Name].csv'" +
             "    }," +
             "    'pageSource':true," +
             "    'rootElementToExtractFrom':'//positive'," +
@@ -509,14 +532,14 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
             "        }" +
             "    ]" +
             "}")]
-        public void SaveToCsv(string extractionRule)
+        public void ExtractFromSourceSaveToCsv(string extractionRule)
         {
             // setup
             extractionRule = extractionRule
                 .Replace(oldValue: "[File.Name]", newValue: MethodBase.GetCurrentMethod().Name);
 
             // execute
-            var isExtract = DoCsvExtract(extractionRule);
+            var isExtract = DoDataExtract(extractionRule);
 
             // assertion
             Assert.IsTrue(isExtract);
@@ -529,7 +552,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
             "{" +
             "    'dataSource': {" +
             "        'type':'CSV'," +
-            "        'source':'data/[File.Name].csv'," +
+            "        'source':'data/extract_from_source/[File.Name].csv'," +
             "        'writePerEntity':true" +
             "    }," +
             "    'pageSource':true," +
@@ -540,14 +563,14 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
             "        }" +
             "    ]" +
             "}")]
-        public void SaveToCsvPerEntity(string extractionRule)
+        public void ExtractFromSourceSaveToCsvPerEntity(string extractionRule)
         {
             // setup
             extractionRule = extractionRule
                 .Replace(oldValue: "[File.Name]", newValue: MethodBase.GetCurrentMethod().Name);
 
             // execute
-            var isExtract = DoCsvExtract(extractionRule);
+            var isExtract = DoDataExtract(extractionRule);
 
             // assertion
             Assert.IsTrue(isExtract);
@@ -570,14 +593,14 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
             "        }" +
             "    ]" +
             "}")]
-        public void SaveToCsvNoSource(string extractionRule)
+        public void ExtractFromSourceSaveToCsvNoSource(string extractionRule)
         {
             // setup
             extractionRule = extractionRule
                 .Replace(oldValue: "[File.Name]", newValue: MethodBase.GetCurrentMethod().Name);
 
             // execute
-            var isExtract = DoCsvExtract(extractionRule);
+            var isExtract = DoDataExtract(extractionRule);
 
             // assertion
             Assert.IsFalse(isExtract);
@@ -592,7 +615,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
             "{" +
             "    'dataSource': {" +
             "        'type':'JSON'," +
-            "        'source':'data/[File.Name].json'" +
+            "        'source':'data/extract_from_source/[File.Name].json'" +
             "    }," +
             "    'pageSource':true," +
             "    'rootElementToExtractFrom':'//positive'," +
@@ -602,14 +625,14 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
             "        }" +
             "    ]" +
             "}")]
-        public void SaveToJson(string extractionRule)
+        public void ExtractFromSourceSaveToJson(string extractionRule)
         {
             // setup
             extractionRule = extractionRule
                 .Replace(oldValue: "[File.Name]", newValue: MethodBase.GetCurrentMethod().Name);
 
             // execute
-            var isExtract = DoCsvExtract(extractionRule);
+            var isExtract = DoDataExtract(extractionRule);
 
             // assertion
             Assert.IsTrue(isExtract);
@@ -622,7 +645,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
             "{" +
             "    'dataSource': {" +
             "        'type':'JSON'," +
-            "        'source':'data/[File.Name].json'," +
+            "        'source':'data/extract_from_source/[File.Name].json'," +
             "        'writePerEntity':true" +
             "    }," +
             "    'pageSource':true," +
@@ -633,14 +656,14 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
             "        }" +
             "    ]" +
             "}")]
-        public void SaveToJsonPerEntity(string extractionRule)
+        public void ExtractFromSourceSaveToJsonPerEntity(string extractionRule)
         {
             // setup
             extractionRule = extractionRule
                 .Replace(oldValue: "[File.Name]", newValue: MethodBase.GetCurrentMethod().Name);
 
             // execute
-            var isExtract = DoCsvExtract(extractionRule);
+            var isExtract = DoDataExtract(extractionRule);
 
             // assertion
             Assert.IsTrue(isExtract);
@@ -663,14 +686,14 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
             "        }" +
             "    ]" +
             "}")]
-        public void SaveToJsonNoSource(string extractionRule)
+        public void ExtractFromSourceSaveToJsonNoSource(string extractionRule)
         {
             // setup
             extractionRule = extractionRule
                 .Replace(oldValue: "[File.Name]", newValue: MethodBase.GetCurrentMethod().Name);
 
             // execute
-            var isExtract = DoCsvExtract(extractionRule);
+            var isExtract = DoDataExtract(extractionRule);
 
             // assertion
             Assert.IsFalse(isExtract);
@@ -685,7 +708,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
             "{" +
             "    'dataSource': {" +
             "        'type':'XML'," +
-            "        'source':'data/[File.Name].xml'" +
+            "        'source':'data/extract_from_source/[File.Name].xml'" +
             "    }," +
             "    'pageSource':true," +
             "    'rootElementToExtractFrom':'//positive'," +
@@ -695,14 +718,14 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
             "        }" +
             "    ]" +
             "}")]
-        public void SaveToXml(string extractionRule)
+        public void ExtractFromSourceSaveToXml(string extractionRule)
         {
             // setup
             extractionRule = extractionRule
                 .Replace(oldValue: "[File.Name]", newValue: MethodBase.GetCurrentMethod().Name);
 
             // execute
-            var isExtract = DoCsvExtract(extractionRule);
+            var isExtract = DoDataExtract(extractionRule);
 
             // assertion
             Assert.IsTrue(isExtract);
@@ -715,7 +738,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
             "{" +
             "    'dataSource': {" +
             "        'type':'XML'," +
-            "        'source':'data/[File.Name].xml'," +
+            "        'source':'data/extract_from_source/[File.Name].xml'," +
             "        'writePerEntity':true" +
             "    }," +
             "    'pageSource':true," +
@@ -726,14 +749,14 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
             "        }" +
             "    ]" +
             "}")]
-        public void SaveToXmlPerEntity(string extractionRule)
+        public void ExtractFromSourceSaveToXmlPerEntity(string extractionRule)
         {
             // setup
             extractionRule = extractionRule
                 .Replace(oldValue: "[File.Name]", newValue: MethodBase.GetCurrentMethod().Name);
 
             // execute
-            var isExtract = DoCsvExtract(extractionRule);
+            var isExtract = DoDataExtract(extractionRule);
 
             // assertion
             Assert.IsTrue(isExtract);
@@ -756,14 +779,14 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
             "        }" +
             "    ]" +
             "}")]
-        public void SaveToXmlNoSource(string extractionRule)
+        public void ExtractFromSourceSaveToXmlNoSource(string extractionRule)
         {
             // setup
             extractionRule = extractionRule
                 .Replace(oldValue: "[File.Name]", newValue: MethodBase.GetCurrentMethod().Name);
 
             // execute
-            var isExtract = DoCsvExtract(extractionRule);
+            var isExtract = DoDataExtract(extractionRule);
 
             // assertion
             Assert.IsFalse(isExtract);
@@ -791,7 +814,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         }
 
         // executes extraction rule and validates against data source
-        private bool DoCsvExtract(string extractionRule)
+        private bool DoDataExtract(string extractionRule)
         {
             // setup
             SetExtractionRules(extractionRule);
@@ -826,7 +849,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         private string SetSqlDataSource(string extractionRule, string repository)
         {
             return extractionRule
-                .Replace(oldValue: "[Data.ConnectionString]", newValue: $"{TestContext.Properties["Data.ConnectionString"]}")
+                .Replace(oldValue: "[Data.ConnectionString]", newValue: connectionString)
                 .Replace(oldValue: "[Data.Repository]", newValue: repository);
         }
     }

@@ -1,4 +1,9 @@
-﻿using Gravity.Plugins.Actions.Contracts;
+﻿/*
+ * CHANGE LOG - keep only last 5 threads
+ * 
+ * on-line resources
+ */
+using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Actions.Extensions;
 using Gravity.Plugins.Attributes;
 using Gravity.Plugins.Base;

@@ -5,7 +5,7 @@
     <Parameter name="Grid.BasicAuthorization" value="" />
     <Parameter name="Build.Number" value="development" />
     <Parameter name="Project.Name" value="Gravity API - Action Plugins Package" />
-    <Parameter name="Data.ConnectionString" value="Data Source=.\\SQLEXPRESS;Initial Catalog=GravityUnitTests;Integrated Security=True" />
+    <Parameter name="Data.ConnectionString" value="Data Source=.\\SQLEXPRESS;Initial Catalog=[catalog];Integrated Security=True" />
   </TestRunParameters>
 
   <MSTest>

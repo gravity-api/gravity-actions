@@ -18,6 +18,7 @@ using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
 namespace Gravity.Plugins.Actions.UnitTests.UiCommon
 {
     [TestClass]
+    [DoNotParallelize]
     public class RegisterParameterTests : ActionTests
     {
         [TestMethod]

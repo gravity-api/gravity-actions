@@ -15,7 +15,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Documentation\extract_dom_data.json" />
+    <None Remove="Documentation\extract_from_dom.json" />
     <None Remove="Documentation\extract_from_source.json" />
   </ItemGroup>
 
@@ -30,7 +30,7 @@
     <EmbeddedResource Include="Documentation\double_click.json" />
     <EmbeddedResource Include="Documentation\elements_listener.json" />
     <EmbeddedResource Include="Documentation\execute_script.json" />
-    <EmbeddedResource Include="Documentation\extract_dom_data.json" />
+    <EmbeddedResource Include="Documentation\extract_from_dom.json" />
     <EmbeddedResource Include="Documentation\extract_from_source.json" />
     <EmbeddedResource Include="Documentation\get_screenshot.json" />
     <EmbeddedResource Include="Documentation\go_to_url.json" />
@@ -63,8 +63,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Gravity.Core" Version="2020.2.12.1" />
-    <PackageReference Include="HtmlAgilityPack" Version="1.11.22" />
+    <PackageReference Include="Gravity.Core" Version="2020.3.29.2" />
+    <PackageReference Include="HtmlAgilityPack" Version="1.11.23" />
   </ItemGroup>
 
   <ItemGroup>

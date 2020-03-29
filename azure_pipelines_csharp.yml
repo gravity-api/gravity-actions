@@ -1,12 +1,14 @@
 # https://docs.microsoft.com/en-us/azure/devops/pipelines/build/variables?view=azure-devops&tabs=yaml
 
-name: $(project.package).$(Year:yyyy).$(Month).$(DayOfMonth)$(Rev:.r)
+name: Gravity.Services.Actions.$(Year:yyyy).$(Month).$(DayOfMonth)$(Rev:.r)
 
 pool:
   name: Default
 
 variables:
-  buildConfiguration: 'Release'
+- group: browserstack.com
+- name: 'buildConfiguration'
+  value: 'Release'
 
 steps:
 - task: DotNetCoreCLI@2
@@ -28,7 +30,8 @@ steps:
 - powershell: |
    [xml]$doc = Get-Content azure_settings_mstest.runsettings
    $doc.RunSettings.TestRunParameters.ChildNodes.Item(0).value = '$(Grid.Endpoint)'
-   $doc.RunSettings.TestRunParameters.ChildNodes.Item(1).value = '$(Build.BuildNumber)'
+   $doc.RunSettings.TestRunParameters.ChildNodes.Item(1).value = '$(Grid.BasicAuthorization)'
+   $doc.RunSettings.TestRunParameters.ChildNodes.Item(2).value = '$(Build.BuildNumber)'
    $doc.Save("azure_settings_mstest_prod.runsettings")
   displayName: create test settings > override with production parameters
 

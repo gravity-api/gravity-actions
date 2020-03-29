@@ -26,9 +26,6 @@ namespace Gravity.Plugins.Actions.Contracts
         public const string ElementsListener = "ElementsListener";
 
         [DataMember]
-        public const string ExtractDomData = "ExtractDomData";
-
-        [DataMember]
         public const string ExtractFromSource = "ExtractFromSource";
 
         [DataMember]

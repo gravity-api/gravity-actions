@@ -2,6 +2,7 @@
 <RunSettings>
   <TestRunParameters>
     <Parameter name="Grid.Endpoint" value="http://localhost:4444/wd/hub" />
+    <Parameter name="Grid.BasicAuthorization" value="" />
     <Parameter name="Build.Number" value="development" />
     <Parameter name="Project.Name" value="Gravity API - Action Plugins Package" />
     <Parameter name="Data.ConnectionString" value="Data Source=.\\SQLEXPRESS;Initial Catalog=GravityUnitTests;Integrated Security=True" />

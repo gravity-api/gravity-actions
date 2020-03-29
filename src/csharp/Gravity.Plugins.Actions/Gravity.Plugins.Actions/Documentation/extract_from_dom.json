@@ -214,7 +214,7 @@
       "literalExample": "not supported by literal engine."
     }
   ],
-  "name": "ExtractDomData",
+  "name": "ExtractFromDom",
   "pluginType": "Action",
   "properties": {
     "argument": "Plugin conditions and additional information."

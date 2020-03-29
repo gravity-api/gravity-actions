@@ -32,6 +32,9 @@ namespace Gravity.Plugins.Actions.Contracts
         public const string ExecuteScript = "ExecuteScript";
 
         [DataMember]
+        public const string ExtractFromDom = "ExtractFromDom";
+
+        [DataMember]
         public const string GetScreenshot = "GetScreenshot";
 
         [DataMember]

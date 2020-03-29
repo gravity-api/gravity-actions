@@ -1,15 +1,10 @@
-﻿/*
- * CHANGE LOG - keep only last 5 threads
- * 
- * on-line resources
- */
-using Gravity.Plugins.Actions.Contracts;
+﻿using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Actions.Extensions;
-using Gravity.Plugins.Extensions;
 using Gravity.Plugins.Attributes;
 using Gravity.Plugins.Base;
 using Gravity.Plugins.Contracts;
-using HtmlAgilityPack;
+using Gravity.Plugins.Extensions;
+using Gravity.Plugins.Utilities;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Extensions;
 using System;
@@ -17,15 +12,14 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text.RegularExpressions;
-using Gravity.Plugins.Utilities;
 
-namespace Gravity.Plugins.Actions.UiWeb
+namespace Gravity.Plugins.Actions.UiCommon
 {
     [Plugin(
         assembly: "Gravity.Plugins.Actions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
-        resource: "Gravity.Plugins.Actions.Documentation.extract_from_source.json",
-        Name = WebPlugins.ExtractFromSource)]
-    public class ExtractFromSource : WebDriverActionPlugin
+        resource: "Gravity.Plugins.Actions.Documentation.extract_from_dom.json",
+        Name = CommonPlugins.ExtractFromDom)]
+    public class ExtractFromDom : WebDriverActionPlugin
     {
         // members
         private readonly MacroFactory macroFactory;
@@ -44,7 +38,7 @@ namespace Gravity.Plugins.Actions.UiWeb
         /// </summary>
         /// <param name="webAutomation">This <see cref="WebAutomation"/> object (the original object sent by the user).</param>
         /// <param name="driver"><see cref="IWebDriver"/> implementation by which to execute the action.</param>
-        public ExtractFromSource(WebAutomation webAutomation, IWebDriver driver)
+        public ExtractFromDom(WebAutomation webAutomation, IWebDriver driver)
             : base(webAutomation, driver)
         {
             macroFactory = new MacroFactory(Types);
@@ -88,13 +82,13 @@ namespace Gravity.Plugins.Actions.UiWeb
         private void DoExtraction(ExtractionRule extractionRule, string key)
         {
             // setup
-            var onElements = GetRootElements(extractionRule, isFromSource: extractionRule.PageSource);
+            var onElements = GetRootElements(extractionRule);
             var results = new List<Entity>();
 
             // extract from source
             for (int i = 0; i < onElements.Count(); i++)
             {
-                results.Add(DoContentEntriesFromSource(
+                results.Add(DoContentEntriesFromDom(
                     extractionRule, onElement: onElements.ElementAt(i), i));
             }
 
@@ -110,7 +104,7 @@ namespace Gravity.Plugins.Actions.UiWeb
             ExtractionResults.Add(extraction);
 
             // populate
-            if(extractionRule.DataSource != default && !extractionRule.DataSource.WritePerEntity)
+            if (extractionRule.DataSource != default && !extractionRule.DataSource.WritePerEntity)
             {
                 extraction.Populate(extractionRule.DataSource);
             }
@@ -118,7 +112,7 @@ namespace Gravity.Plugins.Actions.UiWeb
         #endregion
 
         #region *** Data Extraction Source  ***
-        private Entity DoContentEntriesFromSource(ExtractionRule extractionRule, HtmlNode onElement, int index)
+        private Entity DoContentEntriesFromDom(ExtractionRule extractionRule, IWebElement onElement, int index)
         {
             // setup
             var entity = new Entity()
@@ -130,7 +124,7 @@ namespace Gravity.Plugins.Actions.UiWeb
             // extract
             foreach (var entry in extractionRule.ElementsToExtract)
             {
-                var contentEntry = DoContentEntryFromSource(entry, onElement);
+                var contentEntry = DoContentEntryFromDom(entry, onElement);
                 entity.EntityContent[contentEntry.Key] = contentEntry.Value;
             }
 
@@ -144,30 +138,30 @@ namespace Gravity.Plugins.Actions.UiWeb
             return entity;
         }
 
-        private KeyValuePair<string, object> DoContentEntryFromSource(ContentEntry entry, HtmlNode onElement)
+        private KeyValuePair<string, object> DoContentEntryFromDom(ContentEntry entry, IWebElement onElement)
         {
             // setup
-            var htmlNode = onElement;
+            var element = onElement;
             var onEntry = macroFactory.Get(entry);
 
             // if not self, take from element or from page
             if (!string.IsNullOrEmpty(onEntry.ElementToActOn))
             {
-                htmlNode = onEntry.ElementToActOn.IsXpath(isRelative: true)
-                    ? onElement.SelectSingleNode(onEntry.ElementToActOn)
-                    : onElement.OwnerDocument.DocumentNode.SelectSingleNode(onEntry.ElementToActOn);
+                element = onEntry.ElementToActOn.IsXpath(isRelative: true)
+                    ? onElement.FindElement(By.XPath(onEntry.ElementToActOn))
+                    : WebDriver.GetElement(By.XPath(onEntry.ElementToActOn));
             }
 
             // exit conditions
-            if (htmlNode == default)
+            if (element == default)
             {
                 return new KeyValuePair<string, object>(key: onEntry.Key, value: string.Empty);
             }
 
             // get value, take text or attribute
             var value = string.IsNullOrEmpty(onEntry.ElementAttributeToActOn)
-                ? htmlNode.InnerText
-                : GetAttributeValue(element: htmlNode, attribute: onEntry.ElementAttributeToActOn);
+                ? element.Text
+                : GetAttributeValue(element: element, attribute: onEntry.ElementAttributeToActOn);
 
             // result
             return new KeyValuePair<string, object>(
@@ -177,35 +171,29 @@ namespace Gravity.Plugins.Actions.UiWeb
         #endregion
 
         #region *** HTML/Elements Cache     ***
-        private IEnumerable<HtmlNode> GetRootElements(ExtractionRule extractionRule, bool isFromSource)
+        private IEnumerable<IWebElement> GetRootElements(ExtractionRule extractionRule)
         {
-            // setup
-            var body = isFromSource ? WebDriver.PageSource : WebDriver.GetElement(By.XPath("//body")).GetSource();
-            var htmlDocument = new HtmlDocument();
-            htmlDocument.LoadHtml(body);
-
-            // result
-            return htmlDocument.DocumentNode.SelectNodes(extractionRule.RootElementToExtractFrom);
+            return WebDriver.GetElements(By.XPath(extractionRule.RootElementToExtractFrom));
         }
         #endregion
 
         #region *** Extraction Rules        ***
-        private string GetAttributeValue(HtmlNode element, string attribute)
+        private string GetAttributeValue(IWebElement element, string attribute)
         {
             // special
-            var attributeMethod = this.GetSpecialAttributeMethod<HtmlNode>(attribute);
+            var attributeMethod = this.GetSpecialAttributeMethod<IWebElement>(attribute);
 
             // value
             return attributeMethod != default
                 ? (string)attributeMethod.Invoke(this, new[] { element })
-                : element.GetAttributeValue(name: attribute, def: string.Empty);
+                : element.GetAttribute(attributeName: attribute);
         }
         #endregion
 
 #pragma warning disable IDE0051
         #region *** Special Attributes      ***
         [Description("html")]
-        private string Html(HtmlNode element) => element.OuterHtml;
+        private string Html(IWebElement element) => element.GetSource();
         #endregion
 #pragma warning restore
     }

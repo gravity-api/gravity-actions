@@ -714,6 +714,31 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         }
         #endregion
 
+        [DataTestMethod]
+        [DataRow("" +
+            "{" +
+            "    'rootElementToExtractFrom':'//positive'," +
+            "    'elementsToExtract': [" +
+            "        {" +
+            "            'key':'data'," +
+            "            'actions': [" +
+            "                {" +
+            "                    'actionType':'Click'," +
+            "                    'elementToActOn':'.//positive'" +
+            "                }" +
+            "            ]" +
+            "        }" +
+            "    ]" +
+            "}")]
+        public void SubActions(string extractionRule)
+        {
+            // execute
+            var isExtract = DoExtract(extractionRule, "");
+
+            // assertion
+            Assert.IsTrue(isExtract);
+        }
+
         // executes extraction rule and validates counts and data
         private bool DoExtract(string extractionRule, string expected)
         {

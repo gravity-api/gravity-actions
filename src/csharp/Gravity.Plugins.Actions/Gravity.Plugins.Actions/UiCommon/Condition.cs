@@ -37,7 +37,7 @@ namespace Gravity.Plugins.Actions.UiCommon
         /// <param name="actionRule">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
         public override void OnPerform(ActionRule actionRule)
         {
-            DoAction(actionRule, element: default);
+            DoAction(actionRule, onElement: default);
         }
 
         /// <summary>
@@ -52,23 +52,27 @@ namespace Gravity.Plugins.Actions.UiCommon
         }
 
         // executes Wait routine
-        private void DoAction(ActionRule actionRule, IWebElement element)
+        private void DoAction(ActionRule actionRule, IWebElement onElement)
         {
             // execute condition
             var isCondition = (bool)new ConditionsFactory(WebDriver, Types)
-                .Factor(actionRule.Argument, new object[] { actionRule, element })["evaluation"];
+                .Factor(actionRule.Argument, new object[] { actionRule, onElement })["evaluation"];
 
             // exit conditions
             if (!isCondition)
             {
-                return;
+                foreach (var subAction in actionRule.Actions)
+                {
+                    subAction.Ignore = true;
+                }
             }
 
-            // execute child actions
-            var pluginFactory = new PluginFactory(WebAutomation, parameters: new object[] { WebDriver });
+            // iterate
+            Executor ??= new AutomationExecutor(WebAutomation);
             foreach (var action in actionRule.Actions)
             {
-                pluginFactory.Execute(action, new object[] { element });
+                Executor.PluginFactory.ConstructorParameters = new object[] { WebAutomation, WebDriver };
+                Executor.Execute(action, parameters: new object[] { onElement });
             }
         }
     }

@@ -8,7 +8,6 @@
         "actionType": "ExtractData"
       },
       "extractionExample": {
-        "pageSource": true,
         "rootElementToExtractFrom": "//div",
         "elementsToExtract": [
           {
@@ -24,7 +23,6 @@
         "actionType": "ExtractData"
       },
       "extractionExample": {
-        "pageSource": true,
         "rootElementToExtractFrom": "//div",
         "elementsToExtract": [
           {
@@ -41,7 +39,6 @@
         "actionType": "ExtractData"
       },
       "extractionExample": {
-        "pageSource": true,
         "rootElementToExtractFrom": "//div",
         "elementsToExtract": [
           {
@@ -58,7 +55,6 @@
         "actionType": "ExtractData"
       },
       "extractionExample": {
-        "pageSource": true,
         "rootElementToExtractFrom": "//div",
         "elementsToExtract": [
           {
@@ -76,7 +72,6 @@
         "actionType": "ExtractData"
       },
       "extractionExample": {
-        "pageSource": true,
         "rootElementToExtractFrom": "//div",
         "elementsToExtract": [
           {
@@ -93,7 +88,6 @@
         "actionType": "ExtractData"
       },
       "extractionExample": {
-        "pageSource": true,
         "rootElementToExtractFrom": "//div",
         "elementsToExtract": [
           {
@@ -111,7 +105,6 @@
         "actionType": "ExtractData"
       },
       "extractionExample": {
-        "pageSource": true,
         "rootElementToExtractFrom": "//div",
         "elementsToExtract": [
           {
@@ -129,7 +122,6 @@
         "actionType": "ExtractData"
       },
       "extractionExample": {
-        "pageSource": true,
         "rootElementToExtractFrom": "//div",
         "elementsToExtract": [
           {
@@ -148,7 +140,6 @@
         "actionType": "ExtractData"
       },
       "extractionExample": {
-        "pageSource": true,
         "rootElementToExtractFrom": "//div",
         "elementsToExtract": [
           {
@@ -165,7 +156,6 @@
         "actionType": "ExtractData"
       },
       "extractionExample": {
-        "pageSource": true,
         "rootElementToExtractFrom": "//div",
         "elementsToExtract": [
           {
@@ -183,7 +173,6 @@
         "actionType": "ExtractData"
       },
       "extractionExample": {
-        "pageSource": true,
         "rootElementToExtractFrom": "//div",
         "elementsToExtract": [
           {
@@ -200,7 +189,6 @@
         "actionType": "ExtractData"
       },
       "extractionExample": {
-        "pageSource": true,
         "rootElementToExtractFrom": "//div",
         "elementsToExtract": [
           {
@@ -211,6 +199,27 @@
         ]
       },
       "description": "Extracts the attribute value of the given absolute element for all root elements (will be the same for all extractions on the same page).",
+      "literalExample": "not supported by literal engine."
+    },
+    {
+      "actionExample": {
+        "actionType": "ExtractData"
+      },
+      "extractionExample": {
+        "rootElementToExtractFrom": "//div",
+        "elementsToExtract": [
+          {
+            "elementToActOn": "//p[1]",
+            "elementAttributeToActOn": "id",
+            "key": "data",
+            "actions": {
+              "actionType": "Click",
+              "elementToActOn": "//button"
+            }
+          }
+        ]
+      },
+      "description": "Extracts the attribute value of the given absolute element for all root elements (will be the same for all extractions on the same page). The sub action will be performed for each root element.",
       "literalExample": "not supported by literal engine."
     }
   ],

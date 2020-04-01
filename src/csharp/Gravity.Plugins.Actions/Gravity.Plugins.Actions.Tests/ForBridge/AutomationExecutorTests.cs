@@ -26,7 +26,7 @@ namespace Gravity.Plugins.UnitTests.Engine
             };
 
             var actual = new AutomationExecutor(automation).Execute();
-            Assert.IsTrue(actual.Extractions.Count() == 7);
+            Assert.IsTrue(actual.ExtractionResults.Count() == 7);
         }
     }
 }

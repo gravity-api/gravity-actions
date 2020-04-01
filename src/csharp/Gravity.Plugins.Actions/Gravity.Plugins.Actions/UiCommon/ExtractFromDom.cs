@@ -8,6 +8,7 @@ using Gravity.Plugins.Actions.Extensions;
 using Gravity.Plugins.Attributes;
 using Gravity.Plugins.Base;
 using Gravity.Plugins.Contracts;
+using Gravity.Plugins.Engine;
 using Gravity.Plugins.Extensions;
 using Gravity.Plugins.Utilities;
 using OpenQA.Selenium;
@@ -131,6 +132,7 @@ namespace Gravity.Plugins.Actions.UiCommon
             {
                 var contentEntry = DoContentEntryFromDom(entry, onElement);
                 entity.EntityContent[contentEntry.Key] = contentEntry.Value;
+                ExecuteSubActions(actionRules: entry.Actions, onElement);
             }
 
             // populate
@@ -172,6 +174,23 @@ namespace Gravity.Plugins.Actions.UiCommon
             return new KeyValuePair<string, object>(
                 key: onEntry.Key,
                 value: Regex.Match(input: value, pattern: onEntry.RegularExpression).Value);
+        }
+
+        private void ExecuteSubActions(IEnumerable<ActionRule> actionRules, IWebElement onElement)
+        {
+            // exit conditions
+            if (!actionRules.Any())
+            {
+                return;
+            }
+
+            // iterate
+            Executor ??= new AutomationExecutor(WebAutomation);
+            foreach (var actionRule in actionRules)
+            {
+                Executor.PluginFactory.ConstructorParameters = new object[] { WebAutomation, WebDriver };
+                Executor.Execute(actionRule, parameters: new object[] { onElement });
+            }
         }
         #endregion
 

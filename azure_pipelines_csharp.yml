@@ -7,8 +7,10 @@ pool:
 
 variables:
 - group: browserstack.com
-- name: 'buildConfiguration'
+- name: 'Build.Configuration'
   value: 'Release'
+- name: 'Parallel.Workers'
+  value: '10'
 
 steps:
 - task: DotNetCoreCLI@2
@@ -28,20 +30,40 @@ steps:
     arguments: '--configuration $(buildConfiguration)'
 
 - powershell: |
-   [xml]$doc = Get-Content azure_settings_mstest.runsettings
-   $doc.RunSettings.TestRunParameters.ChildNodes.Item(0).value = '$(Grid.Endpoint)'
-   $doc.RunSettings.TestRunParameters.ChildNodes.Item(1).value = '$(Grid.BasicAuthorization)'
-   $doc.RunSettings.TestRunParameters.ChildNodes.Item(2).value = '$(Build.BuildNumber)'
-   $doc.Save("azure_settings_mstest_prod.runsettings")
+   # read test settings
+   [xml]$runSettings = Get-Content azure_settings_mstest.runsettings
+   #
+   # setup
+   $gridEndpoint      = $runSettings.SelectSingleNode("//Parameter[@name='Grid.Endpoint']")
+   $gridAuthorization = $runSettings.SelectSingleNode("//Parameter[@name='Grid.BasicAuthorization']")
+   $buildNumber       = $runSettings.SelectSingleNode("//Parameter[@name='Build.Number']")
+   $workers           = $runSettings.SelectSingleNode("//MSTest//Workers")
+   #
+   # override with production settings
+   $gridEndpoint.Value      = '$(Grid.Endpoint)'
+   $gridAuthorization.Value = '$(Grid.BasicAuthorization)'
+   $buildNumber.Value       = '$(Build.BuildNumber)'
+   $workers.InnerText       = '$(Parallel.Workers)'
+   #
+   # save settings
+   $runSettings.Save("azure_settings_mstest_prod.runsettings")
   displayName: create test settings > override with production parameters
 
 - task: DotNetCoreCLI@2
-  displayName: execute automated testing
+  displayName: execute unit testing
   inputs:
     command: 'test'
-    projects: '**/*[Tt]ests/*.csproj'
-    arguments: '--configuration $(buildConfiguration) -s azure_settings_mstest_prod.runsettings'
-    testRunTitle: 'Automation Testing --- $(Build.BuildNumber)'
+    projects: '**/*[Uu]nit*[Tt]ests/*.csproj'
+    arguments: '--configuration $(Build.Configuration) -s azure_settings_mstest_prod.runsettings'
+    testRunTitle: 'Unit Testing --- $(Build.BuildNumber)'
+
+- task: DotNetCoreCLI@2
+  displayName: execute integration testing
+  inputs:
+    command: 'test'
+    projects: '**/*[Ii]ntegration*[Tt]ests/*.csproj'
+    arguments: '--configuration $(Build.Configuration) -s azure_settings_mstest_prod.runsettings'
+    testRunTitle: 'Integration Testing --- $(Build.BuildNumber)'
 
 - powershell: |
    Remove-Item azure_settings_mstest_prod.runsettings

@@ -1,6 +1,5 @@
 {
-  "cliArguments": {
-  },
+  "cliArguments": {},
   "description": "Executes the extraction rule collection under provided under WebAutomation and return or populates the data collected. Due to the nature of this action, it supports only XPath locator.",
   "examples": [
     {
@@ -212,10 +211,12 @@
             "elementToActOn": "//p[1]",
             "elementAttributeToActOn": "id",
             "key": "data",
-            "actions": {
-              "actionType": "Click",
-              "elementToActOn": "//button"
-            }
+            "actions": [
+              {
+                "actionType": "Click",
+                "elementToActOn": "//button"
+              }
+            ]
           }
         ]
       },
@@ -232,7 +233,11 @@
     "endpoint": "none",
     "w3c": "https://www.w3.org/TR/webdriver/#actions"
   },
-  "scope": [ "web", "mobile-web", "mobile-native" ],
+  "scope": [
+    "web",
+    "mobile-web",
+    "mobile-native"
+  ],
   "summary": "Executes the extraction rule collection under provided under WebAutomation.",
   "testOn": "https://gravitymvctestapplication.azurewebsites.net/instructor"
 }

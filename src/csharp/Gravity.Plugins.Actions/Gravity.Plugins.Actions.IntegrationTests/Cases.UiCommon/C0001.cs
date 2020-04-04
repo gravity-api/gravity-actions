@@ -47,9 +47,7 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon
             var actual = GetActual(response);
 
             // assertion
-            return (bool)environment.TestParams["negative"]
-                ? !actual.Equals("Departments")
-                : actual.Equals("Departments");
+            return actual.Equals("Departments");
         }
 
         // gets the actions collection of this test

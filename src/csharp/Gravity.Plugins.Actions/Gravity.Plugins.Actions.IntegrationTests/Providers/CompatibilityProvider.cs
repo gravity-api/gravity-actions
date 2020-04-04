@@ -7,7 +7,7 @@ using Gravity.Abstraction.Contracts;
 using Gravity.Plugins.Actions.IntegrationTests.Base;
 using System.Collections;
 
-namespace Gravity.Plugins.Actions.IntegrationTests.Providers.UiWeb
+namespace Gravity.Plugins.Actions.IntegrationTests.Providers
 {
     public static class CompatibilityProvider
     {
@@ -15,6 +15,17 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Providers.UiWeb
         /// Gets browsers compatibility matrix for Web UI testing.
         /// </summary>
         public static IEnumerable Compatibilities => GetCompatibilities();
+
+        /// <summary>
+        /// Gets browsers compatibility matrix for Web UI testing.
+        /// </summary>
+        public static IEnumerable CompatibilitiesDev
+        {
+            get
+            {
+                yield return Provider.Get(driver: Driver.Chrome, capabilities: Provider.Windows10LatestBrowser);
+            }
+        }
 
         private static IEnumerable GetCompatibilities()
         {
@@ -25,15 +36,9 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Providers.UiWeb
             yield return Provider.Get(driver: Driver.InternetExplorer, capabilities: Provider.Windows10LatestBrowser);
 
             // Windows 7
-            yield return Provider.Get(driver: Driver.Chrome, capabilities: Provider.Windows7LatestBrowser);
-            yield return Provider.Get(driver: Driver.Edge, capabilities: Provider.Windows7LatestBrowser);
-            yield return Provider.Get(driver: Driver.Firefox, capabilities: Provider.Windows7LatestBrowser);
             yield return Provider.Get(driver: Driver.InternetExplorer, capabilities: Provider.Windows7IE10);
 
             // OSX: Mojave
-            yield return Provider.Get(driver: Driver.Chrome, capabilities: Provider.OSXMojaveLatestBrowser);
-            yield return Provider.Get(driver: Driver.Edge, capabilities: Provider.OSXMojaveLatestBrowser);
-            yield return Provider.Get(driver: Driver.Firefox, capabilities: Provider.OSXMojaveLatestBrowser);
             yield return Provider.Get(driver: Driver.Safari, capabilities: Provider.OSXMojaveSafari);
 
             // OSX: Catalina

@@ -8,7 +8,7 @@
 /*
 * TEST SCENARIO (Rhino)
 * [test-id] 0001
-* [test-scenario] click - positive
+* [test-scenario] - Click on Element
 * 
 * [test-actions]
 * 1. navigate to {https://gravitymvctestapplication.azurewebsites.net/}
@@ -16,7 +16,7 @@
 * 3. close browser
 * 
 * [test-expected-results]
-* verify {text} on {//a[.='Departments']} equal {Departments}
+* [2] verify {text} on {//a[.='Departments']} equal {Departments}
 */
 #pragma warning restore
 using Gravity.Abstraction.Contracts;
@@ -24,12 +24,9 @@ using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Actions.IntegrationTests.Base;
 using Gravity.Plugins.Contracts;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
 
 namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon
 {
-    [Description("ClickPositive")]
     public class C0001 : TestCase
     {
         public override bool AutomationTest(AutomationEnvironment environment)
@@ -50,7 +47,9 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon
             var actual = GetActual(response);
 
             // assertion
-            return actual.Equals("Departments");
+            return (bool)environment.TestParams["negative"]
+                ? !actual.Equals("Departments")
+                : actual.Equals("Departments");
         }
 
         // gets the actions collection of this test
@@ -93,13 +92,5 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon
             // results
             return new[] { extraction };
         }
-
-        // gets actual results key
-        private object GetActual(OrbitResponse response) => response
-            .Extractions
-            .SelectMany(i => i.Entities)
-            .SelectMany(i => i.EntityContent)
-            .First(i => i.Key == "actual")
-            .Value;
     }
 }

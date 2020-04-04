@@ -158,6 +158,18 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
             // results
             return webAutomation;
         }
+
+        /// <summary>
+        /// Gets the actual results extracted by this <see cref="WebAutomation"/>.
+        /// </summary>
+        /// <param name="response"><see cref="OrbitResponse"/> from which to extract results</param>
+        /// <returns>Actual results.</returns>
+        public static object GetActual(OrbitResponse response) => response
+            .Extractions
+            .SelectMany(i => i.Entities)
+            .SelectMany(i => i.EntityContent)
+            .First(i => i.Key == "actual")
+            .Value;
         #endregion
 
         #region *** setup          ***
@@ -306,8 +318,7 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
             try
             {
                 Preconditions(environment);
-                environment.TestParams["actual"] = AutomationTest(environment);
-                Cleanup(environment);
+                environment.TestParams["actual"] = AutomationTest(environment);                
                 TestContext.WriteLine($"test-case [{GetType().Name}] completed with result [{environment.TestParams["actual"]}]");
             }
             catch (Exception e) when (e is NotImplementedException || e is AssertInconclusiveException)
@@ -318,6 +329,10 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
             catch (Exception e) when (e != null)
             {
                 TestContext.WriteLine($"failed to execute [{GetType().Name}] iteration; reason: {e}");
+            }
+            finally
+            {
+                Cleanup(environment);
             }
             return (bool)environment.TestParams["actual"];
         }
@@ -332,11 +347,18 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
         // executes explicit cleanup
         private void Cleanup(AutomationEnvironment environment)
         {
-            // common
-            UpdateBrowserStack(environment);
+            try
+            {
+                // common
+                UpdateBrowserStack(environment);
 
-            // user
-            OnCleanup(environment);
+                // user
+                OnCleanup(environment);
+            }
+            catch (Exception e) when (e != null)
+            {
+                TestContext.WriteLine($"{e}");
+            }
         }
         #endregion
 
@@ -356,9 +378,10 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
             }
 
             // request body
+            var actual = environment.TestParams.ContainsKey("actual") && (bool)environment.TestParams["actual"];
             var requestBody = new
             {
-                Status = (bool)environment.TestParams["actual"] ? "passed" : "failed"
+                Status = actual ? "passed" : "failed"
             };
 
             // update test outcome on 3rd party platform

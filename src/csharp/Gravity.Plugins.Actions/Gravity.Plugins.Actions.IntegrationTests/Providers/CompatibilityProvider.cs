@@ -19,7 +19,7 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Providers
         /// <summary>
         /// Gets browsers compatibility matrix for Web UI testing.
         /// </summary>
-        public static IEnumerable CompatibilitiesDev
+        public static IEnumerable CompatibilitiesChrome
         {
             get
             {

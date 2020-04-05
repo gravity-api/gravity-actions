@@ -18,21 +18,32 @@ using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
+using System.Threading;
 
 using TestContext = NUnit.Framework.TestContext;
 using DescriptionAttribute = System.ComponentModel.DescriptionAttribute;
-using System.Threading;
+using Gravity.Abstraction.Contracts;
 
 namespace Gravity.Plugins.Actions.IntegrationTests.Base
 {
     [DeploymentItem("Resources/license.lcn")]
     public abstract class TestCase
     {
+        // constants
+        public const string UiControlsPage = "https://gravitymvctestapplication.azurewebsites.net/uicontrols/";
+        public const string CoursesPage = "https://gravitymvctestapplication.azurewebsites.net/course/";
+
         // members: state
         private ConcurrentBag<AutomationEnvironment> environments;
         private int attempts = 1;
 
         #region *** automation     ***
+        /// <summary>
+        /// Executes <see cref="WebAutomation"/> sequence with a given <see cref="AutomationEnvironment"/> context.
+        /// </summary>
+        /// <param name="webAutomation"><see cref="WebAutomation"/> to execute.</param>
+        /// <param name="environment"><see cref="AutomationEnvironment"/> to use.</param>
+        /// <returns><see cref="OrbitResponse"/> instance.</returns>
         public static OrbitResponse ExecuteWebAutomation(WebAutomation webAutomation, AutomationEnvironment environment)
         {
             // execute
@@ -48,8 +59,8 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
         /// <summary>
         /// Gets a <see cref="WebAutomation"/> instance based on driver and capabilities.
         /// </summary>
-        /// <param name="driver"><see cref="Abstraction.Contracts.Driver"/> to use with this <see cref="WebAutomation"/></param>
-        /// <param name="capabilities">Capabilities collection for this <see cref="Abstraction.Contracts.Driver"/></param>
+        /// <param name="driver"><see cref="Driver"/> to use with this <see cref="WebAutomation"/></param>
+        /// <param name="capabilities">Capabilities collection for this <see cref="Driver"/></param>
         /// <returns></returns>
         public WebAutomation GetWebAutomation(string driver, string capabilities)
         {
@@ -138,10 +149,40 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
             IEnumerable<ActionRule> actions,
             IEnumerable<ExtractionRule> extractions)
         {
+            return DoAddWebActions(
+                webAutomation,
+                actions,
+                extractions,
+                applicationUnderTest: TestContext.Parameters["Integration.ApplicationUnderTest"]);
+        }
+
+        /// <summary>
+        /// Apply actions and extractions to the given <see cref="WebAutomation"/>.
+        /// This (will automatically add GoToUrl & CloseBrowser).
+        /// </summary>
+        /// <param name="webAutomation"><see cref="WebAutomation"/> to append to.</param>
+        /// <param name="actions">A collection of <see cref="ActionRule"/> to append.</param>
+        /// <param name="extractions">A collection of <see cref="ExtractionRule"/> to append.</param>
+        /// <returns>Updated <see cref="WebAutomation"/> instance.</returns>
+        public static WebAutomation AddWebActions(
+            WebAutomation webAutomation,
+            IEnumerable<ActionRule> actions,
+            IEnumerable<ExtractionRule> extractions,
+            string applicationUnderTest)
+        {
+            return DoAddWebActions(webAutomation, actions, extractions, applicationUnderTest);
+        }
+
+        private static WebAutomation DoAddWebActions(
+            WebAutomation webAutomation,
+            IEnumerable<ActionRule> actions,
+            IEnumerable<ExtractionRule> extractions,
+            string applicationUnderTest)
+        {
             // setup
             var _actions = new List<ActionRule>
             {
-                new ActionRule { ActionType = WebPlugins.GoToUrl, Argument = TestContext.Parameters["Integration.ApplicationUnderTest"] }
+                new ActionRule { ActionType = WebPlugins.GoToUrl, Argument = applicationUnderTest }
             };
 
             // append
@@ -164,12 +205,41 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
         /// </summary>
         /// <param name="response"><see cref="OrbitResponse"/> from which to extract results</param>
         /// <returns>Actual results.</returns>
-        public static object GetActual(OrbitResponse response) => response
+        public static string GetActual(OrbitResponse response)
+            => DoGetActual<string>(response, key: "actual");
+
+        /// <summary>
+        /// Gets the actual results extracted by this <see cref="WebAutomation"/>.
+        /// </summary>
+        /// <param name="response"><see cref="OrbitResponse"/> from which to extract results</param>
+        /// <param name="key">The key to get the actual result from.</param>
+        /// <returns>Actual results.</returns>
+        public static T GetActual<T>(OrbitResponse response, string key) => DoGetActual<T>(response, key);
+
+        private static T DoGetActual<T>(OrbitResponse response, string key) => (T)response
             .Extractions
             .SelectMany(i => i.Entities)
             .SelectMany(i => i.EntityContent)
-            .First(i => i.Key == "actual")
+            .First(i => i.Key == key)
             .Value;
+
+        /// <summary>
+        /// Gets a driver full name.
+        /// </summary>
+        /// <param name="driver">Driver type to get full name by.</param>
+        /// <returns>Driver full name</returns>
+        public static string GetDriverFullName(string driver) => driver switch
+        {
+            Driver.Android => "AndroidDriver",
+            Driver.Chrome => "RemoteWebDriver",
+            Driver.Edge => "RemoteWebDriver",
+            Driver.Firefox => "RemoteWebDriver",
+            Driver.InternetExplorer => "RemoteWebDriver",
+            Driver.iOS => "iOS.IOSDriver",
+            Driver.Mock => "MockWebDriver",
+            Driver.Safari => "RemoteWebDriver",
+            _ => null
+        };
         #endregion
 
         #region *** setup          ***

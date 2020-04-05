@@ -173,7 +173,7 @@ namespace Gravity.Plugins.Actions.Components
         {
             // constants
             const string Until = "until";
-            const string OperatorRegex = "^eq$|^ne$|^gt$|^ge$|^lt$|^le$|^match$|^notmatch$";
+            const string OperatorRegex = "^eq$|^ne$|^gt$|^ge$|^lt$|^le$|^match$|^not_match$";
 
             // get conditions
             var args = cliFactory.Parse(cli);

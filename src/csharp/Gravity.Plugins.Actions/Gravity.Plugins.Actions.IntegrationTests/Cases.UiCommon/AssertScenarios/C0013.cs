@@ -1,32 +1,25 @@
-﻿/*
- * CHANGE LOG - keep only last 5 threads
- * 
- * on-line resources
- */
-
-#pragma warning disable S125
+﻿#pragma warning disable S125
 /*
 * TEST SCENARIO (Rhino)
-* [test-id] 0003
-* [test-scenario] - Assert, Attribute, Not Equal
+* [test-id] 0013
+* [test-scenario] - Assert, Count, Not Match, XPath
 * 
 * [test-actions]
-* 1. navigate to {https://gravitymvctestapplication.azurewebsites.net/}
+* 1. navigate to {https://gravitymvctestapplication.azurewebsites.net/course}
 * 2. close browser
 * 
 * [test-expected-results]
-* [1] verify {attribute} on {p:nth-child(3) > a} from {class} using {css selector} not equal {btn-default btn}
+* [1] verify {count} on {//tbody/tr} not match {^1\d+$}
 */
 #pragma warning restore
 using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Actions.IntegrationTests.Base;
 using Gravity.Plugins.Contracts;
-using System;
 using System.Collections.Generic;
 
-namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon
+namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.AssertScenarios
 {
-    public class C0003 : TestCase
+    public class C0013 : TestCase
     {
         public override bool AutomationTest(AutomationEnvironment environment)
         {
@@ -34,34 +27,34 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon
             var driver = $"{environment.TestParams["driver"]}";
             var capabilities = $"{environment.TestParams["capabilities"]}";
             var isNegative = (bool)environment.TestParams["negative"];
-            var expected = $"{environment.TestParams["expected"]}";
 
             // web automation
-            var actions = GetActions();
+            var actions = GetActions(isNegative);
             var webAutomation = GetWebAutomation(driver, capabilities);
-            webAutomation = AddWebActions(webAutomation, actions, extractions: default);
+            webAutomation = AddWebActions(
+                webAutomation, actions, extractions: default, applicationUnderTest: CoursesPage);
 
             // execute
             var response = ExecuteWebAutomation(webAutomation, environment);
-            var actual = GetActual(response);
+            var actual = GetActual<bool>(response, key: "evaluation");
 
             // assertion
-            return isNegative ? actual.Equals(expected) : !actual.Equals(expected);
+            return isNegative ? !actual : actual;
         }
 
         // gets the actions collection of this test
-        private IEnumerable<ActionRule> GetActions()
+        private IEnumerable<ActionRule> GetActions(bool isNegative)
         {
+            var expected = isNegative ? @"^\d{1}$" : @"^1\d+$";
+
             // setup
             return new List<ActionRule>()
             {
                 new ActionRule
                 {
                     ActionType = CommonPlugins.Assert,
-                    Argument = "{{$ --attribute --ne:nav-link text-dark}}",
-                    ElementToActOn = "p:nth-child(3) > a",
-                    ElementAttributeToActOn = "class",
-                    Locator = LocatorType.CssSelector
+                    Argument = "{{$ --count --not_match:" + expected + "}}",
+                    ElementToActOn = "//tbody/tr"
                 }
             };
         }

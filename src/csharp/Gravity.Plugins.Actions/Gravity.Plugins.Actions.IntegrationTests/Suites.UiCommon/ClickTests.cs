@@ -4,7 +4,7 @@
  * on-line resources
  */
 using Gravity.Plugins.Actions.IntegrationTests.Base;
-using Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon;
+using Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.ClickScenarios;
 using Gravity.Plugins.Actions.IntegrationTests.Providers;
 using NUnit.Framework;
 

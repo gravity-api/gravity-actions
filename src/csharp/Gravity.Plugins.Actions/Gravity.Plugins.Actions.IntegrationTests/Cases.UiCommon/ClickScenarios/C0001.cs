@@ -25,7 +25,7 @@ using Gravity.Plugins.Actions.IntegrationTests.Base;
 using Gravity.Plugins.Contracts;
 using System.Collections.Generic;
 
-namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon
+namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.ClickScenarios
 {
     public class C0001 : TestCase
     {

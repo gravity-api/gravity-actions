@@ -1,15 +1,15 @@
 ﻿#pragma warning disable S125
 /*
 * TEST SCENARIO (Rhino)
-* [test-id] 0023
-* [test-scenario] - Assert, Enabled, ID
+* [test-id] 0028
+* [test-scenario] - Assert, Stale, ID
 * 
 * [test-actions]
 * 1. navigate to {https://gravitymvctestapplication.azurewebsites.net/uicontrols/}
 * 2. close browser
 * 
 * [test-expected-results]
-* [1] verify {enabled} on {input_enabled} using {id}
+* [1] verify {stale} on {for_stale_element} using {id}
 */
 #pragma warning restore
 using Gravity.Plugins.Actions.Contracts;
@@ -19,7 +19,7 @@ using System.Collections.Generic;
 
 namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.AssertScenarios
 {
-    public class C0023 : TestCase
+    public class C0028 : TestCase
     {
         public override bool AutomationTest(AutomationEnvironment environment)
         {
@@ -29,7 +29,7 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.AssertScenario
             var isNegative = (bool)environment.TestParams["negative"];
 
             // web automation
-            var actions = GetActions(isNegative);
+            var actions = GetActions();
             var webAutomation = GetWebAutomation(driver, capabilities);
             webAutomation = AddWebActions(
                 webAutomation, actions, extractions: default, applicationUnderTest: UiControlsPage);
@@ -43,18 +43,16 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.AssertScenario
         }
 
         // gets the actions collection of this test
-        private IEnumerable<ActionRule> GetActions(bool isNegative)
+        private IEnumerable<ActionRule> GetActions()
         {
-            var onElement = isNegative ? "input_disabled" : "input_enabled";
-
             // setup
             return new List<ActionRule>()
             {
                 new ActionRule
                 {
                     ActionType = CommonPlugins.Assert,
-                    Argument = "{{$ --enabled}}",
-                    ElementToActOn = onElement,
+                    Argument = "{{$ --stale}}",
+                    ElementToActOn = "for_stale_element",
                     Locator = LocatorType.Id
                 }
             };

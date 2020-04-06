@@ -23,6 +23,7 @@ using System.Threading;
 using TestContext = NUnit.Framework.TestContext;
 using DescriptionAttribute = System.ComponentModel.DescriptionAttribute;
 using Gravity.Abstraction.Contracts;
+using System.Net;
 
 namespace Gravity.Plugins.Actions.IntegrationTests.Base
 {
@@ -35,7 +36,8 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
 
         // members: state
         private ConcurrentBag<AutomationEnvironment> environments;
-        private int attempts = 1;
+        private int attempts =
+            TestContext.Parameters.Get(name: "Integration.NumberOfAttempts", defaultValue: 1);
 
         #region *** automation     ***
         /// <summary>
@@ -375,7 +377,14 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
             for (int i = 0; i <= attempts; i++)
             {
                 var actual = ExecuteIteration(environment);
-                if (actual) return actual;
+                if (actual)
+                {
+                    return actual;
+                }
+                if (i < attempts)
+                {
+                    UpdateBrowserStack(environment, isDelete: true);
+                }
             }
 
             // complete pipeline
@@ -388,7 +397,7 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
             try
             {
                 Preconditions(environment);
-                environment.TestParams["actual"] = AutomationTest(environment);                
+                environment.TestParams["actual"] = AutomationTest(environment);
                 TestContext.WriteLine($"test-case [{GetType().Name}] completed with result [{environment.TestParams["actual"]}]");
             }
             catch (Exception e) when (e is NotImplementedException || e is AssertInconclusiveException)
@@ -420,7 +429,7 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
             try
             {
                 // common
-                UpdateBrowserStack(environment);
+                UpdateBrowserStack(environment, isDelete: false);
 
                 // user
                 OnCleanup(environment);
@@ -436,7 +445,7 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
         /// <summary>
         /// Updates tests results on BrowserStack (if applicable)
         /// </summary>
-        public void UpdateBrowserStack(AutomationEnvironment environment)
+        public void UpdateBrowserStack(AutomationEnvironment environment, bool isDelete)
         {
             // setup
             var isBrowserStack = $"{TestContext.Parameters["Grid.Endpoint"]}".Contains("browserstack.com/wd/hub");
@@ -455,22 +464,29 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
             };
 
             // update test outcome on 3rd party platform
+            using var client = new HttpClient();
             foreach (var session in (IEnumerable<string>)environment.TestParams["sessions"])
             {
                 var requestUri = "https://api.browserstack.com/automate/sessions/<session-id>.json"
                     .Replace("<session-id>", session);
-                Put(requestUri, requestBody);
+                if (isDelete)
+                {
+                    Delete(requestUri, client);
+                }
+                else
+                {
+                    Put(requestUri, requestBody, client);
+                }
             }
         }
 
-        private void Put(string requestUri, object requestBody)
+        private void Put(string requestUri, object requestBody, HttpClient client)
         {
             // setup
             var settings = new JsonSerializerSettings
             {
                 ContractResolver = new CamelCasePropertyNamesContractResolver()
             };
-            using var client = new HttpClient();
             client.DefaultRequestHeaders.Authorization =
                 new AuthenticationHeaderValue(scheme: "Basic", parameter: $"{TestContext.Parameters["Grid.BasicAuthorization"]}");
 
@@ -479,14 +495,32 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
             var stringContent = new StringContent(content: body, Encoding.UTF8, mediaType: "application/json");
 
             // send to server
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < 5; i++)
             {
                 var response = client.PutAsync(requestUri, stringContent).GetAwaiter().GetResult();
-                if (response.IsSuccessStatusCode)
+                if (response.IsSuccessStatusCode || response.StatusCode == HttpStatusCode.NotFound)
                 {
                     return;
                 }
-                Thread.Sleep(millisecondsTimeout: 1500);
+                Thread.Sleep(millisecondsTimeout: 3000);
+            }
+        }
+
+        private void Delete(string requestUri, HttpClient client)
+        {
+            // setup
+            client.DefaultRequestHeaders.Authorization =
+                new AuthenticationHeaderValue(scheme: "Basic", parameter: $"{TestContext.Parameters["Grid.BasicAuthorization"]}");
+
+            // send to server
+            for (int i = 0; i < 5; i++)
+            {
+                var response = client.DeleteAsync(requestUri).GetAwaiter().GetResult();
+                if (response.IsSuccessStatusCode || response.StatusCode == HttpStatusCode.NotFound)
+                {
+                    return;
+                }
+                Thread.Sleep(millisecondsTimeout: 3000);
             }
         }
         #endregion

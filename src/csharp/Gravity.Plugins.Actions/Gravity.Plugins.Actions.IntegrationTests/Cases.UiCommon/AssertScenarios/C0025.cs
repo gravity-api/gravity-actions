@@ -1,15 +1,15 @@
 ﻿#pragma warning disable S125
 /*
 * TEST SCENARIO (Rhino)
-* [test-id] 0023
-* [test-scenario] - Assert, Enabled, ID
+* [test-id] 0025
+* [test-scenario] - Assert, Hidden, ID
 * 
 * [test-actions]
 * 1. navigate to {https://gravitymvctestapplication.azurewebsites.net/uicontrols/}
 * 2. close browser
 * 
 * [test-expected-results]
-* [1] verify {enabled} on {input_enabled} using {id}
+* [1] verify {hidden} on {input_hidden} using {id}
 */
 #pragma warning restore
 using Gravity.Plugins.Actions.Contracts;
@@ -19,7 +19,7 @@ using System.Collections.Generic;
 
 namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.AssertScenarios
 {
-    public class C0023 : TestCase
+    public class C0025 : TestCase
     {
         public override bool AutomationTest(AutomationEnvironment environment)
         {
@@ -45,7 +45,7 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.AssertScenario
         // gets the actions collection of this test
         private IEnumerable<ActionRule> GetActions(bool isNegative)
         {
-            var onElement = isNegative ? "input_disabled" : "input_enabled";
+            var onElement = isNegative ? "input_enabled" : "input_hidden";
 
             // setup
             return new List<ActionRule>()
@@ -53,7 +53,7 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.AssertScenario
                 new ActionRule
                 {
                     ActionType = CommonPlugins.Assert,
-                    Argument = "{{$ --enabled}}",
+                    Argument = "{{$ --hidden}}",
                     ElementToActOn = onElement,
                     Locator = LocatorType.Id
                 }

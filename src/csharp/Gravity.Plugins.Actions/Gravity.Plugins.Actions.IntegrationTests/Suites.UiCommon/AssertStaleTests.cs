@@ -6,9 +6,8 @@
 using Gravity.Plugins.Actions.IntegrationTests.Base;
 using Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.AssertScenarios;
 using Gravity.Plugins.Actions.IntegrationTests.Providers;
-using Newtonsoft.Json;
 using NUnit.Framework;
-using System.Linq;
+
 using DescriptionAttribute = System.ComponentModel.DescriptionAttribute;
 
 namespace Gravity.Plugins.Actions.IntegrationTests.Suites.UiCommon

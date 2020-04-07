@@ -33,6 +33,7 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
         // constants
         public const string UiControlsPage = "https://gravitymvctestapplication.azurewebsites.net/uicontrols/";
         public const string CoursesPage = "https://gravitymvctestapplication.azurewebsites.net/course/";
+        public static readonly string HomePage = $"{TestContext.Parameters["Integration.ApplicationUnderTest"]}";
 
         // members: state
         private ConcurrentBag<AutomationEnvironment> environments;
@@ -155,7 +156,7 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
                 webAutomation,
                 actions,
                 extractions,
-                applicationUnderTest: TestContext.Parameters["Integration.ApplicationUnderTest"]);
+                applicationUnderTest: HomePage);
         }
 
         /// <summary>
@@ -332,10 +333,10 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
         }
 
         /// <summary>
-        /// automation test to execute against a single applied environment
+        /// Automation test to execute against a single applied <see cref="AutomationEnvironment"/>.
         /// </summary>
-        /// <param name="environment">applied environment</param>
-        /// <returns>true if pass; false if not</returns>
+        /// <param name="environment">Applied <see cref="AutomationEnvironment"/>.</param>
+        /// <returns><see cref="true"/> if pass; <see cref="false"/> if not.</returns>
         public abstract bool AutomationTest(AutomationEnvironment environment);
 
         /// <summary>

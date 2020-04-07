@@ -19,7 +19,7 @@ using System.Collections.Generic;
 
 namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.AssertScenarios
 {
-    public class C0022 : TestCase
+    public class C0022 : AssertCase
     {
         public override bool AutomationTest(AutomationEnvironment environment)
         {

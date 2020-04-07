@@ -385,8 +385,9 @@ namespace Gravity.Plugins.Actions.Components
             => AssertState(() =>
         {
             // get actual
-            var actual = ConditionalGetElement(actionRule, element)
+            var input = ConditionalGetElement(actionRule, element)
                 .GetAttribute(attributeName: actionRule.ElementAttributeToActOn);
+            var actual = Regex.Match(input, pattern: actionRule.RegularExpression).Value;
 
             // get operator method
             var method = GetType().GetMethodByDescription(arguments[StateProperties.Operator]);
@@ -409,7 +410,8 @@ namespace Gravity.Plugins.Actions.Components
             => AssertState(() =>
         {
             // get actual
-            var actual = ConditionalGetElement(actionRule, element).Text;
+            var input = ConditionalGetElement(actionRule, element).Text;
+            var actual = Regex.Match(input, pattern: actionRule.RegularExpression).Value;
 
             // get operator method
             var method = GetType().GetMethodByDescription(arguments[StateProperties.Operator]);
@@ -474,11 +476,11 @@ namespace Gravity.Plugins.Actions.Components
         });
 
         [Description(Url)]
-        private IDictionary<string, object> PageUrl()
+        private IDictionary<string, object> PageUrl(ActionRule actionRule)
             => AssertState(() =>
             {
                 // get actual
-                var actual = driver.Url;
+                var actual = Regex.Match(input: driver.Url, pattern: actionRule.RegularExpression).Value;
 
                 // get operator method
                 var method = GetType().GetMethodByDescription(arguments[StateProperties.Operator]);
@@ -497,11 +499,11 @@ namespace Gravity.Plugins.Actions.Components
             });
 
         [Description(Title)]
-        private IDictionary<string, object> PageTitle()
+        private IDictionary<string, object> PageTitle(ActionRule actionRule)
             => AssertState(() =>
             {
                 // get actual
-                var actual = driver.Title;
+                var actual = Regex.Match(input: driver.Title, pattern: actionRule.RegularExpression).Value;
 
                 // get operator method
                 var method = GetType().GetMethodByDescription(arguments[StateProperties.Operator]);

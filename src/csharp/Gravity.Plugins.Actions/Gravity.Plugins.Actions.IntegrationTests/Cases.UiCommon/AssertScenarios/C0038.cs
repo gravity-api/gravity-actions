@@ -1,15 +1,15 @@
 ﻿#pragma warning disable S125
 /*
 * TEST SCENARIO (Rhino)
-* [test-id] 0015
-* [test-scenario] - Assert, Count, Lower Than, XPath
+* [test-id] 0038
+* [test-scenario] - Assert, Title, Not Equal
 * 
 * [test-actions]
-* 1. navigate to {https://gravitymvctestapplication.azurewebsites.net/course}
+* 1. navigate to {https://gravitymvctestapplication.azurewebsites.net/uicontrols}
 * 2. close browser
 * 
 * [test-expected-results]
-* [1] verify {count} on {//tbody/tr} lower than {10}
+* [1] verify {title} not equal {Contoso University - UI Controls}
 */
 #pragma warning restore
 using Gravity.Plugins.Actions.Contracts;
@@ -19,14 +19,14 @@ using System.Collections.Generic;
 
 namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.AssertScenarios
 {
-    public class C0015 : TestCase
+    public class C0038 : TestCase
     {
-        public override string ApplicationUnderTest => CoursesPage;
-
         // gets the actions collection of this test
         public override IEnumerable<ActionRule> GetActions(AutomationEnvironment environment)
         {
-            var expected = (bool)environment.TestParams["negative"] ? "1" : "10";
+            var expected = (bool)environment.TestParams["negative"]
+                ? "UI Controls - Contoso University"
+                : "Contoso University - UI Controls";
 
             // setup
             return new List<ActionRule>()
@@ -34,8 +34,7 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.AssertScenario
                 new ActionRule
                 {
                     ActionType = CommonPlugins.Assert,
-                    Argument = "{{$ --count --lt:" + expected + "}}",
-                    ElementToActOn = "//tbody/tr"
+                    Argument = "{{$ --title --ne:" + expected + "}}"
                 }
             };
         }

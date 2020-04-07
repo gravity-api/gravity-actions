@@ -19,32 +19,14 @@ using System.Collections.Generic;
 
 namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.AssertScenarios
 {
-    public class C0022 : AssertCase
+    public class C0022 : TestCase
     {
-        public override bool AutomationTest(AutomationEnvironment environment)
-        {
-            // setup
-            var driver = $"{environment.TestParams["driver"]}";
-            var capabilities = $"{environment.TestParams["capabilities"]}";
-            var isNegative = (bool)environment.TestParams["negative"];
-
-            // web automation
-            var actions = GetActions(isNegative, driver);
-            var webAutomation = GetWebAutomation(driver, capabilities);
-            webAutomation = AddWebActions(webAutomation, actions, extractions: default);
-
-            // execute
-            var response = ExecuteWebAutomation(webAutomation, environment);
-            var actual = GetActual<bool>(response, key: "evaluation");
-
-            // assertion
-            return isNegative ? !actual : actual;
-        }
-
         // gets the actions collection of this test
-        private IEnumerable<ActionRule> GetActions(bool isNegative, string driver)
+        public override IEnumerable<ActionRule> GetActions(AutomationEnvironment environment)
         {
-            var onDriver = isNegative ? GetDriverFullName(driver) : "not_a_driver";
+            var onDriver = (bool)environment.TestParams["negative"]
+                ? GetDriverFullName($"{environment.TestParams["driver"]}")
+                : "not_a_driver";
 
             // setup
             return new List<ActionRule>()

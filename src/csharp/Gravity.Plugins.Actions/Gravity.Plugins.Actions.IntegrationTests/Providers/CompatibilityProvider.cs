@@ -27,6 +27,17 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Providers
             }
         }
 
+        /// <summary>
+        /// Gets browsers compatibility matrix for Web UI testing.
+        /// </summary>
+        public static IEnumerable CompatibilitiesAndroidChrome
+        {
+            get
+            {
+                yield return Provider.Get(driver: Driver.Android, capabilities: Provider.AndroidChrome);
+            }
+        }
+
         private static IEnumerable GetCompatibilities()
         {
             // Windows 10

@@ -24,6 +24,7 @@ using TestContext = NUnit.Framework.TestContext;
 using DescriptionAttribute = System.ComponentModel.DescriptionAttribute;
 using Gravity.Abstraction.Contracts;
 using System.Net;
+using Newtonsoft.Json.Linq;
 
 namespace Gravity.Plugins.Actions.IntegrationTests.Base
 {
@@ -39,6 +40,11 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
         private ConcurrentBag<AutomationEnvironment> environments;
         private int attempts =
             TestContext.Parameters.Get(name: "Integration.NumberOfAttempts", defaultValue: 1);
+
+        /// <summary>
+        /// Gets or sets the application under test for this <see cref="TestCase"/>
+        /// </summary>
+        public virtual string ApplicationUnderTest { get; set; } = UiControlsPage;
 
         #region *** automation     ***
         /// <summary>
@@ -64,8 +70,8 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
         /// </summary>
         /// <param name="driver"><see cref="Driver"/> to use with this <see cref="WebAutomation"/></param>
         /// <param name="capabilities">Capabilities collection for this <see cref="Driver"/></param>
-        /// <returns></returns>
-        public WebAutomation GetWebAutomation(string driver, string capabilities)
+        /// <returns><see cref="WebAutomation"/> instance.</returns>
+        public WebAutomation GetWebAutomation(string driver, IDictionary<string, object> capabilities)
         {
             // shortcuts
             int.TryParse($"{TestContext.Parameters["Integration.PageTimeout"]}", out int pageOut);
@@ -83,9 +89,8 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
             };
 
             // driver parameters
-            var _capabilities = JsonConvert.DeserializeObject<Dictionary<string, object>>(capabilities);
             var testName = GetTestName();
-            var driverParams = GetDriverParams(driver, _capabilities, testName);
+            var driverParams = GetDriverParams(driver, capabilities, testName);
 
             // result
             return new WebAutomation
@@ -119,7 +124,29 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
                 ["driver"] = driver,
                 ["driverBinaries"] = $"{TestContext.Parameters["Grid.Endpoint"]}"
             };
+            var isLegacy = TestContext.Parameters.Get<bool>("Grid.Legacy", true);
 
+            // apply capabilities
+            capabilities = isLegacy
+                ? SetBrowserStackLegacyCapabilities(capabilities, testName)
+                : SetBrowserStackCapabilities(capabilities, testName);
+            driverParams.Add(key: "capabilities", value: capabilities);
+
+            // result
+            return driverParams;
+        }
+
+        private IDictionary<string, object> SetBrowserStackLegacyCapabilities(
+            IDictionary<string, object> capabilities,
+            string testName)
+        {
+            // exit conditions
+            if (!capabilities.ContainsKey("bstack:options"))
+            {
+                return capabilities;
+            }
+
+            // add capabilities
             var _capabilities = new Dictionary<string, object>
             {
                 ["resolution"] = "1920x1080",
@@ -127,16 +154,45 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
                 ["build"] = $"{TestContext.Parameters["Build.Number"]}",
                 ["name"] = testName
             };
-
-            foreach (var item in capabilities)
+            foreach (var capability in ((JObject)capabilities["bstack:options"]).ToObject<IDictionary<string, object>>())
             {
-                _capabilities.Add(item.Key, item.Value);
+                _capabilities[capability.Key] = capability.Value;
+            }
+            capabilities.Remove("bstack:options");
+
+            foreach (var capability in _capabilities)
+            {
+                capabilities[capability.Key] = capability.Value;
+            }
+            return capabilities;
+        }
+
+        private IDictionary<string, object> SetBrowserStackCapabilities(
+            IDictionary<string, object> capabilities,
+            string testName)
+        {
+            // exit conditions
+            if (!capabilities.ContainsKey("bstack:options"))
+            {
+                return capabilities;
             }
 
-            driverParams.Add(key: "capabilities", value: _capabilities);
+            // add capabilities
+            var _capabilities = new Dictionary<string, object>
+            {
+                ["resolution"] = "1920x1080",
+                ["project"] = $"{TestContext.Parameters["Project.Name"]}",
+                ["build"] = $"{TestContext.Parameters["Build.Number"]}",
+                ["name"] = testName
+            };
+            foreach (var capability in ((JObject)capabilities["bstack:options"]).ToObject<IDictionary<string, object>>())
+            {
+                _capabilities[capability.Key] = capability.Value;
+            }
 
-            // result
-            return driverParams;
+            // apply
+            capabilities["bstack:options"] = _capabilities;
+            return capabilities;
         }
 
         /// <summary>
@@ -337,7 +393,43 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
         /// </summary>
         /// <param name="environment">Applied <see cref="AutomationEnvironment"/>.</param>
         /// <returns><see cref="true"/> if pass; <see cref="false"/> if not.</returns>
-        public abstract bool AutomationTest(AutomationEnvironment environment);
+        public virtual bool AutomationTest(AutomationEnvironment environment)
+        {
+            // setup
+            var driver = $"{environment.TestParams["driver"]}";
+            var capabilities = (IDictionary<string, object>)environment.TestParams["capabilities"];
+            var isNegative = (bool)environment.TestParams["negative"];
+
+            // web automation
+            var actions = GetActions(environment);
+            var extractions = GetExtractions(environment);
+            var webAutomation = GetWebAutomation(driver, capabilities);
+            webAutomation = AddWebActions(
+                webAutomation, actions, extractions, ApplicationUnderTest);
+
+            // execute
+            var response = ExecuteWebAutomation(webAutomation, environment);
+            var actual = GetActual<bool>(response, key: "evaluation");
+
+            // assertion
+            return isNegative ? !actual : actual;
+        }
+
+        /// <summary>
+        /// Gets a collection of <see cref="ActionRule"/> to execute under this <see cref="TestCase"/>.
+        /// </summary>
+        /// <param name="environment">Applied <see cref="AutomationEnvironment"/>.</param>
+        /// <returns>A collection of <see cref="ActionRule"/> to execute</returns>
+        public virtual IEnumerable<ActionRule> GetActions(AutomationEnvironment environment)
+            => Array.Empty<ActionRule>();
+
+        /// <summary>
+        /// Gets a collection of <see cref="ExtractionRule"/> to execute under this <see cref="TestCase"/>.
+        /// </summary>
+        /// <param name="environment">Applied <see cref="AutomationEnvironment"/>.</param>
+        /// <returns>A collection of <see cref="ActionRule"/> to execute</returns>
+        public virtual IEnumerable<ExtractionRule> GetExtractions(AutomationEnvironment environment)
+            => Array.Empty<ExtractionRule>();
 
         /// <summary>
         /// executes test-case against each applied environment

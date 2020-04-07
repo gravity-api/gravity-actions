@@ -33,7 +33,7 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.ClickScenarios
         {
             // setup
             var driver = $"{environment.TestParams["driver"]}";
-            var capabilities = $"{environment.TestParams["capabilities"]}";
+            var capabilities = (IDictionary<string, object>)environment.TestParams["capabilities"];
 
             // web automation
             var actions = GetActions(environment);

@@ -1,15 +1,15 @@
 ﻿#pragma warning disable S125
 /*
 * TEST SCENARIO (Rhino)
-* [test-id] 0015
-* [test-scenario] - Assert, Count, Lower Than, XPath
+* [test-id] 0044
+* [test-scenario] - Assert, Title, Lower or Equal, Regular Expression
 * 
 * [test-actions]
-* 1. navigate to {https://gravitymvctestapplication.azurewebsites.net/course}
+* 1. navigate to {https://gravitymvctestapplication.azurewebsites.net/uicontrols}
 * 2. close browser
 * 
 * [test-expected-results]
-* [1] verify {count} on {//tbody/tr} lower than {10}
+* [1] verify {title} filter {\d+} lower or equal {10}
 */
 #pragma warning restore
 using Gravity.Plugins.Actions.Contracts;
@@ -19,10 +19,8 @@ using System.Collections.Generic;
 
 namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.AssertScenarios
 {
-    public class C0015 : TestCase
+    public class C0044 : TestCase
     {
-        public override string ApplicationUnderTest => CoursesPage;
-
         // gets the actions collection of this test
         public override IEnumerable<ActionRule> GetActions(AutomationEnvironment environment)
         {
@@ -34,8 +32,8 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.AssertScenario
                 new ActionRule
                 {
                     ActionType = CommonPlugins.Assert,
-                    Argument = "{{$ --count --lt:" + expected + "}}",
-                    ElementToActOn = "//tbody/tr"
+                    Argument = "{{$ --title --le:" + expected + "}}",
+                    RegularExpression = "\\d+"
                 }
             };
         }

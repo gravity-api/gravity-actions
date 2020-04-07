@@ -13,17 +13,20 @@
 */
 #pragma warning restore
 using Gravity.Plugins.Actions.Contracts;
+using Gravity.Plugins.Actions.IntegrationTests.Base;
 using Gravity.Plugins.Contracts;
 using System.Collections.Generic;
 
 namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.AssertScenarios
 {
-    public class C0023 : AssertCase
+    public class C0023 : TestCase
     {
         // gets the actions collection of this test
-        public override IEnumerable<ActionRule> GetActions(bool isNegative)
+        public override IEnumerable<ActionRule> GetActions(AutomationEnvironment environment)
         {
-            var onElement = isNegative ? "input_disabled" : "input_enabled";
+            var onElement = (bool)environment.TestParams["negative"] 
+                ? "input_disabled" 
+                : "input_enabled";
 
             // setup
             return new List<ActionRule>()

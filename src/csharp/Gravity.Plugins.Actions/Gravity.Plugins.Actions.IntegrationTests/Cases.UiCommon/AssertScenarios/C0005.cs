@@ -13,19 +13,20 @@
 */
 #pragma warning restore
 using Gravity.Plugins.Actions.Contracts;
+using Gravity.Plugins.Actions.IntegrationTests.Base;
 using Gravity.Plugins.Contracts;
 using System.Collections.Generic;
 
 namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.AssertScenarios
 {
-    public class C0005 : AssertCase
+    public class C0005 : TestCase
     {
         public override string ApplicationUnderTest => HomePage;
 
         // gets the actions collection of this test
-        public override IEnumerable<ActionRule> GetActions(bool isNegative)
+        public override IEnumerable<ActionRule> GetActions(AutomationEnvironment environment)
         {
-            var expected = isNegative ? "^btn btn-default$" : "^btn-default btn$";
+            var expected = (bool)environment.TestParams["negative"] ? "^btn btn-default$" : "^btn-default btn$";
 
             // setup
             return new List<ActionRule>()

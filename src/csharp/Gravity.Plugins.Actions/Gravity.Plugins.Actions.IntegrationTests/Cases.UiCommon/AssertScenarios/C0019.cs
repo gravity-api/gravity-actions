@@ -13,19 +13,22 @@
 */
 #pragma warning restore
 using Gravity.Plugins.Actions.Contracts;
+using Gravity.Plugins.Actions.IntegrationTests.Base;
 using Gravity.Plugins.Contracts;
 using System.Collections.Generic;
 
 namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.AssertScenarios
 {
-    public class C0019 : AssertCase
+    public class C0019 : TestCase
     {
         public override string ApplicationUnderTest => HomePage;
 
         // gets the actions collection of this test
-        public override IEnumerable<ActionRule> GetActions(bool isNegative)
+        public override IEnumerable<ActionRule> GetActions(AutomationEnvironment environment)
         {
-            var onDriver = isNegative ? "not_a_driver" : "OpenQA.Selenium.Remote.RemoteWebDriver";
+            var onDriver = (bool)environment.TestParams["negative"]
+                ? "not_a_driver" 
+                : "OpenQA.Selenium.Remote.RemoteWebDriver";
 
             // setup
             return new List<ActionRule>()

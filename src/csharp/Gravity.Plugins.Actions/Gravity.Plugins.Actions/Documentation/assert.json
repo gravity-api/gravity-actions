@@ -23,546 +23,544 @@
   "description": "Asserts that a given value meets a condition. That value can be, for an instance, element text, element attribute, element status or current address. The results of the assertion evaluation will be returned in the response extractions. When asserting on elements state, this action will wait for the expected state until [ElementSearchingTimout] reached.",
   "examples": [
     {
-      "description": "Asserts that [class] attribute of an element equals [active].",
-      "literalExample": "not supported by literal engine.",
+      "description": "Asserts that [class] attribute of an element equals [nav-link text-dark].",
+      "literalExample": "assert {{$ --attribute --eq:btn btn-default}} from {class} on {ul > li:nth-child(1) > a} using {css selector}",
       "actionExample": {
         "actionType": "Assert",
-        "argument": "{{$ --attribute --eq:active}}",
-        "elementToActOn": "//form/div[6]/input",
+        "argument": "{{$ --attribute --eq:nav-link text-dark}}",
+        "elementToActOn": "ul > li:nth-child(1) > a",
+        "locator": "CssSelector",
         "elementAttributeToActOn": "class"
       }
     },
     {
-      "description": "Asserts that [class] attribute of an element not equals [active].",
-      "literalExample": "not supported by literal engine.",
+      "description": "Asserts that [class] attribute of an element not equals [btn-default btn].",
+      "literalExample": "assert {{$ --attribute --ne:btn btn-default}} from {class} on {ul > li:nth-child(1) > a} using {css selector}",
       "actionExample": {
         "actionType": "Assert",
-        "argument": "{{$ --attribute --ne:active}}",
-        "elementToActOn": "//form/div[6]/input",
+        "argument": "{{$ --attribute --ne:btn-default btn}}",
+        "elementToActOn": "p:nth-child(3) > a",
+        "locator": "CssSelector",
         "elementAttributeToActOn": "class"
       }
     },
     {
-      "description": "Asserts that [class] attribute of an element matches [^active$].",
-      "literalExample": "not supported by literal engine.",
+      "description": "Asserts that [class] attribute of an element matches [^btn btn-default$].",
+      "literalExample": "assert {{$ --attribute --match:^btn btn-default$}} from {class} on {See the tutorial »} using {link text}",
       "actionExample": {
         "actionType": "Assert",
-        "argument": "{{$ --attribute --match:^active$}}",
-        "elementToActOn": "//form/div[6]/input",
+        "argument": "{{$ --attribute --match:^btn btn-default$}}",
+        "elementToActOn": "See the tutorial »",
+        "locator": "LinkText",
         "elementAttributeToActOn": "class"
       }
     },
     {
-      "description": "Asserts that [class] attribute of an element not match [^active$].",
-      "literalExample": "not supported by literal engine.",
+      "description": "Asserts that [class] attribute of an element not match [^btn-default btn$].",
+      "literalExample": "assert {{$ --attribute --not_match:^btn-default btn$}} from {class} on {See the tutorial »} using {link text}",
       "actionExample": {
         "actionType": "Assert",
-        "argument": "{{$ --attribute --not_match:^active$}}",
-        "elementToActOn": "//form/div[6]/input",
+        "argument": "{{$ --attribute --not_match:^btn-default btn$}}",
+        "elementToActOn": "See the tutorial »",
+        "locator": "LinkText",
         "elementAttributeToActOn": "class"
       }
     },
     {
-      "description": "Asserts that [id] attribute of an element is greater than [1].",
-      "literalExample": "not supported by literal engine.",
+      "description": "Asserts that [number] attribute of an element is greater than [1].",
+      "literalExample": "assert {{$ --attribute --gt:1}} from {number} on {#attribute_div} using {css selector}",
       "actionExample": {
         "actionType": "Assert",
         "argument": "{{$ --attribute --gt:1}}",
-        "elementToActOn": "//form/div[6]/input",
-        "elementAttributeToActOn": "id"
+        "elementToActOn": "#attribute_div",
+        "locator": "CssSelector",
+        "elementAttributeToActOn": "number"
       }
     },
     {
-      "description": "Asserts that [id] attribute of an element is lower than [1].",
-      "literalExample": "not supported by literal engine.",
+      "description": "Asserts that [number] attribute of an element is lower than [1].",
+      "literalExample": "assert {{$ --attribute --lt:1}} from {number} on {#attribute_div} using {css selector}",
       "actionExample": {
         "actionType": "Assert",
         "argument": "{{$ --attribute --lt:1}}",
-        "elementToActOn": "//form/div[6]/input",
-        "elementAttributeToActOn": "id"
+        "elementToActOn": "#attribute_div",
+        "locator": "CssSelector",
+        "elementAttributeToActOn": "number"
       }
     },
     {
-      "description": "Asserts that [id] attribute of an element is greater or equal than [1].",
-      "literalExample": "not supported by literal engine.",
+      "description": "Asserts that [number] attribute of an element is greater or equal than [1].",
+      "literalExample": "assert {{$ --attribute --ge:1}} from {number} on {#attribute_div} using {css selector}",
       "actionExample": {
         "actionType": "Assert",
         "argument": "{{$ --attribute --ge:1}}",
-        "elementToActOn": "//form/div[6]/input",
-        "elementAttributeToActOn": "id"
+        "elementToActOn": "#attribute_div",
+        "locator": "CssSelector",
+        "elementAttributeToActOn": "number"
       }
     },
     {
-      "description": "Asserts that [id] attribute of an element is lower or equal than [1].",
-      "literalExample": "not supported by literal engine.",
+      "description": "Asserts that [number] attribute of an element is lower or equal than [1].",
+      "literalExample": "assert {{$ --attribute --le:1}} from {number} on {#attribute_div} using {css selector}",
       "actionExample": {
         "actionType": "Assert",
         "argument": "{{$ --attribute --le:1}}",
-        "elementToActOn": "//form/div[6]/input",
-        "elementAttributeToActOn": "id"
+        "elementToActOn": "#attribute_div",
+        "locator": "CssSelector",
+        "elementAttributeToActOn": "number"
       }
     },
     {
-      "description": "Asserts that [//form/div[6]/input] elements count equals [0].",
-      "literalExample": "not supported by literal engine.",
+      "description": "Asserts that [//tbody/tr] elements count equals [7].",
+      "literalExample": "assert {{$ --count --eq:7}} on {//tbody/tr}",
       "actionExample": {
         "actionType": "Assert",
-        "argument": "{{$ --count --eq:0}}",
-        "elementToActOn": "//form/div[6]/input"
+        "argument": "{{$ --count --eq:7}}",
+        "elementToActOn": "//tbody/tr"
       }
     },
     {
-      "description": "Asserts that [//form/div[6]/input] elements count not equals [0].",
-      "literalExample": "not supported by literal engine.",
+      "description": "Asserts that [//tbody/tr] elements count not equals [10].",
+      "literalExample": "assert {{$ --count --ne:10}} on {//tbody/tr}",
       "actionExample": {
         "actionType": "Assert",
-        "argument": "{{$ --count --ne:0}}",
-        "elementToActOn": "//form/div[6]/input"
+        "argument": "{{$ --count --ne:10}}",
+        "elementToActOn": "//tbody/tr"
       }
     },
     {
-      "description": "Asserts that [//form/div[6]/input] elements count matches [\\d+].",
-      "literalExample": "not supported by literal engine.",
+      "description": "Asserts that [//tbody/tr] elements count matches [^\\d{1}$].",
+      "literalExample": "assert {{$ --count --match:^\\d{1}$}} on {//tbody/tr}",
       "actionExample": {
         "actionType": "Assert",
-        "argument": "{{$ --count --match:\\d+}}",
-        "elementToActOn": "//form/div[6]/input"
+        "argument": "{{$ --count --match:^\\d{1}$}}",
+        "elementToActOn": "//tbody/tr"
       }
     },
     {
-      "description": "Asserts that [//form/div[6]/input] elements count not match [\\d+].",
-      "literalExample": "not supported by literal engine.",
+      "description": "Asserts that [//tbody/tr] elements count not match [^1\\d+$].",
+      "literalExample": "assert {{$ --count --not_match:^1\\d+$}} on {//tbody/tr}",
       "actionExample": {
         "actionType": "Assert",
-        "argument": "{{$ --count --not_match:\\d+}}",
-        "elementToActOn": "//form/div[6]/input"
+        "argument": "{{$ --count --not_match:^1\\d+$}}",
+        "elementToActOn": "//tbody/tr"
       }
     },
     {
-      "description": "Asserts that [//form/div[6]/input] elements count is greater than [1].",
-      "literalExample": "not supported by literal engine.",
+      "description": "Asserts that [//tbody/tr] elements count is greater than [1].",
+      "literalExample": "assert {{$ --count --gt:1}} on {//tbody/tr}",
       "actionExample": {
         "actionType": "Assert",
         "argument": "{{$ --count --gt:1}}",
-        "elementToActOn": "//form/div[6]/input"
+        "elementToActOn": "//tbody/tr"
       }
     },
     {
-      "description": "Asserts that [//form/div[6]/input] elements count is lower than [1].",
-      "literalExample": "not supported by literal engine.",
+      "description": "Asserts that [//tbody/tr] elements count is lower than [10].",
+      "literalExample": "assert {{$ --count --lt:10}} on {//tbody/tr}",
       "actionExample": {
         "actionType": "Assert",
-        "argument": "{{$ --count --lt:1}}",
-        "elementToActOn": "//form/div[6]/input"
+        "argument": "{{$ --count --lt:10}}",
+        "elementToActOn": "//tbody/tr"
       }
     },
     {
-      "description": "Asserts that [//form/div[6]/input] elements count is greater or equal than [1].",
-      "literalExample": "not supported by literal engine.",
+      "description": "Asserts that [//tbody/tr] elements count is greater or equal than [1].",
+      "literalExample": "assert {{$ --count --ge:1}} on {//tbody/tr}",
       "actionExample": {
         "actionType": "Assert",
         "argument": "{{$ --count --ge:1}}",
-        "elementToActOn": "//form/div[6]/input"
+        "elementToActOn": "//tbody/tr"
       }
     },
     {
-      "description": "Asserts that [//form/div[6]/input] elements count is lower or equal than [1].",
-      "literalExample": "not supported by literal engine.",
+      "description": "Asserts that [//tbody/tr] elements count is lower or equal than [10].",
+      "literalExample": "assert {{$ --count --le:1}} on {//tbody/tr}",
       "actionExample": {
         "actionType": "Assert",
-        "argument": "{{$ --count --le:1}}",
-        "elementToActOn": "//form/div[6]/input"
+        "argument": "{{$ --count --le:10}}",
+        "elementToActOn": "//tbody/tr"
       }
     },
     {
-      "description": "Asserts that <input> element is [disabled].",
-      "literalExample": "not supported by literal engine.",
+      "description": "Asserts that <input id=\"input_disabled\"> element is [disabled].",
+      "literalExample": "assert {{$ --disabled}} on {input_disabled} using {id}",
       "actionExample": {
         "actionType": "Assert",
         "argument": "{{$ --disabled}}",
-        "elementToActOn": "//form/div[6]/input"
+        "elementToActOn": "input_disabled",
+        "locator": "Id"
       }
     },
     {
-      "description": "Asserts that [IWebDriver.FullName] equals [OpenQA.Selenium.Chrome.ChromeDriver].",
-      "literalExample": "not supported by literal engine.",
+      "description": "Asserts that [IWebDriver.FullName] equals [OpenQA.Selenium.Remote.RemoteWebDriver].",
+      "literalExample": "assert {{$ --driver --eq:OpenQA.Selenium.Remote.RemoteWebDriver}}",
       "actionExample": {
         "actionType": "Assert",
-        "argument": "{{$ --driver --eq:OpenQA.Selenium.Chrome.ChromeDriver}}"
+        "argument": "{{$ --driver --eq:OpenQA.Selenium.Remote.RemoteWebDriver}}"
       }
     },
     {
       "description": "Asserts that [IWebDriver.FullName] not equals [OpenQA.Selenium.Chrome.ChromeDriver].",
-      "literalExample": "not supported by literal engine.",
+      "literalExample": "assert {{$ --driver --ne:OpenQA.Selenium.Chrome.ChromeDriver}}",
       "actionExample": {
         "actionType": "Assert",
         "argument": "{{$ --driver --ne:OpenQA.Selenium.Chrome.ChromeDriver}}"
       }
     },
     {
-      "description": "Asserts that [IWebDriver.FullName] matches [ChromeDriver].",
-      "literalExample": "not supported by literal engine.",
+      "description": "Asserts that [IWebDriver.FullName] matches [RemoteWebDriver].",
+      "literalExample": "assert {{$ --driver --match:RemoteWebDriver}}",
       "actionExample": {
         "actionType": "Assert",
-        "argument": "{{$ --driver --match:ChromeDriver}}"
+        "argument": "{{$ --driver --match:RemoteWebDriver}}"
       }
     },
     {
       "description": "Asserts that [IWebDriver.FullName] not match [ChromeDriver].",
-      "literalExample": "not supported by literal engine.",
+      "literalExample": "assert {{$ --driver --not_match:ChromeDriver}}",
       "actionExample": {
         "actionType": "Assert",
         "argument": "{{$ --driver --not_match:ChromeDriver}}"
       }
     },
     {
-      "description": "Asserts that [IWebDriver.FullName] is greater than [1].",
-      "literalExample": "not supported by literal engine.",
-      "actionExample": {
-        "actionType": "Assert",
-        "argument": "{{$ --driver --gt:1}}"
-      }
-    },
-    {
-      "description": "Asserts that [IWebDriver.FullName] is lower than [1].",
-      "literalExample": "not supported by literal engine.",
-      "actionExample": {
-        "actionType": "Assert",
-        "argument": "{{$ --driver --lt:1}}"
-      }
-    },
-    {
-      "description": "Asserts that [IWebDriver.FullName] is greater or equal than [1].",
-      "literalExample": "not supported by literal engine.",
-      "actionExample": {
-        "actionType": "Assert",
-        "argument": "{{$ --driver --ge:1}}"
-      }
-    },
-    {
-      "description": "Asserts that [IWebDriver.FullName] is lower or equal than [1].",
-      "literalExample": "not supported by literal engine.",
-      "actionExample": {
-        "actionType": "Assert",
-        "argument": "{{$ --driver --le:1}}"
-      }
-    },
-    {
-      "description": "Asserts that <input> element is [enabled].",
-      "literalExample": "not supported by literal engine.",
+      "description": "Asserts that <input id=\"input_enabled\"> element is [enabled].",
+      "literalExample": "assert {{$ --enabled}} on {input_enabled} using {id}",
       "actionExample": {
         "actionType": "Assert",
         "argument": "{{$ --enabled}}",
-        "elementToActOn": "//form/div[6]/input"
+        "elementToActOn": "input_enabled",
+        "locator": "Id"
       }
     },
     {
-      "description": "Asserts that <input> element is [exists].",
-      "literalExample": "not supported by literal engine.",
+      "description": "Asserts that <input id=\"input_enabled\"> element is [exists].",
+      "literalExample": "assert {{$ --exists}} on {input_enabled} using {id}",
       "actionExample": {
         "actionType": "Assert",
         "argument": "{{$ --exists}}",
-        "elementToActOn": "//form/div[6]/input"
+        "elementToActOn": "input_enabled",
+        "locator": "Id"
       }
     },
     {
-      "description": "Asserts that <input> element is [hidden].",
-      "literalExample": "not supported by literal engine.",
+      "description": "Asserts that <input id=\"input_hidden\"> element is [hidden].",
+      "literalExample": "assert {{$ --hidden}} on {input_hidden} using {id}",
       "actionExample": {
         "actionType": "Assert",
         "argument": "{{$ --hidden}}",
-        "elementToActOn": "//form/div[6]/input"
+        "elementToActOn": "input_hidden",
+        "locator": "Id"
       }
     },
     {
-      "description": "Asserts that <input> element is [not_exists].",
-      "literalExample": "not supported by literal engine.",
+      "description": "Asserts that <input id=\"no_element\"> element is [not_exists].",
+      "literalExample": "assert {{$ --hidden}} on {input_hidden} using {id}",
       "actionExample": {
         "actionType": "Assert",
         "argument": "{{$ --not_exists}}",
-        "elementToActOn": "//form/div[6]/input"
+        "elementToActOn": "no_element",
+        "locator": "Id"
       }
     },
     {
-      "description": "Asserts that <input> element is [selected].",
-      "literalExample": "not supported by literal engine.",
+      "description": "Asserts that <input id=\"input_selected\"> element is [selected].",
+      "literalExample": "assert {{$ --selected}} on {input_selected} using {id}",
       "actionExample": {
         "actionType": "Assert",
         "argument": "{{$ --selected}}",
-        "elementToActOn": "//form/div[6]/input"
+        "elementToActOn": "input_selected",
+        "locator": "Id"
       }
     },
     {
-      "description": "Asserts that <input> element is [stale].",
-      "literalExample": "not supported by literal engine.",
+      "description": "Asserts that <div id=\"for_stale_element\"> element is [stale].",
+      "literalExample": "assert {{$ --selected}} on {input_selected} using {id}",
       "actionExample": {
         "actionType": "Assert",
         "argument": "{{$ --stale}}",
-        "elementToActOn": "//form/div[6]/input"
+        "elementToActOn": "for_stale_element",
+        "locator": "Id"
       }
     },
     {
-      "description": "Asserts that [//form/div[6]] inner text equals [active].",
+      "description": "Asserts that [text for testing] inner text equals [Foo Bar].",
+      "literalExample": "assert {{$ --text --eq:Foo Bar}} on {text for testing} using {name}",
+      "actionExample": {
+        "actionType": "Assert",
+        "argument": "{{$ --text --eq:Foo Bar}}",
+        "elementToActOn": "text for testing",
+        "locator": "Name"
+      }
+    },
+    {
+      "description": "Asserts that [text for testing] inner text not equals [Bar Foo].",
+      "literalExample": "assert {{$ --text --ne:Bar Foo}} on {text for testing} using {name}",
+      "actionExample": {
+        "actionType": "Assert",
+        "argument": "{{$ --text --ne:Bar Foo}}",
+        "elementToActOn": "text for testing",
+        "locator": "Name"
+      }
+    },
+    {
+      "description": "Asserts that [text for testing] inner text matches [^Foo Bar$].",
+      "literalExample": "assert {{$ --text --match:^Foo Bar$}} on {text for testing} using {name}",
+      "actionExample": {
+        "actionType": "Assert",
+        "argument": "{{$ --text --match:^Foo Bar$}}",
+        "elementToActOn": "text for testing",
+        "locator": "Name"
+      }
+    },
+    {
+      "description": "Asserts that [text for testing] inner text not match [^Bar Foo$].",
       "literalExample": "not supported by literal engine.",
       "actionExample": {
         "actionType": "Assert",
-        "argument": "{{$ --text --eq:active}}",
-        "elementToActOn": "//form/div[6]"
+        "argument": "assert {{$ --text --not_match:^Bar Foo$}} on {text for testing} using {name}",
+        "elementToActOn": "text for testing",
+        "locator": "Name"
       }
     },
     {
-      "description": "Asserts that [//form/div[6]] inner text not equals [active].",
-      "literalExample": "not supported by literal engine.",
-      "actionExample": {
-        "actionType": "Assert",
-        "argument": "{{$ --text --ne:active}}",
-        "elementToActOn": "//form/div[6]"
-      }
-    },
-    {
-      "description": "Asserts that [//form/div[6]] inner text matches [^active$].",
-      "literalExample": "not supported by literal engine.",
-      "actionExample": {
-        "actionType": "Assert",
-        "argument": "{{$ --text --match:^active$}}",
-        "elementToActOn": "//form/div[6]"
-      }
-    },
-    {
-      "description": "Asserts that [//form/div[6]] inner text not match [^active$].",
-      "literalExample": "not supported by literal engine.",
-      "actionExample": {
-        "actionType": "Assert",
-        "argument": "{{$ --text --not_match:^active$}}",
-        "elementToActOn": "//form/div[6]"
-      }
-    },
-    {
-      "description": "Asserts that [//form/div[6]] inner text is greater than [1].",
-      "literalExample": "not supported by literal engine.",
+      "description": "Asserts that [number for testing] inner text is greater than [1].",
+      "literalExample": "assert {{$ --text --gt:1}} on {number for testing} using {name}",
       "actionExample": {
         "actionType": "Assert",
         "argument": "{{$ --text --gt:1}}",
-        "elementToActOn": "//form/div[6]"
+        "elementToActOn": "number for testing",
+        "locator": "Name"
       }
     },
     {
-      "description": "Asserts that [//form/div[6]] inner text is lower than [1].",
-      "literalExample": "not supported by literal engine.",
+      "description": "Asserts that [number for testing] inner text is lower than [100].",
+      "literalExample": "assert {{$ --text --lt:100}} on {number for testing} using {name}",
       "actionExample": {
         "actionType": "Assert",
-        "argument": "{{$ --text --lt:1}}",
-        "elementToActOn": "//form/div[6]"
+        "argument": "{{$ --text --lt:100}}",
+        "elementToActOn": "number for testing",
+        "locator": "Name"
       }
     },
     {
-      "description": "Asserts that [//form/div[6]] inner text is greater or equal than [1].",
-      "literalExample": "not supported by literal engine.",
+      "description": "Asserts that [number for testing] inner text is greater or equal than [10].",
+      "literalExample": "assert {{$ --text --ge:10}} on {number for testing} using {name}",
       "actionExample": {
         "actionType": "Assert",
-        "argument": "{{$ --text --ge:1}}",
-        "elementToActOn": "//form/div[6]"
+        "argument": "{{$ --text --ge:10}}",
+        "elementToActOn": "number for testing",
+        "locator": "Name"
       }
     },
     {
-      "description": "Asserts that [//form/div[6]] inner text is lower or equal than [1].",
-      "literalExample": "not supported by literal engine.",
+      "description": "Asserts that [number for testing] inner text is lower or equal than [10].",
+      "literalExample": "assert {{$ --text --ge:10}} on {number for testing} using {name}",
       "actionExample": {
         "actionType": "Assert",
-        "argument": "{{$ --text --le:1}}",
-        "elementToActOn": "//form/div[6]"
+        "argument": "{{$ --text --le:10}}",
+        "elementToActOn": "number for testing",
+        "locator": "Name"
       }
     },
     {
-      "description": "Asserts that [IWebDriver.Title] equals [active].",
-      "literalExample": "not supported by literal engine.",
+      "description": "Asserts that [IWebDriver.Title] equals [UI Controls v10 - Contoso].",
+      "literalExample": "assert {{$ --title --eq:UI Controls v10 - Contoso University}}",
       "actionExample": {
         "actionType": "Assert",
-        "argument": "{{$ --title --eq:active}}"
+        "argument": "{{$ --title --eq:UI Controls v10 - Contoso University}}"
       }
     },
     {
-      "description": "Asserts that [IWebDriver.Title] not equals [active].",
-      "literalExample": "not supported by literal engine.",
+      "description": "Asserts that [IWebDriver.Title] not equals [Contoso University - UI Controls v10].",
+      "literalExample": "assert {{$ --title --ne:Contoso University - UI Controls v10}}",
       "actionExample": {
         "actionType": "Assert",
-        "argument": "{{$ --title --ne:active}}"
+        "argument": "{{$ --title --ne:Contoso University - UI Controls v10}}"
       }
     },
     {
-      "description": "Asserts that [IWebDriver.Title] matches [^active$].",
-      "literalExample": "not supported by literal engine.",
+      "description": "Asserts that [IWebDriver.Title] matches [^UI Controls].",
+      "literalExample": "assert {{$ --title --match:^UI Controls}}",
       "actionExample": {
         "actionType": "Assert",
-        "argument": "{{$ --title --match:^active$}}"
+        "argument": "{{$ --title --match:^UI Controls}}"
       }
     },
     {
-      "description": "Asserts that [IWebDriver.Title] not match [^active$].",
-      "literalExample": "not supported by literal engine.",
+      "description": "Asserts that [IWebDriver.Title] not match [UI Controls v10$].",
+      "literalExample": "assert {{$ --title --not_match:UI Controls v10$}}",
       "actionExample": {
         "actionType": "Assert",
-        "argument": "{{$ --title --not_match:^active$}}"
+        "argument": "{{$ --title --not_match:UI Controls v10$}}"
       }
     },
     {
-      "description": "Asserts that [IWebDriver.Title] is greater than [1].",
-      "literalExample": "not supported by literal engine.",
+      "description": "Assert that [IWebDriver.Title] filtered by [\\d+] regular expression, is greater than [1].",
+      "literalExample": "assert {{$ --title --gt:1}} filter {\\d+}",
       "actionExample": {
         "actionType": "Assert",
-        "argument": "{{$ --title --gt:1}}"
+        "argument": "{{$ --title --gt:1}}",
+        "regularExpression": "\\d+"
       }
     },
     {
-      "description": "Asserts that [IWebDriver.Title] is lower than [1].",
-      "literalExample": "not supported by literal engine.",
+      "description": "Asserts that [IWebDriver.Title] filtered by [\\d+] regular expression, is lower than [100].",
+      "literalExample": "assert {{$ --title --gt:100}} filter {\\d+}",
       "actionExample": {
         "actionType": "Assert",
-        "argument": "{{$ --title --lt:1}}"
+        "argument": "{{$ --title --lt:100}}",
+        "regularExpression": "\\d+"
       }
     },
     {
-      "description": "Asserts that [IWebDriver.Title] is greater or equal than [1].",
-      "literalExample": "not supported by literal engine.",
+      "description": "Asserts that [IWebDriver.Title] filtered by [\\d+] regular expression is, greater or equal than [10].",
+      "literalExample": "assert {{$ --title --ge:10}} filter {\\d+}",
       "actionExample": {
         "actionType": "Assert",
-        "argument": "{{$ --title --ge:1}}"
+        "argument": "{{$ --title --ge:10}}",
+        "regularExpression": "\\d+"
       }
     },
     {
-      "description": "Asserts that [IWebDriver.Title] is lower or equal than [1].",
-      "literalExample": "not supported by literal engine.",
+      "description": "Asserts that [IWebDriver.Title] filtered by [\\d+] regular expression, is lower or equal than [10].",
+      "literalExample": "assert {{$ --title --ge:10}} filter {\\d+}",
       "actionExample": {
         "actionType": "Assert",
-        "argument": "{{$ --title --le:1}}",
-        "elementToActOn": "//form/div[6]"
+        "argument": "{{$ --title --le:10}}",
+        "regularExpression": "\\d+"
       }
     },
     {
-      "description": "Asserts that [IWebDriver.Url] equals [active].",
-      "literalExample": "not supported by literal engine.",
+      "description": "Asserts that [IWebDriver.Url] equals [https://gravitymvctestapplication.azurewebsites.net/course/].",
+      "literalExample": "assert {{$ --url --eq:https://gravitymvctestapplication.azurewebsites.net/course/}}",
       "actionExample": {
         "actionType": "Assert",
-        "argument": "{{$ --url --eq:active}}"
+        "argument": "{{$ --url --eq:https://gravitymvctestapplication.azurewebsites.net/course/}}"
       }
     },
     {
-      "description": "Asserts that [IWebDriver.Url] not equals [active].",
-      "literalExample": "not supported by literal engine.",
+      "description": "Asserts that [IWebDriver.Url] not equals [https://gravitymvctestapplication.azurewebsites.net/].",
+      "literalExample": "assert {{$ --title --ne:https://gravitymvctestapplication.azurewebsites.net/}}",
       "actionExample": {
         "actionType": "Assert",
-        "argument": "{{$ --url --ne:active}}"
+        "argument": "{{$ --url --ne:https://gravitymvctestapplication.azurewebsites.net/}}"
       }
     },
     {
-      "description": "Asserts that [IWebDriver.Url] matches [^active$].",
-      "literalExample": "not supported by literal engine.",
+      "description": "Asserts that [IWebDriver.Url] matches [course/$].",
+      "literalExample": "assert {{$ --url --match:course/$}}",
       "actionExample": {
         "actionType": "Assert",
-        "argument": "{{$ --url --match:^active$}}"
+        "argument": "{{$ --url --match:course/$}}"
       }
     },
     {
-      "description": "Asserts that [IWebDriver.Url] not match [^active$].",
-      "literalExample": "not supported by literal engine.",
+      "description": "Asserts that [IWebDriver.Url] not match [^course/].",
+      "literalExample": "assert {{$ --title --not_match:^course/}}",
       "actionExample": {
         "actionType": "Assert",
-        "argument": "{{$ --url --not_match:^active$}}"
+        "argument": "{{$ --url --not_match:^course/}}"
       }
     },
     {
-      "description": "Asserts that [IWebDriver.Url] is greater than [1].",
-      "literalExample": "not supported by literal engine.",
+      "description": "Asserts that [IWebDriver.Url] filtered by [\\d+] regular expression, is greater than [1000].",
+      "literalExample": "assert {{$ --title --gt:1000}} filter {\\d+}",
       "actionExample": {
         "actionType": "Assert",
-        "argument": "{{$ --url --gt:1}}"
+        "argument": "{{$ --url --gt:1000}}",
+        "regularExpression": "\\d+"
       }
     },
     {
-      "description": "Asserts that [IWebDriver.Url] is lower than [1].",
-      "literalExample": "not supported by literal engine.",
+      "description": "Asserts that [IWebDriver.Url] filtered by [\\d+] regular expression, is lower than [2000].",
+      "literalExample": "assert {{$ --url --lt:2000}} filter {\\d+}",
       "actionExample": {
         "actionType": "Assert",
-        "argument": "{{$ --url --lt:1}}"
+        "argument": "{{$ --url --lt:2000}}",
+        "regularExpression": "\\d+"
       }
     },
     {
-      "description": "Asserts that [IWebDriver.Url] is greater or equal than [1].",
-      "literalExample": "not supported by literal engine.",
+      "description": "Asserts that [IWebDriver.Url] filtered by [\\d+] regular expression, is greater or equal than [1045].",
+      "literalExample": "assert {{$ --url --ge:1045}} filter {\\d+}",
       "actionExample": {
         "actionType": "Assert",
-        "argument": "{{$ --url --ge:1}}"
+        "argument": "{{$ --url --ge:1045}}",
+        "regularExpression": "\\d+"
       }
     },
     {
-      "description": "Asserts that [IWebDriver.Url] is lower or equal than [1].",
-      "literalExample": "not supported by literal engine.",
+      "description": "Asserts that [IWebDriver.Url] filtered by [\\d+] regular expression, is lower or equal than [1045].",
+      "literalExample": "assert {{$ --url --le:1045}} filter {\\d+}",
       "actionExample": {
         "actionType": "Assert",
-        "argument": "{{$ --url --le:1}}",
-        "elementToActOn": "//form/div[6]"
+        "argument": "{{$ --url --le:1045}}",
+        "regularExpression": "\\d+"
       }
     },
     {
-      "description": "Asserts that <input> element is [visible].",
-      "literalExample": "not supported by literal engine.",
+      "description": "Asserts that <input id=\"input_enabled\"> element is [visible].",
+      "literalExample": "assert {{$ --visible}} on {input_enabled} using {id}",
       "actionExample": {
         "actionType": "Assert",
         "argument": "{{$ --visible}}",
-        "elementToActOn": "//form/div[6]/input"
+        "elementToActOn": "input_enabled",
+        "locator": "Id"
       }
     },
     {
-      "description": "Asserts that [IWebDriver.WindowHandles] count equals [0].",
-      "literalExample": "not supported by literal engine.",
+      "description": "Asserts that [IWebDriver.WindowHandles] count equals [1].",
+      "literalExample": "assert {{$ --windows_count --eq:1}}",
       "actionExample": {
         "actionType": "Assert",
-        "argument": "{{$ --windows_count --eq:0}}"
+        "argument": "{{$ --windows_count --eq:1}}"
       }
     },
     {
       "description": "Asserts that [IWebDriver.WindowHandles] count not equals [0].",
-      "literalExample": "not supported by literal engine.",
+      "literalExample": "assert {{$ --windows_count --ne:0}}",
       "actionExample": {
         "actionType": "Assert",
         "argument": "{{$ --windows_count --ne:0}}"
       }
     },
     {
-      "description": "Asserts that [IWebDriver.WindowHandles] count matches [\\d+].",
-      "literalExample": "not supported by literal engine.",
+      "description": "Asserts that [IWebDriver.WindowHandles] count matches [\\d{1}].",
+      "literalExample": "assert {{$ --windows_count --match:\\d{1}}}",
       "actionExample": {
         "actionType": "Assert",
-        "argument": "{{$ --windows_count --match:\\d+}}"
+        "argument": "{{$ --windows_count --match:\\d{1}}}"
       }
     },
     {
-      "description": "Asserts that [IWebDriver.WindowHandles] count not match [\\d+].",
-      "literalExample": "not supported by literal engine.",
+      "description": "Asserts that [IWebDriver.WindowHandles] count not match [1\\d+].",
+      "literalExample": "{{$ --windows_count --not_match:1\\d+}}",
       "actionExample": {
         "actionType": "Assert",
-        "argument": "{{$ --windows_count --not_match:\\d+}}"
+        "argument": "{{$ --windows_count --not_match:1\\d+}}"
       }
     },
     {
-      "description": "Asserts that [IWebDriver.WindowHandles] count is greater than [1].",
-      "literalExample": "not supported by literal engine.",
+      "description": "Asserts that [IWebDriver.WindowHandles] count is greater than [0].",
+      "literalExample": "assert {{$ --windows_count --gt:0}}",
       "actionExample": {
         "actionType": "Assert",
-        "argument": "{{$ --windows_count --gt:1}}"
+        "argument": "{{$ --windows_count --gt:0}}"
       }
     },
     {
-      "description": "Asserts that [IWebDriver.WindowHandles] count is lower than [1].",
-      "literalExample": "not supported by literal engine.",
+      "description": "Asserts that [IWebDriver.WindowHandles] count is lower than [10].",
+      "literalExample": "assert {{$ --windows_count --lt:10}}",
       "actionExample": {
         "actionType": "Assert",
-        "argument": "{{$ --windows_count --lt:1}}"
+        "argument": "{{$ --windows_count --lt:10}}"
       }
     },
     {
       "description": "Asserts that [IWebDriver.WindowHandles] count is greater or equal than [1].",
-      "literalExample": "not supported by literal engine.",
+      "literalExample": "assert {{$ --windows_count --ge:1}}",
       "actionExample": {
         "actionType": "Assert",
         "argument": "{{$ --windows_count --ge:1}}"
@@ -570,7 +568,7 @@
     },
     {
       "description": "Asserts that [IWebDriver.WindowHandles] count is lower or equal than [1].",
-      "literalExample": "not supported by literal engine.",
+      "literalExample": "assert {{$ --windows_count --le:1}}",
       "actionExample": {
         "actionType": "Assert",
         "argument": "{{$ --windows_count --le:1}}"
@@ -592,5 +590,5 @@
   },
   "scope": [ "web", "mobile-web", "mobile-native" ],
   "summary": "Asserts that a given value meets a condition.",
-  "testOn": "https://gravitymvctestapplication.azurewebsites.net/instructor"
+  "testOn": "https://gravitymvctestapplication.azurewebsites.net"
 }

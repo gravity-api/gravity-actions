@@ -9,7 +9,7 @@
 * 2. close browser
 * 
 * [test-expected-results]
-* [1] verify {title} not match {^UI Controls}
+* [1] verify {title} not match {UI Controls v10$}
 */
 #pragma warning restore
 using Gravity.Plugins.Actions.Contracts;
@@ -26,7 +26,7 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.AssertScenario
         {
             var expected = (bool)environment.TestParams["negative"]
                 ? "^UI Controls"
-                : "UI Controls$";
+                : "UI Controls v10$";
 
             // setup
             return new List<ActionRule>()

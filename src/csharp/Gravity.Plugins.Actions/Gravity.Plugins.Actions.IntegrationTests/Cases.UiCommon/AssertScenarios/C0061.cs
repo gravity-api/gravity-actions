@@ -1,15 +1,15 @@
 ﻿#pragma warning disable S125
 /*
 * TEST SCENARIO (Rhino)
-* [test-id] 0039
-* [test-scenario] - Assert, Title, Match
+* [test-id] 0061
+* [test-scenario] - Assert, Windows Count, Lower or Equal
 * 
 * [test-actions]
 * 1. navigate to {https://gravitymvctestapplication.azurewebsites.net/uicontrols}
 * 2. close browser
 * 
 * [test-expected-results]
-* [1] verify {title} match {^UI Controls}
+* [1] verify {windows_count} lower or equal {1}
 */
 #pragma warning restore
 using Gravity.Plugins.Actions.Contracts;
@@ -19,14 +19,12 @@ using System.Collections.Generic;
 
 namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.AssertScenarios
 {
-    public class C0039 : TestCase
+    public class C0061 : TestCase
     {
         // gets the actions collection of this test
         public override IEnumerable<ActionRule> GetActions(AutomationEnvironment environment)
         {
-            var expected = (bool)environment.TestParams["negative"]
-                ? "UI Controls$"
-                : "^UI Controls";
+            var expected = (bool)environment.TestParams["negative"] ? "0" : "1";
 
             // setup
             return new List<ActionRule>()
@@ -34,7 +32,7 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.AssertScenario
                 new ActionRule
                 {
                     ActionType = CommonPlugins.Assert,
-                    Argument = "{{$ --title --match:" + expected + "}}"
+                    Argument = "{{$ --windows_count --le:" + expected + "}}"
                 }
             };
         }

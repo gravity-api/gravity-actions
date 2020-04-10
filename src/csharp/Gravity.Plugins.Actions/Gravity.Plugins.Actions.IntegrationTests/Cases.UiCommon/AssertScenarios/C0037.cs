@@ -9,7 +9,7 @@
 * 2. close browser
 * 
 * [test-expected-results]
-* [1] verify {title} equal {UI Controls - Contoso University}
+* [1] verify {title} equal {UI Controls v10 - Contoso University}
 */
 #pragma warning restore
 using Gravity.Plugins.Actions.Contracts;
@@ -25,8 +25,8 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.AssertScenario
         public override IEnumerable<ActionRule> GetActions(AutomationEnvironment environment)
         {
             var expected = (bool)environment.TestParams["negative"]
-                ? "Contoso University - UI Controls"
-                : "UI Controls - Contoso University";
+                ? "Contoso University - UI Controls v10"
+                : "UI Controls v10 - Contoso University";
 
             // setup
             return new List<ActionRule>()

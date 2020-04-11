@@ -543,6 +543,7 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
             // setup
             var isBrowserStack = $"{TestContext.Parameters["Grid.Endpoint"]}".Contains("browserstack.com/wd/hub");
             var isSession = environment.TestParams.ContainsKey("sessions");
+            var timeout = TestContext.Parameters.Get(name: "Grid.UpdateTimeout", defaultValue: 10000);
 
             // exit conditions
             if (!isBrowserStack || !isSession)
@@ -565,16 +566,16 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
                     .Replace("<session-id>", session);
                 if (isDelete)
                 {
-                    Delete(requestUri, client);
+                    Delete(requestUri, client, timeout);
                 }
                 else
                 {
-                    Put(requestUri, requestBody, client);
+                    Put(requestUri, requestBody, client, timeout);
                 }
             }
         }
 
-        private void Put(string requestUri, object requestBody, HttpClient client)
+        private void Put(string requestUri, object requestBody, HttpClient client, int timeout = 10000)
         {
             // setup
             var settings = new JsonSerializerSettings
@@ -589,32 +590,36 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
             var stringContent = new StringContent(content: body, Encoding.UTF8, mediaType: "application/json");
 
             // send to server
-            for (int i = 0; i < 5; i++)
+            var interval = 0;
+            while (interval < timeout)
             {
                 var response = client.PutAsync(requestUri, stringContent).GetAwaiter().GetResult();
                 if (response.IsSuccessStatusCode || response.StatusCode == HttpStatusCode.NotFound)
                 {
                     return;
                 }
-                Thread.Sleep(millisecondsTimeout: 3000);
+                interval += 1000;
+                Thread.Sleep(millisecondsTimeout: 1000);
             }
         }
 
-        private void Delete(string requestUri, HttpClient client)
+        private void Delete(string requestUri, HttpClient client, int timeout = 10000)
         {
             // setup
             client.DefaultRequestHeaders.Authorization =
                 new AuthenticationHeaderValue(scheme: "Basic", parameter: $"{TestContext.Parameters["Grid.BasicAuthorization"]}");
 
             // send to server
-            for (int i = 0; i < 5; i++)
+            var interval = 0;
+            while (interval < timeout)
             {
                 var response = client.DeleteAsync(requestUri).GetAwaiter().GetResult();
                 if (response.IsSuccessStatusCode || response.StatusCode == HttpStatusCode.NotFound)
                 {
                     return;
                 }
-                Thread.Sleep(millisecondsTimeout: 3000);
+                interval += 1000;
+                Thread.Sleep(millisecondsTimeout: 1000);
             }
         }
         #endregion

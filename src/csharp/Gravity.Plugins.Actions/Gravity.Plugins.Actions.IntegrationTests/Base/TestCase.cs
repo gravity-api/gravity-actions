@@ -37,6 +37,7 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
         public static readonly string HomePage = $"{TestContext.Parameters["Integration.ApplicationUnderTest"]}";
 
         // members: state
+        private static readonly HttpClient browserStackClient = new HttpClient();
         private ConcurrentBag<AutomationEnvironment> environments;
         private int attempts =
             TestContext.Parameters.Get(name: "Integration.NumberOfAttempts", defaultValue: 1);
@@ -558,19 +559,18 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
                 Status = actual ? "passed" : "failed"
             };
 
-            // update test outcome on 3rd party platform
-            using var client = new HttpClient();
+            // update test outcome on 3rd party platform            
             foreach (var session in (IEnumerable<string>)environment.TestParams["sessions"])
             {
                 var requestUri = "https://api.browserstack.com/automate/sessions/<session-id>.json"
                     .Replace("<session-id>", session);
                 if (isDelete)
                 {
-                    Delete(requestUri, client, timeout);
+                    Delete(requestUri, browserStackClient, timeout);
                 }
                 else
                 {
-                    Put(requestUri, requestBody, client, timeout);
+                    Put(requestUri, requestBody, browserStackClient, timeout);
                 }
             }
         }
@@ -593,7 +593,7 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
             var interval = 0;
             while (interval < timeout)
             {
-                var response = client.PutAsync(requestUri, stringContent).GetAwaiter().GetResult();
+                var response = client.PutAsync(requestUri, stringContent).ConfigureAwait(false).GetAwaiter().GetResult();
                 if (response.IsSuccessStatusCode || response.StatusCode == HttpStatusCode.NotFound)
                 {
                     return;
@@ -613,7 +613,7 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
             var interval = 0;
             while (interval < timeout)
             {
-                var response = client.DeleteAsync(requestUri).GetAwaiter().GetResult();
+                var response = client.DeleteAsync(requestUri).ConfigureAwait(false).GetAwaiter().GetResult();
                 if (response.IsSuccessStatusCode || response.StatusCode == HttpStatusCode.NotFound)
                 {
                     return;

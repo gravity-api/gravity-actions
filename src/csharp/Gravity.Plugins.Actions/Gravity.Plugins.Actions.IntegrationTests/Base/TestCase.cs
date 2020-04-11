@@ -506,7 +506,7 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
             {
                 Cleanup(environment);
             }
-            return (bool)environment.TestParams["actual"];
+            return environment.TestParams.ContainsKey("actual") && (bool)environment.TestParams["actual"];
         }
 
         // executes explicit preconditions
@@ -542,9 +542,10 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
         {
             // setup
             var isBrowserStack = $"{TestContext.Parameters["Grid.Endpoint"]}".Contains("browserstack.com/wd/hub");
+            var isSession = environment.TestParams.ContainsKey("sessions");
 
             // exit conditions
-            if (!isBrowserStack)
+            if (!isBrowserStack || !isSession)
             {
                 return;
             }

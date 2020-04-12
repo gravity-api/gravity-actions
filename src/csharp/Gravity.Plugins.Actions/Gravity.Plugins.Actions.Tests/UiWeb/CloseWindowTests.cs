@@ -61,6 +61,23 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         }
 
         [DataTestMethod]
+        [DataRow("{'argument':'10'}")]
+        public void CloseWindowOutOfBound(string actionRule)
+        {
+            // setup
+            WebDriver = WebDriver.ApplyCapabilities(new Dictionary<string, object>
+            {
+                [MockCapabilities.ChildWindows] = NumberOfWindows
+            });
+
+            // execute
+            ExecuteAction<CloseWindow>(actionRule);
+
+            // assert that the window is now closed
+            Assert.IsTrue(WebDriver.WindowHandles.Count == NumberOfWindows + 1);
+        }
+
+        [DataTestMethod]
         [DataRow("{'argument':'1'}", 1)]
         [DataRow("{'argument':'2'}", 2)]
         public void CloseWindowElementPositive(string actionRule, int windowsHandle)
@@ -79,6 +96,23 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
 
             // assert that the window is now closed
             Assert.IsFalse(WebDriver.WindowHandles.Any(i => i.Equals(window)));
+        }
+
+        [DataTestMethod]
+        [DataRow("{'argument':'10'}")]
+        public void CloseWindowElementOutOfBound(string actionRule)
+        {
+            // setup
+            WebDriver = WebDriver.ApplyCapabilities(new Dictionary<string, object>
+            {
+                [MockCapabilities.ChildWindows] = NumberOfWindows
+            });
+
+            // execute
+            ExecuteAction<CloseWindow>(By.XPath("//positive"), actionRule);
+
+            // assert that the window is now closed
+            Assert.IsTrue(WebDriver.WindowHandles.Count == NumberOfWindows + 1);
         }
 
         [DataTestMethod]

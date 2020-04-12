@@ -4,10 +4,10 @@
     {
       "actionExample": {
         "actionType": "CloseWindow",
-        "argument": "1"
+        "argument": "2"
       },
       "description": "Close the given window by it's position index, quitting the browser if it is the last window currently open.",
-      "literalExample": "close window {1}"
+      "literalExample": "close window {2}"
     }
   ],
   "name": "CloseWindow",

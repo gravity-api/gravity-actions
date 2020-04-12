@@ -19,7 +19,7 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Providers
         /// <summary>
         /// Gets browsers compatibility matrix for Web UI testing.
         /// </summary>
-        public static IEnumerable CompatibilitiesAlert => GetCompatibilitiesAlert();
+        public static IEnumerable CompatibilitiesPopups => GetCompatibilitiesPopups();
 
         /// <summary>
         /// Gets browsers compatibility matrix for Web UI testing.
@@ -80,7 +80,7 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Providers
             yield return Provider.Get(driver: Driver.iOS, capabilities: Provider.iPhoneSafari);
         }
 
-        private static IEnumerable GetCompatibilitiesAlert()
+        private static IEnumerable GetCompatibilitiesPopups()
         {
             // Windows 10
             yield return Provider.Get(driver: Driver.Chrome, capabilities: Provider.Windows10LatestBrowser);

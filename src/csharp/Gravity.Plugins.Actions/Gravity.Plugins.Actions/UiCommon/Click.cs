@@ -142,18 +142,10 @@ namespace Gravity.Plugins.Actions.UiCommon
         [Description(NoAlert)]
         private void Alert(IWebElement element, ActionRule actionRule)
         {
-            // setup
-            var alertWait = new WebDriverWait(
-                driver: WebDriver,
-                timeout: TimeSpan.FromMilliseconds(WebAutomation.EngineConfiguration.ElementSearchingTimeout));
-
             wait.Until(webDriver =>
             {
                 // click (supposed to trigger alert)
                 this.ConditionalGetElement(element, actionRule).Click();
-
-                // wait for alert
-                alertWait.Until(OpenQA.Selenium.Common.ExpectedConditions.AlertIsPresent());
 
                 // dismiss if exists
                 if (webDriver.HasAlert())

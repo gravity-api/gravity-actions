@@ -38,7 +38,7 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Suites.UiCommon
         }
 
         [Description(description: "P - [0063] - Click Element Until No Alert, ID")]
-        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.CompatibilitiesAlert))]
+        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.CompatibilitiesPopups))]
         public void T0063P(AutomationEnvironment environment)
         {
             // execute

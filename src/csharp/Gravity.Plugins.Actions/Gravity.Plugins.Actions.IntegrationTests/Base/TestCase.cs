@@ -153,7 +153,8 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
                 ["resolution"] = "1920x1080",
                 ["project"] = $"{TestContext.Parameters["Project.Name"]}",
                 ["build"] = $"{TestContext.Parameters["Build.Number"]}",
-                ["name"] = testName
+                ["name"] = testName,
+                ["browserstack.ie.enablePopups"] = true
             };
             foreach (var capability in ((JObject)capabilities["bstack:options"]).ToObject<IDictionary<string, object>>())
             {
@@ -184,7 +185,8 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
                 ["resolution"] = "1920x1080",
                 ["project"] = $"{TestContext.Parameters["Project.Name"]}",
                 ["build"] = $"{TestContext.Parameters["Build.Number"]}",
-                ["name"] = testName
+                ["name"] = testName,
+                ["browserstack.ie.enablePopups"] = true
             };
             foreach (var capability in ((JObject)capabilities["bstack:options"]).ToObject<IDictionary<string, object>>())
             {
@@ -282,6 +284,16 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
             .SelectMany(i => i.EntityContent)
             .First(i => i.Key == key)
             .Value;
+
+        public static bool GetAssertions(OrbitResponse response)
+        {
+            return response
+                .Extractions
+                .SelectMany(i => i.Entities)
+                .SelectMany(i => i.EntityContent)
+                .Where(i => i.Key == "evaluation")
+                .All(i => (bool)i.Value);
+        }
 
         /// <summary>
         /// Gets a driver full name.
@@ -410,7 +422,7 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
 
             // execute
             var response = ExecuteWebAutomation(webAutomation, environment);
-            var actual = GetActual<bool>(response, key: "evaluation");
+            var actual = GetAssertions(response);
 
             // assertion
             return isNegative ? !actual : actual;
@@ -524,6 +536,9 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
             {
                 // common
                 UpdateBrowserStack(environment, isDelete: false);
+
+                // environment log
+                TestContext.WriteLine(JsonConvert.SerializeObject(environment, Formatting.Indented));
 
                 // user
                 OnCleanup(environment);

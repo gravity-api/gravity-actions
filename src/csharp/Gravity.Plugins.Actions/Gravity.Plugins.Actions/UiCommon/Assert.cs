@@ -74,6 +74,7 @@ namespace Gravity.Plugins.Actions.UiCommon
                 assertion ??= new Dictionary<string, object>();
                 assertion["evaluation"] = false;
             }
+            assertion["reference"] = actionRule.Reference;
 
             // add to extractions
             var extraction = new Extraction().GetDefault($"{WebDriver?.GetSession()}");

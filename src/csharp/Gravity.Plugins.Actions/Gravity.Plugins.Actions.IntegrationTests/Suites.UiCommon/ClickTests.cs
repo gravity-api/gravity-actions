@@ -25,5 +25,27 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Suites.UiCommon
             // assertion
             Assert.IsTrue(actual);
         }
+
+        [Description(description: "P - [0062] - Click at the Last Known Mouse Coordinates")]
+        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Compatibilities))]
+        public void T0062P(AutomationEnvironment environment)
+        {
+            // execute
+            var actual = new C0062().AddEnvironments(environment).Execute();
+
+            // assertion
+            Assert.IsTrue(actual);
+        }
+
+        [Description(description: "P - [0063] - Click Element Until No Alert, ID")]
+        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.CompatibilitiesAlert))]
+        public void T0063P(AutomationEnvironment environment)
+        {
+            // execute
+            var actual = new C0063().AddEnvironments(environment).Execute();
+
+            // assertion
+            Assert.IsTrue(actual);
+        }
     }
 }

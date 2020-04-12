@@ -1,22 +1,16 @@
-﻿/*
- * CHANGE LOG - keep only last 5 threads
- * 
- * on-line resources
- */
-
-#pragma warning disable S125
+﻿#pragma warning disable S125
 /*
 * TEST SCENARIO (Rhino)
 * [test-id] 0001
 * [test-scenario] - Click on Element
 * 
 * [test-actions]
-* 1. navigate to {https://gravitymvctestapplication.azurewebsites.net/}
+* 1. navigate to {https://gravitymvctestapplication.azurewebsites.net/uicontrols/}
 * 2. click on {//a[.='Departments']}
 * 3. close browser
 * 
 * [test-expected-results]
-* [2] verify {text} on {//a[.='Departments']} equal {Departments}
+* [2] verify {text} on {//h1[1]} equal {Departments}
 */
 #pragma warning restore
 using Gravity.Abstraction.Contracts;
@@ -29,29 +23,8 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.ClickScenarios
 {
     public class C0001 : TestCase
     {
-        public override bool AutomationTest(AutomationEnvironment environment)
-        {
-            // setup
-            var driver = $"{environment.TestParams["driver"]}";
-            var capabilities = (IDictionary<string, object>)environment.TestParams["capabilities"];
-
-            // web automation
-            var actions = GetActions(environment);
-            var extractions = GetExtractions(rootElement: "//h1[1]");
-
-            var webAutomation = GetWebAutomation(driver, capabilities);
-            webAutomation = AddWebActions(webAutomation, actions, extractions);
-
-            // execute
-            var response = ExecuteWebAutomation(webAutomation, environment);
-            var actual = GetActual(response);
-
-            // assertion
-            return actual.Equals("Departments");
-        }
-
         // gets the actions collection of this test
-        private IEnumerable<ActionRule> GetActions(AutomationEnvironment environment)
+        public override IEnumerable<ActionRule> GetActions(AutomationEnvironment environment)
         {
             // setup
             var actions = new List<ActionRule>();
@@ -68,27 +41,15 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.ClickScenarios
 
             // common actions
             actions.Add(new ActionRule { ActionType = CommonPlugins.Click, ElementToActOn = "//a[.='Departments']" });
-            actions.Add(new ActionRule { ActionType = CommonPlugins.ExtractFromDom });
+            actions.Add(new ActionRule
+            {
+                ActionType = CommonPlugins.Assert,
+                Argument = "{{$ --text --eq:Departments}}",
+                ElementToActOn = "//h1[1]"
+            });
 
             // results
             return actions;
-        }
-
-        // gets the actions collection of this test
-        private IEnumerable<ExtractionRule> GetExtractions(string rootElement)
-        {
-            // setup
-            var extraction = new ExtractionRule
-            {
-                RootElementToExtractFrom = rootElement,
-                ElementsToExtract = new[]
-                {
-                    new ContentEntry { Key = "actual" }
-                }
-            };
-
-            // results
-            return new[] { extraction };
         }
     }
 }

@@ -12,11 +12,11 @@
     {
       "actionExample": {
         "actionType": "click",
-        "elementToActOn": "(//table//a)[1]"
+        "elementToActOn": "//a[.='Departments']"
       },
-      "comment": "Executed on [Edit] page. Select any instructor and click on [Edit] link.",
+      "comment": "Can be tested on [https://gravitymvctestapplication.azurewebsites.net/UiControls].",
       "description": "Clicks the mouse on the specified element.",
-      "literalExample": "click on {(//table//a)[1]}"
+      "literalExample": "click on {//a[.='Departments']}"
     },
     {
       "actionExample": {
@@ -29,10 +29,12 @@
       "actionExample": {
         "actionType": "Click",
         "argument": "{{$ --until:no_alert}}",
-        "elementToActOn": "(//table//a)[1]"
+        "elementToActOn": "pop_alert",
+        "locator": "Id"
       },
+      "comment": "Can be tested on [https://gravitymvctestapplication.azurewebsites.net/UiControls].",
       "description": "Clicks the mouse on the specified element. If alert is present after that click, it will be dismissed and the click action repeats. The action repeats until no alert or until page load timeout reached.",
-      "literalExample": "click {{$ --until:no_alert}} on {(//table//a)[1]}"
+      "literalExample": "click {{$ --until:no_alert}} on {pop_alert} using {id}"
     }
   ],
   "name": "Click",

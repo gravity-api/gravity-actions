@@ -399,7 +399,7 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
             // setup
             var driver = $"{environment.TestParams["driver"]}";
             var capabilities = (IDictionary<string, object>)environment.TestParams["capabilities"];
-            var isNegative = (bool)environment.TestParams["negative"];
+            var isNegative = environment.TestParams.ContainsKey("negative") && (bool)environment.TestParams["negative"];
 
             // web automation
             var actions = GetActions(environment);
@@ -542,7 +542,8 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
         public void UpdateBrowserStack(AutomationEnvironment environment, bool isDelete)
         {
             // setup
-            var isBrowserStack = $"{TestContext.Parameters["Grid.Endpoint"]}".Contains("browserstack.com/wd/hub");
+            var isUpdateBrowserStack = TestContext.Parameters.Get("Grid.UpdateBrowserStack", false);
+            var isBrowserStack = isUpdateBrowserStack && $"{TestContext.Parameters["Grid.Endpoint"]}".Contains("browserstack.com/wd/hub");
             var isSession = environment.TestParams.ContainsKey("sessions");
             var timeout = TestContext.Parameters.Get(name: "Grid.UpdateTimeout", defaultValue: 10000);
 

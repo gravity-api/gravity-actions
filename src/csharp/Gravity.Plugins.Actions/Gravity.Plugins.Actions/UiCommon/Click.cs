@@ -140,19 +140,29 @@ namespace Gravity.Plugins.Actions.UiCommon
 
 #pragma warning disable S1144, RCS1213, IDE0051
         [Description(NoAlert)]
-        private void Alert(IWebElement webElement, ActionRule actionRule)
+        private void Alert(IWebElement element, ActionRule actionRule)
         {
-            // click until condition met or timeout reached
+            // setup
+            var alertWait = new WebDriverWait(
+                driver: WebDriver,
+                timeout: TimeSpan.FromMilliseconds(WebAutomation.EngineConfiguration.ElementSearchingTimeout));
+
             wait.Until(webDriver =>
             {
-                this.ConditionalGetElement(webElement, actionRule).Click();
+                // click (supposed to trigger alert)
+                this.ConditionalGetElement(element, actionRule).Click();
 
+                // wait for alert
+                alertWait.Until(OpenQA.Selenium.Common.ExpectedConditions.AlertIsPresent());
+
+                // dismiss if exists
                 if (webDriver.HasAlert())
                 {
                     webDriver.SwitchTo().Alert().Dismiss();
                     return null;
                 }
 
+                // results
                 return webDriver;
             });
         }

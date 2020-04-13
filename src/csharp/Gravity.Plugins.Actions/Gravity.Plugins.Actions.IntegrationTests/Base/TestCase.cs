@@ -8,22 +8,16 @@ using Gravity.Plugins.Contracts;
 using Gravity.Plugins.Engine;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Text;
-using System.Threading;
 
 using TestContext = NUnit.Framework.TestContext;
 using DescriptionAttribute = System.ComponentModel.DescriptionAttribute;
 using Gravity.Abstraction.Contracts;
-using System.Net;
 using Newtonsoft.Json.Linq;
 
 namespace Gravity.Plugins.Actions.IntegrationTests.Base
@@ -32,12 +26,11 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
     public abstract class TestCase
     {
         // constants
-        public const string UiControlsPage = "https://gravitymvctestapplication.azurewebsites.net/uicontrols/";
-        public const string CoursesPage = "https://gravitymvctestapplication.azurewebsites.net/course/";
         public static readonly string HomePage = $"{TestContext.Parameters["Integration.ApplicationUnderTest"]}";
+        public static readonly string UiControlsPage = HomePage + "uicontrols/";
+        public static readonly string CoursesPage = HomePage + "course/";
 
         // members: state
-        private static readonly HttpClient browserStackClient = new HttpClient();
         private ConcurrentBag<AutomationEnvironment> environments;
         private int attempts =
             TestContext.Parameters.Get(name: "Integration.NumberOfAttempts", defaultValue: 1);
@@ -554,13 +547,18 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
         /// <summary>
         /// Updates tests results on BrowserStack (if applicable)
         /// </summary>
-        public void UpdateBrowserStack(AutomationEnvironment environment, bool isDelete)
+        public static void UpdateBrowserStack(AutomationEnvironment environment, bool isDelete)
         {
             // setup
-            var isUpdateBrowserStack = TestContext.Parameters.Get("Grid.UpdateBrowserStack", false);
-            var isBrowserStack = isUpdateBrowserStack && $"{TestContext.Parameters["Grid.Endpoint"]}".Contains("browserstack.com/wd/hub");
+            var isPutBrowserStack = TestContext.Parameters.Get("Grid.PutBrowserStack", false);
+            var isDeleteBrowserStack = isDelete && TestContext.Parameters.Get("Grid.DeleteBrowserStack", true);
+            var isBrowserStack = $"{TestContext.Parameters["Grid.Endpoint"]}".Contains("browserstack.com/wd/hub");
             var isSession = environment.TestParams.ContainsKey("sessions");
-            var timeout = TestContext.Parameters.Get(name: "Grid.UpdateTimeout", defaultValue: 10000);
+            var client = new BrowserStackClient
+            {
+                BasicAuthorization = TestContext.Parameters.Get("Grid.BasicAuthorization", string.Empty),
+                AttemptsTimeout = TimeSpan.FromSeconds(TestContext.Parameters.Get("Grid.UpdateTimeout", 10000))
+            };
 
             // exit conditions
             if (!isBrowserStack || !isSession)
@@ -578,64 +576,14 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
             // update test outcome on 3rd party platform            
             foreach (var session in (IEnumerable<string>)environment.TestParams["sessions"])
             {
-                var requestUri = "https://api.browserstack.com/automate/sessions/<session-id>.json"
-                    .Replace("<session-id>", session);
-                if (isDelete)
+                if (isDeleteBrowserStack)
                 {
-                    Delete(requestUri, browserStackClient, timeout);
+                    client.DeleteAsync(session).GetAwaiter().GetResult();
                 }
-                else
+                else if(isPutBrowserStack)
                 {
-                    Put(requestUri, requestBody, browserStackClient, timeout);
+                    client.PutAsync(session, requestBody).GetAwaiter().GetResult();
                 }
-            }
-        }
-
-        private void Put(string requestUri, object requestBody, HttpClient client, int timeout = 10000)
-        {
-            // setup
-            var settings = new JsonSerializerSettings
-            {
-                ContractResolver = new CamelCasePropertyNamesContractResolver()
-            };
-            client.DefaultRequestHeaders.Authorization =
-                new AuthenticationHeaderValue(scheme: "Basic", parameter: $"{TestContext.Parameters["Grid.BasicAuthorization"]}");
-
-            // create content
-            var body = JsonConvert.SerializeObject(requestBody, settings);
-            var stringContent = new StringContent(content: body, Encoding.UTF8, mediaType: "application/json");
-
-            // send to server
-            var interval = 0;
-            while (interval < timeout)
-            {
-                var response = client.PutAsync(requestUri, stringContent).ConfigureAwait(false).GetAwaiter().GetResult();
-                if (response.IsSuccessStatusCode || response.StatusCode == HttpStatusCode.NotFound)
-                {
-                    return;
-                }
-                interval += 1000;
-                Thread.Sleep(millisecondsTimeout: 1000);
-            }
-        }
-
-        private void Delete(string requestUri, HttpClient client, int timeout = 10000)
-        {
-            // setup
-            client.DefaultRequestHeaders.Authorization =
-                new AuthenticationHeaderValue(scheme: "Basic", parameter: $"{TestContext.Parameters["Grid.BasicAuthorization"]}");
-
-            // send to server
-            var interval = 0;
-            while (interval < timeout)
-            {
-                var response = client.DeleteAsync(requestUri).ConfigureAwait(false).GetAwaiter().GetResult();
-                if (response.IsSuccessStatusCode || response.StatusCode == HttpStatusCode.NotFound)
-                {
-                    return;
-                }
-                interval += 1000;
-                Thread.Sleep(millisecondsTimeout: 1000);
             }
         }
         #endregion

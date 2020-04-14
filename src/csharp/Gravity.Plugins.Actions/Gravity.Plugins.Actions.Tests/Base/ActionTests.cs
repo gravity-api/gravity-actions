@@ -19,6 +19,7 @@ using Gravity.Plugins.Base;
 using Gravity.Plugins.Attributes;
 using Gravity.Plugins.Contracts;
 using System.Data.SqlClient;
+using Gravity.Plugins.Engine;
 
 namespace Gravity.Plugins.Actions.UnitTests.Base
 {
@@ -169,6 +170,45 @@ namespace Gravity.Plugins.Actions.UnitTests.Base
             where T : Plugin
         {
             return DoExecuteAction<T>(by, actionRule, capabilities);
+        }
+
+        /// <summary>
+        /// Executes an action <see cref="Plugin"/> of the provided type.
+        /// </summary>
+        /// <typeparam name="T">The <see cref="Type"/> of action which will be executed.</typeparam>
+        /// <param name="actionRule">ActionRule JSON from which to create an <see cref="ActionRule"/> instance.</param>
+        /// <param name="parameters">Perform method parameters list excluding <see cref="ActionRule"/> parameter type.</param>
+        public OrbitResponse ExecuteAction<T>(string actionRule, object[] parameters)
+            where T : Plugin
+        {
+            // setup
+            var rule = JsonConvert.DeserializeObject<ActionRule>(actionRule);
+            rule.ActionType = typeof(T).Name;
+
+            // execute
+            return new AutomationExecutor(WebAutomation, WebDriver).Execute(actionRule: rule, parameters).GetResponse();
+        }
+
+        /// <summary>
+        /// Executes an action <see cref="Plugin"/> of the provided type.
+        /// </summary>
+        /// <typeparam name="T">The <see cref="Type"/> of action which will be executed.</typeparam>
+        /// <param name="by">Provides a mechanism by which to find elements within a document.</param>
+        /// <param name="actionRule">ActionRule JSON from which to create an <see cref="ActionRule"/> instance.</param>
+        /// <param name="parameters">Perform method parameters list excluding <see cref="ActionRule"/> parameter type.</param>
+        public OrbitResponse ExecuteAction<T>(By by, string actionRule, object[] parameters)
+            where T : Plugin
+        {
+            // setup
+            var rule = JsonConvert.DeserializeObject<ActionRule>(actionRule);
+            rule.ActionType = typeof(T).Name;
+
+            var arguments = by == default
+                ? parameters
+                : parameters.Concat(new object[] {WebDriver.FindElement(by) }).ToArray();
+
+            // execute
+            return new AutomationExecutor(WebAutomation, WebDriver).Execute(actionRule: rule, arguments).GetResponse();
         }
 
         // executes an action plug-in of the provided type.

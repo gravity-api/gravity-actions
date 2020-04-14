@@ -9,6 +9,7 @@ using Gravity.Plugins.Actions.UnitTests.Base;
 using Gravity.Plugins.Contracts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium.Mock;
+using System;
 using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
 
 namespace Gravity.Plugins.Actions.UnitTests.UiCommon
@@ -83,7 +84,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
                 .Replace(OnCondition, "exists");
 
             // execute
-            ExecuteAction<Condition>(actionRule);
+            ExecuteAction<Condition>(actionRule, parameters: Array.Empty<object>());
 
             // assertion
             Assert.IsTrue(EnvironmentContext.ApplicationParams[TestKey].Equals(TestValue));
@@ -101,7 +102,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
                 .Replace(OnCondition, "exists");
 
             // execute
-            ExecuteAction<Condition>(actionRule);
+            ExecuteAction<Condition>(actionRule, parameters: Array.Empty<object>());
 
             // assertion
             Assert.IsTrue(!EnvironmentContext.ApplicationParams.ContainsKey(TestKey));
@@ -117,7 +118,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
                 .Replace(OnCondition, "visible");
 
             // execute
-            ExecuteAction<Condition>(actionRule);
+            ExecuteAction<Condition>(actionRule, parameters: Array.Empty<object>());
 
             // assertion
             Assert.IsTrue(EnvironmentContext.ApplicationParams[TestKey].Equals(TestValue));
@@ -136,7 +137,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
                 .Replace(OnCondition, "visible");
 
             // execute
-            ExecuteAction<Condition>(actionRule);
+            ExecuteAction<Condition>(actionRule, parameters: Array.Empty<object>());
 
             // assertion
             Assert.IsTrue(!EnvironmentContext.ApplicationParams.ContainsKey(TestKey));
@@ -152,7 +153,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
                 .Replace(OnCondition, "hidden");
 
             // execute
-            ExecuteAction<Condition>(actionRule);
+            ExecuteAction<Condition>(actionRule, parameters: Array.Empty<object>());
 
             // assertion
             Assert.IsTrue(EnvironmentContext.ApplicationParams[TestKey].Equals(TestValue));
@@ -171,7 +172,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
                 .Replace(OnCondition, "hidden");
 
             // execute
-            ExecuteAction<Condition>(actionRule);
+            ExecuteAction<Condition>(actionRule, parameters: Array.Empty<object>());
 
             // assertion
             Assert.IsTrue(!EnvironmentContext.ApplicationParams.ContainsKey(TestKey));
@@ -188,7 +189,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
                 .Replace(OnCondition, "not_exists");
 
             // execute
-            ExecuteAction<Condition>(actionRule);
+            ExecuteAction<Condition>(actionRule, parameters: Array.Empty<object>());
 
             // assertion
             Assert.IsTrue(EnvironmentContext.ApplicationParams[TestKey].Equals(TestValue));
@@ -206,7 +207,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
                 .Replace(OnCondition, "not_exists");
 
             // execute
-            ExecuteAction<Condition>(actionRule);
+            ExecuteAction<Condition>(actionRule, parameters: Array.Empty<object>());
 
             // assertion
             Assert.IsTrue(!EnvironmentContext.ApplicationParams.ContainsKey(TestKey));
@@ -222,7 +223,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
                 .Replace(OnCondition, "stale");
 
             // execute
-            ExecuteAction<Condition>(actionRule);
+            ExecuteAction<Condition>(actionRule, parameters: Array.Empty<object>());
 
             // assertion
             Assert.IsTrue(EnvironmentContext.ApplicationParams[TestKey].Equals(TestValue));
@@ -241,7 +242,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
                 .Replace(OnCondition, "stale");
 
             // execute
-            ExecuteAction<Condition>(actionRule);
+            ExecuteAction<Condition>(actionRule, parameters: Array.Empty<object>());
 
             // assertion
             Assert.IsTrue(!EnvironmentContext.ApplicationParams.ContainsKey(TestKey));
@@ -257,7 +258,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
                 .Replace(OnCondition, "enabled");
 
             // execute
-            ExecuteAction<Condition>(actionRule);
+            ExecuteAction<Condition>(actionRule, parameters: Array.Empty<object>());
 
             // assertion
             Assert.IsTrue(EnvironmentContext.ApplicationParams[TestKey].Equals(TestValue));
@@ -276,7 +277,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
                 .Replace(OnCondition, "enabled");
 
             // execute
-            ExecuteAction<Condition>(actionRule);
+            ExecuteAction<Condition>(actionRule, parameters: Array.Empty<object>());
 
             // assertion
             Assert.IsTrue(!EnvironmentContext.ApplicationParams.ContainsKey(TestKey));
@@ -292,7 +293,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
                 .Replace(OnCondition, "disabled");
 
             // execute
-            ExecuteAction<Condition>(actionRule);
+            ExecuteAction<Condition>(actionRule, parameters: Array.Empty<object>());
 
             // assertion
             Assert.IsTrue(EnvironmentContext.ApplicationParams[TestKey].Equals(TestValue));
@@ -311,7 +312,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
                 .Replace(OnCondition, "disabled");
 
             // execute
-            ExecuteAction<Condition>(actionRule);
+            ExecuteAction<Condition>(actionRule, parameters: Array.Empty<object>());
 
             // assertion
             Assert.IsTrue(!EnvironmentContext.ApplicationParams.ContainsKey(TestKey));
@@ -327,7 +328,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
                 .Replace(OnCondition, "selected");
 
             // execute
-            ExecuteAction<Condition>(actionRule);
+            ExecuteAction<Condition>(actionRule, parameters: Array.Empty<object>());
 
             // assertion
             Assert.IsTrue(EnvironmentContext.ApplicationParams[TestKey].Equals(TestValue));
@@ -346,7 +347,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
                 .Replace(OnCondition, "selected");
 
             // execute
-            ExecuteAction<Condition>(actionRule);
+            ExecuteAction<Condition>(actionRule, parameters: Array.Empty<object>());
 
             // assertion
             Assert.IsTrue(!EnvironmentContext.ApplicationParams.ContainsKey(TestKey));
@@ -362,7 +363,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
                 .Replace(OnCondition, "not_selected");
 
             // execute
-            ExecuteAction<Condition>(actionRule);
+            ExecuteAction<Condition>(actionRule, parameters: Array.Empty<object>());
 
             // assertion
             Assert.IsTrue(EnvironmentContext.ApplicationParams[TestKey].Equals(TestValue));
@@ -381,7 +382,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
                 .Replace(OnCondition, "not_selected");
 
             // execute
-            ExecuteAction<Condition>(actionRule);
+            ExecuteAction<Condition>(actionRule, parameters: Array.Empty<object>());
 
             // assertion
             Assert.IsTrue(!EnvironmentContext.ApplicationParams.ContainsKey(TestKey));
@@ -407,7 +408,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
                 .Replace(OnElement, "//positive");
 
             // execute
-            ExecuteAction<Condition>(actionRule);
+            ExecuteAction<Condition>(actionRule, parameters: Array.Empty<object>());
 
             // assertion
             Assert.IsTrue(EnvironmentContext.ApplicationParams[TestKey].Equals(TestValue));
@@ -429,7 +430,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
                 .Replace(OnElement, "//positive");
 
             // execute
-            ExecuteAction<Condition>(actionRule);
+            ExecuteAction<Condition>(actionRule, parameters: Array.Empty<object>());
 
             // assertion
             Assert.IsTrue(EnvironmentContext.ApplicationParams[TestKey].Equals(TestValue));
@@ -451,7 +452,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
                 .Replace(OnElement, "//positive");
 
             // execute
-            ExecuteAction<Condition>(actionRule);
+            ExecuteAction<Condition>(actionRule, parameters: Array.Empty<object>());
 
             // assertion
             Assert.IsTrue(EnvironmentContext.ApplicationParams[TestKey].Equals(TestValue));
@@ -475,7 +476,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
                 .Replace(OnElement, "//positive");
 
             // execute
-            ExecuteAction<Condition>(actionRule);
+            ExecuteAction<Condition>(actionRule, parameters: Array.Empty<object>());
 
             // assertion
             Assert.IsTrue(EnvironmentContext.ApplicationParams[TestKey].Equals(TestValue));
@@ -497,7 +498,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
                 .Replace(OnElement, "//positive");
 
             // execute
-            ExecuteAction<Condition>(actionRule);
+            ExecuteAction<Condition>(actionRule, parameters: Array.Empty<object>());
 
             // assertion
             Assert.IsTrue(EnvironmentContext.ApplicationParams[TestKey].Equals(TestValue));
@@ -519,7 +520,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
                 .Replace(OnElement, "//positive");
 
             // execute
-            ExecuteAction<Condition>(actionRule);
+            ExecuteAction<Condition>(actionRule, parameters: Array.Empty<object>());
 
             // assertion
             Assert.IsTrue(EnvironmentContext.ApplicationParams[TestKey].Equals(TestValue));
@@ -543,7 +544,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
                 .Replace(OnElement, "//positive");
 
             // execute
-            ExecuteAction<Condition>(actionRule);
+            ExecuteAction<Condition>(actionRule, parameters: Array.Empty<object>());
 
             // assertion
             Assert.IsTrue(EnvironmentContext.ApplicationParams[TestKey].Equals(TestValue));
@@ -560,7 +561,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
                 .Replace(OnCondition, "exists");
 
             // execute
-            ExecuteAction<Condition>(MockBy.Positive(), actionRule);
+            ExecuteAction<Condition>(MockBy.Positive(), actionRule, parameters: Array.Empty<object>());
 
             // assertion
             Assert.IsTrue(EnvironmentContext.ApplicationParams[TestKey].Equals(TestValue));
@@ -578,7 +579,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
                 .Replace(OnCondition, "exists");
 
             // execute
-            ExecuteAction<Condition>(MockBy.Positive(), actionRule);
+            ExecuteAction<Condition>(MockBy.Positive(), actionRule, parameters: Array.Empty<object>());
 
             // assertion
             Assert.IsTrue(!EnvironmentContext.ApplicationParams.ContainsKey(TestKey));
@@ -594,7 +595,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
                 .Replace(OnCondition, "visible");
 
             // execute
-            ExecuteAction<Condition>(MockBy.Positive(), actionRule);
+            ExecuteAction<Condition>(MockBy.Positive(), actionRule, parameters: Array.Empty<object>());
 
             // assertion
             Assert.IsTrue(EnvironmentContext.ApplicationParams[TestKey].Equals(TestValue));
@@ -613,7 +614,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
                 .Replace(OnCondition, "visible");
 
             // execute
-            ExecuteAction<Condition>(MockBy.Positive(), actionRule);
+            ExecuteAction<Condition>(MockBy.Positive(), actionRule, parameters: Array.Empty<object>());
 
             // assertion
             Assert.IsTrue(!EnvironmentContext.ApplicationParams.ContainsKey(TestKey));
@@ -629,7 +630,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
                 .Replace(OnCondition, "hidden");
 
             // execute
-            ExecuteAction<Condition>(MockBy.Positive(), actionRule);
+            ExecuteAction<Condition>(MockBy.Positive(), actionRule, parameters: Array.Empty<object>());
 
             // assertion
             Assert.IsTrue(EnvironmentContext.ApplicationParams[TestKey].Equals(TestValue));
@@ -648,7 +649,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
                 .Replace(OnCondition, "hidden");
 
             // execute
-            ExecuteAction<Condition>(MockBy.Positive(), actionRule);
+            ExecuteAction<Condition>(MockBy.Positive(), actionRule, parameters: Array.Empty<object>());
 
             // assertion
             Assert.IsTrue(!EnvironmentContext.ApplicationParams.ContainsKey(TestKey));
@@ -665,7 +666,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
                 .Replace(OnCondition, "not_exists");
 
             // execute
-            ExecuteAction<Condition>(MockBy.Positive(), actionRule);
+            ExecuteAction<Condition>(MockBy.Positive(), actionRule, parameters: Array.Empty<object>());
 
             // assertion
             Assert.IsTrue(EnvironmentContext.ApplicationParams[TestKey].Equals(TestValue));
@@ -683,7 +684,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
                 .Replace(OnCondition, "not_exists");
 
             // execute
-            ExecuteAction<Condition>(MockBy.Positive(), actionRule);
+            ExecuteAction<Condition>(MockBy.Positive(), actionRule, parameters: Array.Empty<object>());
 
             // assertion
             Assert.IsTrue(!EnvironmentContext.ApplicationParams.ContainsKey(TestKey));
@@ -699,7 +700,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
                 .Replace(OnCondition, "stale");
 
             // execute
-            ExecuteAction<Condition>(MockBy.Positive(), actionRule);
+            ExecuteAction<Condition>(MockBy.Positive(), actionRule, parameters: Array.Empty<object>());
 
             // assertion
             Assert.IsTrue(EnvironmentContext.ApplicationParams[TestKey].Equals(TestValue));
@@ -718,7 +719,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
                 .Replace(OnCondition, "stale");
 
             // execute
-            ExecuteAction<Condition>(MockBy.Positive(), actionRule);
+            ExecuteAction<Condition>(MockBy.Positive(), actionRule, parameters: Array.Empty<object>());
 
             // assertion
             Assert.IsTrue(!EnvironmentContext.ApplicationParams.ContainsKey(TestKey));
@@ -734,7 +735,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
                 .Replace(OnCondition, "enabled");
 
             // execute
-            ExecuteAction<Condition>(MockBy.Positive(), actionRule);
+            ExecuteAction<Condition>(MockBy.Positive(), actionRule, parameters: Array.Empty<object>());
 
             // assertion
             Assert.IsTrue(EnvironmentContext.ApplicationParams[TestKey].Equals(TestValue));
@@ -753,7 +754,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
                 .Replace(OnCondition, "enabled");
 
             // execute
-            ExecuteAction<Condition>(MockBy.Positive(), actionRule);
+            ExecuteAction<Condition>(MockBy.Positive(), actionRule, parameters: Array.Empty<object>());
 
             // assertion
             Assert.IsTrue(!EnvironmentContext.ApplicationParams.ContainsKey(TestKey));
@@ -769,7 +770,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
                 .Replace(OnCondition, "disabled");
 
             // execute
-            ExecuteAction<Condition>(MockBy.Positive(), actionRule);
+            ExecuteAction<Condition>(MockBy.Positive(), actionRule, parameters: Array.Empty<object>());
 
             // assertion
             Assert.IsTrue(EnvironmentContext.ApplicationParams[TestKey].Equals(TestValue));
@@ -788,7 +789,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
                 .Replace(OnCondition, "disabled");
 
             // execute
-            ExecuteAction<Condition>(MockBy.Positive(), actionRule);
+            ExecuteAction<Condition>(MockBy.Positive(), actionRule, parameters: Array.Empty<object>());
 
             // assertion
             Assert.IsTrue(!EnvironmentContext.ApplicationParams.ContainsKey(TestKey));
@@ -804,7 +805,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
                 .Replace(OnCondition, "selected");
 
             // execute
-            ExecuteAction<Condition>(MockBy.Positive(), actionRule);
+            ExecuteAction<Condition>(MockBy.Positive(), actionRule, parameters: Array.Empty<object>());
 
             // assertion
             Assert.IsTrue(EnvironmentContext.ApplicationParams[TestKey].Equals(TestValue));
@@ -823,7 +824,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
                 .Replace(OnCondition, "selected");
 
             // execute
-            ExecuteAction<Condition>(MockBy.Positive(), actionRule);
+            ExecuteAction<Condition>(MockBy.Positive(), actionRule, parameters: Array.Empty<object>());
 
             // assertion
             Assert.IsTrue(!EnvironmentContext.ApplicationParams.ContainsKey(TestKey));
@@ -839,7 +840,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
                 .Replace(OnCondition, "not_selected");
 
             // execute
-            ExecuteAction<Condition>(MockBy.Positive(), actionRule);
+            ExecuteAction<Condition>(MockBy.Positive(), actionRule, parameters: Array.Empty<object>());
 
             // assertion
             Assert.IsTrue(EnvironmentContext.ApplicationParams[TestKey].Equals(TestValue));
@@ -858,7 +859,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
                 .Replace(OnCondition, "not_selected");
 
             // execute
-            ExecuteAction<Condition>(MockBy.Positive(), actionRule);
+            ExecuteAction<Condition>(MockBy.Positive(), actionRule, parameters: Array.Empty<object>());
 
             // assertion
             Assert.IsTrue(!EnvironmentContext.ApplicationParams.ContainsKey(TestKey));

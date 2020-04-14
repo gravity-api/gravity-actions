@@ -29,6 +29,7 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
         public static readonly string HomePage = $"{TestContext.Parameters["Integration.ApplicationUnderTest"]}";
         public static readonly string UiControlsPage = HomePage + "uicontrols/";
         public static readonly string CoursesPage = HomePage + "course/";
+        public static readonly string StudentsPage = HomePage + "student/";
 
         // members: state
         private ConcurrentBag<AutomationEnvironment> environments;

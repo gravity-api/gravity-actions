@@ -8,7 +8,6 @@ using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Attributes;
 using Gravity.Plugins.Base;
 using Gravity.Plugins.Contracts;
-using Gravity.Plugins.Engine;
 using OpenQA.Selenium;
 
 namespace Gravity.Plugins.Actions.UiCommon
@@ -55,25 +54,8 @@ namespace Gravity.Plugins.Actions.UiCommon
         private void DoAction(ActionRule actionRule, IWebElement onElement)
         {
             // execute condition
-            var isCondition = (bool)new ConditionsFactory(WebDriver, Types)
+            Executor.ExecuteSubActions = (bool)new ConditionsFactory(WebDriver, Types)
                 .Factor(actionRule.Argument, new object[] { actionRule, onElement })["evaluation"];
-
-            // exit conditions
-            if (!isCondition)
-            {
-                foreach (var subAction in actionRule.Actions)
-                {
-                    subAction.Ignore = true;
-                }
-            }
-
-            // iterate
-            Executor ??= new AutomationExecutor(WebAutomation);
-            foreach (var action in actionRule.Actions)
-            {
-                Executor.PluginFactory.ConstructorParameters = new object[] { WebAutomation, WebDriver };
-                Executor.Execute(action, parameters: new object[] { onElement });
-            }
         }
     }
 }

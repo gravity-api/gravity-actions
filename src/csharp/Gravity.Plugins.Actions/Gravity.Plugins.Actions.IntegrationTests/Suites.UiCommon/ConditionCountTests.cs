@@ -155,88 +155,88 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Suites.UiCommon
             Assert.IsTrue(actual);
         }
 
-        //[Description(description: "P - [0015] - Assert, Count, Lower Than, XPath")]
-        //[Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Compatibilities))]
-        //public void T0015P(AutomationEnvironment environment)
-        //{
-        //    // setup
-        //    environment.TestParams["negative"] = false;
+        [Description(description: "P - [0081] - Condition, Count, Lower Than, XPath")]
+        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Compatibilities))]
+        public void T0081P(AutomationEnvironment environment)
+        {
+            // setup
+            environment.TestParams["negative"] = false;
 
-        //    // execute
-        //    var actual = new C0015().AddEnvironments(environment).Execute();
+            // execute
+            var actual = new C0081().AddEnvironments(environment).Execute();
 
-        //    // assertion
-        //    Assert.IsTrue(actual);
-        //}
+            // assertion
+            Assert.IsTrue(actual);
+        }
 
-        //[Description(description: "N - [0015] - Assert, Count, Lower Than, XPath")]
-        //[Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.CompatibilitiesChrome))]
-        //public void T0015N(AutomationEnvironment environment)
-        //{
-        //    // setup
-        //    environment.TestParams["negative"] = true;
+        [Description(description: "N - [0081] - Condition, Count, Lower Than, XPath")]
+        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.CompatibilitiesChrome))]
+        public void T0081N(AutomationEnvironment environment)
+        {
+            // setup
+            environment.TestParams["negative"] = true;
 
-        //    // execute
-        //    var actual = new C0015().AddEnvironments(environment).Execute();
+            // execute
+            var actual = new C0081().AddEnvironments(environment).Execute();
 
-        //    // assertion
-        //    Assert.IsTrue(actual);
-        //}
+            // assertion
+            Assert.IsTrue(actual);
+        }
 
-        //[Description(description: "P - [0016] - Assert, Count, Greater or Equal, XPath")]
-        //[Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Compatibilities))]
-        //public void T0016P(AutomationEnvironment environment)
-        //{
-        //    // setup
-        //    environment.TestParams["negative"] = false;
+        [Description(description: "P - [0082] - Condition, Count, Greater or Equal, XPath")]
+        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Compatibilities))]
+        public void T0082P(AutomationEnvironment environment)
+        {
+            // setup
+            environment.TestParams["negative"] = false;
 
-        //    // execute
-        //    var actual = new C0016().AddEnvironments(environment).Execute();
+            // execute
+            var actual = new C0082().AddEnvironments(environment).Execute();
 
-        //    // assertion
-        //    Assert.IsTrue(actual);
-        //}
+            // assertion
+            Assert.IsTrue(actual);
+        }
 
-        //[Description(description: "N - [0016] - Assert, Count, Greater or Equal, XPath")]
-        //[Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.CompatibilitiesChrome))]
-        //public void T0016N(AutomationEnvironment environment)
-        //{
-        //    // setup
-        //    environment.TestParams["negative"] = true;
+        [Description(description: "N - [0082] - Condition, Count, Greater or Equal, XPath")]
+        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.CompatibilitiesChrome))]
+        public void T0082N(AutomationEnvironment environment)
+        {
+            // setup
+            environment.TestParams["negative"] = true;
 
-        //    // execute
-        //    var actual = new C0016().AddEnvironments(environment).Execute();
+            // execute
+            var actual = new C0082().AddEnvironments(environment).Execute();
 
-        //    // assertion
-        //    Assert.IsTrue(actual);
-        //}
+            // assertion
+            Assert.IsTrue(actual);
+        }
 
-        //[Description(description: "P - [0017] - Assert, Count, Lower or Equal, XPath")]
-        //[Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Compatibilities))]
-        //public void T0017P(AutomationEnvironment environment)
-        //{
-        //    // setup
-        //    environment.TestParams["negative"] = false;
+        [Description(description: "P - [0083] - Condition, Count, Lower or Equal, XPath")]
+        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Compatibilities))]
+        public void T0083P(AutomationEnvironment environment)
+        {
+            // setup
+            environment.TestParams["negative"] = false;
 
-        //    // execute
-        //    var actual = new C0017().AddEnvironments(environment).Execute();
+            // execute
+            var actual = new C0083().AddEnvironments(environment).Execute();
 
-        //    // assertion
-        //    Assert.IsTrue(actual);
-        //}
+            // assertion
+            Assert.IsTrue(actual);
+        }
 
-        //[Description(description: "N - [0017] - Assert, Count, Lower or Equal, XPath")]
-        //[Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.CompatibilitiesChrome))]
-        //public void T0017N(AutomationEnvironment environment)
-        //{
-        //    // setup
-        //    environment.TestParams["negative"] = true;
+        [Description(description: "N - [0083] - Condition, Count, Lower or Equal, XPath")]
+        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.CompatibilitiesChrome))]
+        public void T0083N(AutomationEnvironment environment)
+        {
+            // setup
+            environment.TestParams["negative"] = true;
 
-        //    // execute
-        //    var actual = new C0017().AddEnvironments(environment).Execute();
+            // execute
+            var actual = new C0083().AddEnvironments(environment).Execute();
 
-        //    // assertion
-        //    Assert.IsTrue(actual);
-        //}
+            // assertion
+            Assert.IsTrue(actual);
+        }
     }
 }

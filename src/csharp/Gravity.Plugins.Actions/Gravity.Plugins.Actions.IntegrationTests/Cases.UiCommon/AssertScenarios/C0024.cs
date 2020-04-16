@@ -24,8 +24,8 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.AssertScenario
         // gets the actions collection of this test
         public override IEnumerable<ActionRule> GetActions(AutomationEnvironment environment)
         {
-            var onElement = (bool)environment.TestParams["negative"] 
-                ? "no_element" 
+            var onElement = (bool)environment.TestParams["negative"]
+                ? "no_element"
                 : "input_enabled";
 
             // setup

@@ -1,12 +1,12 @@
 ﻿#pragma warning disable S125
 /*
 * TEST SCENARIO (Rhino)
-* [test-id] 0084
-* [test-scenario] - Condition, Disabled, ID
+* [test-id] 0089
+* [test-scenario] - Condition, Enabled, ID
 * 
 * [test-actions]
 * 1. navigate to {https://gravitymvctestapplication.azurewebsites.net/student}
-* 2. condition {{$ --disabled}} on {input_disabled} using {id}
+* 2. condition {{$ --enabled}} on {input_enabled} using {id}
 *     3. type {20} into {number_of_alerts} using {id}
 * 4. close browser
 * 
@@ -21,12 +21,12 @@ using System.Collections.Generic;
 
 namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.ConditionScenarios
 {
-    public class C0084 : TestCase
+    public class C0089 : TestCase
     {
         // gets the actions collection of this test
         public override IEnumerable<ActionRule> GetActions(AutomationEnvironment environment)
         {
-            var condition = (bool)environment.TestParams["negative"] ? "input_enabled" : "input_disabled";
+            var condition = (bool)environment.TestParams["negative"] ? "input_disabled" : "input_enabled";
 
             // execute if condition is met
             var conditionActions = new[]
@@ -46,7 +46,7 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.ConditionScena
                 new ActionRule
                 {
                     ActionType = CommonPlugins.Condition,
-                    Argument = "{{$ --disabled}}",
+                    Argument = "{{$ --enabled}}",
                     ElementToActOn = condition,
                     Locator = LocatorType.Id,
                     Actions = conditionActions

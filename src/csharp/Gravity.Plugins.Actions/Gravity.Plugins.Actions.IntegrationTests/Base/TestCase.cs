@@ -479,6 +479,7 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
                 var actual = ExecuteIteration(environment);
                 if (actual)
                 {
+                    UpdateBrowserStack(environment, isDelete: false);
                     return actual;
                 }
                 if (i < attempts)
@@ -551,10 +552,11 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
         public static void UpdateBrowserStack(AutomationEnvironment environment, bool isDelete)
         {
             // setup
-            var isPutBrowserStack = TestContext.Parameters.Get("Grid.PutBrowserStack", false);
-            var isDeleteBrowserStack = isDelete && TestContext.Parameters.Get("Grid.DeleteBrowserStack", true);
+            var isActual = environment.TestParams.ContainsKey("actual") && (bool)environment.TestParams["actual"];
+            var isPutBrowserStackSuccess = TestContext.Parameters.Get("Grid.PutBrowserStackSuccess", false);
             var isBrowserStack = $"{TestContext.Parameters["Grid.Endpoint"]}".Contains("browserstack.com/wd/hub");
             var isSession = environment.TestParams.ContainsKey("sessions");
+            var sessions = ((IEnumerable<string>)environment.TestParams["sessions"]).ToArray();
             var client = new BrowserStackClient
             {
                 BasicAuthorization = TestContext.Parameters.Get("Grid.BasicAuthorization", string.Empty),
@@ -567,24 +569,49 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
                 return;
             }
 
-            // request body
-            var actual = environment.TestParams.ContainsKey("actual") && (bool)environment.TestParams["actual"];
+            // delete success conditions
+            if (isActual && !isPutBrowserStackSuccess)
+            {
+                DeleteBrowserStackSession(client, sessions);
+                return;
+            }
+
+            // update failed sessions
+            if(!isDelete && !isActual)
+            {
+                PutBrowserStackSession(client, "failed", sessions);
+                return;
+            }
+
+            // delete sessions   
+            if (isDelete)
+            {
+                DeleteBrowserStackSession(client, sessions);
+            }
+        }
+
+        // delete sessions on browser stack using Rest API
+        private static void DeleteBrowserStackSession(BrowserStackClient client, params string[] sessions)
+        {
+            foreach (var session in sessions)
+            {
+                client.DeleteAsync(session).GetAwaiter().GetResult();
+            }
+        }
+
+        // delete sessions on browser stack using Rest API
+        private static void PutBrowserStackSession(BrowserStackClient client, string status, params string[] sessions)
+        {
+            // setup
             var requestBody = new
             {
-                Status = actual ? "passed" : "failed"
+                Status = status
             };
 
-            // update test outcome on 3rd party platform            
-            foreach (var session in (IEnumerable<string>)environment.TestParams["sessions"])
+            // update
+            foreach (var session in sessions)
             {
-                if (isDeleteBrowserStack)
-                {
-                    client.DeleteAsync(session).GetAwaiter().GetResult();
-                }
-                else if(isPutBrowserStack)
-                {
-                    client.PutAsync(session, requestBody).GetAwaiter().GetResult();
-                }
+                client.PutAsync(session, requestBody).GetAwaiter().GetResult();
             }
         }
         #endregion

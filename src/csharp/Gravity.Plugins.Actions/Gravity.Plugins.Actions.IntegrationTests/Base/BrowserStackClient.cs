@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using System;
 using System.Net;
 using System.Net.Http;
@@ -12,6 +13,14 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
     {
         // members: state
         private static readonly HttpClient client = new HttpClient();
+
+        public BrowserStackClient()
+        {
+            SerializerSettings = new JsonSerializerSettings
+            {
+                ContractResolver = new CamelCasePropertyNamesContractResolver()
+            };
+        }
 
         /// <summary>
         /// Rest API endpoint format (replace with session id)
@@ -34,6 +43,11 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
         public TimeSpan AttemptsTimeout { get; set; } = TimeSpan.FromSeconds(30);
 
         /// <summary>
+        /// Gets or sets the contract <see cref="JsonSerializerSettings"/> for this client requests.
+        /// </summary>
+        public JsonSerializerSettings SerializerSettings { get; set; }
+
+        /// <summary>
         /// You can mark tests as passed or failed, using PUT. You can also pass a reason for failure.
         /// </summary>
         /// <param name="session">Session id to update.</param>
@@ -41,7 +55,7 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
         public Task PutAsync(string session, object requestBody)
         {
             // setup
-            var body = JsonConvert.SerializeObject(requestBody);
+            var body = JsonConvert.SerializeObject(requestBody, settings: SerializerSettings);
             var content = new StringContent(content: body, Encoding.UTF8, mediaType: "application/json");
             var requestUri = string.Format(format: BrowserStackApiFormat, session);
 

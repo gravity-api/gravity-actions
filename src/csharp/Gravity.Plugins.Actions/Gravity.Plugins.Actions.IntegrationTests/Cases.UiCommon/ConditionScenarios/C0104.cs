@@ -33,24 +33,6 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.ConditionScena
                 ? "Students - Contoso University"
                 : "Contoso University - Students";
 
-            // execute if condition is met
-            var conditionActions = new[]
-            {
-                new ActionRule
-                {
-                    ActionType = CommonPlugins.SendKeys,
-                    Argument = "Carson",
-                    ElementToActOn = "SearchString",
-                    Locator = LocatorType.Id
-                },
-                new ActionRule
-                {
-                    ActionType = CommonPlugins.Click,
-                    ElementToActOn = "SearchButton",
-                    Locator = LocatorType.Id
-                }
-            };
-
             // actions to execute
             return new List<ActionRule>()
             {
@@ -58,14 +40,9 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.ConditionScena
                 {
                     ActionType = CommonPlugins.Condition,
                     Argument = "{{$ --title --ne:" + condition + "}}",
-                    Actions = conditionActions
+                    Actions = SharedSteps.SearchStudent(searchFor: "Carson")
                 },
-                new ActionRule
-                {
-                    ActionType = CommonPlugins.Assert,
-                    Argument = "{{$ --count --eq:1}}",
-                    ElementToActOn = "//tr[./td[@id]]"
-                }
+                SharedSteps.AssertStudentsCount(count: 1)
             };
         }
     }

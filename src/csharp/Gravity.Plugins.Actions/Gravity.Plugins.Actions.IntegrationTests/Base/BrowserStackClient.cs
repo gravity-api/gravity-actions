@@ -67,6 +67,10 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
 
             // get response
             var response = await SendAsync(() => client.GetAsync(requestUri)).ConfigureAwait(false);
+            if(response.StatusCode == HttpStatusCode.NotFound)
+            {
+                return;
+            }
             var status = await GetStatusAsync(response).ConfigureAwait(false);
 
             // execute
@@ -97,6 +101,10 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
 
             // get response
             var response = await SendAsync(() => client.GetAsync(requestUri)).ConfigureAwait(false);
+            if (response.StatusCode == HttpStatusCode.NotFound)
+            {
+                return;
+            }
             var status = await GetStatusAsync(response).ConfigureAwait(false);
 
             // get status

@@ -29,25 +29,8 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.ConditionScena
         // gets the actions collection of this test
         public override IEnumerable<ActionRule> GetActions(AutomationEnvironment environment)
         {
+            // setup
             var condition = (bool)environment.TestParams["negative"] ? "student/$" : "^student/";
-
-            // execute if condition is met
-            var conditionActions = new[]
-            {
-                new ActionRule
-                {
-                    ActionType = CommonPlugins.SendKeys,
-                    Argument = "Carson",
-                    ElementToActOn = "SearchString",
-                    Locator = LocatorType.Id
-                },
-                new ActionRule
-                {
-                    ActionType = CommonPlugins.Click,
-                    ElementToActOn = "SearchButton",
-                    Locator = LocatorType.Id
-                }
-            };
 
             // actions to execute
             return new List<ActionRule>()
@@ -56,14 +39,9 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.ConditionScena
                 {
                     ActionType = CommonPlugins.Condition,
                     Argument = "{{$ --url --not_match:" + condition + "}}",
-                    Actions = conditionActions
+                    Actions = SharedSteps.SearchStudent(searchFor: "Carson")
                 },
-                new ActionRule
-                {
-                    ActionType = CommonPlugins.Assert,
-                    Argument = "{{$ --count --eq:1}}",
-                    ElementToActOn = "//tr[./td[@id]]"
-                }
+                SharedSteps.AssertStudentsCount(count: 1)
             };
         }
     }

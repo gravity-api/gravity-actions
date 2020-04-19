@@ -454,8 +454,13 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
             foreach (var environment in environments)
             {
                 var actual = ExecuteTestCase(environment);
-                if (actual) return actual;
+                if (actual)
+                {
+                    return actual;
+                }
             }
+
+            // test failed
             return false;
         }
 
@@ -479,12 +484,7 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
                 var actual = ExecuteIteration(environment);
                 if (actual)
                 {
-                    UpdateBrowserStack(environment, isDelete: false);
                     return actual;
-                }
-                if (i < attempts)
-                {
-                    UpdateBrowserStack(environment, isDelete: true);
                 }
             }
 
@@ -497,24 +497,36 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
         {
             try
             {
+                // 1. explicit preconditions
                 Preconditions(environment);
+
+                // 2. execute test case > get actual
                 environment.TestParams["actual"] = AutomationTest(environment);
-                TestContext.WriteLine($"test-case [{GetType().Name}] completed with result [{environment.TestParams["actual"]}]");
+
+                // 3. log
+                var message = $"TestCase [{GetType().Name}] completed with result [{environment.TestParams["actual"]}].";
+                TestContext.WriteLine(message);
             }
             catch (Exception e) when (e is NotImplementedException || e is AssertInconclusiveException)
             {
-                TestContext.WriteLine($"test-case [{GetType().Name}] skipped", e);
+                TestContext.WriteLine($"TestCase [{GetType().Name}] skipped.", e);
                 throw new AssertInconclusiveException(e.Message);
             }
             catch (Exception e) when (e != null)
             {
-                TestContext.WriteLine($"failed to execute [{GetType().Name}] iteration; reason: {e}");
+                TestContext.WriteLine($"Failed to execute [{GetType().Name}] iteration; Reason [{e}]");
             }
             finally
             {
+                // 4. cleanup
                 Cleanup(environment);
             }
-            return environment.TestParams.ContainsKey("actual") && (bool)environment.TestParams["actual"];
+
+            // setup conditions
+            var isKey = environment.TestParams.ContainsKey("actual");
+
+            // test iteration results
+            return isKey && (bool)environment.TestParams["actual"];
         }
 
         // executes explicit preconditions
@@ -529,9 +541,6 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
         {
             try
             {
-                // common
-                UpdateBrowserStack(environment, isDelete: false);
-
                 // environment log
                 TestContext.WriteLine(JsonConvert.SerializeObject(environment, Formatting.Indented));
 
@@ -541,77 +550,6 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
             catch (Exception e) when (e != null)
             {
                 TestContext.WriteLine($"{e}");
-            }
-        }
-        #endregion
-
-        #region *** browser stack  ***
-        /// <summary>
-        /// Updates tests results on BrowserStack (if applicable)
-        /// </summary>
-        public static void UpdateBrowserStack(AutomationEnvironment environment, bool isDelete)
-        {
-            // setup
-            var isActual = environment.TestParams.ContainsKey("actual") && (bool)environment.TestParams["actual"];
-            var isPutBrowserStackSuccess = TestContext.Parameters.Get("Grid.PutBrowserStackSuccess", false);
-            var isBrowserStack = $"{TestContext.Parameters["Grid.Endpoint"]}".Contains("browserstack.com/wd/hub");
-            var isSession = environment.TestParams.ContainsKey("sessions");
-            var sessions = ((IEnumerable<string>)environment.TestParams["sessions"]).ToArray();
-            var client = new BrowserStackClient
-            {
-                BasicAuthorization = TestContext.Parameters.Get("Grid.BasicAuthorization", string.Empty),
-                AttemptsTimeout = TimeSpan.FromSeconds(TestContext.Parameters.Get("Grid.UpdateTimeout", 10000))
-            };
-
-            // exit conditions
-            if (!isBrowserStack || !isSession)
-            {
-                return;
-            }
-
-            // delete success conditions
-            if (isActual && !isPutBrowserStackSuccess)
-            {
-                DeleteBrowserStackSession(client, sessions);
-                return;
-            }
-
-            // update failed sessions
-            if(!isDelete && !isActual)
-            {
-                PutBrowserStackSession(client, "failed", sessions);
-                return;
-            }
-
-            // delete sessions   
-            if (isDelete)
-            {
-                DeleteBrowserStackSession(client, sessions);
-            }
-        }
-
-        // delete sessions on browser stack using Rest API
-        private static void DeleteBrowserStackSession(BrowserStackClient client, params string[] sessions)
-        {
-            foreach (var session in sessions)
-            {
-                client.DeleteAsync(session).GetAwaiter().GetResult();
-            }
-        }
-
-        // delete sessions on browser stack using Rest API
-        private static void PutBrowserStackSession(BrowserStackClient client, string status, params string[] sessions)
-        {
-            // setup
-            var requestBody = new
-            {
-                Status = status
-            };
-
-            // update
-            foreach (var session in sessions)
-            {
-                client.PutAsync(session, requestBody).GetAwaiter().GetResult();
             }
         }
         #endregion

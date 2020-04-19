@@ -26,19 +26,8 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.ConditionScena
         // gets the actions collection of this test
         public override IEnumerable<ActionRule> GetActions(AutomationEnvironment environment)
         {
+            // setup
             var condition = (bool)environment.TestParams["negative"] ? "input_enabled" : "no_element";
-
-            // execute if condition is met
-            var conditionActions = new[]
-            {
-                new ActionRule
-                {
-                    ActionType = CommonPlugins.SendKeys,
-                    Argument = "20",
-                    ElementToActOn = "number_of_alerts",
-                    Locator = LocatorType.Id
-                }
-            };
 
             // actions to execute
             return new List<ActionRule>()
@@ -49,16 +38,9 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.ConditionScena
                     Argument = "{{$ --not_exists}}",
                     ElementToActOn = condition,
                     Locator = LocatorType.Id,
-                    Actions = conditionActions
+                    Actions = SharedSteps.SetNumberOfAlerts(numberOfAlerts: 20)
                 },
-                new ActionRule
-                {
-                    ActionType = CommonPlugins.Assert,
-                    Argument = "{{$ --attribute --gt:10}}",
-                    ElementToActOn = "number_of_alerts",
-                    Locator = LocatorType.Id,
-                    ElementAttributeToActOn = "value"
-                }
+                SharedSteps.AssertNumberOfAlerts(greaterThan: 10)
             };
         }
     }

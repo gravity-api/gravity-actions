@@ -10,7 +10,7 @@ using NUnit.Framework;
 
 using DescriptionAttribute = System.ComponentModel.DescriptionAttribute;
 
-namespace Gravity.Plugins.Actions.IntegrationTests.Suites.UiCommon
+namespace Gravity.Plugins.Actions.IntegrationTests.Suites.UiWeb
 {
     [TestFixture]
     public class CloseWindowTests

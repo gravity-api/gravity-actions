@@ -1,14 +1,15 @@
 {
+  "aliases": [ "RightClick" ],
   "description": "Right clicks the mouse at the last known mouse coordinates or on the specified element.",
   "examples": [
     {
       "description": "Right clicks the mouse on the specified element.",
-      "literalExample": "context click on {//form/div[6]/input}",
+      "literalExample": "context click on {click_button} using {id}",
       "actionExample": {
         "actionType": "ContextClick",
-        "elementToActOn": "//form/div[6]/input"
-      },
-      "comment": "Executed on [Edit] page. Select any instructor and click on [Edit] link."
+        "elementToActOn": "click_button",
+        "locator": "Id"
+      }
     },
     {
       "description": "Right clicks the mouse at the last known mouse coordinates.",

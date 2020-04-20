@@ -99,5 +99,19 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
             ActionType = CommonPlugins.Assert,
             Argument = "{{$ --url --match:" + expectedPattern + "}}"
         };
+
+        /// <summary>
+        /// Gets an assert <see cref="ActionRule"/> for click outcome results (on UiControls page).
+        /// </summary>
+        /// <param name="expectedPattern">Expected pattern (regular expression) to assert against.</param>
+        /// <returns>Assert <see cref="ActionRule"/>.</returns>
+        public static ActionRule AssertClickOutcome(string expectedPattern) => new ActionRule
+        {
+            ActionType = CommonPlugins.Assert,
+            Argument = "{{$ --attribute --match:" + expectedPattern + "}}",
+            ElementToActOn = "click_outcome",
+            ElementAttributeToActOn = "value",
+            Locator = LocatorType.Id
+        };
     }
 }

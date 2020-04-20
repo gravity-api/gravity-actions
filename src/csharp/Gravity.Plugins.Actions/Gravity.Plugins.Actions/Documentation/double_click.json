@@ -3,12 +3,12 @@
   "examples": [
     {
       "description": "Double clicks the mouse on the specified element.",
-      "literalExample": "double click on {//form/div[6]/input}",
+      "literalExample": "double click on {click_button} using {id}",
       "actionExample": {
         "actionType": "DoubleClick",
-        "elementToActOn": "//form/div[6]/input"
-      },
-      "comment": "Executed on [Edit] page. Select any instructor and click on [Edit] link."
+        "elementToActOn": "click_button",
+        "locator": "Id"
+      }
     },
     {
       "description": "Double clicks the mouse at the last known mouse coordinates.",

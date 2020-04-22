@@ -76,7 +76,7 @@ namespace Gravity.Plugins.Actions.UiCommon
         private void DoAction(IWebElement element, ActionRule actionRule)
         {
             // flat conditions
-            if (PluginUtilities.IsFlatAction(element, actionRule))
+            if (PluginUtilities.IsFlatAction(actionRule, element))
             {
                 actions.DoubleClick().Build().Perform();
                 return;

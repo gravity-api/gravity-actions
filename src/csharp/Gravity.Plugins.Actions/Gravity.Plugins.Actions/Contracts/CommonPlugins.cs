@@ -29,6 +29,9 @@ namespace Gravity.Plugins.Actions.Contracts
         public const string DoubleClick = "DoubleClick";
 
         [DataMember]
+        public const string ElementsListener = "ElementsListener";
+
+        [DataMember]
         public const string ExecuteScript = "ExecuteScript";
 
         [DataMember]

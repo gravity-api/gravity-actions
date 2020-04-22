@@ -18,26 +18,26 @@ namespace Gravity.Plugins.Actions.Extensions
         /// <returns>True if this is a flat action (no element); False if not.</returns>
         public static bool IsFlatAction(ActionRule actionRule)
         {
-            return AssertFlatAction(default, actionRule);
+            return DoIsFlatAction(actionRule, element: default);
         }
 
         /// <summary>
         /// Gets an assertion if the action described under this element and/or action rule is
         /// a flat action (non element action)
         /// </summary>
-        /// <param name="webElement"><see cref="IWebElement"/> to assert.</param>
         /// <param name="actionRule"><see cref="ActionRule"/> to assert.</param>
+        /// <param name="element"><see cref="IWebElement"/> to assert.</param>
         /// <returns>True if this is a flat action (no element); False if not.</returns>
-        public static bool IsFlatAction(IWebElement webElement, ActionRule actionRule)
+        public static bool IsFlatAction(ActionRule actionRule, IWebElement element)
         {
-            return AssertFlatAction(webElement, actionRule);
+            return DoIsFlatAction(actionRule, element);
         }
 
         // assert if action is flat
-        private static bool AssertFlatAction(IWebElement webElement, ActionRule actionRule)
+        private static bool DoIsFlatAction(ActionRule actionRule, IWebElement element)
         {
             // setup conditions
-            var isElement = webElement != default;
+            var isElement = element != default;
             var isFromAction = !string.IsNullOrEmpty(actionRule.ElementToActOn);
 
             // return assertion

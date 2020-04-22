@@ -113,5 +113,33 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
             ElementAttributeToActOn = "value",
             Locator = LocatorType.Id
         };
+
+        /// <summary>
+        /// Gets an assert <see cref="ActionRule"/> for click outcome results (on UiControls page).
+        /// </summary>
+        /// <param name="greaterThan">Greater than expected result.</param>
+        /// <returns>Assert <see cref="ActionRule"/>.</returns>
+        public static ActionRule AssertListenerOutcome(int greaterThan) => new ActionRule
+        {
+            ActionType = CommonPlugins.Assert,
+            Argument = "{{$ --attribute --gt:" + $"{greaterThan}" + "}}",
+            ElementToActOn = "dismissed_elements",
+            Locator = LocatorType.Id,
+            ElementAttributeToActOn = "value"
+        };
+
+        /// <summary>
+        /// Gets an assert <see cref="ActionRule"/> for click outcome results (on UiControls page).
+        /// </summary>
+        /// <param name="expectedPattern">Expected pattern (regular expression) to assert against.</param>
+        /// <returns>Assert <see cref="ActionRule"/>.</returns>
+        public static ActionRule AssertInputEnabledValue(string expectedPattern) => new ActionRule
+        {
+            ActionType = CommonPlugins.Assert,
+            Argument = "{{$ --attribute --match:" + expectedPattern + "}}",
+            ElementToActOn = "input_enabled",
+            Locator = LocatorType.Id,
+            ElementAttributeToActOn = "value"
+        };
     }
 }

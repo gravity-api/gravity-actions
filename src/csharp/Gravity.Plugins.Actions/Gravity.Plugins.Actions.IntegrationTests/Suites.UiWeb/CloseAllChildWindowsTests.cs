@@ -28,7 +28,7 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Suites.UiWeb
 
         [Description(description: "N - [0065] - Close All Child Windows, No Child Windows")]
         [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Compatibilities))]
-        public void T0065N(AutomationEnvironment environment)
+        public void T0065P(AutomationEnvironment environment)
         {
             // execute
             var actual = new C0065().AddEnvironments(environment).Execute();

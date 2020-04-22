@@ -34,7 +34,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'argument':'{{$ --action:Click}}','ElementToActOn':'//positive'}")]
+        [DataRow("{'argument':'{{$ --interval:500 --timeout:30000}}','elementToActOn':'//positive'}")]
         public void ElementsListenerClickPositive(string actionRule)
         {
             // execute
@@ -45,7 +45,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'argument':'{{$ --action:Click}}','ElementToActOn':'//null'}")]
+        [DataRow("{'argument':'{{$ --interval:500 --timeout:30000}}','elementToActOn':'//null'}")]
         public void ElementsListenerClickNull(string actionRule)
         {
             // execute
@@ -56,7 +56,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'argument':'{{$ --action:Click}}','ElementToActOn':'//stale'}")]
+        [DataRow("{'argument':'{{$ --interval:500 --timeout:30000}}','ElementToActOn':'//stale'}")]
         public void ElementsListenerClickStale(string actionRule)
         {
             // execute
@@ -67,7 +67,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'argument':'{{$ --action:Click}}','ElementToActOn':'//none'}")]
+        [DataRow("{'argument':'{{$ --interval:500 --timeout:30000}}','elementToActOn':'//none'}")]
         public void ElementsListenerClickNoElement(string actionRule)
         {
             // execute
@@ -78,11 +78,11 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'argument':'{{$ --action:Click}}','ElementToActOn':'//negative'}")]
-        public void ElementsListenerClickNoNegative(string actionRule)
+        [DataRow("{'argument':'{{$ --interval:500 --timeout:30000}}','elementToActOn':'//negative'}")]
+        public void ElementsListenerClickNegative(string actionRule)
         {
             // execute
-            ExecuteAction<ElementsListener>(actionRule);
+            var plugin = ExecuteAction<ElementsListener>(actionRule);
 
             // assertion (no assertion here, expected is no exception)
             Assert.IsTrue(true);
@@ -100,7 +100,18 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'argument':'{{$ --action:SendKeys --args:{\"keys\":\"automation\"}}}','ElementToActOn':'//positive'}")]
+        [DataRow("" +
+            "{" +
+            "    'argument':'{{$ --interval:500 --timeout:30000}}'," +
+            "    'elementToActOn':'//positive'," +
+            "    'actions': [" +
+            "        {" +
+            "            'actionType':'SendKeys'," +
+            "            'argument':'foo bar'," +
+            "            'elementToActOn':'//positive'" +
+            "        }" +
+            "    ]" +
+            "}")]
         public void ElementsListenerSendKeysPositive(string actionRule)
         {
             // execute

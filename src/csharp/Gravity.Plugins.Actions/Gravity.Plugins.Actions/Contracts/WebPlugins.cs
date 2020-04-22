@@ -23,9 +23,6 @@ namespace Gravity.Plugins.Actions.Contracts
         public const string ContextClick = "ContextClick";
 
         [DataMember]
-        public const string ElementsListener = "ElementsListener";
-
-        [DataMember]
         public const string ExtractFromSource = "ExtractFromSource";
 
         [DataMember]

@@ -103,7 +103,7 @@ namespace Gravity.Plugins.Actions.UiCommon
             var arguments = CliFactory.Parse(actionRule?.Argument);
 
             // flat conditions
-            if (PluginUtilities.IsFlatAction(element, actionRule))
+            if (PluginUtilities.IsFlatAction(actionRule, element))
             {
                 actions.Click().Build().Perform();
                 return;

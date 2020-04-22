@@ -5,11 +5,13 @@
  */
 using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Actions.UnitTests.Base;
-using Gravity.Plugins.Actions.UiWeb;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Gravity.Plugins.Actions.UiCommon;
+
+using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
 
 #pragma warning disable S4144
-namespace Gravity.Plugins.Actions.UnitTests.UiWeb
+namespace Gravity.Plugins.Actions.UnitTests.UiCommon
 {
     [TestClass]
     public class ElementsListenerTests : ActionTests
@@ -23,14 +25,14 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         [TestMethod]
         public void ElementsListenerDocumentation()
         {
-            ValidateActionDocumentation<ElementsListener>(WebPlugins.ElementsListener);
+            ValidateActionDocumentation<ElementsListener>(CommonPlugins.ElementsListener);
         }
 
         [TestMethod]
         public void ElementsListenerDocumentationResourceFile()
         {
             ValidateActionDocumentation<ElementsListener>(
-                WebPlugins.ElementsListener, "elements_listener.json");
+                CommonPlugins.ElementsListener, "elements_listener.json");
         }
 
         [DataTestMethod]

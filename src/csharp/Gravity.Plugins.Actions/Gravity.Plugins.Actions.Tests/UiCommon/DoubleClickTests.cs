@@ -9,8 +9,9 @@ using Gravity.Plugins.Actions.UnitTests.Base;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using Gravity.Plugins.Actions.Contracts;
-using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
 using Gravity.Plugins.Contracts;
+
+using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
 
 #pragma warning disable S4144
 namespace Gravity.Plugins.Actions.UnitTests.UiCommon

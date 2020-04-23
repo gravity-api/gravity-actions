@@ -22,6 +22,7 @@ using OpenQA.Selenium;
 using Gravity.Plugins.Attributes;
 using Gravity.Plugins.Base;
 using Gravity.Plugins.Contracts;
+using System.Threading;
 
 namespace Gravity.Plugins.Actions.UiWeb
 {
@@ -48,7 +49,7 @@ namespace Gravity.Plugins.Actions.UiWeb
         /// <param name="actionRule">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
         public override void OnPerform(ActionRule actionRule)
         {
-            WebDriver.CloseAllChildWindows();
+            DoAction();
         }
 
         /// <summary>
@@ -58,7 +59,32 @@ namespace Gravity.Plugins.Actions.UiWeb
         /// <param name="element">This <see cref="IWebElement"/> instance on which to perform the action (provided by the extraction rule).</param>
         public override void OnPerform(ActionRule actionRule, IWebElement element)
         {
-            WebDriver.CloseAllChildWindows();
+            DoAction();
+        }
+
+        private void DoAction()
+        {
+            // exit conditions
+            if (WebDriver.WindowHandles.Count == 1)
+            {
+                return;
+            }
+
+            // action routine: close each > switch back to main window
+            var mainWindow = WebDriver.WindowHandles[0];
+
+            foreach (var window in WebDriver.WindowHandles)
+            {
+                if (window == mainWindow)
+                {
+                    continue;
+                }
+                WebDriver.SwitchTo().Window(window).Close();
+                Thread.Sleep(100);
+            }
+
+            // focus on main windows
+            WebDriver.SwitchTo().Window(windowName: mainWindow);
         }
     }
 }

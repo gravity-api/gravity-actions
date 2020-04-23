@@ -27,7 +27,7 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Suites.UiCommon
         }
 
         [Description(description: "P - [0062] - Click at the Last Known Mouse Coordinates")]
-        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Compatibilities))]
+        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.CompatibilitiesChrome))]
         public void T0062P(AutomationEnvironment environment)
         {
             // execute

@@ -79,6 +79,9 @@ namespace Gravity.Plugins.Actions.UiWeb
             // get element
             var onElement = this.ConditionalGetElement(element, actionRule);
 
+            // try to scroll into view
+            onElement.TryScrollIntoView();
+
             // on element action
             actions.ContextClick(onElement).Build().Perform();
         }

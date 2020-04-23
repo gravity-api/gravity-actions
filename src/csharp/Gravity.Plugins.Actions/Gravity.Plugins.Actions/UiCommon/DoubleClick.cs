@@ -82,15 +82,14 @@ namespace Gravity.Plugins.Actions.UiCommon
                 return;
             }
 
-            // setup
-            var timeout = TimeSpan.FromMilliseconds(WebAutomation.EngineConfiguration.ElementSearchingTimeout);
-
             // on element action
-            var e = element != default
-                ? element.GetElementByActionRule(ByFactory, actionRule, timeout)
-                : WebDriver.GetElementByActionRule(ByFactory, actionRule, timeout);
+            var onElement = this.ConditionalGetElement(element, actionRule);
 
-            actions.DoubleClick(e).Build().Perform();
+            // try to scroll into view
+            onElement.TryScrollIntoView();
+
+            // perform action
+            actions.DoubleClick(onElement).Build().Perform();
         }
         #endregion
     }

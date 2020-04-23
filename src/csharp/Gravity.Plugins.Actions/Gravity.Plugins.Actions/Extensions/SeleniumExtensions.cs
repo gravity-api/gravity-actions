@@ -277,5 +277,40 @@ namespace Gravity.Plugins.Actions.Extensions
             // assertion
             return isAppium;
         }
+
+        /// <summary>
+        /// Scrolls the specified element into the visible area of the browser window.
+        /// </summary>
+        /// <param name="onElement"><see cref="IWebElement"/> to scroll into view.</param>
+        /// <returns>An <see cref="IWebElement"/> interface through which the user controls elements on the page.</returns>
+        public static IWebElement TryScrollIntoView(this IWebElement onElement)
+        {
+            // exit conditions
+            if(!(onElement is IWrapsDriver))
+            {
+                return onElement;
+            }
+
+            // extract driver
+            var driver = ((IWrapsDriver)onElement).WrappedDriver;
+
+            // check for irrelevant drivers
+            if (driver.IsAppiumDriver())
+            {
+                return onElement;
+            }
+
+            // try scroll into view
+            try
+            {
+                ((IJavaScriptExecutor)driver)
+                    .ExecuteScript("arguments[0].scrollIntoView(false);", onElement);
+            }
+            catch (Exception e) when (e != null)
+            {
+                // ignore exceptions
+            }
+            return onElement;
+        }
     }
 }

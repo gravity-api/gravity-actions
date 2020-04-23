@@ -28,12 +28,7 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.ClickScenarios
             return new[]
             {
                 new ActionRule { ActionType = CommonPlugins.Click },
-                new ActionRule
-                {
-                    ActionType = CommonPlugins.Assert,
-                    Argument = "{{$ --text --eq:UI Controls}}",
-                    ElementToActOn = "//h2[1]"
-                }
+                SharedSteps.AssertUrl("(?i)uicontrols")
             };
         }
     }

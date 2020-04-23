@@ -14,11 +14,13 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using Gravity.Abstraction.Contracts;
+using Newtonsoft.Json.Linq;
+using OpenQA.Selenium;
 
 using TestContext = NUnit.Framework.TestContext;
 using DescriptionAttribute = System.ComponentModel.DescriptionAttribute;
-using Gravity.Abstraction.Contracts;
-using Newtonsoft.Json.Linq;
+using Assert = NUnit.Framework.Assert;
 
 namespace Gravity.Plugins.Actions.IntegrationTests.Base
 {
@@ -289,6 +291,24 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
                 .All(i => (bool)i.Value);
         }
 
+        public static void AssertInconclusive(OrbitResponse response)
+        {
+            // assert
+            var isWebDriverException =
+                response.OrbitRequest.Exceptions.Any(i => i.Exception is WebDriverException);
+
+            // exit condition
+            if (!isWebDriverException)
+            {
+                return;
+            }
+
+            // throw
+            var exceptions = response.OrbitRequest.Exceptions.Select(i => i.Exception.Message);
+            var message = JsonConvert.SerializeObject(exceptions);
+            throw new AssertInconclusiveException(message);
+        }
+
         /// <summary>
         /// Gets a driver full name.
         /// </summary>
@@ -416,9 +436,12 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
 
             // execute
             var response = ExecuteWebAutomation(webAutomation, environment);
-            var actual = GetAssertions(response);
+
+            // is inconclusive
+            AssertInconclusive(response);
 
             // assertion
+            var actual = GetAssertions(response);
             return isNegative ? !actual : actual;
         }
 
@@ -510,7 +533,7 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
             catch (Exception e) when (e is NotImplementedException || e is AssertInconclusiveException)
             {
                 TestContext.WriteLine($"TestCase [{GetType().Name}] skipped.", e);
-                throw new AssertInconclusiveException(e.Message);
+                Assert.Inconclusive(e.Message);
             }
             catch (Exception e) when (e != null)
             {

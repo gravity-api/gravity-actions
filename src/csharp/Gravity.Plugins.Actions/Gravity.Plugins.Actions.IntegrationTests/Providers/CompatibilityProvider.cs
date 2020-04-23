@@ -1,7 +1,7 @@
 ﻿/*
  * CHANGE LOG - keep only last 5 threads
  * 
- * on-line resources
+ * on-line resources   
  */
 using Gravity.Abstraction.Contracts;
 using Gravity.Plugins.Actions.IntegrationTests.Base;
@@ -35,6 +35,17 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Providers
             get
             {
                 yield return Provider.Get(driver: Driver.Chrome, capabilities: Provider.Windows10LatestBrowser);
+            }
+        }
+
+        /// <summary>
+        /// Gets browsers compatibility matrix for Web UI testing.
+        /// </summary>
+        public static IEnumerable CompatibilitiesEdge
+        {
+            get
+            {
+                yield return Provider.Get(driver: Driver.Edge, capabilities: Provider.Windows10Edge80);
             }
         }
 

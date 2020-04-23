@@ -689,6 +689,25 @@
       }
     },
     {
+      "description": "Executes nested actions if <input> element is [not selected].",
+      "literalExample": "not supported by literal engine.",
+      "actionExample": {
+        "actionType": "Condition",
+        "argument": "{{$ --not_selected}}",
+        "elementToActOn": "//form/div[6]/input",
+        "action": [
+          {
+            "actionType": "Click",
+            "elementToActOn": "//form/div[6]/input"
+          },
+          {
+            "actionType": "Click",
+            "elementToActOn": "//main/p/a"
+          }
+        ]
+      }
+    },
+    {
       "description": "Executes nested actions if <input> element is [stale].",
       "literalExample": "not supported by literal engine.",
       "actionExample": {

@@ -29,7 +29,6 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.ElementsListen
         // gets the actions collection of this test
         public override IEnumerable<ActionRule> GetActions(AutomationEnvironment environment)
         {
-            // setup
             var condition = (bool)environment.TestParams["negative"] ? "3" : "30000";
 
             // setup

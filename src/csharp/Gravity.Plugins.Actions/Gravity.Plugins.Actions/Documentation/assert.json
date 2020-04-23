@@ -275,8 +275,18 @@
       }
     },
     {
+      "description": "Asserts that <input id=\"input_not_selected\"> element is [not selected].",
+      "literalExample": "assert {{$ --not_selected}} on {input_not_selected} using {id}",
+      "actionExample": {
+        "actionType": "Assert",
+        "argument": "{{$ --not_selected}}",
+        "elementToActOn": "input_not_selected",
+        "locator": "Id"
+      }
+    },
+    {
       "description": "Asserts that <div id=\"for_stale_element\"> element is [stale].",
-      "literalExample": "assert {{$ --selected}} on {input_selected} using {id}",
+      "literalExample": "assert {{$ --stale}} on {input_selected} using {id}",
       "actionExample": {
         "actionType": "Assert",
         "argument": "{{$ --stale}}",

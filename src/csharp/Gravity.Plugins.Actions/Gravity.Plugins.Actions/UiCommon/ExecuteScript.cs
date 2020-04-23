@@ -37,7 +37,7 @@ namespace Gravity.Plugins.Actions.UiCommon
         Name = CommonPlugins.ExecuteScript)]
     public class ExecuteScript : WebDriverActionPlugin
     {
-        #region *** constants: arguments  ***
+        #region *** constants    ***
         /// <summary>
         /// The JavaScript code to execute.
         /// </summary>
@@ -49,7 +49,7 @@ namespace Gravity.Plugins.Actions.UiCommon
         public const string Args = "args";
         #endregion
 
-        #region *** constructors          ***
+        #region *** constructors ***
         /// <summary>
         /// Creates a new instance of this plugin.
         /// </summary>

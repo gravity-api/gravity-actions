@@ -141,5 +141,20 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
             Locator = LocatorType.Id,
             ElementAttributeToActOn = "value"
         };
+
+        /// <summary>
+        /// Gets an assert <see cref="ActionRule"/> for click outcome results (on UiControls page).
+        /// </summary>
+        /// <param name="offset">X or Y</param>
+        /// <param name="greaterThan">Greater than expected result.</param>
+        /// <returns>Assert <see cref="ActionRule"/>.</returns>
+        public static ActionRule AssertScrollOutcome(string offset, int greaterThan) => new ActionRule
+        {
+            ActionType = CommonPlugins.Assert,
+            Argument = "{{$ --attribute --gt:" + $"{greaterThan}" + "}}",
+            ElementToActOn = $"scroll_{offset.ToLower()}_outcome",
+            Locator = LocatorType.Id,
+            ElementAttributeToActOn = "value"
+        };
     }
 }

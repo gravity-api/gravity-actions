@@ -59,6 +59,7 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
             environment.TestParams["sessions"] = response.Extractions.Select(i => i.OrbitSession.SessionsId);
 
             // results
+            TestContext.WriteLine(JsonConvert.SerializeObject(response, Formatting.Indented));
             return response;
         }
 
@@ -150,7 +151,8 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
                 ["project"] = $"{TestContext.Parameters["Project.Name"]}",
                 ["build"] = $"{TestContext.Parameters["Build.Number"]}",
                 ["name"] = testName,
-                ["browserstack.ie.enablePopups"] = true
+                ["browserstack.ie.enablePopups"] = true,
+                //["browserstack.selenium_version"] = "3.141.59"
             };
             foreach (var capability in ((JObject)capabilities["bstack:options"]).ToObject<IDictionary<string, object>>())
             {
@@ -425,7 +427,6 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
             // setup
             var driver = $"{environment.TestParams["driver"]}";
             var capabilities = (IDictionary<string, object>)environment.TestParams["capabilities"];
-            var isNegative = environment.TestParams.ContainsKey("negative") && (bool)environment.TestParams["negative"];
 
             // web automation
             var actions = GetActions(environment);
@@ -439,6 +440,21 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
 
             // is inconclusive
             AssertInconclusive(response);
+
+            // user plugin
+            return OnAutomationTest(environment, response);
+        }
+
+        /// <summary>
+        /// Implements assertion logics for this <see cref="AutomationTest(AutomationEnvironment)"/>
+        /// </summary>
+        /// <param name="environment">Applied <see cref="AutomationEnvironment"/>.</param>
+        /// <param name="response"><see cref="WebAutomation"/> results after execution completed.</param>
+        /// <returns><see cref="true"/> if pass; <see cref="false"/> if not.</returns>
+        public virtual bool OnAutomationTest(AutomationEnvironment environment, OrbitResponse response)
+        {
+            // setup
+            var isNegative = environment.TestParams.ContainsKey("negative") && (bool)environment.TestParams["negative"];
 
             // assertion
             var actual = GetAssertions(response);

@@ -6,6 +6,8 @@
 using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Contracts;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace Gravity.Plugins.Actions.IntegrationTests.Base
 {
@@ -156,5 +158,27 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
             Locator = LocatorType.Id,
             ElementAttributeToActOn = "value"
         };
+
+        /// <summary>
+        /// Assert extractions count and values (not null or empty).
+        /// </summary>
+        /// <param name="response"><see cref="OrbitResponse"/> from which to fetch entities.</param>
+        /// <param name="fieldsCount">Expected number of fields per entity.</param>
+        /// <param name="expectedPattern">Expected pattern (regular expression) to assert content value against.</param>
+        /// <returns>Assertion results.</returns>
+        public static bool AssertEntities(OrbitResponse response, int fieldsCount, string expectedPattern)
+        {
+            // get all entities
+            var entities = response.Extractions.SelectMany(i => i.Entities);
+            var entries = entities.SelectMany(i => i.EntityContent);
+
+            // assertion, add +1 to fields count to normalize automatic fields.
+            var isCount = entities.All(i => i.EntityContent.Count == fieldsCount + 1);
+            var isValues = entries
+                .All(i => !string.IsNullOrEmpty(i.Key) && Regex.IsMatch(input: $"{i.Value}", pattern: expectedPattern));
+
+            // results
+            return isCount && isValues;
+        }
     }
 }

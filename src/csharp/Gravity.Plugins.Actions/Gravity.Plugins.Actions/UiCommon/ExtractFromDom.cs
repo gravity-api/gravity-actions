@@ -169,11 +169,25 @@ namespace Gravity.Plugins.Actions.UiCommon
             var value = string.IsNullOrEmpty(onEntry.ElementAttributeToActOn)
                 ? element.Text
                 : GetAttributeValue(element: element, attribute: onEntry.ElementAttributeToActOn);
+            value = ValueFactory(entry, value);
 
             // result
             return new KeyValuePair<string, object>(
                 key: onEntry.Key,
                 value: Regex.Match(input: value, pattern: onEntry.RegularExpression).Value);
+        }
+
+        private string ValueFactory(ContentEntry entry, string value)
+        {
+            if (entry.Trim)
+            {
+                value = value.Trim();
+            }
+            if (entry.ClearLinesBreak)
+            {
+                value = Regex.Replace(input: value, pattern: @"(\r\n|\r|\n)", " ");
+            }
+            return value;
         }
 
         private void ExecuteSubActions(IEnumerable<ActionRule> actionRules, IWebElement onElement)

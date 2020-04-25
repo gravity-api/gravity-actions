@@ -14,7 +14,7 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
         #region *** constants      ***
         // Windows
         public const string Windows10LatestBrowser = "{'bstack:options':{'os':'Windows','os_version':'10'}}";
-        public const string Windows10Edge80 = "{'bstack:options':{'os':'Windows','os_version':'10','browser_version':'80.0'}}";
+        public const string Windows10Edge80 = "{'bstack:options':{'os':'Windows','os_version':'10'}}";
         public const string Windows7LatestBrowser = "{'bstack:options':{'os':'Windows','os_version':'7'}}";
         public const string Windows7IE10 = "{'bstack:options':{'os':'Windows','os_version':'7','browser_version':'10.0'}}";
 

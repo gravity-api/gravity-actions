@@ -38,6 +38,14 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Providers
             }
         }
 
+        public static IEnumerable CompatibilitiesSafariMojave
+        {
+            get
+            {
+                yield return Provider.Get(driver: Driver.Safari, capabilities: Provider.OSXMojaveSafari);
+            }
+        }
+
         /// <summary>
         /// Gets browsers compatibility matrix for Web UI testing.
         /// </summary>
@@ -154,7 +162,7 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Providers
 
             // OSX: Catalina
             yield return Provider.Get(driver: Driver.Chrome, capabilities: Provider.OSXCatalinaLatestBrowser);
-            yield return Provider.Get(driver: Driver.Edge, capabilities: Provider.OSXCatalinaLatestBrowser);
+            //yield return Provider.Get(driver: Driver.Edge, capabilities: Provider.OSXCatalinaLatestBrowser);
             yield return Provider.Get(driver: Driver.Firefox, capabilities: Provider.OSXCatalinaLatestBrowser);
 
             // Android

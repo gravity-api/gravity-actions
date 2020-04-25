@@ -51,24 +51,28 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.ExecuteScriptS
         // gets the extractions collection of this test
         public override IEnumerable<ExtractionRule> GetExtractions(AutomationEnvironment environment)
         {
-            var extraction = new ExtractionRule
+            // entity
+            var contentEntries = new[]
             {
-                RootElementToExtractFrom = "//input[@id='input_selected']",
-                ElementsToExtract = new[]
+                new ContentEntry
                 {
-                    new ContentEntry
+                    Key = "inner_text",
+                    Actions = new[]
                     {
-                        Key = "inner_text",
-                        Actions = new[]
+                        new ActionRule
                         {
-                            new ActionRule
-                            {
-                                ActionType = CommonPlugins.ExecuteScript,
-                                Argument = ".checked=false;"
-                            }
+                            ActionType = CommonPlugins.ExecuteScript,
+                            Argument = ".checked=false;"
                         }
                     }
                 }
+            };
+
+            // get extractions
+            var extraction = new ExtractionRule
+            {
+                RootElementToExtractFrom = "//input[@id='input_selected']",
+                ElementsToExtract = contentEntries
             };
             return new[] { extraction };
         }

@@ -151,7 +151,7 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Suites.UiCommon
         }
 
         [Description(description: "P - [0155] - Extract Data from DOM, Default, Data Source, Per Entity")]
-        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.CompatibilitiesChrome))]
+        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Compatibilities))]
         public void T0155E(AutomationEnvironment environment)
         {
             // setup
@@ -159,6 +159,34 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Suites.UiCommon
 
             // execute
             var actual = new C0155().AddEnvironments(environment).Execute();
+
+            // assertion
+            Assert.IsTrue(actual);
+        }
+
+        [Description(description: "P - [0156] - Extract Data from DOM, Default, Multiple Extractions")]
+        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Compatibilities))]
+        public void T0156F(AutomationEnvironment environment)
+        {
+            // setup
+            environment.TestParams["extraction"] = "0";
+
+            // execute
+            var actual = new C0156().AddEnvironments(environment).Execute();
+
+            // assertion
+            Assert.IsTrue(actual);
+        }
+
+        [Description(description: "P - [0156] - Extract Data from DOM, Default, Multiple Extractions")]
+        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Compatibilities))]
+        public void T0156L(AutomationEnvironment environment)
+        {
+            // setup
+            environment.TestParams["extraction"] = "1";
+
+            // execute
+            var actual = new C0156().AddEnvironments(environment).Execute();
 
             // assertion
             Assert.IsTrue(actual);

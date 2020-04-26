@@ -30,7 +30,7 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.ExtractFromDom
             var entity = response.Extractions.ElementAt(0).Entities.ElementAt(0);
 
             // assertion
-            return SharedSteps.AssertEntities(
+            return SharedSteps.AssertEntitiesValues(
                 response,
                 fieldsCount: 1,
                 expectedPattern: $"^{entity.EntityContent["FirstName"]}$");

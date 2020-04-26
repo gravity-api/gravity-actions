@@ -25,7 +25,7 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.ExtractFromDom
         // assertion implementation
         public override bool OnAutomationTest(AutomationEnvironment environment, OrbitResponse response)
         {
-            return SharedSteps.AssertEntities(
+            return SharedSteps.AssertEntitiesValues(
                 response,
                 fieldsCount: 1,
                 expectedPattern: @"^\w{1}$");

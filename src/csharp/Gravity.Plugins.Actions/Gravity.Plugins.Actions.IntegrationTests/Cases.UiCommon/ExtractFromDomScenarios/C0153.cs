@@ -29,7 +29,7 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.ExtractFromDom
         public override bool OnAutomationTest(AutomationEnvironment environment, OrbitResponse response)
         {
             // assertion
-            return SharedSteps.AssertEntities(
+            return SharedSteps.AssertEntitiesValues(
                 response,
                 fieldsCount: 2,
                 expectedPattern: @"^(?!\s*$).+");

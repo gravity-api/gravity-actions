@@ -14,7 +14,6 @@ using Gravity.Plugins.Utilities;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Extensions;
 using System;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -130,7 +129,7 @@ namespace Gravity.Plugins.Actions.UiCommon
             {
                 EntityContent = new Dictionary<string, object>()
             };
-            entity.EntityContent["entity_index"] = index;
+            entity.EntityContent["EntityIndex"] = index;
 
             // extract
             foreach (var entry in extractionRule.ElementsToExtract)

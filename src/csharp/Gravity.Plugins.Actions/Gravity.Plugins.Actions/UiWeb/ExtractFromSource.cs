@@ -125,7 +125,7 @@ namespace Gravity.Plugins.Actions.UiWeb
             {
                 EntityContent = new Dictionary<string, object>()
             };
-            entity.EntityContent["entity_index"] = index;
+            entity.EntityContent["EntityIndex"] = index;
 
             // extract
             foreach (var entry in extractionRule.ElementsToExtract)

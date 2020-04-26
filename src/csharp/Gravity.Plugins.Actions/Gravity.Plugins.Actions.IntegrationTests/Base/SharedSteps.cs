@@ -166,10 +166,10 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
         /// <param name="fieldsCount">Expected number of fields per entity.</param>
         /// <param name="expectedPattern">Expected pattern (regular expression) to assert content value against.</param>
         /// <returns>Assertion results.</returns>
-        public static bool AssertEntities(OrbitResponse response, int fieldsCount, string expectedPattern)
+        public static bool AssertEntitiesValues(OrbitResponse response, int fieldsCount, string expectedPattern)
         {
             // setup
-            var excluded = new[] { "entity_index" };
+            var excluded = new[] { "EntityIndex" };
 
             // get all entities
             var entities = response.Extractions.SelectMany(i => i.Entities);
@@ -182,6 +182,31 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
 
             // results
             return isCount && isValues;
+        }
+
+        /// <summary>
+        /// Assert extractions count and values (not null or empty).
+        /// </summary>
+        /// <param name="response"><see cref="OrbitResponse"/> from which to fetch entities.</param>
+        /// <param name="fieldsCount">Expected number of fields per entity.</param>
+        /// <param name="expectedPattern">Expected pattern (regular expression) to assert content value against.</param>
+        /// <returns>Assertion results.</returns>
+        public static bool AssertEntitiesKeys(OrbitResponse response, int fieldsCount, string expectedPattern)
+        {
+            // setup
+            var excluded = new[] { "EntityIndex" };
+
+            // get all entities
+            var entities = response.Extractions.SelectMany(i => i.Entities);
+            var entries = entities.SelectMany(i => i.EntityContent).Where(i => !excluded.Contains(i.Key));
+
+            // assertion, add +1 to fields count to normalize automatic fields.
+            var isCount = entities.All(i => i.EntityContent.Count == fieldsCount + excluded.Length);
+            var isKeys = entries
+                .All(i => !string.IsNullOrEmpty(i.Key) && Regex.IsMatch(input: $"{i.Key}", pattern: expectedPattern));
+
+            // results
+            return isCount && isKeys;
         }
     }
 }

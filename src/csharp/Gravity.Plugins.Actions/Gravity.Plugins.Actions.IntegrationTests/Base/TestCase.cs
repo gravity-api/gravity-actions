@@ -548,8 +548,10 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
             }
             catch (Exception e) when (e is NotImplementedException || e is AssertInconclusiveException)
             {
-                TestContext.WriteLine($"TestCase [{GetType().Name}] skipped.", e);
-                Assert.Inconclusive(e.Message);
+                var p = environment.TestParams;
+                var message = $"Was unable to conclude results on [{p["driver"]}]";
+
+                Assert.Inconclusive(message);
             }
             catch (Exception e) when (e != null)
             {

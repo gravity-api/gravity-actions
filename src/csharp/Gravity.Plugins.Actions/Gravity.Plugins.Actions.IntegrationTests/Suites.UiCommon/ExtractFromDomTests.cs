@@ -37,60 +37,131 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Suites.UiCommon
             Assert.IsTrue(actual);
         }
 
-        //[Description(description: "P - [0140] - Execute Script, Arguments")]
-        //[Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Compatibilities))]
-        //public void T0140P(AutomationEnvironment environment)
-        //{
-        //    // setup
-        //    environment.TestParams["negative"] = false;
+        [Description(description: "P - [0146] - Extract Data from DOM, Default, Attribute")]
+        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Compatibilities))]
+        public void T0146P(AutomationEnvironment environment)
+        {
+            // execute
+            var actual = new C0146().AddEnvironments(environment).Execute();
 
-        //    // execute
-        //    var actual = new C0140().AddEnvironments(environment).Execute();
+            // assertion
+            Assert.IsTrue(actual);
+        }
 
-        //    // assertion
-        //    Assert.IsTrue(actual);
-        //}
+        [Description(description: "P - [0147] - Extract Data from DOM, Element")]
+        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Compatibilities))]
+        public void T0147P(AutomationEnvironment environment)
+        {
+            // execute
+            var actual = new C0147().AddEnvironments(environment).Execute();
 
-        //[Description(description: "N - [0140] - Execute Script, Arguments")]
-        //[Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.CompatibilitiesChrome))]
-        //public void T0140N(AutomationEnvironment environment)
-        //{
-        //    // setup
-        //    environment.TestParams["negative"] = true;
+            // assertion
+            Assert.IsTrue(actual);
+        }
 
-        //    // execute
-        //    var actual = new C0140().AddEnvironments(environment).Execute();
+        [Description(description: "P - [0148] - Extract Data from DOM, Element, Regular Expression")]
+        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Compatibilities))]
+        public void T0148P(AutomationEnvironment environment)
+        {
+            // execute
+            var actual = new C0148().AddEnvironments(environment).Execute();
 
-        //    // assertion
-        //    Assert.IsTrue(actual);
-        //}
+            // assertion
+            Assert.IsTrue(actual);
+        }
 
-        //[Description(description: "P - [0141] - Execute Script, Extractions")]
-        //[Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.CompatibilitiesChrome))]
-        //public void T0141P(AutomationEnvironment environment)
-        //{
-        //    // setup
-        //    environment.TestParams["negative"] = false;
+        [Description(description: "P - [0149] - Extract Data from DOM, Default, HTML")]
+        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Compatibilities))]
+        public void T0149P(AutomationEnvironment environment)
+        {
+            // execute
+            var actual = new C0149().AddEnvironments(environment).Execute();
 
-        //    // execute
-        //    var actual = new C0141().AddEnvironments(environment).Execute();
+            // assertion
+            Assert.IsTrue(actual);
+        }
 
-        //    // assertion
-        //    Assert.IsTrue(actual);
-        //}
+        [Description(description: "P - [0150] - Extract Data from DOM, Default, HTML, Regular Expression")]
+        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Compatibilities))]
+        public void T0150P(AutomationEnvironment environment)
+        {
+            // execute
+            var actual = new C0150().AddEnvironments(environment).Execute();
 
-        //[Description(description: "N - [0141] - Execute Script, Extractions")]
-        //[Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.CompatibilitiesChrome))]
-        //public void T0141N(AutomationEnvironment environment)
-        //{
-        //    // setup
-        //    environment.TestParams["negative"] = true;
+            // assertion
+            Assert.IsTrue(actual);
+        }
 
-        //    // execute
-        //    var actual = new C0141().AddEnvironments(environment).Execute();
+        [Description(description: "P - [0151] - Extract Data from DOM, Element, HTML, Regular Expression")]
+        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Compatibilities))]
+        public void T0151P(AutomationEnvironment environment)
+        {
+            // execute
+            var actual = new C0151().AddEnvironments(environment).Execute();
 
-        //    // assertion
-        //    Assert.IsTrue(actual);
-        //}
+            // assertion
+            Assert.IsTrue(actual);
+        }
+
+        [Description(description: "P - [0152] - Extract Data from DOM, Element, Absolute XPath")]
+        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Compatibilities))]
+        public void T0152P(AutomationEnvironment environment)
+        {
+            // execute
+            var actual = new C0152().AddEnvironments(environment).Execute();
+
+            // assertion
+            Assert.IsTrue(actual);
+        }
+
+        [Description(description: "P - [0153] - Extract Data from DOM, Element, Actions, Stale")]
+        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Compatibilities))]
+        public void T0153P(AutomationEnvironment environment)
+        {
+            // execute
+            var actual = new C0153().AddEnvironments(environment).Execute();
+
+            // assertion
+            Assert.IsTrue(actual);
+        }
+
+        [Description(description: "P - [0154] - Extract Data from DOM, Element, Actions, Switch")]
+        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Compatibilities))]
+        public void T0154P(AutomationEnvironment environment)
+        {
+            // execute
+            var actual = new C0154().AddEnvironments(environment).Execute();
+
+            // assertion
+            Assert.IsTrue(actual);
+        }
+
+        [Description(description: "P - [0155] - Extract Data from DOM, Default, Data Source, All Entities")]
+        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Compatibilities))]
+        public void T0155A(AutomationEnvironment environment)
+        {
+            // setup
+            environment.TestParams["is_per_entity"] = false;
+
+            // execute
+            var actual = new C0155().AddEnvironments(environment).Execute();
+
+            // assertion
+            Assert.IsTrue(actual);
+        }
+
+        [Description(description: "P - [0155] - Extract Data from DOM, Default, Data Source, Per Entity")]
+        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.CompatibilitiesChrome))]
+        public void T0155E(AutomationEnvironment environment)
+        {
+            // setup
+            environment.TestParams["is_per_entity"] = true;
+
+            // execute
+            var actual = new C0155().AddEnvironments(environment).Execute();
+
+            // assertion
+            Assert.IsTrue(actual);
+        }
     }
 }

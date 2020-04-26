@@ -14,6 +14,7 @@ using Gravity.Plugins.Utilities;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Extensions;
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -84,7 +85,7 @@ namespace Gravity.Plugins.Actions.UiCommon
             }
         }
 
-        #region *** Data Extraction         ***
+        #region *** Data Extraction        ***
         private void DoExtraction(ExtractionRule extractionRule, string key)
         {
             // setup
@@ -94,6 +95,10 @@ namespace Gravity.Plugins.Actions.UiCommon
             // extract from source
             for (int i = 0; i < onElements.Count(); i++)
             {
+                if (onElements.ElementAt(i).IsStale())
+                {
+                    onElements = GetRootElements(extractionRule);
+                }
                 results.Add(DoContentEntriesFromDom(
                     extractionRule, onElement: onElements.ElementAt(i), i));
             }
@@ -117,7 +122,7 @@ namespace Gravity.Plugins.Actions.UiCommon
         }
         #endregion
 
-        #region *** Data Extraction Source  ***
+        #region *** Data Extraction Source ***
         private Entity DoContentEntriesFromDom(ExtractionRule extractionRule, IWebElement onElement, int index)
         {
             // setup
@@ -169,24 +174,29 @@ namespace Gravity.Plugins.Actions.UiCommon
             var value = string.IsNullOrEmpty(onEntry.ElementAttributeToActOn)
                 ? element.Text
                 : GetAttributeValue(element: element, attribute: onEntry.ElementAttributeToActOn);
-            value = ValueFactory(entry, value);
+
+            // normalization (before and after regular expression)
+            value = ValueFactory(onEntry, value);
+            value = Regex.Match(input: value, pattern: onEntry.RegularExpression).Value;
+            value = ValueFactory(onEntry, value);
 
             // result
-            return new KeyValuePair<string, object>(
-                key: onEntry.Key,
-                value: Regex.Match(input: value, pattern: onEntry.RegularExpression).Value);
+            return new KeyValuePair<string, object>(key: onEntry.Key, value);
         }
 
-        private string ValueFactory(ContentEntry entry, string value)
+        private string ValueFactory(ContentEntry onEntry, string value)
         {
-            if (entry.Trim)
+            // message configuration
+            if (onEntry.Trim)
             {
                 value = value.Trim();
             }
-            if (entry.ClearLinesBreak)
+            if (onEntry.ClearLinesBreak)
             {
                 value = Regex.Replace(input: value, pattern: @"(\r\n|\r|\n)", " ");
             }
+
+            // results
             return value;
         }
 
@@ -208,14 +218,14 @@ namespace Gravity.Plugins.Actions.UiCommon
         }
         #endregion
 
-        #region *** HTML/Elements Cache     ***
+        #region *** HTML/Elements Cache    ***
         private IEnumerable<IWebElement> GetRootElements(ExtractionRule extractionRule)
         {
             return WebDriver.GetElements(By.XPath(extractionRule.RootElementToExtractFrom));
         }
         #endregion
 
-        #region *** Extraction Rules        ***
+        #region *** Extraction Rules       ***
         private string GetAttributeValue(IWebElement element, string attribute)
         {
             // special
@@ -229,7 +239,7 @@ namespace Gravity.Plugins.Actions.UiCommon
         #endregion
 
 #pragma warning disable IDE0051
-        #region *** Special Attributes      ***
+        #region *** Special Attributes     ***
         [Description("html")]
         private string Html(IWebElement element) => element.GetSource();
         #endregion

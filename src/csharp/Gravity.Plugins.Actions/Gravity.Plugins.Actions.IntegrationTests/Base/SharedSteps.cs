@@ -168,12 +168,15 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
         /// <returns>Assertion results.</returns>
         public static bool AssertEntities(OrbitResponse response, int fieldsCount, string expectedPattern)
         {
+            // setup
+            var excluded = new[] { "entity_index" };
+
             // get all entities
             var entities = response.Extractions.SelectMany(i => i.Entities);
-            var entries = entities.SelectMany(i => i.EntityContent);
+            var entries = entities.SelectMany(i => i.EntityContent).Where(i => !excluded.Contains(i.Key));
 
             // assertion, add +1 to fields count to normalize automatic fields.
-            var isCount = entities.All(i => i.EntityContent.Count == fieldsCount + 1);
+            var isCount = entities.All(i => i.EntityContent.Count == fieldsCount + excluded.Length);
             var isValues = entries
                 .All(i => !string.IsNullOrEmpty(i.Key) && Regex.IsMatch(input: $"{i.Value}", pattern: expectedPattern));
 

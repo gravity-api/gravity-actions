@@ -1,8 +1,8 @@
 ﻿#pragma warning disable S125
 /*
 * TEST SCENARIO (Rhino)
-* [test-id] 0144
-* [test-scenario] - Extract Data from DOM, Default
+* [test-id] 0155
+* [test-scenario] - Extract Data from DOM, Default, Data Source
 * 
 * [test-actions]
 * 1. navigate to {https://gravitymvctestapplication.azurewebsites.net/student}
@@ -18,7 +18,7 @@ using System.Collections.Generic;
 
 namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.ExtractFromDomScenarios
 {
-    public class C0144 : TestCase
+    public class C0155 : TestCase
     {
         public override string ApplicationUnderTest => StudentsPage;
 
@@ -43,6 +43,14 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.ExtractFromDom
         // gets the extractions collection of this test
         public override IEnumerable<ExtractionRule> GetExtractions(AutomationEnvironment environment)
         {
+            // data source
+            var dataSource = new DataSource
+            {
+                WritePerEntity = (bool)environment.TestParams["is_per_entity"],
+                Source = $"{environment.SystemParams["Integration.MockApi"]}",
+                Type = DataSourceType.RestApi
+            };
+
             // entity
             var contentEntries = new[]
             {
@@ -53,7 +61,8 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.ExtractFromDom
             var extraction = new ExtractionRule
             {
                 RootElementToExtractFrom = "//td[contains(@id,'student_first_name')]",
-                ElementsToExtract = contentEntries
+                ElementsToExtract = contentEntries,
+                DataSource = dataSource
             };
 
             // results

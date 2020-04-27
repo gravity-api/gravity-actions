@@ -10,6 +10,7 @@ using Gravity.Plugins.Contracts;
 using Gravity.Plugins.Extensions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using System;
 using System.Data;
 using System.IO;
@@ -783,6 +784,11 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             // setup
             SetExtractionRules(extractionRule);
             var dataSource = WebAutomation.Extractions.ElementAt(0).DataSource;
+            var settings = new JsonSerializerSettings
+            {
+                ContractResolver = new CamelCasePropertyNamesContractResolver(),
+                Formatting = Formatting.None
+            };
 
             // execute
             var plugin = ExecuteAction<ExtractFromDom>();
@@ -792,8 +798,8 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             var actual = new DataTable().Load(dataSource);
 
             // comparing
-            var sExpected = new string(JsonConvert.SerializeObject(expected).OrderBy(i => i).ToArray());
-            var sActual = new string(JsonConvert.SerializeObject(actual).OrderBy(i => i).ToArray());
+            var sExpected = new string(JsonConvert.SerializeObject(expected, settings).OrderBy(i => i).ToArray());
+            var sActual = new string(JsonConvert.SerializeObject(actual, settings).OrderBy(i => i).ToArray());
 
             // assertion
             return sExpected.Equals(sActual, StringComparison.Ordinal);

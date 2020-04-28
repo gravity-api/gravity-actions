@@ -42,7 +42,7 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.ExecuteScriptS
                 {
                     ActionType = CommonPlugins.Assert,
                     Argument = "{{$ --" + condition + "}}",
-                    ElementToActOn = "input_selected",
+                    OnElement = "input_selected",
                     Locator = LocatorType.Id
                 }
             };
@@ -71,8 +71,8 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.ExecuteScriptS
             // get extractions
             var extraction = new ExtractionRule
             {
-                RootElementToExtractFrom = "//input[@id='input_selected']",
-                ElementsToExtract = contentEntries
+                OnRootElements = "//input[@id='input_selected']",
+                OnElements = contentEntries
             };
             return new[] { extraction };
         }

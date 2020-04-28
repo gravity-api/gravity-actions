@@ -1,17 +1,18 @@
 ﻿/*
  * CHANGE LOG - keep only last 5 threads
  * 
- * on-line resources
+ * online resources
  */
-using OpenQA.Selenium.Mock;
+using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Actions.UiCommon;
 using Gravity.Plugins.Actions.UnitTests.Base;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Mock;
+using System;
 using System.Collections.Generic;
-using Gravity.Plugins.Actions.Contracts;
+
 using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
-using Gravity.Plugins.Contracts;
 
 #pragma warning disable S4144
 namespace Gravity.Plugins.Actions.UnitTests.UiCommon
@@ -19,26 +20,31 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
     [TestClass]
     public class ClickTests : ActionTests
     {
+        #region *** tests: documentation ***
         [TestMethod]
         public void ClickCreate()
         {
-            ValidateAction<Click>();
+            AssertPlugin<Click>();
         }
 
         [TestMethod]
         public void ClickDocumentation()
         {
-            ValidateActionDocumentation<Click>(CommonPlugins.Click);
+            AssertDocumentation<Click>(pluginName: CommonPlugins.Click);
         }
 
         [TestMethod]
         public void ClickDocumentationResourceFile()
         {
-            ValidateActionDocumentation<Click>(CommonPlugins.Click, "click.json");
+            AssertDocumentation<Click>(
+                pluginName: CommonPlugins.Click,
+                resource: "click.json");
         }
+        #endregion
 
+        #region *** tests: OnDriver      ***
         [DataTestMethod]
-        [DataRow("{'elementToActOn':'//positive'}")]
+        [DataRow("{'onElement':'//positive'}")]
         public void ClickPositive(string actionRule)
         {
             // execute
@@ -49,8 +55,21 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         }
 
         [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
-        [DataRow("{'elementToActOn':'//none','locator':'" + LocatorType.Xpath + "'}")]
+        [DataRow("{'onElement':'//none'}")]
+        [DataRow("{'onElement':'//null'}")]
+        [DataRow("{'onElement':'//stale'}")]
         public void ClickNoElement(string actionRule)
+        {
+            // execute
+            ExecuteAction<Click>(actionRule);
+
+            // assertion (no assertion here, expected WebDriverTimeoutException exception)
+            Assert.IsTrue(true);
+        }
+
+        [DataTestMethod, ExpectedException(typeof(ElementNotVisibleException))]
+        [DataRow("{'onElement':'//negative'}")]
+        public void ClickNegative(string actionRule)
         {
             // execute
             ExecuteAction<Click>(actionRule);
@@ -70,7 +89,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         }
 
         [DataTestMethod]
-        [DataRow("{'Argument':'{{$ --until:no_alert}}','ElementToActOn':'//positive'}")]
+        [DataRow("{'Argument':'{{$ --until:no_alert}}','onElement':'//positive'}")]
         public void ClickUntilNoAlert(string actionRule)
         {
             // execute
@@ -82,9 +101,11 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             // assertion (no assertion here, expected is no exception)
             Assert.IsTrue(true);
         }
+        #endregion
 
+        #region *** tests: OnElement     ***
         [DataTestMethod]
-        [DataRow("{'elementToActOn':'//positive'}")]
+        [DataRow("{'onElement':'//positive'}")]
         public void ClickElementAbsolutePositive(string actionRule)
         {
             // execute
@@ -95,7 +116,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         }
 
         [DataTestMethod]
-        [DataRow("{'elementToActOn':'.//positive'}")]
+        [DataRow("{'onElement':'.//positive'}")]
         public void ClickElementRelativePositive(string actionRule)
         {
             // execute
@@ -106,7 +127,9 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         }
 
         [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
-        [DataRow("{'elementToActOn':'//none','locator':'"+ LocatorType.Xpath +"'}")]
+        [DataRow("{'onElement':'//none','locator':'Xpath'}")]
+        [DataRow("{'onElement':'//null','locator':'Xpath'}")]
+        [DataRow("{'onElement':'//stale','locator':'Xpath'}")]
         public void ClickElementAbsoluteNoElement(string actionRule)
         {
             // execute
@@ -117,11 +140,46 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         }
 
         [DataTestMethod, ExpectedException(typeof(NoSuchElementException))]
-        [DataRow("{'elementToActOn':'.//none'}")]
+        [DataRow("{'onElement':'.//none'}")]
         public void ClickElementRelativeNoElement(string actionRule)
         {
             // execute
             ExecuteAction<Click>(MockBy.Positive(), actionRule);
+
+            // assertion (no assertion here, expected is no exception)
+            Assert.IsTrue(true);
+        }
+
+        [DataTestMethod, ExpectedException(typeof(NullReferenceException))]
+        [DataRow("{'onElement':'.//null'}")]
+        public void ClickElementRelativeNull(string actionRule)
+        {
+            // execute
+            ExecuteAction<Click>(MockBy.Positive(), actionRule);
+
+            // assertion (no assertion here, expected is no exception)
+            Assert.IsTrue(true);
+        }
+
+        [DataTestMethod, ExpectedException(typeof(StaleElementReferenceException))]
+        [DataRow("{'onElement':'.//stale'}")]
+        public void ClickElementRelativeStale(string actionRule)
+        {
+            // execute
+            ExecuteAction<Click>(MockBy.Positive(), actionRule);
+
+            // assertion (no assertion here, expected is no exception)
+            Assert.IsTrue(true);
+        }
+
+        [TestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
+        [DataRow("{'onElement':'.//null'}")]
+        [DataRow("{'onElement':'.//stale'}")]
+        [DataRow("{'onElement':'.//none'}")]
+        public void ClickElementFlatNoElement(string actionRule)
+        {
+            // execute
+            ExecuteAction<Click>(MockBy.Null(), actionRule);
 
             // assertion (no assertion here, expected is no exception)
             Assert.IsTrue(true);
@@ -146,17 +204,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             // assertion (no assertion here, expected is no exception)
             Assert.IsTrue(true);
         }
-
-        [TestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
-        [DataRow("{'elementToActOn':'.//none'}")]
-        public void ClickElementFlatNullElement(string actionRule)
-        {
-            // execute
-            ExecuteAction<Click>(MockBy.Null(), actionRule);
-
-            // assertion (no assertion here, expected is no exception)
-            Assert.IsTrue(true);
-        }
+        #endregion
     }
 }
 #pragma warning restore S4144

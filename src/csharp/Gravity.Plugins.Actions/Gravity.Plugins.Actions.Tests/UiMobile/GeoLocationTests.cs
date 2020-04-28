@@ -1,7 +1,7 @@
 ﻿/*
  * CHANGE LOG - keep only last 5 threads
  * 
- * on-line resources
+ * online resources
  */
 using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Actions.UiMobile;
@@ -19,19 +19,19 @@ namespace Gravity.Plugins.Actions.UnitTests.UiMobile
         [TestMethod]
         public void GeoLocationCreate()
         {
-            ValidateAction<SetGeoLocation>();
+            AssertPlugin<SetGeoLocation>();
         }
 
         [TestMethod]
         public void GeoLocationDocumentation()
         {
-            ValidateActionDocumentation<SetGeoLocation>(MobilePlugins.SetGeoLocation);
+            AssertDocumentation<SetGeoLocation>(MobilePlugins.SetGeoLocation);
         }
 
         [TestMethod]
         public void GeoLocationDocumentationResourceFile()
         {
-            ValidateActionDocumentation<SetGeoLocation>(MobilePlugins.SetGeoLocation, "set_geo_location.json");
+            AssertDocumentation<SetGeoLocation>(MobilePlugins.SetGeoLocation, "set_geo_location.json");
         }
 
         [DataTestMethod]

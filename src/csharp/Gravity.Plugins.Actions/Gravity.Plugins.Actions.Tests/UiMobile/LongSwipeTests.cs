@@ -1,7 +1,7 @@
 ﻿/*
  * CHANGE LOG - keep only last 5 threads
  * 
- * on-line resources
+ * online resources
  */
 using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Actions.UiMobile;
@@ -19,15 +19,15 @@ namespace Gravity.Plugins.Actions.UnitTests.UiMobile
     public class LongSwipeTests : ActionTests
     {
         [TestMethod]
-        public void LongSwipeCreate() => ValidateAction<LongSwipe>();
+        public void LongSwipeCreate() => AssertPlugin<LongSwipe>();
 
         [TestMethod]
         public void LongSwipeDocumentation()
-            => ValidateActionDocumentation<LongSwipe>(MobilePlugins.LongSwipe);
+            => AssertDocumentation<LongSwipe>(MobilePlugins.LongSwipe);
 
         [TestMethod]
         public void LongSwipeDocumentationResourceFile()
-            => ValidateActionDocumentation<LongSwipe>(MobilePlugins.LongSwipe, "long_swipe.json");
+            => AssertDocumentation<LongSwipe>(MobilePlugins.LongSwipe, "long_swipe.json");
 
         [DataTestMethod]
         [DataRow("{'argument':'{{$ --source:100,100 --target:200,200}}'}")]
@@ -113,7 +113,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiMobile
         }
 
         [DataTestMethod]
-        [DataRow("{'elementToActOn':'//positive','argument':'{{$ --target:200,200}}'}")]
+        [DataRow("{'onElement':'//positive','argument':'{{$ --target:200,200}}'}")]
         public void LongSwipePositiveToCoordinates(string actionRule)
         {
             // set new mock driver for mobile device
@@ -127,7 +127,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiMobile
         }
 
         [DataTestMethod]
-        [DataRow("{'elementToActOn':'//negative','argument':'{{$ --target:200,200}}'}")]
+        [DataRow("{'onElement':'//negative','argument':'{{$ --target:200,200}}'}")]
         public void LongSwipeNegativeToCoordinates(string actionRule)
         {
             // set new mock driver for mobile device
@@ -141,7 +141,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiMobile
         }
 
         [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
-        [DataRow("{'elementToActOn':'//none','argument':'{{$ --target:200,200}}'}")]
+        [DataRow("{'onElement':'//none','argument':'{{$ --target:200,200}}'}")]
         public void LongSwipeNoneToCoordinates(string actionRule)
         {
             // set new mock driver for mobile device
@@ -155,7 +155,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiMobile
         }
 
         [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
-        [DataRow("{'elementToActOn':'//stale','argument':'{{$ --target:200,200}}'}")]
+        [DataRow("{'onElement':'//stale','argument':'{{$ --target:200,200}}'}")]
         public void LongSwipeStaleToCoordinates(string actionRule)
         {
             // set new mock driver for mobile device
@@ -169,7 +169,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiMobile
         }
 
         [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
-        [DataRow("{'elementToActOn':'//null','argument':'{{$ --target:200,200}}'}")]
+        [DataRow("{'onElement':'//null','argument':'{{$ --target:200,200}}'}")]
         public void LongSwipeNullToCoordinates(string actionRule)
         {
             // set new mock driver for mobile device
@@ -211,7 +211,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiMobile
         }
 
         [DataTestMethod]
-        [DataRow("{'elementToActOn':'//positive','argument':'{{$ --source:200,200}}'}")]
+        [DataRow("{'onElement':'//positive','argument':'{{$ --source:200,200}}'}")]
         public void LongSwipeCoordinatesToPositive(string actionRule)
         {
             // set new mock driver for mobile device
@@ -225,7 +225,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiMobile
         }
 
         [DataTestMethod]
-        [DataRow("{'elementToActOn':'//negative','argument':'{{$ --source:200,200}}'}")]
+        [DataRow("{'onElement':'//negative','argument':'{{$ --source:200,200}}'}")]
         public void LongSwipeCoordinatesToNegative(string actionRule)
         {
             // set new mock driver for mobile device
@@ -239,7 +239,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiMobile
         }
 
         [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
-        [DataRow("{'elementToActOn':'//none','argument':'{{$ --source:200,200}}'}")]
+        [DataRow("{'onElement':'//none','argument':'{{$ --source:200,200}}'}")]
         public void LongSwipeCoordinatesToNone(string actionRule)
         {
             // set new mock driver for mobile device
@@ -253,7 +253,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiMobile
         }
 
         [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
-        [DataRow("{'elementToActOn':'//stale','argument':'{{$ --source:200,200}}'}")]
+        [DataRow("{'onElement':'//stale','argument':'{{$ --source:200,200}}'}")]
         public void LongSwipeCoordinatesToStale(string actionRule)
         {
             // set new mock driver for mobile device
@@ -267,7 +267,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiMobile
         }
 
         [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
-        [DataRow("{'elementToActOn':'//null','argument':'{{$ --source:200,200}}'}")]
+        [DataRow("{'onElement':'//null','argument':'{{$ --source:200,200}}'}")]
         public void LongSwipeCoordinatesToNull(string actionRule)
         {
             // set new mock driver for mobile device
@@ -309,7 +309,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiMobile
         }
 
         [DataTestMethod]
-        [DataRow("{'elementToActOn':'.//positive','argument':'{{$ --target:200,200}}'}")]
+        [DataRow("{'onElement':'.//positive','argument':'{{$ --target:200,200}}'}")]
         public void LongSwipeElementPositiveToCoordinates(string actionRule)
         {
             // set new mock driver for mobile device
@@ -323,7 +323,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiMobile
         }
 
         [DataTestMethod]
-        [DataRow("{'elementToActOn':'.//negative','argument':'{{$ --target:200,200}}'}")]
+        [DataRow("{'onElement':'.//negative','argument':'{{$ --target:200,200}}'}")]
         public void LongSwipeElementNegativeToCoordinates(string actionRule)
         {
             // set new mock driver for mobile device
@@ -337,7 +337,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiMobile
         }
 
         [DataTestMethod, ExpectedException(typeof(NoSuchElementException))]
-        [DataRow("{'elementToActOn':'.//none','argument':'{{$ --target:200,200}}'}")]
+        [DataRow("{'onElement':'.//none','argument':'{{$ --target:200,200}}'}")]
         public void LongSwipeElementNoneToCoordinates(string actionRule)
         {
             // set new mock driver for mobile device
@@ -351,7 +351,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiMobile
         }
 
         [DataTestMethod, ExpectedException(typeof(StaleElementReferenceException))]
-        [DataRow("{'elementToActOn':'.//stale','argument':'{{$ --target:200,200}}'}")]
+        [DataRow("{'onElement':'.//stale','argument':'{{$ --target:200,200}}'}")]
         public void LongSwipeElementStaleToCoordinates(string actionRule)
         {
             // set new mock driver for mobile device
@@ -365,7 +365,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiMobile
         }
 
         [DataTestMethod, ExpectedException(typeof(NullReferenceException))]
-        [DataRow("{'elementToActOn':'.//null','argument':'{{$ --target:200,200}}'}")]
+        [DataRow("{'onElement':'.//null','argument':'{{$ --target:200,200}}'}")]
         public void LongSwipeElementNullToCoordinates(string actionRule)
         {
             // set new mock driver for mobile device
@@ -407,7 +407,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiMobile
         }
 
         [DataTestMethod]
-        [DataRow("{'elementToActOn':'.//positive','argument':'{{$ --source:200,200}}'}")]
+        [DataRow("{'onElement':'.//positive','argument':'{{$ --source:200,200}}'}")]
         public void LongSwipeElementCoordinatesToPositive(string actionRule)
         {
             // set new mock driver for mobile device
@@ -421,7 +421,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiMobile
         }
 
         [DataTestMethod]
-        [DataRow("{'elementToActOn':'.//negative','argument':'{{$ --source:200,200}}'}")]
+        [DataRow("{'onElement':'.//negative','argument':'{{$ --source:200,200}}'}")]
         public void LongSwipeElementCoordinatesToNegative(string actionRule)
         {
             // set new mock driver for mobile device
@@ -435,7 +435,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiMobile
         }
 
         [DataTestMethod, ExpectedException(typeof(NoSuchElementException))]
-        [DataRow("{'elementToActOn':'.//none','argument':'{{$ --source:200,200}}'}")]
+        [DataRow("{'onElement':'.//none','argument':'{{$ --source:200,200}}'}")]
         public void LongSwipeElementCoordinatesToNone(string actionRule)
         {
             // set new mock driver for mobile device
@@ -449,7 +449,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiMobile
         }
 
         [DataTestMethod, ExpectedException(typeof(StaleElementReferenceException))]
-        [DataRow("{'elementToActOn':'.//stale','argument':'{{$ --source:200,200}}'}")]
+        [DataRow("{'onElement':'.//stale','argument':'{{$ --source:200,200}}'}")]
         public void LongSwipeElementCoordinatesToStale(string actionRule)
         {
             // set new mock driver for mobile device
@@ -463,7 +463,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiMobile
         }
 
         [DataTestMethod, ExpectedException(typeof(NullReferenceException))]
-        [DataRow("{'elementToActOn':'.//null','argument':'{{$ --source:200,200}}'}")]
+        [DataRow("{'onElement':'.//null','argument':'{{$ --source:200,200}}'}")]
         public void LongSwipeElementCoordinatesToNull(string actionRule)
         {
             // set new mock driver for mobile device

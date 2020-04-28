@@ -1,13 +1,12 @@
 ﻿/*
  * CHANGE LOG - keep only last 5 threads
  * 
- * on-line resources
+ * online resources
  */
 using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Attributes;
 using Gravity.Plugins.Base;
 using Gravity.Plugins.Contracts;
-using Microsoft.Extensions.Logging;
 using OpenQA.Selenium;
 
 namespace Gravity.Plugins.Actions.UiWeb
@@ -22,61 +21,53 @@ namespace Gravity.Plugins.Actions.UiWeb
         /// <summary>
         /// Creates a new instance of this plugin.
         /// </summary>
-        /// <param name="webAutomation">This <see cref="WebAutomation"/> object (the original object sent by the user).</param>
+        /// <param name="automation">This <see cref="WebAutomation"/> object (the original object sent by the user).</param>
         /// <param name="driver"><see cref="IWebDriver"/> implementation by which to execute the action.</param>
-        public SwitchToWindow(WebAutomation webAutomation, IWebDriver driver)
-            : base(webAutomation, driver)
+        public SwitchToWindow(WebAutomation automation, IWebDriver driver)
+            : base(automation, driver)
         { }
         #endregion
 
         /// <summary>
         /// Selects either the first frame on the page or the main document when a page contains frames.
         /// </summary>
-        /// <param name="actionRule">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
-        public override void OnPerform(ActionRule actionRule)
+        /// <param name="action">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
+        public override void OnPerform(ActionRule action)
         {
-            DoAction(actionRule);
+            DoAction(action);
         }
 
         /// <summary>
         /// Selects either the first frame on the page or the main document when a page contains frames.
         /// </summary>
-        /// <param name="actionRule">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
+        /// <param name="action">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
         /// <param name="element">This <see cref="IWebElement"/> instance on which to perform the action (provided by the extraction rule).</param>
-        public override void OnPerform(ActionRule actionRule, IWebElement element)
+        public override void OnPerform(ActionRule action, IWebElement element)
         {
-            DoAction(actionRule);
+            DoAction(action);
         }
 
         // execute action routine
-        private void DoAction(ActionRule actionRule)
+        private void DoAction(ActionRule action)
         {
-            // constants
-            const string W1 = "Browser does not have any open tabs/windows. Action [SwitchToWindow] was skipped.";
-            const string W2 = "The provided index is greater then browsers tabs/windows count. Switching to the last tab/window.";
-            const string W3 = "The provided index is lower then browsers tabs/windows count. Switching to the first tab/window.";
-
             // exit condition
             if (WebDriver.WindowHandles.Count == 1)
             {
-                Logger.LogWarning(W1);
                 return;
             }
 
             // parse window index
-            int.TryParse(actionRule.Argument, out int indexOut);
+            int.TryParse(action.Argument, out int indexOut);
 
             // last tab/window conditions
             if (WebDriver.WindowHandles.Count < indexOut + 1)
             {
-                Logger.LogInformation(W2);
                 indexOut = WebDriver.WindowHandles.Count - 1;
             }
 
             // main window conditions
             if (indexOut < 0)
             {
-                Logger.LogInformation(W3);
                 indexOut = 0;
             }
 

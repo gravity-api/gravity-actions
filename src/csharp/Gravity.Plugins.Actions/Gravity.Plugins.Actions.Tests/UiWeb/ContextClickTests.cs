@@ -1,7 +1,7 @@
 ﻿/*
  * CHANGE LOG - keep only last 5 threads
  * 
- * on-line resources
+ * online resources
  */
 using OpenQA.Selenium.Mock;
 using Gravity.Plugins.Actions.UnitTests.Base;
@@ -21,24 +21,24 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         [TestMethod]
         public void ContextClickCreate()
         {
-            ValidateAction<ContextClick>();
+            AssertPlugin<ContextClick>();
         }
 
         [TestMethod]
         public void ContextClickDocumentation()
         {
-            ValidateActionDocumentation<ContextClick>(WebPlugins.ContextClick);
+            AssertDocumentation<ContextClick>(WebPlugins.ContextClick);
         }
 
         [TestMethod]
         public void ContextClickDocumentationResourceFile()
         {
-            ValidateActionDocumentation<ContextClick>(
+            AssertDocumentation<ContextClick>(
                 WebPlugins.ContextClick, "context_click.json");
         }
 
         [DataTestMethod]
-        [DataRow("{'elementToActOn':'//positive'}")]
+        [DataRow("{'onElement':'//positive'}")]
         public void ContextClickPositive(string actionRule)
         {
             // execute
@@ -49,7 +49,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         }
 
         [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
-        [DataRow("{'elementToActOn':'//none'}")]
+        [DataRow("{'onElement':'//none'}")]
         public void ContextClickNoElement(string actionRule)
         {
             // execute
@@ -70,7 +70,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'Argument':'{{$ --until:NoAlert}}','ElementToActOn':'//positive'}")]
+        [DataRow("{'Argument':'{{$ --until:NoAlert}}','onElement':'//positive'}")]
         public void ContextClickUntilNoAlert(string actionRule)
         {
             // execute
@@ -84,7 +84,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'elementToActOn':'//positive'}")]
+        [DataRow("{'onElement':'//positive'}")]
         public void ContextClickElementAbsolutePositive(string actionRule)
         {
             // execute
@@ -95,7 +95,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'elementToActOn':'.//positive'}")]
+        [DataRow("{'onElement':'.//positive'}")]
         public void ContextClickElementRelativePositive(string actionRule)
         {
             // execute
@@ -106,7 +106,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         }
 
         [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
-        [DataRow("{'elementToActOn':'//none','locator':'" + LocatorType.Xpath + "'}")]
+        [DataRow("{'onElement':'//none','locator':'" + LocatorType.Xpath + "'}")]
         public void ContextClickElementAbsoluteNoElement(string actionRule)
         {
             // execute
@@ -117,7 +117,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         }
 
         [DataTestMethod, ExpectedException(typeof(NoSuchElementException))]
-        [DataRow("{'elementToActOn':'.//none'}")]
+        [DataRow("{'onElement':'.//none'}")]
         public void ContextClickElementRelativeNoElement(string actionRule)
         {
             // execute

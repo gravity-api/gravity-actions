@@ -31,7 +31,7 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.AssertScenario
                 {
                     ActionType = CommonPlugins.Assert,
                     Argument = "{{$ --stale}}",
-                    ElementToActOn = "for_stale_element",
+                    OnElement = "for_stale_element",
                     Locator = LocatorType.Id
                 }
             };

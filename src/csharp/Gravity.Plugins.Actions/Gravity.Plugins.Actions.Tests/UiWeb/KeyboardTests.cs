@@ -1,7 +1,7 @@
 ﻿/*
  * CHANGE LOG - keep only last 5 threads
  * 
- * on-line resources
+ * online resources
  */
 using OpenQA.Selenium.Mock;
 using Gravity.Plugins.Actions.UnitTests.Base;
@@ -18,18 +18,18 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
     public class KeyboardTests : ActionTests
     {
         [TestMethod]
-        public void KeyboardCreate() => ValidateAction<Keyboard>();
+        public void KeyboardCreate() => AssertPlugin<Keyboard>();
 
         [TestMethod]
         public void KeyboardDocumentation()
-            => ValidateActionDocumentation<Keyboard>(WebPlugins.Keyboard);
+            => AssertDocumentation<Keyboard>(WebPlugins.Keyboard);
 
         [TestMethod]
         public void KeyboardDocumentationResourceFile()
-            => ValidateActionDocumentation<Keyboard>(WebPlugins.Keyboard, "Keyboard.json");
+            => AssertDocumentation<Keyboard>(WebPlugins.Keyboard, "Keyboard.json");
 
         [DataTestMethod]
-        [DataRow("{'elementToActOn':'//positive','argument':'Enter'}")]
+        [DataRow("{'onElement':'//positive','argument':'Enter'}")]
         public void KeyboardPositive(string actionRule)
         {
             // execute
@@ -40,7 +40,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         }
 
         [DataTestMethod, ExpectedException(typeof(ElementNotVisibleException))]
-        [DataRow("{'elementToActOn':'//negative','argument':'Enter'}")]
+        [DataRow("{'onElement':'//negative','argument':'Enter'}")]
         public void KeyboardNegative(string actionRule)
         {
             // execute
@@ -51,7 +51,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         }
 
         [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
-        [DataRow("{'elementToActOn':'//stale','argument':'Enter'}")]
+        [DataRow("{'onElement':'//stale','argument':'Enter'}")]
         public void KeyboardStale(string actionRule)
         {
             // execute
@@ -62,7 +62,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         }
 
         [DataTestMethod, ExpectedException(typeof(WebDriverException))]
-        [DataRow("{'elementToActOn':'//exception','argument':'Enter'}")]
+        [DataRow("{'onElement':'//exception','argument':'Enter'}")]
         public void KeyboardException(string actionRule)
         {
             // execute
@@ -73,7 +73,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         }
 
         [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
-        [DataRow("{'elementToActOn':'//null','argument':'Enter'}")]
+        [DataRow("{'onElement':'//null','argument':'Enter'}")]
         public void KeyboardNull(string actionRule)
         {
             // execute
@@ -84,7 +84,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         }
 
         [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
-        [DataRow("{'elementToActOn':'//none','argument':'Enter'}")]
+        [DataRow("{'onElement':'//none','argument':'Enter'}")]
         public void KeyboardNone(string actionRule)
         {
             // execute
@@ -95,7 +95,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'elementToActOn':'//positive','argument':'NoSuckKey'}")]
+        [DataRow("{'onElement':'//positive','argument':'NoSuckKey'}")]
         public void KeyboardInvalidKeyName(string actionRule)
         {
             // execute
@@ -106,7 +106,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'elementToActOn':'.//positive','argument':'Enter'}")]
+        [DataRow("{'onElement':'.//positive','argument':'Enter'}")]
         public void KeyboardElementPositive(string actionRule)
         {
             // execute
@@ -117,7 +117,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         }
 
         [DataTestMethod, ExpectedException(typeof(ElementNotVisibleException))]
-        [DataRow("{'elementToActOn':'.//negative','argument':'Enter'}")]
+        [DataRow("{'onElement':'.//negative','argument':'Enter'}")]
         public void KeyboardElementNegative(string actionRule)
         {
             // execute
@@ -128,7 +128,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         }
 
         [DataTestMethod, ExpectedException(typeof(StaleElementReferenceException))]
-        [DataRow("{'elementToActOn':'.//stale','argument':'Enter'}")]
+        [DataRow("{'onElement':'.//stale','argument':'Enter'}")]
         public void KeyboardElementStale(string actionRule)
         {
             // execute
@@ -139,7 +139,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         }
 
         [DataTestMethod, ExpectedException(typeof(WebDriverException))]
-        [DataRow("{'elementToActOn':'.//exception','argument':'Enter'}")]
+        [DataRow("{'onElement':'.//exception','argument':'Enter'}")]
         public void KeyboardElementException(string actionRule)
         {
             // execute
@@ -150,7 +150,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         }
 
         [DataTestMethod, ExpectedException(typeof(NullReferenceException))]
-        [DataRow("{'elementToActOn':'.//null','argument':'Enter'}")]
+        [DataRow("{'onElement':'.//null','argument':'Enter'}")]
         public void KeyboardElementNull(string actionRule)
         {
             // execute
@@ -161,7 +161,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         }
 
         [DataTestMethod, ExpectedException(typeof(NoSuchElementException))]
-        [DataRow("{'elementToActOn':'.//none','argument':'Enter'}")]
+        [DataRow("{'onElement':'.//none','argument':'Enter'}")]
         public void KeyboardElementNone(string actionRule)
         {
             // execute
@@ -172,7 +172,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'elementToActOn':'.//positive','argument':'NoSuckKey'}")]
+        [DataRow("{'onElement':'.//positive','argument':'NoSuckKey'}")]
         public void KeyboardElementInvalidKeyName(string actionRule)
         {
             // execute

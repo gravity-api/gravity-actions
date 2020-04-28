@@ -1,14 +1,14 @@
 ﻿/*
  * CHANGE LOG - keep only last 5 threads
  * 
- * on-line resources
+ * online resources
  */
-using OpenQA.Selenium.Extensions;
 using Gravity.Plugins.Actions.Contracts;
-using OpenQA.Selenium;
 using Gravity.Plugins.Attributes;
 using Gravity.Plugins.Base;
 using Gravity.Plugins.Contracts;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Extensions;
 
 namespace Gravity.Plugins.Actions.UiWeb
 {
@@ -22,37 +22,37 @@ namespace Gravity.Plugins.Actions.UiWeb
         /// <summary>
         /// Creates a new instance of this plugin.
         /// </summary>
-        /// <param name="webAutomation">This <see cref="WebAutomation"/> object (the original object sent by the user).</param>
+        /// <param name="automation">This <see cref="WebAutomation"/> object (the original object sent by the user).</param>
         /// <param name="driver"><see cref="IWebDriver"/> implementation by which to execute the action.</param>
-        public SubmitForm(WebAutomation webAutomation, IWebDriver driver)
-            : base(webAutomation, driver)
+        public SubmitForm(WebAutomation automation, IWebDriver driver)
+            : base(automation, driver)
         { }
         #endregion
 
         /// <summary>
         /// Clicks the mouse on the specified element.
         /// </summary>
-        /// <param name="actionRule">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
-        public override void OnPerform(ActionRule actionRule)
+        /// <param name="action">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
+        public override void OnPerform(ActionRule action)
         {
-            DoAction(actionRule);
+            DoAction(action);
         }
 
         /// <summary>
         /// Clicks the mouse on the specified element.
         /// </summary>
-        /// <param name="actionRule">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
+        /// <param name="action">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
         /// <param name="element">This <see cref="IWebElement"/> instance on which to perform the action (provided by the extraction rule).</param>
-        public override void OnPerform(ActionRule actionRule, IWebElement element)
+        public override void OnPerform(ActionRule action, IWebElement element)
         {
-            DoAction(actionRule);
+            DoAction(action);
         }
 
-        // executes action routine
-        private void DoAction(ActionRule actionRule)
+        // execute action routine
+        private void DoAction(ActionRule action)
         {
             // parse form index
-            var isNumeric = int.TryParse(actionRule.Argument, out int indexOut);
+            var isNumeric = int.TryParse(action.Argument, out int indexOut);
 
             // submit by index
             if (isNumeric)
@@ -62,7 +62,7 @@ namespace Gravity.Plugins.Actions.UiWeb
             }
 
             // submit by form id
-            WebDriver.SubmitForm(actionRule.Argument);
+            WebDriver.SubmitForm(action.Argument);
         }
     }
 }

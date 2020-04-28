@@ -32,7 +32,7 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiWeb.CloseAllChildWind
                 new ActionRule
                 {
                     ActionType = CommonPlugins.Click,
-                    ElementToActOn = "pop_windows",
+                    OnElement = "pop_windows",
                     Locator = LocatorType.Id
                 },
                 new ActionRule

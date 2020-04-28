@@ -36,16 +36,16 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.ClickScenarios
             // mobile handler
             if (isMobile)
             {
-                actions.Add(new ActionRule { ActionType = "Click", ElementToActOn = "//button[@data-toggle]" });
+                actions.Add(new ActionRule { ActionType = "Click", OnElement = "//button[@data-toggle]" });
             }
 
             // common actions
-            actions.Add(new ActionRule { ActionType = CommonPlugins.Click, ElementToActOn = "//a[.='Departments']" });
+            actions.Add(new ActionRule { ActionType = CommonPlugins.Click, OnElement = "//a[.='Departments']" });
             actions.Add(new ActionRule
             {
                 ActionType = CommonPlugins.Assert,
                 Argument = "{{$ --text --eq:Departments}}",
-                ElementToActOn = "//h1[1]"
+                OnElement = "//h1[1]"
             });
 
             // results

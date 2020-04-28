@@ -39,8 +39,8 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.ConditionScena
                 {
                     ActionType = CommonPlugins.Condition,
                     Argument = "{{$ --attribute --le:" + condition + "}}",
-                    ElementToActOn = "Edit",
-                    ElementAttributeToActOn = "href",
+                    OnElement = "Edit",
+                    OnAttribute = "href",
                     RegularExpression = "\\d+",
                     Locator = LocatorType.LinkText,
                     Actions = SharedSteps.SearchStudent(searchFor: "Carson")

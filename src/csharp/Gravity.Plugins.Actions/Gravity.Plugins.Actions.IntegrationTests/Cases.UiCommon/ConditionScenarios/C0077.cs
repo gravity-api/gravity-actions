@@ -39,7 +39,7 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.ConditionScena
                 {
                     ActionType = CommonPlugins.Condition,
                     Argument = "{{$ --count --ne:" + condition + "}}",
-                    ElementToActOn = "//tr[./td[@id]]",
+                    OnElement = "//tr[./td[@id]]",
                     Actions = SharedSteps.SearchStudent(searchFor: "Carson")
                 },
                 SharedSteps.AssertStudentsCount(count: 1)

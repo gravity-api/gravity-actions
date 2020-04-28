@@ -1,7 +1,7 @@
 ﻿/*
  * CHANGE LOG - keep only last 5 threads
  * 
- * on-line resources
+ * online resources
  */
 using OpenQA.Selenium.Mock;
 using OpenQA.Selenium.Mock.Extensions;
@@ -24,19 +24,19 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         [TestMethod]
         public void CloseAllChildWindowsCreate()
         {
-            ValidateAction<CloseAllChildWindows>();
+            AssertPlugin<CloseAllChildWindows>();
         }
 
         [TestMethod]
         public void CloseAllChildWindowsDocumentation()
         {
-            ValidateActionDocumentation<CloseAllChildWindows>(WebPlugins.CloseAllChildWindows);
+            AssertDocumentation<CloseAllChildWindows>(WebPlugins.CloseAllChildWindows);
         }
 
         [TestMethod]
         public void CloseAllChildWindowsDocumentationResourceFile()
         {
-            ValidateActionDocumentation<CloseAllChildWindows>(
+            AssertDocumentation<CloseAllChildWindows>(
                 WebPlugins.CloseAllChildWindows, "close_all_child_windows.json");
         }
 
@@ -60,7 +60,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'elementToActOn':'.//positive'}")]
+        [DataRow("{'onElement':'.//positive'}")]
         public void CloseAllElementPositive(string actionRule)
         {
             // open child windows

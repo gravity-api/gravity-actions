@@ -1,7 +1,7 @@
 ﻿/*
  * CHANGE LOG - keep only last 5 threads
  * 
- * on-line resources
+ * online resources
  */
 using Gravity.Plugins.Attributes;
 using Gravity.Plugins.Base;
@@ -39,7 +39,7 @@ namespace Gravity.Plugins.UnitTests.Mocks.Plugins
         public override void OnPerform()
         {
             Environment.SessionParams["OnPerform()"] = "completed";
-            ExtractionResults.Add(Get("OnPerform()", "completed"));
+            Extractions.Add(Get("OnPerform()", "completed"));
         }
 
         /// <summary>
@@ -49,7 +49,7 @@ namespace Gravity.Plugins.UnitTests.Mocks.Plugins
         public override void OnPerform(ActionRule actionRule)
         {
             Environment.SessionParams["OnPerform(ActionRule)"] = "completed";
-            ExtractionResults.Add(Get("OnPerform(ActionRule)", "completed"));
+            Extractions.Add(Get("OnPerform(ActionRule)", "completed"));
         }
 
         private Extraction Get(string key, string value)

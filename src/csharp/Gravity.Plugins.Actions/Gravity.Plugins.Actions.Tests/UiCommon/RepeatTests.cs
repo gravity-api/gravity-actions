@@ -1,7 +1,7 @@
 ﻿/*
  * CHANGE LOG - keep only last 5 threads
  * 
- * on-line resources
+ * online resources
  */
 using OpenQA.Selenium.Mock;
 using Gravity.Plugins.Actions.UiCommon;
@@ -28,7 +28,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             "   'actions':[" +
             "       {" +
             "           'actionType':'Click'," +
-            "           'elementToActOn':'//positive'" +
+            "           'onElement':'//positive'" +
             "       }" +
             "   ]" +
             "}";
@@ -36,11 +36,11 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         private const string RepeatRuleCondition = "" +
             "{" +
             "   'argument':'condition'," +
-            "   'elementToActOn':'random'," +
+            "   'onElement':'random'," +
             "   'actions':[" +
             "       {" +
             "           'actionType':'Click'," +
-            "           'elementToActOn':'//positive'" +
+            "           'onElement':'//positive'" +
             "       }" +
             "   ]" +
             "}";
@@ -48,19 +48,19 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         [TestMethod]
         public void RepeatCreate()
         {
-            ValidateAction<Repeat>();
+            AssertPlugin<Repeat>();
         }
 
         [TestMethod]
         public void RepeatDocumentation()
         {
-            ValidateActionDocumentation<Repeat>(CommonPlugins.Repeat);
+            AssertDocumentation<Repeat>(CommonPlugins.Repeat);
         }
 
         [TestMethod]
         public void RepeatDocumentationResourceFile()
         {
-            ValidateActionDocumentation<Repeat>(CommonPlugins.Repeat, "repeat.json");
+            AssertDocumentation<Repeat>(CommonPlugins.Repeat, "repeat.json");
         }
 
         [DataTestMethod]

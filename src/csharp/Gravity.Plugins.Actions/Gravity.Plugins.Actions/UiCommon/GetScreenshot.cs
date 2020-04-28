@@ -11,20 +11,20 @@
  *    - modify: improve XML comments
  *    - modify: override action-name using ActionType constant
  *    
- * on-line resources
+ * online resources
  */
-using OpenQA.Selenium.Extensions;
 using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Actions.Extensions;
-using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.IO;
 using Gravity.Plugins.Attributes;
 using Gravity.Plugins.Base;
 using Gravity.Plugins.Contracts;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Extensions;
+using System;
+using System.Collections.Generic;
+using System.IO;
 
-#pragma warning disable S4144
+#pragma warning disable S4144, IDE0022, S1172
 namespace Gravity.Plugins.Actions.UiCommon
 {
     [Plugin(
@@ -37,51 +37,51 @@ namespace Gravity.Plugins.Actions.UiCommon
         /// <summary>
         /// Creates a new instance of this plugin.
         /// </summary>
-        /// <param name="webAutomation">This <see cref="WebAutomation"/> object (the original object sent by the user).</param>
+        /// <param name="automation">This <see cref="WebAutomation"/> object (the original object sent by the user).</param>
         /// <param name="driver"><see cref="IWebDriver"/> implementation by which to execute the action.</param>
-        public GetScreenshot(WebAutomation webAutomation, IWebDriver driver)
-            : base(webAutomation, driver)
+        public GetScreenshot(WebAutomation automation, IWebDriver driver)
+            : base(automation, driver)
         { }
         #endregion
 
         /// <summary>
         /// Saves the screen shot to a file, overwriting the file if it already exists.
         /// </summary>
-        /// <param name="actionRule">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
-        public override void OnPerform(ActionRule actionRule)
+        /// <param name="action">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
+        public override void OnPerform(ActionRule action)
         {
-            DoAction(element: default, actionRule);
+            DoAction(action, element: default);
         }
 
         /// <summary>
         /// Saves the screen shot to a file, overwriting the file if it already exists.
         /// </summary>
-        /// <param name="actionRule">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
+        /// <param name="action">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
         /// <param name="element">This <see cref="IWebElement"/> instance on which to perform the action (provided by the extraction rule).</param>
-        public override void OnPerform(ActionRule actionRule, IWebElement element)
+        public override void OnPerform(ActionRule action, IWebElement element)
         {
-            DoAction(element, actionRule);
+            DoAction(action, element);
         }
 
         // execute action routine
-        private void DoAction(IWebElement element, ActionRule actionRule)
+        private void DoAction(ActionRule action, IWebElement element)
         {
             // get format > get file
-            var format = GetFormat(actionRule.Argument);
-            var file = GetFile(format, actionRule.Argument);
+            var format = GetFormat(action.Argument);
+            var file = GetFile(format, action.Argument);
 
             // take from driver
-            if (element == default && string.IsNullOrEmpty(actionRule.ElementToActOn))
+            if (element == default && string.IsNullOrEmpty(action.OnElement))
             {
                 ((ITakesScreenshot)WebDriver).GetScreenshot().SaveAsFile(fileName: file, format);
             }
             // take from element
             else
             {
-                var timeout = TimeSpan.FromMilliseconds(WebAutomation.EngineConfiguration.ElementSearchingTimeout);
+                var timeout = TimeSpan.FromMilliseconds(Automation.EngineConfiguration.ElementSearchingTimeout);
                 var e = element != default
-                    ? element.GetElementByActionRule(ByFactory, actionRule, timeout)
-                    : WebDriver.GetElementByActionRule(ByFactory, actionRule, timeout);
+                    ? element.GetElement(ByFactory, action, timeout)
+                    : WebDriver.GetElement(ByFactory, action, timeout);
 
                 ((ITakesScreenshot)e).GetScreenshot().SaveAsFile(fileName: file, format);
             }
@@ -137,7 +137,7 @@ namespace Gravity.Plugins.Actions.UiCommon
             imageExtraction.Entities = new[] { imageEntity };
 
             // add to extractions collection
-            ExtractionResults.Add(imageExtraction);
+            Extractions.Add(imageExtraction);
         }
     }
 }

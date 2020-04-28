@@ -7,14 +7,14 @@
       "actionExample": {
         "actionType": "UploadFile",
         "argument": "C:\\myFiles\\image.png",
-        "elementToActOn": "//input"
+        "onElement": "//input"
       }
     }
   ],
   "name": "UploadFile",
   "pluginType": "Action",
   "properties": {
-    "elementToActOn": "The locator value by which the element will be found.",
+    "onElement": "The locator value by which the element will be found.",
     "locator": "The locator type by which the element will be found.",
     "argument": "The absolute file path to be uploaded using [input-file] controller."
   },

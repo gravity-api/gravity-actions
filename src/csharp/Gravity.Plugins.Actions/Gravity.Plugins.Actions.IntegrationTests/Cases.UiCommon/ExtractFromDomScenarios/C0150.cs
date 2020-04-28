@@ -23,10 +23,10 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.ExtractFromDom
         public override string ApplicationUnderTest => StudentsPage;
 
         // assertion implementation
-        public override bool OnAutomationTest(AutomationEnvironment environment, OrbitResponse response)
+        public override bool OnAutomationTest(AutomationEnvironment environment, IEnumerable<OrbitResponse> responses)
         {
             return SharedSteps.AssertEntitiesValues(
-                response,
+                responses,
                 fieldsCount: 1,
                 expectedPattern: @"^(?!<\s*td[^>]*>)");
         }
@@ -47,7 +47,7 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.ExtractFromDom
             var contentEntry = new ContentEntry
             {
                 Key = "FirstName",
-                ElementAttributeToActOn = "html",
+                OnAttribute = "html",
                 RegularExpression = @"(?<=<\s*td[^>]*>)(.*?)(?=<\s*/\s*td>)"
             };
             var contentEntries = new[] { contentEntry };
@@ -55,8 +55,8 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.ExtractFromDom
             // get extractions
             var extraction = new ExtractionRule
             {
-                RootElementToExtractFrom = "//td[contains(@id,'student_first_name')]",
-                ElementsToExtract = contentEntries
+                OnRootElements = "//td[contains(@id,'student_first_name')]",
+                OnElements = contentEntries
             };
 
             // results

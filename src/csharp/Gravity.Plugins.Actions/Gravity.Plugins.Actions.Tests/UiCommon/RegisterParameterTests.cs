@@ -1,7 +1,7 @@
 ﻿/*
  * CHANGE LOG - keep only last 5 threads
  * 
- * on-line resources
+ * online resources
  */
 using OpenQA.Selenium.Mock;
 using Gravity.Plugins.Actions.UiCommon;
@@ -24,19 +24,19 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         [TestMethod]
         public void RegisterParameterCreate()
         {
-            ValidateAction<RegisterParameter>();
+            AssertPlugin<RegisterParameter>();
         }
 
         [TestMethod]
         public void RegisterParameterDocumentation()
         {
-            ValidateActionDocumentation<RegisterParameter>(CommonPlugins.RegisterParameter);
+            AssertDocumentation<RegisterParameter>(CommonPlugins.RegisterParameter);
         }
 
         [TestMethod]
         public void RegisterParameterDocumentationResourceFile()
         {
-            ValidateActionDocumentation<RegisterParameter>(
+            AssertDocumentation<RegisterParameter>(
                 CommonPlugins.RegisterParameter, "register_parameter.json");
         }
 
@@ -74,8 +74,8 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         }
 
         [DataTestMethod]
-        [DataRow("{'argument':'test_key','elementToActOn':'//positive'}")]
-        [DataRow("{'argument':'{{$ --key:test_key}}','elementToActOn':'//positive'}")]
+        [DataRow("{'argument':'test_key','onElement':'//positive'}")]
+        [DataRow("{'argument':'{{$ --key:test_key}}','onElement':'//positive'}")]
         public void RegisterParameterText(string actionRule)
         {
             // execute
@@ -86,7 +86,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         }
 
         [DataTestMethod]
-        [DataRow("{'argument':'test_key','elementToActOn':'//positive','elementAttributeToActOn':'id'}")]
+        [DataRow("{'argument':'test_key','onElement':'//positive','onAttribute':'id'}")]
         public void RegisterParameterAttribute(string actionRule)
         {
             // execute
@@ -98,7 +98,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         }
 
         [DataTestMethod]
-        [DataRow("{'argument':'test_key','elementToActOn':'//positive','regularExpression':'\\\\d+','elementAttributeToActOn':'id'}")]
+        [DataRow("{'argument':'test_key','onElement':'//positive','regularExpression':'\\\\d+','onAttribute':'id'}")]
         public void RegisterParameterRegex(string actionRule)
         {
             // execute
@@ -110,7 +110,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         }
 
         [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
-        [DataRow("{'argument':'test_key','elementToActOn':'2000-12-01'}")]
+        [DataRow("{'argument':'test_key','onElement':'2000-12-01'}")]
         public void RegisterParameterNonElementText(string actionRule)
         {
             // execute
@@ -127,7 +127,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         }
 
         [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
-        [DataRow("{'argument':'test_key','elementToActOn':'//null'}")]
+        [DataRow("{'argument':'test_key','onElement':'//null'}")]
         public void RegisterParameterNullElement(string actionRule)
         {
             try
@@ -145,7 +145,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         }
 
         [DataTestMethod]
-        [DataRow("{'argument':'test_key','elementToActOn':'.//positive'}")]
+        [DataRow("{'argument':'test_key','onElement':'.//positive'}")]
         public void RegisterParameterElementText(string actionRule)
         {
             // execute
@@ -156,7 +156,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         }
 
         [DataTestMethod]
-        [DataRow("{'argument':'test_key','elementToActOn':'.//positive','elementAttributeToActOn':'id'}")]
+        [DataRow("{'argument':'test_key','onElement':'.//positive','onAttribute':'id'}")]
         public void RegisterParameterElementAttribute(string actionRule)
         {
             // execute
@@ -168,7 +168,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         }
 
         [DataTestMethod]
-        [DataRow("{'argument':'test_key','elementToActOn':'.//positive','regularExpression':'\\\\d+','elementAttributeToActOn':'id'}")]
+        [DataRow("{'argument':'test_key','onElement':'.//positive','regularExpression':'\\\\d+','onAttribute':'id'}")]
         public void RegisterParameterElementRegex(string actionRule)
         {
             // execute
@@ -180,7 +180,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         }
 
         [DataTestMethod, ExpectedException(typeof(NoSuchElementException))]
-        [DataRow("{'argument':'test_key','elementToActOn':'2000-12-01'}")]
+        [DataRow("{'argument':'test_key','onElement':'2000-12-01'}")]
         public void RegisterParameterElementNonElementText(string actionRule)
         {
             try
@@ -198,7 +198,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         }
 
         [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
-        [DataRow("{'argument':'test_key','elementToActOn':'//null'}")]
+        [DataRow("{'argument':'test_key','onElement':'//null'}")]
         public void RegisterParameterElementNullElement(string actionRule)
         {
             try

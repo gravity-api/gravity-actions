@@ -1,22 +1,21 @@
 ﻿/*
  * CHANGE LOG - keep only last 5 threads
  * 
- * on-line resources
+ * online resources
  * 
  * work items
- * TODO: simplify LoadArguments methods with factoring conditions
+ * https://github.com/gravity-api/gravity-actions/issues/18
  */
-using OpenQA.Selenium.Extensions;
+using Gravity.Plugins.Attributes;
 using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Base;
-using Microsoft.Extensions.Logging;
+using Gravity.Plugins.Contracts;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Interfaces;
 using OpenQA.Selenium.Appium.MultiTouch;
+using OpenQA.Selenium.Extensions;
 using System;
 using System.Collections.Generic;
-using Gravity.Plugins.Attributes;
-using Gravity.Plugins.Contracts;
 
 namespace Gravity.Plugins.Actions.UiMobile
 {
@@ -46,42 +45,38 @@ namespace Gravity.Plugins.Actions.UiMobile
         /// <summary>
         /// Creates a new instance of this plugin.
         /// </summary>
-        /// <param name="webAutomation">This <see cref="WebAutomation"/> object (the original object sent by the user).</param>
+        /// <param name="automation">This <see cref="WebAutomation"/> object (the original object sent by the user).</param>
         /// <param name="driver"><see cref="IWebDriver"/> implementation by which to execute the action.</param>
-        public LongSwipe(WebAutomation webAutomation, IWebDriver driver)
-            : base(webAutomation, driver)
+        public LongSwipe(WebAutomation automation, IWebDriver driver)
+            : base(automation, driver)
         { }
         #endregion
 
         /// <summary>
         /// Swipes the screen by a given coordinates or elements.
         /// </summary>
-        /// <param name="actionRule">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
-        public override void OnPerform(ActionRule actionRule)
+        /// <param name="action">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
+        public override void OnPerform(ActionRule action)
         {
-            DoAction(element: default, actionRule);
+            DoAction(action, element: default);
         }
 
         /// <summary>
         /// Swipes the screen by a given coordinates or elements.
         /// </summary>
-        /// <param name="actionRule">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
+        /// <param name="action">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
         /// <param name="element">This <see cref="IWebElement"/> instance on which to perform the action (provided by the extraction rule).</param>
-        public override void OnPerform(ActionRule actionRule, IWebElement element)
+        public override void OnPerform(ActionRule action, IWebElement element)
         {
-            DoAction(element, actionRule);
+            DoAction(action, element);
         }
 
         // execute action routine
-        private void DoAction(IWebElement element, ActionRule actionRule)
+        private void DoAction(ActionRule action, IWebElement element)
         {
-            // constants: messages
-            const string Warn = "Action [LongSwipe] was skipped. This action is not supported by [{0}] driver.";
-
             // exit conditions
             if (!(WebDriver is IPerformsTouchActions))
             {
-                Logger.LogWarning(string.Format(Warn, WebDriver.GetType().FullName));
                 return;
             }
 
@@ -89,13 +84,13 @@ namespace Gravity.Plugins.Actions.UiMobile
             actions = new TouchAction((IPerformsTouchActions)WebDriver);
 
             // setup
-            LoadArguments(actionRule);
+            LoadArguments(action);
             var sCoordinates = TryGetCoordinates(arguments[Source]);
             var tCoordinates = TryGetCoordinates(arguments[Target]);
 
             // get objects
-            var source = GetArgument(element, actionRule, arguments[Source], sCoordinates);
-            var target = GetArgument(element, actionRule, arguments[Target], tCoordinates);
+            var source = GetArgument(action, element, arguments[Source], sCoordinates);
+            var target = GetArgument(action, element, arguments[Target], tCoordinates);
 
             // execute
             DoSource(source);
@@ -104,15 +99,15 @@ namespace Gravity.Plugins.Actions.UiMobile
         }
 
         // loads source & target arguments (set defaults and normalize)
-        private void LoadArguments(ActionRule actionRule)
+        private void LoadArguments(ActionRule action)
         {
             // get arguments
-            arguments = CliFactory.Parse(actionRule.Argument);
+            arguments = CliFactory.Parse(action.Argument);
 
             // setup conditions
             var isSource = arguments.ContainsKey(Source);
             var isTarget = arguments.ContainsKey(Target);
-            var isElement = !string.IsNullOrEmpty(actionRule.ElementToActOn);
+            var isElement = !string.IsNullOrEmpty(action.OnElement);
 
             // arguments factory
             if (isSource && isTarget && isElement)
@@ -125,11 +120,11 @@ namespace Gravity.Plugins.Actions.UiMobile
             }
             if (!isSource && isTarget && isElement)
             {
-                arguments[Source] = actionRule.ElementToActOn;
+                arguments[Source] = action.OnElement;
             }
             if (isSource && !isTarget && isElement)
             {
-                arguments[Target] = actionRule.ElementToActOn;
+                arguments[Target] = action.OnElement;
             }
             if (isSource && !isTarget && !isElement)
             {
@@ -141,8 +136,8 @@ namespace Gravity.Plugins.Actions.UiMobile
             }
             if (!isSource && !isTarget && isElement)
             {
-                arguments[Source] = actionRule.ElementToActOn;
-                arguments[Target] = actionRule.ElementToActOn;
+                arguments[Source] = action.OnElement;
+                arguments[Target] = action.OnElement;
             }
             if (!isSource && !isTarget && !isElement)
             {
@@ -152,7 +147,7 @@ namespace Gravity.Plugins.Actions.UiMobile
         }
 
         // gets a source or target object for actions chain
-        private object GetArgument(IWebElement webElement, ActionRule actionRule, string element, double[] coordinates)
+        private object GetArgument(ActionRule action, IWebElement element, string onElement, double[] coordinates)
         {
             // coordinates argument
             if (coordinates.Length == 2)
@@ -160,11 +155,11 @@ namespace Gravity.Plugins.Actions.UiMobile
                 return coordinates;
             }
             // set timeout & locator
-            var timeout = TimeSpan.FromMilliseconds(WebAutomation.EngineConfiguration.ElementSearchingTimeout);
-            var by = ByFactory.Get(actionRule.Locator, locatorValue: element);
+            var timeout = TimeSpan.FromMilliseconds(Automation.EngineConfiguration.ElementSearchingTimeout);
+            var by = ByFactory.Get(action.Locator, locatorValue: onElement);
 
             // get element argument
-            return webElement != default ? webElement.FindElement(by) : WebDriver.GetElement(by, timeout);
+            return element != default ? element.FindElement(by) : WebDriver.GetElement(by, timeout);
         }
 
         // executes source actions
@@ -201,9 +196,6 @@ namespace Gravity.Plugins.Actions.UiMobile
         // check if arguments value is coordinates
         private double[] TryGetCoordinates(string argument)
         {
-            // constants
-            const string Message = "No coordinates were found. Attempt to swipe by element(s).";
-
             // compliance
             var factors = argument.Split(',');
             var isDoubleFactor = factors.Length == 2;
@@ -211,7 +203,6 @@ namespace Gravity.Plugins.Actions.UiMobile
             // exit conditions
             if (!isDoubleFactor)
             {
-                Logger.LogInformation(Message, argument);
                 return Array.Empty<double>();
             }
 

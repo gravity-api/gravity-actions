@@ -1,7 +1,7 @@
 ﻿/*
  * CHANGE LOG - keep only last 5 threads
  * 
- * on-line resources
+ * online resources
  */
 using Gravity.Plugins.Contracts;
 using OpenQA.Selenium;
@@ -38,7 +38,7 @@ namespace Gravity.Plugins.Actions.Extensions
         {
             // setup conditions
             var isElement = element != default;
-            var isFromAction = !string.IsNullOrEmpty(actionRule.ElementToActOn);
+            var isFromAction = !string.IsNullOrEmpty(actionRule.OnElement);
 
             // return assertion
             return !(isElement || isFromAction);

@@ -1,7 +1,7 @@
 ﻿/*
  * CHANGE LOG - keep only last 5 threads
  * 
- * on-line resources
+ * online resources
  */
 using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Actions.UnitTests.Base;
@@ -19,24 +19,24 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         [TestMethod]
         public void ElementsListenerCreate()
         {
-            ValidateAction<ElementsListener>();
+            AssertPlugin<ElementsListener>();
         }
 
         [TestMethod]
         public void ElementsListenerDocumentation()
         {
-            ValidateActionDocumentation<ElementsListener>(CommonPlugins.ElementsListener);
+            AssertDocumentation<ElementsListener>(CommonPlugins.ElementsListener);
         }
 
         [TestMethod]
         public void ElementsListenerDocumentationResourceFile()
         {
-            ValidateActionDocumentation<ElementsListener>(
+            AssertDocumentation<ElementsListener>(
                 CommonPlugins.ElementsListener, "elements_listener.json");
         }
 
         [DataTestMethod]
-        [DataRow("{'argument':'{{$ --interval:500 --timeout:30000}}','elementToActOn':'//positive'}")]
+        [DataRow("{'argument':'{{$ --interval:500 --timeout:30000}}','onElement':'//positive'}")]
         public void ElementsListenerClickPositive(string actionRule)
         {
             // execute
@@ -47,7 +47,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         }
 
         [DataTestMethod]
-        [DataRow("{'argument':'{{$ --interval:500 --timeout:30000}}','elementToActOn':'//null'}")]
+        [DataRow("{'argument':'{{$ --interval:500 --timeout:30000}}','onElement':'//null'}")]
         public void ElementsListenerClickNull(string actionRule)
         {
             // execute
@@ -58,7 +58,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         }
 
         [DataTestMethod]
-        [DataRow("{'argument':'{{$ --interval:500 --timeout:30000}}','ElementToActOn':'//stale'}")]
+        [DataRow("{'argument':'{{$ --interval:500 --timeout:30000}}','onElement':'//stale'}")]
         public void ElementsListenerClickStale(string actionRule)
         {
             // execute
@@ -69,7 +69,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         }
 
         [DataTestMethod]
-        [DataRow("{'argument':'{{$ --interval:500 --timeout:30000}}','elementToActOn':'//none'}")]
+        [DataRow("{'argument':'{{$ --interval:500 --timeout:30000}}','onElement':'//none'}")]
         public void ElementsListenerClickNoElement(string actionRule)
         {
             // execute
@@ -80,7 +80,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         }
 
         [DataTestMethod]
-        [DataRow("{'argument':'{{$ --interval:500 --timeout:30000}}','elementToActOn':'//negative'}")]
+        [DataRow("{'argument':'{{$ --interval:500 --timeout:30000}}','onElement':'//negative'}")]
         public void ElementsListenerClickNegative(string actionRule)
         {
             // execute
@@ -91,7 +91,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         }
 
         [DataTestMethod]
-        [DataRow("{'ElementToActOn':'//positive'}")]
+        [DataRow("{'onElement':'//positive'}")]
         public void ElementsListenerClickNoArguments(string actionRule)
         {
             // execute
@@ -105,12 +105,12 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         [DataRow("" +
             "{" +
             "    'argument':'{{$ --interval:500 --timeout:30000}}'," +
-            "    'elementToActOn':'//positive'," +
+            "    'onElement':'//positive'," +
             "    'actions': [" +
             "        {" +
             "            'actionType':'SendKeys'," +
             "            'argument':'foo bar'," +
-            "            'elementToActOn':'//positive'" +
+            "            'onElement':'//positive'" +
             "        }" +
             "    ]" +
             "}")]

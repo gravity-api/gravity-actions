@@ -1,7 +1,7 @@
 ﻿/*
  * CHANGE LOG - keep only last 5 threads
  * 
- * on-line resources
+ * online resources
  * 
  * work items
  * TODO: merge GetElementByActionRule(this IWebElement e, ByFactory byFactory, ActionRule actionRule, TimeSpan timeout)
@@ -23,20 +23,21 @@ namespace Gravity.Plugins.Actions.Extensions
 {
     public static class SeleniumExtensions
     {
+        #region *** element: Exists ***
         /// <summary>
         /// Finds the first <see cref="IWebElement"/> within the current context using the given mechanism.
         /// </summary>
         /// <param name="d">This <see cref="IWebDriver"/> under which to find the elements.</param>
-        /// <param name="actionRule">Action rule by which to perform search and build conditions.</param>
+        /// <param name="action">Action rule by which to perform search and build conditions.</param>
         /// <param name="timeout">The timeout value indicating how long to wait for the condition (element exists).</param>
         /// <returns>An <see cref="IWebElement"/> interface through which the user controls elements on the page.</returns>
         /// <remarks>This method waits until the elements exists in the DOM.</remarks>
-        public static IWebElement GetElementByActionRule(this IWebDriver d, ActionRule actionRule, TimeSpan timeout)
+        public static IWebElement GetElement(this IWebDriver d, ActionRule action, TimeSpan timeout)
         {
-            return GetElementByActionRule(
+            return DoGetFromDriver(
                 d,
                 byFactory: new ByFactory(Misc.GetTypes()),
-                actionRule,
+                action,
                 timeout);
         }
 
@@ -45,55 +46,65 @@ namespace Gravity.Plugins.Actions.Extensions
         /// </summary>
         /// <param name="d">This <see cref="IWebDriver"/> under which to find the elements.</param>
         /// <param name="byFactory"><see cref="ByFactory"/> instance by which to create locator from <see cref="ActionRule"/></param>
-        /// <param name="actionRule">Action rule by which to perform search and build conditions.</param>
+        /// <param name="action">Action rule by which to perform search and build conditions.</param>
         /// <param name="timeout">The timeout value indicating how long to wait for the condition (element exists).</param>
         /// <returns>An <see cref="IWebElement"/> interface through which the user controls elements on the page.</returns>
         /// <remarks>This method waits until the elements exists in the DOM.</remarks>
-        public static IWebElement GetElementByActionRule(this IWebDriver d, ByFactory byFactory, ActionRule actionRule, TimeSpan timeout)
+        public static IWebElement GetElement(this IWebDriver d, ByFactory byFactory, ActionRule action, TimeSpan timeout)
+        {
+            return DoGetFromDriver(d, byFactory, action, timeout);
+        }
+
+        /// <summary>
+        /// Finds the first <see cref="IWebElement"/> within the current context using the given mechanism.
+        /// </summary>
+        /// <param name="e">This <see cref="IWebElement"/> under which to find the elements.</param>
+        /// <param name="action">Action rule by which to perform search and build conditions.</param>
+        /// <returns>An <see cref="IWebElement"/> interface through which the user controls elements on the page.</returns>
+        public static IWebElement GetElement(this IWebElement e, ActionRule action, TimeSpan timeout)
+        {
+            return DoGetFromElement(
+                e,
+                byFactory: new ByFactory(Misc.GetTypes()),
+                action,
+                timeout);
+        }
+
+        /// <summary>
+        /// Finds the first <see cref="IWebElement"/> within the current context using the given mechanism.
+        /// </summary>
+        /// <param name="e">This <see cref="IWebElement"/> under which to find the elements.</param>
+        /// <param name="byFactory"><see cref="ByFactory"/> instance by which to create locator from <see cref="ActionRule"/></param>
+        /// <param name="action">Action rule by which to perform search and build conditions.</param>
+        /// <returns>An <see cref="IWebElement"/> interface through which the user controls elements on the page.</returns>
+        public static IWebElement GetElement(this IWebElement e, ByFactory byFactory, ActionRule action, TimeSpan timeout)
+        {
+            return DoGetFromElement(e, byFactory, action, timeout);
+        }
+
+        private static IWebElement DoGetFromDriver(IWebDriver d, ByFactory byFactory, ActionRule action, TimeSpan timeout)
         {
             // get locator
-            var by = byFactory.Get(actionRule.Locator, actionRule.ElementToActOn);
+            var by = byFactory.Get(action.Locator, action.OnElement);
 
             // get elements
             return d.GetElement(by, timeout);
         }
 
-        /// <summary>
-        /// Finds the first <see cref="IWebElement"/> within the current context using the given mechanism.
-        /// </summary>
-        /// <param name="e">This <see cref="IWebElement"/> under which to find the elements.</param>
-        /// <param name="actionRule">Action rule by which to perform search and build conditions.</param>
-        /// <returns>An <see cref="IWebElement"/> interface through which the user controls elements on the page.</returns>
-        public static IWebElement GetElementByActionRule(this IWebElement e, ActionRule actionRule, TimeSpan timeout)
-        {
-            return GetElementByActionRule(
-                e,
-                byFactory: new ByFactory(Misc.GetTypes()),
-                actionRule,
-                timeout);
-        }
-
-        /// <summary>
-        /// Finds the first <see cref="IWebElement"/> within the current context using the given mechanism.
-        /// </summary>
-        /// <param name="e">This <see cref="IWebElement"/> under which to find the elements.</param>
-        /// <param name="byFactory"><see cref="ByFactory"/> instance by which to create locator from <see cref="ActionRule"/></param>
-        /// <param name="actionRule">Action rule by which to perform search and build conditions.</param>
-        /// <returns>An <see cref="IWebElement"/> interface through which the user controls elements on the page.</returns>
-        public static IWebElement GetElementByActionRule(this IWebElement e, ByFactory byFactory, ActionRule actionRule, TimeSpan timeout)
+        private static IWebElement DoGetFromElement(IWebElement e, ByFactory byFactory, ActionRule action, TimeSpan timeout)
         {
             // on-element conditions
-            var isOnElement = e != default && string.IsNullOrEmpty(actionRule.ElementToActOn);
+            var isOnElement = e != default && string.IsNullOrEmpty(action.OnElement);
             if (isOnElement)
             {
                 return e;
             }
 
             // get locator
-            var by = byFactory.Get(actionRule.Locator, actionRule.ElementToActOn);
+            var by = byFactory.Get(action.Locator, action.OnElement);
 
             // setup conditions
-            var isAbsolutePath = actionRule.Locator == LocatorType.Xpath && actionRule.ElementToActOn.StartsWith("/");
+            var isAbsolutePath = action.Locator == LocatorType.Xpath && action.OnElement.StartsWith("/");
 
             // find on page level
             if (isAbsolutePath)
@@ -104,16 +115,18 @@ namespace Gravity.Plugins.Actions.Extensions
             // on element level
             return e?.FindElement(by);
         }
+        #endregion
 
+        #region *** element: Find   ***
         /// <summary>
         /// Finds the first <see cref="IWebElement"/> within the current context using the given mechanism.
         /// </summary>
         /// <param name="d">This <see cref="IWebDriver"/> under which to find the elements.</param>
         /// <param name="actionRule">Action rule by which to perform search and build conditions.</param>
         /// <returns>An <see cref="IWebElement"/> interface through which the user controls elements on the page.</returns>
-        public static IWebElement FindElementByActionRule(this IWebDriver d, ActionRule actionRule)
+        public static IWebElement FindElement(this IWebDriver d, ActionRule actionRule)
         {
-            return FindElementByActionRule(
+            return DoFindFromDriver(
                 d,
                 byFactory: new ByFactory(Misc.GetTypes()),
                 actionRule);
@@ -126,13 +139,9 @@ namespace Gravity.Plugins.Actions.Extensions
         /// <param name="byFactory"><see cref="ByFactory"/> instance by which to create locator from <see cref="ActionRule"/></param>
         /// <param name="actionRule">Action rule by which to perform search and build conditions.</param>
         /// <returns>An <see cref="IWebElement"/> interface through which the user controls elements on the page.</returns>
-        public static IWebElement FindElementByActionRule(this IWebDriver d, ByFactory byFactory, ActionRule actionRule)
+        public static IWebElement FindElement(this IWebDriver d, ByFactory byFactory, ActionRule actionRule)
         {
-            // get locator
-            var by = byFactory.Get(actionRule.Locator, actionRule.ElementToActOn);
-
-            // get elements
-            return d.FindElement(by);
+            return DoFindFromDriver(d, byFactory, actionRule);
         }
 
         /// <summary>
@@ -158,11 +167,25 @@ namespace Gravity.Plugins.Actions.Extensions
         /// <returns>An <see cref="IWebElement"/> interface through which the user controls elements on the page.</returns>
         public static IWebElement FindElementByActionRule(this IWebElement e, ByFactory byFactory, ActionRule actionRule)
         {
+            return DoFindFromElement(e, byFactory, actionRule);
+        }
+
+        private static IWebElement DoFindFromDriver(IWebDriver d, ByFactory byFactory, ActionRule actionRule)
+        {
             // get locator
-            var by = byFactory.Get(actionRule.Locator, actionRule.ElementToActOn);
+            var by = byFactory.Get(actionRule.Locator, actionRule.OnElement);
+
+            // get elements
+            return d.FindElement(by);
+        }
+
+        private static IWebElement DoFindFromElement(IWebElement e, ByFactory byFactory, ActionRule actionRule)
+        {
+            // get locator
+            var by = byFactory.Get(actionRule.Locator, actionRule.OnElement);
 
             // setup conditions
-            var isAbsolutePath = actionRule.Locator == LocatorType.Xpath && actionRule.ElementToActOn.StartsWith("/");
+            var isAbsolutePath = actionRule.Locator == LocatorType.Xpath && actionRule.OnElement.StartsWith("/");
 
             // find on page level
             if (isAbsolutePath)
@@ -173,16 +196,18 @@ namespace Gravity.Plugins.Actions.Extensions
             // on element level
             return e?.FindElement(by);
         }
+        #endregion
 
+        #region *** elements: Find  ***
         /// <summary>
         /// Finds all <see cref="IWebElement"/> within the current context using the given mechanism.
         /// </summary>
         /// <param name="d">This <see cref="IWebDriver"/> under which to find the elements.</param>
         /// <param name="actionRule">Action rule by which to perform search and build conditions.</param>
         /// <returns>A collection of all <see cref="IWebElement"/> matching the current criteria, or an empty list if nothing matches.</returns>
-        public static ReadOnlyCollection<IWebElement> FindElementsByActionRule(this IWebDriver d, ActionRule actionRule)
+        public static ReadOnlyCollection<IWebElement> FindElements(this IWebDriver d, ActionRule actionRule)
         {
-            return FindElementsByActionRule(
+            return DoFindsFromDriver(
                 d,
                 byFactory: new ByFactory(Misc.GetTypes()),
                 actionRule);
@@ -195,13 +220,9 @@ namespace Gravity.Plugins.Actions.Extensions
         /// <param name="byFactory"><see cref="ByFactory"/> instance by which to create locator from <see cref="ActionRule"/></param>
         /// <param name="actionRule">Action rule by which to perform search and build conditions.</param>
         /// <returns>A collection of all <see cref="IWebElement"/> matching the current criteria, or an empty list if nothing matches.</returns>
-        public static ReadOnlyCollection<IWebElement> FindElementsByActionRule(this IWebDriver d, ByFactory byFactory, ActionRule actionRule)
+        public static ReadOnlyCollection<IWebElement> FindElements(this IWebDriver d, ByFactory byFactory, ActionRule actionRule)
         {
-            // get locator
-            var by = byFactory.Get(actionRule.Locator, actionRule.ElementToActOn);
-
-            // get elements
-            return d.FindElements(by);
+            return DoFindsFromDriver(d, byFactory, actionRule);
         }
 
         /// <summary>
@@ -210,9 +231,9 @@ namespace Gravity.Plugins.Actions.Extensions
         /// <param name="e">This <see cref="IWebElement"/> under which to find the elements.</param>
         /// <param name="actionRule">Action rule by which to perform search and build conditions.</param>
         /// <returns>A collection of all <see cref="IWebElement"/> matching the current criteria, or an empty list if nothing matches.</returns>
-        public static ReadOnlyCollection<IWebElement> FindElementsByActionRule(this IWebElement e, ActionRule actionRule)
+        public static ReadOnlyCollection<IWebElement> FindElements(this IWebElement e, ActionRule actionRule)
         {
-            return FindElementsByActionRule(
+            return DoFindsFromElement(
                 e,
                 byFactory: new ByFactory(Misc.GetTypes()),
                 actionRule);
@@ -225,20 +246,34 @@ namespace Gravity.Plugins.Actions.Extensions
         /// <param name="byFactory"><see cref="ByFactory"/> instance by which to create locator from <see cref="ActionRule"/></param>
         /// <param name="actionRule">Action rule by which to perform search and build conditions.</param>
         /// <returns>A collection of all <see cref="IWebElement"/> matching the current criteria, or an empty list if nothing matches.</returns>
-        public static ReadOnlyCollection<IWebElement> FindElementsByActionRule(this IWebElement e, ByFactory byFactory, ActionRule actionRule)
+        public static ReadOnlyCollection<IWebElement> FindElements(this IWebElement e, ByFactory byFactory, ActionRule actionRule)
+        {
+            return DoFindsFromElement(e, byFactory, actionRule);
+        }
+
+        private static ReadOnlyCollection<IWebElement> DoFindsFromDriver(IWebDriver d, ByFactory byFactory, ActionRule actionRule)
+        {
+            // get locator
+            var by = byFactory.Get(actionRule.Locator, actionRule.OnElement);
+
+            // get elements
+            return d.FindElements(by);
+        }
+
+        private static ReadOnlyCollection<IWebElement> DoFindsFromElement(IWebElement e, ByFactory byFactory, ActionRule actionRule)
         {
             // on-element conditions
-            var isOnElement = e != default && !string.IsNullOrEmpty(actionRule.ElementToActOn);
+            var isOnElement = e != default && !string.IsNullOrEmpty(actionRule.OnElement);
             if (isOnElement)
             {
                 return new ReadOnlyCollection<IWebElement>(new List<IWebElement> { e });
             }
 
             // get locator
-            var by = byFactory.Get(actionRule.Locator, actionRule.ElementToActOn);
+            var by = byFactory.Get(actionRule.Locator, actionRule.OnElement);
 
             // setup conditions
-            var isAbsolutePath = actionRule.Locator == LocatorType.Xpath && actionRule.ElementToActOn.StartsWith("/");
+            var isAbsolutePath = actionRule.Locator == LocatorType.Xpath && actionRule.OnElement.StartsWith("/");
 
             // find on page level
             if (isAbsolutePath)
@@ -249,6 +284,7 @@ namespace Gravity.Plugins.Actions.Extensions
             // on element level
             return e?.FindElements(by);
         }
+        #endregion
 
         /// <summary>
         /// Returns an indication if this <see cref="IWebDriver" /> implementation is

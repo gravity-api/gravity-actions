@@ -35,7 +35,7 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.AssertScenario
                 {
                     ActionType = CommonPlugins.Assert,
                     Argument = "{{$ --count --le:" + expected + "}}",
-                    ElementToActOn = "//tbody/tr"
+                    OnElement = "//tbody/tr"
                 }
             };
         }

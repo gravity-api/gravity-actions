@@ -24,14 +24,14 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.ExtractFromDom
         public override string ApplicationUnderTest => StudentsPage;
 
         // assertion implementation
-        public override bool OnAutomationTest(AutomationEnvironment environment, OrbitResponse response)
+        public override bool OnAutomationTest(AutomationEnvironment environment, IEnumerable<OrbitResponse> responses)
         {
             // setup
-            var entity = response.Extractions.ElementAt(0).Entities.ElementAt(0);
+            var entity = responses.SelectMany(i=>i.Extractions).ElementAt(0).Entities.ElementAt(0);
 
             // assertion
             return SharedSteps.AssertEntitiesValues(
-                response,
+                responses,
                 fieldsCount: 1,
                 expectedPattern: $"^{entity.EntityContent["FirstName"]}$");
         }
@@ -52,15 +52,15 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.ExtractFromDom
             var contentEntry = new ContentEntry
             {
                 Key = "FirstName",
-                ElementToActOn = "//td[contains(@id,'student_first_name')]",
+                OnElement = "//td[contains(@id,'student_first_name')]",
             };
             var contentEntries = new[] { contentEntry };
 
             // get extractions
             var extraction = new ExtractionRule
             {
-                RootElementToExtractFrom = "//tbody/tr",
-                ElementsToExtract = contentEntries
+                OnRootElements = "//tbody/tr",
+                OnElements = contentEntries
             };
 
             // results

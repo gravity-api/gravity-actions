@@ -1,7 +1,7 @@
 ﻿/*
  * CHANGE LOG - keep only last 5 threads
  * 
- * on-line resources
+ * online resources
  */
 using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Contracts;
@@ -50,17 +50,18 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
         /// <param name="webAutomation"><see cref="WebAutomation"/> to execute.</param>
         /// <param name="environment"><see cref="AutomationEnvironment"/> to use.</param>
         /// <returns><see cref="OrbitResponse"/> instance.</returns>
-        public static OrbitResponse ExecuteWebAutomation(WebAutomation webAutomation, AutomationEnvironment environment)
+        public static IEnumerable<OrbitResponse> ExecuteWebAutomation(WebAutomation webAutomation, AutomationEnvironment environment)
         {
             // execute
-            var response = new AutomationExecutor(webAutomation).Execute().GetResponse();
+            var results = new AutomationExecutor(webAutomation).Execute();
+            var responses = results.Select(i => i.Value);
 
             // add sessions to environment
-            environment.TestParams["sessions"] = response.Extractions.Select(i => i.OrbitSession.SessionsId);
+            environment.TestParams["sessions"] = results.Select(i => i.Key);
 
             // results
-            TestContext.WriteLine(JsonConvert.SerializeObject(response, Formatting.Indented));
-            return response;
+            TestContext.WriteLine(JsonConvert.SerializeObject(responses, Formatting.Indented));
+            return responses;
         }
 
         /// <summary>
@@ -152,7 +153,7 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
                 ["build"] = $"{TestContext.Parameters["Build.Number"]}",
                 ["name"] = testName,
                 ["browserstack.ie.enablePopups"] = true,
-                //["browserstack.selenium_version"] = "3.141.59"
+                //["browserstack.selenium_version"] = "4.0.0-alpha-2"
             };
             foreach (var capability in ((JObject)capabilities["bstack:options"]).ToObject<IDictionary<string, object>>())
             {
@@ -283,21 +284,22 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
             .First(i => i.Key == key)
             .Value;
 
-        public static bool GetAssertions(OrbitResponse response)
+        public static bool GetAssertions(IEnumerable<OrbitResponse> responses)
         {
-            return response
-                .Extractions
+            return responses
+                .SelectMany(i => i.Extractions)
                 .SelectMany(i => i.Entities)
                 .SelectMany(i => i.EntityContent)
                 .Where(i => i.Key == "evaluation")
                 .All(i => (bool)i.Value);
         }
 
-        public static void AssertInconclusive(OrbitResponse response)
+        public static void AssertInconclusive(IEnumerable< OrbitResponse> responses)
         {
             // assert
-            var isWebDriverException =
-                response.OrbitRequest.Exceptions.Any(i => i.Exception is WebDriverException);
+            var isWebDriverException = responses
+                .SelectMany(i => i.OrbitRequest.Exceptions)
+                .Any(i => i.Exception is WebDriverException);
 
             // exit condition
             if (!isWebDriverException)
@@ -306,7 +308,7 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
             }
 
             // throw
-            var exceptions = response.OrbitRequest.Exceptions.Select(i => i.Exception.Message);
+            var exceptions = responses.SelectMany(i => i.OrbitRequest.Exceptions).Select(i => i.Exception.Message);
             var message = JsonConvert.SerializeObject(exceptions);
             throw new AssertInconclusiveException(message);
         }
@@ -449,15 +451,15 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
         /// Implements assertion logics for this <see cref="AutomationTest(AutomationEnvironment)"/>
         /// </summary>
         /// <param name="environment">Applied <see cref="AutomationEnvironment"/>.</param>
-        /// <param name="response"><see cref="WebAutomation"/> results after execution completed.</param>
+        /// <param name="responses"><see cref="WebAutomation"/> results after execution completed.</param>
         /// <returns><see cref="true"/> if pass; <see cref="false"/> if not.</returns>
-        public virtual bool OnAutomationTest(AutomationEnvironment environment, OrbitResponse response)
+        public virtual bool OnAutomationTest(AutomationEnvironment environment, IEnumerable< OrbitResponse> responses)
         {
             // setup
             var isNegative = environment.TestParams.ContainsKey("negative") && (bool)environment.TestParams["negative"];
 
             // assertion
-            var actual = GetAssertions(response);
+            var actual = GetAssertions(responses);
             return isNegative ? !actual : actual;
         }
 

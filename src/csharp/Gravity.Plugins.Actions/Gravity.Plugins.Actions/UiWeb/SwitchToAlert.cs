@@ -1,18 +1,18 @@
 ﻿/*
  * CHANGE LOG - keep only last 5 threads
  *
- * on-line resources
+ * online resources
  */
 using Gravity.Plugins.Actions.Contracts;
+using Gravity.Plugins.Attributes;
 using Gravity.Plugins.Base;
+using Gravity.Plugins.Contracts;
+using Gravity.Plugins.Extensions;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Extensions;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Reflection;
-using Gravity.Plugins.Attributes;
-using Gravity.Plugins.Extensions;
-using Gravity.Plugins.Contracts;
 
 namespace Gravity.Plugins.Actions.UiWeb
 {
@@ -46,34 +46,34 @@ namespace Gravity.Plugins.Actions.UiWeb
         /// <summary>
         /// Creates a new instance of this plugin.
         /// </summary>
-        /// <param name="webAutomation">This <see cref="WebAutomation"/> object (the original object sent by the user).</param>
+        /// <param name="automation">This <see cref="WebAutomation"/> object (the original object sent by the user).</param>
         /// <param name="driver"><see cref="IWebDriver"/> implementation by which to execute the action.</param>
-        public SwitchToAlert(WebAutomation webAutomation, IWebDriver driver)
-            : base(webAutomation, driver)
+        public SwitchToAlert(WebAutomation automation, IWebDriver driver)
+            : base(automation, driver)
         { }
         #endregion
 
         /// <summary>
         /// Switches to the currently active modal dialog for this particular driver instance.
         /// </summary>
-        /// <param name="actionRule">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
-        public override void OnPerform(ActionRule actionRule)
+        /// <param name="action">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
+        public override void OnPerform(ActionRule action)
         {
-            DoAction(actionRule);
+            DoAction(action);
         }
 
         /// <summary>
         /// Switches to the currently active modal dialog for this particular driver instance.
         /// </summary>
-        /// <param name="actionRule">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
+        /// <param name="action">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
         /// <param name="element">This <see cref="IWebElement"/> instance on which to perform the action (provided by the extraction rule).</param>
-        public override void OnPerform(ActionRule actionRule, IWebElement element)
+        public override void OnPerform(ActionRule action, IWebElement element)
         {
-            DoAction(actionRule);
+            DoAction(action);
         }
 
-        // executes action routine
-        private void DoAction(ActionRule actionRule)
+        // execute action routine
+        private void DoAction(ActionRule action)
         {
             // exit conditions
             if (!WebDriver.HasAlert())
@@ -82,24 +82,24 @@ namespace Gravity.Plugins.Actions.UiWeb
             }
 
             // arguments
-            arguments = CliFactory.Parse(actionRule.Argument);
+            arguments = CliFactory.Parse(action.Argument);
 
             // execute
-            foreach (var method in GetType().GetMethodsByDescription(regex: actionRule.Argument))
+            foreach (var method in GetType().GetMethodsByDescription(regex: action.Argument))
             {
-                DoMethod(method, actionRule);
+                DoMethod(action, method);
             }
         }
 
         // executes a single method routine
-        private void DoMethod(MethodInfo method, ActionRule actionRule)
+        private void DoMethod(ActionRule action, MethodInfo method)
         {
             if (method.GetParameters().Length == 0)
             {
                 method.Invoke(obj: this, parameters: null);
                 return;
             }
-            method.Invoke(obj: this, parameters: new object[] { actionRule });
+            method.Invoke(obj: this, parameters: new object[] { action });
         }
 
         // FACTORY

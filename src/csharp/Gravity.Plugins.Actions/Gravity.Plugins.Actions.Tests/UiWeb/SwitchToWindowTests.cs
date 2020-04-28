@@ -1,7 +1,7 @@
 ﻿/*
  * CHANGE LOG - keep only last 5 threads
  * 
- * on-line resources
+ * online resources
  */
 using Gravity.Plugins.Actions.UnitTests.Base;
 using Gravity.Plugins.Actions.UiWeb;
@@ -21,19 +21,19 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         [TestMethod]
         public void SwitchToWindowCreate()
         {
-            ValidateAction<SwitchToWindow>();
+            AssertPlugin<SwitchToWindow>();
         }
 
         [TestMethod]
         public void SwitchToWindowDocumentation()
         {
-            ValidateActionDocumentation<SwitchToWindow>(WebPlugins.SwitchToWindow);
+            AssertDocumentation<SwitchToWindow>(WebPlugins.SwitchToWindow);
         }
 
         [TestMethod]
         public void SwitchToWindowDocumentationResourceFile()
         {
-            ValidateActionDocumentation<SwitchToWindow>(
+            AssertDocumentation<SwitchToWindow>(
                 WebPlugins.SwitchToWindow, "switch_to_window.json");
         }
 

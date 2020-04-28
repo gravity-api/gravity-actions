@@ -35,8 +35,8 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.AssertScenario
                 {
                     ActionType = CommonPlugins.Assert,
                     Argument = "{{$ --attribute --match:" + expected + "}}",
-                    ElementToActOn = "See the tutorial »",
-                    ElementAttributeToActOn = "class",
+                    OnElement = "See the tutorial »",
+                    OnAttribute = "class",
                     Locator = LocatorType.LinkText
                 }
             };

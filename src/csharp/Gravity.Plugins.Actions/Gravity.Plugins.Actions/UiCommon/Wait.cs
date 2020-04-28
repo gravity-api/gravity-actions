@@ -12,7 +12,7 @@
  *    - modify: improve XML comments
  *    - modify: override ActionName using ActionType constant
  * 
- * on-line resources
+ * online resources
  */
 using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Extensions;
@@ -33,35 +33,35 @@ namespace Gravity.Plugins.Actions.UiCommon
         /// <summary>
         /// Creates a new instance of this <see cref="Plugin"/>.
         /// </summary>
-        /// <param name="webAutomation"><see cref="WebAutomation"/> data transfer object to execute.</param>
-        public Wait(WebAutomation webAutomation)
-            : this(webAutomation, new EnvironmentContext())
+        /// <param name="automation"><see cref="WebAutomation"/> data transfer object to execute.</param>
+        public Wait(WebAutomation automation)
+            : this(automation, new EnvironmentContext())
         { }
 
         /// <summary>
         /// Creates a new instance of this <see cref="Plugin"/>.
         /// </summary>
-        /// <param name="webAutomation"><see cref="WebAutomation"/> data transfer object to execute.</param>
+        /// <param name="automation"><see cref="WebAutomation"/> data transfer object to execute.</param>
         /// <param name="environment">Environment under this context.</param>
-        public Wait(WebAutomation webAutomation, EnvironmentContext environment)
-            : base(webAutomation, environment)
+        public Wait(WebAutomation automation, EnvironmentContext environment)
+            : base(automation, environment)
         { }
         #endregion
 
         /// <summary>
         /// Suspends the current thread for the specified amount of time.
         /// </summary>
-        /// <param name="actionRule">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
-        public override void OnPerform(ActionRule actionRule)
+        /// <param name="action">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
+        public override void OnPerform(ActionRule action)
         {
-            DoAction(actionRule);
+            DoAction(action);
         }
 
         // executes Wait routine
-        private void DoAction(ActionRule actionRule)
+        private void DoAction(ActionRule action)
         {
             // setup
-            var timeToWait = actionRule.Argument.AsTimeSpan();
+            var timeToWait = action.Argument.AsTimeSpan();
 
             // action
             Thread.Sleep(timeToWait);

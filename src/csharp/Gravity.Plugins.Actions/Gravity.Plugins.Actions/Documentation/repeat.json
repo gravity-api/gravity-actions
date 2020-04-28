@@ -14,7 +14,7 @@
           {
             "actionType": "SendKeys",
             "argument": "a",
-            "elementToActOn": "//form/div/p/input[1]"
+            "onElement": "//form/div/p/input[1]"
           }
         ]
       }
@@ -25,12 +25,12 @@
       "actionExample": {
         "actionType": "Repeat",
         "argument": "{{$ --until:visible}}",
-        "elementToActOn": "//div",
+        "onElement": "//div",
         "actions": [
           {
             "actionType": "SendKeys",
             "argument": "a",
-            "elementToActOn": "//form/div/p/input[1]"
+            "onElement": "//form/div/p/input[1]"
           }
         ]
       }
@@ -41,12 +41,12 @@
       "actionExample": {
         "actionType": "Repeat",
         "argument": "{{$ --until:not-visible}}",
-        "elementToActOn": "//div",
+        "onElement": "//div",
         "actions": [
           {
             "actionType": "SendKeys",
             "argument": "a",
-            "elementToActOn": "//form/div/p/input[1]"
+            "onElement": "//form/div/p/input[1]"
           }
         ]
       }
@@ -57,12 +57,12 @@
       "actionExample": {
         "actionType": "Repeat",
         "argument": "{{$ --until:exists}}",
-        "elementToActOn": "//div",
+        "onElement": "//div",
         "actions": [
           {
             "actionType": "SendKeys",
             "argument": "a",
-            "elementToActOn": "//form/div/p/input[1]"
+            "onElement": "//form/div/p/input[1]"
           }
         ]
       }
@@ -73,12 +73,12 @@
       "actionExample": {
         "actionType": "Repeat",
         "argument": "{{$ --until:not-exists}}",
-        "elementToActOn": "//div",
+        "onElement": "//div",
         "actions": [
           {
             "actionType": "SendKeys",
             "argument": "a",
-            "elementToActOn": "//form/div/p/input[1]"
+            "onElement": "//form/div/p/input[1]"
           }
         ]
       }
@@ -93,7 +93,7 @@
           {
             "actionType": "SendKeys",
             "argument": "a",
-            "elementToActOn": "//form/div/p/input[1]"
+            "onElement": "//form/div/p/input[1]"
           },
           {
             "actionType": "Repeat",
@@ -102,7 +102,7 @@
               {
                 "actionType": "SendKeys",
                 "argument": "b",
-                "elementToActOn": "//form/div/p/input[1]"
+                "onElement": "//form/div/p/input[1]"
               }
             ]
           }

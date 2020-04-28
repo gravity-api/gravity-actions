@@ -31,7 +31,7 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.DoubleClickTes
                 new ActionRule
                 {
                     ActionType = CommonPlugins.DoubleClick,
-                    ElementToActOn = "click_button",
+                    OnElement = "click_button",
                     Locator = LocatorType.Id
                 },
                 SharedSteps.AssertClickOutcome(expectedPattern: "double on element")

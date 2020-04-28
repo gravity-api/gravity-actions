@@ -30,7 +30,7 @@
       "literalExample": "long swipe {{$ --target:200,200}}",
       "actionExample": {
         "actionType": "LongSwipe",
-        "elementToActOn": "//button",
+        "onElement": "//button",
         "argument": "{{$ --target:200,200}}"
       }
     },
@@ -55,7 +55,7 @@
       "literalExample": "long swipe {{$ --source:200,200}}",
       "actionExample": {
         "actionType": "LongSwipe",
-        "elementToActOn": "//div",
+        "onElement": "//div",
         "argument": "{{$ --source:200,200}}"
       }
     }

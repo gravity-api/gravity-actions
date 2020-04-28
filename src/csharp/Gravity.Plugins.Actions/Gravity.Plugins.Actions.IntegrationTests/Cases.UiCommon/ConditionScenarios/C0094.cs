@@ -33,7 +33,7 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.ConditionScena
                 {
                     ActionType = CommonPlugins.Condition,
                     Argument = "{{$ --stale}}",
-                    ElementToActOn = "for_stale_element",
+                    OnElement = "for_stale_element",
                     Locator = LocatorType.Id,
                     Actions = SharedSteps.SetNumberOfAlerts(numberOfAlerts: 20)
                 },

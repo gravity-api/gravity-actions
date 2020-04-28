@@ -1,10 +1,7 @@
 ﻿/*
  * CHANGE LOG - keep only last 5 threads
  * 
- * on-line resources
- * 
- * work items:
- * TODO: better SendKeys - do not create SendKeys instance on every iteration
+ * online resources
  */
 using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Actions.Extensions;
@@ -27,54 +24,54 @@ namespace Gravity.Plugins.Actions.UiCommon
         /// <summary>
         /// Creates a new instance of this plugin.
         /// </summary>
-        /// <param name="webAutomation">This <see cref="WebAutomation"/> object (the original object sent by the user).</param>
+        /// <param name="automation">This <see cref="WebAutomation"/> object (the original object sent by the user).</param>
         /// <param name="driver"><see cref="IWebDriver"/> implementation by which to execute the action.</param>
-        public TrySendKeys(WebAutomation webAutomation, IWebDriver driver)
-            : base(webAutomation, driver)
+        public TrySendKeys(WebAutomation automation, IWebDriver driver)
+            : base(automation, driver)
         { }
         #endregion
 
         /// <summary>
         /// Simulates typing text into the element.
         /// </summary>
-        /// <param name="actionRule">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
-        public override void OnPerform(ActionRule actionRule)
+        /// <param name="action">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
+        public override void OnPerform(ActionRule action)
         {
-            DoAction(actionRule, element: default);
+            DoAction(action, element: default);
         }
 
         /// <summary>
         /// Simulates typing text into the element.
         /// </summary>
-        /// <param name="actionRule">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
+        /// <param name="action">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
         /// <param name="element">This <see cref="IWebElement"/> instance on which to perform the action (provided by the extraction rule).</param>
-        public override void OnPerform(ActionRule actionRule, IWebElement element)
+        public override void OnPerform(ActionRule action, IWebElement element)
         {
-            DoAction(actionRule, element);
+            DoAction(action, element);
         }
 
-        // executes action routine
-        private void DoAction(ActionRule actionRule, IWebElement element)
+        // execute action routine
+        private void DoAction(ActionRule action, IWebElement element)
         {
             // setup
             var wait = new WebDriverWait(
-                WebDriver, TimeSpan.FromMilliseconds(WebAutomation.EngineConfiguration.ElementSearchingTimeout));
+                WebDriver, TimeSpan.FromMilliseconds(Automation.EngineConfiguration.ElementSearchingTimeout));
 
             // persist send keys
-            wait.Until(d => SendKeys(actionRule, element, driver: d));
+            var sendKeys = new SendKeys(automation: Automation, driver: WebDriver);
+            wait.Until(_ => SendKeys(plugin: sendKeys, action, element));
         }
 
         // performs a click and return the clicked element
-        private bool SendKeys(ActionRule actionRule, IWebElement element, IWebDriver driver)
+        private bool SendKeys(SendKeys plugin, ActionRule action, IWebElement element)
         {
             try
             {
                 // get element to act on
-                var onElement = this.ConditionalGetElement(element, actionRule);
+                var onElement = this.ConditionalGetElement(element, action);
 
                 // execute SendKeys action (reuse of existing action)
-                var sendKeys = new SendKeys(WebAutomation, driver);
-                sendKeys.Perform(actionRule, onElement);
+                plugin.Perform(action, onElement);
                 return true;
             }
             catch (Exception e) when (e != null)

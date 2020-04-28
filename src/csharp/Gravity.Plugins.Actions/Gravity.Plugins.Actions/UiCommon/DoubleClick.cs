@@ -15,7 +15,7 @@
  *    - modify: add support for double_click without specified element (flat action)
  *    - modify: improve XML comments
  *
- * on-line resources
+ * online resources
  */
 using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Actions.Extensions;
@@ -23,7 +23,6 @@ using Gravity.Plugins.Attributes;
 using Gravity.Plugins.Base;
 using Gravity.Plugins.Contracts;
 using OpenQA.Selenium;
-using System;
 
 // consolidate references
 using SeleniumActions = OpenQA.Selenium.Interactions.Actions;
@@ -43,47 +42,46 @@ namespace Gravity.Plugins.Actions.UiCommon
         /// <summary>
         /// Creates a new instance of this plugin.
         /// </summary>
-        /// <param name="webAutomation">This <see cref="WebAutomation"/> object (the original object sent by the user).</param>
+        /// <param name="automation">This <see cref="WebAutomation"/> object (the original object sent by the user).</param>
         /// <param name="driver"><see cref="IWebDriver"/> implementation by which to execute the action.</param>
-        public DoubleClick(WebAutomation webAutomation, IWebDriver driver)
-            : base(webAutomation, driver)
+        public DoubleClick(WebAutomation automation, IWebDriver driver)
+            : base(automation, driver)
         {
             actions = new SeleniumActions(driver);
         }
         #endregion
 
-        #region *** plugins      ***
         /// <summary>
         /// Clicks the mouse at the last known mouse coordinates or on the specified element.
         /// </summary>
-        /// <param name="actionRule">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
-        public override void OnPerform(ActionRule actionRule)
+        /// <param name="action">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
+        public override void OnPerform(ActionRule action)
         {
-            DoAction(element: default, actionRule);
+            DoAction(action, element: default);
         }
 
         /// <summary>
         /// Clicks the mouse at the last known mouse coordinates or on the specified element.
         /// </summary>
-        /// <param name="actionRule">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
+        /// <param name="action">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
         /// <param name="element">This <see cref="IWebElement"/> instance on which to perform the action (provided by the extraction rule).</param>
-        public override void OnPerform(ActionRule actionRule, IWebElement element)
+        public override void OnPerform(ActionRule action, IWebElement element)
         {
-            DoAction(element, actionRule);
+            DoAction(action, element);
         }
 
-        // executes action routine
-        private void DoAction(IWebElement element, ActionRule actionRule)
+        // execute action routine
+        private void DoAction(ActionRule action, IWebElement element)
         {
             // flat conditions
-            if (PluginUtilities.IsFlatAction(actionRule, element))
+            if (PluginUtilities.IsFlatAction(action, element))
             {
                 actions.DoubleClick().Build().Perform();
                 return;
             }
 
             // on element action
-            var onElement = this.ConditionalGetElement(element, actionRule);
+            var onElement = this.ConditionalGetElement(element, action);
 
             // try to scroll into view
             onElement.TryScrollIntoView();
@@ -91,6 +89,5 @@ namespace Gravity.Plugins.Actions.UiCommon
             // perform action
             actions.DoubleClick(onElement).Build().Perform();
         }
-        #endregion
     }
 }

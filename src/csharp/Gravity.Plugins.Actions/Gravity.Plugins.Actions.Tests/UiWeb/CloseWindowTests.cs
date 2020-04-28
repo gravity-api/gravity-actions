@@ -1,7 +1,7 @@
 ﻿/*
  * CHANGE LOG - keep only last 5 threads
  * 
- * on-line resources
+ * online resources
  */
 using OpenQA.Selenium.Mock;
 using OpenQA.Selenium.Mock.Extensions;
@@ -23,19 +23,19 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         [TestMethod]
         public void CloseWindowCreate()
         {
-            ValidateAction<CloseWindow>();
+            AssertPlugin<CloseWindow>();
         }
 
         [TestMethod]
         public void CloseWindowDocumentation()
         {
-            ValidateActionDocumentation<CloseWindow>(WebPlugins.CloseWindow);
+            AssertDocumentation<CloseWindow>(WebPlugins.CloseWindow);
         }
 
         [TestMethod]
         public void CloseWindowDocumentationResourceFile()
         {
-            ValidateActionDocumentation<CloseWindow>(
+            AssertDocumentation<CloseWindow>(
                 WebPlugins.CloseWindow, "close_window.json");
         }
 

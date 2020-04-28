@@ -11,14 +11,14 @@
  * 2019-12-24
  *    - modify: add constructor to override base class types
  *    
- * on-line resources
+ * online resources
  */
-using OpenQA.Selenium.Extensions;
 using Gravity.Plugins.Actions.Contracts;
-using OpenQA.Selenium;
 using Gravity.Plugins.Attributes;
 using Gravity.Plugins.Base;
 using Gravity.Plugins.Contracts;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Extensions;
 
 namespace Gravity.Plugins.Actions.UiWeb
 {
@@ -32,37 +32,37 @@ namespace Gravity.Plugins.Actions.UiWeb
         /// <summary>
         /// Creates a new instance of this plugin.
         /// </summary>
-        /// <param name="webAutomation">This <see cref="WebAutomation"/> object (the original object sent by the user).</param>
+        /// <param name="automation">This <see cref="WebAutomation"/> object (the original object sent by the user).</param>
         /// <param name="driver"><see cref="IWebDriver"/> implementation by which to execute the action.</param>
-        public CloseWindow(WebAutomation webAutomation, IWebDriver driver)
-            : base(webAutomation, driver)
+        public CloseWindow(WebAutomation automation, IWebDriver driver)
+            : base(automation, driver)
         { }
         #endregion
 
         /// <summary>
         /// Close the given window, quitting the browser if it is the last window currently open.
         /// </summary>
-        /// <param name="actionRule">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
-        public override void OnPerform(ActionRule actionRule)
+        /// <param name="action">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
+        public override void OnPerform(ActionRule action)
         {
-            DoCloseWindow(actionRule);
+            DoAction(action);
         }
 
         /// <summary>
         /// Close the given window, quitting the browser if it is the last window currently open.
         /// </summary>
-        /// <param name="actionRule">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
+        /// <param name="action">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
         /// <param name="element">This <see cref="IWebElement"/> instance on which to perform the action (provided by the extraction rule).</param>
-        public override void OnPerform(ActionRule actionRule, IWebElement element)
+        public override void OnPerform(ActionRule action, IWebElement element)
         {
-            DoCloseWindow(actionRule);
+            DoAction(action);
         }
 
         // executes CloseWindow routine
-        private void DoCloseWindow(ActionRule actionRule)
+        private void DoAction(ActionRule action)
         {
             // exit conditions
-            if (!int.TryParse(actionRule.Argument, out int indexOut))
+            if (!int.TryParse(action.Argument, out int indexOut))
             {
                 return;
             }

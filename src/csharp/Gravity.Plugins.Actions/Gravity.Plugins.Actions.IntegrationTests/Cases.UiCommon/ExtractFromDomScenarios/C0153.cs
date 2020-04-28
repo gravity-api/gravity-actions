@@ -26,11 +26,11 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.ExtractFromDom
         public override string ApplicationUnderTest => StudentsPage;
 
         // assertion implementation
-        public override bool OnAutomationTest(AutomationEnvironment environment, OrbitResponse response)
+        public override bool OnAutomationTest(AutomationEnvironment environment, IEnumerable<OrbitResponse> responses)
         {
             // assertion
             return SharedSteps.AssertEntitiesValues(
-                response,
+                responses,
                 fieldsCount: 2,
                 expectedPattern: @"^(?!\s*$).+");
         }
@@ -51,13 +51,13 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.ExtractFromDom
             var getFirstName = new ContentEntry
             {
                 Key = "FirstName",
-                ElementToActOn = ".//td[contains(@id,'student_first_name')]",
+                OnElement = ".//td[contains(@id,'student_first_name')]",
                 Actions = new[]
                 {
                     new ActionRule
                     {
                         ActionType = CommonPlugins.Click,
-                        ElementToActOn = "Details",
+                        OnElement = "Details",
                         Locator = LocatorType.LinkText
                     }
                 }
@@ -65,7 +65,7 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.ExtractFromDom
             var getFirstCourse = new ContentEntry
             {
                 Key = "Course",
-                ElementToActOn = "//tbody/tr/td[1]",
+                OnElement = "//tbody/tr/td[1]",
                 Actions = new[]
                 {
                     new ActionRule { ActionType = WebPlugins.NavigateBack }
@@ -76,8 +76,8 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.ExtractFromDom
             // get extractions
             var extraction = new ExtractionRule
             {
-                RootElementToExtractFrom = "//tbody/tr",
-                ElementsToExtract = contentEntries
+                OnRootElements = "//tbody/tr",
+                OnElements = contentEntries
             };
 
             // results

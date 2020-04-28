@@ -1,7 +1,7 @@
 ﻿/*
  * CHANGE LOG - keep only last 5 threads
  * 
- * on-line resources
+ * online resources
  */
 using OpenQA.Selenium.Mock;
 using Gravity.Plugins.Actions.UiCommon;
@@ -20,19 +20,19 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         [TestMethod]
         public void ExecuteScriptCreate()
         {
-            ValidateAction<ExecuteScript>();
+            AssertPlugin<ExecuteScript>();
         }
 
         [TestMethod]
         public void ExecuteScriptDocumentation()
         {
-            ValidateActionDocumentation<ExecuteScript>(CommonPlugins.ExecuteScript);
+            AssertDocumentation<ExecuteScript>(CommonPlugins.ExecuteScript);
         }
 
         [TestMethod]
         public void ExecuteScriptDocumentationResourceFile()
         {
-            ValidateActionDocumentation<ExecuteScript>(
+            AssertDocumentation<ExecuteScript>(
                 CommonPlugins.ExecuteScript, "execute_script.json");
         }
 

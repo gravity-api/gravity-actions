@@ -30,7 +30,7 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiWeb.ContextClickScena
                 new ActionRule
                 {
                     ActionType = "RightClick",
-                    ElementToActOn = "click_button",
+                    OnElement = "click_button",
                     Locator = LocatorType.Id
                 },
                 SharedSteps.AssertClickOutcome(expectedPattern: "context on element")

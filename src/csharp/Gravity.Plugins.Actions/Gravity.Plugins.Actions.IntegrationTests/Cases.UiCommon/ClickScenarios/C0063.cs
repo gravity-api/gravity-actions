@@ -31,15 +31,15 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.ClickScenarios
                 {
                     ActionType = CommonPlugins.Click,
                     Argument = "{{$ --until:no_alert}}",
-                    ElementToActOn = "pop_alert",
+                    OnElement = "pop_alert",
                     Locator = LocatorType.Id
                 },
                 new ActionRule
                 {
                     ActionType = CommonPlugins.Assert,
                     Argument = "{{$ --attribute --gt:1}}",
-                    ElementToActOn = "pop_alert",
-                    ElementAttributeToActOn = "value",
+                    OnElement = "pop_alert",
+                    OnAttribute = "value",
                     Locator = LocatorType.Id
                 }
             };

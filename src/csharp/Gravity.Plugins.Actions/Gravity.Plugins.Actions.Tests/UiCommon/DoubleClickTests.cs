@@ -1,7 +1,7 @@
 ﻿/*
  * CHANGE LOG - keep only last 5 threads
  * 
- * on-line resources
+ * online resources
  */
 using OpenQA.Selenium.Mock;
 using Gravity.Plugins.Actions.UiCommon;
@@ -22,24 +22,24 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         [TestMethod]
         public void DoubleClickCreate()
         {
-            ValidateAction<DoubleClick>();
+            AssertPlugin<DoubleClick>();
         }
 
         [TestMethod]
         public void DoubleClickDocumentation()
         {
-            ValidateActionDocumentation<DoubleClick>(CommonPlugins.DoubleClick);
+            AssertDocumentation<DoubleClick>(CommonPlugins.DoubleClick);
         }
 
         [TestMethod]
         public void DoubleClickDocumentationResourceFile()
         {
-            ValidateActionDocumentation<DoubleClick>(
+            AssertDocumentation<DoubleClick>(
                 CommonPlugins.DoubleClick, "double_click.json");
         }
 
         [DataTestMethod]
-        [DataRow("{'elementToActOn':'//positive'}")]
+        [DataRow("{'onElement':'//positive'}")]
         public void DoubleClickPositive(string actionRule)
         {
             // execute
@@ -50,7 +50,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         }
 
         [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
-        [DataRow("{'elementToActOn':'//none'}")]
+        [DataRow("{'onElement':'//none'}")]
         public void DoubleClickNoElement(string actionRule)
         {
             // execute
@@ -71,7 +71,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         }
 
         [DataTestMethod]
-        [DataRow("{'elementToActOn':'//positive'}")]
+        [DataRow("{'onElement':'//positive'}")]
         public void DoubleClickElementAbsolutePositive(string actionRule)
         {
             // execute
@@ -82,7 +82,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         }
 
         [DataTestMethod]
-        [DataRow("{'elementToActOn':'.//positive'}")]
+        [DataRow("{'onElement':'.//positive'}")]
         public void DoubleClickElementRelativePositive(string actionRule)
         {
             // execute
@@ -93,7 +93,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         }
 
         [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
-        [DataRow("{'elementToActOn':'//none','locator':'" + LocatorType.Xpath + "'}")]
+        [DataRow("{'onElement':'//none','locator':'" + LocatorType.Xpath + "'}")]
         public void DoubleClickElementAbsoluteNoElement(string actionRule)
         {
             // execute
@@ -104,7 +104,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         }
 
         [DataTestMethod, ExpectedException(typeof(NoSuchElementException))]
-        [DataRow("{'elementToActOn':'.//none'}")]
+        [DataRow("{'onElement':'.//none'}")]
         public void DoubleClickElementRelativeNoElement(string actionRule)
         {
             // execute
@@ -135,7 +135,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         }
 
         [TestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
-        [DataRow("{'elementToActOn':'.//none'}")]
+        [DataRow("{'onElement':'.//none'}")]
         public void DoubleClickElementFlatNullElement(string actionRule)
         {
             // execute

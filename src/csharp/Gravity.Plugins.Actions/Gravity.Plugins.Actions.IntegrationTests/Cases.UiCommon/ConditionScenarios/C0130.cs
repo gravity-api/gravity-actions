@@ -46,7 +46,7 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.ConditionScena
                         {
                             ActionType = CommonPlugins.SendKeys,
                             Argument = "Carson",
-                            ElementToActOn = "SearchString",
+                            OnElement = "SearchString",
                             Locator = LocatorType.Id
                         },
                         new ActionRule
@@ -58,7 +58,7 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.ConditionScena
                                 new ActionRule
                                 {
                                     ActionType = CommonPlugins.Click,
-                                    ElementToActOn = "SearchButton",
+                                    OnElement = "SearchButton",
                                     Locator = LocatorType.Id
                                 }
                             }
@@ -69,8 +69,8 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.ConditionScena
                 {
                     ActionType = CommonPlugins.Assert,
                     Argument = "{{$ --attribute --eq:Carson}}",
-                    ElementToActOn = "SearchString",
-                    ElementAttributeToActOn = "value",
+                    OnElement = "SearchString",
+                    OnAttribute = "value",
                     Locator = LocatorType.Id
                 },
                 SharedSteps.AssertStudentsCount(count: 3)

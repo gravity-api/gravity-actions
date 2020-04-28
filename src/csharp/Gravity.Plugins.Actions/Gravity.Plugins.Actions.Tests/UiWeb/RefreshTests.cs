@@ -1,7 +1,7 @@
 ﻿/*
  * CHANGE LOG - keep only last 5 threads
  * 
- * on-line resources
+ * online resources
  */
 using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Actions.UnitTests.Base;
@@ -17,37 +17,37 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         [TestInitialize]
         public void Setup()
         {
-            WebAutomation.EngineConfiguration.PageLoadTimeout = 15000;
+            Automation.EngineConfiguration.PageLoadTimeout = 15000;
         }
 
         [TestCleanup]
         public void Cleanup()
         {
-            WebAutomation.EngineConfiguration.PageLoadTimeout = 100;
+            Automation.EngineConfiguration.PageLoadTimeout = 100;
         }
 
         [TestMethod]
         public void RefreshCreate()
         {
-            ValidateAction<Refresh>();
+            AssertPlugin<Refresh>();
         }
 
         [TestMethod]
         public void RefreshDocumentationNoTypes()
         {
-            ValidateActionDocumentation<Refresh>(WebPlugins.Refresh);
+            AssertDocumentation<Refresh>(WebPlugins.Refresh);
         }
 
         [TestMethod]
         public void RefreshDocumentationTypes()
         {
-            ValidateActionDocumentation<Refresh>(WebPlugins.Refresh);
+            AssertDocumentation<Refresh>(WebPlugins.Refresh);
         }
 
         [TestMethod]
         public void RefreshDocumentationResourceFile()
         {
-            ValidateActionDocumentation<Refresh>(WebPlugins.Refresh, "refresh.json");
+            AssertDocumentation<Refresh>(WebPlugins.Refresh, "refresh.json");
         }
 
         [TestMethod]

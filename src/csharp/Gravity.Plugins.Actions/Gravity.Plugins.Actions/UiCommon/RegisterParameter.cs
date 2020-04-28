@@ -16,7 +16,7 @@
  *    - modify: override ActionName using ActionType constant
  *    - modify: code cleaning
  *    
- * on-line resources
+ * online resources
  */
 using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Actions.Extensions;
@@ -40,10 +40,10 @@ namespace Gravity.Plugins.Actions.UiCommon
         /// <summary>
         /// Creates a new instance of this plugin.
         /// </summary>
-        /// <param name="webAutomation">This <see cref="WebAutomation"/> object (the original object sent by the user).</param>
+        /// <param name="automation">This <see cref="WebAutomation"/> object (the original object sent by the user).</param>
         /// <param name="driver"><see cref="IWebDriver"/> implementation by which to execute the action.</param>
-        public RegisterParameter(WebAutomation webAutomation, IWebDriver driver)
-            : base(webAutomation, driver)
+        public RegisterParameter(WebAutomation automation, IWebDriver driver)
+            : base(automation, driver)
         { }
         #endregion
 
@@ -51,28 +51,28 @@ namespace Gravity.Plugins.Actions.UiCommon
         /// Saves a parameter under session parameters collection. This action supports
         /// elements, attributes, regular expression and macros.
         /// </summary>
-        /// <param name="actionRule">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
-        public override void OnPerform(ActionRule actionRule)
+        /// <param name="action">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
+        public override void OnPerform(ActionRule action)
         {
-            DoAction(actionRule, element: default);
+            DoAction(action, element: default);
         }
 
         /// <summary>
         /// Saves a parameter under session parameters collection. This action supports
         /// elements, attributes, regular expression and macros.
         /// </summary>
-        /// <param name="actionRule">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
+        /// <param name="action">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
         /// <param name="element">This <see cref="IWebElement"/> instance on which to perform the action (provided by the extraction rule).</param>
-        public override void OnPerform(ActionRule actionRule, IWebElement element)
+        public override void OnPerform(ActionRule action, IWebElement element)
         {
-            DoAction(actionRule, element);
+            DoAction(action, element);
         }
 
-        // executes action routine
-        private void DoAction(ActionRule actionRule, IWebElement element)
+        // execute action routine
+        private void DoAction(ActionRule action, IWebElement element)
         {
             // load arguments
-            var arguments = CliFactory.Parse(actionRule.Argument);
+            var arguments = CliFactory.Parse(action.Argument);
 
             // exit conditions
             if (TryGetFromCli(arguments))
@@ -81,24 +81,24 @@ namespace Gravity.Plugins.Actions.UiCommon
             }
 
             // by name
-            var key = arguments.ContainsKey("key") ? arguments["key"] : actionRule.Argument;
+            var key = arguments.ContainsKey("key") ? arguments["key"] : action.Argument;
             var result = string.Empty;
             try
             {
                 // get element
-                var onElement = this.ConditionalGetElement(element, actionRule);
+                var onElement = this.ConditionalGetElement(element, action);
 
                 // get parameter value
-                result = GetTextOrAttribute(actionRule, element: onElement);
+                result = GetTextOrAttribute(action, element: onElement);
             }
             catch (Exception e) when (e is NoSuchElementException || e is WebDriverTimeoutException)
             {
-                result = Regex.Match(actionRule.ElementToActOn, actionRule.RegularExpression).Value;
+                result = Regex.Match(action.OnElement, action.RegularExpression).Value;
                 throw;
             }
             catch (Exception)
             {
-                ErrorHandle(actionRule);
+                ErrorHandle(action);
                 throw;
             }
             finally
@@ -109,7 +109,7 @@ namespace Gravity.Plugins.Actions.UiCommon
         }
 
         // get text value from element inner-text or specified attribute
-        private static string GetTextOrAttribute(ActionRule actionRule, IWebElement element)
+        private static string GetTextOrAttribute(ActionRule action, IWebElement element)
         {
             // exit conditions
             if (element == null)
@@ -118,27 +118,27 @@ namespace Gravity.Plugins.Actions.UiCommon
             }
 
             // text conditions
-            if (string.IsNullOrEmpty(actionRule.ElementAttributeToActOn))
+            if (string.IsNullOrEmpty(action.OnAttribute))
             {
-                return Regex.Match(element.Text, actionRule.RegularExpression).Value;
+                return Regex.Match(element.Text, action.RegularExpression).Value;
             }
 
             // get from element attribute
-            var attributeValue = element.GetAttribute(actionRule.ElementAttributeToActOn);
-            return Regex.Match(attributeValue, actionRule.RegularExpression).Value;
+            var attributeValue = element.GetAttribute(action.OnAttribute);
+            return Regex.Match(attributeValue, action.RegularExpression).Value;
         }
 
         // handles register_parameter errors
-        private void ErrorHandle(ActionRule actionRule)
+        private void ErrorHandle(ActionRule action)
         {
             // exit conditions
-            if (string.IsNullOrEmpty(actionRule.Argument))
+            if (string.IsNullOrEmpty(action.Argument))
             {
                 return;
             }
 
             // save empty value
-            Environment.SessionParams[actionRule.Argument] = string.Empty;
+            Environment.SessionParams[action.Argument] = string.Empty;
         }
 
         private static bool TryGetFromCli(IDictionary<string, string> arguments)

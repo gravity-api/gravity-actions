@@ -1,7 +1,7 @@
 ﻿/*
  * CHANGE LOG - keep only last 5 threads
  * 
- * on-line resources
+ * online resources
  */
 using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Actions.UiCommon;
@@ -21,23 +21,23 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         [TestMethod]
         public void TrySendKeysCreate()
         {
-            ValidateAction<TrySendKeys>();
+            AssertPlugin<TrySendKeys>();
         }
 
         [TestMethod]
         public void TrySendKeysDocumentation()
         {
-            ValidateActionDocumentation<TrySendKeys>(CommonPlugins.TrySendKeys);
+            AssertDocumentation<TrySendKeys>(CommonPlugins.TrySendKeys);
         }
 
         [TestMethod]
         public void TrySendKeysDocumentationResourceFile()
         {
-            ValidateActionDocumentation<TrySendKeys>(CommonPlugins.TrySendKeys, "try_send_keys.json");
+            AssertDocumentation<TrySendKeys>(CommonPlugins.TrySendKeys, "try_send_keys.json");
         }
 
         [DataTestMethod]
-        [DataRow("{'elementToActOn':'//positive','argument':'unitTesting'}")]
+        [DataRow("{'onElement':'//positive','argument':'unitTesting'}")]
         public void TrySendKeysPositive(string actionRule)
         {
             // execute
@@ -48,7 +48,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         }
 
         [DataTestMethod, ExpectedException(typeof(ElementNotVisibleException))]
-        [DataRow("{'elementToActOn':'//negative','argument':'unitTesting'}")]
+        [DataRow("{'onElement':'//negative','argument':'unitTesting'}")]
         public void TrySendKeysNegative(string actionRule)
         {
             // execute
@@ -59,7 +59,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         }
 
         [DataTestMethod]
-        [DataRow("{'elementToActOn':'//positive','argument':'{{$ --keys:unitTesting --clear}}'}")]
+        [DataRow("{'onElement':'//positive','argument':'{{$ --keys:unitTesting --clear}}'}")]
         public void TrySendKeysClear(string actionRule)
         {
             // execute
@@ -70,7 +70,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         }
 
         [DataTestMethod]
-        [DataRow("{'elementToActOn':'//positive','argument':'{{$ --keys:unitTesting --forceClear}}'}")]
+        [DataRow("{'onElement':'//positive','argument':'{{$ --keys:unitTesting --forceClear}}'}")]
         public void TrySendKeysForceClear(string actionRule)
         {
             // execute
@@ -81,7 +81,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         }
 
         [DataTestMethod]
-        [DataRow("{'elementToActOn':'//positive','argument':'{{$ --keys:unitTesting --forceClear}}'}")]
+        [DataRow("{'onElement':'//positive','argument':'{{$ --keys:unitTesting --forceClear}}'}")]
         public void TrySendKeysForceClearAppium(string actionRule)
         {
             // set new mock driver for mobile device
@@ -95,7 +95,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         }
 
         [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
-        [DataRow("{'elementToActOn':'//null','argument':'{{$ --keys:unitTesting --forceClear}}'}")]
+        [DataRow("{'onElement':'//null','argument':'{{$ --keys:unitTesting --forceClear}}'}")]
         public void TrySendKeysForceClearNull(string actionRule)
         {
             // execute
@@ -106,7 +106,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         }
 
         [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
-        [DataRow("{'elementToActOn':'//exception','argument':'{{$ --keys:unitTesting --forceClear}}'}")]
+        [DataRow("{'onElement':'//exception','argument':'{{$ --keys:unitTesting --forceClear}}'}")]
         public void TrySendKeysForceClearException(string actionRule)
         {
             // execute
@@ -117,7 +117,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         }
 
         [DataTestMethod]
-        [DataRow("{'elementToActOn':'//positive','argument':'{{$ --keys:unitTesting --interval:100}}'}")]
+        [DataRow("{'onElement':'//positive','argument':'{{$ --keys:unitTesting --interval:100}}'}")]
         public void TrySendKeysInterval(string actionRule)
         {
             // execute
@@ -128,7 +128,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         }
 
         [DataTestMethod]
-        [DataRow("{'elementToActOn':'//positive','argument':'{{$ --down:control --keys:a}}'}")]
+        [DataRow("{'onElement':'//positive','argument':'{{$ --down:control --keys:a}}'}")]
         public void TrySendKeysCombination(string actionRule)
         {
             // execute
@@ -139,7 +139,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         }
 
         [DataTestMethod]
-        [DataRow("{'elementToActOn':'//positive','argument':'{{$ --down:control --keys:a}}'}")]
+        [DataRow("{'onElement':'//positive','argument':'{{$ --down:control --keys:a}}'}")]
         public void TrySendKeysCombinationAppium(string actionRule)
         {
             // set new mock driver for mobile device
@@ -153,7 +153,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         }
 
         [DataTestMethod]
-        [DataRow("{'elementToActOn':'//positive','argument':'android'}")]
+        [DataRow("{'onElement':'//positive','argument':'android'}")]
         public void TrySendKeysAppium(string actionRule)
         {
             // set new mock driver for mobile device
@@ -167,7 +167,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         }
 
         [DataTestMethod]
-        [DataRow("{'elementToActOn':'.//positive','argument':'unitTesting'}")]
+        [DataRow("{'onElement':'.//positive','argument':'unitTesting'}")]
         public void TrySendKeysElementPositive(string actionRule)
         {
             // execute
@@ -178,7 +178,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         }
 
         [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
-        [DataRow("{'elementToActOn':'.//negative','argument':'unitTesting'}")]
+        [DataRow("{'onElement':'.//negative','argument':'unitTesting'}")]
         public void TrySendKeysElementNegative(string actionRule)
         {
             // execute
@@ -189,7 +189,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         }
 
         [DataTestMethod]
-        [DataRow("{'elementToActOn':'.//positive','argument':'{{$ --keys:unitTesting --clear}}'}")]
+        [DataRow("{'onElement':'.//positive','argument':'{{$ --keys:unitTesting --clear}}'}")]
         public void TrySendKeysElementClear(string actionRule)
         {
             // execute
@@ -200,7 +200,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         }
 
         [DataTestMethod]
-        [DataRow("{'elementToActOn':'.//positive','argument':'{{$ --keys:unitTesting --forceClear}}'}")]
+        [DataRow("{'onElement':'.//positive','argument':'{{$ --keys:unitTesting --forceClear}}'}")]
         public void TrySendKeysElementForceClear(string actionRule)
         {
             // execute
@@ -211,7 +211,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         }
 
         [DataTestMethod]
-        [DataRow("{'elementToActOn':'.//positive','argument':'{{$ --keys:unitTesting --forceClear}}'}")]
+        [DataRow("{'onElement':'.//positive','argument':'{{$ --keys:unitTesting --forceClear}}'}")]
         public void TrySendKeysElementForceClearAppium(string actionRule)
         {
             // set new mock driver for mobile device
@@ -225,7 +225,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         }
 
         [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
-        [DataRow("{'elementToActOn':'.//null','argument':'{{$ --keys:unitTesting --forceClear}}'}")]
+        [DataRow("{'onElement':'.//null','argument':'{{$ --keys:unitTesting --forceClear}}'}")]
         public void TrySendKeysElementForceClearNull(string actionRule)
         {
             // execute
@@ -236,7 +236,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         }
 
         [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
-        [DataRow("{'elementToActOn':'.//exception','argument':'{{$ --keys:unitTesting --forceClear}}'}")]
+        [DataRow("{'onElement':'.//exception','argument':'{{$ --keys:unitTesting --forceClear}}'}")]
         public void TrySendKeysElementForceClearException(string actionRule)
         {
             // execute
@@ -247,7 +247,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         }
 
         [DataTestMethod]
-        [DataRow("{'elementToActOn':'.//positive','argument':'{{$ --keys:unitTesting --interval:100}}'}")]
+        [DataRow("{'onElement':'.//positive','argument':'{{$ --keys:unitTesting --interval:100}}'}")]
         public void TrySendKeysElementInterval(string actionRule)
         {
             // execute
@@ -258,7 +258,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         }
 
         [DataTestMethod]
-        [DataRow("{'elementToActOn':'.//positive','argument':'{{$ --down:control --keys:a}}'}")]
+        [DataRow("{'onElement':'.//positive','argument':'{{$ --down:control --keys:a}}'}")]
         public void TrySendKeysElementCombination(string actionRule)
         {
             // execute
@@ -269,7 +269,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         }
 
         [DataTestMethod]
-        [DataRow("{'elementToActOn':'.//positive','argument':'android'}")]
+        [DataRow("{'onElement':'.//positive','argument':'android'}")]
         public void TrySendKeysElementAppium(string actionRule)
         {
             // set new mock driver for mobile device
@@ -283,7 +283,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         }
 
         [DataTestMethod]
-        [DataRow("{'elementToActOn':'//invalid-state','argument':'android'}")]
+        [DataRow("{'onElement':'//invalid-state','argument':'android'}")]
         public void TrySendKeysAppiumInvalidState(string actionRule)
         {
             // set new mock driver for mobile device
@@ -297,7 +297,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         }
 
         [DataTestMethod]
-        [DataRow("{'elementToActOn':'.//invalid-state','argument':'throw new InvalidElementStateException();'}")]
+        [DataRow("{'onElement':'.//invalid-state','argument':'throw new InvalidElementStateException();'}")]
         public void TrySendKeysElementAppiumInvalidState(string actionRule)
         {
             // set new mock driver for mobile device

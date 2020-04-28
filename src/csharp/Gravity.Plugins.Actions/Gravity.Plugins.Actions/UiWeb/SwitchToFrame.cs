@@ -1,7 +1,7 @@
 ﻿/*
  * CHANGE LOG - keep only last 5 threads
  * 
- * on-line resources
+ * online resources
  */
 using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Actions.Extensions;
@@ -16,49 +16,49 @@ namespace Gravity.Plugins.Actions.UiWeb
         assembly: "Gravity.Plugins.Actions, Version=5.0.0.0, Culture=neutral, PublicKeyToken=null",
         resource: "Gravity.Plugins.Actions.Documentation.switch_to_frame.json",
         Name = WebPlugins.SwitchToFrame)]
-    public class SwitchToFrame: WebDriverActionPlugin
+    public class SwitchToFrame : WebDriverActionPlugin
     {
         #region *** constructors ***
         /// <summary>
         /// Creates a new instance of this plugin.
         /// </summary>
-        /// <param name="webAutomation">This <see cref="WebAutomation"/> object (the original object sent by the user).</param>
+        /// <param name="automation">This <see cref="WebAutomation"/> object (the original object sent by the user).</param>
         /// <param name="driver"><see cref="IWebDriver"/> implementation by which to execute the action.</param>
-        public SwitchToFrame(WebAutomation webAutomation, IWebDriver driver)
-            : base(webAutomation, driver)
+        public SwitchToFrame(WebAutomation automation, IWebDriver driver)
+            : base(automation, driver)
         { }
         #endregion
 
         /// <summary>
         /// Select a frame, changing web-driver context to the new selected frame.
         /// </summary>
-        /// <param name="actionRule">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
-        public override void OnPerform(ActionRule actionRule)
+        /// <param name="action">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
+        public override void OnPerform(ActionRule action)
         {
-            DoAction(actionRule, element: default);
+            DoAction(action, element: default);
         }
 
         /// <summary>
         /// Select a frame, changing web-driver context to the new selected frame.
         /// </summary>
-        /// <param name="actionRule">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
+        /// <param name="action">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
         /// <param name="element">This <see cref="IWebElement"/> instance on which to perform the action (provided by the extraction rule).</param>
-        public override void OnPerform(ActionRule actionRule, IWebElement element)
+        public override void OnPerform(ActionRule action, IWebElement element)
         {
-            DoAction(actionRule, element);
+            DoAction(action, element);
         }
 
         // execute action routine
-        private void DoAction(ActionRule actionRule, IWebElement element)
+        private void DoAction(ActionRule action, IWebElement element)
         {
             // setup compliance
-            var isNumric = int.TryParse(actionRule.Argument, out int argumentOut);
-            var isElement = !string.IsNullOrEmpty(actionRule.ElementToActOn);
+            var isNumric = int.TryParse(action.Argument, out int argumentOut);
+            var isElement = !string.IsNullOrEmpty(action.OnElement);
 
             // from element
             if (isElement)
             {
-                SwitchFromElement(actionRule, element);
+                SwitchFromElement(action, element);
                 return;
             }
 
@@ -70,14 +70,14 @@ namespace Gravity.Plugins.Actions.UiWeb
             }
 
             // from name
-            WebDriver.SwitchTo().Frame(actionRule.Argument);
+            WebDriver.SwitchTo().Frame(action.Argument);
         }
 
         // switch to frame based on element
-        private void SwitchFromElement(ActionRule actionRule, IWebElement element)
+        private void SwitchFromElement(ActionRule action, IWebElement element)
         {
             // execute action
-            var onElement = this.ConditionalGetElement(element, actionRule);
+            var onElement = this.ConditionalGetElement(element, action);
 
             // switch
             WebDriver.SwitchTo().Frame(onElement);

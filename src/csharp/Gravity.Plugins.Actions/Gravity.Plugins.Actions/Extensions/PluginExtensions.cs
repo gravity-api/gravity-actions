@@ -1,7 +1,7 @@
 ﻿/*
  * CHANGE LOG - keep only last 5 threads
  * 
- * on-line resources
+ * online resources
  */
 using Gravity.Plugins.Base;
 using Gravity.Plugins.Contracts;
@@ -25,19 +25,19 @@ namespace Gravity.Plugins.Actions.Extensions
         public static IWebElement ConditionalGetElement(this WebDriverActionPlugin plugin, IWebElement element, ActionRule actionRule)
         {
             // exit conditions
-            if(element == default && string.IsNullOrEmpty(actionRule.ElementToActOn))
+            if(element == default && string.IsNullOrEmpty(actionRule.OnElement))
             {
                 return default;
             }
 
             // setup
-            var searchTimeout = plugin.WebAutomation.EngineConfiguration.ElementSearchingTimeout;
+            var searchTimeout = plugin.Automation.EngineConfiguration.ElementSearchingTimeout;
             var timeout = TimeSpan.FromMilliseconds(searchTimeout);
 
             // get element
             return element != default
-                ? element.GetElementByActionRule(plugin.ByFactory, actionRule, timeout)
-                : plugin.WebDriver.GetElementByActionRule(plugin.ByFactory, actionRule, timeout);
+                ? element.GetElement(plugin.ByFactory, actionRule, timeout)
+                : plugin.WebDriver.GetElement(plugin.ByFactory, actionRule, timeout);
         }
 
         /// <summary>

@@ -1,7 +1,7 @@
 ﻿/*
  * CHANGE LOG - keep only last 5 threads
  * 
- * on-line resources
+ * online resources
  */
 namespace Gravity.Plugins.UnitTests.Mocks.Plugins
 {

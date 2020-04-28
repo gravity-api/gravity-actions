@@ -36,7 +36,7 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.ConditionScena
                 {
                     ActionType = CommonPlugins.Condition,
                     Argument = "{{$ --text --ge:" + condition + "}}",
-                    ElementToActOn = "number for testing",
+                    OnElement = "number for testing",
                     Locator = LocatorType.Name,
                     Actions = SharedSteps.SetNumberOfAlerts(numberOfAlerts: 20)
                 },

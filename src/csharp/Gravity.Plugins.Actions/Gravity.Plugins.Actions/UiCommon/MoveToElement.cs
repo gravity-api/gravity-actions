@@ -1,7 +1,7 @@
 ﻿/*
  * CHANGE LOG - keep only last 5 threads
  * 
- * on-line resources
+ * online resources
  */
 using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Actions.Extensions;
@@ -22,37 +22,37 @@ namespace Gravity.Plugins.Actions.UiCommon
         /// <summary>
         /// Creates a new instance of this plugin.
         /// </summary>
-        /// <param name="webAutomation">This <see cref="WebAutomation"/> object (the original object sent by the user).</param>
+        /// <param name="automation">This <see cref="WebAutomation"/> object (the original object sent by the user).</param>
         /// <param name="driver"><see cref="IWebDriver"/> implementation by which to execute the action.</param>
-        public MoveToElement(WebAutomation webAutomation, IWebDriver driver)
-            : base(webAutomation, driver)
+        public MoveToElement(WebAutomation automation, IWebDriver driver)
+            : base(automation, driver)
         { }
         #endregion
 
         /// <summary>
         /// Moves the mouse to the specified element. This action will trigger [mouseover] event.
         /// </summary>
-        /// <param name="actionRule">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
-        public override void OnPerform(ActionRule actionRule)
+        /// <param name="action">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
+        public override void OnPerform(ActionRule action)
         {
-            DoAction(actionRule, element: default);
+            DoAction(action, element: default);
         }
 
         /// <summary>
         /// Moves the mouse to the specified element. This action will trigger [mouseover] event.
         /// </summary>
-        /// <param name="actionRule">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
+        /// <param name="action">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
         /// <param name="element">This <see cref="IWebElement"/> instance on which to perform the action (provided by the extraction rule).</param>
-        public override void OnPerform(ActionRule actionRule, IWebElement element)
+        public override void OnPerform(ActionRule action, IWebElement element)
         {
-            DoAction(actionRule, element);
+            DoAction(action, element);
         }
 
-        // executes action routine
-        private void DoAction(ActionRule actionRule, IWebElement element)
+        // execute action routine
+        private void DoAction(ActionRule action, IWebElement element)
         {
             // get element
-            var onElement = this.ConditionalGetElement(element, actionRule);
+            var onElement = this.ConditionalGetElement(element, action);
 
             // get actions
             var actions = new OpenQA.Selenium.Interactions.Actions(WebDriver);

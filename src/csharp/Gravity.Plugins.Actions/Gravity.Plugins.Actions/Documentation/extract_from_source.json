@@ -13,8 +13,8 @@
       },
       "extractionExample": {
         "pageSource": true,
-        "rootElementToExtractFrom": "//div",
-        "elementsToExtract": [
+        "onRootElements": "//div",
+        "onElements": [
           {
             "key": "data"
           }
@@ -29,8 +29,8 @@
       },
       "extractionExample": {
         "pageSource": true,
-        "rootElementToExtractFrom": "//div",
-        "elementsToExtract": [
+        "onRootElements": "//div",
+        "onElements": [
           {
             "regularExpression": "foo bar",
             "key": "data"
@@ -46,10 +46,10 @@
       },
       "extractionExample": {
         "pageSource": true,
-        "rootElementToExtractFrom": "//div",
-        "elementsToExtract": [
+        "onRootElements": "//div",
+        "onElements": [
           {
-            "elementAttributeToActOn": "class",
+            "onAttribute": "class",
             "key": "data"
           }
         ]
@@ -63,10 +63,10 @@
       },
       "extractionExample": {
         "pageSource": true,
-        "rootElementToExtractFrom": "//div",
-        "elementsToExtract": [
+        "onRootElements": "//div",
+        "onElements": [
           {
-            "elementAttributeToActOn": "class",
+            "onAttribute": "class",
             "regularExpression": "foo bar",
             "key": "data"
           }
@@ -81,10 +81,10 @@
       },
       "extractionExample": {
         "pageSource": true,
-        "rootElementToExtractFrom": "//div",
-        "elementsToExtract": [
+        "onRootElements": "//div",
+        "onElements": [
           {
-            "elementToActOn": "./span[1]",
+            "onElement": "./span[1]",
             "key": "data"
           }
         ]
@@ -98,10 +98,10 @@
       },
       "extractionExample": {
         "pageSource": true,
-        "rootElementToExtractFrom": "//div",
-        "elementsToExtract": [
+        "onRootElements": "//div",
+        "onElements": [
           {
-            "elementToActOn": "./span[1]",
+            "onElement": "./span[1]",
             "regularExpression": "foo bar",
             "key": "data"
           }
@@ -116,11 +116,11 @@
       },
       "extractionExample": {
         "pageSource": true,
-        "rootElementToExtractFrom": "//div",
-        "elementsToExtract": [
+        "onRootElements": "//div",
+        "onElements": [
           {
-            "elementToActOn": "./span[1]",
-            "elementAttributeToActOn": "class",
+            "onElement": "./span[1]",
+            "onAttribute": "class",
             "key": "data"
           }
         ]
@@ -134,11 +134,11 @@
       },
       "extractionExample": {
         "pageSource": true,
-        "rootElementToExtractFrom": "//div",
-        "elementsToExtract": [
+        "onRootElements": "//div",
+        "onElements": [
           {
-            "elementToActOn": "./span[1]",
-            "elementAttributeToActOn": "class",
+            "onElement": "./span[1]",
+            "onAttribute": "class",
             "regularExpression": "foo bar",
             "key": "data"
           }
@@ -153,10 +153,10 @@
       },
       "extractionExample": {
         "pageSource": true,
-        "rootElementToExtractFrom": "//div",
-        "elementsToExtract": [
+        "onRootElements": "//div",
+        "onElements": [
           {
-            "elementAttributeToActOn": "html",
+            "onAttribute": "html",
             "key": "data"
           }
         ]
@@ -170,11 +170,11 @@
       },
       "extractionExample": {
         "pageSource": true,
-        "rootElementToExtractFrom": "//div",
-        "elementsToExtract": [
+        "onRootElements": "//div",
+        "onElements": [
           {
-            "elementToActOn": "./span[1]",
-            "elementAttributeToActOn": "html",
+            "onElement": "./span[1]",
+            "onAttribute": "html",
             "key": "data"
           }
         ]
@@ -188,10 +188,10 @@
       },
       "extractionExample": {
         "pageSource": true,
-        "rootElementToExtractFrom": "//div",
-        "elementsToExtract": [
+        "onRootElements": "//div",
+        "onElements": [
           {
-            "elementToActOn": "//p[1]",
+            "onElement": "//p[1]",
             "key": "data"
           }
         ]
@@ -204,11 +204,11 @@
         "actionType": "ExtractFromSource"
       },
       "extractionExample": {
-        "rootElementToExtractFrom": "//div",
-        "elementsToExtract": [
+        "onRootElements": "//div",
+        "onElements": [
           {
-            "elementToActOn": "//p[1]",
-            "elementAttributeToActOn": "id",
+            "onElement": "//p[1]",
+            "onAttribute": "id",
             "key": "data"
           }
         ]
@@ -227,8 +227,8 @@
           "repository": "FooTable"
         },
         "pageSource": true,
-        "rootElementToExtractFrom": "//div",
-        "elementsToExtract": [
+        "onRootElements": "//div",
+        "onElements": [
           {
             "key": "data"
           }
@@ -249,8 +249,8 @@
           "writePerEntity": true
         },
         "pageSource": true,
-        "rootElementToExtractFrom": "//div",
-        "elementsToExtract": [
+        "onRootElements": "//div",
+        "onElements": [
           {
             "key": "data"
           }
@@ -269,8 +269,8 @@
           "source": "Data/foo.csv"
         },
         "pageSource": true,
-        "rootElementToExtractFrom": "//div",
-        "elementsToExtract": [
+        "onRootElements": "//div",
+        "onElements": [
           {
             "key": "data"
           }
@@ -290,8 +290,8 @@
           "writePerEntity": true
         },
         "pageSource": true,
-        "rootElementToExtractFrom": "//div",
-        "elementsToExtract": [
+        "onRootElements": "//div",
+        "onElements": [
           {
             "key": "data"
           }
@@ -310,8 +310,8 @@
           "source": "Data/foo.json"
         },
         "pageSource": true,
-        "rootElementToExtractFrom": "//div",
-        "elementsToExtract": [
+        "onRootElements": "//div",
+        "onElements": [
           {
             "key": "data"
           }
@@ -331,8 +331,8 @@
           "writePerEntity": true
         },
         "pageSource": true,
-        "rootElementToExtractFrom": "//div",
-        "elementsToExtract": [
+        "onRootElements": "//div",
+        "onElements": [
           {
             "key": "data"
           }
@@ -351,8 +351,8 @@
           "source": "Data/foo.xml"
         },
         "pageSource": true,
-        "rootElementToExtractFrom": "//div",
-        "elementsToExtract": [
+        "onRootElements": "//div",
+        "onElements": [
           {
             "key": "data"
           }
@@ -372,8 +372,8 @@
           "writePerEntity": true
         },
         "pageSource": true,
-        "rootElementToExtractFrom": "//div",
-        "elementsToExtract": [
+        "onRootElements": "//div",
+        "onElements": [
           {
             "key": "data"
           }
@@ -392,8 +392,8 @@
           "source": "http://foo-bar.io/data"
         },
         "pageSource": true,
-        "rootElementToExtractFrom": "//div",
-        "elementsToExtract": [
+        "onRootElements": "//div",
+        "onElements": [
           {
             "key": "data"
           }
@@ -413,8 +413,8 @@
           "writePerEntity": true
         },
         "pageSource": true,
-        "rootElementToExtractFrom": "//div",
-        "elementsToExtract": [
+        "onRootElements": "//div",
+        "onElements": [
           {
             "key": "data"
           }

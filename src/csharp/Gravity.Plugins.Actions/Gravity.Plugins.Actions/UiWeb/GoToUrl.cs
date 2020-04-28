@@ -1,7 +1,7 @@
 ﻿/*
  * CHANGE LOG - keep only last 5 threads
  * 
- * on-line resources
+ * online resources
  */
 using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Actions.Extensions;
@@ -20,9 +20,9 @@ namespace Gravity.Plugins.Actions.UiWeb
         Name = WebPlugins.GoToUrl)]
     public class GoToUrl : WebDriverActionPlugin
     {
-        #region *** conditions   ***
+        #region *** arguments    ***
         /// <summary>
-        /// "Opens the URL address using [_blank] property (under new tab or window).
+        /// Opens the URL address using [_blank] property (under new tab or window).
         /// </summary>
         public const string Blank = "blank";
 
@@ -36,10 +36,10 @@ namespace Gravity.Plugins.Actions.UiWeb
         /// <summary>
         /// Creates a new instance of this plugin.
         /// </summary>
-        /// <param name="webAutomation">This <see cref="WebAutomation"/> object (the original object sent by the user).</param>
+        /// <param name="automation">This <see cref="WebAutomation"/> object (the original object sent by the user).</param>
         /// <param name="driver"><see cref="IWebDriver"/> implementation by which to execute the action.</param>
-        public GoToUrl(WebAutomation webAutomation, IWebDriver driver)
-            : base(webAutomation, driver)
+        public GoToUrl(WebAutomation automation, IWebDriver driver)
+            : base(automation, driver)
         { }
         #endregion
 
@@ -50,29 +50,29 @@ namespace Gravity.Plugins.Actions.UiWeb
         /// Load a new web page in the current browser window.
         /// This is done using an HTTP GET operation and the method will block until the load is complete.
         /// </summary>
-        /// <param name="actionRule">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
-        public override void OnPerform(ActionRule actionRule)
+        /// <param name="action">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
+        public override void OnPerform(ActionRule action)
         {
-            DoAction(actionRule, element: default);
+            DoAction(action, element: default);
         }
 
         /// <summary>
         /// Load a new web page in the current browser window.
         /// This is done using an HTTP GET operation and the method will block until the load is complete.
         /// </summary>
-        /// <param name="actionRule">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
+        /// <param name="action">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
         /// <param name="element">This <see cref="IWebElement"/> instance on which to perform the action (provided by the extraction rule).</param>
-        public override void OnPerform(ActionRule actionRule, IWebElement element)
+        public override void OnPerform(ActionRule action, IWebElement element)
         {
-            DoAction(actionRule, element);
+            DoAction(action, element);
         }
 
-        // executes action routine
-        private void DoAction(ActionRule actionRule, IWebElement element)
+        // execute action routine
+        private void DoAction(ActionRule action, IWebElement element)
         {
             // setup
-            arguments = GetArguments(actionRule.Argument);
-            var url = GetUrlAddress(actionRule, element);
+            arguments = GetArguments(action.Argument);
+            var url = GetUrlAddress(action, element);
 
             // navigate
             if (arguments.ContainsKey(Blank))
@@ -96,10 +96,10 @@ namespace Gravity.Plugins.Actions.UiWeb
                 [Url] = cli
             };
 
-        private string GetUrlAddress(ActionRule actionRule, IWebElement element)
+        private string GetUrlAddress(ActionRule action, IWebElement element)
         {
             // setup
-            var onElement = this.ConditionalGetElement(element, actionRule);
+            var onElement = this.ConditionalGetElement(element, action);
 
             // exit conditions
             var isOnElement = onElement != default;
@@ -111,9 +111,9 @@ namespace Gravity.Plugins.Actions.UiWeb
             }
 
             // result
-            return string.IsNullOrEmpty(actionRule.ElementAttributeToActOn)
+            return string.IsNullOrEmpty(action.OnAttribute)
                 ? onElement.Text
-                : onElement.GetAttribute(actionRule.ElementAttributeToActOn);
+                : onElement.GetAttribute(action.OnAttribute);
         }
 
         // UTILITIES

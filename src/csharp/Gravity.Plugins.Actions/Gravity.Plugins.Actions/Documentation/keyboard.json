@@ -21,7 +21,7 @@
   "name": "Keyboard",
   "pluginType": "Action",
   "properties": {
-    "elementToActOn": "The locator value by which the element will be found.",
+    "onElement": "The locator value by which the element will be found.",
     "locator": "The locator type by which the element will be found.",
     "argument": "The text to type into the element."
   },

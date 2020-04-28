@@ -1,7 +1,7 @@
 ﻿/*
  * CHANGE LOG - keep only last 5 threads
  * 
- * on-line resources
+ * online resources
  */
 using Gravity.Plugins.Actions.UnitTests.Base;
 using Gravity.Plugins.Actions.UiWeb;
@@ -19,19 +19,19 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         [TestMethod]
         public void SwitchToDefaultContentCreate()
         {
-            ValidateAction<SwitchToDefaultContent>();
+            AssertPlugin<SwitchToDefaultContent>();
         }
 
         [TestMethod]
         public void SwitchToDefaultContentDocumentation()
         {
-            ValidateActionDocumentation<SwitchToDefaultContent>(WebPlugins.SwitchToDefaultContent);
+            AssertDocumentation<SwitchToDefaultContent>(WebPlugins.SwitchToDefaultContent);
         }
 
         [TestMethod]
         public void SwitchToDefaultContentDocumentationResourceFile()
         {
-            ValidateActionDocumentation<SwitchToDefaultContent>(
+            AssertDocumentation<SwitchToDefaultContent>(
                 WebPlugins.SwitchToDefaultContent, "switch_to_default_content.json");
         }
 

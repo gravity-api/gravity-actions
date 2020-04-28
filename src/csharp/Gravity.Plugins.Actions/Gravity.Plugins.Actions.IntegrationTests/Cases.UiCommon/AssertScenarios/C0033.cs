@@ -33,7 +33,7 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.AssertScenario
                 {
                     ActionType = CommonPlugins.Assert,
                     Argument = "{{$ --text --gt:" + expected + "}}",
-                    ElementToActOn = "number for testing",
+                    OnElement = "number for testing",
                     Locator = LocatorType.Name
                 }
             };

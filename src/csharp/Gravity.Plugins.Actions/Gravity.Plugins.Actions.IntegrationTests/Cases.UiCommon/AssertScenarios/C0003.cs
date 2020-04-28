@@ -36,8 +36,8 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.AssertScenario
                 {
                     ActionType = CommonPlugins.Assert,
                     Argument = "{{$ --attribute --ne:" + expected + "}}",
-                    ElementToActOn = "p:nth-child(3) > a",
-                    ElementAttributeToActOn = "class",
+                    OnElement = "p:nth-child(3) > a",
+                    OnAttribute = "class",
                     Locator = LocatorType.CssSelector
                 }
             };

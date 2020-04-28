@@ -29,7 +29,7 @@
       "actionExample": {
         "actionType": "ExecuteScript",
         "argument": "{arguments[0].click();}",
-        "elementToActOn": "click_button",
+        "onElement": "click_button",
         "locator": "Id"
       }
     },
@@ -56,8 +56,8 @@
         "actionType": "ExtractFromDom"
       },
       "extractionExample": {
-        "rootElementToExtractFrom": "//input[@id='input_selected']",
-        "elementsToExtract": [
+        "onRootElements": "//input[@id='input_selected']",
+        "onElements": [
           {
             "key": "inner_text",
             "actions": [
@@ -74,7 +74,7 @@
   "name": "ExecuteScript",
   "pluginType": "Action",
   "properties": {
-    "elementToActOn": "The locator value by which the element will be found.",
+    "onElement": "The locator value by which the element will be found.",
     "locator": "The locator type by which the element will be found.",
     "argument": "Plugin conditions and additional information."
   },

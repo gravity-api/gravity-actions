@@ -1,7 +1,7 @@
 ﻿/*
  * CHANGE LOG - keep only last 5 threads
  * 
- * on-line resources
+ * online resources
  */
 using Gravity.Plugins.Actions.Components;
 using Gravity.Plugins.Actions.Contracts;
@@ -27,10 +27,10 @@ namespace Gravity.Plugins.Actions.UiCommon
         /// <summary>
         /// Creates a new instance of this plugin.
         /// </summary>
-        /// <param name="webAutomation">This <see cref="WebAutomation"/> object (the original object sent by the user).</param>
+        /// <param name="automation">This <see cref="WebAutomation"/> object (the original object sent by the user).</param>
         /// <param name="driver"><see cref="IWebDriver"/> implementation by which to execute the action.</param>
-        public Assert(WebAutomation webAutomation, IWebDriver driver)
-            : base(webAutomation, driver)
+        public Assert(WebAutomation automation, IWebDriver driver)
+            : base(automation, driver)
         { }
         #endregion
 
@@ -38,21 +38,21 @@ namespace Gravity.Plugins.Actions.UiCommon
         /// Allows a sub set of actions execution, based on a given condition.
         /// The sub set actions will be executed if the condition result is <see cref="true"/>.
         /// </summary>
-        /// <param name="actionRule">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
-        public override void OnPerform(ActionRule actionRule)
+        /// <param name="action">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
+        public override void OnPerform(ActionRule action)
         {
-            DoAction(actionRule, element: default);
+            DoAction(action, element: default);
         }
 
         /// <summary>
         /// Allows a sub set of actions execution, based on a given condition.
         /// The sub set actions will be executed if the condition result is <see cref="true"/>.
         /// </summary>
-        /// <param name="actionRule">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
+        /// <param name="action">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
         /// <param name="element">This <see cref="IWebElement"/> instance on which to perform the action (provided by the extraction rule).</param>
-        public override void OnPerform(ActionRule actionRule, IWebElement element)
+        public override void OnPerform(ActionRule action, IWebElement element)
         {
-            DoAction(actionRule, element);
+            DoAction(action, element);
         }
 
         // executes Wait routine
@@ -60,7 +60,7 @@ namespace Gravity.Plugins.Actions.UiCommon
         {
             // setup
             var wait = new WebDriverWait(
-                WebDriver, TimeSpan.FromMilliseconds(WebAutomation.EngineConfiguration.ElementSearchingTimeout));
+                WebDriver, TimeSpan.FromMilliseconds(Automation.EngineConfiguration.ElementSearchingTimeout));
             IDictionary<string, object> assertion = null;
 
             // execute assertion
@@ -82,7 +82,7 @@ namespace Gravity.Plugins.Actions.UiCommon
             {
                 new Entity { EntityContent =  assertion}
             };
-            ExtractionResults.Add(extraction);
+            Extractions.Add(extraction);
         }
     }
 }

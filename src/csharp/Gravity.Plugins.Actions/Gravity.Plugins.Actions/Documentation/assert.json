@@ -8,9 +8,9 @@
     "le": "Less than or equal (<=).",
     "match": "Returns true when string matches regex.",
     "notmatch": "Returns true when string does not match regex.",
-    "url": "Takes the current page url as the actual result, ignoring elementToActOn.",
-    "title": "Takes the current page title as the actual result, ignoring elementToActOn.",
-    "count": "Takes the count of the elements found by elementToActOn as the actual result.",
+    "url": "Takes the current page url as the actual result, ignoring onElement.",
+    "title": "Takes the current page title as the actual result, ignoring onElement.",
+    "count": "Takes the count of the elements found by onElement as the actual result.",
     "driver": "Takes the current web-driver implementation name.",
     "attribute": "boolean: Assert that element attribute matches regex.",
     "enabled": "boolean: Assert element [enabled] state.",
@@ -28,9 +28,9 @@
       "actionExample": {
         "actionType": "Assert",
         "argument": "{{$ --attribute --eq:nav-link text-dark}}",
-        "elementToActOn": "ul > li:nth-child(1) > a",
+        "onElement": "ul > li:nth-child(1) > a",
         "locator": "CssSelector",
-        "elementAttributeToActOn": "class"
+        "onAttribute": "class"
       }
     },
     {
@@ -39,9 +39,9 @@
       "actionExample": {
         "actionType": "Assert",
         "argument": "{{$ --attribute --ne:btn-default btn}}",
-        "elementToActOn": "p:nth-child(3) > a",
+        "onElement": "p:nth-child(3) > a",
         "locator": "CssSelector",
-        "elementAttributeToActOn": "class"
+        "onAttribute": "class"
       }
     },
     {
@@ -50,9 +50,9 @@
       "actionExample": {
         "actionType": "Assert",
         "argument": "{{$ --attribute --match:^btn btn-default$}}",
-        "elementToActOn": "See the tutorial �",
+        "onElement": "See the tutorial �",
         "locator": "LinkText",
-        "elementAttributeToActOn": "class"
+        "onAttribute": "class"
       }
     },
     {
@@ -61,9 +61,9 @@
       "actionExample": {
         "actionType": "Assert",
         "argument": "{{$ --attribute --not_match:^btn-default btn$}}",
-        "elementToActOn": "See the tutorial �",
+        "onElement": "See the tutorial �",
         "locator": "LinkText",
-        "elementAttributeToActOn": "class"
+        "onAttribute": "class"
       }
     },
     {
@@ -72,9 +72,9 @@
       "actionExample": {
         "actionType": "Assert",
         "argument": "{{$ --attribute --gt:1}}",
-        "elementToActOn": "#attribute_div",
+        "onElement": "#attribute_div",
         "locator": "CssSelector",
-        "elementAttributeToActOn": "number"
+        "onAttribute": "number"
       }
     },
     {
@@ -83,9 +83,9 @@
       "actionExample": {
         "actionType": "Assert",
         "argument": "{{$ --attribute --lt:1}}",
-        "elementToActOn": "#attribute_div",
+        "onElement": "#attribute_div",
         "locator": "CssSelector",
-        "elementAttributeToActOn": "number"
+        "onAttribute": "number"
       }
     },
     {
@@ -94,9 +94,9 @@
       "actionExample": {
         "actionType": "Assert",
         "argument": "{{$ --attribute --ge:1}}",
-        "elementToActOn": "#attribute_div",
+        "onElement": "#attribute_div",
         "locator": "CssSelector",
-        "elementAttributeToActOn": "number"
+        "onAttribute": "number"
       }
     },
     {
@@ -105,9 +105,9 @@
       "actionExample": {
         "actionType": "Assert",
         "argument": "{{$ --attribute --le:1}}",
-        "elementToActOn": "#attribute_div",
+        "onElement": "#attribute_div",
         "locator": "CssSelector",
-        "elementAttributeToActOn": "number"
+        "onAttribute": "number"
       }
     },
     {
@@ -116,7 +116,7 @@
       "actionExample": {
         "actionType": "Assert",
         "argument": "{{$ --count --eq:7}}",
-        "elementToActOn": "//tbody/tr"
+        "onElement": "//tbody/tr"
       }
     },
     {
@@ -125,7 +125,7 @@
       "actionExample": {
         "actionType": "Assert",
         "argument": "{{$ --count --ne:10}}",
-        "elementToActOn": "//tbody/tr"
+        "onElement": "//tbody/tr"
       }
     },
     {
@@ -134,7 +134,7 @@
       "actionExample": {
         "actionType": "Assert",
         "argument": "{{$ --count --match:^\\d{1}$}}",
-        "elementToActOn": "//tbody/tr"
+        "onElement": "//tbody/tr"
       }
     },
     {
@@ -143,7 +143,7 @@
       "actionExample": {
         "actionType": "Assert",
         "argument": "{{$ --count --not_match:^1\\d+$}}",
-        "elementToActOn": "//tbody/tr"
+        "onElement": "//tbody/tr"
       }
     },
     {
@@ -152,7 +152,7 @@
       "actionExample": {
         "actionType": "Assert",
         "argument": "{{$ --count --gt:1}}",
-        "elementToActOn": "//tbody/tr"
+        "onElement": "//tbody/tr"
       }
     },
     {
@@ -161,7 +161,7 @@
       "actionExample": {
         "actionType": "Assert",
         "argument": "{{$ --count --lt:10}}",
-        "elementToActOn": "//tbody/tr"
+        "onElement": "//tbody/tr"
       }
     },
     {
@@ -170,7 +170,7 @@
       "actionExample": {
         "actionType": "Assert",
         "argument": "{{$ --count --ge:1}}",
-        "elementToActOn": "//tbody/tr"
+        "onElement": "//tbody/tr"
       }
     },
     {
@@ -179,7 +179,7 @@
       "actionExample": {
         "actionType": "Assert",
         "argument": "{{$ --count --le:10}}",
-        "elementToActOn": "//tbody/tr"
+        "onElement": "//tbody/tr"
       }
     },
     {
@@ -188,7 +188,7 @@
       "actionExample": {
         "actionType": "Assert",
         "argument": "{{$ --disabled}}",
-        "elementToActOn": "input_disabled",
+        "onElement": "input_disabled",
         "locator": "Id"
       }
     },
@@ -230,7 +230,7 @@
       "actionExample": {
         "actionType": "Assert",
         "argument": "{{$ --enabled}}",
-        "elementToActOn": "input_enabled",
+        "onElement": "input_enabled",
         "locator": "Id"
       }
     },
@@ -240,7 +240,7 @@
       "actionExample": {
         "actionType": "Assert",
         "argument": "{{$ --exists}}",
-        "elementToActOn": "input_enabled",
+        "onElement": "input_enabled",
         "locator": "Id"
       }
     },
@@ -250,7 +250,7 @@
       "actionExample": {
         "actionType": "Assert",
         "argument": "{{$ --hidden}}",
-        "elementToActOn": "input_hidden",
+        "onElement": "input_hidden",
         "locator": "Id"
       }
     },
@@ -260,7 +260,7 @@
       "actionExample": {
         "actionType": "Assert",
         "argument": "{{$ --not_exists}}",
-        "elementToActOn": "no_element",
+        "onElement": "no_element",
         "locator": "Id"
       }
     },
@@ -270,7 +270,7 @@
       "actionExample": {
         "actionType": "Assert",
         "argument": "{{$ --selected}}",
-        "elementToActOn": "input_selected",
+        "onElement": "input_selected",
         "locator": "Id"
       }
     },
@@ -280,7 +280,7 @@
       "actionExample": {
         "actionType": "Assert",
         "argument": "{{$ --not_selected}}",
-        "elementToActOn": "input_not_selected",
+        "onElement": "input_not_selected",
         "locator": "Id"
       }
     },
@@ -290,7 +290,7 @@
       "actionExample": {
         "actionType": "Assert",
         "argument": "{{$ --stale}}",
-        "elementToActOn": "for_stale_element",
+        "onElement": "for_stale_element",
         "locator": "Id"
       }
     },
@@ -300,7 +300,7 @@
       "actionExample": {
         "actionType": "Assert",
         "argument": "{{$ --text --eq:Foo Bar}}",
-        "elementToActOn": "text for testing",
+        "onElement": "text for testing",
         "locator": "Name"
       }
     },
@@ -310,7 +310,7 @@
       "actionExample": {
         "actionType": "Assert",
         "argument": "{{$ --text --ne:Bar Foo}}",
-        "elementToActOn": "text for testing",
+        "onElement": "text for testing",
         "locator": "Name"
       }
     },
@@ -320,7 +320,7 @@
       "actionExample": {
         "actionType": "Assert",
         "argument": "{{$ --text --match:^Foo Bar$}}",
-        "elementToActOn": "text for testing",
+        "onElement": "text for testing",
         "locator": "Name"
       }
     },
@@ -330,7 +330,7 @@
       "actionExample": {
         "actionType": "Assert",
         "argument": "assert {{$ --text --not_match:^Bar Foo$}} on {text for testing} using {name}",
-        "elementToActOn": "text for testing",
+        "onElement": "text for testing",
         "locator": "Name"
       }
     },
@@ -340,7 +340,7 @@
       "actionExample": {
         "actionType": "Assert",
         "argument": "{{$ --text --gt:1}}",
-        "elementToActOn": "number for testing",
+        "onElement": "number for testing",
         "locator": "Name"
       }
     },
@@ -350,7 +350,7 @@
       "actionExample": {
         "actionType": "Assert",
         "argument": "{{$ --text --lt:100}}",
-        "elementToActOn": "number for testing",
+        "onElement": "number for testing",
         "locator": "Name"
       }
     },
@@ -360,7 +360,7 @@
       "actionExample": {
         "actionType": "Assert",
         "argument": "{{$ --text --ge:10}}",
-        "elementToActOn": "number for testing",
+        "onElement": "number for testing",
         "locator": "Name"
       }
     },
@@ -370,7 +370,7 @@
       "actionExample": {
         "actionType": "Assert",
         "argument": "{{$ --text --le:10}}",
-        "elementToActOn": "number for testing",
+        "onElement": "number for testing",
         "locator": "Name"
       }
     },
@@ -516,7 +516,7 @@
       "actionExample": {
         "actionType": "Assert",
         "argument": "{{$ --visible}}",
-        "elementToActOn": "input_enabled",
+        "onElement": "input_enabled",
         "locator": "Id"
       }
     },
@@ -589,8 +589,8 @@
   "pluginType": "Action",
   "properties": {
     "argument": "The assertion condition, operator and expected value.",
-    "elementAttributeToActOn": "The element attribute from which to extract information for action execution. If not specified, information will be taken from the element inner text.",
-    "elementToActOn": "The locator value by which the element will be found.",
+    "onAttribute": "The element attribute from which to extract information for action execution. If not specified, information will be taken from the element inner text.",
+    "onElement": "The locator value by which the element will be found.",
     "locator": "The locator type by which the element will be found.",
     "regularExpression": "A pattern by which the extracted information will be evaluated. Returns the first match."
   },

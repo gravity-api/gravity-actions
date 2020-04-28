@@ -6,14 +6,14 @@
       "literalExample": "move to element on {//tr[1]/td[6]/a[1]}",
       "actionExample": {
         "actionType": "MoveToElement",
-        "elementToActOn": "//tr[1]/td[6]/a[1]"
+        "onElement": "//tr[1]/td[6]/a[1]"
       }
     }
   ],
   "name": "MoveToElement",
   "pluginType": "Action",
   "properties": {
-    "elementToActOn": "The locator value by which the element will be found.",
+    "onElement": "The locator value by which the element will be found.",
     "locator": "The locator type by which the element will be found."
   },
   "protocol": {

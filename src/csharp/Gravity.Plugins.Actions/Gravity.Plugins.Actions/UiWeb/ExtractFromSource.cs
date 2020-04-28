@@ -1,7 +1,7 @@
 ﻿/*
  * CHANGE LOG - keep only last 5 threads
  * 
- * on-line resources
+ * online resources
  */
 using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Actions.Extensions;
@@ -35,71 +35,73 @@ namespace Gravity.Plugins.Actions.UiWeb
         /// A list of <see cref="ExtractionRule"/> to execute. This is a zero-based index based on
         /// <see cref="WebAutomation.Extractions"/> collection.
         /// </summary>
-        public const string Extractions = "extractions";
+        public const string ExtractionsArgument = "extractions";
         #endregion
 
         #region *** constructors ***
         /// <summary>
         /// Creates a new instance of this plugin.
         /// </summary>
-        /// <param name="webAutomation">This <see cref="WebAutomation"/> object (the original object sent by the user).</param>
+        /// <param name="automation">This <see cref="WebAutomation"/> object (the original object sent by the user).</param>
         /// <param name="driver"><see cref="IWebDriver"/> implementation by which to execute the action.</param>
-        public ExtractFromSource(WebAutomation webAutomation, IWebDriver driver)
-            : base(webAutomation, driver)
+        public ExtractFromSource(WebAutomation automation, IWebDriver driver)
+            : base(automation, driver)
         {
             macroFactory = new MacroFactory(Types);
         }
         #endregion
 
         /// <summary>
-        /// Executes <see cref="ExtractionRule"/> collection under this <see cref="Plugin.WebAutomation"/>.
+        /// Executes <see cref="ExtractionRule"/> collection under this <see cref="Plugin.Automation"/>.
         /// </summary>
-        /// <param name="actionRule">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
-        public override void OnPerform(ActionRule actionRule)
+        /// <param name="action">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
+        public override void OnPerform(ActionRule action)
         {
-            DoAction(actionRule);
+            DoAction(action);
         }
 
         /// <summary>
-        /// Executes <see cref="ExtractionRule"/> collection under this <see cref="Plugin.WebAutomation"/>.
+        /// Executes <see cref="ExtractionRule"/> collection under this <see cref="Plugin.Automation"/>.
         /// </summary>
-        /// <param name="actionRule">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
+        /// <param name="action">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
         /// <param name="element">This <see cref="IWebElement"/> instance on which to perform the action (provided by the extraction rule).</param>
-        public override void OnPerform(ActionRule actionRule, IWebElement element)
+        public override void OnPerform(ActionRule action, IWebElement element)
         {
-            DoAction(actionRule);
+            DoAction(action);
         }
 
-        // executes action routine
-        private void DoAction(ActionRule actionRule)
+        // execute action routine
+        private void DoAction(ActionRule action)
         {
             // setup
-            var arguments = CliFactory.Parse(actionRule.Argument);
-            var eList = arguments.ContainsKey(Extractions) ? arguments[Extractions].Split(',') : Array.Empty<string>();
-            var extrctions = WebAutomation.GetExtractionRules(extractions: eList);
+            var arguments = CliFactory.Parse(action.Argument);
+            var extractions = arguments.ContainsKey(ExtractionsArgument)
+                ? arguments[ExtractionsArgument].Split(',')
+                : Array.Empty<string>();
+            var onExtrctions = Automation.GetExtractionRules(extractions);
 
-            for (int i = 0; i < extrctions.Count(); i++)
+            for (int i = 0; i < onExtrctions.Count(); i++)
             {
-                DoExtraction(extractionRule: extrctions.ElementAt(i), key: $"{i}_{WebDriver.GetSession()}");
+                DoExtraction(extraction: onExtrctions.ElementAt(i), key: $"{i}_{WebDriver.GetSession()}");
             }
         }
 
         #region *** Data Extraction         ***
-        private void DoExtraction(ExtractionRule extractionRule, string key)
+        private void DoExtraction(ExtractionRule extraction, string key)
         {
             // setup
-            var onElements = GetRootElements(extractionRule, isFromSource: extractionRule.PageSource);
+            var onElements = GetRootElements(extraction, isFromSource: extraction.PageSource);
             var results = new List<Entity>();
 
             // extract from source
             for (int i = 0; i < onElements.Count(); i++)
             {
                 results.Add(DoContentEntriesFromSource(
-                    extractionRule, onElement: onElements.ElementAt(i), i));
+                    extraction, element: onElements.ElementAt(i), i));
             }
 
             // create extraction
-            var extraction = new Extraction()
+            var onExtraction = new Extraction()
             {
                 Entities = results,
                 Key = key
@@ -107,18 +109,18 @@ namespace Gravity.Plugins.Actions.UiWeb
             .GetDefault($"{WebDriver.GetSession()}");
 
             // apply
-            ExtractionResults.Add(extraction);
+            base.Extractions.Add(onExtraction);
 
             // populate
-            if(extractionRule.DataSource != default && !extractionRule.DataSource.WritePerEntity)
+            if(extraction.DataSource != default && !extraction.DataSource.WritePerEntity)
             {
-                extraction.Populate(extractionRule.DataSource);
+                onExtraction.Populate(extraction.DataSource);
             }
         }
         #endregion
 
         #region *** Data Extraction Source  ***
-        private Entity DoContentEntriesFromSource(ExtractionRule extractionRule, HtmlNode onElement, int index)
+        private Entity DoContentEntriesFromSource(ExtractionRule extraction, HtmlNode element, int index)
         {
             // setup
             var entity = new Entity()
@@ -128,34 +130,34 @@ namespace Gravity.Plugins.Actions.UiWeb
             entity.EntityContent["EntityIndex"] = index;
 
             // extract
-            foreach (var entry in extractionRule.ElementsToExtract)
+            foreach (var entry in extraction.OnElements)
             {
-                var contentEntry = DoContentEntryFromSource(entry, onElement);
+                var contentEntry = DoContentEntryFromSource(entry, element);
                 entity.EntityContent[contentEntry.Key] = contentEntry.Value;
             }
 
             // populate
-            if (extractionRule.DataSource != default && extractionRule.DataSource.WritePerEntity)
+            if (extraction.DataSource != default && extraction.DataSource.WritePerEntity)
             {
-                entity.Populate(extractionRule.DataSource);
+                entity.Populate(extraction.DataSource);
             }
 
             // result
             return entity;
         }
 
-        private KeyValuePair<string, object> DoContentEntryFromSource(ContentEntry entry, HtmlNode onElement)
+        private KeyValuePair<string, object> DoContentEntryFromSource(ContentEntry entry, HtmlNode element)
         {
             // setup
-            var htmlNode = onElement;
+            var htmlNode = element;
             var onEntry = macroFactory.Get(entry);
 
             // if not self, take from element or from page
-            if (!string.IsNullOrEmpty(onEntry.ElementToActOn))
+            if (!string.IsNullOrEmpty(onEntry.OnElement))
             {
-                htmlNode = onEntry.ElementToActOn.IsXpath(isRelative: true)
-                    ? onElement.SelectSingleNode(onEntry.ElementToActOn)
-                    : onElement.OwnerDocument.DocumentNode.SelectSingleNode(onEntry.ElementToActOn);
+                htmlNode = onEntry.OnElement.IsXpath(isRelative: true)
+                    ? element.SelectSingleNode(onEntry.OnElement)
+                    : element.OwnerDocument.DocumentNode.SelectSingleNode(onEntry.OnElement);
             }
 
             // exit conditions
@@ -165,9 +167,9 @@ namespace Gravity.Plugins.Actions.UiWeb
             }
 
             // get value, take text or attribute
-            var value = string.IsNullOrEmpty(onEntry.ElementAttributeToActOn)
+            var value = string.IsNullOrEmpty(onEntry.OnAttribute)
                 ? htmlNode.InnerText
-                : GetAttributeValue(element: htmlNode, attribute: onEntry.ElementAttributeToActOn);
+                : GetAttributeValue(element: htmlNode, attribute: onEntry.OnAttribute);
 
             // result
             return new KeyValuePair<string, object>(
@@ -177,7 +179,7 @@ namespace Gravity.Plugins.Actions.UiWeb
         #endregion
 
         #region *** HTML/Elements Cache     ***
-        private IEnumerable<HtmlNode> GetRootElements(ExtractionRule extractionRule, bool isFromSource)
+        private IEnumerable<HtmlNode> GetRootElements(ExtractionRule extraction, bool isFromSource)
         {
             // setup
             var body = isFromSource ? WebDriver.PageSource : WebDriver.GetElement(By.XPath("//body")).GetSource();
@@ -185,7 +187,7 @@ namespace Gravity.Plugins.Actions.UiWeb
             htmlDocument.LoadHtml(body);
 
             // result
-            return htmlDocument.DocumentNode.SelectNodes(extractionRule.RootElementToExtractFrom);
+            return htmlDocument.DocumentNode.SelectNodes(extraction.OnRootElements);
         }
         #endregion
 

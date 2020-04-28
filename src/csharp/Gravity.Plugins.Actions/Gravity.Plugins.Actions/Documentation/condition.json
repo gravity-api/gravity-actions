@@ -1,7 +1,7 @@
 {
   "cliArguments": {
     "attribute": {
-      "description": "Return [true] if the [ActionRule.ElementAttributeToActOn] value meets a condition. The text based conditions are case sensitive.",
+      "description": "Return [true] if the [ActionRule.onAttribute] value meets a condition. The text based conditions are case sensitive.",
       "values": [
         { "eq": "The attribute value and the provided value (expected) are equal." },
         { "ne": "The attribute value and the provided value (expected) are not equal." },
@@ -14,7 +14,7 @@
       ]
     },
     "count": {
-      "description": "Return [true] if the [ActionRule.ElementToActOn] count (total elements found by the locator) meets a condition. The text based conditions are case sensitive.",
+      "description": "Return [true] if the [ActionRule.onElement] count (total elements found by the locator) meets a condition. The text based conditions are case sensitive.",
       "values": [
         { "eq": "The actual count and the provided value (expected) are equal." },
         { "ne": "The actual count and the provided value (expected) are not equal." },
@@ -61,7 +61,7 @@
       "description": "Return [true] if the element is stale (element reference out dated or broken)."
     },
     "text": {
-      "description": "Return [true] if the [ActionRule.ElementToActOn] inner text meets a condition. The text based conditions are case sensitive.",
+      "description": "Return [true] if the [ActionRule.onElement] inner text meets a condition. The text based conditions are case sensitive.",
       "values": [
         { "eq": "The text value and the provided value (expected) are equal." },
         { "ne": "The text value and the provided value (expected) are not equal." },
@@ -124,16 +124,16 @@
       "actionExample": {
         "actionType": "Condition",
         "argument": "{{$ --attribute --eq:active}}",
-        "elementToActOn": "//form/div[6]/input",
-        "elementAttributeToActOn": "class",
+        "onElement": "//form/div[6]/input",
+        "onAttribute": "class",
         "actions": [
           {
             "actionType": "Click",
-            "elementToActOn": "//form/div[6]/input"
+            "onElement": "//form/div[6]/input"
           },
           {
             "actionType": "Click",
-            "elementToActOn": "//main/p/a"
+            "onElement": "//main/p/a"
           }
         ]
       }
@@ -144,16 +144,16 @@
       "actionExample": {
         "actionType": "Condition",
         "argument": "{{$ --attribute --ne:active}}",
-        "elementToActOn": "//form/div[6]/input",
-        "elementAttributeToActOn": "class",
+        "onElement": "//form/div[6]/input",
+        "onAttribute": "class",
         "actions": [
           {
             "actionType": "Click",
-            "elementToActOn": "//form/div[6]/input"
+            "onElement": "//form/div[6]/input"
           },
           {
             "actionType": "Click",
-            "elementToActOn": "//main/p/a"
+            "onElement": "//main/p/a"
           }
         ]
       }
@@ -164,16 +164,16 @@
       "actionExample": {
         "actionType": "Condition",
         "argument": "{{$ --attribute --match:^active$}}",
-        "elementToActOn": "//form/div[6]/input",
-        "elementAttributeToActOn": "class",
+        "onElement": "//form/div[6]/input",
+        "onAttribute": "class",
         "actions": [
           {
             "actionType": "Click",
-            "elementToActOn": "//form/div[6]/input"
+            "onElement": "//form/div[6]/input"
           },
           {
             "actionType": "Click",
-            "elementToActOn": "//main/p/a"
+            "onElement": "//main/p/a"
           }
         ]
       }
@@ -184,16 +184,16 @@
       "actionExample": {
         "actionType": "Condition",
         "argument": "{{$ --attribute --not_match:^active$}}",
-        "elementToActOn": "//form/div[6]/input",
-        "elementAttributeToActOn": "class",
+        "onElement": "//form/div[6]/input",
+        "onAttribute": "class",
         "actions": [
           {
             "actionType": "Click",
-            "elementToActOn": "//form/div[6]/input"
+            "onElement": "//form/div[6]/input"
           },
           {
             "actionType": "Click",
-            "elementToActOn": "//main/p/a"
+            "onElement": "//main/p/a"
           }
         ]
       }
@@ -204,16 +204,16 @@
       "actionExample": {
         "actionType": "Condition",
         "argument": "{{$ --attribute --gt:1}}",
-        "elementToActOn": "//form/div[6]/input",
-        "elementAttributeToActOn": "id",
+        "onElement": "//form/div[6]/input",
+        "onAttribute": "id",
         "actions": [
           {
             "actionType": "Click",
-            "elementToActOn": "//form/div[6]/input"
+            "onElement": "//form/div[6]/input"
           },
           {
             "actionType": "Click",
-            "elementToActOn": "//main/p/a"
+            "onElement": "//main/p/a"
           }
         ]
       }
@@ -224,16 +224,16 @@
       "actionExample": {
         "actionType": "Condition",
         "argument": "{{$ --attribute --lt:1}}",
-        "elementToActOn": "//form/div[6]/input",
-        "elementAttributeToActOn": "id",
+        "onElement": "//form/div[6]/input",
+        "onAttribute": "id",
         "actions": [
           {
             "actionType": "Click",
-            "elementToActOn": "//form/div[6]/input"
+            "onElement": "//form/div[6]/input"
           },
           {
             "actionType": "Click",
-            "elementToActOn": "//main/p/a"
+            "onElement": "//main/p/a"
           }
         ]
       }
@@ -244,16 +244,16 @@
       "actionExample": {
         "actionType": "Condition",
         "argument": "{{$ --attribute --ge:1}}",
-        "elementToActOn": "//form/div[6]/input",
-        "elementAttributeToActOn": "id",
+        "onElement": "//form/div[6]/input",
+        "onAttribute": "id",
         "actions": [
           {
             "actionType": "Click",
-            "elementToActOn": "//form/div[6]/input"
+            "onElement": "//form/div[6]/input"
           },
           {
             "actionType": "Click",
-            "elementToActOn": "//main/p/a"
+            "onElement": "//main/p/a"
           }
         ]
       }
@@ -264,16 +264,16 @@
       "actionExample": {
         "actionType": "Condition",
         "argument": "{{$ --attribute --le:1}}",
-        "elementToActOn": "//form/div[6]/input",
-        "elementAttributeToActOn": "id",
+        "onElement": "//form/div[6]/input",
+        "onAttribute": "id",
         "actions": [
           {
             "actionType": "Click",
-            "elementToActOn": "//form/div[6]/input"
+            "onElement": "//form/div[6]/input"
           },
           {
             "actionType": "Click",
-            "elementToActOn": "//main/p/a"
+            "onElement": "//main/p/a"
           }
         ]
       }
@@ -284,15 +284,15 @@
       "actionExample": {
         "actionType": "Condition",
         "argument": "{{$ --count --eq:0}}",
-        "elementToActOn": "//form/div[6]/input",
+        "onElement": "//form/div[6]/input",
         "actions": [
           {
             "actionType": "Click",
-            "elementToActOn": "//form/div[6]/input"
+            "onElement": "//form/div[6]/input"
           },
           {
             "actionType": "Click",
-            "elementToActOn": "//main/p/a"
+            "onElement": "//main/p/a"
           }
         ]
       }
@@ -303,15 +303,15 @@
       "actionExample": {
         "actionType": "Condition",
         "argument": "{{$ --count --ne:0}}",
-        "elementToActOn": "//form/div[6]/input",
+        "onElement": "//form/div[6]/input",
         "actions": [
           {
             "actionType": "Click",
-            "elementToActOn": "//form/div[6]/input"
+            "onElement": "//form/div[6]/input"
           },
           {
             "actionType": "Click",
-            "elementToActOn": "//main/p/a"
+            "onElement": "//main/p/a"
           }
         ]
       }
@@ -322,15 +322,15 @@
       "actionExample": {
         "actionType": "Condition",
         "argument": "{{$ --count --match:\\d+}}",
-        "elementToActOn": "//form/div[6]/input",
+        "onElement": "//form/div[6]/input",
         "actions": [
           {
             "actionType": "Click",
-            "elementToActOn": "//form/div[6]/input"
+            "onElement": "//form/div[6]/input"
           },
           {
             "actionType": "Click",
-            "elementToActOn": "//main/p/a"
+            "onElement": "//main/p/a"
           }
         ]
       }
@@ -341,15 +341,15 @@
       "actionExample": {
         "actionType": "Condition",
         "argument": "{{$ --count --not_match:\\d+}}",
-        "elementToActOn": "//form/div[6]/input",
+        "onElement": "//form/div[6]/input",
         "actions": [
           {
             "actionType": "Click",
-            "elementToActOn": "//form/div[6]/input"
+            "onElement": "//form/div[6]/input"
           },
           {
             "actionType": "Click",
-            "elementToActOn": "//main/p/a"
+            "onElement": "//main/p/a"
           }
         ]
       }
@@ -360,15 +360,15 @@
       "actionExample": {
         "actionType": "Condition",
         "argument": "{{$ --count --gt:1}}",
-        "elementToActOn": "//form/div[6]/input",
+        "onElement": "//form/div[6]/input",
         "actions": [
           {
             "actionType": "Click",
-            "elementToActOn": "//form/div[6]/input"
+            "onElement": "//form/div[6]/input"
           },
           {
             "actionType": "Click",
-            "elementToActOn": "//main/p/a"
+            "onElement": "//main/p/a"
           }
         ]
       }
@@ -379,15 +379,15 @@
       "actionExample": {
         "actionType": "Condition",
         "argument": "{{$ --count --lt:1}}",
-        "elementToActOn": "//form/div[6]/input",
+        "onElement": "//form/div[6]/input",
         "actions": [
           {
             "actionType": "Click",
-            "elementToActOn": "//form/div[6]/input"
+            "onElement": "//form/div[6]/input"
           },
           {
             "actionType": "Click",
-            "elementToActOn": "//main/p/a"
+            "onElement": "//main/p/a"
           }
         ]
       }
@@ -398,15 +398,15 @@
       "actionExample": {
         "actionType": "Condition",
         "argument": "{{$ --count --ge:1}}",
-        "elementToActOn": "//form/div[6]/input",
+        "onElement": "//form/div[6]/input",
         "actions": [
           {
             "actionType": "Click",
-            "elementToActOn": "//form/div[6]/input"
+            "onElement": "//form/div[6]/input"
           },
           {
             "actionType": "Click",
-            "elementToActOn": "//main/p/a"
+            "onElement": "//main/p/a"
           }
         ]
       }
@@ -417,15 +417,15 @@
       "actionExample": {
         "actionType": "Condition",
         "argument": "{{$ --count --le:1}}",
-        "elementToActOn": "//form/div[6]/input",
+        "onElement": "//form/div[6]/input",
         "actions": [
           {
             "actionType": "Click",
-            "elementToActOn": "//form/div[6]/input"
+            "onElement": "//form/div[6]/input"
           },
           {
             "actionType": "Click",
-            "elementToActOn": "//main/p/a"
+            "onElement": "//main/p/a"
           }
         ]
       }
@@ -436,15 +436,15 @@
       "actionExample": {
         "actionType": "Condition",
         "argument": "{{$ --disabled}}",
-        "elementToActOn": "//form/div[6]/input",
+        "onElement": "//form/div[6]/input",
         "action": [
           {
             "actionType": "Click",
-            "elementToActOn": "//form/div[6]/input"
+            "onElement": "//form/div[6]/input"
           },
           {
             "actionType": "Click",
-            "elementToActOn": "//main/p/a"
+            "onElement": "//main/p/a"
           }
         ]
       }
@@ -458,11 +458,11 @@
         "actions": [
           {
             "actionType": "Click",
-            "elementToActOn": "//form/div[6]/input"
+            "onElement": "//form/div[6]/input"
           },
           {
             "actionType": "Click",
-            "elementToActOn": "//main/p/a"
+            "onElement": "//main/p/a"
           }
         ]
       }
@@ -476,11 +476,11 @@
         "actions": [
           {
             "actionType": "Click",
-            "elementToActOn": "//form/div[6]/input"
+            "onElement": "//form/div[6]/input"
           },
           {
             "actionType": "Click",
-            "elementToActOn": "//main/p/a"
+            "onElement": "//main/p/a"
           }
         ]
       }
@@ -494,11 +494,11 @@
         "actions": [
           {
             "actionType": "Click",
-            "elementToActOn": "//form/div[6]/input"
+            "onElement": "//form/div[6]/input"
           },
           {
             "actionType": "Click",
-            "elementToActOn": "//main/p/a"
+            "onElement": "//main/p/a"
           }
         ]
       }
@@ -512,11 +512,11 @@
         "actions": [
           {
             "actionType": "Click",
-            "elementToActOn": "//form/div[6]/input"
+            "onElement": "//form/div[6]/input"
           },
           {
             "actionType": "Click",
-            "elementToActOn": "//main/p/a"
+            "onElement": "//main/p/a"
           }
         ]
       }
@@ -530,11 +530,11 @@
         "actions": [
           {
             "actionType": "Click",
-            "elementToActOn": "//form/div[6]/input"
+            "onElement": "//form/div[6]/input"
           },
           {
             "actionType": "Click",
-            "elementToActOn": "//main/p/a"
+            "onElement": "//main/p/a"
           }
         ]
       }
@@ -548,11 +548,11 @@
         "actions": [
           {
             "actionType": "Click",
-            "elementToActOn": "//form/div[6]/input"
+            "onElement": "//form/div[6]/input"
           },
           {
             "actionType": "Click",
-            "elementToActOn": "//main/p/a"
+            "onElement": "//main/p/a"
           }
         ]
       }
@@ -566,11 +566,11 @@
         "actions": [
           {
             "actionType": "Click",
-            "elementToActOn": "//form/div[6]/input"
+            "onElement": "//form/div[6]/input"
           },
           {
             "actionType": "Click",
-            "elementToActOn": "//main/p/a"
+            "onElement": "//main/p/a"
           }
         ]
       }
@@ -584,11 +584,11 @@
         "actions": [
           {
             "actionType": "Click",
-            "elementToActOn": "//form/div[6]/input"
+            "onElement": "//form/div[6]/input"
           },
           {
             "actionType": "Click",
-            "elementToActOn": "//main/p/a"
+            "onElement": "//main/p/a"
           }
         ]
       }
@@ -599,15 +599,15 @@
       "actionExample": {
         "actionType": "Condition",
         "argument": "{{$ --enabled}}",
-        "elementToActOn": "//form/div[6]/input",
+        "onElement": "//form/div[6]/input",
         "action": [
           {
             "actionType": "Click",
-            "elementToActOn": "//form/div[6]/input"
+            "onElement": "//form/div[6]/input"
           },
           {
             "actionType": "Click",
-            "elementToActOn": "//main/p/a"
+            "onElement": "//main/p/a"
           }
         ]
       }
@@ -618,15 +618,15 @@
       "actionExample": {
         "actionType": "Condition",
         "argument": "{{$ --exists}}",
-        "elementToActOn": "//form/div[6]/input",
+        "onElement": "//form/div[6]/input",
         "action": [
           {
             "actionType": "Click",
-            "elementToActOn": "//form/div[6]/input"
+            "onElement": "//form/div[6]/input"
           },
           {
             "actionType": "Click",
-            "elementToActOn": "//main/p/a"
+            "onElement": "//main/p/a"
           }
         ]
       }
@@ -637,15 +637,15 @@
       "actionExample": {
         "actionType": "Condition",
         "argument": "{{$ --hidden}}",
-        "elementToActOn": "//form/div[6]/input",
+        "onElement": "//form/div[6]/input",
         "action": [
           {
             "actionType": "Click",
-            "elementToActOn": "//form/div[6]/input"
+            "onElement": "//form/div[6]/input"
           },
           {
             "actionType": "Click",
-            "elementToActOn": "//main/p/a"
+            "onElement": "//main/p/a"
           }
         ]
       }
@@ -656,15 +656,15 @@
       "actionExample": {
         "actionType": "Condition",
         "argument": "{{$ --not_exists}}",
-        "elementToActOn": "//form/div[6]/input",
+        "onElement": "//form/div[6]/input",
         "action": [
           {
             "actionType": "Click",
-            "elementToActOn": "//form/div[6]/input"
+            "onElement": "//form/div[6]/input"
           },
           {
             "actionType": "Click",
-            "elementToActOn": "//main/p/a"
+            "onElement": "//main/p/a"
           }
         ]
       }
@@ -675,15 +675,15 @@
       "actionExample": {
         "actionType": "Condition",
         "argument": "{{$ --selected}}",
-        "elementToActOn": "//form/div[6]/input",
+        "onElement": "//form/div[6]/input",
         "action": [
           {
             "actionType": "Click",
-            "elementToActOn": "//form/div[6]/input"
+            "onElement": "//form/div[6]/input"
           },
           {
             "actionType": "Click",
-            "elementToActOn": "//main/p/a"
+            "onElement": "//main/p/a"
           }
         ]
       }
@@ -694,15 +694,15 @@
       "actionExample": {
         "actionType": "Condition",
         "argument": "{{$ --not_selected}}",
-        "elementToActOn": "//form/div[6]/input",
+        "onElement": "//form/div[6]/input",
         "action": [
           {
             "actionType": "Click",
-            "elementToActOn": "//form/div[6]/input"
+            "onElement": "//form/div[6]/input"
           },
           {
             "actionType": "Click",
-            "elementToActOn": "//main/p/a"
+            "onElement": "//main/p/a"
           }
         ]
       }
@@ -713,15 +713,15 @@
       "actionExample": {
         "actionType": "Condition",
         "argument": "{{$ --stale}}",
-        "elementToActOn": "//form/div[6]/input",
+        "onElement": "//form/div[6]/input",
         "action": [
           {
             "actionType": "Click",
-            "elementToActOn": "//form/div[6]/input"
+            "onElement": "//form/div[6]/input"
           },
           {
             "actionType": "Click",
-            "elementToActOn": "//main/p/a"
+            "onElement": "//main/p/a"
           }
         ]
       }
@@ -732,15 +732,15 @@
       "actionExample": {
         "actionType": "Condition",
         "argument": "{{$ --text --eq:active}}",
-        "elementToActOn": "//form/div[6]",
+        "onElement": "//form/div[6]",
         "actions": [
           {
             "actionType": "Click",
-            "elementToActOn": "//form/div[6]/input"
+            "onElement": "//form/div[6]/input"
           },
           {
             "actionType": "Click",
-            "elementToActOn": "//main/p/a"
+            "onElement": "//main/p/a"
           }
         ]
       }
@@ -751,15 +751,15 @@
       "actionExample": {
         "actionType": "Condition",
         "argument": "{{$ --text --ne:active}}",
-        "elementToActOn": "//form/div[6]",
+        "onElement": "//form/div[6]",
         "actions": [
           {
             "actionType": "Click",
-            "elementToActOn": "//form/div[6]/input"
+            "onElement": "//form/div[6]/input"
           },
           {
             "actionType": "Click",
-            "elementToActOn": "//main/p/a"
+            "onElement": "//main/p/a"
           }
         ]
       }
@@ -770,15 +770,15 @@
       "actionExample": {
         "actionType": "Condition",
         "argument": "{{$ --text --match:^active$}}",
-        "elementToActOn": "//form/div[6]",
+        "onElement": "//form/div[6]",
         "actions": [
           {
             "actionType": "Click",
-            "elementToActOn": "//form/div[6]/input"
+            "onElement": "//form/div[6]/input"
           },
           {
             "actionType": "Click",
-            "elementToActOn": "//main/p/a"
+            "onElement": "//main/p/a"
           }
         ]
       }
@@ -789,15 +789,15 @@
       "actionExample": {
         "actionType": "Condition",
         "argument": "{{$ --text --not_match:^active$}}",
-        "elementToActOn": "//form/div[6]",
+        "onElement": "//form/div[6]",
         "actions": [
           {
             "actionType": "Click",
-            "elementToActOn": "//form/div[6]/input"
+            "onElement": "//form/div[6]/input"
           },
           {
             "actionType": "Click",
-            "elementToActOn": "//main/p/a"
+            "onElement": "//main/p/a"
           }
         ]
       }
@@ -808,15 +808,15 @@
       "actionExample": {
         "actionType": "Condition",
         "argument": "{{$ --text --gt:1}}",
-        "elementToActOn": "//form/div[6]",
+        "onElement": "//form/div[6]",
         "actions": [
           {
             "actionType": "Click",
-            "elementToActOn": "//form/div[6]/input"
+            "onElement": "//form/div[6]/input"
           },
           {
             "actionType": "Click",
-            "elementToActOn": "//main/p/a"
+            "onElement": "//main/p/a"
           }
         ]
       }
@@ -827,15 +827,15 @@
       "actionExample": {
         "actionType": "Condition",
         "argument": "{{$ --text --lt:1}}",
-        "elementToActOn": "//form/div[6]",
+        "onElement": "//form/div[6]",
         "actions": [
           {
             "actionType": "Click",
-            "elementToActOn": "//form/div[6]/input"
+            "onElement": "//form/div[6]/input"
           },
           {
             "actionType": "Click",
-            "elementToActOn": "//main/p/a"
+            "onElement": "//main/p/a"
           }
         ]
       }
@@ -846,15 +846,15 @@
       "actionExample": {
         "actionType": "Condition",
         "argument": "{{$ --text --ge:1}}",
-        "elementToActOn": "//form/div[6]",
+        "onElement": "//form/div[6]",
         "actions": [
           {
             "actionType": "Click",
-            "elementToActOn": "//form/div[6]/input"
+            "onElement": "//form/div[6]/input"
           },
           {
             "actionType": "Click",
-            "elementToActOn": "//main/p/a"
+            "onElement": "//main/p/a"
           }
         ]
       }
@@ -865,15 +865,15 @@
       "actionExample": {
         "actionType": "Condition",
         "argument": "{{$ --text --le:1}}",
-        "elementToActOn": "//form/div[6]",
+        "onElement": "//form/div[6]",
         "actions": [
           {
             "actionType": "Click",
-            "elementToActOn": "//form/div[6]/input"
+            "onElement": "//form/div[6]/input"
           },
           {
             "actionType": "Click",
-            "elementToActOn": "//main/p/a"
+            "onElement": "//main/p/a"
           }
         ]
       }
@@ -887,11 +887,11 @@
         "actions": [
           {
             "actionType": "Click",
-            "elementToActOn": "//form/div[6]/input"
+            "onElement": "//form/div[6]/input"
           },
           {
             "actionType": "Click",
-            "elementToActOn": "//main/p/a"
+            "onElement": "//main/p/a"
           }
         ]
       }
@@ -905,11 +905,11 @@
         "actions": [
           {
             "actionType": "Click",
-            "elementToActOn": "//form/div[6]/input"
+            "onElement": "//form/div[6]/input"
           },
           {
             "actionType": "Click",
-            "elementToActOn": "//main/p/a"
+            "onElement": "//main/p/a"
           }
         ]
       }
@@ -923,11 +923,11 @@
         "actions": [
           {
             "actionType": "Click",
-            "elementToActOn": "//form/div[6]/input"
+            "onElement": "//form/div[6]/input"
           },
           {
             "actionType": "Click",
-            "elementToActOn": "//main/p/a"
+            "onElement": "//main/p/a"
           }
         ]
       }
@@ -941,11 +941,11 @@
         "actions": [
           {
             "actionType": "Click",
-            "elementToActOn": "//form/div[6]/input"
+            "onElement": "//form/div[6]/input"
           },
           {
             "actionType": "Click",
-            "elementToActOn": "//main/p/a"
+            "onElement": "//main/p/a"
           }
         ]
       }
@@ -959,11 +959,11 @@
         "actions": [
           {
             "actionType": "Click",
-            "elementToActOn": "//form/div[6]/input"
+            "onElement": "//form/div[6]/input"
           },
           {
             "actionType": "Click",
-            "elementToActOn": "//main/p/a"
+            "onElement": "//main/p/a"
           }
         ]
       }
@@ -977,11 +977,11 @@
         "actions": [
           {
             "actionType": "Click",
-            "elementToActOn": "//form/div[6]/input"
+            "onElement": "//form/div[6]/input"
           },
           {
             "actionType": "Click",
-            "elementToActOn": "//main/p/a"
+            "onElement": "//main/p/a"
           }
         ]
       }
@@ -995,11 +995,11 @@
         "actions": [
           {
             "actionType": "Click",
-            "elementToActOn": "//form/div[6]/input"
+            "onElement": "//form/div[6]/input"
           },
           {
             "actionType": "Click",
-            "elementToActOn": "//main/p/a"
+            "onElement": "//main/p/a"
           }
         ]
       }
@@ -1010,15 +1010,15 @@
       "actionExample": {
         "actionType": "Condition",
         "argument": "{{$ --title --le:1}}",
-        "elementToActOn": "//form/div[6]",
+        "onElement": "//form/div[6]",
         "actions": [
           {
             "actionType": "Click",
-            "elementToActOn": "//form/div[6]/input"
+            "onElement": "//form/div[6]/input"
           },
           {
             "actionType": "Click",
-            "elementToActOn": "//main/p/a"
+            "onElement": "//main/p/a"
           }
         ]
       }
@@ -1032,11 +1032,11 @@
         "actions": [
           {
             "actionType": "Click",
-            "elementToActOn": "//form/div[6]/input"
+            "onElement": "//form/div[6]/input"
           },
           {
             "actionType": "Click",
-            "elementToActOn": "//main/p/a"
+            "onElement": "//main/p/a"
           }
         ]
       }
@@ -1050,11 +1050,11 @@
         "actions": [
           {
             "actionType": "Click",
-            "elementToActOn": "//form/div[6]/input"
+            "onElement": "//form/div[6]/input"
           },
           {
             "actionType": "Click",
-            "elementToActOn": "//main/p/a"
+            "onElement": "//main/p/a"
           }
         ]
       }
@@ -1068,11 +1068,11 @@
         "actions": [
           {
             "actionType": "Click",
-            "elementToActOn": "//form/div[6]/input"
+            "onElement": "//form/div[6]/input"
           },
           {
             "actionType": "Click",
-            "elementToActOn": "//main/p/a"
+            "onElement": "//main/p/a"
           }
         ]
       }
@@ -1086,11 +1086,11 @@
         "actions": [
           {
             "actionType": "Click",
-            "elementToActOn": "//form/div[6]/input"
+            "onElement": "//form/div[6]/input"
           },
           {
             "actionType": "Click",
-            "elementToActOn": "//main/p/a"
+            "onElement": "//main/p/a"
           }
         ]
       }
@@ -1104,11 +1104,11 @@
         "actions": [
           {
             "actionType": "Click",
-            "elementToActOn": "//form/div[6]/input"
+            "onElement": "//form/div[6]/input"
           },
           {
             "actionType": "Click",
-            "elementToActOn": "//main/p/a"
+            "onElement": "//main/p/a"
           }
         ]
       }
@@ -1122,11 +1122,11 @@
         "actions": [
           {
             "actionType": "Click",
-            "elementToActOn": "//form/div[6]/input"
+            "onElement": "//form/div[6]/input"
           },
           {
             "actionType": "Click",
-            "elementToActOn": "//main/p/a"
+            "onElement": "//main/p/a"
           }
         ]
       }
@@ -1140,11 +1140,11 @@
         "actions": [
           {
             "actionType": "Click",
-            "elementToActOn": "//form/div[6]/input"
+            "onElement": "//form/div[6]/input"
           },
           {
             "actionType": "Click",
-            "elementToActOn": "//main/p/a"
+            "onElement": "//main/p/a"
           }
         ]
       }
@@ -1155,15 +1155,15 @@
       "actionExample": {
         "actionType": "Condition",
         "argument": "{{$ --url --le:1}}",
-        "elementToActOn": "//form/div[6]",
+        "onElement": "//form/div[6]",
         "actions": [
           {
             "actionType": "Click",
-            "elementToActOn": "//form/div[6]/input"
+            "onElement": "//form/div[6]/input"
           },
           {
             "actionType": "Click",
-            "elementToActOn": "//main/p/a"
+            "onElement": "//main/p/a"
           }
         ]
       }
@@ -1174,15 +1174,15 @@
       "actionExample": {
         "actionType": "Condition",
         "argument": "{{$ --visible}}",
-        "elementToActOn": "//form/div[6]/input",
+        "onElement": "//form/div[6]/input",
         "action": [
           {
             "actionType": "Click",
-            "elementToActOn": "//form/div[6]/input"
+            "onElement": "//form/div[6]/input"
           },
           {
             "actionType": "Click",
-            "elementToActOn": "//main/p/a"
+            "onElement": "//main/p/a"
           }
         ]
       }
@@ -1196,11 +1196,11 @@
         "actions": [
           {
             "actionType": "Click",
-            "elementToActOn": "//form/div[6]/input"
+            "onElement": "//form/div[6]/input"
           },
           {
             "actionType": "Click",
-            "elementToActOn": "//main/p/a"
+            "onElement": "//main/p/a"
           }
         ]
       }
@@ -1214,11 +1214,11 @@
         "actions": [
           {
             "actionType": "Click",
-            "elementToActOn": "//form/div[6]/input"
+            "onElement": "//form/div[6]/input"
           },
           {
             "actionType": "Click",
-            "elementToActOn": "//main/p/a"
+            "onElement": "//main/p/a"
           }
         ]
       }
@@ -1232,11 +1232,11 @@
         "actions": [
           {
             "actionType": "Click",
-            "elementToActOn": "//form/div[6]/input"
+            "onElement": "//form/div[6]/input"
           },
           {
             "actionType": "Click",
-            "elementToActOn": "//main/p/a"
+            "onElement": "//main/p/a"
           }
         ]
       }
@@ -1250,11 +1250,11 @@
         "actions": [
           {
             "actionType": "Click",
-            "elementToActOn": "//form/div[6]/input"
+            "onElement": "//form/div[6]/input"
           },
           {
             "actionType": "Click",
-            "elementToActOn": "//main/p/a"
+            "onElement": "//main/p/a"
           }
         ]
       }
@@ -1268,11 +1268,11 @@
         "actions": [
           {
             "actionType": "Click",
-            "elementToActOn": "//form/div[6]/input"
+            "onElement": "//form/div[6]/input"
           },
           {
             "actionType": "Click",
-            "elementToActOn": "//main/p/a"
+            "onElement": "//main/p/a"
           }
         ]
       }
@@ -1286,11 +1286,11 @@
         "actions": [
           {
             "actionType": "Click",
-            "elementToActOn": "//form/div[6]/input"
+            "onElement": "//form/div[6]/input"
           },
           {
             "actionType": "Click",
-            "elementToActOn": "//main/p/a"
+            "onElement": "//main/p/a"
           }
         ]
       }
@@ -1304,11 +1304,11 @@
         "actions": [
           {
             "actionType": "Click",
-            "elementToActOn": "//form/div[6]/input"
+            "onElement": "//form/div[6]/input"
           },
           {
             "actionType": "Click",
-            "elementToActOn": "//main/p/a"
+            "onElement": "//main/p/a"
           }
         ]
       }
@@ -1322,11 +1322,11 @@
         "actions": [
           {
             "actionType": "Click",
-            "elementToActOn": "//form/div[6]/input"
+            "onElement": "//form/div[6]/input"
           },
           {
             "actionType": "Click",
-            "elementToActOn": "//main/p/a"
+            "onElement": "//main/p/a"
           }
         ]
       }
@@ -1337,8 +1337,8 @@
   "properties": {
     "actions": "The sub set actions to execute when condition is met.",
     "argument": "The assertion condition, operator and expected value.",
-    "elementAttributeToActOn": "The element attribute from which to extract information for action execution. If not specified, information will be taken from the element inner text.",
-    "elementToActOn": "The locator value by which the element will be found.",
+    "onAttribute": "The element attribute from which to extract information for action execution. If not specified, information will be taken from the element inner text.",
+    "onElement": "The locator value by which the element will be found.",
     "locator": "The locator type by which the element will be found.",
     "regularExpression": "A pattern by which the extracted information will be evaluated. Returns the first match."
   },

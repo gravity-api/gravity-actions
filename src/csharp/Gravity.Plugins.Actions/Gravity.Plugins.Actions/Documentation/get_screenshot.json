@@ -15,14 +15,14 @@
       "actionExample": {
         "actionType": "GetScreenshot",
         "argument": "C:\\my-images\\page.bmp",
-        "elementToActOn": "//h2"
+        "onElement": "//h2"
       }
     }
   ],
   "name": "GetScreenshot",
   "pluginType": "Action",
   "properties": {
-    "elementToActOn": "The locator value by which the element will be found.",
+    "onElement": "The locator value by which the element will be found.",
     "locator": "The locator type by which the element will be found.",
     "argument": "The full path and file name to save the screenshot to. Support formats ['BMP','GIF','JPEG','TIFF','PNG']."
   },

@@ -1,7 +1,10 @@
 ﻿/*
  * CHANGE LOG - keep only last 5 threads
  * 
- * on-line resources
+ * online resources
+ * 
+ * work items
+ * TODO: add more compatibilities on Selenium 4.0
  */
 using Gravity.Plugins.Actions.IntegrationTests.Base;
 using Gravity.Plugins.Actions.IntegrationTests.Cases.UiWeb.ContextClickScenarios;
@@ -16,7 +19,7 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Suites.UiWeb
     public class ContextClickTests
     {
         [Description(description: "P - [0131] - Right Click on Element, ID")]
-        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.CompatibilitiesNoIos))]
+        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.CompatibilitiesChrome))]
         public void T0131P(AutomationEnvironment environment)
         {
             // execute

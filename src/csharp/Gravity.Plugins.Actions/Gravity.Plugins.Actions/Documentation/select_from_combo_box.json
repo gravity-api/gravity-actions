@@ -10,8 +10,8 @@
       "actionExample": {
         "actionType": "SelectFromComboBox",
         "argument": "4",
-        "elementToActOn": "//select",
-        "elementAttributeToActOn": "value"
+        "onElement": "//select",
+        "onAttribute": "value"
       }
     },
     {
@@ -20,8 +20,8 @@
       "actionExample": {
         "actionType": "SelectFromComboBox",
         "argument": "1",
-        "elementToActOn": "//select",
-        "elementAttributeToActOn": "index"
+        "onElement": "//select",
+        "onAttribute": "index"
       }
     },
     {
@@ -30,7 +30,7 @@
       "actionExample": {
         "actionType": "SelectFromComboBox",
         "argument": "Economics",
-        "elementToActOn": "//select"
+        "onElement": "//select"
       }
     },
     {
@@ -39,7 +39,7 @@
       "actionExample": {
         "actionType": "SelectFromComboBox",
         "argument": "{{$ --all}}",
-        "elementToActOn": "//select"
+        "onElement": "//select"
       }
     },
     {
@@ -48,7 +48,7 @@
       "actionExample": {
         "actionType": "SelectFromComboBox",
         "argument": "{{$ --all}}",
-        "elementToActOn": "//select",
+        "onElement": "//select",
         "regularExpression": "Eco"
       }
     }
@@ -56,9 +56,9 @@
   "name": "SelectFromComboBox",
   "pluginType": "Action",
   "properties": {
-    "elementToActOn": "The locator value by which the element will be found.",
+    "onElement": "The locator value by which the element will be found.",
     "locator": "The locator type by which the element will be found.",
-    "elementAttributeToActOn": "The element attribute from which to extract information for action execution. If not specified, information will be taken from the element inner text.",
+    "onAttribute": "The element attribute from which to extract information for action execution. If not specified, information will be taken from the element inner text.",
     "regularExpression": "A pattern by which the extracted information will be evaluated. Returns the first match.",
     "argument": "The value to be used by the requested selecting attribute."
   },

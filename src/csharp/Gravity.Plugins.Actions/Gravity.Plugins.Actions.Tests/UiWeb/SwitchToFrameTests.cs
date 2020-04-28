@@ -1,7 +1,7 @@
 ﻿/*
  * CHANGE LOG - keep only last 5 threads
  * 
- * on-line resources
+ * online resources
  */
 using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Actions.UiWeb;
@@ -18,19 +18,19 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         [TestMethod]
         public void SwitchToFrameCreate()
         {
-            ValidateAction<SwitchToFrame>();
+            AssertPlugin<SwitchToFrame>();
         }
 
         [TestMethod]
         public void SwitchToFrameDocumentation()
         {
-            ValidateActionDocumentation<SwitchToFrame>(WebPlugins.SwitchToFrame);
+            AssertDocumentation<SwitchToFrame>(WebPlugins.SwitchToFrame);
         }
 
         [TestMethod]
         public void SwitchToFrameDocumentationResourceFile()
         {
-            ValidateActionDocumentation<SwitchToFrame>(
+            AssertDocumentation<SwitchToFrame>(
                 WebPlugins.SwitchToFrame, "switch_to_frame.json");
         }
 
@@ -57,7 +57,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'elementToActOn':'//positive'}")]
+        [DataRow("{'onElement':'//positive'}")]
         public void SwitchToFrameElement(string actionRule)
         {
             // execute
@@ -68,7 +68,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'elementToActOn':'//negative'}")]
+        [DataRow("{'onElement':'//negative'}")]
         public void SwitchToFrameNegative(string actionRule)
         {
             // execute
@@ -79,7 +79,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         }
 
         [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
-        [DataRow("{'elementToActOn':'//none'}")]
+        [DataRow("{'onElement':'//none'}")]
         public void SwitchToFrameNoElement(string actionRule)
         {
             // execute
@@ -90,7 +90,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         }
 
         [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
-        [DataRow("{'elementToActOn':'//null'}")]
+        [DataRow("{'onElement':'//null'}")]
         public void SwitchToFrameNoNull(string actionRule)
         {
             // execute
@@ -101,7 +101,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         }
 
         [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
-        [DataRow("{'elementToActOn':'//stale'}")]
+        [DataRow("{'onElement':'//stale'}")]
         public void SwitchToFrameStale(string actionRule)
         {
             // execute
@@ -112,7 +112,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         }
 
         [DataTestMethod, ExpectedException(typeof(WebDriverException))]
-        [DataRow("{'elementToActOn':'//exception'}")]
+        [DataRow("{'onElement':'//exception'}")]
         public void SwitchToFrameException(string actionRule)
         {
             // execute

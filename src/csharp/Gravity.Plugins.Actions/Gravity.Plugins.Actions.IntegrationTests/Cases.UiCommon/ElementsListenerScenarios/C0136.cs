@@ -35,12 +35,12 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.ElementsListen
                 {
                     ActionType = CommonPlugins.ElementsListener,
                     Argument = "{{$ --interval:500 --timeout:" + condition + "}}",
-                    ElementToActOn = "//div[./strong[contains(.,'Random Element.')]]"
+                    OnElement = "//div[./strong[contains(.,'Random Element.')]]"
                 },
                 new ActionRule
                 {
                     ActionType = CommonPlugins.Click,
-                    ElementToActOn = "generate_elements",
+                    OnElement = "generate_elements",
                     Locator = LocatorType.Id
                 },
                 new ActionRule

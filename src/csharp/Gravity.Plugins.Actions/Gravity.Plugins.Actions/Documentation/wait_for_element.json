@@ -10,7 +10,7 @@
       "literalExample": "wait for element on {//main/p/a}",
       "actionExample": {
         "actionType": "WaitForElement",
-        "elementToActOn": "//main/p/a"
+        "onElement": "//main/p/a"
       }
     },
     {
@@ -19,7 +19,7 @@
       "actionExample": {
         "actionType": "",
         "argument": "{{$ --until:visible}}",
-        "elementToActOn": "//main/p/a"
+        "onElement": "//main/p/a"
       }
     },
     {
@@ -28,7 +28,7 @@
       "actionExample": {
         "actionType": "WaitForElement",
         "argument": "{{$ --until:stale --timeout:5000}}",
-        "elementToActOn": "//main/p/a"
+        "onElement": "//main/p/a"
       }
     },
     {
@@ -37,7 +37,7 @@
       "actionExample": {
         "actionType": "WaitForElement",
         "argument": "{{$ --until:enabled --timeout:00:01:00}}",
-        "elementToActOn": "//main/p/a"
+        "onElement": "//main/p/a"
       }
     },
     {
@@ -46,7 +46,7 @@
       "actionExample": {
         "actionType": "WaitForElement",
         "argument": "{{$ --until:hidden --timeout:00:01:00}}",
-        "elementToActOn": "//main/p/a"
+        "onElement": "//main/p/a"
       }
     },
     {
@@ -55,8 +55,8 @@
       "actionExample": {
         "actionType": "WaitForElement",
         "argument": "{{$ --until:attribute --timeout:00:01:00}}",
-        "elementToActOn": "//main/p/a",
-        "elementAttributeToActOn": "href",
+        "onElement": "//main/p/a",
+        "onAttribute": "href",
         "regularExpression": "Create"
       }
     },
@@ -66,7 +66,7 @@
       "actionExample": {
         "actionType": "WaitForElement",
         "argument": "{{$ --until:text --timeout:00:01:00}}",
-        "elementToActOn": "//main/p/a",
+        "onElement": "//main/p/a",
         "regularExpression": "Create"
       }
     },
@@ -76,16 +76,16 @@
       "actionExample": {
         "actionType": "WaitForElement",
         "argument": "{{$ --until:notexists --timeout:5000}}",
-        "elementToActOn": "//main/p/a"
+        "onElement": "//main/p/a"
       }
     }
   ],
   "name": "WaitForElement",
   "pluginType": "Action",
   "properties": {
-    "elementToActOn": "The locator value by which the element will be found.",
+    "onElement": "The locator value by which the element will be found.",
     "locator": "The locator type by which the element will be found.",
-    "elementAttributeToActOn": "The element attribute from which to extract information for action execution. If not specified, information will be taken from the element inner text.",
+    "onAttribute": "The element attribute from which to extract information for action execution. If not specified, information will be taken from the element inner text.",
     "regularExpression": "A pattern by which the extracted information will be evaluated. Returns the first match.",
     "argument": "The assertion condition, operator and expected value."
   },

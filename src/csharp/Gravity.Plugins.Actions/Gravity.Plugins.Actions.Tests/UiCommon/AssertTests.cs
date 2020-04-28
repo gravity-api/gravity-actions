@@ -1,7 +1,7 @@
 ﻿/*
  * CHANGE LOG - keep only last 5 threads
  * 
- * on-line resources
+ * online resources
  */
 using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Actions.UnitTests.Base;
@@ -15,6 +15,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
     [TestClass]
     public class AssertTests : ActionTests
     {
+        #region *** constants            ***
         private const string TestKey = "evaluation";
         private const string OnElement = "[onElement]";
         private const string OnAttribute = "[onAttribute]";
@@ -30,41 +31,47 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         private const string ActionRuleBoolean =
             "{" +
             "    'argument':'{{$ --" + OnCondition + "}}'," +
-            "    'elementToActOn':'" + OnElement + "'" +
+            "    'onElement':'" + OnElement + "'" +
             "}";
 
         private const string ActionRuleAttributeOperator =
             "{" +
             "    'argument':'{{$ --" + OnCondition + " --" + OnOperator + ":" + OnOperatorExpected + "}}'," +
-            "    'elementToActOn':'" + OnElement + "'," +
-            "    'elementAttributeToActOn':'" + OnAttribute + "'" +
+            "    'onElement':'" + OnElement + "'," +
+            "    'onAttribute':'" + OnAttribute + "'" +
             "}";
 
         private const string ActionRuleNoAttributeOperator =
             "{" +
             "    'argument':'{{$ --" + OnCondition + " --" + OnOperator + ":" + OnOperatorExpected + "}}'," +
-            "    'elementToActOn':'" + OnElement + "'" +
+            "    'onElement':'" + OnElement + "'" +
             "}";
+        #endregion
 
+        #region *** tests: documentation ***
         [TestMethod]
         public void AssertCreate()
         {
-            ValidateAction<Actions.UiCommon.Assert>();
+            AssertPlugin<Actions.UiCommon.Assert>();
         }
 
         [TestMethod]
         public void AssertDocumentation()
         {
-            ValidateActionDocumentation<Actions.UiCommon.Assert>(CommonPlugins.Assert);
+            AssertDocumentation<Actions.UiCommon.Assert>(
+                pluginName: CommonPlugins.Assert);
         }
 
         [TestMethod]
         public void AssertDocumentationResourceFile()
         {
-            ValidateActionDocumentation<Actions.UiCommon.Assert>(CommonPlugins.Assert, "assert.json");
+            AssertDocumentation<Actions.UiCommon.Assert>(
+                pluginName: CommonPlugins.Assert,
+                resource: "assert.json");
         }
+        #endregion
 
-        #region *** on driver  ***
+        #region *** tests: OnDriver      ***
         [DataTestMethod]
         [DataRow(ActionRuleAttributeOperator, "index", "eq", "0")]
         [DataRow(ActionRuleAttributeOperator, "index", "ne", "1")]
@@ -458,7 +465,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         }
         #endregion
 
-        #region *** on element ***
+        #region *** tests: OnElement     ***
         [DataTestMethod]
         [DataRow(ActionRuleBoolean, ".//negative")]
         public void AssertElementDisabled(string actionRule, string onElement)
@@ -739,7 +746,14 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         }
         #endregion
 
-        private bool GetActual(string actionRule, string onAttribute, string onOperator, string onOperatorExpected, string onCondition, string onElement)
+        #region *** tests: utilities     ***
+        private bool GetActual(
+            string actionRule,
+            string onAttribute,
+            string onOperator,
+            string onOperatorExpected,
+            string onCondition,
+            string onElement)
         {
             // setup
             actionRule = actionRule
@@ -757,10 +771,11 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         }
 
         private static bool GetEvaluation(Plugin plugin) => (bool)plugin
-            .ExtractionResults
+            .Extractions
             .First()
             .Entities
             .First()
             .EntityContent[TestKey];
+        #endregion
     }
 }

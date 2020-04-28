@@ -17,7 +17,7 @@
       "actionExample": {
         "actionType": "RegisterParameter",
         "argument": "first_name",
-        "elementToActOn": "//tr[1]/td[2]"
+        "onElement": "//tr[1]/td[2]"
       }
     },
     {
@@ -26,7 +26,7 @@
       "actionExample": {
         "actionType": "RegisterParameter",
         "argument": "{{$ --key:first_name}}",
-        "elementToActOn": "//tr[1]/td[2]"
+        "onElement": "//tr[1]/td[2]"
       }
     },
     {
@@ -43,8 +43,8 @@
       "actionExample": {
         "actionType": "RegisterParameter",
         "argument": "link",
-        "elementToActOn": "//tr[1]/td[6]/a[1]",
-        "elementAttributeToActOn": "href"
+        "onElement": "//tr[1]/td[6]/a[1]",
+        "onAttribute": "href"
       }
     },
     {
@@ -53,7 +53,7 @@
       "actionExample": {
         "actionType": "RegisterParameter",
         "argument": "regex",
-        "elementToActOn": "//tr[1]/td[1]",
+        "onElement": "//tr[1]/td[1]",
         "regularExpression": "Abe"
       }
     },
@@ -70,8 +70,8 @@
   "pluginType": "Action",
   "properties": {
     "argument": "Parameter name. Please note, if the name already exists, the new call will override the existing value.",
-    "elementAttributeToActOn": "The element attribute from which to extract information for action execution. If not specified, information will be taken from the element inner text.",
-    "elementToActOn": "The locator value by which the element will be found.",
+    "onAttribute": "The element attribute from which to extract information for action execution. If not specified, information will be taken from the element inner text.",
+    "onElement": "The locator value by which the element will be found.",
     "locator": "The locator type by which the element will be found.",
     "regularExpression": "A pattern by which the extracted information will be evaluated. Returns the first match."
   },

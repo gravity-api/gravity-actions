@@ -1,7 +1,7 @@
 ﻿/*
  * CHANGE LOG - keep only last 5 threads
  * 
- * on-line resources
+ * online resources
  */
 using Gravity.Plugins.Actions.UiCommon;
 using Gravity.Plugins.Actions.Contracts;
@@ -25,19 +25,19 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         [TestMethod]
         public void WaitCreate()
         {
-            ValidateAction<Wait>();
+            AssertPlugin<Wait>();
         }
 
         [TestMethod]
         public void WaitDocumentation()
         {
-            ValidateActionDocumentation<Wait>(CommonPlugins.Wait);
+            AssertDocumentation<Wait>(CommonPlugins.Wait);
         }
 
         [TestMethod]
         public void WaitDocumentationResourceFile()
         {
-            ValidateActionDocumentation<Wait>(CommonPlugins.Wait, "Wait.json");
+            AssertDocumentation<Wait>(CommonPlugins.Wait, "Wait.json");
         }
 
         [DataTestMethod]

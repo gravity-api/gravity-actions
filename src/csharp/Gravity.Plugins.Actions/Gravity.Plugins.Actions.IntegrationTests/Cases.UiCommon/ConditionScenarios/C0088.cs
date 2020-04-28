@@ -41,7 +41,7 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.ConditionScena
                 {
                     ActionType = CommonPlugins.Condition,
                     Argument = "{{$ --driver --not_match:" + onDriver + "}}",
-                    ElementToActOn = "//tr[./td[@id]]",
+                    OnElement = "//tr[./td[@id]]",
                     Actions = SharedSteps.SearchStudent(searchFor: "Carson")
                 },
                 SharedSteps.AssertStudentsCount(count: 1)

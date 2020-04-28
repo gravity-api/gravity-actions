@@ -8,16 +8,15 @@
  * 2019-12-31
  *    - modify: add constructor to override base class types
  * 
- * on-line resources
+ * online resources
  * http://appium.io/docs/en/writing-running-appium/android/android-shell/
  * 
  * work items
- * TODO: use IHasLocation interface when available (DoGeoLocation)
+ * https://github.com/gravity-api/gravity-actions/issues/20
  */
 using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Actions.Extensions;
 using Gravity.Plugins.Base;
-using Microsoft.Extensions.Logging;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
 using System.Collections.Generic;
@@ -56,47 +55,43 @@ namespace Gravity.Plugins.Actions.UiMobile
         /// <summary>
         /// Creates a new instance of this plugin.
         /// </summary>
-        /// <param name="webAutomation">This <see cref="WebAutomation"/> object (the original object sent by the user).</param>
+        /// <param name="automation">This <see cref="WebAutomation"/> object (the original object sent by the user).</param>
         /// <param name="driver"><see cref="IWebDriver"/> implementation by which to execute the action.</param>
-        public SetGeoLocation(WebAutomation webAutomation, IWebDriver driver)
-            : base(webAutomation, driver)
+        public SetGeoLocation(WebAutomation automation, IWebDriver driver)
+            : base(automation, driver)
         { }
         #endregion
 
         /// <summary>
         /// Sets the current GEO location.
         /// </summary>
-        /// <param name="actionRule">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
-        public override void OnPerform(ActionRule actionRule)
+        /// <param name="action">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
+        public override void OnPerform(ActionRule action)
         {
-            DoAction(actionRule);
+            DoAction(action);
         }
 
         /// <summary>
         /// Sets the current GEO location.
         /// </summary>
-        /// <param name="actionRule">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
+        /// <param name="action">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
         /// <param name="element">This <see cref="IWebElement"/> instance on which to perform the action (provided by the extraction rule).</param>
-        public override void OnPerform(ActionRule actionRule, IWebElement element)
+        public override void OnPerform(ActionRule action, IWebElement element)
         {
-            DoAction(actionRule);
+            DoAction(action);
         }
 
         // sets the current GEO location
-        private void DoAction(ActionRule actionRule)
+        private void DoAction(ActionRule action)
         {
-            // constants: messages
-            const string Warn = "Action [GeoLocation] was skipped. This action is not supported by [{0}] driver.";
-
             // exit conditions
             if (!WebDriver.IsAppiumDriver())
             {
-                Logger.LogWarning(string.Format(Warn, WebDriver.GetType().FullName));
                 return;
             }
 
             // load CLI arguments
-            ProcessCli(actionRule);
+            ProcessCli(action);
 
             // set location property
             var locationProperty = WebDriver.GetType().GetProperty("Location");
@@ -104,10 +99,10 @@ namespace Gravity.Plugins.Actions.UiMobile
         }
 
         // process CLI command for default arguments values
-        private void ProcessCli(ActionRule actionRule)
+        private void ProcessCli(ActionRule action)
         {
             // get arguments
-            arguments = CliFactory.Parse(actionRule.Argument);
+            arguments = CliFactory.Parse(action.Argument);
 
             // argument: Latitude
             if (!arguments.ContainsKey(Latitude))

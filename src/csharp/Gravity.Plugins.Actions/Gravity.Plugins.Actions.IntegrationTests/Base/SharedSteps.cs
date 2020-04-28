@@ -1,7 +1,7 @@
 ﻿/*
  * CHANGE LOG - keep only last 5 threads
  * 
- * on-line resources
+ * online resources
  */
 using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Contracts;
@@ -24,13 +24,13 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
             {
                 ActionType = CommonPlugins.SendKeys,
                 Argument = searchFor,
-                ElementToActOn = "SearchString",
+                OnElement = "SearchString",
                 Locator = LocatorType.Id
             },
             new ActionRule
             {
                 ActionType = CommonPlugins.Click,
-                ElementToActOn = "SearchButton",
+                OnElement = "SearchButton",
                 Locator = LocatorType.Id
             }
         };
@@ -46,7 +46,7 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
             {
                 ActionType = CommonPlugins.SendKeys,
                 Argument = $"{numberOfAlerts}",
-                ElementToActOn = "number_of_alerts",
+                OnElement = "number_of_alerts",
                 Locator = LocatorType.Id
             }
         };
@@ -60,7 +60,7 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
             new ActionRule
             {
                 ActionType = CommonPlugins.Click,
-                ElementToActOn = "Back to List",
+                OnElement = "Back to List",
                 Locator = LocatorType.LinkText
             }
         };
@@ -74,7 +74,7 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
         {
             ActionType = CommonPlugins.Assert,
             Argument = "{{$ --count --eq:" + $"{count}" + "}}",
-            ElementToActOn = "//tr[./td[@id]]"
+            OnElement = "//tr[./td[@id]]"
         };
 
         /// <summary>
@@ -86,9 +86,9 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
         {
             ActionType = CommonPlugins.Assert,
             Argument = "{{$ --attribute --gt:" + $"{greaterThan}" + "}}",
-            ElementToActOn = "number_of_alerts",
+            OnElement = "number_of_alerts",
             Locator = LocatorType.Id,
-            ElementAttributeToActOn = "value"
+            OnAttribute = "value"
         };
 
         /// <summary>
@@ -111,8 +111,8 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
         {
             ActionType = CommonPlugins.Assert,
             Argument = "{{$ --attribute --match:" + expectedPattern + "}}",
-            ElementToActOn = "click_outcome",
-            ElementAttributeToActOn = "value",
+            OnElement = "click_outcome",
+            OnAttribute = "value",
             Locator = LocatorType.Id
         };
 
@@ -125,9 +125,9 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
         {
             ActionType = CommonPlugins.Assert,
             Argument = "{{$ --attribute --gt:" + $"{greaterThan}" + "}}",
-            ElementToActOn = "dismissed_elements",
+            OnElement = "dismissed_elements",
             Locator = LocatorType.Id,
-            ElementAttributeToActOn = "value"
+            OnAttribute = "value"
         };
 
         /// <summary>
@@ -139,9 +139,9 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
         {
             ActionType = CommonPlugins.Assert,
             Argument = "{{$ --attribute --match:" + expectedPattern + "}}",
-            ElementToActOn = "input_enabled",
+            OnElement = "input_enabled",
             Locator = LocatorType.Id,
-            ElementAttributeToActOn = "value"
+            OnAttribute = "value"
         };
 
         /// <summary>
@@ -154,25 +154,25 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
         {
             ActionType = CommonPlugins.Assert,
             Argument = "{{$ --attribute --gt:" + $"{greaterThan}" + "}}",
-            ElementToActOn = $"scroll_{offset.ToLower()}_outcome",
+            OnElement = $"scroll_{offset.ToLower()}_outcome",
             Locator = LocatorType.Id,
-            ElementAttributeToActOn = "value"
+            OnAttribute = "value"
         };
 
         /// <summary>
         /// Assert extractions count and values (not null or empty).
         /// </summary>
-        /// <param name="response"><see cref="OrbitResponse"/> from which to fetch entities.</param>
+        /// <param name="responses"><see cref="OrbitResponse"/> from which to fetch entities.</param>
         /// <param name="fieldsCount">Expected number of fields per entity.</param>
         /// <param name="expectedPattern">Expected pattern (regular expression) to assert content value against.</param>
         /// <returns>Assertion results.</returns>
-        public static bool AssertEntitiesValues(OrbitResponse response, int fieldsCount, string expectedPattern)
+        public static bool AssertEntitiesValues(IEnumerable<OrbitResponse> responses, int fieldsCount, string expectedPattern)
         {
             // setup
             var excluded = new[] { "EntityIndex" };
 
             // get all entities
-            var entities = response.Extractions.SelectMany(i => i.Entities);
+            var entities = responses.SelectMany(i=>i.Extractions).SelectMany(i => i.Entities);
             var entries = entities.SelectMany(i => i.EntityContent).Where(i => !excluded.Contains(i.Key));
 
             // assertion, add +1 to fields count to normalize automatic fields.
@@ -187,17 +187,17 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
         /// <summary>
         /// Assert extractions count and values (not null or empty).
         /// </summary>
-        /// <param name="response"><see cref="OrbitResponse"/> from which to fetch entities.</param>
+        /// <param name="responses"><see cref="OrbitResponse"/> from which to fetch entities.</param>
         /// <param name="fieldsCount">Expected number of fields per entity.</param>
         /// <param name="expectedPattern">Expected pattern (regular expression) to assert content value against.</param>
         /// <returns>Assertion results.</returns>
-        public static bool AssertEntitiesKeys(OrbitResponse response, int fieldsCount, string expectedPattern)
+        public static bool AssertEntitiesKeys(IEnumerable<OrbitResponse> responses, int fieldsCount, string expectedPattern)
         {
             // setup
             var excluded = new[] { "EntityIndex" };
 
             // get all entities
-            var entities = response.Extractions.SelectMany(i => i.Entities);
+            var entities = responses.SelectMany(i=>i.Extractions).SelectMany(i => i.Entities);
             var entries = entities.SelectMany(i => i.EntityContent).Where(i => !excluded.Contains(i.Key));
 
             // assertion, add +1 to fields count to normalize automatic fields.

@@ -1,7 +1,7 @@
 ﻿/*
  * CHANGE LOG - keep only last 5 threads
  * 
- * on-line resources
+ * online resources
  * https://developer.mozilla.org/en-US/docs/Web/API/Window/scroll
  * https://developer.mozilla.org/en-US/docs/Web/API/Element/scroll
  * https://developer.mozilla.org/en-US/docs/Web/API/ScrollToOptions/behavior
@@ -49,41 +49,41 @@ namespace Gravity.Plugins.Actions.UiWeb
         /// <summary>
         /// Creates a new instance of this plugin.
         /// </summary>
-        /// <param name="webAutomation">This <see cref="WebAutomation"/> object (the original object sent by the user).</param>
+        /// <param name="automation">This <see cref="WebAutomation"/> object (the original object sent by the user).</param>
         /// <param name="driver"><see cref="IWebDriver"/> implementation by which to execute the action.</param>
-        public Scroll(WebAutomation webAutomation, IWebDriver driver)
-            : base(webAutomation, driver)
+        public Scroll(WebAutomation automation, IWebDriver driver)
+            : base(automation, driver)
         { }
         #endregion
 
         /// <summary>
         /// Scrolls the window to a particular place in the document.
         /// </summary>
-        /// <param name="actionRule">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
-        public override void OnPerform(ActionRule actionRule)
+        /// <param name="action">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
+        public override void OnPerform(ActionRule action)
         {
-            DoAction(actionRule, element: default);
+            DoAction(action, element: default);
         }
 
         /// <summary>
         /// Scrolls the element to a particular set of coordinates inside a given element.
         /// </summary>
-        /// <param name="actionRule">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
+        /// <param name="action">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
         /// <param name="element">This <see cref="IWebElement"/> instance on which to perform the action (provided by the extraction rule).</param>
-        public override void OnPerform(ActionRule actionRule, IWebElement element)
+        public override void OnPerform(ActionRule action, IWebElement element)
         {
-            DoAction(actionRule, element);
+            DoAction(action, element);
         }
 
-        // executes Refresh routine
-        private void DoAction(ActionRule actionRule, IWebElement element)
+        // execute action routine
+        private void DoAction(ActionRule action, IWebElement element)
         {
             // setup
-            var arguments = GetArguments(actionRule);
+            var arguments = GetArguments(action);
             var scriptFormat =
                 $"on.scroll({{top: {arguments[Top]}, left: {arguments[Left]}, behavior: {arguments[Behavior]}}})";
 
-            element = this.ConditionalGetElement(element, actionRule);
+            element = this.ConditionalGetElement(element, action);
             var script = element == default
                 ? scriptFormat.Replace("on", "window")
                 : scriptFormat.Replace("on", "arguments[0]");
@@ -99,10 +99,10 @@ namespace Gravity.Plugins.Actions.UiWeb
             }
         }
 
-        private IDictionary<string, string> GetArguments(ActionRule actionRule)
+        private IDictionary<string, string> GetArguments(ActionRule action)
         {
             // default
-            if (int.TryParse(actionRule.Argument, out int yOut))
+            if (int.TryParse(action.Argument, out int yOut))
             {
                 return new Dictionary<string, string>
                 {
@@ -113,7 +113,7 @@ namespace Gravity.Plugins.Actions.UiWeb
             }
 
             // setup
-            var arguments = CliFactory.Parse(actionRule.Argument);
+            var arguments = CliFactory.Parse(action.Argument);
 
             // X
             if (!arguments.ContainsKey(Left))

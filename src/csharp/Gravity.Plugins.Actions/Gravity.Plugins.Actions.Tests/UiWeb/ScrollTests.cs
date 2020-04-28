@@ -1,7 +1,7 @@
 ﻿/*
  * CHANGE LOG - keep only last 5 threads
  * 
- * on-line resources
+ * online resources
  */
 using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Actions.UiWeb;
@@ -17,15 +17,15 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
     public class ScrollTests : ActionTests
     {
         [TestMethod]
-        public void ScrollCreate() => ValidateAction<Scroll>();
+        public void ScrollCreate() => AssertPlugin<Scroll>();
 
         [TestMethod]
         public void ScrollDocumentation()
-            => ValidateActionDocumentation<Scroll>(WebPlugins.Scroll);
+            => AssertDocumentation<Scroll>(WebPlugins.Scroll);
 
         [TestMethod]
         public void ScrollDocumentationResourceFile()
-            => ValidateActionDocumentation<Scroll>(WebPlugins.Scroll, "scroll.json");
+            => AssertDocumentation<Scroll>(WebPlugins.Scroll, "scroll.json");
 
         [DataTestMethod]
         [DataRow("{'argument':'1000'}")]
@@ -91,8 +91,8 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'argument':'1000','elementToActOn':'//positive'}")]
-        [DataRow("{'argument':'{{$ --top:1000}}','elementToActOn':'//positive'}")]
+        [DataRow("{'argument':'1000','onElement':'//positive'}")]
+        [DataRow("{'argument':'{{$ --top:1000}}','onElement':'//positive'}")]
         public void ScrollElementTop(string actionRule)
         {
             // expected
@@ -106,7 +106,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'argument':'{{$ --left:1000}}','elementToActOn':'//positive'}")]
+        [DataRow("{'argument':'{{$ --left:1000}}','onElement':'//positive'}")]
         public void ScrollElementLeft(string actionRule)
         {
             // expected
@@ -120,7 +120,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'argument':'{{$ --top:1000 --left:500}}','elementToActOn':'//positive'}")]
+        [DataRow("{'argument':'{{$ --top:1000 --left:500}}','onElement':'//positive'}")]
         public void ScrollElementTopLeft(string actionRule)
         {
             // expected
@@ -136,8 +136,8 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'argument':'{{$ --top:1000 --left:500, --behavior:auto}}','elementToActOn':'//positive'}")]
-        [DataRow("{'argument':'{{$ --top:1000 --left:500, --behavior:smooth}}','elementToActOn':'//positive'}")]
+        [DataRow("{'argument':'{{$ --top:1000 --left:500, --behavior:auto}}','onElement':'//positive'}")]
+        [DataRow("{'argument':'{{$ --top:1000 --left:500, --behavior:smooth}}','onElement':'//positive'}")]
         public void ScrollElementTopLeftBehavior(string actionRule)
         {
             // expected
@@ -153,7 +153,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'elementToActOn':'//positive'}")]
+        [DataRow("{'onElement':'//positive'}")]
         public void ScrollElementNoArgument(string actionRule)
         {
             // expected
@@ -169,9 +169,9 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         }
 
         [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
-        [DataRow("{'elementToActOn':'//null'}")]
-        [DataRow("{'elementToActOn':'//none'}")]
-        [DataRow("{'elementToActOn':'//stale'}")]
+        [DataRow("{'onElement':'//null'}")]
+        [DataRow("{'onElement':'//none'}")]
+        [DataRow("{'onElement':'//stale'}")]
         public void ScrollElementTimout(string actionRule)
         {
             // execute
@@ -182,7 +182,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         }
 
         [DataTestMethod, ExpectedException(typeof(WebDriverException))]
-        [DataRow("{'elementToActOn':'//exception'}")]
+        [DataRow("{'onElement':'//exception'}")]
         public void ScrollElementException(string actionRule)
         {
             // execute
@@ -193,8 +193,8 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'argument':'1000','elementToActOn':'.//positive'}")]
-        [DataRow("{'argument':'{{$ --top:1000}}','elementToActOn':'.//positive'}")]
+        [DataRow("{'argument':'1000','onElement':'.//positive'}")]
+        [DataRow("{'argument':'{{$ --top:1000}}','onElement':'.//positive'}")]
         public void ScrollNestedElementTop(string actionRule)
         {
             // expected
@@ -208,7 +208,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'argument':'{{$ --left:1000}}','elementToActOn':'.//positive'}")]
+        [DataRow("{'argument':'{{$ --left:1000}}','onElement':'.//positive'}")]
         public void ScrollNestedElementLeft(string actionRule)
         {
             // expected
@@ -222,7 +222,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'argument':'{{$ --top:1000 --left:500}}','elementToActOn':'.//positive'}")]
+        [DataRow("{'argument':'{{$ --top:1000 --left:500}}','onElement':'.//positive'}")]
         public void ScrollNestedElementTopLeft(string actionRule)
         {
             // expected
@@ -238,8 +238,8 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'argument':'{{$ --top:1000 --left:500, --behavior:auto}}','elementToActOn':'.//positive'}")]
-        [DataRow("{'argument':'{{$ --top:1000 --left:500, --behavior:smooth}}','elementToActOn':'.//positive'}")]
+        [DataRow("{'argument':'{{$ --top:1000 --left:500, --behavior:auto}}','onElement':'.//positive'}")]
+        [DataRow("{'argument':'{{$ --top:1000 --left:500, --behavior:smooth}}','onElement':'.//positive'}")]
         public void ScrollNestedElementTopLeftBehavior(string actionRule)
         {
             // expected
@@ -255,7 +255,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'elementToActOn':'.//positive'}")]
+        [DataRow("{'onElement':'.//positive'}")]
         public void ScrollNestedElementNoArgument(string actionRule)
         {
             // expected
@@ -271,7 +271,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'elementToActOn':'.//null'}")]
+        [DataRow("{'onElement':'.//null'}")]
         public void ScrollNestedElementNull(string actionRule)
         {
             // expected
@@ -287,7 +287,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         }
 
         [DataTestMethod, ExpectedException(typeof(NoSuchElementException))]
-        [DataRow("{'elementToActOn':'.//none'}")]
+        [DataRow("{'onElement':'.//none'}")]
         public void ScrollNestedElementNone(string actionRule)
         {
             // execute
@@ -298,7 +298,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         }
 
         [DataTestMethod, ExpectedException(typeof(StaleElementReferenceException))]
-        [DataRow("{'elementToActOn':'.//stale'}")]
+        [DataRow("{'onElement':'.//stale'}")]
         public void ScrollNestedElementStale(string actionRule)
         {
             // execute
@@ -309,7 +309,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         }
 
         [DataTestMethod, ExpectedException(typeof(WebDriverException))]
-        [DataRow("{'elementToActOn':'.//exception'}")]
+        [DataRow("{'onElement':'.//exception'}")]
         public void ScrollNestedElementException(string actionRule)
         {
             // execute

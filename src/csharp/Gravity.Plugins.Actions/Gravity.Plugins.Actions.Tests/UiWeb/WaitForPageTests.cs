@@ -1,7 +1,7 @@
 ﻿/*
  * CHANGE LOG - keep only last 5 threads
  * 
- * on-line resources
+ * online resources
  */
 using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Actions.UiWeb;
@@ -22,25 +22,25 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         [TestInitialize]
         public void Setup()
         {
-            WebAutomation.EngineConfiguration.PageLoadTimeout = 180000;
+            Automation.EngineConfiguration.PageLoadTimeout = 180000;
         }
 
         [TestMethod]
         public void WaitForPageCreate()
         {
-            ValidateAction<WaitForPage>();
+            AssertPlugin<WaitForPage>();
         }
 
         [TestMethod]
         public void WaitForPageDocumentation()
         {
-            ValidateActionDocumentation<WaitForPage>(WebPlugins.WaitForPage);
+            AssertDocumentation<WaitForPage>(WebPlugins.WaitForPage);
         }
 
         [TestMethod]
         public void WaitForPageDocumentationResourceFile()
         {
-            ValidateActionDocumentation<WaitForPage>(WebPlugins.WaitForPage, "wait_for_page.json");
+            AssertDocumentation<WaitForPage>(WebPlugins.WaitForPage, "wait_for_page.json");
         }
 
         [TestMethod]
@@ -58,7 +58,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         public void WaitForPageTimeout(string actionRule)
         {
             // setup
-            WebAutomation.EngineConfiguration.PageLoadTimeout = 0;
+            Automation.EngineConfiguration.PageLoadTimeout = 0;
 
             // execute
             ExecuteAction<WaitForPage>(actionRule);
@@ -134,7 +134,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'argument':'{{$ --until:uninitialized}}','elementToActOn':'.//positive'}")]
+        [DataRow("{'argument':'{{$ --until:uninitialized}}','onElement':'.//positive'}")]
         public void WaitForPageElementUninitialized(string actionRule)
         {
             // execute
@@ -145,7 +145,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'argument':'{{$ --until:loading}}','elementToActOn':'.//positive'}")]
+        [DataRow("{'argument':'{{$ --until:loading}}','onElement':'.//positive'}")]
         public void WaitForPageElementLoading(string actionRule)
         {
             // execute
@@ -156,7 +156,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'argument':'{{$ --until:loaded}}','elementToActOn':'.//positive'}")]
+        [DataRow("{'argument':'{{$ --until:loaded}}','onElement':'.//positive'}")]
         public void WaitForPageElementLoaded(string actionRule)
         {
             // execute
@@ -167,7 +167,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'argument':'{{$ --until:interactive}}','elementToActOn':'.//positive'}")]
+        [DataRow("{'argument':'{{$ --until:interactive}}','onElement':'.//positive'}")]
         public void WaitForPageElementInteractive(string actionRule)
         {
             // execute
@@ -178,7 +178,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'argument':'{{$ --until:complete}}','elementToActOn':'.//positive'}")]
+        [DataRow("{'argument':'{{$ --until:complete}}','onElement':'.//positive'}")]
         public void WaitForPageElementComplete(string actionRule)
         {
             // execute
@@ -189,7 +189,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         }
 
         [DataTestMethod, ExpectedException(typeof(InvalidOperationException))]
-        [DataRow("{'argument':'{{$ --until:not_a_state}}','elementToActOn':'.//positive'}")]
+        [DataRow("{'argument':'{{$ --until:not_a_state}}','onElement':'.//positive'}")]
         public void WaitForPageElementNegative(string actionRule)
         {
             // execute

@@ -21,39 +21,39 @@
       "actionExample": {
         "actionType": "ElementsListener",
         "argument": "500",
-        "elementToActOn": "//div[./strong[contains(.,'Random Element.')]]"
+        "onElement": "//div[./strong[contains(.,'Random Element.')]]"
       },
-      "description": "Every 500ms, the [ElementsListener] will search for the [ElementToActOn]. If exists, it will be clicked. This will apply for all the elements found by the given locator.",
+      "description": "Every 500ms, the [ElementsListener] will search for the [onElement]. If exists, it will be clicked. This will apply for all the elements found by the given locator.",
       "literalExample": "elements listener {500} on {//div[./strong[contains(.,'Random Element.')]]}"
     },
     {
       "actionExample": {
         "actionType": "ElementsListener",
         "argument": "{{$ --interval:500 --timeout:30000}}",
-        "elementToActOn": "//div[./strong[contains(.,'Random Element.')]]"
+        "onElement": "//div[./strong[contains(.,'Random Element.')]]"
       },
-      "description": "Every 500ms and for total time of 30000ms, the [ElementsListener] will search for the [ElementToActOn]. If exists, it will be clicked. This will apply for all the elements found by the given locator.",
+      "description": "Every 500ms and for total time of 30000ms, the [ElementsListener] will search for the [onElement]. If exists, it will be clicked. This will apply for all the elements found by the given locator.",
       "literalExample": "elements listener {{$ --interval:500 --timeout:30000}} on {//div[./strong[contains(.,'Random Element.')]]}"
     },
     {
       "actionExample": {
         "actionType": "ElementsListener",
         "argument": "{{$ --interval:00:00:01 --timeout:00:00:30}}",
-        "elementToActOn": "//div[./strong[contains(.,'Random Element.')]]",
+        "onElement": "//div[./strong[contains(.,'Random Element.')]]",
         "actions": [
           {
             "actionType": "SendKeys",
             "argument": "dismissed",
-            "elementToActOn": "input_enabled",
+            "onElement": "input_enabled",
             "locator": "Id"
           },
           {
             "actionType": "Click",
-            "elementToActOn": "//div[./strong[contains(.,'Random Element.')]]"
+            "onElement": "//div[./strong[contains(.,'Random Element.')]]"
           }
         ]
       },
-      "description": "Every 1sec and for total time of 30sec, the [ElementsListener] will search for the [ElementToActOn]. If exists, sub actions will be executed. This will apply for all the elements found by the given locator.",
+      "description": "Every 1sec and for total time of 30sec, the [ElementsListener] will search for the [onElement]. If exists, sub actions will be executed. This will apply for all the elements found by the given locator.",
       "literalExample": "elements listener {{$ --interval:500 --timeout:30000}} on {//div[./strong[contains(.,'Random Element.')]]}\\n    > type {dismissed} into {input_enabled} using {id}\\n    > click on {//div[./strong[contains(.,'Random Element.')]]}"
     }
   ],
@@ -61,7 +61,7 @@
   "pluginType": "Action",
   "properties": {
     "argument": "The amount of milliseconds interval between each elements search.",
-    "elementToActOn": "The locator value by which the element will be found.",
+    "onElement": "The locator value by which the element will be found.",
     "locator": "The locator type by which the element will be found."
   },
   "protocol": {

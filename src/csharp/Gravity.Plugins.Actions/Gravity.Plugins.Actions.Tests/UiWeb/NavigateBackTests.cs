@@ -1,7 +1,7 @@
 ﻿/*
  * CHANGE LOG - keep only last 5 threads
  * 
- * on-line resources
+ * online resources
  */
 using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Actions.UnitTests.Base;
@@ -17,31 +17,31 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         [TestInitialize]
         public void Setup()
         {
-            WebAutomation.EngineConfiguration.PageLoadTimeout = 15000;
+            Automation.EngineConfiguration.PageLoadTimeout = 15000;
         }
 
         [TestCleanup]
         public void Cleanup()
         {
-            WebAutomation.EngineConfiguration.PageLoadTimeout = 100;
+            Automation.EngineConfiguration.PageLoadTimeout = 100;
         }
 
         [TestMethod]
         public void NavigateBackCreate()
         {
-            ValidateAction<NavigateBack>();
+            AssertPlugin<NavigateBack>();
         }
 
         [TestMethod]
         public void NavigateBackDocumentation()
         {
-            ValidateActionDocumentation<NavigateBack>(WebPlugins.NavigateBack);
+            AssertDocumentation<NavigateBack>(WebPlugins.NavigateBack);
         }
 
         [TestMethod]
         public void NavigateBackDocumentationResourceFile()
         {
-            ValidateActionDocumentation<NavigateBack>(
+            AssertDocumentation<NavigateBack>(
                 WebPlugins.NavigateBack, "navigate_back.json");
         }
 

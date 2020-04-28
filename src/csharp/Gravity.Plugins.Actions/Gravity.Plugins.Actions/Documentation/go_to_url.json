@@ -31,7 +31,7 @@
       "literalExample": "go to url take {//li[5]/a} inner text",
       "actionExample": {
         "actionType": "GoToUrl",
-        "elementToActOn": "//li[5]/a"
+        "onElement": "//li[5]/a"
       }
     },
     {
@@ -40,7 +40,7 @@
       "actionExample": {
         "actionType": "GoToUrl",
         "argument": "{{$ --blank}}",
-        "elementToActOn": "//li[5]/a"
+        "onElement": "//li[5]/a"
       }
     },
     {
@@ -48,8 +48,8 @@
       "literalExample": "go to url take {//li[5]/a} element from {href} attribute",
       "actionExample": {
         "actionType": "GoToUrl",
-        "elementToActOn": "//li[5]/a",
-        "elementAttributeToActOn": "href"
+        "onElement": "//li[5]/a",
+        "onAttribute": "href"
       }
     },
     {
@@ -57,8 +57,8 @@
       "literalExample": "go to url take {//li[5]/a} element from {href} filter {https://gravitymvctestapplication.azurewebsites.net}",
       "actionExample": {
         "actionType": "GoToUrl",
-        "elementToActOn": "//li[5]/a",
-        "elementAttributeToActOn": "href",
+        "onElement": "//li[5]/a",
+        "onAttribute": "href",
         "regularExpression": "https://gravitymvctestapplication.azurewebsites.net"
       }
     }
@@ -66,9 +66,9 @@
   "name": "GoToUrl",
   "pluginType": "Action",
   "properties": {
-    "elementToActOn": "The locator value by which the element will be found.",
+    "onElement": "The locator value by which the element will be found.",
     "locator": "The locator type by which the element will be found.",
-    "elementAttributeToActOn": "The element attribute from which to extract information for action execution. If not specified, information will be taken from the element inner text.",
+    "onAttribute": "The element attribute from which to extract information for action execution. If not specified, information will be taken from the element inner text.",
     "regularExpression": "A pattern by which the extracted information will be evaluated. Returns the first match.",
     "argument": "The URL to load. It is best to use a fully qualified URL."
   },

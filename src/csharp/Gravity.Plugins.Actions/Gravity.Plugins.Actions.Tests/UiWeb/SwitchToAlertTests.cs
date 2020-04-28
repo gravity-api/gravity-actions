@@ -1,7 +1,7 @@
 ﻿/*
  * CHANGE LOG - keep only last 5 threads
  * 
- * on-line resources
+ * online resources
  */
 using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Actions.UnitTests.Base;
@@ -18,16 +18,16 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
     public class SwitchToAlertTests : ActionTests
     {
         [TestMethod]
-        public void SwitchToAlertCreate() => ValidateAction<SwitchToAlert>();
+        public void SwitchToAlertCreate() => AssertPlugin<SwitchToAlert>();
 
         [TestMethod]
         public void SwitchToAlertDocumentation()
-            => ValidateActionDocumentation<SwitchToAlert>(WebPlugins.SwitchToAlert);
+            => AssertDocumentation<SwitchToAlert>(WebPlugins.SwitchToAlert);
 
         [TestMethod]
         public void SwitchToAlertDocumentationResourceFile()
         {
-            ValidateActionDocumentation<SwitchToAlert>(
+            AssertDocumentation<SwitchToAlert>(
                 WebPlugins.SwitchToAlert, "switch_to_alert.json");
         }
 

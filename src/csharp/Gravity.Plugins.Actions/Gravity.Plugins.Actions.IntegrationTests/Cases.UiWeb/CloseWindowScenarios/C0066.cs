@@ -33,13 +33,13 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiWeb.CloseWindowScenar
                 new ActionRule
                 {
                     ActionType = CommonPlugins.Click,
-                    ElementToActOn = "pop_window",
+                    OnElement = "pop_window",
                     Locator = LocatorType.Id
                 },
                 new ActionRule
                 {
                     ActionType = CommonPlugins.Click,
-                    ElementToActOn = "pop_window",
+                    OnElement = "pop_window",
                     Locator = LocatorType.Id
                 },
                 new ActionRule

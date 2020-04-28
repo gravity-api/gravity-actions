@@ -35,7 +35,7 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.AssertScenario
                 {
                     ActionType = CommonPlugins.Assert,
                     Argument = "{{$ --exists}}",
-                    ElementToActOn = onElement,
+                    OnElement = onElement,
                     Locator = LocatorType.Id
                 }
             };

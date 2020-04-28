@@ -16,16 +16,17 @@
  *    - modify: override ActionName using ActionType constant
  *    - modify: code cleaning
  * 
- * on-line resources
+ * online resources
  * http://appium.io/docs/en/writing-running-appium/android/android-shell/
  */
-using OpenQA.Selenium.Extensions;
 using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Actions.Extensions;
 using Gravity.Plugins.Attributes;
 using Gravity.Plugins.Base;
-using Microsoft.Extensions.Logging;
+using Gravity.Plugins.Contracts;
+using Gravity.Plugins.Extensions;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Extensions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -36,8 +37,6 @@ using System.Threading;
 
 // consolidate references
 using SeleniumActions = OpenQA.Selenium.Interactions.Actions;
-using Gravity.Plugins.Extensions;
-using Gravity.Plugins.Contracts;
 
 namespace Gravity.Plugins.Actions.UiCommon
 {
@@ -47,7 +46,7 @@ namespace Gravity.Plugins.Actions.UiCommon
         Name = CommonPlugins.SendKeys)]
     public class SendKeys : WebDriverActionPlugin
     {
-        #region *** constants: arguments  ***
+        #region *** arguments    ***
         /// <summary>
         /// Clears the element value, before typing into it.
         /// </summary>
@@ -78,44 +77,44 @@ namespace Gravity.Plugins.Actions.UiCommon
         // members: state
         private IDictionary<string, string> arguments;
 
-        #region *** constructors          ***
+        #region *** constructors ***
         /// <summary>
         /// Creates a new instance of this plugin.
         /// </summary>
-        /// <param name="webAutomation">This <see cref="WebAutomation"/> object (the original object sent by the user).</param>
+        /// <param name="automation">This <see cref="WebAutomation"/> object (the original object sent by the user).</param>
         /// <param name="driver"><see cref="IWebDriver"/> implementation by which to execute the action.</param>
-        public SendKeys(WebAutomation webAutomation, IWebDriver driver)
-            : base(webAutomation, driver)
+        public SendKeys(WebAutomation automation, IWebDriver driver)
+            : base(automation, driver)
         { }
         #endregion
 
         /// <summary>
         /// Simulates typing text into the element.
         /// </summary>
-        /// <param name="actionRule">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
-        public override void OnPerform(ActionRule actionRule)
+        /// <param name="action">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
+        public override void OnPerform(ActionRule action)
         {
-            DoAction(element: default, actionRule);
+            DoAction(action, element: default);
         }
 
         /// <summary>
         /// Simulates typing text into the element.
         /// </summary>
-        /// <param name="actionRule">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
+        /// <param name="action">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
         /// <param name="element">This <see cref="IWebElement"/> instance on which to perform the action (provided by the extraction rule).</param>
-        public override void OnPerform(ActionRule actionRule, IWebElement element)
+        public override void OnPerform(ActionRule action, IWebElement element)
         {
-            DoAction(element, actionRule);
+            DoAction(action, element);
         }
 
-        // executes action routine
-        private void DoAction(IWebElement element, ActionRule actionRule)
+        // execute action routine
+        private void DoAction(ActionRule action, IWebElement element)
         {
             // setup            
-            arguments = SetArguments(actionRule);
+            arguments = SetArguments(action);
             var conditions = SetConditions().Where(i => i.Value);
             var regex = conditions.Any() ? string.Join("|", conditions.Select(i => i.Key)) : string.Empty;
-            var onElement = this.ConditionalGetElement(element, actionRule);
+            var onElement = this.ConditionalGetElement(element, action);
 
             // execute: default
             if (string.IsNullOrEmpty(regex))
@@ -126,20 +125,20 @@ namespace Gravity.Plugins.Actions.UiCommon
 
             foreach (var method in GetType().GetMethodsByDescription(regex))
             {
-                DoActionIteration(method, webElement: onElement);
+                DoActionIteration(method, element: onElement);
             }
         }
 
         // populate action arguments based on action rule or CLI
-        private IDictionary<string, string> SetArguments(ActionRule actionRule)
+        private IDictionary<string, string> SetArguments(ActionRule action)
         {
             // initialize CLI factory
-            var args = CliFactory.Parse(actionRule.Argument);
+            var args = CliFactory.Parse(action.Argument);
 
             // initialize arguments (if needed)
             if (!args.ContainsKey(Keystrokes))
             {
-                args[Keystrokes] = actionRule.Argument;
+                args[Keystrokes] = action.Argument;
             }
             return args;
         }
@@ -148,7 +147,7 @@ namespace Gravity.Plugins.Actions.UiCommon
         private IDictionary<string, bool> SetConditions()
         {
             // setup
-            var driverParams = WebAutomation.DriverParams ?? new Dictionary<string, object>();
+            var driverParams = Automation.DriverParams ?? new Dictionary<string, object>();
 
             // setup conditions
             var isClear = arguments.ContainsKey(Clear);
@@ -169,23 +168,23 @@ namespace Gravity.Plugins.Actions.UiCommon
         }
 
         // executes a single send keys method
-        private void DoActionIteration(MethodInfo method, IWebElement webElement)
+        private void DoActionIteration(MethodInfo method, IWebElement element)
         {
             if (method.GetParameters().Length == 0)
             {
                 method.Invoke(obj: this, parameters: null);
                 return;
             }
-            method.Invoke(obj: this, parameters: new object[] { webElement });
+            method.Invoke(obj: this, parameters: new object[] { element });
         }
 
         // CONDITIONS REPOSITORY
 #pragma warning disable S1144, RCS1213, IDE0051
         [Description("isClear")]
-        private void DoClear(IWebElement webElement) => webElement.Clear();
+        private void DoClear(IWebElement element) => element.Clear();
 
         [Description("isForceClear")]
-        private void DoForceClear(IWebElement webElement)
+        private void DoForceClear(IWebElement element)
         {
             // exit conditions
             if (WebDriver.IsAppiumDriver())
@@ -196,28 +195,28 @@ namespace Gravity.Plugins.Actions.UiCommon
             // force clear
             try
             {
-                var attribute = webElement.GetAttribute("value");
-                webElement.SendKeys(Keys.End);
+                var attribute = element.GetAttribute("value");
+                element.SendKeys(Keys.End);
                 for (int i = 0; i < attribute.Length; i++)
                 {
-                    webElement.SendKeys(Keys.Backspace);
+                    element.SendKeys(Keys.Backspace);
                     Thread.Sleep(50);
                 }
             }
             catch (Exception e) when (e is NullReferenceException || e is WebDriverException)
             {
-                Logger.LogWarning("WebElement does not have a [value] attribute. [ForceClear] action was not executed.");
+                // ignore exceptions
             }
         }
 
         [Description("isInterval")]
-        private void DoInterval(IWebElement webElement)
+        private void DoInterval(IWebElement element)
         {
             // parse typing interval
             int.TryParse(arguments[Interval], out int intervalOut);
 
             // execute action
-            webElement.DelayedSendKeys(arguments[Keystrokes], intervalOut);
+            element.DelayedSendKeys(arguments[Keystrokes], intervalOut);
         }
 
         [Description("isDown")]
@@ -255,16 +254,16 @@ namespace Gravity.Plugins.Actions.UiCommon
         }
 
         [Description("isAndroid")]
-        private void DoAndroid(IWebElement webElement)
+        private void DoAndroid(IWebElement element)
         {
             try
             {
-                webElement.SendKeys(arguments[Keystrokes]);
+                element.SendKeys(arguments[Keystrokes]);
             }
             catch (Exception e) when (e is InvalidElementStateException)
             {
                 // focus on the element
-                new SeleniumActions(WebDriver).MoveToElement(webElement).Click().Perform();
+                new SeleniumActions(WebDriver).MoveToElement(element).Click().Perform();
 
                 // get the focused element
                 var focusedElement = WebDriver.FindElement(By.XPath("//*[@focused='true']"));

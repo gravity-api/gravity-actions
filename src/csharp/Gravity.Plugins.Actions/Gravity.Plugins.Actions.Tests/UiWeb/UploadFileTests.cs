@@ -1,7 +1,7 @@
 ﻿/*
  * CHANGE LOG - keep only last 5 threads
  * 
- * on-line resources
+ * online resources
  */
 using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Actions.UiWeb;
@@ -17,23 +17,23 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         [TestMethod]
         public void UploadFileCreate()
         {
-            ValidateAction<UploadFile>();
+            AssertPlugin<UploadFile>();
         }
 
         [TestMethod]
         public void UploadFileDocumentation()
         {
-            ValidateActionDocumentation<UploadFile>(WebPlugins.UploadFile);
+            AssertDocumentation<UploadFile>(WebPlugins.UploadFile);
         }
 
         [TestMethod]
         public void UploadFileDocumentationResourceFile()
         {
-            ValidateActionDocumentation<UploadFile>(WebPlugins.UploadFile, "upload_file.json");
+            AssertDocumentation<UploadFile>(WebPlugins.UploadFile, "upload_file.json");
         }
 
         [DataTestMethod]
-        [DataRow("{'elementToActOn':'//file'}")]
+        [DataRow("{'onElement':'//file'}")]
         public void UploadFilePositive(string actionRule)
         {
             // execute
@@ -44,7 +44,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'elementToActOn':'//file'}")]
+        [DataRow("{'onElement':'//file'}")]
         public void UploadFileElementPositive(string actionRule)
         {
             // execute

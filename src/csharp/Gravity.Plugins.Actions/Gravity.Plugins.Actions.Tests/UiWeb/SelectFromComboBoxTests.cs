@@ -1,7 +1,7 @@
 ﻿/*
  * CHANGE LOG - keep only last 5 threads
  * 
- * on-line resources
+ * online resources
  */
 using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Actions.UnitTests.Base;
@@ -18,18 +18,18 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
     public class SelectFromComboBoxTests : ActionTests
     {
         [TestMethod]
-        public void SelectFromComboBoxCreate() => ValidateAction<SelectFromComboBox>();
+        public void SelectFromComboBoxCreate() => AssertPlugin<SelectFromComboBox>();
 
         [TestMethod]
         public void SelectFromComboBoxDocumentation()
-            => ValidateActionDocumentation<SelectFromComboBox>(WebPlugins.SelectFromComboBox);
+            => AssertDocumentation<SelectFromComboBox>(WebPlugins.SelectFromComboBox);
 
         [TestMethod]
         public void SelectFromComboBoxDocumentationResourceFile()
-            => ValidateActionDocumentation<SelectFromComboBox>(WebPlugins.SelectFromComboBox, "select_from_combo_box.json");
+            => AssertDocumentation<SelectFromComboBox>(WebPlugins.SelectFromComboBox, "select_from_combo_box.json");
 
         [DataTestMethod]
-        [DataRow("{'elementToActOn':'//select-element','argument':'Mock: Positive Element'}")]
+        [DataRow("{'onElement':'//select-element','argument':'Mock: Positive Element'}")]
         public void SelectFromComboBoxPositive(string actionRule)
         {
             // execute
@@ -40,7 +40,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'elementToActOn':'//select-element','argument':'Mock: Positive Element', 'elementAttributeToActOn':'value'}")]
+        [DataRow("{'onElement':'//select-element','argument':'Mock: Positive Element', 'onAttribute':'value'}")]
         public void SelectFromComboBoxValuePositive(string actionRule)
         {
             // execute
@@ -51,7 +51,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'elementToActOn':'//select-element','argument':'0', 'elementAttributeToActOn':'index'}")]
+        [DataRow("{'onElement':'//select-element','argument':'0', 'onAttribute':'index'}")]
         public void SelectFromComboBoxIndexPositive(string actionRule)
         {
             // execute
@@ -62,7 +62,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'elementToActOn':'//select-element','argument':'{{$ --all}}'}")]
+        [DataRow("{'onElement':'//select-element','argument':'{{$ --all}}'}")]
         public void SelectFromComboBoxAllPositive(string actionRule)
         {
             // execute
@@ -73,7 +73,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         }
 
         [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
-        [DataRow("{'elementToActOn':'//none','argument':'Mock: Positive Element'}")]
+        [DataRow("{'onElement':'//none','argument':'Mock: Positive Element'}")]
         public void SelectFromComboBoxNone(string actionRule)
         {
             // execute
@@ -84,7 +84,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         }
 
         [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
-        [DataRow("{'elementToActOn':'//stale','argument':'Mock: Positive Element'}")]
+        [DataRow("{'onElement':'//stale','argument':'Mock: Positive Element'}")]
         public void SelectFromComboBoxStale(string actionRule)
         {
             // execute
@@ -95,7 +95,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         }
 
         [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
-        [DataRow("{'elementToActOn':'//null','argument':'Mock: Positive Element'}")]
+        [DataRow("{'onElement':'//null','argument':'Mock: Positive Element'}")]
         public void SelectFromComboBoxNull(string actionRule)
         {
             // execute
@@ -106,7 +106,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'elementToActOn':'.//select-element','argument':'Mock: Positive Element'}")]
+        [DataRow("{'onElement':'.//select-element','argument':'Mock: Positive Element'}")]
         public void SelectFromComboBoxElementPositive(string actionRule)
         {
             // execute
@@ -117,7 +117,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'elementToActOn':'.//select-element','argument':'Mock: Positive Element', 'elementAttributeToActOn':'value'}")]
+        [DataRow("{'onElement':'.//select-element','argument':'Mock: Positive Element', 'onAttribute':'value'}")]
         public void SelectFromComboBoxElementValuePositive(string actionRule)
         {
             // execute
@@ -128,7 +128,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'elementToActOn':'.//select-element','argument':'0', 'elementAttributeToActOn':'index'}")]
+        [DataRow("{'onElement':'.//select-element','argument':'0', 'onAttribute':'index'}")]
         public void SelectFromComboBoxElementIndexPositive(string actionRule)
         {
             // execute
@@ -139,7 +139,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'elementToActOn':'.//select-element','argument':'{{$ --all}}'}")]
+        [DataRow("{'onElement':'.//select-element','argument':'{{$ --all}}'}")]
         public void SelectFromComboBoxElementAllPositive(string actionRule)
         {
             // execute
@@ -150,7 +150,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         }
 
         [DataTestMethod, ExpectedException(typeof(NoSuchElementException))]
-        [DataRow("{'elementToActOn':'.//none','argument':'Mock: Positive Element'}")]
+        [DataRow("{'onElement':'.//none','argument':'Mock: Positive Element'}")]
         public void SelectFromComboBoxElementNone(string actionRule)
         {
             // execute
@@ -161,7 +161,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         }
 
         [DataTestMethod, ExpectedException(typeof(StaleElementReferenceException))]
-        [DataRow("{'elementToActOn':'.//stale','argument':'Mock: Positive Element'}")]
+        [DataRow("{'onElement':'.//stale','argument':'Mock: Positive Element'}")]
         public void SelectFromComboBoxElementStale(string actionRule)
         {
             // execute
@@ -172,7 +172,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         }
 
         [DataTestMethod, ExpectedException(typeof(ArgumentNullException))]
-        [DataRow("{'elementToActOn':'.//null','argument':'Mock: Positive Element'}")]
+        [DataRow("{'onElement':'.//null','argument':'Mock: Positive Element'}")]
         public void SelectFromComboBoxElementNull(string actionRule)
         {
             // execute

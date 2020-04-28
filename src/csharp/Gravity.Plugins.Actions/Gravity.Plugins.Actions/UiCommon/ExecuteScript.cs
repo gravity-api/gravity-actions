@@ -18,16 +18,16 @@
  *    - modify: improve XML comments
  *    - modify: override action-name using ActionType constant
  * 
- * on-line resources
+ * online resources
  */
 using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Actions.Extensions;
+using Gravity.Plugins.Attributes;
 using Gravity.Plugins.Base;
+using Gravity.Plugins.Contracts;
 using Newtonsoft.Json;
 using OpenQA.Selenium;
 using System.Collections.Generic;
-using Gravity.Plugins.Attributes;
-using Gravity.Plugins.Contracts;
 
 namespace Gravity.Plugins.Actions.UiCommon
 {
@@ -53,41 +53,41 @@ namespace Gravity.Plugins.Actions.UiCommon
         /// <summary>
         /// Creates a new instance of this plugin.
         /// </summary>
-        /// <param name="webAutomation">This <see cref="WebAutomation"/> object (the original object sent by the user).</param>
+        /// <param name="automation">This <see cref="WebAutomation"/> object (the original object sent by the user).</param>
         /// <param name="driver"><see cref="IWebDriver"/> implementation by which to execute the action.</param>
-        public ExecuteScript(WebAutomation webAutomation, IWebDriver driver)
-            : base(webAutomation, driver)
+        public ExecuteScript(WebAutomation automation, IWebDriver driver)
+            : base(automation, driver)
         { }
         #endregion
 
         /// <summary>
         /// Executes JavaScript in the context of the currently selected frame or window.
         /// </summary>
-        /// <param name="actionRule">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
-        public override void OnPerform(ActionRule actionRule)
+        /// <param name="action">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
+        public override void OnPerform(ActionRule action)
         {
-            DoAction(actionRule, element: default);
+            DoAction(action, element: default);
         }
 
         /// <summary>
         /// Executes JavaScript in the context of the currently selected element.
         /// </summary>
-        /// <param name="actionRule">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
+        /// <param name="action">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
         /// <param name="element">This <see cref="IWebElement"/> instance on which to perform the action (provided by the extraction rule).</param>
         /// <remarks>This action assumes that the element is already found and selected. You need to provide the code after the ".".</remarks>
         /// <example>{ "argument": ".checked = true" } The element will be injected before the ".".</example>
-        public override void OnPerform(ActionRule actionRule, IWebElement element)
+        public override void OnPerform(ActionRule action, IWebElement element)
         {
-            DoAction(actionRule, element);
+            DoAction(action, element);
         }
 
-        // executes action routine
-        private void DoAction(ActionRule actionRule, IWebElement element)
+        // execute action routine
+        private void DoAction(ActionRule action, IWebElement element)
         {
             // setup
-            var cliArgs = CliFactory.Parse(actionRule.Argument);
-            var srcArgs = GetArguments(element, actionRule);
-            var jscript = cliArgs.ContainsKey(Src) ? cliArgs[Src] : actionRule.Argument;
+            var cliArgs = CliFactory.Parse(action.Argument);
+            var srcArgs = GetArguments(element, action);
+            var jscript = cliArgs.ContainsKey(Src) ? cliArgs[Src] : action.Argument;
 
             // add arguments
             if (cliArgs.ContainsKey(Args))
@@ -107,11 +107,11 @@ namespace Gravity.Plugins.Actions.UiCommon
         }
 
         // parse script arguments from action-rule
-        private List<object> GetArguments(IWebElement element, ActionRule actionRule)
+        private List<object> GetArguments(IWebElement element, ActionRule action)
         {
             // exit condition
             var isElement = element != default;
-            var isFromAction = !string.IsNullOrEmpty(actionRule.ElementToActOn);
+            var isFromAction = !string.IsNullOrEmpty(action.OnElement);
 
             // empty arguments collection
             if (!(isElement || isFromAction))
@@ -120,7 +120,7 @@ namespace Gravity.Plugins.Actions.UiCommon
             }
 
             // get element by actionRule
-            var onElement = this.ConditionalGetElement(element, actionRule);
+            var onElement = this.ConditionalGetElement(element, action);
 
             // return arguments
             return new List<object> { onElement };

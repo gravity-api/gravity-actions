@@ -1,7 +1,7 @@
 ﻿/*
  * CHANGE LOG - keep only last 5 threads
  * 
- * on-line resources
+ * online resources
  */
 using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Actions.UiWeb;
@@ -28,19 +28,19 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         [TestMethod]
         public void GoToUrlCreate()
         {
-            ValidateAction<GoToUrl>();
+            AssertPlugin<GoToUrl>();
         }
 
         [TestMethod]
         public void GoToUrlDocumentation()
         {
-            ValidateActionDocumentation<GoToUrl>(WebPlugins.GoToUrl);
+            AssertDocumentation<GoToUrl>(WebPlugins.GoToUrl);
         }
 
         [TestMethod]
         public void GoToUrlDocumentationResourceFile()
         {
-            ValidateActionDocumentation<GoToUrl>(WebPlugins.GoToUrl, "go_to_url.json");
+            AssertDocumentation<GoToUrl>(WebPlugins.GoToUrl, "go_to_url.json");
         }
 
         [TestMethod]
@@ -91,7 +91,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         }
 
         [TestMethod]
-        [DataRow("{'elementToActOn':'//positive'}")]
+        [DataRow("{'onElement':'//positive'}")]
         public void GoToUrlText(string actionRule)
         {
             // execute
@@ -102,7 +102,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         }
 
         [TestMethod]
-        [DataRow("{'elementToActOn':'//positive', 'elementAttributeToActOn':'href'}")]
+        [DataRow("{'onElement':'//positive', 'onAttribute':'href'}")]
         public void GoToUrlAttribute(string actionRule)
         {
             // execute
@@ -185,7 +185,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         }
 
         [TestMethod]
-        [DataRow("{'elementToActOn':'.//positive'}")]
+        [DataRow("{'onElement':'.//positive'}")]
         public void GoToUrlElementText(string actionRule)
         {
             // execute
@@ -196,7 +196,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         }
 
         [TestMethod]
-        [DataRow("{'elementToActOn':'.//positive', 'elementAttributeToActOn':'href'}")]
+        [DataRow("{'onElement':'.//positive', 'onAttribute':'href'}")]
         public void GoToUrlElementAttribute(string actionRule)
         {
             // execute

@@ -7,7 +7,7 @@
       "literalExample": "context click on {click_button} using {id}",
       "actionExample": {
         "actionType": "ContextClick",
-        "elementToActOn": "click_button",
+        "onElement": "click_button",
         "locator": "Id"
       }
     },
@@ -22,7 +22,7 @@
   "name": "ContextClick",
   "pluginType": "Action",
   "properties": {
-    "elementToActOn": "The locator value by which the element will be found.",
+    "onElement": "The locator value by which the element will be found.",
     "locator": "The locator type by which the element will be found."
   },
   "protocol": {

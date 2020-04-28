@@ -38,7 +38,7 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.ConditionScena
                 {
                     ActionType = CommonPlugins.Condition,
                     Argument = "{{$ --disabled}}",
-                    ElementToActOn = condition,
+                    OnElement = condition,
                     Locator = LocatorType.Id,
                     Actions = SharedSteps.SetNumberOfAlerts(numberOfAlerts: 20)
                 },

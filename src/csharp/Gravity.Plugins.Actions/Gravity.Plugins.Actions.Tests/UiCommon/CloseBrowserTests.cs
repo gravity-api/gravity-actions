@@ -1,7 +1,7 @@
 ﻿/*
  * CHANGE LOG - keep only last 5 threads
  * 
- * on-line resources
+ * online resources
  */
 using OpenQA.Selenium.Mock;
 using Gravity.Plugins.Actions.UiCommon;
@@ -10,6 +10,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using System.Collections.Generic;
 using Gravity.Plugins.Actions.Contracts;
+
 using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
 
 namespace Gravity.Plugins.Actions.UnitTests.UiCommon
@@ -17,25 +18,30 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
     [TestClass]
     public class CloseBrowserTests : ActionTests
     {
+        #region *** tests: documentation ***
         [TestMethod]
         public void CloseBrowserCreate()
         {
-            ValidateAction<CloseBrowser>();
+            AssertPlugin<CloseBrowser>();
         }
 
         [TestMethod]
         public void CloseBrowserDocumentation()
         {
-            ValidateActionDocumentation<CloseBrowser>(CommonPlugins.CloseBrowser);
+            AssertDocumentation<CloseBrowser>(
+                pluginName: CommonPlugins.CloseBrowser);
         }
 
         [TestMethod]
         public void CloseBrowserDocumentationResourceFile()
         {
-            ValidateActionDocumentation<CloseBrowser>(
-                CommonPlugins.CloseBrowser, "close_browser.json");
+            AssertDocumentation<CloseBrowser>(
+                pluginName: CommonPlugins.CloseBrowser,
+                resource: "close_browser.json");
         }
+        #endregion
 
+        #region *** tests: OnDriver      ***
         [TestMethod]
         public void CloseBrowserPositive()
         {
@@ -58,5 +64,6 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
                 [MockCapabilities.ThrowOnClose] = true
             });
         }
+        #endregion
     }
 }

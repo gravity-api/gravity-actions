@@ -1,7 +1,7 @@
 ﻿/*
  * CHANGE LOG - keep only last 5 threads
  * 
- * on-line resources
+ * online resources
  */
 using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Actions.UiWeb;
@@ -84,15 +84,15 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         }
 
         [TestMethod]
-        public void ExtractDataCreate() => ValidateAction<ExtractFromSource>();
+        public void ExtractDataCreate() => AssertPlugin<ExtractFromSource>();
 
         [TestMethod]
         public void ExtractDataDocumentation()
-            => ValidateActionDocumentation<ExtractFromSource>(WebPlugins.ExtractFromSource);
+            => AssertDocumentation<ExtractFromSource>(WebPlugins.ExtractFromSource);
 
         [TestMethod]
         public void ExtractDataDocumentationResourceFile()
-            => ValidateActionDocumentation<ExtractFromSource>(WebPlugins.ExtractFromSource, "extract_from_source.json");
+            => AssertDocumentation<ExtractFromSource>(WebPlugins.ExtractFromSource, "extract_from_source.json");
 
         #region *** extract from source  ***
         // 0: extracts inner text of all root elements
@@ -100,8 +100,8 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         [DataRow("" +
             "{" +
             "    'pageSource':true," +
-            "    'rootElementToExtractFrom':'//positive'," +
-            "    'elementsToExtract': [" +
+            "    'onRootElements':'//positive'," +
+            "    'onElements': [" +
             "        {" +
             "            'key':'data'" +
             "        }" +
@@ -121,8 +121,8 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         [DataRow("" +
             "{" +
             "    'pageSource':true," +
-            "    'rootElementToExtractFrom':'//positive'," +
-            "    'elementsToExtract': [" +
+            "    'onRootElements':'//positive'," +
+            "    'onElements': [" +
             "        {" +
             "            'regularExpression':'mock div'," +
             "            'key':'data'" +
@@ -143,10 +143,10 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         [DataRow("" +
             "{" +
             "    'pageSource':true," +
-            "    'rootElementToExtractFrom':'//positive'," +
-            "    'elementsToExtract': [" +
+            "    'onRootElements':'//positive'," +
+            "    'onElements': [" +
             "        {" +
-            "            'elementAttributeToActOn':'mock_attribute'," +
+            "            'onAttribute':'mock_attribute'," +
             "            'key':'data'" +
             "        }" +
             "    ]" +
@@ -165,10 +165,10 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         [DataRow("" +
             "{" +
             "    'pageSource':true," +
-            "    'rootElementToExtractFrom':'//positive'," +
-            "    'elementsToExtract': [" +
+            "    'onRootElements':'//positive'," +
+            "    'onElements': [" +
             "        {" +
-            "            'elementAttributeToActOn':'mock_attribute'," +
+            "            'onAttribute':'mock_attribute'," +
             @"           'regularExpression':'\\d+'," +
             "            'key':'data'" +
             "        }" +
@@ -188,10 +188,10 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         [DataRow("" +
             "{" +
             "    'pageSource':true," +
-            "    'rootElementToExtractFrom':'//div'," +
-            "    'elementsToExtract': [" +
+            "    'onRootElements':'//div'," +
+            "    'onElements': [" +
             "        {" +
-            "            'elementToActOn':'./span[1]'," +
+            "            'onElement':'./span[1]'," +
             "            'key':'data'" +
             "        }" +
             "    ]" +
@@ -210,10 +210,10 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         [DataRow("" +
             "{" +
             "    'pageSource':true," +
-            "    'rootElementToExtractFrom':'//div'," +
-            "    'elementsToExtract': [" +
+            "    'onRootElements':'//div'," +
+            "    'onElements': [" +
             "        {" +
-            "            'elementToActOn':'./span[1]'," +
+            "            'onElement':'./span[1]'," +
             @"           'regularExpression':'child div \\d'," +
             "            'key':'data'" +
             "        }" +
@@ -233,11 +233,11 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         [DataRow("" +
             "{" +
             "    'pageSource':true," +
-            "    'rootElementToExtractFrom':'//div'," +
-            "    'elementsToExtract': [" +
+            "    'onRootElements':'//div'," +
+            "    'onElements': [" +
             "        {" +
-            "            'elementToActOn':'./span[1]'," +
-            "            'elementAttributeToActOn':'id'," +
+            "            'onElement':'./span[1]'," +
+            "            'onAttribute':'id'," +
             "            'key':'data'" +
             "        }" +
             "    ]" +
@@ -256,11 +256,11 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         [DataRow("" +
             "{" +
             "    'pageSource':true," +
-            "    'rootElementToExtractFrom':'//div'," +
-            "    'elementsToExtract': [" +
+            "    'onRootElements':'//div'," +
+            "    'onElements': [" +
             "        {" +
-            "            'elementToActOn':'./span[1]'," +
-            "            'elementAttributeToActOn':'id'," +
+            "            'onElement':'./span[1]'," +
+            "            'onAttribute':'id'," +
             @"           'regularExpression':'\\d+'," +
             "            'key':'data'" +
             "        }" +
@@ -280,10 +280,10 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         [DataRow("" +
             "{" +
             "    'pageSource':true," +
-            "    'rootElementToExtractFrom':'//positive'," +
-            "    'elementsToExtract': [" +
+            "    'onRootElements':'//positive'," +
+            "    'onElements': [" +
             "        {" +
-            "            'elementAttributeToActOn':'html'," +
+            "            'onAttribute':'html'," +
             "            'key':'data'" +
             "        }" +
             "    ]" +
@@ -302,11 +302,11 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         [DataRow("" +
             "{" +
             "    'pageSource':true," +
-            "    'rootElementToExtractFrom':'//div'," +
-            "    'elementsToExtract': [" +
+            "    'onRootElements':'//div'," +
+            "    'onElements': [" +
             "        {" +
-            "            'elementToActOn':'./span[1]'," +
-            "            'elementAttributeToActOn':'html'," +
+            "            'onElement':'./span[1]'," +
+            "            'onAttribute':'html'," +
             "            'key':'data'" +
             "        }" +
             "    ]" +
@@ -325,10 +325,10 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         [DataRow("" +
             "{" +
             "    'pageSource':true," +
-            "    'rootElementToExtractFrom':'//div'," +
-            "    'elementsToExtract': [" +
+            "    'onRootElements':'//div'," +
+            "    'onElements': [" +
             "        {" +
-            "            'elementToActOn':'//p[1]'," +
+            "            'onElement':'//p[1]'," +
             "            'key':'data'" +
             "        }" +
             "    ]" +
@@ -347,11 +347,11 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         [DataRow("" +
             "{" +
             "    'pageSource':true," +
-            "    'rootElementToExtractFrom':'//div'," +
-            "    'elementsToExtract': [" +
+            "    'onRootElements':'//div'," +
+            "    'onElements': [" +
             "        {" +
-            "            'elementToActOn':'//p[1]'," +
-            "            'elementAttributeToActOn':'id'," +
+            "            'onElement':'//p[1]'," +
+            "            'onAttribute':'id'," +
             "            'key':'data'" +
             "        }" +
             "    ]" +
@@ -370,8 +370,8 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         [DataRow("" +
             "{" +
             "    'pageSource':false," +
-            "    'rootElementToExtractFrom':'//positive'," +
-            "    'elementsToExtract': [" +
+            "    'onRootElements':'//positive'," +
+            "    'onElements': [" +
             "        {" +
             "            'regularExpression':'mock element nested inner'," +
             "            'key':'data'" +
@@ -400,8 +400,8 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
             "        'repository':'[Data.Repository]'" +
             "    }," +
             "    'pageSource':true," +
-            "    'rootElementToExtractFrom':'//positive'," +
-            "    'elementsToExtract': [" +
+            "    'onRootElements':'//positive'," +
+            "    'onElements': [" +
             "        {" +
             "            'key':'data'" +
             "        }" +
@@ -432,8 +432,8 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
             "        'writePerEntity':true" +
             "    }," +
             "    'pageSource':true," +
-            "    'rootElementToExtractFrom':'//positive'," +
-            "    'elementsToExtract': [" +
+            "    'onRootElements':'//positive'," +
+            "    'onElements': [" +
             "        {" +
             "            'key':'data'" +
             "        }" +
@@ -463,8 +463,8 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
             "        'repository':'[Data.Repository]'" +
             "    }," +
             "    'pageSource':true," +
-            "    'rootElementToExtractFrom':'//positive'," +
-            "    'elementsToExtract': [" +
+            "    'onRootElements':'//positive'," +
+            "    'onElements': [" +
             "        {" +
             "            'key':'data'" +
             "        }" +
@@ -494,8 +494,8 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
             "        'repository':'[Data.Repository]'" +
             "    }," +
             "    'pageSource':true," +
-            "    'rootElementToExtractFrom':'//positive'," +
-            "    'elementsToExtract': [" +
+            "    'onRootElements':'//positive'," +
+            "    'onElements': [" +
             "        {" +
             "            'key':'data'" +
             "        }" +
@@ -526,8 +526,8 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
             "        'source':'data/extract_from_source/[File.Name].csv'" +
             "    }," +
             "    'pageSource':true," +
-            "    'rootElementToExtractFrom':'//positive'," +
-            "    'elementsToExtract': [" +
+            "    'onRootElements':'//positive'," +
+            "    'onElements': [" +
             "        {" +
             "            'key':'data'" +
             "        }" +
@@ -557,8 +557,8 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
             "        'writePerEntity':true" +
             "    }," +
             "    'pageSource':true," +
-            "    'rootElementToExtractFrom':'//positive'," +
-            "    'elementsToExtract': [" +
+            "    'onRootElements':'//positive'," +
+            "    'onElements': [" +
             "        {" +
             "            'key':'data'" +
             "        }" +
@@ -587,8 +587,8 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
             "        'source':''" +
             "    }," +
             "    'pageSource':true," +
-            "    'rootElementToExtractFrom':'//positive'," +
-            "    'elementsToExtract': [" +
+            "    'onRootElements':'//positive'," +
+            "    'onElements': [" +
             "        {" +
             "            'key':'data'" +
             "        }" +
@@ -619,8 +619,8 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
             "        'source':'data/extract_from_source/[File.Name].json'" +
             "    }," +
             "    'pageSource':true," +
-            "    'rootElementToExtractFrom':'//positive'," +
-            "    'elementsToExtract': [" +
+            "    'onRootElements':'//positive'," +
+            "    'onElements': [" +
             "        {" +
             "            'key':'data'" +
             "        }" +
@@ -650,8 +650,8 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
             "        'writePerEntity':true" +
             "    }," +
             "    'pageSource':true," +
-            "    'rootElementToExtractFrom':'//positive'," +
-            "    'elementsToExtract': [" +
+            "    'onRootElements':'//positive'," +
+            "    'onElements': [" +
             "        {" +
             "            'key':'data'" +
             "        }" +
@@ -680,8 +680,8 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
             "        'source':''" +
             "    }," +
             "    'pageSource':true," +
-            "    'rootElementToExtractFrom':'//positive'," +
-            "    'elementsToExtract': [" +
+            "    'onRootElements':'//positive'," +
+            "    'onElements': [" +
             "        {" +
             "            'key':'data'" +
             "        }" +
@@ -712,8 +712,8 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
             "        'source':'data/extract_from_source/[File.Name].xml'" +
             "    }," +
             "    'pageSource':true," +
-            "    'rootElementToExtractFrom':'//positive'," +
-            "    'elementsToExtract': [" +
+            "    'onRootElements':'//positive'," +
+            "    'onElements': [" +
             "        {" +
             "            'key':'data'" +
             "        }" +
@@ -743,8 +743,8 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
             "        'writePerEntity':true" +
             "    }," +
             "    'pageSource':true," +
-            "    'rootElementToExtractFrom':'//positive'," +
-            "    'elementsToExtract': [" +
+            "    'onRootElements':'//positive'," +
+            "    'onElements': [" +
             "        {" +
             "            'key':'data'" +
             "        }" +
@@ -773,8 +773,8 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
             "        'source':''" +
             "    }," +
             "    'pageSource':true," +
-            "    'rootElementToExtractFrom':'//positive'," +
-            "    'elementsToExtract': [" +
+            "    'onRootElements':'//positive'," +
+            "    'onElements': [" +
             "        {" +
             "            'key':'data'" +
             "        }" +
@@ -804,8 +804,8 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
             var plugin = ExecuteAction<ExtractFromSource>();
 
             // setup conditions
-            var isCount = plugin.ExtractionResults.First().Entities.Count() == 3;
-            var isData = plugin.ExtractionResults
+            var isCount = plugin.Extractions.First().Entities.Count() == 3;
+            var isData = plugin.Extractions
                 .First()
                 .Entities
                 .All(i => Regex.IsMatch($"{i.EntityContent["data"]}", expected));
@@ -819,7 +819,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         {
             // setup
             SetExtractionRules(extractionRule);
-            var dataSource = WebAutomation.Extractions.ElementAt(0).DataSource;
+            var dataSource = Automation.Extractions.ElementAt(0).DataSource;
             var settings = new JsonSerializerSettings
             {
                 ContractResolver = new CamelCasePropertyNamesContractResolver(),
@@ -830,7 +830,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
             var plugin = ExecuteAction<ExtractFromSource>();
 
             // results
-            var expected = plugin.ExtractionResults.First().ToDataTable();
+            var expected = plugin.Extractions.First().ToDataTable();
             var actual = new DataTable().Load(dataSource);
 
             // comparing
@@ -848,7 +848,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
             var rule = JsonConvert.DeserializeObject<ExtractionRule>(extractionRule);
 
             // apply
-            WebAutomation.Extractions = new[] { rule };
+            Automation.Extractions = new[] { rule };
         }
 
         // replace placeholder for extraction rules data source

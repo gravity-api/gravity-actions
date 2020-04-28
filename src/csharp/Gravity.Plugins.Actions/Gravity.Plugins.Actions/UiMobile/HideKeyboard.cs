@@ -1,13 +1,12 @@
 ﻿/*
  * CHANGE LOG - keep only last 5 threads
  * 
- * on-line resources
+ * online resources
  */
 using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Attributes;
 using Gravity.Plugins.Base;
 using Gravity.Plugins.Contracts;
-using Microsoft.Extensions.Logging;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Interfaces;
 
@@ -23,18 +22,18 @@ namespace Gravity.Plugins.Actions.UiMobile
         /// <summary>
         /// Creates a new instance of this plugin.
         /// </summary>
-        /// <param name="webAutomation">This <see cref="WebAutomation"/> object (the original object sent by the user).</param>
+        /// <param name="automation">This <see cref="WebAutomation"/> object (the original object sent by the user).</param>
         /// <param name="driver"><see cref="IWebDriver"/> implementation by which to execute the action.</param>
-        public HideKeyboard(WebAutomation webAutomation, IWebDriver driver)
-            : base(webAutomation, driver)
+        public HideKeyboard(WebAutomation automation, IWebDriver driver)
+            : base(automation, driver)
         { }
         #endregion
 
         /// <summary>
         /// Hide soft keyboard.
         /// </summary>
-        /// <param name="actionRule">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
-        public override void OnPerform(ActionRule actionRule)
+        /// <param name="action">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
+        public override void OnPerform(ActionRule action)
         {
             DoAction();
         }
@@ -42,23 +41,18 @@ namespace Gravity.Plugins.Actions.UiMobile
         /// <summary>
         /// Hide soft keyboard.
         /// </summary>
-        /// <param name="actionRule">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
+        /// <param name="action">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
         /// <param name="element">This <see cref="IWebElement"/> instance on which to perform the action (provided by the extraction rule).</param>
-        public override void OnPerform(ActionRule actionRule, IWebElement element)
+        public override void OnPerform(ActionRule action, IWebElement element)
         {
             DoAction();
         }
 
-        // sets the current GEO location
+        // execute action routine
         private void DoAction()
         {
-            // constants: messages
-            const string Warn = "Action [HideKeyboard] was skipped. This action is not supported by [{0}] driver.";
-
-            // exit conditions
             if (!(WebDriver is IHidesKeyboard))
             {
-                Logger.LogWarning(string.Format(Warn, WebDriver.GetType().FullName));
                 return;
             }
             ((IHidesKeyboard)WebDriver).HideKeyboard();

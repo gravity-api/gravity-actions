@@ -33,8 +33,8 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.AssertScenario
                 {
                     ActionType = CommonPlugins.Assert,
                     Argument = "{{$ --attribute --lt:" + expected + "}}",
-                    ElementToActOn = "#attribute_div",
-                    ElementAttributeToActOn = "number",
+                    OnElement = "#attribute_div",
+                    OnAttribute = "number",
                     Locator = LocatorType.CssSelector
                 }
             };

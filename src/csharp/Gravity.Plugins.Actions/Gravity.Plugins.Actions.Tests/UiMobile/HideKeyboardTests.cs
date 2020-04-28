@@ -1,7 +1,7 @@
 ﻿/*
  * CHANGE LOG - keep only last 5 threads
  * 
- * on-line resources
+ * online resources
  */
 using OpenQA.Selenium.Mock;
 using Gravity.Plugins.Actions.UiMobile;
@@ -20,19 +20,19 @@ namespace Gravity.Plugins.Actions.UnitTests.UiMobile
         [TestMethod]
         public void HideKeyboardCreate()
         {
-            ValidateAction<HideKeyboard>();
+            AssertPlugin<HideKeyboard>();
         }
 
         [TestMethod]
         public void HideKeyboardDocumentation()
         {
-            ValidateActionDocumentation<HideKeyboard>(MobilePlugins.HideKeyboard);
+            AssertDocumentation<HideKeyboard>(MobilePlugins.HideKeyboard);
         }
 
         [TestMethod]
         public void HideKeyboardDocumentationResourceFile()
         {
-            ValidateActionDocumentation<HideKeyboard>(
+            AssertDocumentation<HideKeyboard>(
                 MobilePlugins.HideKeyboard, "hide_keyboard.json");
         }
 
@@ -50,7 +50,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiMobile
         }
 
         [DataTestMethod]
-        [DataRow("{'elementToActOn':'//positive'}")]
+        [DataRow("{'onElement':'//positive'}")]
         public void HideKeyboardElementPositive(string actionRule)
         {
             // set new mock driver for mobile device

@@ -8,7 +8,7 @@
  *    - modify: improve XML comments
  *    - modify: override ActionName using ActionType constant
  * 
- * on-line resources
+ * online resources
  */
 using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Actions.Extensions;
@@ -37,10 +37,10 @@ namespace Gravity.Plugins.Actions.UiWeb
         /// <summary>
         /// Creates a new instance of this plugin.
         /// </summary>
-        /// <param name="webAutomation">This <see cref="WebAutomation"/> object (the original object sent by the user).</param>
+        /// <param name="automation">This <see cref="WebAutomation"/> object (the original object sent by the user).</param>
         /// <param name="driver"><see cref="IWebDriver"/> implementation by which to execute the action.</param>
-        public TryClick(WebAutomation webAutomation, IWebDriver driver)
-            : base(webAutomation, driver)
+        public TryClick(WebAutomation automation, IWebDriver driver)
+            : base(automation, driver)
         {
             // initialize exceptions ignore list
             var ignoreList = new[]
@@ -52,7 +52,7 @@ namespace Gravity.Plugins.Actions.UiWeb
             };
 
             // setup waiter
-            var milliseconds = WebAutomation.EngineConfiguration.ElementSearchingTimeout;
+            var milliseconds = Automation.EngineConfiguration.ElementSearchingTimeout;
             wait = new WebDriverWait(driver, TimeSpan.FromMilliseconds(milliseconds));
             wait.IgnoreExceptionTypes(ignoreList);
         }
@@ -61,36 +61,33 @@ namespace Gravity.Plugins.Actions.UiWeb
         /// <summary>
         /// Clicks the mouse on the specified element.
         /// </summary>
-        /// <param name="actionRule">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
-        public override void OnPerform(ActionRule actionRule)
+        /// <param name="action">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
+        public override void OnPerform(ActionRule action)
         {
-            DoAction(element: default, actionRule);
+            DoAction(action, element: default);
         }
 
         /// <summary>
         /// Clicks the mouse on the specified element.
         /// </summary>
-        /// <param name="actionRule">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
+        /// <param name="action">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
         /// <param name="element">This <see cref="IWebElement"/> instance on which to perform the action (provided by the extraction rule).</param>
-        public override void OnPerform(ActionRule actionRule, IWebElement element)
+        public override void OnPerform(ActionRule action, IWebElement element)
         {
-            DoAction(element, actionRule);
+            DoAction(action, element);
         }
 
-        // executes action routine
-        private void DoAction(IWebElement element, ActionRule actionRule)
+        // execute action routine
+        private void DoAction(ActionRule action, IWebElement element) => wait.Until(_ =>
         {
-            wait.Until(_ =>
-            {
-                // get element to act on
-                var onElement = this.ConditionalGetElement(element, actionRule);
+            // get element to act on
+            var onElement = this.ConditionalGetElement(element, action);
 
-                // execute script
-                ((IJavaScriptExecutor)WebDriver).ExecuteScript(Script, onElement);
+            // execute script
+            ((IJavaScriptExecutor)WebDriver).ExecuteScript(Script, onElement);
 
-                // for waiter condition
-                return WebDriver;
-            });
-        }
+            // for waiter condition
+            return WebDriver;
+        });
     }
 }

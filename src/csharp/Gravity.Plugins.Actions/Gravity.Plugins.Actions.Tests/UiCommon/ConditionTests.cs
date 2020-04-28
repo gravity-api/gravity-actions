@@ -1,7 +1,7 @@
 ﻿/*
  * CHANGE LOG - keep only last 5 threads
  * 
- * on-line resources
+ * online resources
  */
 using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Actions.UiCommon;
@@ -10,6 +10,7 @@ using Gravity.Plugins.Contracts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium.Mock;
 using System;
+
 using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
 
 namespace Gravity.Plugins.Actions.UnitTests.UiCommon
@@ -18,6 +19,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
     [DoNotParallelize]
     public class ConditionTests : ActionTests
     {
+        #region *** constants            ***
         private const string TestKey = "test_key";
         private const string TestValue = "true";
         private const string OnElement = "[onElement]";
@@ -29,7 +31,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         private const string ActionRuleBoolean =
             "{" +
             "    'argument':'{{$ --" + OnCondition + "}}'," +
-            "    'elementToActOn':'" + OnElement + "'," +
+            "    'onElement':'" + OnElement + "'," +
             "    'actions': [" +
             "    {" +
             "        'actionType':'RegisterParameter'," +
@@ -40,39 +42,48 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         private const string ActionRuleOperator =
             "{" +
             "    'argument':'{{$ --" + OnCondition + " --" + OnOperator + ":" + OnOperatorExpected + "}}'," +
-            "    'elementToActOn':'" + OnElement + "'," +
-            "    'elementAttributeToActOn':'" + OnAttribute + "'," +
+            "    'onElement':'" + OnElement + "'," +
+            "    'onAttribute':'" + OnAttribute + "'," +
             "    'actions': [" +
             "    {" +
             "        'actionType':'RegisterParameter'," +
             "        'argument':'{{$ --key:test_key --value:true}}'" +
             "    }]" +
             "}";
+        #endregion
 
+        #region *** tests: life cycle    ***
         [TestCleanup]
         public void Cleanup()
         {
             EnvironmentContext.ApplicationParams.Clear();
         }
+        #endregion
 
+        #region *** tests: documentation ***
         [TestMethod]
         public void ConditionCreate()
         {
-            ValidateAction<Condition>();
+            AssertPlugin<Condition>();
         }
 
         [TestMethod]
         public void ConditionDocumentation()
         {
-            ValidateActionDocumentation<Condition>(CommonPlugins.Condition);
+            AssertDocumentation<Condition>(
+                pluginName: CommonPlugins.Condition);
         }
 
         [TestMethod]
         public void ConditionDocumentationResourceFile()
         {
-            ValidateActionDocumentation<Condition>(CommonPlugins.Condition, "condition.json");
+            AssertDocumentation<Condition>(
+                pluginName: CommonPlugins.Condition,
+                resource: "condition.json");
         }
+        #endregion
 
+        #region *** tests: OnDriver      ***
         [DataTestMethod]
         [DataRow(ActionRuleBoolean, "//positive")]
         [DataRow(ActionRuleBoolean, "//negative")]
@@ -549,7 +560,9 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             // assertion
             Assert.IsTrue(EnvironmentContext.ApplicationParams[TestKey].Equals(TestValue));
         }
+        #endregion
 
+        #region *** tests: OnElement     ***
         [DataTestMethod]
         [DataRow(ActionRuleBoolean, ".//positive")]
         [DataRow(ActionRuleBoolean, ".//negative")]
@@ -864,5 +877,6 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             // assertion
             Assert.IsTrue(!EnvironmentContext.ApplicationParams.ContainsKey(TestKey));
         }
+        #endregion
     }
 }

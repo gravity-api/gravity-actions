@@ -1,7 +1,7 @@
 ﻿/*
  * CHANGE LOG - keep only last 5 threads
  * 
- * on-line resources
+ * online resources
  */
 using Gravity.Plugins.Extensions;
 using Gravity.Plugins.Utilities.Selenium;
@@ -75,7 +75,7 @@ namespace Gravity.Plugins.Actions.Components
         public const string NotSelected = "not_selected";
 
         /// <summary>
-        /// Assert that <see cref="IWebElement"/> attribute from <see cref="Rule.ElementAttributeToActOn"/> meets a condition.
+        /// Assert that <see cref="IWebElement"/> attribute from <see cref="Rule.OnAttribute"/> meets a condition.
         /// </summary>
         public const string Attribute = "attribute";
 
@@ -386,7 +386,7 @@ namespace Gravity.Plugins.Actions.Components
         {
             // get actual
             var input = ConditionalGetElement(actionRule, element)
-                .GetAttribute(attributeName: actionRule.ElementAttributeToActOn);
+                .GetAttribute(attributeName: actionRule.OnAttribute);
             var actual = Regex.Match(input, pattern: actionRule.RegularExpression).Value;
 
             // get operator method
@@ -549,14 +549,14 @@ namespace Gravity.Plugins.Actions.Components
         {
             return element != default
                 ? element.FindElementByActionRule(byFactory, actionRule)
-                : driver.FindElementByActionRule(byFactory, actionRule);
+                : driver.FindElement(byFactory, actionRule);
         }
 
         private ReadOnlyCollection<IWebElement> ConditionalGetElements(ActionRule actionRule, IWebElement element)
         {
             return element != default
-                ? element.FindElementsByActionRule(byFactory, actionRule)
-                : driver.FindElementsByActionRule(byFactory, actionRule);
+                ? element.FindElements(byFactory, actionRule)
+                : driver.FindElements(byFactory, actionRule);
         }
 
         private static IDictionary<string, object> AssertState(Func<IDictionary<string, object>> factory)

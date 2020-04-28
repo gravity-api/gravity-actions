@@ -1,7 +1,7 @@
 ﻿/*
  * CHANGE LOG - keep only last 5 threads
  * 
- * on-line resources
+ * online resources
  */
 using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Actions.UiWeb;
@@ -19,19 +19,19 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         [TestMethod]
         public void WaitForUrlCreate()
         {
-            ValidateAction<WaitForUrl>();
+            AssertPlugin<WaitForUrl>();
         }
 
         [TestMethod]
         public void WaitForUrlDocumentation()
         {
-            ValidateActionDocumentation<WaitForUrl>(WebPlugins.WaitForUrl);
+            AssertDocumentation<WaitForUrl>(WebPlugins.WaitForUrl);
         }
 
         [TestMethod]
         public void WaitForUrlDocumentationResourceFile()
         {
-            ValidateActionDocumentation<WaitForUrl>(WebPlugins.WaitForUrl, "wait_for_url.json");
+            AssertDocumentation<WaitForUrl>(WebPlugins.WaitForUrl, "wait_for_url.json");
         }
 
         [DataTestMethod]

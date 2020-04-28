@@ -1,7 +1,7 @@
 ﻿/*
  * CHANGE LOG - keep only last 5 threads
  * 
- * on-line resources
+ * online resources
  */
 using Gravity.Plugins.Actions.IntegrationTests.Base;
 using Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.ClickScenarios;

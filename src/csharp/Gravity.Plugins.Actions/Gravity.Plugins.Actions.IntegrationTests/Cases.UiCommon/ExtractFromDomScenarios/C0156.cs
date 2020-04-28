@@ -20,7 +20,7 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.ExtractFromDom
         public override string ApplicationUnderTest => StudentsPage;
 
         // assertion implementation
-        public override bool OnAutomationTest(AutomationEnvironment environment, OrbitResponse response)
+        public override bool OnAutomationTest(AutomationEnvironment environment, IEnumerable<OrbitResponse> responses)
         {
             // get pattern based on results (assuming page content is known)
             var expectedPattern = $"{environment.TestParams["extraction"]}" == "0"
@@ -28,7 +28,7 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.ExtractFromDom
                 : "LastName";
 
             return SharedSteps.AssertEntitiesKeys(
-                response,
+                responses,
                 fieldsCount: 1,
                 expectedPattern: $"^{expectedPattern}$");
         }
@@ -56,8 +56,8 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.ExtractFromDom
             // get extractions
             var extraction0 = new ExtractionRule
             {
-                RootElementToExtractFrom = "//td[contains(@id,'student_first_name')]",
-                ElementsToExtract = contentEntries0
+                OnRootElements = "//td[contains(@id,'student_first_name')]",
+                OnElements = contentEntries0
             };
             #endregion
 
@@ -71,8 +71,8 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.ExtractFromDom
             // get extractions
             var extraction1 = new ExtractionRule
             {
-                RootElementToExtractFrom = "//td[contains(@id,'student_last_name')]",
-                ElementsToExtract = contentEntries1
+                OnRootElements = "//td[contains(@id,'student_last_name')]",
+                OnElements = contentEntries1
             };
             #endregion
 

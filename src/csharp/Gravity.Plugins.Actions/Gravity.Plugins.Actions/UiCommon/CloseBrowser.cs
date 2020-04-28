@@ -14,7 +14,7 @@
  *    - modify: use JSON resources
  *    - modify: improve XML comments
  *    
- * on-line resources
+ * online resources
  */
 using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Attributes;
@@ -34,19 +34,18 @@ namespace Gravity.Plugins.Actions.UiCommon
         /// <summary>
         /// Creates a new instance of this plugin.
         /// </summary>
-        /// <param name="webAutomation">This <see cref="WebAutomation"/> object (the original object sent by the user).</param>
+        /// <param name="automation">This <see cref="WebAutomation"/> object (the original object sent by the user).</param>
         /// <param name="driver"><see cref="IWebDriver"/> implementation by which to execute the action.</param>
-        public CloseBrowser(WebAutomation webAutomation, IWebDriver driver)
-            : base(webAutomation, driver)
+        public CloseBrowser(WebAutomation automation, IWebDriver driver)
+            : base(automation, driver)
         { }
         #endregion
 
-        #region *** plugins      ***
         /// <summary>
         /// Quits this driver, closing every associated window.
         /// </summary>
-        /// <param name="actionRule">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
-        public override void OnPerform(ActionRule actionRule)
+        /// <param name="action">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
+        public override void OnPerform(ActionRule action)
         {
             try
             {
@@ -57,6 +56,5 @@ namespace Gravity.Plugins.Actions.UiCommon
                 WebDriver?.Dispose();
             }
         }
-        #endregion
     }
 }

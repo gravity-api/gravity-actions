@@ -6,14 +6,14 @@
       "literalExample": "try click on {//main/p/a}",
       "actionExample": {
         "actionType": "TryClick",
-        "elementToActOn": "//main/p/a"
+        "onElement": "//main/p/a"
       }
     }
   ],
   "name": "TryClick",
   "pluginType": "Action",
   "properties": {
-    "elementToActOn": "The locator value by which the element will be found.",
+    "onElement": "The locator value by which the element will be found.",
     "locator": "The locator type by which the element will be found."
   },
   "protocol": {

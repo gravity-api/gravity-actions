@@ -1,7 +1,7 @@
 ﻿/*
  * CHANGE LOG - keep only last 5 threads
  * 
- * on-line resources
+ * online resources
  */
 using OpenQA.Selenium.Mock;
 using Gravity.Plugins.Actions.UiCommon;
@@ -26,19 +26,19 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         [TestMethod]
         public void GetScreenshotCreate()
         {
-            ValidateAction<GetScreenshot>();
+            AssertPlugin<GetScreenshot>();
         }
 
         [TestMethod]
         public void GetScreenshotDocumentation()
         {
-            ValidateActionDocumentation<GetScreenshot>(CommonPlugins.GetScreenshot);
+            AssertDocumentation<GetScreenshot>(CommonPlugins.GetScreenshot);
         }
 
         [TestMethod]
         public void GetScreenshotDocumentationResourceFile()
         {
-            ValidateActionDocumentation<GetScreenshot>(
+            AssertDocumentation<GetScreenshot>(
                 CommonPlugins.GetScreenshot, "get_screenshot.json");
         }
 
@@ -55,8 +55,8 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         }
 
         [DataTestMethod]
-        [DataRow("{'actionType':'GetScreenshot','argument':'" + OutputDir + "/image-b.png','elementToActOn':'//positive'}")]
-        public void GetScreenshotElementToActOnPositivePng(string actionRule)
+        [DataRow("{'actionType':'GetScreenshot','argument':'" + OutputDir + "/image-b.png','onElement':'//positive'}")]
+        public void GetScreenshotonElementPositivePng(string actionRule)
         {
             // execute
             var screenshot = GetScreenshot(actionRule, by: default);
@@ -79,8 +79,8 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         }
 
         [DataTestMethod]
-        [DataRow("{'actionType':'GetScreenshot','argument':'" + OutputDir + "/image-b.bmp','elementToActOn':'//positive'}")]
-        public void GetScreenshotElementToActOnPositiveBmp(string actionRule)
+        [DataRow("{'actionType':'GetScreenshot','argument':'" + OutputDir + "/image-b.bmp','onElement':'//positive'}")]
+        public void GetScreenshotonElementPositiveBmp(string actionRule)
         {
             // execute
             var screenshot = GetScreenshot(actionRule, by: default);
@@ -103,8 +103,8 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         }
 
         [DataTestMethod]
-        [DataRow("{'actionType':'GetScreenshot','argument':'" + OutputDir + "/image-b.gif','elementToActOn':'//positive'}")]
-        public void GetScreenshotElementToActOnPositiveGif(string actionRule)
+        [DataRow("{'actionType':'GetScreenshot','argument':'" + OutputDir + "/image-b.gif','onElement':'//positive'}")]
+        public void GetScreenshotonElementPositiveGif(string actionRule)
         {
             // execute
             var screenshot = GetScreenshot(actionRule, by: default);
@@ -127,8 +127,8 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         }
 
         [DataTestMethod]
-        [DataRow("{'actionType':'GetScreenshot','argument':'" + OutputDir + "/image-b.tiff','elementToActOn':'//positive'}")]
-        public void GetScreenshotElementToActOnPositiveTiff(string actionRule)
+        [DataRow("{'actionType':'GetScreenshot','argument':'" + OutputDir + "/image-b.tiff','onElement':'//positive'}")]
+        public void GetScreenshotonElementPositiveTiff(string actionRule)
         {
             // execute
             var screenshot = GetScreenshot(actionRule, by: default);
@@ -139,8 +139,8 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         }
 
         [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
-        [DataRow("{'actionType':'GetScreenshot','argument':'" + OutputDir + "/image-b.png','elementToActOn':'//null'}")]
-        public void GetScreenshotElementToActOnNull(string actionRule)
+        [DataRow("{'actionType':'GetScreenshot','argument':'" + OutputDir + "/image-b.png','onElement':'//null'}")]
+        public void GetScreenshotonElementNull(string actionRule)
         {
             // execute
             var screenshot = GetScreenshot(actionRule, by: default);
@@ -151,8 +151,8 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         }
 
         [DataTestMethod]
-        [DataRow("{'actionType':'GetScreenshot','argument':'" + OutputDir + "/image-b.png','elementToActOn':'//negative'}")]
-        public void GetScreenshotElementToActOnNegative(string actionRule)
+        [DataRow("{'actionType':'GetScreenshot','argument':'" + OutputDir + "/image-b.png','onElement':'//negative'}")]
+        public void GetScreenshotonElementNegative(string actionRule)
         {
             // execute
             var screenshot = GetScreenshot(actionRule, by: default);
@@ -163,8 +163,8 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         }
 
         [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
-        [DataRow("{'actionType':'GetScreenshot','argument':'" + OutputDir + "/image-b.png','elementToActOn':'//stale'}")]
-        public void GetScreenshotElementToActOnStale(string actionRule)
+        [DataRow("{'actionType':'GetScreenshot','argument':'" + OutputDir + "/image-b.png','onElement':'//stale'}")]
+        public void GetScreenshotonElementStale(string actionRule)
         {
             // execute
             var screenshot = GetScreenshot(actionRule, by: default);
@@ -175,8 +175,8 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         }
 
         [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
-        [DataRow("{'actionType':'GetScreenshot','argument':'" + OutputDir + "/image-b.png','elementToActOn':'//none'}")]
-        public void GetScreenshotElementToActOnNone(string actionRule)
+        [DataRow("{'actionType':'GetScreenshot','argument':'" + OutputDir + "/image-b.png','onElement':'//none'}")]
+        public void GetScreenshotonElementNone(string actionRule)
         {
             // execute
             var screenshot = GetScreenshot(actionRule, by: default);
@@ -187,7 +187,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         }
 
         [DataTestMethod]
-        [DataRow("{'actionType':'GetScreenshot','argument':'" + OutputDir + "/image-b.png','elementToActOn':'//positive'}")]
+        [DataRow("{'actionType':'GetScreenshot','argument':'" + OutputDir + "/image-b.png','onElement':'//positive'}")]
         public void GetScreenshotElementPositivePng(string actionRule)
         {
             // execute
@@ -199,7 +199,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         }
 
         [DataTestMethod]
-        [DataRow("{'actionType':'GetScreenshot','argument':'" + OutputDir + "/image-b.bmp','elementToActOn':'//positive'}")]
+        [DataRow("{'actionType':'GetScreenshot','argument':'" + OutputDir + "/image-b.bmp','onElement':'//positive'}")]
         public void GetScreenshotElementPositiveBmp(string actionRule)
         {
             // execute
@@ -211,7 +211,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         }
 
         [DataTestMethod]
-        [DataRow("{'actionType':'GetScreenshot','argument':'" + OutputDir + "/image-b.gif','elementToActOn':'//positive'}")]
+        [DataRow("{'actionType':'GetScreenshot','argument':'" + OutputDir + "/image-b.gif','onElement':'//positive'}")]
         public void GetScreenshotElementPositiveGif(string actionRule)
         {
             // execute
@@ -223,7 +223,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         }
 
         [DataTestMethod]
-        [DataRow("{'actionType':'GetScreenshot','argument':'" + OutputDir + "/image-b.tiff','elementToActOn':'//positive'}")]
+        [DataRow("{'actionType':'GetScreenshot','argument':'" + OutputDir + "/image-b.tiff','onElement':'//positive'}")]
         public void GetScreenshotElementPositiveTiff(string actionRule)
         {
             // execute
@@ -235,7 +235,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         }
 
         [DataTestMethod]
-        [DataRow("{'actionType':'GetScreenshot','argument':'" + OutputDir + "/image-b.png','elementToActOn':'//positive'}")]
+        [DataRow("{'actionType':'GetScreenshot','argument':'" + OutputDir + "/image-b.png','onElement':'//positive'}")]
         public void GetScreenshotElementNull(string actionRule)
         {
             // execute
@@ -247,7 +247,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         }
 
         [DataTestMethod]
-        [DataRow("{'actionType':'GetScreenshot','argument':'" + OutputDir + "/image-b.png','elementToActOn':'//positive'}")]
+        [DataRow("{'actionType':'GetScreenshot','argument':'" + OutputDir + "/image-b.png','onElement':'//positive'}")]
         public void GetScreenshotElementNegative(string actionRule)
         {
             // execute
@@ -259,7 +259,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         }
 
         [DataTestMethod, ExpectedException(typeof(StaleElementReferenceException))]
-        [DataRow("{'actionType':'GetScreenshot','argument':'" + OutputDir + "/image-b.png','elementToActOn':'//positive'}")]
+        [DataRow("{'actionType':'GetScreenshot','argument':'" + OutputDir + "/image-b.png','onElement':'//positive'}")]
         public void GetScreenshotElementStale(string actionRule)
         {
             // execute
@@ -271,7 +271,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         }
 
         [DataTestMethod, ExpectedException(typeof(NoSuchElementException))]
-        [DataRow("{'actionType':'GetScreenshot','argument':'" + OutputDir + "/image-b.png','elementToActOn':'//positive'}")]
+        [DataRow("{'actionType':'GetScreenshot','argument':'" + OutputDir + "/image-b.png','onElement':'//positive'}")]
         public void GetScreenshotElementNone(string actionRule)
         {
             // execute
@@ -304,7 +304,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
 
             // get results
             return plugin
-                .ExtractionResults
+                .Extractions
                 .ToArray()[0]
                 .Entities.ElementAt(0)
                 .EntityContent["screenshot"]

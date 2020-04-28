@@ -39,8 +39,8 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.ConditionScena
                 {
                     ActionType = CommonPlugins.Condition,
                     Argument = "{{$ --attribute --match:" + condition + "}}",
-                    ElementToActOn = "SearchButton",
-                    ElementAttributeToActOn = "class",
+                    OnElement = "SearchButton",
+                    OnAttribute = "class",
                     Locator = LocatorType.Id,
                     Actions = SharedSteps.SearchStudent(searchFor: "Carson")
                 },

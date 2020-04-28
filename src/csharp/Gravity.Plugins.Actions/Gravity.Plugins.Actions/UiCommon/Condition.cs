@@ -1,13 +1,14 @@
 ﻿/*
  * CHANGE LOG - keep only last 5 threads
  * 
- * on-line resources
+ * online resources
  */
 using Gravity.Plugins.Actions.Components;
 using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Attributes;
 using Gravity.Plugins.Base;
 using Gravity.Plugins.Contracts;
+using Gravity.Plugins.Extensions;
 using OpenQA.Selenium;
 
 namespace Gravity.Plugins.Actions.UiCommon
@@ -22,10 +23,10 @@ namespace Gravity.Plugins.Actions.UiCommon
         /// <summary>
         /// Creates a new instance of this plugin.
         /// </summary>
-        /// <param name="webAutomation">This <see cref="WebAutomation"/> object (the original object sent by the user).</param>
+        /// <param name="automation">This <see cref="WebAutomation"/> object (the original object sent by the user).</param>
         /// <param name="driver"><see cref="IWebDriver"/> implementation by which to execute the action.</param>
-        public Condition(WebAutomation webAutomation, IWebDriver driver)
-            : base(webAutomation, driver)
+        public Condition(WebAutomation automation, IWebDriver driver)
+            : base(automation, driver)
         { }
         #endregion
 
@@ -33,29 +34,32 @@ namespace Gravity.Plugins.Actions.UiCommon
         /// Allows a sub set of actions execution, based on a given condition.
         /// The sub set actions will be executed if the condition result is <see cref="true"/>.
         /// </summary>
-        /// <param name="actionRule">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
-        public override void OnPerform(ActionRule actionRule)
+        /// <param name="action">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
+        public override void OnPerform(ActionRule action)
         {
-            DoAction(actionRule, onElement: default);
+            DoAction(action, element: default);
         }
 
         /// <summary>
         /// Allows a sub set of actions execution, based on a given condition.
         /// The sub set actions will be executed if the condition result is <see cref="true"/>.
         /// </summary>
-        /// <param name="actionRule">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
+        /// <param name="action">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
         /// <param name="element">This <see cref="IWebElement"/> instance on which to perform the action (provided by the extraction rule).</param>
-        public override void OnPerform(ActionRule actionRule, IWebElement element)
+        public override void OnPerform(ActionRule action, IWebElement element)
         {
-            DoAction(actionRule, element);
+            DoAction(action, element);
         }
 
         // executes Wait routine
-        private void DoAction(ActionRule actionRule, IWebElement onElement)
+        private void DoAction(ActionRule action, IWebElement element)
         {
             // execute condition
-            Executor.ExecuteSubActions = (bool)new ConditionsFactory(WebDriver, Types)
-                .Factor(actionRule.Argument, new object[] { actionRule, onElement })["evaluation"];
+            var factory = new ConditionsFactory(WebDriver, Types);
+            var results = factory.Factor(action.Argument, new object[] { action, element });
+
+            // apply to context
+            action.ExecuteSubActions(doExecute: (bool)results["evaluation"]);
         }
     }
 }

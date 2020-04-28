@@ -39,7 +39,7 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.ConditionScena
                 {
                     ActionType = CommonPlugins.Condition,
                     Argument = "{{$ --text --not_match:" + condition + "}}",
-                    ElementToActOn = "//h2",
+                    OnElement = "//h2",
                     Actions = SharedSteps.SearchStudent(searchFor: "Carson")
                 },
                 SharedSteps.AssertStudentsCount(count: 1)

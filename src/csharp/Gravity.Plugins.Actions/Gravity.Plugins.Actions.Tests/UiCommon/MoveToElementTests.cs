@@ -1,7 +1,7 @@
 ﻿/*
  * CHANGE LOG - keep only last 5 threads
  * 
- * on-line resources
+ * online resources
  */
 using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Actions.UiCommon;
@@ -21,25 +21,25 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         [TestMethod]
         public void MoveToElementCreate()
         {
-            ValidateAction<MoveToElement>();
+            AssertPlugin<MoveToElement>();
         }
 
         [TestMethod]
         public void MoveToElementDocumentation()
         {
-            ValidateActionDocumentation<MoveToElement>(CommonPlugins.MoveToElement);
+            AssertDocumentation<MoveToElement>(CommonPlugins.MoveToElement);
         }
 
         [TestMethod]
         public void MoveToElementDocumentationResourceFile()
         {
-            ValidateActionDocumentation<MoveToElement>(
+            AssertDocumentation<MoveToElement>(
                 CommonPlugins.MoveToElement, "move_to_element.json");
         }
 
         [DataTestMethod]
-        [DataRow("{'elementToActOn':'//positive'}")]
-        [DataRow("{'elementToActOn':'//negative'}")]
+        [DataRow("{'onElement':'//positive'}")]
+        [DataRow("{'onElement':'//negative'}")]
         public void MoveToElement(string actionRule)
         {
             // execute
@@ -50,9 +50,9 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         }
 
         [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
-        [DataRow("{'elementToActOn':'//none'}")]
-        [DataRow("{'elementToActOn':'//null'}")]
-        [DataRow("{'elementToActOn':'//stale'}")]
+        [DataRow("{'onElement':'//none'}")]
+        [DataRow("{'onElement':'//null'}")]
+        [DataRow("{'onElement':'//stale'}")]
         public void MoveToElementTimeout(string actionRule)
         {
             // execute
@@ -63,7 +63,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         }
 
         [DataTestMethod, ExpectedException(typeof(WebDriverException))]
-        [DataRow("{'elementToActOn':'//exception'}")]
+        [DataRow("{'onElement':'//exception'}")]
         public void MoveToElementException(string actionRule)
         {
             // execute
@@ -74,8 +74,8 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         }
 
         [DataTestMethod]
-        [DataRow("{'elementToActOn':'.//positive'}")]
-        [DataRow("{'elementToActOn':'.//negative'}")]
+        [DataRow("{'onElement':'.//positive'}")]
+        [DataRow("{'onElement':'.//negative'}")]
         public void MoveToNestedElement(string actionRule)
         {
             // execute
@@ -86,7 +86,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         }
 
         [DataTestMethod, ExpectedException(typeof(NoSuchElementException))]
-        [DataRow("{'elementToActOn':'.//none'}")]
+        [DataRow("{'onElement':'.//none'}")]
         public void MoveToNestedElementNone(string actionRule)
         {
             // execute
@@ -97,7 +97,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         }
 
         [DataTestMethod, ExpectedException(typeof(ArgumentException))]
-        [DataRow("{'elementToActOn':'.//null'}")]
+        [DataRow("{'onElement':'.//null'}")]
         public void MoveToNestedElementNull(string actionRule)
         {
             // execute
@@ -108,7 +108,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         }
 
         [DataTestMethod, ExpectedException(typeof(StaleElementReferenceException))]
-        [DataRow("{'elementToActOn':'.//stale'}")]
+        [DataRow("{'onElement':'.//stale'}")]
         public void MoveToNestedElementStale(string actionRule)
         {
             // execute
@@ -119,7 +119,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         }
 
         [DataTestMethod, ExpectedException(typeof(WebDriverException))]
-        [DataRow("{'elementToActOn':'.//exception'}")]
+        [DataRow("{'onElement':'.//exception'}")]
         public void MoveToNestedElementException(string actionRule)
         {
             // execute

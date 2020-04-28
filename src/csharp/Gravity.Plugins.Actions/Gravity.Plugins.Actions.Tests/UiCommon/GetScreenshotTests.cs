@@ -20,9 +20,11 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
     [DoNotParallelize]
     public class GetScreenshotTests : ActionTests
     {
-        // members: constants
+        #region *** constants            ***
         private const string OutputDir = "GetScreenshot";
+        #endregion
 
+        #region *** tests: documentation ***
         [TestMethod]
         public void GetScreenshotCreate()
         {
@@ -32,111 +34,55 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         [TestMethod]
         public void GetScreenshotDocumentation()
         {
-            AssertDocumentation<GetScreenshot>(CommonPlugins.GetScreenshot);
+            AssertDocumentation<GetScreenshot>(
+                pluginName: CommonPlugins.GetScreenshot);
         }
 
         [TestMethod]
         public void GetScreenshotDocumentationResourceFile()
         {
             AssertDocumentation<GetScreenshot>(
-                CommonPlugins.GetScreenshot, "get_screenshot.json");
+                pluginName: CommonPlugins.GetScreenshot,
+                resource: "get_screenshot.json");
         }
+        #endregion
 
+        #region *** tests: OnDriver      ***
         [DataTestMethod]
-        [DataRow("{'actionType':'GetScreenshot','argument':'" + OutputDir + "/image-a.png'}")]
-        public void GetScreenshotDriverPositivePng(string actionRule)
+        [DataRow("{'actionType':'GetScreenshot','argument':'" + OutputDir + "/image-a.tiff'}", "image-a.png")]
+        [DataRow("{'actionType':'GetScreenshot','argument':'" + OutputDir + "/image-a.gif'}", "image-a.png")]
+        [DataRow("{'actionType':'GetScreenshot','argument':'" + OutputDir + "/image-a.bmp'}", "image-a.png")]
+        [DataRow("{'actionType':'GetScreenshot','argument':'" + OutputDir + "/image-a.png'}", "image-a.png")]
+        public void GetScreenshotDriverPositive(string actionRule, string expected)
         {
             // execute
             var screenshot = GetScreenshot(actionRule, by: default);
 
             // assertion
-            Assert.IsTrue(File.Exists($"{OutputDir}/image-a.png"));
-            Assert.IsTrue(screenshot.Contains("image-a.png"));
+            Assert.IsTrue(File.Exists($"{OutputDir}/{expected}"));
+            Assert.IsTrue(screenshot.Contains(expected));
         }
 
         [DataTestMethod]
-        [DataRow("{'actionType':'GetScreenshot','argument':'" + OutputDir + "/image-b.png','onElement':'//positive'}")]
-        public void GetScreenshotonElementPositivePng(string actionRule)
+        [DataRow("{'actionType':'GetScreenshot','argument':'" + OutputDir + "/image-b.png','onElement':'//positive'}", "image-b.png")]
+        [DataRow("{'actionType':'GetScreenshot','argument':'" + OutputDir + "/image-b.bmp','onElement':'//positive'}", "image-b.png")]
+        [DataRow("{'actionType':'GetScreenshot','argument':'" + OutputDir + "/image-b.gif','onElement':'//positive'}", "image-b.png")]
+        [DataRow("{'actionType':'GetScreenshot','argument':'" + OutputDir + "/image-b.tiff','onElement':'//positive'}", "image-b.png")]
+        public void GetScreenshotonElementPositive(string actionRule, string expected)
         {
             // execute
             var screenshot = GetScreenshot(actionRule, by: default);
 
             // assertion (no assertion here, expected is no exception)
-            Assert.IsTrue(File.Exists($"{OutputDir}/image-b.png"));
-            Assert.IsTrue(screenshot.Contains("image-b.png"));
+            Assert.IsTrue(File.Exists($"{OutputDir}/{expected}"));
+            Assert.IsTrue(screenshot.Contains(expected));
         }
+        #endregion
 
-        [DataTestMethod]
-        [DataRow("{'actionType':'GetScreenshot','argument':'" + OutputDir + "/image-a.bmp'}")]
-        public void GetScreenshotDriverPositiveBmp(string actionRule)
-        {
-            // execute
-            var screenshot = GetScreenshot(actionRule, by: default);
 
-            // assertion
-            Assert.IsTrue(File.Exists($"{OutputDir}/image-a.png"));
-            Assert.IsTrue(screenshot.Contains("image-a.png"));
-        }
 
-        [DataTestMethod]
-        [DataRow("{'actionType':'GetScreenshot','argument':'" + OutputDir + "/image-b.bmp','onElement':'//positive'}")]
-        public void GetScreenshotonElementPositiveBmp(string actionRule)
-        {
-            // execute
-            var screenshot = GetScreenshot(actionRule, by: default);
 
-            // assertion
-            Assert.IsTrue(File.Exists($"{OutputDir}/image-b.png"));
-            Assert.IsTrue(screenshot.Contains("image-b.png"));
-        }
 
-        [DataTestMethod]
-        [DataRow("{'actionType':'GetScreenshot','argument':'" + OutputDir + "/image-a.gif'}")]
-        public void GetScreenshotDriverPositiveGif(string actionRule)
-        {
-            // execute
-            var screenshot = GetScreenshot(actionRule, by: default);
-
-            // assertion
-            Assert.IsTrue(File.Exists($"{OutputDir}/image-a.png"));
-            Assert.IsTrue(screenshot.Contains("image-a.png"));
-        }
-
-        [DataTestMethod]
-        [DataRow("{'actionType':'GetScreenshot','argument':'" + OutputDir + "/image-b.gif','onElement':'//positive'}")]
-        public void GetScreenshotonElementPositiveGif(string actionRule)
-        {
-            // execute
-            var screenshot = GetScreenshot(actionRule, by: default);
-
-            // assertion
-            Assert.IsTrue(File.Exists($"{OutputDir}/image-b.png"));
-            Assert.IsTrue(screenshot.Contains("image-b.png"));
-        }
-
-        [DataTestMethod]
-        [DataRow("{'actionType':'GetScreenshot','argument':'" + OutputDir + "/image-a.tiff'}")]
-        public void GetScreenshotDriverPositiveTiff(string actionRule)
-        {
-            // execute
-            var screenshot = GetScreenshot(actionRule, by: default);
-
-            // assertion
-            Assert.IsTrue(File.Exists($"{OutputDir}/image-a.png"));
-            Assert.IsTrue(screenshot.Contains("image-a.png"));
-        }
-
-        [DataTestMethod]
-        [DataRow("{'actionType':'GetScreenshot','argument':'" + OutputDir + "/image-b.tiff','onElement':'//positive'}")]
-        public void GetScreenshotonElementPositiveTiff(string actionRule)
-        {
-            // execute
-            var screenshot = GetScreenshot(actionRule, by: default);
-
-            // assertion
-            Assert.IsTrue(File.Exists($"{OutputDir}/image-b.png"));
-            Assert.IsTrue(screenshot.Contains("image-b.png"));
-        }
 
         [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
         [DataRow("{'actionType':'GetScreenshot','argument':'" + OutputDir + "/image-b.png','onElement':'//null'}")]

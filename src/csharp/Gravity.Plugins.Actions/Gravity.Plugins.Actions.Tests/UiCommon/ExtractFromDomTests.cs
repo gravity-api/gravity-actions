@@ -17,6 +17,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
+
 using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
 
 #pragma warning disable S4144
@@ -29,8 +30,10 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         // members state
         private static string connectionString;
 
+        // properties
         public TestContext TestContext { get; set; }
 
+        #region *** tests: life cycle    ***
         [ClassInitialize]
         public static void Init(TestContext context)
         {
@@ -50,17 +53,27 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
                 Directory.Delete(path: "Data", true);
             }
         }
+        #endregion
 
+        #region *** tests: documentation ***
         [TestMethod]
         public void ExtractDataCreate() => AssertPlugin<ExtractFromDom>();
 
         [TestMethod]
         public void ExtractDataDocumentation()
-            => AssertDocumentation<ExtractFromDom>(CommonPlugins.ExtractFromDom);
+        {
+            AssertDocumentation<ExtractFromDom>(
+                pluginName: CommonPlugins.ExtractFromDom);
+        }
 
         [TestMethod]
         public void ExtractDataDocumentationResourceFile()
-            => AssertDocumentation<ExtractFromDom>(CommonPlugins.ExtractFromDom, "extract_from_dom.json");
+        {
+            AssertDocumentation<ExtractFromDom>(
+                pluginName: CommonPlugins.ExtractFromDom,
+                resource: "extract_from_dom.json");
+        }
+        #endregion
 
         #region *** extract from DOM     ***
         // 0: extracts inner text of all root elements and apply a pattern on it
@@ -715,6 +728,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         }
         #endregion
 
+        #region *** extract with actions ***
         [DataTestMethod]
         [DataRow("" +
             "{" +
@@ -739,7 +753,9 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             // assertion
             Assert.IsTrue(isExtract);
         }
+        #endregion
 
+        #region *** utilities            ***
         // executes extraction rule and validates counts and data
         private bool DoExtract(string extractionRule, string expected)
         {
@@ -804,6 +820,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             // assertion
             return sExpected.Equals(sActual, StringComparison.Ordinal);
         }
+        #endregion
     }
 }
 #pragma warning restore S4144

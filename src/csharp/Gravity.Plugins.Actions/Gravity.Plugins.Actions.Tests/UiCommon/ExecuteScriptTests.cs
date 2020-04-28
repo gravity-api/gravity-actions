@@ -9,6 +9,7 @@ using Gravity.Plugins.Actions.UnitTests.Base;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using Gravity.Plugins.Actions.Contracts;
+
 using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
 
 #pragma warning disable S4144
@@ -17,6 +18,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
     [TestClass]
     public class ExecuteScriptTests : ActionTests
     {
+        #region *** tests: documentation ***
         [TestMethod]
         public void ExecuteScriptCreate()
         {
@@ -26,16 +28,20 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         [TestMethod]
         public void ExecuteScriptDocumentation()
         {
-            AssertDocumentation<ExecuteScript>(CommonPlugins.ExecuteScript);
+            AssertDocumentation<ExecuteScript>(
+                pluginName: CommonPlugins.ExecuteScript);
         }
 
         [TestMethod]
         public void ExecuteScriptDocumentationResourceFile()
         {
             AssertDocumentation<ExecuteScript>(
-                CommonPlugins.ExecuteScript, "execute_script.json");
+                pluginName: CommonPlugins.ExecuteScript,
+                resource: "execute_script.json");
         }
+        #endregion
 
+        #region *** tests: OnDriver      ***
         [DataTestMethod]
         [DataRow(@"{""argument"":""console.log('unitTesting');""}")]
         public void ExecuteScriptPositive(string actionRule)
@@ -94,7 +100,9 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             // assertion (no assertion here, expected is no exception)
             Assert.IsTrue(true);
         }
+        #endregion
 
+        #region *** tests: OnElement     ***
         [DataTestMethod]
         [DataRow(@"{""argument"":"".checked=false;""}")]
         public void ExecuteScriptElementPositive(string actionRule)
@@ -135,6 +143,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             // execute
             ExecuteAction<ExecuteScript>(MockBy.Positive(), actionRule);
         }
+        #endregion
     }
 }
 #pragma warning restore S4144

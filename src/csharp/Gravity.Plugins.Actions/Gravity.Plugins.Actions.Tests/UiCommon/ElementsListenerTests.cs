@@ -16,6 +16,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
     [TestClass]
     public class ElementsListenerTests : ActionTests
     {
+        #region *** tests: documentation ***
         [TestMethod]
         public void ElementsListenerCreate()
         {
@@ -25,16 +26,20 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         [TestMethod]
         public void ElementsListenerDocumentation()
         {
-            AssertDocumentation<ElementsListener>(CommonPlugins.ElementsListener);
+            AssertDocumentation<ElementsListener>(
+                pluginName: CommonPlugins.ElementsListener);
         }
 
         [TestMethod]
         public void ElementsListenerDocumentationResourceFile()
         {
             AssertDocumentation<ElementsListener>(
-                CommonPlugins.ElementsListener, "elements_listener.json");
+                pluginName: CommonPlugins.ElementsListener,
+                resource: "elements_listener.json");
         }
+        #endregion
 
+        #region *** tests: OnDriver      ***
         [DataTestMethod]
         [DataRow("{'argument':'{{$ --interval:500 --timeout:30000}}','onElement':'//positive'}")]
         public void ElementsListenerClickPositive(string actionRule)
@@ -48,43 +53,13 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
 
         [DataTestMethod]
         [DataRow("{'argument':'{{$ --interval:500 --timeout:30000}}','onElement':'//null'}")]
-        public void ElementsListenerClickNull(string actionRule)
-        {
-            // execute
-            ExecuteAction<ElementsListener>(actionRule);
-
-            // assertion (no assertion here, expected is no exception)
-            Assert.IsTrue(true);
-        }
-
-        [DataTestMethod]
         [DataRow("{'argument':'{{$ --interval:500 --timeout:30000}}','onElement':'//stale'}")]
-        public void ElementsListenerClickStale(string actionRule)
-        {
-            // execute
-            ExecuteAction<ElementsListener>(actionRule);
-
-            // assertion (no assertion here, expected is no exception)
-            Assert.IsTrue(true);
-        }
-
-        [DataTestMethod]
         [DataRow("{'argument':'{{$ --interval:500 --timeout:30000}}','onElement':'//none'}")]
+        [DataRow("{'argument':'{{$ --interval:500 --timeout:30000}}','onElement':'//negative'}")]
         public void ElementsListenerClickNoElement(string actionRule)
         {
             // execute
             ExecuteAction<ElementsListener>(actionRule);
-
-            // assertion (no assertion here, expected is no exception)
-            Assert.IsTrue(true);
-        }
-
-        [DataTestMethod]
-        [DataRow("{'argument':'{{$ --interval:500 --timeout:30000}}','onElement':'//negative'}")]
-        public void ElementsListenerClickNegative(string actionRule)
-        {
-            // execute
-            var plugin = ExecuteAction<ElementsListener>(actionRule);
 
             // assertion (no assertion here, expected is no exception)
             Assert.IsTrue(true);
@@ -122,6 +97,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             // assertion (no assertion here, expected is no exception)
             Assert.IsTrue(true);
         }
+        #endregion
     }
 }
 #pragma warning restore S4144

@@ -9,7 +9,8 @@ using Gravity.Plugins.Actions.UnitTests.Base;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using Gravity.Plugins.Actions.Contracts;
-using Gravity.Plugins.Contracts;
+using System;
+using System.Collections.Generic;
 
 using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
 
@@ -19,6 +20,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
     [TestClass]
     public class DoubleClickTests : ActionTests
     {
+        #region *** tests: documentation ***
         [TestMethod]
         public void DoubleClickCreate()
         {
@@ -28,16 +30,19 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         [TestMethod]
         public void DoubleClickDocumentation()
         {
-            AssertDocumentation<DoubleClick>(CommonPlugins.DoubleClick);
+            AssertDocumentation<DoubleClick>(pluginName: CommonPlugins.DoubleClick);
         }
 
         [TestMethod]
         public void DoubleClickDocumentationResourceFile()
         {
             AssertDocumentation<DoubleClick>(
-                CommonPlugins.DoubleClick, "double_click.json");
+                pluginName: CommonPlugins.DoubleClick,
+                resource: "double_click.json");
         }
+        #endregion
 
+        #region *** tests: OnDriver      ***
         [DataTestMethod]
         [DataRow("{'onElement':'//positive'}")]
         public void DoubleClickPositive(string actionRule)
@@ -51,7 +56,20 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
 
         [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
         [DataRow("{'onElement':'//none'}")]
+        [DataRow("{'onElement':'//null'}")]
+        [DataRow("{'onElement':'//stale'}")]
         public void DoubleClickNoElement(string actionRule)
+        {
+            // execute
+            ExecuteAction<DoubleClick>(actionRule);
+
+            // assertion (no assertion here, expected WebDriverTimeoutException exception)
+            Assert.IsTrue(true);
+        }
+
+        [DataTestMethod]
+        [DataRow("{'onElement':'//negative'}")]
+        public void DoubleClickNegative(string actionRule)
         {
             // execute
             ExecuteAction<DoubleClick>(actionRule);
@@ -70,6 +88,22 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             Assert.IsTrue(true);
         }
 
+        [DataTestMethod]
+        [DataRow("{'Argument':'{{$ --until:no_alert}}','onElement':'//positive'}")]
+        public void DoubleClickUntilNoAlert(string actionRule)
+        {
+            // execute
+            ExecuteAction<DoubleClick>(actionRule, new Dictionary<string, object>
+            {
+                [MockCapabilities.HasAlert] = true
+            });
+
+            // assertion (no assertion here, expected is no exception)
+            Assert.IsTrue(true);
+        }
+        #endregion
+
+        #region *** tests: OnElement     ***
         [DataTestMethod]
         [DataRow("{'onElement':'//positive'}")]
         public void DoubleClickElementAbsolutePositive(string actionRule)
@@ -93,7 +127,9 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         }
 
         [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
-        [DataRow("{'onElement':'//none','locator':'" + LocatorType.Xpath + "'}")]
+        [DataRow("{'onElement':'//none','locator':'Xpath'}")]
+        [DataRow("{'onElement':'//null','locator':'Xpath'}")]
+        [DataRow("{'onElement':'//stale','locator':'Xpath'}")]
         public void DoubleClickElementAbsoluteNoElement(string actionRule)
         {
             // execute
@@ -109,6 +145,41 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         {
             // execute
             ExecuteAction<DoubleClick>(MockBy.Positive(), actionRule);
+
+            // assertion (no assertion here, expected is no exception)
+            Assert.IsTrue(true);
+        }
+
+        [DataTestMethod, ExpectedException(typeof(ArgumentException))]
+        [DataRow("{'onElement':'.//null'}")]
+        public void DoubleClickElementRelativeNull(string actionRule)
+        {
+            // execute
+            ExecuteAction<DoubleClick>(MockBy.Positive(), actionRule);
+
+            // assertion (no assertion here, expected is no exception)
+            Assert.IsTrue(true);
+        }
+
+        [DataTestMethod, ExpectedException(typeof(StaleElementReferenceException))]
+        [DataRow("{'onElement':'.//stale'}")]
+        public void DoubleClickElementRelativeStale(string actionRule)
+        {
+            // execute
+            ExecuteAction<DoubleClick>(MockBy.Positive(), actionRule);
+
+            // assertion (no assertion here, expected is no exception)
+            Assert.IsTrue(true);
+        }
+
+        [TestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
+        [DataRow("{'onElement':'.//null'}")]
+        [DataRow("{'onElement':'.//stale'}")]
+        [DataRow("{'onElement':'.//none'}")]
+        public void DoubleClickElementFlatNoElement(string actionRule)
+        {
+            // execute
+            ExecuteAction<DoubleClick>(MockBy.Null(), actionRule);
 
             // assertion (no assertion here, expected is no exception)
             Assert.IsTrue(true);
@@ -133,17 +204,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             // assertion (no assertion here, expected is no exception)
             Assert.IsTrue(true);
         }
-
-        [TestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
-        [DataRow("{'onElement':'.//none'}")]
-        public void DoubleClickElementFlatNullElement(string actionRule)
-        {
-            // execute
-            ExecuteAction<DoubleClick>(MockBy.Null(), actionRule);
-
-            // assertion (no assertion here, expected is no exception)
-            Assert.IsTrue(true);
-        }
+        #endregion
     }
 }
 #pragma warning restore S4144

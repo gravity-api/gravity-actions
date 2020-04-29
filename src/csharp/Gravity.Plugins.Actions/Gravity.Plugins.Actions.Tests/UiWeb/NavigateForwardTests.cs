@@ -14,6 +14,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
     [TestClass]
     public class NavigateForwardTests : ActionTests
     {
+        #region *** tests: life cycle    ***
         [TestInitialize]
         public void Setup()
         {
@@ -25,7 +26,9 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         {
             Automation.EngineConfiguration.PageLoadTimeout = 100;
         }
+        #endregion
 
+        #region *** tests: documentation ***
         [TestMethod]
         public void NavigateForwardCreate()
         {
@@ -35,16 +38,20 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         [TestMethod]
         public void NavigateForwardDocumentation()
         {
-            AssertDocumentation<NavigateForward>(WebPlugins.NavigateForward);
+            AssertDocumentation<NavigateForward>(
+                pluginName: WebPlugins.NavigateForward);
         }
 
         [TestMethod]
         public void NavigateForwardDocumentationResourceFile()
         {
             AssertDocumentation<NavigateForward>(
-                WebPlugins.NavigateForward, "navigate_forward.json");
+                pluginName: WebPlugins.NavigateForward,
+                resource: "navigate_forward.json");
         }
+        #endregion
 
+        #region *** tests: OnDriver      ***
         [TestMethod]
         public void NavigateForwardPositive()
         {
@@ -87,6 +94,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
             // assertion (no assertion here)
             Assert.IsTrue(true);
         }
+        #endregion
     }
 }
 #pragma warning restore S4144

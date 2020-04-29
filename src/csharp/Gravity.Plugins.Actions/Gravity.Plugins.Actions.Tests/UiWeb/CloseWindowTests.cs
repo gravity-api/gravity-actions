@@ -18,8 +18,11 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
     [TestClass]
     public class CloseWindowTests : ActionTests
     {
+        #region *** tests: constants     ***
         private const int NumberOfWindows = 5;
+        #endregion
 
+        #region *** tests: documentation ***
         [TestMethod]
         public void CloseWindowCreate()
         {
@@ -29,16 +32,20 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         [TestMethod]
         public void CloseWindowDocumentation()
         {
-            AssertDocumentation<CloseWindow>(WebPlugins.CloseWindow);
+            AssertDocumentation<CloseWindow>(
+                pluginName: WebPlugins.CloseWindow);
         }
 
         [TestMethod]
         public void CloseWindowDocumentationResourceFile()
         {
             AssertDocumentation<CloseWindow>(
-                WebPlugins.CloseWindow, "close_window.json");
+               pluginName: WebPlugins.CloseWindow,
+               resource: "close_window.json");
         }
+        #endregion
 
+        #region *** tests: OnDriver      ***
         [DataTestMethod]
         [DataRow("{'argument':'1'}", 1)]
         [DataRow("{'argument':'2'}", 2)]
@@ -128,5 +135,6 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
             // assert that no window has been closed
             Assert.IsTrue(WebDriver.WindowHandles.Count == NumberOfWindows + 1);
         }
+        #endregion
     }
 }

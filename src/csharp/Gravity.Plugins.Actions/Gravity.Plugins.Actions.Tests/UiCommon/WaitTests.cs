@@ -15,13 +15,18 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
     [TestClass]
     public class WaitTests : ActionTests
     {
+        #region *** tests: constructors  ***
         public WaitTests()
         {
             WebDriver = null;
         }
+        #endregion
 
+        #region *** tests: properties    ***
         public TestContext Context { get; set; }
+        #endregion
 
+        #region *** tests: documentation ***
         [TestMethod]
         public void WaitCreate()
         {
@@ -31,15 +36,19 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         [TestMethod]
         public void WaitDocumentation()
         {
-            AssertDocumentation<Wait>(CommonPlugins.Wait);
+            AssertDocumentation<Wait>(pluginName: CommonPlugins.Wait);
         }
 
         [TestMethod]
         public void WaitDocumentationResourceFile()
         {
-            AssertDocumentation<Wait>(CommonPlugins.Wait, "Wait.json");
+            AssertDocumentation<Wait>(
+                pluginName: CommonPlugins.Wait,
+                resource: "Wait.json");
         }
+        #endregion
 
+        #region *** tests: OnDriver      ***
         [DataTestMethod]
         [DataRow("{'argument':'1000'}")]
         public void WaitMilliseconds(string actionRule)
@@ -72,6 +81,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             // assertion (no assertion here)
             Assert.IsTrue(Stopwatch.Elapsed.TotalMilliseconds < 1000);
         }
+        #endregion
     }
 }
 #pragma warning restore S4144

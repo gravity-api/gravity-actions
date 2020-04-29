@@ -16,6 +16,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
     [TestClass]
     public class TryClickTests : ActionTests
     {
+        #region *** tests: documentation ***
         [TestMethod]
         public void TryClickCreate()
         {
@@ -25,17 +26,23 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         [TestMethod]
         public void TryClickDocumentation()
         {
-            AssertDocumentation<TryClick>(WebPlugins.TryClick);
+            AssertDocumentation<TryClick>(
+                pluginName: WebPlugins.TryClick);
         }
 
         [TestMethod]
         public void TryClickDocumentationResourceFile()
         {
-            AssertDocumentation<TryClick>(WebPlugins.TryClick, "try_click.json");
+            AssertDocumentation<TryClick>(
+                pluginName: WebPlugins.TryClick,
+                resource: "try_click.json");
         }
+        #endregion
 
+        #region *** tests: OnDriver      ***
         [DataTestMethod]
         [DataRow("{'onElement':'//positive'}")]
+        [DataRow("{'onElement':'//negative'}")]
         public void TryClickPositive(string actionRule)
         {
             // execute
@@ -47,40 +54,10 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
 
         [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
         [DataRow("{'onElement':'//stale'}")]
-        public void TryClickStale(string actionRule)
-        {
-            // execute
-            ExecuteAction<TryClick>(actionRule);
-
-            // assertion (no assertion here)
-            Assert.IsTrue(true);
-        }
-
-        [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
         [DataRow("{'onElement':'//exception'}")]
-        public void TryClickException(string actionRule)
-        {
-            // execute
-            ExecuteAction<TryClick>(actionRule);
-
-            // assertion (no assertion here)
-            Assert.IsTrue(true);
-        }
-
-        [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
         [DataRow("{'onElement':'//null'}")]
-        public void TryClickNull(string actionRule)
-        {
-            // execute
-            ExecuteAction<TryClick>(actionRule);
-
-            // assertion (no assertion here)
-            Assert.IsTrue(true);
-        }
-
-        [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
         [DataRow("{'onElement':'//none'}")]
-        public void TryClickNoElement(string actionRule)
+        public void TryClickTimeout(string actionRule)
         {
             // execute
             ExecuteAction<TryClick>(actionRule);
@@ -88,9 +65,12 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
             // assertion (no assertion here)
             Assert.IsTrue(true);
         }
+        #endregion
 
+        #region *** tests: OnElement     ***
         [DataTestMethod]
         [DataRow("{'onElement':'.//positive'}")]
+        [DataRow("{'onElement':'.//negative'}")]
         public void TryClickElementPositive(string actionRule)
         {
             // execute
@@ -101,8 +81,11 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         }
 
         [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
-        [DataRow("{'onElement':'//stale'}")]
-        public void TryClickElementStale(string actionRule)
+        [DataRow("{'onElement':'.//stale'}")]
+        [DataRow("{'onElement':'.//exception'}")]
+        [DataRow("{'onElement':'.//null'}")]
+        [DataRow("{'onElement':'.//none'}")]
+        public void TryClickElementTimeout(string actionRule)
         {
             // execute
             ExecuteAction<TryClick>(MockBy.Positive(), actionRule);
@@ -110,39 +93,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
             // assertion (no assertion here)
             Assert.IsTrue(true);
         }
-
-        [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
-        [DataRow("{'onElement':'//exception'}")]
-        public void TryClickElementException(string actionRule)
-        {
-            // execute
-            ExecuteAction<TryClick>(MockBy.Positive(), actionRule);
-
-            // assertion (no assertion here)
-            Assert.IsTrue(true);
-        }
-
-        [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
-        [DataRow("{'onElement':'//null'}")]
-        public void TryClickElementNull(string actionRule)
-        {
-            // execute
-            ExecuteAction<TryClick>(MockBy.Positive(), actionRule);
-
-            // assertion (no assertion here)
-            Assert.IsTrue(true);
-        }
-
-        [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
-        [DataRow("{'onElement':'//none'}")]
-        public void TryClickElementNoElement(string actionRule)
-        {
-            // execute
-            ExecuteAction<TryClick>(MockBy.Positive(), actionRule);
-
-            // assertion (no assertion here)
-            Assert.IsTrue(true);
-        }
+        #endregion
     }
 }
 #pragma warning restore S4144

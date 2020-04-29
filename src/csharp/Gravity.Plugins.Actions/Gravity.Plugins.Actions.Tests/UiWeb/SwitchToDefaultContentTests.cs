@@ -3,10 +3,10 @@
  * 
  * online resources
  */
+using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Actions.UnitTests.Base;
 using Gravity.Plugins.Actions.UiWeb;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Gravity.Plugins.Actions.Contracts;
 using OpenQA.Selenium.Mock;
 using System;
 
@@ -16,6 +16,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
     [TestClass]
     public class SwitchToDefaultContentTests : ActionTests
     {
+        #region *** tests: documentation ***
         [TestMethod]
         public void SwitchToDefaultContentCreate()
         {
@@ -25,16 +26,20 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         [TestMethod]
         public void SwitchToDefaultContentDocumentation()
         {
-            AssertDocumentation<SwitchToDefaultContent>(WebPlugins.SwitchToDefaultContent);
+            AssertDocumentation<SwitchToDefaultContent>(
+                pluginName: WebPlugins.SwitchToDefaultContent);
         }
 
         [TestMethod]
         public void SwitchToDefaultContentDocumentationResourceFile()
         {
             AssertDocumentation<SwitchToDefaultContent>(
-                WebPlugins.SwitchToDefaultContent, "switch_to_default_content.json");
+                pluginName: WebPlugins.SwitchToDefaultContent,
+                resource: "switch_to_default_content.json");
         }
+        #endregion
 
+        #region *** tests: OnDriver      ***
         [TestMethod]
         public void SwitchToDefaultContentPositive()
         {
@@ -67,6 +72,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
             // assertion (no assertion here)
             Assert.IsTrue(true);
         }
+        #endregion
     }
 }
 #pragma warning restore S4144

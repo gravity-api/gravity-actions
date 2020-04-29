@@ -15,19 +15,29 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
     [TestClass]
     public class SubmitFormTests: ActionTests
     {
+        #region *** tests: documentation ***
         [TestMethod]
-        public void SubmitFormCreate() => AssertPlugin<SubmitForm>();
+        public void SubmitFormCreate()
+        {
+            AssertPlugin<SubmitForm>();
+        }
 
         [TestMethod]
         public void SubmitFormDocumentation()
-            => AssertDocumentation<SubmitForm>(WebPlugins.SubmitForm);
+        {
+            AssertDocumentation<SubmitForm>(pluginName: WebPlugins.SubmitForm);
+        }
 
         [TestMethod]
         public void SubmitFormDocumentationResourceFile()
         {
-            AssertDocumentation<SubmitForm>(WebPlugins.SubmitForm, "submit_form.json");
+            AssertDocumentation<SubmitForm>(
+                pluginName: WebPlugins.SubmitForm,
+                resource: "submit_form.json");
         }
+        #endregion
 
+        #region *** tests: OnDriver      ***
         [DataTestMethod]
         [DataRow("{'argument':'mock_form'}")]
         public void SubmitFormNamePositive(string actionRule)
@@ -93,7 +103,9 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
             // assertion (no assertion here)
             Assert.IsTrue(true);
         }
+        #endregion
 
+        #region *** tests: OnElement     ***
         [DataTestMethod]
         [DataRow("{'onElement':'.//positive','argument':'mock-form'}")]
         public void SubmitFormElementNamePositive(string actionRule)
@@ -128,7 +140,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'onElement':'//stale','argument':'mock-form'}")]
+        [DataRow("{'onElement':'.//stale','argument':'mock-form'}")]
         public void SubmitFormElementNameStale(string actionRule)
         {
             // execute
@@ -139,7 +151,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'onElement':'//null','argument':'mock-form'}")]
+        [DataRow("{'onElement':'.//null','argument':'mock-form'}")]
         public void SubmitFormElementNameNull(string actionRule)
         {
             // execute
@@ -148,6 +160,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
             // assertion (no assertion here)
             Assert.IsTrue(true);
         }
+        #endregion
     }
 }
 #pragma warning restore S4144

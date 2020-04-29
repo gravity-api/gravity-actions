@@ -14,6 +14,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
     [TestClass]
     public class NavigateBackTests : ActionTests
     {
+        #region *** tests: life cycle    ***
         [TestInitialize]
         public void Setup()
         {
@@ -25,7 +26,9 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         {
             Automation.EngineConfiguration.PageLoadTimeout = 100;
         }
+        #endregion
 
+        #region *** tests: documentation ***
         [TestMethod]
         public void NavigateBackCreate()
         {
@@ -35,16 +38,20 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         [TestMethod]
         public void NavigateBackDocumentation()
         {
-            AssertDocumentation<NavigateBack>(WebPlugins.NavigateBack);
+            AssertDocumentation<NavigateBack>(
+                pluginName: WebPlugins.NavigateBack);
         }
 
         [TestMethod]
         public void NavigateBackDocumentationResourceFile()
         {
             AssertDocumentation<NavigateBack>(
-                WebPlugins.NavigateBack, "navigate_back.json");
+                pluginName: WebPlugins.NavigateBack,
+                resource: "navigate_back.json");
         }
+        #endregion
 
+        #region *** tests: OnDriver      ***
         [TestMethod]
         public void NavigateBackPositive()
         {
@@ -87,6 +94,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
             // assertion (no assertion here)
             Assert.IsTrue(true);
         }
+        #endregion
     }
 }
 #pragma warning restore S4144

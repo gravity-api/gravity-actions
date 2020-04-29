@@ -3,13 +3,13 @@
  * 
  * online resources
  */
-using OpenQA.Selenium.Mock;
+using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Actions.UnitTests.Base;
 using Gravity.Plugins.Actions.UiWeb;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Mock;
 using System;
-using Gravity.Plugins.Actions.Contracts;
 
 #pragma warning disable S4144
 namespace Gravity.Plugins.Actions.UnitTests.UiWeb
@@ -17,20 +17,40 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
     [TestClass]
     public class KeyboardTests : ActionTests
     {
+        #region *** tests: documentation ***
         [TestMethod]
         public void KeyboardCreate() => AssertPlugin<Keyboard>();
 
         [TestMethod]
         public void KeyboardDocumentation()
-            => AssertDocumentation<Keyboard>(WebPlugins.Keyboard);
+        {
+            AssertDocumentation<Keyboard>(pluginName: WebPlugins.Keyboard);
+        }
 
         [TestMethod]
         public void KeyboardDocumentationResourceFile()
-            => AssertDocumentation<Keyboard>(WebPlugins.Keyboard, "Keyboard.json");
+        {
+            AssertDocumentation<Keyboard>(
+                pluginName: WebPlugins.Keyboard,
+                resource: "Keyboard.json");
+        }
+        #endregion
 
+        #region *** tests: OnDriver      ***
         [DataTestMethod]
         [DataRow("{'onElement':'//positive','argument':'Enter'}")]
         public void KeyboardPositive(string actionRule)
+        {
+            // execute
+            ExecuteAction<Keyboard>(actionRule);
+
+            // assertion (no assertion here)
+            Assert.IsTrue(true);
+        }
+
+        [DataTestMethod]
+        [DataRow("{'onElement':'//positive','argument':'NoSuckKey'}")]
+        public void KeyboardInvalidKeyName(string actionRule)
         {
             // execute
             ExecuteAction<Keyboard>(actionRule);
@@ -52,40 +72,10 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
 
         [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
         [DataRow("{'onElement':'//stale','argument':'Enter'}")]
-        public void KeyboardStale(string actionRule)
-        {
-            // execute
-            ExecuteAction<Keyboard>(actionRule);
-
-            // assertion (no assertion here)
-            Assert.IsTrue(true);
-        }
-
-        [DataTestMethod, ExpectedException(typeof(WebDriverException))]
         [DataRow("{'onElement':'//exception','argument':'Enter'}")]
-        public void KeyboardException(string actionRule)
-        {
-            // execute
-            ExecuteAction<Keyboard>(actionRule);
-
-            // assertion (no assertion here)
-            Assert.IsTrue(true);
-        }
-
-        [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
         [DataRow("{'onElement':'//null','argument':'Enter'}")]
-        public void KeyboardNull(string actionRule)
-        {
-            // execute
-            ExecuteAction<Keyboard>(actionRule);
-
-            // assertion (no assertion here)
-            Assert.IsTrue(true);
-        }
-
-        [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
         [DataRow("{'onElement':'//none','argument':'Enter'}")]
-        public void KeyboardNone(string actionRule)
+        public void KeyboardTimeout(string actionRule)
         {
             // execute
             ExecuteAction<Keyboard>(actionRule);
@@ -93,21 +83,23 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
             // assertion (no assertion here)
             Assert.IsTrue(true);
         }
+        #endregion
 
-        [DataTestMethod]
-        [DataRow("{'onElement':'//positive','argument':'NoSuckKey'}")]
-        public void KeyboardInvalidKeyName(string actionRule)
-        {
-            // execute
-            ExecuteAction<Keyboard>(actionRule);
-
-            // assertion (no assertion here)
-            Assert.IsTrue(true);
-        }
-
+        #region *** tests: OnElement     ***
         [DataTestMethod]
         [DataRow("{'onElement':'.//positive','argument':'Enter'}")]
         public void KeyboardElementPositive(string actionRule)
+        {
+            // execute
+            ExecuteAction<Keyboard>(MockBy.Positive(), actionRule);
+
+            // assertion (no assertion here)
+            Assert.IsTrue(true);
+        }
+
+        [DataTestMethod]
+        [DataRow("{'onElement':'.//positive','argument':'NoSuckKey'}")]
+        public void KeyboardElementInvalidKeyName(string actionRule)
         {
             // execute
             ExecuteAction<Keyboard>(MockBy.Positive(), actionRule);
@@ -170,17 +162,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
             // assertion (no assertion here)
             Assert.IsTrue(true);
         }
-
-        [DataTestMethod]
-        [DataRow("{'onElement':'.//positive','argument':'NoSuckKey'}")]
-        public void KeyboardElementInvalidKeyName(string actionRule)
-        {
-            // execute
-            ExecuteAction<Keyboard>(MockBy.Positive(), actionRule);
-
-            // assertion (no assertion here)
-            Assert.IsTrue(true);
-        }
+        #endregion
     }
 }
 #pragma warning restore S4144

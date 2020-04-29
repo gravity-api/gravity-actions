@@ -18,17 +18,26 @@ namespace Gravity.Plugins.Actions.UnitTests.UiMobile
     [TestClass]
     public class SwipeTests : ActionTests
     {
+        #region *** tests: documentation ***
         [TestMethod]
         public void SwipeCreate() => AssertPlugin<Swipe>();
 
         [TestMethod]
         public void SwipeDocumentation()
-            => AssertDocumentation<Swipe>(MobilePlugins.Swipe);
+        {
+            AssertDocumentation<Swipe>(pluginName: MobilePlugins.Swipe);
+        }
 
         [TestMethod]
         public void SwipeDocumentationResourceFile()
-            => AssertDocumentation<Swipe>(MobilePlugins.Swipe, "swipe.json");
+        {
+            AssertDocumentation<Swipe>(
+                pluginName: MobilePlugins.Swipe,
+                resource: "swipe.json");
+        }
+        #endregion
 
+        #region *** tests: OnDriver      ***
         [DataTestMethod]
         [DataRow("{'argument':'{{$ --source:100,100 --target:200,200}}'}")]
         public void SwipeCoordinates(string actionRule)
@@ -140,48 +149,6 @@ namespace Gravity.Plugins.Actions.UnitTests.UiMobile
             Assert.IsTrue(true);
         }
 
-        [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
-        [DataRow("{'onElement':'//none','argument':'{{$ --target:200,200}}'}")]
-        public void SwipeNoneToCoordinates(string actionRule)
-        {
-            // set new mock driver for mobile device
-            WebDriver = new MockAppiumDriver<IWebElement>();
-
-            // execute
-            ExecuteAction<Swipe>(actionRule);
-
-            // assertion (no assertion here)
-            Assert.IsTrue(true);
-        }
-
-        [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
-        [DataRow("{'onElement':'//stale','argument':'{{$ --target:200,200}}'}")]
-        public void SwipeStaleToCoordinates(string actionRule)
-        {
-            // set new mock driver for mobile device
-            WebDriver = new MockAppiumDriver<IWebElement>();
-
-            // execute
-            ExecuteAction<Swipe>(actionRule);
-
-            // assertion (no assertion here)
-            Assert.IsTrue(true);
-        }
-
-        [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
-        [DataRow("{'onElement':'//null','argument':'{{$ --target:200,200}}'}")]
-        public void SwipeNullToCoordinates(string actionRule)
-        {
-            // set new mock driver for mobile device
-            WebDriver = new MockAppiumDriver<IWebElement>();
-
-            // execute
-            ExecuteAction<Swipe>(actionRule);
-
-            // assertion (no assertion here)
-            Assert.IsTrue(true);
-        }
-
         [DataTestMethod]
         [DataRow("{'argument':'{{$ --target://positive --source:200,200}}'}")]
         public void SwipeCoordinatesToTarget(string actionRule)
@@ -238,48 +205,6 @@ namespace Gravity.Plugins.Actions.UnitTests.UiMobile
             Assert.IsTrue(true);
         }
 
-        [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
-        [DataRow("{'onElement':'//none','argument':'{{$ --source:200,200}}'}")]
-        public void SwipeCoordinatesToNone(string actionRule)
-        {
-            // set new mock driver for mobile device
-            WebDriver = new MockAppiumDriver<IWebElement>();
-
-            // execute
-            ExecuteAction<Swipe>(actionRule);
-
-            // assertion (no assertion here)
-            Assert.IsTrue(true);
-        }
-
-        [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
-        [DataRow("{'onElement':'//stale','argument':'{{$ --source:200,200}}'}")]
-        public void SwipeCoordinatesToStale(string actionRule)
-        {
-            // set new mock driver for mobile device
-            WebDriver = new MockAppiumDriver<IWebElement>();
-
-            // execute
-            ExecuteAction<Swipe>(actionRule);
-
-            // assertion (no assertion here)
-            Assert.IsTrue(true);
-        }
-
-        [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
-        [DataRow("{'onElement':'//null','argument':'{{$ --source:200,200}}'}")]
-        public void SwipeCoordinatesToNull(string actionRule)
-        {
-            // set new mock driver for mobile device
-            WebDriver = new MockAppiumDriver<IWebElement>();
-
-            // execute
-            ExecuteAction<Swipe>(actionRule);
-
-            // assertion (no assertion here)
-            Assert.IsTrue(true);
-        }
-
         [DataTestMethod]
         [DataRow("{'argument':'{{$ --source:.//positive --target:200,200}}'}")]
         public void SwipeElementTargetToCoordinates(string actionRule)
@@ -308,6 +233,29 @@ namespace Gravity.Plugins.Actions.UnitTests.UiMobile
             Assert.IsTrue(true);
         }
 
+        [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
+        [DataRow("{'argument':'{{$ --source:200,200}}','onElement':'//none'}")]
+        [DataRow("{'argument':'{{$ --source:200,200}}','onElement':'//stale'}")]
+        [DataRow("{'argument':'{{$ --source:200,200}}','onElement':'//null'}")]
+        [DataRow("{'argument':'{{$ --source:200,200}}','onElement':'//exception'}")]
+        [DataRow("{'argument':'{{$ --target:200,200}}','onElement':'//none'}")]
+        [DataRow("{'argument':'{{$ --target:200,200}}','onElement':'//stale'}")]
+        [DataRow("{'argument':'{{$ --target:200,200}}','onElement':'//null'}")]
+        [DataRow("{'argument':'{{$ --target:200,200}}','onElement':'//exception'}")]
+        public void SwipeTimeout(string actionRule)
+        {
+            // set new mock driver for mobile device
+            WebDriver = new MockAppiumDriver<IWebElement>();
+
+            // execute
+            ExecuteAction<Swipe>(actionRule);
+
+            // assertion (no assertion here)
+            Assert.IsTrue(true);
+        }
+        #endregion
+
+        #region *** tests: OnElement     ***
         [DataTestMethod]
         [DataRow("{'onElement':'.//positive','argument':'{{$ --target:200,200}}'}")]
         public void SwipeElementPositiveToCoordinates(string actionRule)
@@ -325,48 +273,6 @@ namespace Gravity.Plugins.Actions.UnitTests.UiMobile
         [DataTestMethod]
         [DataRow("{'onElement':'.//negative','argument':'{{$ --target:200,200}}'}")]
         public void SwipeElementNegativeToCoordinates(string actionRule)
-        {
-            // set new mock driver for mobile device
-            WebDriver = new MockAppiumDriver<IWebElement>();
-
-            // execute
-            ExecuteAction<Swipe>(by: MockBy.Positive(), actionRule);
-
-            // assertion (no assertion here)
-            Assert.IsTrue(true);
-        }
-
-        [DataTestMethod, ExpectedException(typeof(NoSuchElementException))]
-        [DataRow("{'onElement':'.//none','argument':'{{$ --target:200,200}}'}")]
-        public void SwipeElementNoneToCoordinates(string actionRule)
-        {
-            // set new mock driver for mobile device
-            WebDriver = new MockAppiumDriver<IWebElement>();
-
-            // execute
-            ExecuteAction<Swipe>(by: MockBy.Positive(), actionRule);
-
-            // assertion (no assertion here)
-            Assert.IsTrue(true);
-        }
-
-        [DataTestMethod, ExpectedException(typeof(StaleElementReferenceException))]
-        [DataRow("{'onElement':'.//stale','argument':'{{$ --target:200,200}}'}")]
-        public void SwipeElementStaleToCoordinates(string actionRule)
-        {
-            // set new mock driver for mobile device
-            WebDriver = new MockAppiumDriver<IWebElement>();
-
-            // execute
-            ExecuteAction<Swipe>(by: MockBy.Positive(), actionRule);
-
-            // assertion (no assertion here)
-            Assert.IsTrue(true);
-        }
-
-        [DataTestMethod, ExpectedException(typeof(NullReferenceException))]
-        [DataRow("{'onElement':'.//null','argument':'{{$ --target:200,200}}'}")]
-        public void SwipeElementNullToCoordinates(string actionRule)
         {
             // set new mock driver for mobile device
             WebDriver = new MockAppiumDriver<IWebElement>();
@@ -436,7 +342,8 @@ namespace Gravity.Plugins.Actions.UnitTests.UiMobile
 
         [DataTestMethod, ExpectedException(typeof(NoSuchElementException))]
         [DataRow("{'onElement':'.//none','argument':'{{$ --source:200,200}}'}")]
-        public void SwipeElementCoordinatesToNone(string actionRule)
+        [DataRow("{'onElement':'.//none','argument':'{{$ --target:200,200}}'}")]
+        public void SwipeElementNone(string actionRule)
         {
             // set new mock driver for mobile device
             WebDriver = new MockAppiumDriver<IWebElement>();
@@ -450,7 +357,8 @@ namespace Gravity.Plugins.Actions.UnitTests.UiMobile
 
         [DataTestMethod, ExpectedException(typeof(StaleElementReferenceException))]
         [DataRow("{'onElement':'.//stale','argument':'{{$ --source:200,200}}'}")]
-        public void SwipeElementCoordinatesToStale(string actionRule)
+        [DataRow("{'onElement':'.//stale','argument':'{{$ --target:200,200}}'}")]
+        public void SwipeElementStale(string actionRule)
         {
             // set new mock driver for mobile device
             WebDriver = new MockAppiumDriver<IWebElement>();
@@ -464,7 +372,8 @@ namespace Gravity.Plugins.Actions.UnitTests.UiMobile
 
         [DataTestMethod, ExpectedException(typeof(NullReferenceException))]
         [DataRow("{'onElement':'.//null','argument':'{{$ --source:200,200}}'}")]
-        public void SwipeElementCoordinatesToNull(string actionRule)
+        [DataRow("{'onElement':'.//null','argument':'{{$ --target:200,200}}'}")]
+        public void SwipeElementNull(string actionRule)
         {
             // set new mock driver for mobile device
             WebDriver = new MockAppiumDriver<IWebElement>();
@@ -475,6 +384,22 @@ namespace Gravity.Plugins.Actions.UnitTests.UiMobile
             // assertion (no assertion here)
             Assert.IsTrue(true);
         }
+
+        [DataTestMethod, ExpectedException(typeof(WebDriverException))]
+        [DataRow("{'onElement':'.//exception','argument':'{{$ --source:200,200}}'}")]
+        [DataRow("{'onElement':'.//exception','argument':'{{$ --target:200,200}}'}")]
+        public void SwipeElementException(string actionRule)
+        {
+            // set new mock driver for mobile device
+            WebDriver = new MockAppiumDriver<IWebElement>();
+
+            // execute
+            ExecuteAction<Swipe>(by: MockBy.Positive(), actionRule);
+
+            // assertion (no assertion here)
+            Assert.IsTrue(true);
+        }
+        #endregion
     }
 }
 #pragma warning restore S4144

@@ -488,7 +488,7 @@ namespace Gravity.Plugins.Actions.UnitTests.Base
             // assertion method
             static bool AssertName(string name, string fileName)
             {
-                return name.EndsWith(fileName, Compare);
+                return name.EndsWith($".{fileName}", Compare);
             }
 
             // search resource

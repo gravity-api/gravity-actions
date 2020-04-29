@@ -9,6 +9,7 @@ using Gravity.Plugins.Actions.UnitTests.Base;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Mock;
+
 using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
 
 #pragma warning disable S4144
@@ -17,8 +18,11 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
     [TestClass]
     public class WaitForElementTests: ActionTests
     {
+        #region *** tests: properties    ***
         public TestContext Context { get; set; }
+        #endregion
 
+        #region *** tests: documentation ***
         [TestMethod]
         public void WaitForElementCreate()
         {
@@ -28,16 +32,20 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         [TestMethod]
         public void WaitForElementDocumentation()
         {
-            AssertDocumentation<WaitForElement>(CommonPlugins.WaitForElement);
+            AssertDocumentation<WaitForElement>(
+                pluginName: CommonPlugins.WaitForElement);
         }
 
         [TestMethod]
         public void WaitForElementDocumentationResourceFile()
         {
             AssertDocumentation<WaitForElement>(
-                CommonPlugins.WaitForElement, "wait_for_element.json");
+                pluginName: CommonPlugins.WaitForElement,
+                resource: "wait_for_element.json");
         }
+        #endregion
 
+        #region *** tests: OnDriver      ***
         [DataTestMethod]
         [DataRow("{'onElement':'//positive'}")]
         [DataRow("{'onElement':'//negative'}")]
@@ -271,7 +279,9 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             // assertion
             Assert.IsTrue(Stopwatch.Elapsed.TotalMilliseconds < 1000);
         }
+        #endregion
 
+        #region *** tests: OnElement     ***
         [DataTestMethod]
         [DataRow("{'onElement':'.//positive'}")]
         [DataRow("{'onElement':'.//negative'}")]
@@ -505,6 +515,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             // assertion
             Assert.IsTrue(Stopwatch.Elapsed.TotalMilliseconds < 1000);
         }
+        #endregion
     }
 }
 #pragma warning restore S4144

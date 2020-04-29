@@ -25,7 +25,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
     [DoNotParallelize]
     public class ExtractFromSourceTests : ActionTests
     {
-        // members state
+        #region *** tests: constants     ***
         private static string connectionString;
         private const string PageSource =
             "<html>" +
@@ -54,11 +54,15 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
             "        <positive mock_attribute=\"attribute_3\">mock div text 3</positive>" +
             "    </body>" +
             "</html>";
+        #endregion
 
+        #region *** tests: properties    ***
         public TestContext TestContext { get; set; }
+        #endregion
 
+        #region *** tests: life cycle    ***
         [ClassInitialize]
-        public static void Init(TestContext context)
+        public static void ClassSetup(TestContext context)
         {
             connectionString =
                 $"{context.Properties["Data.ConnectionString"]}".Replace("[catalog]", "ExtractFromSourceTests");
@@ -78,21 +82,34 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         }
 
         [TestInitialize]
-        public void Setup()
+        public void TestSetup()
         {
             WebDriver.PageSource = PageSource;
         }
+        #endregion
 
+        #region *** tests: documentation ***
         [TestMethod]
-        public void ExtractDataCreate() => AssertPlugin<ExtractFromSource>();
+        public void ExtractDataCreate()
+        {
+            AssertPlugin<ExtractFromSource>();
+        }
 
         [TestMethod]
         public void ExtractDataDocumentation()
-            => AssertDocumentation<ExtractFromSource>(WebPlugins.ExtractFromSource);
+        {
+            AssertDocumentation<ExtractFromSource>(
+                pluginName: WebPlugins.ExtractFromSource);
+        }
 
         [TestMethod]
         public void ExtractDataDocumentationResourceFile()
-            => AssertDocumentation<ExtractFromSource>(WebPlugins.ExtractFromSource, "extract_from_source.json");
+        {
+            AssertDocumentation<ExtractFromSource>(
+                pluginName: WebPlugins.ExtractFromSource,
+                resource: "extract_from_source.json");
+        }
+        #endregion
 
         #region *** extract from source  ***
         // 0: extracts inner text of all root elements
@@ -794,6 +811,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         }
         #endregion
 
+        #region *** tests: utilities     ***
         // executes extraction rule and validates counts and data
         private bool DoExtract(string extractionRule, string expected)
         {
@@ -858,6 +876,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
                 .Replace(oldValue: "[Data.ConnectionString]", newValue: connectionString)
                 .Replace(oldValue: "[Data.Repository]", newValue: repository);
         }
+        #endregion
     }
 }
 #pragma warning restore

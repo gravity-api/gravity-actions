@@ -16,6 +16,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiMobile
     [TestClass]
     public class GeoLocationTests : ActionTests
     {
+        #region *** tests: documentation ***
         [TestMethod]
         public void GeoLocationCreate()
         {
@@ -25,15 +26,20 @@ namespace Gravity.Plugins.Actions.UnitTests.UiMobile
         [TestMethod]
         public void GeoLocationDocumentation()
         {
-            AssertDocumentation<SetGeoLocation>(MobilePlugins.SetGeoLocation);
+            AssertDocumentation<SetGeoLocation>(
+                pluginName: MobilePlugins.SetGeoLocation);
         }
 
         [TestMethod]
         public void GeoLocationDocumentationResourceFile()
         {
-            AssertDocumentation<SetGeoLocation>(MobilePlugins.SetGeoLocation, "set_geo_location.json");
+            AssertDocumentation<SetGeoLocation>(
+                pluginName: MobilePlugins.SetGeoLocation,
+                resource: "set_geo_location.json");
         }
+        #endregion
 
+        #region *** tests: OnDriver      ***
         [DataTestMethod]
         [DataRow("{'argument':'{{$ --lat:5.5}}'}")]
         public void GeoLocationLatitudePositive(string actionRule)
@@ -151,6 +157,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiMobile
             // assertion (no assertion here)
             Assert.IsTrue(true);
         }
+        #endregion
     }
 }
 #pragma warning restore S4144

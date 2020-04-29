@@ -17,14 +17,19 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
     [TestClass]
     public class WaitForPageTests : ActionTests
     {
+        #region *** tests: properties    ***
         public TestContext TestContext { get; set; }
+        #endregion
 
+        #region *** tests: life cycle    ***
         [TestInitialize]
         public void Setup()
         {
             Automation.EngineConfiguration.PageLoadTimeout = 180000;
         }
+        #endregion
 
+        #region *** tests: documentation ***
         [TestMethod]
         public void WaitForPageCreate()
         {
@@ -34,15 +39,20 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         [TestMethod]
         public void WaitForPageDocumentation()
         {
-            AssertDocumentation<WaitForPage>(WebPlugins.WaitForPage);
+            AssertDocumentation<WaitForPage>(
+                pluginName: WebPlugins.WaitForPage);
         }
 
         [TestMethod]
         public void WaitForPageDocumentationResourceFile()
         {
-            AssertDocumentation<WaitForPage>(WebPlugins.WaitForPage, "wait_for_page.json");
+            AssertDocumentation<WaitForPage>(
+                pluginName: WebPlugins.WaitForPage,
+                resource: "wait_for_page.json");
         }
+        #endregion
 
+        #region *** tests: OnDriver      ***
         [TestMethod]
         public void WaitForPagePositive()
         {
@@ -132,7 +142,9 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
             // assertion (no assertion here)
             Assert.IsTrue(true);
         }
+        #endregion
 
+        #region *** tests: OnElement     ***
         [DataTestMethod]
         [DataRow("{'argument':'{{$ --until:uninitialized}}','onElement':'.//positive'}")]
         public void WaitForPageElementUninitialized(string actionRule)
@@ -198,6 +210,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
             // assertion (no assertion here)
             Assert.IsTrue(true);
         }
+        #endregion
     }
 }
 #pragma warning restore S4144

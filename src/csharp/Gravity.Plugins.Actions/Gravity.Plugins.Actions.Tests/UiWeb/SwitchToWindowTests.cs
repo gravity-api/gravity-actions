@@ -3,10 +3,10 @@
  * 
  * online resources
  */
+using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Actions.UnitTests.Base;
 using Gravity.Plugins.Actions.UiWeb;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Gravity.Plugins.Actions.Contracts;
 using OpenQA.Selenium.Mock;
 using OpenQA.Selenium.Mock.Extensions;
 using System.Collections.Generic;
@@ -18,6 +18,15 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
     [TestClass]
     public class SwitchToWindowTests : ActionTests
     {
+        #region *** tests: life cycle    ***
+        [TestCleanup]
+        public void TestClean()
+        {
+            WebDriver = new MockWebDriver();
+        }
+        #endregion
+
+        #region *** tests: documentation ***
         [TestMethod]
         public void SwitchToWindowCreate()
         {
@@ -27,16 +36,20 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         [TestMethod]
         public void SwitchToWindowDocumentation()
         {
-            AssertDocumentation<SwitchToWindow>(WebPlugins.SwitchToWindow);
+            AssertDocumentation<SwitchToWindow>(
+                pluginName: WebPlugins.SwitchToWindow);
         }
 
         [TestMethod]
         public void SwitchToWindowDocumentationResourceFile()
         {
             AssertDocumentation<SwitchToWindow>(
-                WebPlugins.SwitchToWindow, "switch_to_window.json");
+                pluginName: WebPlugins.SwitchToWindow,
+                resource: "switch_to_window.json");
         }
+        #endregion
 
+        #region *** tests: OnDriver      ***
         [DataTestMethod]
         [DataRow("{'argument':'3'}")]
         public void SwitchToWindowPositive(string actionRule)
@@ -93,17 +106,127 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
             Assert.IsTrue(WebDriver.CurrentWindowHandle == expected);
         }
 
+        [DoNotParallelize]
         [DataTestMethod]
-        [DataRow("{'argument':'A'}")]
+        [DataRow("{'argument':'10'}")]
         public void SwitchToWindowNoWindows(string actionRule)
         {
+            // setup
+            WebDriver = WebDriver.ApplyCapabilities(new Dictionary<string, object>
+            {
+                [MockCapabilities.ChildWindows] = 0
+            });
+
             // execute
             ExecuteAction<SwitchToWindow>(actionRule);
 
-            // assertion (no assertion here)
-            Assert.IsTrue(true);
+            // assertion
+            Assert.IsTrue(WebDriver.WindowHandles.Count == 1);
+        }
+        #endregion
+
+        #region *** tests: OnElement     ***
+        [DataTestMethod]
+        [DataRow("{'argument':'3','onElement':'.//positive'}")]
+        [DataRow("{'argument':'3','onElement':'.//negative'}")]
+        [DataRow("{'argument':'3','onElement':'.//null'}")]
+        [DataRow("{'argument':'3','onElement':'.//none'}")]
+        [DataRow("{'argument':'3','onElement':'.//stale'}")]
+        [DataRow("{'argument':'3','onElement':'.//exception'}")]
+        public void SwitchToWindowElementPositive(string actionRule)
+        {
+            // get first handler
+            var expected = GetExpected();
+
+            // execute
+            ExecuteAction<SwitchToWindow>(MockBy.Positive(), actionRule);
+
+            // assertion
+            Assert.IsTrue(WebDriver.CurrentWindowHandle != expected);
         }
 
+        [DataTestMethod]
+        [DataRow("{'argument':'-1','onElement':'.//positive'}")]
+        [DataRow("{'argument':'-1','onElement':'.//negative'}")]
+        [DataRow("{'argument':'-1','onElement':'.//null'}")]
+        [DataRow("{'argument':'-1','onElement':'.//none'}")]
+        [DataRow("{'argument':'-1','onElement':'.//stale'}")]
+        [DataRow("{'argument':'-1','onElement':'.//exception'}")]
+        public void SwitchToWindowElementNegativeNumber(string actionRule)
+        {
+            // get first handler
+            var expected = GetExpected();
+
+            // execute
+            ExecuteAction<SwitchToWindow>(MockBy.Positive(), actionRule);
+
+            // assertion
+            Assert.IsTrue(WebDriver.CurrentWindowHandle == expected);
+        }
+
+        [DataTestMethod]
+        [DataRow("{'argument':'50','onElement':'.//positive'}")]
+        [DataRow("{'argument':'50','onElement':'.//negative'}")]
+        [DataRow("{'argument':'50','onElement':'.//null'}")]
+        [DataRow("{'argument':'50','onElement':'.//none'}")]
+        [DataRow("{'argument':'50','onElement':'.//stale'}")]
+        [DataRow("{'argument':'50','onElement':'.//exception'}")]
+        public void SwitchToWindowElementOutOfRange(string actionRule)
+        {
+            // get first handler
+            var expected = GetExpected(isLast: true);
+
+            // execute
+            ExecuteAction<SwitchToWindow>(MockBy.Positive(), actionRule);
+
+            // assertion
+            Assert.IsTrue(WebDriver.WindowHandles.Last() == expected);
+        }
+
+        [DataTestMethod]
+        [DataRow("{'argument':'A','onElement':'.//positive'}")]
+        [DataRow("{'argument':'A','onElement':'.//negative'}")]
+        [DataRow("{'argument':'A','onElement':'.//null'}")]
+        [DataRow("{'argument':'A','onElement':'.//none'}")]
+        [DataRow("{'argument':'A','onElement':'.//stale'}")]
+        [DataRow("{'argument':'A','onElement':'.//exception'}")]
+        public void SwitchToWindowElementNotNumber(string actionRule)
+        {
+            // get first handler
+            var expected = GetExpected();
+
+            // execute
+            ExecuteAction<SwitchToWindow>(MockBy.Positive(), actionRule);
+
+            // assertion
+            Assert.IsTrue(WebDriver.CurrentWindowHandle == expected);
+        }
+
+        [DoNotParallelize]
+        [DataTestMethod]
+        [DataRow("{'argument':'10','onElement':'.//positive'}")]
+        [DataRow("{'argument':'10','onElement':'.//negative'}")]
+        [DataRow("{'argument':'10','onElement':'.//null'}")]
+        [DataRow("{'argument':'10','onElement':'.//none'}")]
+        [DataRow("{'argument':'10','onElement':'.//stale'}")]
+        [DataRow("{'argument':'10','onElement':'.//exception'}")]
+        public void SwitchToWindowElementNoWindows(string actionRule)
+        {
+            // setup
+            WebDriver = WebDriver.ApplyCapabilities(new Dictionary<string, object>
+            {
+                [MockCapabilities.ChildWindows] = 0
+            });
+
+            // execute
+            ExecuteAction<SwitchToWindow>(MockBy.Positive(), actionRule);
+
+            // assertion
+            Assert.IsTrue(WebDriver.WindowHandles.Count == 1);
+        }
+        #endregion
+
+        #region *** utilities            ***
         private string GetExpected(bool isLast = false)
         {
             // setup
@@ -115,6 +238,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
             // get first handler
             return isLast ? WebDriver.WindowHandles.Last() : WebDriver.CurrentWindowHandle;
         }
+        #endregion
     }
 }
 #pragma warning restore S4144

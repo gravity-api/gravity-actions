@@ -16,17 +16,29 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
     [TestClass]
     public class ScrollTests : ActionTests
     {
+        #region *** tests: documentation ***
         [TestMethod]
-        public void ScrollCreate() => AssertPlugin<Scroll>();
+        public void ScrollCreate()
+        {
+            AssertPlugin<Scroll>();
+        }
 
         [TestMethod]
         public void ScrollDocumentation()
-            => AssertDocumentation<Scroll>(WebPlugins.Scroll);
+        {
+            AssertDocumentation<Scroll>(pluginName: WebPlugins.Scroll);
+        }
 
         [TestMethod]
         public void ScrollDocumentationResourceFile()
-            => AssertDocumentation<Scroll>(WebPlugins.Scroll, "scroll.json");
+        {
+            AssertDocumentation<Scroll>(
+                pluginName: WebPlugins.Scroll,
+                resource: "scroll.json");
+        }
+        #endregion
 
+        #region *** tests: OnDriver      ***
         [DataTestMethod]
         [DataRow("{'argument':'1000'}")]
         [DataRow("{'argument':'{{$ --top:1000}}'}")]
@@ -154,6 +166,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
 
         [DataTestMethod]
         [DataRow("{'onElement':'//positive'}")]
+        [DataRow("{'onElement':'//negative'}")]
         public void ScrollElementNoArgument(string actionRule)
         {
             // expected
@@ -172,6 +185,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         [DataRow("{'onElement':'//null'}")]
         [DataRow("{'onElement':'//none'}")]
         [DataRow("{'onElement':'//stale'}")]
+        [DataRow("{'onElement':'//exception'}")]
         public void ScrollElementTimout(string actionRule)
         {
             // execute
@@ -180,18 +194,9 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
             // assertion
             Assert.IsTrue(true);
         }
+        #endregion
 
-        [DataTestMethod, ExpectedException(typeof(WebDriverException))]
-        [DataRow("{'onElement':'//exception'}")]
-        public void ScrollElementException(string actionRule)
-        {
-            // execute
-            ExecuteAction<Scroll>(actionRule);
-
-            // assertion
-            Assert.IsTrue(true);
-        }
-
+        #region *** tests: OnElement     ***
         [DataTestMethod]
         [DataRow("{'argument':'1000','onElement':'.//positive'}")]
         [DataRow("{'argument':'{{$ --top:1000}}','onElement':'.//positive'}")]
@@ -256,6 +261,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
 
         [DataTestMethod]
         [DataRow("{'onElement':'.//positive'}")]
+        [DataRow("{'onElement':'.//negative'}")]
         public void ScrollNestedElementNoArgument(string actionRule)
         {
             // expected
@@ -318,6 +324,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
             // assertion
             Assert.IsTrue(true);
         }
+        #endregion
     }
 }
 #pragma warning restore S4144

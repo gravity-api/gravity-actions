@@ -17,10 +17,13 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
     [TestClass]
     public class CloseAllChildWindowsTests : ActionTests
     {
+        #region *** tests: constants     ***
         private const int NumberOfWindows = 5;
         private const string MessageNoWindows = "No child windows are currently active.";
         private const string MessageStillActive = "Some child windows are still active.";
+        #endregion
 
+        #region *** tests: documentation ***
         [TestMethod]
         public void CloseAllChildWindowsCreate()
         {
@@ -30,16 +33,20 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         [TestMethod]
         public void CloseAllChildWindowsDocumentation()
         {
-            AssertDocumentation<CloseAllChildWindows>(WebPlugins.CloseAllChildWindows);
+            AssertDocumentation<CloseAllChildWindows>(
+                pluginName: WebPlugins.CloseAllChildWindows);
         }
 
         [TestMethod]
         public void CloseAllChildWindowsDocumentationResourceFile()
         {
             AssertDocumentation<CloseAllChildWindows>(
-                WebPlugins.CloseAllChildWindows, "close_all_child_windows.json");
+                pluginName: WebPlugins.CloseAllChildWindows,
+                resource: "close_all_child_windows.json");
         }
+        #endregion
 
+        #region *** tests: OnDriver      ***
         [TestMethod]
         public void CloseAllPositive()
         {
@@ -58,7 +65,9 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
             // assert that all child windows are now closed
             Assert.IsTrue(WebDriver.WindowHandles.Count == 1, MessageStillActive);
         }
+        #endregion
 
+        #region *** tests: OnElement     ***
         [DataTestMethod]
         [DataRow("{'onElement':'.//positive'}")]
         public void CloseAllElementPositive(string actionRule)
@@ -78,5 +87,6 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
             // assert that all child windows are now closed
             Assert.IsTrue(WebDriver.WindowHandles.Count == 1, MessageStillActive);
         }
+        #endregion
     }
 }

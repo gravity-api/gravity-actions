@@ -3,14 +3,15 @@
  * 
  * online resources
  */
-using OpenQA.Selenium.Mock;
+
+using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Actions.UnitTests.Base;
 using Gravity.Plugins.Actions.UiWeb;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Mock;
+using System;
 using System.Collections.Generic;
-using Gravity.Plugins.Actions.Contracts;
-using Gravity.Plugins.Contracts;
 
 #pragma warning disable S4144
 namespace Gravity.Plugins.Actions.UnitTests.UiWeb
@@ -18,6 +19,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
     [TestClass]
     public class ContextClickTests : ActionTests
     {
+        #region *** tests: documentation ***
         [TestMethod]
         public void ContextClickCreate()
         {
@@ -27,43 +29,37 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         [TestMethod]
         public void ContextClickDocumentation()
         {
-            AssertDocumentation<ContextClick>(WebPlugins.ContextClick);
+            AssertDocumentation<ContextClick>(
+                pluginName: WebPlugins.ContextClick);
         }
 
         [TestMethod]
         public void ContextClickDocumentationResourceFile()
         {
             AssertDocumentation<ContextClick>(
-                WebPlugins.ContextClick, "context_click.json");
+                pluginName: WebPlugins.ContextClick,
+                resource:"context_click.json");
         }
+        #endregion
 
-        [DataTestMethod]
-        [DataRow("{'onElement':'//positive'}")]
-        public void ContextClickPositive(string actionRule)
-        {
-            // execute
-            ExecuteAction<ContextClick>(actionRule);
-
-            // assertion (no assertion here)
-            Assert.IsTrue(true);
-        }
-
-        [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
-        [DataRow("{'onElement':'//none'}")]
-        public void ContextClickNoElement(string actionRule)
-        {
-            // execute
-            ExecuteAction<ContextClick>(actionRule);
-
-            // assertion (no assertion here)
-            Assert.IsTrue(true);
-        }
-
+        #region *** tests: OnDriver      ***
         [TestMethod]
         public void ContextClickFlat()
         {
             // execute
             ExecuteAction<ContextClick>();
+
+            // assertion (no assertion here)
+            Assert.IsTrue(true);
+        }
+
+        [DataTestMethod]
+        [DataRow("{'onElement':'//positive'}")]
+        [DataRow("{'onElement':'//negative'}")]
+        public void ContextClickPositive(string actionRule)
+        {
+            // execute
+            ExecuteAction<ContextClick>(actionRule);
 
             // assertion (no assertion here)
             Assert.IsTrue(true);
@@ -83,8 +79,35 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
             Assert.IsTrue(true);
         }
 
+        [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
+        [DataRow("{'onElement':'//none'}")]
+        [DataRow("{'onElement':'//stale'}")]
+        [DataRow("{'onElement':'//exception'}")]
+        [DataRow("{'onElement':'//null'}")]
+        public void ContextClickTimeout(string actionRule)
+        {
+            // execute
+            ExecuteAction<ContextClick>(actionRule);
+
+            // assertion (no assertion here)
+            Assert.IsTrue(true);
+        }
+        #endregion
+
+        #region *** tests: OnElement     ***
+        [TestMethod]
+        public void ContextClickElementFlat()
+        {
+            // execute
+            ExecuteAction<ContextClick>(MockBy.Positive());
+
+            // assertion (no assertion here)
+            Assert.IsTrue(true);
+        }
+
         [DataTestMethod]
         [DataRow("{'onElement':'//positive'}")]
+        [DataRow("{'onElement':'//negative'}")]
         public void ContextClickElementAbsolutePositive(string actionRule)
         {
             // execute
@@ -95,7 +118,22 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         }
 
         [DataTestMethod]
+        [DataRow("{'Argument':'{{$ --until:NoAlert}}','onElement':'//positive'}")]
+        public void ContextClickElementUntilNoAlert(string actionRule)
+        {
+            // execute
+            ExecuteAction<ContextClick>(actionRule, new Dictionary<string, object>
+            {
+                [MockCapabilities.HasAlert] = true
+            });
+
+            // assertion (no assertion here)
+            Assert.IsTrue(true);
+        }
+
+        [DataTestMethod]
         [DataRow("{'onElement':'.//positive'}")]
+        [DataRow("{'onElement':'.//negative'}")]
         public void ContextClickElementRelativePositive(string actionRule)
         {
             // execute
@@ -106,7 +144,9 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         }
 
         [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
-        [DataRow("{'onElement':'//none','locator':'" + LocatorType.Xpath + "'}")]
+        [DataRow("{'onElement':'//none','locator':'Xpath'}")]
+        [DataRow("{'onElement':'//stale','locator':'Xpath'}")]
+        [DataRow("{'onElement':'//exception','locator':'Xpath'}")]
         public void ContextClickElementAbsoluteNoElement(string actionRule)
         {
             // execute
@@ -127,15 +167,39 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
             Assert.IsTrue(true);
         }
 
-        [TestMethod]
-        public void ContextClickElementFlat()
+        [DataTestMethod, ExpectedException(typeof(ArgumentException))]
+        [DataRow("{'onElement':'.//null'}")]
+        public void ContextClickElementRelativeNull(string actionRule)
         {
             // execute
-            ExecuteAction<ContextClick>(MockBy.Positive());
+            ExecuteAction<ContextClick>(MockBy.Positive(), actionRule);
 
             // assertion (no assertion here)
             Assert.IsTrue(true);
         }
+
+        [DataTestMethod, ExpectedException(typeof(StaleElementReferenceException))]
+        [DataRow("{'onElement':'.//stale'}")]
+        public void ContextClickElementRelativeStale(string actionRule)
+        {
+            // execute
+            ExecuteAction<ContextClick>(MockBy.Positive(), actionRule);
+
+            // assertion (no assertion here)
+            Assert.IsTrue(true);
+        }
+
+        [DataTestMethod, ExpectedException(typeof(WebDriverException))]
+        [DataRow("{'onElement':'.//exception'}")]
+        public void ContextClickElementRelativeException(string actionRule)
+        {
+            // execute
+            ExecuteAction<ContextClick>(MockBy.Positive(), actionRule);
+
+            // assertion (no assertion here)
+            Assert.IsTrue(true);
+        }
+        #endregion
     }
 }
 #pragma warning restore S4144

@@ -18,17 +18,27 @@ namespace Gravity.Plugins.Actions.UnitTests.UiMobile
     [TestClass]
     public class LongSwipeTests : ActionTests
     {
+        #region *** tests: documentation ***
         [TestMethod]
         public void LongSwipeCreate() => AssertPlugin<LongSwipe>();
 
         [TestMethod]
         public void LongSwipeDocumentation()
-            => AssertDocumentation<LongSwipe>(MobilePlugins.LongSwipe);
+        {
+            AssertDocumentation<LongSwipe>(
+                pluginName: MobilePlugins.LongSwipe);
+        }
 
         [TestMethod]
         public void LongSwipeDocumentationResourceFile()
-            => AssertDocumentation<LongSwipe>(MobilePlugins.LongSwipe, "long_swipe.json");
+        {
+            AssertDocumentation<LongSwipe>(
+                pluginName: MobilePlugins.LongSwipe,
+                resource: "long_swipe.json");
+        }
+        #endregion
 
+        #region *** tests: OnDriver      ***
         [DataTestMethod]
         [DataRow("{'argument':'{{$ --source:100,100 --target:200,200}}'}")]
         public void LongSwipeCoordinates(string actionRule)
@@ -140,48 +150,6 @@ namespace Gravity.Plugins.Actions.UnitTests.UiMobile
             Assert.IsTrue(true);
         }
 
-        [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
-        [DataRow("{'onElement':'//none','argument':'{{$ --target:200,200}}'}")]
-        public void LongSwipeNoneToCoordinates(string actionRule)
-        {
-            // set new mock driver for mobile device
-            WebDriver = new MockAppiumDriver<IWebElement>();
-
-            // execute
-            ExecuteAction<LongSwipe>(actionRule);
-
-            // assertion (no assertion here)
-            Assert.IsTrue(true);
-        }
-
-        [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
-        [DataRow("{'onElement':'//stale','argument':'{{$ --target:200,200}}'}")]
-        public void LongSwipeStaleToCoordinates(string actionRule)
-        {
-            // set new mock driver for mobile device
-            WebDriver = new MockAppiumDriver<IWebElement>();
-
-            // execute
-            ExecuteAction<LongSwipe>(actionRule);
-
-            // assertion (no assertion here)
-            Assert.IsTrue(true);
-        }
-
-        [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
-        [DataRow("{'onElement':'//null','argument':'{{$ --target:200,200}}'}")]
-        public void LongSwipeNullToCoordinates(string actionRule)
-        {
-            // set new mock driver for mobile device
-            WebDriver = new MockAppiumDriver<IWebElement>();
-
-            // execute
-            ExecuteAction<LongSwipe>(actionRule);
-
-            // assertion (no assertion here)
-            Assert.IsTrue(true);
-        }
-
         [DataTestMethod]
         [DataRow("{'argument':'{{$ --target://positive --source:200,200}}'}")]
         public void LongSwipeCoordinatesToTarget(string actionRule)
@@ -239,8 +207,15 @@ namespace Gravity.Plugins.Actions.UnitTests.UiMobile
         }
 
         [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
-        [DataRow("{'onElement':'//none','argument':'{{$ --source:200,200}}'}")]
-        public void LongSwipeCoordinatesToNone(string actionRule)
+        [DataRow("{'argument':'{{$ --source:200,200}}','onElement':'//stale'}")]
+        [DataRow("{'argument':'{{$ --source:200,200}}','onElement':'//null'}")]
+        [DataRow("{'argument':'{{$ --source:200,200}}','onElement':'//none'}")]
+        [DataRow("{'argument':'{{$ --source:200,200}}','onElement':'//exception'}")]
+        [DataRow("{'argument':'{{$ --target:200,200}}','onElement':'//null'}")]
+        [DataRow("{'argument':'{{$ --target:200,200}}','onElement':'//stale'}")]
+        [DataRow("{'argument':'{{$ --target:200,200}}','onElement':'//none'}")]
+        [DataRow("{'argument':'{{$ --target:200,200}}','onElement':'//exception'}")]
+        public void LongSwipeTimeout(string actionRule)
         {
             // set new mock driver for mobile device
             WebDriver = new MockAppiumDriver<IWebElement>();
@@ -251,35 +226,9 @@ namespace Gravity.Plugins.Actions.UnitTests.UiMobile
             // assertion (no assertion here)
             Assert.IsTrue(true);
         }
+        #endregion
 
-        [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
-        [DataRow("{'onElement':'//stale','argument':'{{$ --source:200,200}}'}")]
-        public void LongSwipeCoordinatesToStale(string actionRule)
-        {
-            // set new mock driver for mobile device
-            WebDriver = new MockAppiumDriver<IWebElement>();
-
-            // execute
-            ExecuteAction<LongSwipe>(actionRule);
-
-            // assertion (no assertion here)
-            Assert.IsTrue(true);
-        }
-
-        [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
-        [DataRow("{'onElement':'//null','argument':'{{$ --source:200,200}}'}")]
-        public void LongSwipeCoordinatesToNull(string actionRule)
-        {
-            // set new mock driver for mobile device
-            WebDriver = new MockAppiumDriver<IWebElement>();
-
-            // execute
-            ExecuteAction<LongSwipe>(actionRule);
-
-            // assertion (no assertion here)
-            Assert.IsTrue(true);
-        }
-
+        #region *** tests: OnElement     ***
         [DataTestMethod]
         [DataRow("{'argument':'{{$ --source:.//positive --target:200,200}}'}")]
         public void LongSwipeElementTargetToCoordinates(string actionRule)
@@ -325,48 +274,6 @@ namespace Gravity.Plugins.Actions.UnitTests.UiMobile
         [DataTestMethod]
         [DataRow("{'onElement':'.//negative','argument':'{{$ --target:200,200}}'}")]
         public void LongSwipeElementNegativeToCoordinates(string actionRule)
-        {
-            // set new mock driver for mobile device
-            WebDriver = new MockAppiumDriver<IWebElement>();
-
-            // execute
-            ExecuteAction<LongSwipe>(by: MockBy.Positive(), actionRule);
-
-            // assertion (no assertion here)
-            Assert.IsTrue(true);
-        }
-
-        [DataTestMethod, ExpectedException(typeof(NoSuchElementException))]
-        [DataRow("{'onElement':'.//none','argument':'{{$ --target:200,200}}'}")]
-        public void LongSwipeElementNoneToCoordinates(string actionRule)
-        {
-            // set new mock driver for mobile device
-            WebDriver = new MockAppiumDriver<IWebElement>();
-
-            // execute
-            ExecuteAction<LongSwipe>(by: MockBy.Positive(), actionRule);
-
-            // assertion (no assertion here)
-            Assert.IsTrue(true);
-        }
-
-        [DataTestMethod, ExpectedException(typeof(StaleElementReferenceException))]
-        [DataRow("{'onElement':'.//stale','argument':'{{$ --target:200,200}}'}")]
-        public void LongSwipeElementStaleToCoordinates(string actionRule)
-        {
-            // set new mock driver for mobile device
-            WebDriver = new MockAppiumDriver<IWebElement>();
-
-            // execute
-            ExecuteAction<LongSwipe>(by: MockBy.Positive(), actionRule);
-
-            // assertion (no assertion here)
-            Assert.IsTrue(true);
-        }
-
-        [DataTestMethod, ExpectedException(typeof(NullReferenceException))]
-        [DataRow("{'onElement':'.//null','argument':'{{$ --target:200,200}}'}")]
-        public void LongSwipeElementNullToCoordinates(string actionRule)
         {
             // set new mock driver for mobile device
             WebDriver = new MockAppiumDriver<IWebElement>();
@@ -436,7 +343,8 @@ namespace Gravity.Plugins.Actions.UnitTests.UiMobile
 
         [DataTestMethod, ExpectedException(typeof(NoSuchElementException))]
         [DataRow("{'onElement':'.//none','argument':'{{$ --source:200,200}}'}")]
-        public void LongSwipeElementCoordinatesToNone(string actionRule)
+        [DataRow("{'onElement':'.//none','argument':'{{$ --target:200,200}}'}")]
+        public void LongSwipeElementNone(string actionRule)
         {
             // set new mock driver for mobile device
             WebDriver = new MockAppiumDriver<IWebElement>();
@@ -450,7 +358,8 @@ namespace Gravity.Plugins.Actions.UnitTests.UiMobile
 
         [DataTestMethod, ExpectedException(typeof(StaleElementReferenceException))]
         [DataRow("{'onElement':'.//stale','argument':'{{$ --source:200,200}}'}")]
-        public void LongSwipeElementCoordinatesToStale(string actionRule)
+        [DataRow("{'onElement':'.//stale','argument':'{{$ --target:200,200}}'}")]
+        public void LongSwipeElementStale(string actionRule)
         {
             // set new mock driver for mobile device
             WebDriver = new MockAppiumDriver<IWebElement>();
@@ -464,7 +373,8 @@ namespace Gravity.Plugins.Actions.UnitTests.UiMobile
 
         [DataTestMethod, ExpectedException(typeof(NullReferenceException))]
         [DataRow("{'onElement':'.//null','argument':'{{$ --source:200,200}}'}")]
-        public void LongSwipeElementCoordinatesToNull(string actionRule)
+        [DataRow("{'onElement':'.//null','argument':'{{$ --target:200,200}}'}")]
+        public void LongSwipeElementNull(string actionRule)
         {
             // set new mock driver for mobile device
             WebDriver = new MockAppiumDriver<IWebElement>();
@@ -475,6 +385,22 @@ namespace Gravity.Plugins.Actions.UnitTests.UiMobile
             // assertion (no assertion here)
             Assert.IsTrue(true);
         }
+
+        [DataTestMethod, ExpectedException(typeof(WebDriverException))]
+        [DataRow("{'onElement':'.//exception','argument':'{{$ --source:200,200}}'}")]
+        [DataRow("{'onElement':'.//exception','argument':'{{$ --target:200,200}}'}")]
+        public void LongSwipeElementException(string actionRule)
+        {
+            // set new mock driver for mobile device
+            WebDriver = new MockAppiumDriver<IWebElement>();
+
+            // execute
+            ExecuteAction<LongSwipe>(by: MockBy.Positive(), actionRule);
+
+            // assertion (no assertion here)
+            Assert.IsTrue(true);
+        }
+        #endregion
     }
 }
 #pragma warning restore S4144

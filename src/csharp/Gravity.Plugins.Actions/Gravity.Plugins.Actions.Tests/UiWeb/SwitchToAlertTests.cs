@@ -17,20 +17,29 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
     [TestClass]
     public class SwitchToAlertTests : ActionTests
     {
+        #region *** tests: documentation ***
         [TestMethod]
-        public void SwitchToAlertCreate() => AssertPlugin<SwitchToAlert>();
+        public void SwitchToAlertCreate()
+        {
+            AssertPlugin<SwitchToAlert>();
+        }
 
         [TestMethod]
         public void SwitchToAlertDocumentation()
-            => AssertDocumentation<SwitchToAlert>(WebPlugins.SwitchToAlert);
+        {
+            AssertDocumentation<SwitchToAlert>(pluginName: WebPlugins.SwitchToAlert);
+        }
 
         [TestMethod]
         public void SwitchToAlertDocumentationResourceFile()
         {
             AssertDocumentation<SwitchToAlert>(
-                WebPlugins.SwitchToAlert, "switch_to_alert.json");
+                pluginName: WebPlugins.SwitchToAlert,
+                resource: "switch_to_alert.json");
         }
+        #endregion
 
+        #region *** tests: OnDriver      ***
         [DataTestMethod]
         [DataRow("{'argument':'accept'}")]
         public void SwitchToAlertAccept(string actionRule)
@@ -143,6 +152,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
             // assertion (no assertion here)
             Assert.IsTrue(true);
         }
+        #endregion
     }
 }
 #pragma warning restore S4144

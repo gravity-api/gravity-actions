@@ -8,6 +8,7 @@ using Gravity.Plugins.Actions.UiWeb;
 using Gravity.Plugins.Actions.UnitTests.Base;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Mock;
 
 #pragma warning disable S4144
 namespace Gravity.Plugins.Actions.UnitTests.UiWeb
@@ -15,6 +16,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
     [TestClass]
     public class SwitchToFrameTests : ActionTests
     {
+        #region *** tests: documentation ***
         [TestMethod]
         public void SwitchToFrameCreate()
         {
@@ -24,16 +26,20 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         [TestMethod]
         public void SwitchToFrameDocumentation()
         {
-            AssertDocumentation<SwitchToFrame>(WebPlugins.SwitchToFrame);
+            AssertDocumentation<SwitchToFrame>(
+                pluginName: WebPlugins.SwitchToFrame);
         }
 
         [TestMethod]
         public void SwitchToFrameDocumentationResourceFile()
         {
             AssertDocumentation<SwitchToFrame>(
-                WebPlugins.SwitchToFrame, "switch_to_frame.json");
+                pluginName: WebPlugins.SwitchToFrame,
+                resource: "switch_to_frame.json");
         }
+        #endregion
 
+        #region *** tests: OnDriver      ***
         [DataTestMethod]
         [DataRow("{'argument':'1'}")]
         public void SwitchToFrameIndex(string actionRule)
@@ -80,18 +86,10 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
 
         [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
         [DataRow("{'onElement':'//none'}")]
-        public void SwitchToFrameNoElement(string actionRule)
-        {
-            // execute
-            ExecuteAction<SwitchToFrame>(actionRule);
-
-            // assertion (no assertion here)
-            Assert.IsTrue(true);
-        }
-
-        [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
         [DataRow("{'onElement':'//null'}")]
-        public void SwitchToFrameNoNull(string actionRule)
+        [DataRow("{'onElement':'//stale'}")]
+        [DataRow("{'onElement':'//exception'}")]
+        public void SwitchToFrameTimeout(string actionRule)
         {
             // execute
             ExecuteAction<SwitchToFrame>(actionRule);
@@ -99,28 +97,65 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
             // assertion (no assertion here)
             Assert.IsTrue(true);
         }
+        #endregion
 
-        [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
-        [DataRow("{'onElement':'//stale'}")]
-        public void SwitchToFrameStale(string actionRule)
+        #region *** tests: OnElement     ***
+        [DataTestMethod]
+        [DataRow("{'onElement':'.//positive'}")]
+        public void SwitchToFrameElementonElement(string actionRule)
         {
             // execute
-            ExecuteAction<SwitchToFrame>(actionRule);
+            ExecuteAction<SwitchToFrame>(MockBy.Positive(), actionRule);
+
+            // assertion (no assertion here)
+            Assert.IsTrue(true);
+        }
+
+        [DataTestMethod]
+        [DataRow("{'onElement':'.//negative'}")]
+        public void SwitchToFrameElementNegative(string actionRule)
+        {
+            // execute
+            ExecuteAction<SwitchToFrame>(MockBy.Positive(), actionRule);
+
+            // assertion (no assertion here)
+            Assert.IsTrue(true);
+        }
+
+        [DataTestMethod, ExpectedException(typeof(NoSuchElementException))]
+        [DataRow("{'onElement':'.//none'}")]
+        public void SwitchToFrameElementNone(string actionRule)
+        {
+            // execute
+            ExecuteAction<SwitchToFrame>(MockBy.Positive(), actionRule);
+
+            // assertion (no assertion here)
+            Assert.IsTrue(true);
+        }
+
+        [DataTestMethod, ExpectedException(typeof(StaleElementReferenceException))]
+        [DataRow("{'onElement':'.//stale'}")]
+        [DataRow("{'onElement':'.//null'}")]
+        public void SwitchToFrameElementStale(string actionRule)
+        {
+            // execute
+            ExecuteAction<SwitchToFrame>(MockBy.Positive(), actionRule);
 
             // assertion (no assertion here)
             Assert.IsTrue(true);
         }
 
         [DataTestMethod, ExpectedException(typeof(WebDriverException))]
-        [DataRow("{'onElement':'//exception'}")]
-        public void SwitchToFrameException(string actionRule)
+        [DataRow("{'onElement':'.//exception'}")]
+        public void SwitchToFrameElementException(string actionRule)
         {
             // execute
-            ExecuteAction<SwitchToFrame>(actionRule);
+            ExecuteAction<SwitchToFrame>(MockBy.Positive(), actionRule);
 
             // assertion (no assertion here)
             Assert.IsTrue(true);
         }
+        #endregion
     }
 }
 #pragma warning restore S4144

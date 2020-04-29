@@ -14,6 +14,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
     [TestClass]
     public class RefreshTests : ActionTests
     {
+        #region *** tests: life cycle    ***
         [TestInitialize]
         public void Setup()
         {
@@ -25,7 +26,9 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         {
             Automation.EngineConfiguration.PageLoadTimeout = 100;
         }
+        #endregion
 
+        #region *** tests: documentation ***
         [TestMethod]
         public void RefreshCreate()
         {
@@ -33,23 +36,21 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         }
 
         [TestMethod]
-        public void RefreshDocumentationNoTypes()
+        public void RefreshDocumentation()
         {
-            AssertDocumentation<Refresh>(WebPlugins.Refresh);
-        }
-
-        [TestMethod]
-        public void RefreshDocumentationTypes()
-        {
-            AssertDocumentation<Refresh>(WebPlugins.Refresh);
+            AssertDocumentation<Refresh>(pluginName: WebPlugins.Refresh);
         }
 
         [TestMethod]
         public void RefreshDocumentationResourceFile()
         {
-            AssertDocumentation<Refresh>(WebPlugins.Refresh, "refresh.json");
+            AssertDocumentation<Refresh>(
+                pluginName: WebPlugins.Refresh,
+                resource: "refresh.json");
         }
+        #endregion
 
+        #region *** tests: OnDriver      ***
         [TestMethod]
         public void RefreshPositive()
         {
@@ -92,6 +93,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
             // assertion (no assertion here)
             Assert.IsTrue(true);
         }
+        #endregion
     }
 }
 #pragma warning restore S4144

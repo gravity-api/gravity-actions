@@ -3,13 +3,13 @@
  * 
  * online resources
  */
-using OpenQA.Selenium.Mock;
+using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Actions.UiMobile;
 using Gravity.Plugins.Actions.UnitTests.Base;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Mock;
-using Gravity.Plugins.Actions.Contracts;
+using OpenQA.Selenium.Mock;
 
 #pragma warning disable S4144
 namespace Gravity.Plugins.Actions.UnitTests.UiMobile
@@ -17,6 +17,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiMobile
     [TestClass]
     public class HideKeyboardTests : ActionTests
     {
+        #region *** tests: documentation ***
         [TestMethod]
         public void HideKeyboardCreate()
         {
@@ -26,16 +27,20 @@ namespace Gravity.Plugins.Actions.UnitTests.UiMobile
         [TestMethod]
         public void HideKeyboardDocumentation()
         {
-            AssertDocumentation<HideKeyboard>(MobilePlugins.HideKeyboard);
+            AssertDocumentation<HideKeyboard>(
+                pluginName: MobilePlugins.HideKeyboard);
         }
 
         [TestMethod]
         public void HideKeyboardDocumentationResourceFile()
         {
             AssertDocumentation<HideKeyboard>(
-                MobilePlugins.HideKeyboard, "hide_keyboard.json");
+                pluginName: MobilePlugins.HideKeyboard,
+                resource: "hide_keyboard.json");
         }
+        #endregion
 
+        #region *** tests: OnDriver      ***
         [TestMethod]
         public void HideKeyboardPositive()
         {
@@ -72,6 +77,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiMobile
             // assertion (no assertion here)
             Assert.IsTrue(true);
         }
+        #endregion
     }
 }
 #pragma warning restore S4144

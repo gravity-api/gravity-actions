@@ -17,17 +17,30 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
     [TestClass]
     public class SelectFromComboBoxTests : ActionTests
     {
+        #region *** tests: documentation ***
         [TestMethod]
-        public void SelectFromComboBoxCreate() => AssertPlugin<SelectFromComboBox>();
+        public void SelectFromComboBoxCreate()
+        {
+            AssertPlugin<SelectFromComboBox>();
+        }
 
         [TestMethod]
         public void SelectFromComboBoxDocumentation()
-            => AssertDocumentation<SelectFromComboBox>(WebPlugins.SelectFromComboBox);
+        {
+            AssertDocumentation<SelectFromComboBox>(
+                pluginName: WebPlugins.SelectFromComboBox);
+        }
 
         [TestMethod]
         public void SelectFromComboBoxDocumentationResourceFile()
-            => AssertDocumentation<SelectFromComboBox>(WebPlugins.SelectFromComboBox, "select_from_combo_box.json");
+        {
+            AssertDocumentation<SelectFromComboBox>(
+                pluginName: WebPlugins.SelectFromComboBox,
+                resource: "select_from_combo_box.json");
+        }
+        #endregion
 
+        #region *** tests: OnDriver      ***
         [DataTestMethod]
         [DataRow("{'onElement':'//select-element','argument':'Mock: Positive Element'}")]
         public void SelectFromComboBoxPositive(string actionRule)
@@ -74,29 +87,10 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
 
         [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
         [DataRow("{'onElement':'//none','argument':'Mock: Positive Element'}")]
-        public void SelectFromComboBoxNone(string actionRule)
-        {
-            // execute
-            ExecuteAction<SelectFromComboBox>(actionRule);
-
-            // assertion (no assertion here)
-            Assert.IsTrue(true);
-        }
-
-        [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
         [DataRow("{'onElement':'//stale','argument':'Mock: Positive Element'}")]
-        public void SelectFromComboBoxStale(string actionRule)
-        {
-            // execute
-            ExecuteAction<SelectFromComboBox>(actionRule);
-
-            // assertion (no assertion here)
-            Assert.IsTrue(true);
-        }
-
-        [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
         [DataRow("{'onElement':'//null','argument':'Mock: Positive Element'}")]
-        public void SelectFromComboBoxNull(string actionRule)
+        [DataRow("{'onElement':'//exception','argument':'Mock: Positive Element'}")]
+        public void SelectFromComboBoxTimeout(string actionRule)
         {
             // execute
             ExecuteAction<SelectFromComboBox>(actionRule);
@@ -104,7 +98,9 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
             // assertion (no assertion here)
             Assert.IsTrue(true);
         }
+        #endregion
 
+        #region *** tests: OnElement     ***
         [DataTestMethod]
         [DataRow("{'onElement':'.//select-element','argument':'Mock: Positive Element'}")]
         public void SelectFromComboBoxElementPositive(string actionRule)
@@ -181,6 +177,18 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
             // assertion (no assertion here)
             Assert.IsTrue(true);
         }
+
+        [DataTestMethod, ExpectedException(typeof(WebDriverException))]
+        [DataRow("{'onElement':'.//exception','argument':'Mock: Positive Element'}")]
+        public void SelectFromComboBoxElementException(string actionRule)
+        {
+            // execute
+            ExecuteAction<SelectFromComboBox>(MockBy.Positive(), actionRule);
+
+            // assertion (no assertion here)
+            Assert.IsTrue(true);
+        }
+        #endregion
     }
 }
 #pragma warning restore S4144

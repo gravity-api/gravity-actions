@@ -11,6 +11,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Mock;
 using OpenQA.Selenium.Mock;
 using OpenQA.Selenium.Mock.Extensions;
+using System;
 using System.Collections.Generic;
 
 #pragma warning disable S4144
@@ -19,12 +20,15 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
     [TestClass]
     public class GoToUrlTests : ActionTests
     {
+        #region *** tests: life cycle    ***
         [TestCleanup]
         public void Cleanup()
         {
             WebDriver = new MockWebDriver();
         }
+        #endregion
 
+        #region *** tests: documentation ***
         [TestMethod]
         public void GoToUrlCreate()
         {
@@ -34,15 +38,19 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         [TestMethod]
         public void GoToUrlDocumentation()
         {
-            AssertDocumentation<GoToUrl>(WebPlugins.GoToUrl);
+            AssertDocumentation<GoToUrl>(pluginName: WebPlugins.GoToUrl);
         }
 
         [TestMethod]
         public void GoToUrlDocumentationResourceFile()
         {
-            AssertDocumentation<GoToUrl>(WebPlugins.GoToUrl, "go_to_url.json");
+            AssertDocumentation<GoToUrl>(
+                pluginName: WebPlugins.GoToUrl,
+                resource: "go_to_url.json");
         }
+        #endregion
 
+        #region *** tests: OnDriver      ***
         [TestMethod]
         [DataRow("{'argument':'http://noaddress.io'}")]
         public void GoToUrlPositive(string actionRule)
@@ -103,6 +111,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
 
         [TestMethod]
         [DataRow("{'onElement':'//positive', 'onAttribute':'href'}")]
+        [DataRow("{'onElement':'//negative', 'onAttribute':'href'}")]
         public void GoToUrlAttribute(string actionRule)
         {
             // execute
@@ -126,6 +135,22 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
             Assert.AreEqual(expected: "http://noaddress.io", actual: WebDriver.Url);
         }
 
+        [TestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
+        [DataRow("{'onElement':'//none'}")]
+        [DataRow("{'onElement':'//null'}")]
+        [DataRow("{'onElement':'//stale'}")]
+        [DataRow("{'onElement':'//exception'}")]
+        public void GoToUrlTimeout(string actionRule)
+        {
+            // execute
+            ExecuteAction<GoToUrl>(actionRule);
+
+            // assertion (no assertion here)
+            Assert.IsTrue(true);
+        }
+        #endregion
+
+        #region *** tests: OnElement     ***
         [TestMethod]
         [DataRow("{'argument':'http://noaddress.io'}")]
         public void GoToUrlElementPositive(string actionRule)
@@ -214,11 +239,56 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
             WebDriver = new MockAppiumDriver<IWebElement>();
 
             // execute
-            ExecuteAction<GoToUrl>(MockBy.Positive(),actionRule);
+            ExecuteAction<GoToUrl>(MockBy.Positive(), actionRule);
 
             // assertion
             Assert.AreEqual(expected: "http://noaddress.io", actual: WebDriver.Url);
         }
+
+        [TestMethod, ExpectedException(typeof(NoSuchElementException))]
+        [DataRow("{'onElement':'.//none'}")]
+        public void GoToUrlElementNone(string actionRule)
+        {
+            // execute
+            ExecuteAction<GoToUrl>(MockBy.Positive(), actionRule);
+
+            // assertion (no assertion here)
+            Assert.IsTrue(true);
+        }
+
+        [TestMethod]
+        [DataRow("{'onElement':'.//null'}")]
+        public void GoToUrlElementNull(string actionRule)
+        {
+            // execute
+            ExecuteAction<GoToUrl>(MockBy.Positive(), actionRule);
+
+            // assertion
+            Assert.AreEqual(expected: string.Empty, actual: WebDriver.Url);
+        }
+
+        [TestMethod, ExpectedException(typeof(StaleElementReferenceException))]
+        [DataRow("{'onElement':'.//stale'}")]
+        public void GoToUrlElementStale(string actionRule)
+        {
+            // execute
+            ExecuteAction<GoToUrl>(MockBy.Positive(), actionRule);
+
+            // assertion (no assertion here)
+            Assert.IsTrue(true);
+        }
+
+        [TestMethod, ExpectedException(typeof(WebDriverException))]
+        [DataRow("{'onElement':'.//exception'}")]
+        public void GoToUrlElementException(string actionRule)
+        {
+            // execute
+            ExecuteAction<GoToUrl>(MockBy.Positive(), actionRule);
+
+            // assertion (no assertion here)
+            Assert.IsTrue(true);
+        }
+        #endregion
     }
 }
 #pragma warning restore S4144

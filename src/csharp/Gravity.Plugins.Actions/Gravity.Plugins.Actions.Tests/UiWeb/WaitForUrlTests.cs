@@ -16,6 +16,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
     [TestClass]
     public class WaitForUrlTests : ActionTests
     {
+        #region *** tests: documentation ***
         [TestMethod]
         public void WaitForUrlCreate()
         {
@@ -25,15 +26,20 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         [TestMethod]
         public void WaitForUrlDocumentation()
         {
-            AssertDocumentation<WaitForUrl>(WebPlugins.WaitForUrl);
+            AssertDocumentation<WaitForUrl>(
+                pluginName: WebPlugins.WaitForUrl);
         }
 
         [TestMethod]
         public void WaitForUrlDocumentationResourceFile()
         {
-            AssertDocumentation<WaitForUrl>(WebPlugins.WaitForUrl, "wait_for_url.json");
+            AssertDocumentation<WaitForUrl>(
+                pluginName: WebPlugins.WaitForUrl,
+                resource: "wait_for_url.json");
         }
+        #endregion
 
+        #region *** tests: OnDriver      ***
         [DataTestMethod]
         [DataRow("{'regularExpression':'positive.io'}")]
         public void WaitForUrlPositive(string actionRule)
@@ -83,7 +89,9 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
             // assertion
             Assert.IsTrue(Stopwatch.Elapsed.TotalMilliseconds > 1000);
         }
+        #endregion
 
+        #region *** tests: OnElement     ***
         [DataTestMethod]
         [DataRow("{'regularExpression':'positive.io'}")]
         public void WaitForUrlElementPositive(string actionRule)
@@ -177,6 +185,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
             // assertion
             Assert.IsTrue(Stopwatch.Elapsed.TotalMilliseconds > 1000);
         }
+        #endregion
     }
 }
 #pragma warning restore S4144

@@ -100,7 +100,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
             // execute
             ExecuteAction<SwitchToWindow>(actionRule);
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion (no assertion here)
             Assert.IsTrue(true);
         }
 

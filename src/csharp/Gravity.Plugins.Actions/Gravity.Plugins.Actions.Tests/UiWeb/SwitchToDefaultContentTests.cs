@@ -41,7 +41,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
             // execute
             ExecuteAction<SwitchToDefaultContent>();
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion (no assertion here)
             Assert.IsTrue(true);
         }
 
@@ -51,7 +51,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
             // execute
             ExecuteAction<SwitchToDefaultContent>(MockBy.Positive());
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion (no assertion here)
             Assert.IsTrue(true);
         }
 
@@ -64,7 +64,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
             // execute
             ExecuteAction<SwitchToDefaultContent>(MockBy.Positive());
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion (no assertion here)
             Assert.IsTrue(true);
         }
     }

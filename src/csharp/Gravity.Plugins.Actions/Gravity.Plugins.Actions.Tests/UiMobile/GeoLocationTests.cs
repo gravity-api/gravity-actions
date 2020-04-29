@@ -148,7 +148,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiMobile
             // execute
             ExecuteAction<SetGeoLocation>();
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion (no assertion here)
             Assert.IsTrue(true);
         }
     }

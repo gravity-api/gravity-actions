@@ -36,6 +36,18 @@ namespace Gravity.Plugins.Actions.UiCommon
         Name = CommonPlugins.RegisterParameter)]
     public class RegisterParameter : WebDriverActionPlugin
     {
+        #region *** arguments    ***
+        /// <summary>
+        /// Parameter key under which to save value. If exists, it will be overwritten.
+        /// </summary>
+        public const string Key = "key";
+
+        /// <summary>
+        /// Parameter value to save. Can be a literal string or <see cref="WebDriverMacroPlugin"/>.
+        /// </summary>
+        public const string Value = "value";
+        #endregion
+
         #region *** constructors ***
         /// <summary>
         /// Creates a new instance of this plugin.
@@ -81,7 +93,7 @@ namespace Gravity.Plugins.Actions.UiCommon
             }
 
             // by name
-            var key = arguments.ContainsKey("key") ? arguments["key"] : action.Argument;
+            var key = arguments.ContainsKey(Key) ? arguments[Key] : action.Argument;
             var result = string.Empty;
             try
             {
@@ -144,13 +156,13 @@ namespace Gravity.Plugins.Actions.UiCommon
         private static bool TryGetFromCli(IDictionary<string, string> arguments)
         {
             // setup conditions
-            var isKey = arguments.ContainsKey("key");
-            var isValue = arguments.ContainsKey("value");
+            var isKey = arguments.ContainsKey(Key);
+            var isValue = arguments.ContainsKey(Value);
 
             // by CLI
             if (isKey && isValue)
             {
-                EnvironmentContext.ApplicationParams[arguments["key"]] = arguments["value"];
+                EnvironmentContext.ApplicationParams[arguments[Key]] = arguments[Value];
                 return true;
             }
             if (!isKey && isValue)

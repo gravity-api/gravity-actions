@@ -58,7 +58,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             // execute 
             ExecuteAction<Wait>(actionRule);
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion (no assertion here)
             Assert.IsTrue(Stopwatch.Elapsed.TotalMilliseconds > 1000);
         }
 
@@ -69,7 +69,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             // execute 
             ExecuteAction<Wait>(actionRule);
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion (no assertion here)
             Assert.IsTrue(Stopwatch.Elapsed.TotalMilliseconds < 1000);
         }
     }

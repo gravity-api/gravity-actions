@@ -87,7 +87,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             // execute
             var screenshot = GetScreenshot(actionRule, by: default);
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion (no assertion here)
             Assert.IsTrue(File.Exists($"{OutputDir}/{expected}"));
             Assert.IsTrue(screenshot.Contains(expected));
         }
@@ -101,7 +101,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             // execute
             GetScreenshot(actionRule, by: default);
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion (no assertion here)
             Assert.IsTrue(true);
         }
 
@@ -141,7 +141,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             // execute
             GetScreenshot(actionRule, by: MockBy.Positive());
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion (no assertion here)
             Assert.IsTrue(true);
         }
 
@@ -152,7 +152,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             // execute
             var screenshot = GetScreenshot(actionRule, by: MockBy.Positive());
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion (no assertion here)
             Assert.IsTrue(File.Exists($"{OutputDir}/image-b.png"));
             Assert.IsTrue(screenshot.Contains("image-b.png"));
         }
@@ -164,7 +164,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             // execute
             GetScreenshot(actionRule, by: MockBy.Positive());
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion (no assertion here)
             Assert.IsTrue(true);
         }
 
@@ -175,7 +175,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             // execute
             GetScreenshot(actionRule, by: MockBy.Positive());
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion (no assertion here)
             Assert.IsTrue(true);
         }
         #endregion

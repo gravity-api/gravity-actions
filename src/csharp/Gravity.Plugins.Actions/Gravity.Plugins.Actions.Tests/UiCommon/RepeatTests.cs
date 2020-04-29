@@ -3,16 +3,17 @@
  * 
  * online resources
  */
-using OpenQA.Selenium.Mock;
+using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Actions.UiCommon;
 using Gravity.Plugins.Actions.UnitTests.Base;
+using Gravity.Plugins.Base;
+using Gravity.Plugins.Contracts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using Gravity.Plugins.Actions.Contracts;
-using Gravity.Plugins.Base;
 using OpenQA.Selenium.Extensions;
+using OpenQA.Selenium.Mock;
+
 using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
-using Gravity.Plugins.Contracts;
 
 #pragma warning disable S4144
 namespace Gravity.Plugins.Actions.UnitTests.UiCommon
@@ -20,6 +21,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
     [TestClass]
     public class RepeatTests : ActionTests
     {
+        #region *** constants            ***
         private const int Attempts = 10;
 
         private const string RepeatRule = "" +
@@ -44,7 +46,9 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             "       }" +
             "   ]" +
             "}";
+        #endregion
 
+        #region *** tests: documentation ***
         [TestMethod]
         public void RepeatCreate()
         {
@@ -54,15 +58,19 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         [TestMethod]
         public void RepeatDocumentation()
         {
-            AssertDocumentation<Repeat>(CommonPlugins.Repeat);
+            AssertDocumentation<Repeat>(pluginName: CommonPlugins.Repeat);
         }
 
         [TestMethod]
         public void RepeatDocumentationResourceFile()
         {
-            AssertDocumentation<Repeat>(CommonPlugins.Repeat, "repeat.json");
+            AssertDocumentation<Repeat>(
+                pluginName: CommonPlugins.Repeat,
+                resource: "repeat.json");
         }
+        #endregion
 
+        #region *** tests: OnDriver      ***
         [DataTestMethod]
         [DataRow(RepeatRule)]
         public void RepeatPositive(string actionRule) => Execute(Attempts, () =>
@@ -200,7 +208,9 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             // assertion
             AssertCondition(plugin);
         });
+        #endregion
 
+        #region *** utilities            ***
         // assert conditional repeat. since this is a 90% success rate, inconclusive assert
         // will be thrown if no actions were executed.
         private void AssertCondition(Plugin plugin)
@@ -243,6 +253,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             // fetch
             return (int)EnvironmentContext.ApplicationParams[K];
         }
+        #endregion
     }
 }
 #pragma warning restore S4144

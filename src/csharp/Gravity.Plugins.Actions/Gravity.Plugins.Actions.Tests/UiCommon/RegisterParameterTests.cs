@@ -3,15 +3,16 @@
  * 
  * online resources
  */
-using OpenQA.Selenium.Mock;
+using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Actions.UiCommon;
 using Gravity.Plugins.Actions.UnitTests.Base;
+using Gravity.Plugins.Contracts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Mock;
 using System;
 using System.Text.RegularExpressions;
-using Gravity.Plugins.Actions.Contracts;
-using Gravity.Plugins.Contracts;
+
 using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
 
 #pragma warning disable S4144
@@ -21,6 +22,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
     [DoNotParallelize]
     public class RegisterParameterTests : ActionTests
     {
+        #region *** tests: documentation ***
         [TestMethod]
         public void RegisterParameterCreate()
         {
@@ -30,16 +32,20 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         [TestMethod]
         public void RegisterParameterDocumentation()
         {
-            AssertDocumentation<RegisterParameter>(CommonPlugins.RegisterParameter);
+            AssertDocumentation<RegisterParameter>(
+                pluginName: CommonPlugins.RegisterParameter);
         }
 
         [TestMethod]
         public void RegisterParameterDocumentationResourceFile()
         {
             AssertDocumentation<RegisterParameter>(
-                CommonPlugins.RegisterParameter, "register_parameter.json");
+                pluginName: CommonPlugins.RegisterParameter,
+                resource: "register_parameter.json");
         }
+        #endregion
 
+        #region *** tests: OnDriver      ***
         [DataTestMethod]
         [DataRow("{'argument':'{{$ --key:test_key --value:John}}'}")]
         public void RegisterParameterLiteral(string actionRule)
@@ -111,7 +117,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
 
         [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
         [DataRow("{'argument':'test_key','onElement':'2000-12-01'}")]
-        public void RegisterParameterNonElementText(string actionRule)
+        public void RegisterParameterNonElement(string actionRule)
         {
             // execute
             try
@@ -128,22 +134,20 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
 
         [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
         [DataRow("{'argument':'test_key','onElement':'//null'}")]
-        public void RegisterParameterNullElement(string actionRule)
+        [DataRow("{'argument':'test_key','onElement':'//stale'}")]
+        [DataRow("{'argument':'test_key','onElement':'//none'}")]
+        [DataRow("{'argument':'test_key','onElement':'//exception'}")]
+        public void RegisterParameterTimeout(string actionRule)
         {
-            try
-            {
-                // execute
-                ExecuteAction<RegisterParameter>(actionRule);
-            }
-            catch (Exception)
-            {
-                // assertion
-                var actual = $"{EnvironmentContext.ApplicationParams["test_key"]}";
-                Assert.AreEqual("//null", actual);
-                throw;
-            }
-        }
+            // execute
+            ExecuteAction<RegisterParameter>(actionRule);
 
+            // assertion (no assertion here)
+            Assert.IsTrue(true);
+        }
+        #endregion
+
+        #region *** tests: OnDriver      ***
         [DataTestMethod]
         [DataRow("{'argument':'test_key','onElement':'.//positive'}")]
         public void RegisterParameterElementText(string actionRule)
@@ -197,23 +201,51 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             }
         }
 
-        [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
-        [DataRow("{'argument':'test_key','onElement':'//null'}")]
-        public void RegisterParameterElementNullElement(string actionRule)
+        [DataTestMethod]
+        [DataRow("{'argument':'test_key','onElement':'.//null'}")]
+        public void RegisterParameterElementNull(string actionRule)
         {
-            try
-            {
-                // execute
-                ExecuteAction<RegisterParameter>(MockBy.Null(), actionRule);
-            }
-            catch (Exception)
-            {
-                // assertion
-                var actual = $"{EnvironmentContext.ApplicationParams["test_key"]}";
-                Assert.AreEqual("//null", actual);
-                throw;
-            }
+            // execute
+            ExecuteAction<RegisterParameter>(MockBy.Positive(), actionRule);
+
+            // assertion (no assertion here)
+            var actual = $"{EnvironmentContext.ApplicationParams["test_key"]}";
+            Assert.IsTrue(string.IsNullOrEmpty(actual));
         }
+
+        [DataTestMethod, ExpectedException(typeof(StaleElementReferenceException))]
+        [DataRow("{'argument':'test_key','onElement':'.//stale'}")]
+        public void RegisterParameterElementStale(string actionRule)
+        {
+            // execute
+            ExecuteAction<RegisterParameter>(MockBy.Positive(), actionRule);
+
+            // assertion (no assertion here)
+            Assert.IsTrue(true);
+        }
+
+        [DataTestMethod, ExpectedException(typeof(NoSuchElementException))]
+        [DataRow("{'argument':'test_key','onElement':'.//none'}")]
+        public void RegisterParameterElementNone(string actionRule)
+        {
+            // execute
+            ExecuteAction<RegisterParameter>(MockBy.Positive(), actionRule);
+
+            // assertion (no assertion here)
+            Assert.IsTrue(true);
+        }
+
+        [DataTestMethod, ExpectedException(typeof(WebDriverException))]
+        [DataRow("{'argument':'test_key','onElement':'.//exception'}")]
+        public void RegisterParameterElementException(string actionRule)
+        {
+            // execute
+            ExecuteAction<RegisterParameter>(MockBy.Positive(), actionRule);
+
+            // assertion (no assertion here)
+            Assert.IsTrue(true);
+        }
+        #endregion
     }
 }
 #pragma warning restore S4144

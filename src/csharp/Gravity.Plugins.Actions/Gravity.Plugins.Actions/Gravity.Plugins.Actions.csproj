@@ -63,7 +63,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Gravity.Core" Version="2020.4.26.3" />
+    <PackageReference Include="Gravity.Core" Version="2020.4.29.4" />
     <PackageReference Include="HtmlAgilityPack" Version="1.11.23" />
   </ItemGroup>
 

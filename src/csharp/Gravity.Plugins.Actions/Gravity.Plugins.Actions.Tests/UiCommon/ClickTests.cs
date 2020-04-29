@@ -50,7 +50,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             // execute
             ExecuteAction<Click>(actionRule);
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion (no assertion here)
             Assert.IsTrue(true);
         }
 
@@ -63,7 +63,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             // execute
             ExecuteAction<Click>(actionRule);
 
-            // assertion (no assertion here, expected WebDriverTimeoutException exception)
+            // assertion (no assertion here)
             Assert.IsTrue(true);
         }
 
@@ -74,7 +74,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             // execute
             ExecuteAction<Click>(actionRule);
 
-            // assertion (no assertion here, expected WebDriverTimeoutException exception)
+            // assertion (no assertion here)
             Assert.IsTrue(true);
         }
 
@@ -84,7 +84,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             // execute
             ExecuteAction<Click>();
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion (no assertion here)
             Assert.IsTrue(true);
         }
 
@@ -98,7 +98,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
                 [MockCapabilities.HasAlert] = true
             });
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion (no assertion here)
             Assert.IsTrue(true);
         }
         #endregion
@@ -111,7 +111,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             // execute
             ExecuteAction<Click>(MockBy.Positive(), actionRule);
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion (no assertion here)
             Assert.IsTrue(true);
         }
 
@@ -122,7 +122,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             // execute
             ExecuteAction<Click>(MockBy.Positive(), actionRule);
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion (no assertion here)
             Assert.IsTrue(true);
         }
 
@@ -135,7 +135,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             // execute
             ExecuteAction<Click>(MockBy.Positive(), actionRule);
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion (no assertion here)
             Assert.IsTrue(true);
         }
 
@@ -146,7 +146,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             // execute
             ExecuteAction<Click>(MockBy.Positive(), actionRule);
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion (no assertion here)
             Assert.IsTrue(true);
         }
 
@@ -157,7 +157,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             // execute
             ExecuteAction<Click>(MockBy.Positive(), actionRule);
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion (no assertion here)
             Assert.IsTrue(true);
         }
 
@@ -168,7 +168,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             // execute
             ExecuteAction<Click>(MockBy.Positive(), actionRule);
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion (no assertion here)
             Assert.IsTrue(true);
         }
 
@@ -181,7 +181,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             // execute
             ExecuteAction<Click>(MockBy.Null(), actionRule);
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion (no assertion here)
             Assert.IsTrue(true);
         }
 
@@ -191,7 +191,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             // execute
             ExecuteAction<Click>(MockBy.Positive());
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion (no assertion here)
             Assert.IsTrue(true);
         }
 
@@ -201,7 +201,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             // execute
             ExecuteAction<Click>(MockBy.Null());
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion (no assertion here)
             Assert.IsTrue(true);
         }
         #endregion

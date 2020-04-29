@@ -41,7 +41,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
             // execute
             ExecuteAction<WaitForUrl>(actionRule);
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion (no assertion here)
             Assert.IsTrue(true);
         }
 
@@ -52,7 +52,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
             // execute
             ExecuteAction<WaitForUrl>(actionRule);
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion (no assertion here)
             Assert.IsTrue(true);
         }
 
@@ -91,7 +91,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
             // execute
             ExecuteAction<WaitForUrl>(MockBy.Positive(), actionRule);
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion (no assertion here)
             Assert.IsTrue(true);
         }
 
@@ -102,7 +102,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
             // execute
             ExecuteAction<WaitForUrl>(MockBy.None(), actionRule);
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion (no assertion here)
             Assert.IsTrue(true);
         }
 
@@ -113,7 +113,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
             // execute
             ExecuteAction<WaitForUrl>(MockBy.Null(), actionRule);
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion (no assertion here)
             Assert.IsTrue(true);
         }
 
@@ -124,7 +124,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
             // execute
             ExecuteAction<WaitForUrl>(MockBy.Stale(), actionRule);
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion (no assertion here)
             Assert.IsTrue(true);
         }
 
@@ -135,7 +135,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
             // execute
             ExecuteAction<WaitForUrl>(MockBy.Exception(), actionRule);
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion (no assertion here)
             Assert.IsTrue(true);
         }
 
@@ -146,7 +146,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
             // execute
             ExecuteAction<WaitForUrl>(MockBy.Positive(), actionRule);
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion (no assertion here)
             Assert.IsTrue(true);
         }
 

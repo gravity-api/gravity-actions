@@ -39,7 +39,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
             // execute
             ExecuteAction<UploadFile>(actionRule);
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion (no assertion here)
             Assert.IsTrue(true);
         }
 
@@ -50,7 +50,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
             // execute
             ExecuteAction<UploadFile>(MockBy.Positive(), actionRule);
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion (no assertion here)
             Assert.IsTrue(true);
         }
     }

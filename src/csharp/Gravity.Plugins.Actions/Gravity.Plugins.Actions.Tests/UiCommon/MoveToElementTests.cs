@@ -10,6 +10,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Mock;
 using System;
+
 using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
 
 #pragma warning disable S4144
@@ -18,6 +19,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
     [TestClass]
     public class MoveToElementTests : ActionTests
     {
+        #region *** tests: documentation ***
         [TestMethod]
         public void MoveToElementCreate()
         {
@@ -27,16 +29,20 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         [TestMethod]
         public void MoveToElementDocumentation()
         {
-            AssertDocumentation<MoveToElement>(CommonPlugins.MoveToElement);
+            AssertDocumentation<MoveToElement>(
+                pluginName: CommonPlugins.MoveToElement);
         }
 
         [TestMethod]
         public void MoveToElementDocumentationResourceFile()
         {
             AssertDocumentation<MoveToElement>(
-                CommonPlugins.MoveToElement, "move_to_element.json");
+                pluginName: CommonPlugins.MoveToElement,
+                resource: "move_to_element.json");
         }
+        #endregion
 
+        #region *** tests: OnDriver      ***
         [DataTestMethod]
         [DataRow("{'onElement':'//positive'}")]
         [DataRow("{'onElement':'//negative'}")]
@@ -45,7 +51,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             // execute
             ExecuteAction<MoveToElement>(actionRule);
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion (no assertion here)
             Assert.IsTrue(true);
         }
 
@@ -53,26 +59,28 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         [DataRow("{'onElement':'//none'}")]
         [DataRow("{'onElement':'//null'}")]
         [DataRow("{'onElement':'//stale'}")]
+        [DataRow("{'onElement':'//exception'}")]
         public void MoveToElementTimeout(string actionRule)
         {
             // execute
             ExecuteAction<MoveToElement>(actionRule);
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion (no assertion here)
             Assert.IsTrue(true);
         }
 
-        [DataTestMethod, ExpectedException(typeof(WebDriverException))]
-        [DataRow("{'onElement':'//exception'}")]
-        public void MoveToElementException(string actionRule)
+        [TestMethod, ExpectedException(typeof(ArgumentException))]
+        public void MoveToElementNoElement()
         {
             // execute
-            ExecuteAction<MoveToElement>(actionRule);
+            ExecuteAction<MoveToElement>();
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion (no assertion here)
             Assert.IsTrue(true);
         }
+        #endregion
 
+        #region *** tests: OnElement     ***
         [DataTestMethod]
         [DataRow("{'onElement':'.//positive'}")]
         [DataRow("{'onElement':'.//negative'}")]
@@ -81,7 +89,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             // execute
             ExecuteAction<MoveToElement>(MockBy.Positive(), actionRule);
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion (no assertion here)
             Assert.IsTrue(true);
         }
 
@@ -92,7 +100,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             // execute
             ExecuteAction<MoveToElement>(MockBy.Positive(), actionRule);
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion (no assertion here)
             Assert.IsTrue(true);
         }
 
@@ -103,7 +111,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             // execute
             ExecuteAction<MoveToElement>(MockBy.Positive(), actionRule);
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion (no assertion here)
             Assert.IsTrue(true);
         }
 
@@ -114,7 +122,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             // execute
             ExecuteAction<MoveToElement>(MockBy.Positive(), actionRule);
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion (no assertion here)
             Assert.IsTrue(true);
         }
 
@@ -125,19 +133,10 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             // execute
             ExecuteAction<MoveToElement>(MockBy.Positive(), actionRule);
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion (no assertion here)
             Assert.IsTrue(true);
         }
-
-        [TestMethod, ExpectedException(typeof(ArgumentException))]
-        public void MoveToElementNoElement()
-        {
-            // execute
-            ExecuteAction<MoveToElement>();
-
-            // assertion (no assertion here, expected is no exception)
-            Assert.IsTrue(true);
-        }
+        #endregion
     }
 }
 #pragma warning restore S4144

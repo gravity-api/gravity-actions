@@ -39,7 +39,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiMobile
             // execute
             ExecuteAction<LongSwipe>(actionRule);
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion (no assertion here)
             Assert.IsTrue(true);
         }
 
@@ -53,7 +53,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiMobile
             // execute
             ExecuteAction<LongSwipe>(actionRule);
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion (no assertion here)
             Assert.IsTrue(true);
         }
 
@@ -67,7 +67,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiMobile
             // execute
             ExecuteAction<LongSwipe>(actionRule);
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion (no assertion here)
             Assert.IsTrue(true);
         }
 
@@ -80,7 +80,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiMobile
             // execute
             ExecuteAction<LongSwipe>();
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion (no assertion here)
             Assert.IsTrue(true);
         }
 
@@ -94,7 +94,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiMobile
             // execute
             ExecuteAction<LongSwipe>(actionRule);
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion (no assertion here)
             Assert.IsTrue(true);
         }
 
@@ -108,7 +108,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiMobile
             // execute
             ExecuteAction<LongSwipe>(actionRule);
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion (no assertion here)
             Assert.IsTrue(true);
         }
 
@@ -122,7 +122,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiMobile
             // execute
             ExecuteAction<LongSwipe>(actionRule);
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion (no assertion here)
             Assert.IsTrue(true);
         }
 
@@ -136,7 +136,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiMobile
             // execute
             ExecuteAction<LongSwipe>(actionRule);
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion (no assertion here)
             Assert.IsTrue(true);
         }
 
@@ -150,7 +150,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiMobile
             // execute
             ExecuteAction<LongSwipe>(actionRule);
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion (no assertion here)
             Assert.IsTrue(true);
         }
 
@@ -164,7 +164,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiMobile
             // execute
             ExecuteAction<LongSwipe>(actionRule);
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion (no assertion here)
             Assert.IsTrue(true);
         }
 
@@ -178,7 +178,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiMobile
             // execute
             ExecuteAction<LongSwipe>(actionRule);
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion (no assertion here)
             Assert.IsTrue(true);
         }
 
@@ -192,7 +192,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiMobile
             // execute
             ExecuteAction<LongSwipe>(actionRule);
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion (no assertion here)
             Assert.IsTrue(true);
         }
 
@@ -206,7 +206,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiMobile
             // execute
             ExecuteAction<LongSwipe>(actionRule);
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion (no assertion here)
             Assert.IsTrue(true);
         }
 
@@ -220,7 +220,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiMobile
             // execute
             ExecuteAction<LongSwipe>(actionRule);
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion (no assertion here)
             Assert.IsTrue(true);
         }
 
@@ -234,7 +234,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiMobile
             // execute
             ExecuteAction<LongSwipe>(actionRule);
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion (no assertion here)
             Assert.IsTrue(true);
         }
 
@@ -248,7 +248,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiMobile
             // execute
             ExecuteAction<LongSwipe>(actionRule);
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion (no assertion here)
             Assert.IsTrue(true);
         }
 
@@ -262,7 +262,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiMobile
             // execute
             ExecuteAction<LongSwipe>(actionRule);
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion (no assertion here)
             Assert.IsTrue(true);
         }
 
@@ -276,7 +276,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiMobile
             // execute
             ExecuteAction<LongSwipe>(actionRule);
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion (no assertion here)
             Assert.IsTrue(true);
         }
 
@@ -290,7 +290,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiMobile
             // execute
             ExecuteAction<LongSwipe>(by: MockBy.Positive(), actionRule);
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion (no assertion here)
             Assert.IsTrue(true);
         }
 
@@ -304,7 +304,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiMobile
             // execute
             ExecuteAction<LongSwipe>(by: MockBy.Positive(), actionRule);
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion (no assertion here)
             Assert.IsTrue(true);
         }
 
@@ -318,7 +318,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiMobile
             // execute
             ExecuteAction<LongSwipe>(by: MockBy.Positive(), actionRule);
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion (no assertion here)
             Assert.IsTrue(true);
         }
 
@@ -332,7 +332,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiMobile
             // execute
             ExecuteAction<LongSwipe>(by: MockBy.Positive(), actionRule);
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion (no assertion here)
             Assert.IsTrue(true);
         }
 
@@ -346,7 +346,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiMobile
             // execute
             ExecuteAction<LongSwipe>(by: MockBy.Positive(), actionRule);
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion (no assertion here)
             Assert.IsTrue(true);
         }
 
@@ -360,7 +360,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiMobile
             // execute
             ExecuteAction<LongSwipe>(by: MockBy.Positive(), actionRule);
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion (no assertion here)
             Assert.IsTrue(true);
         }
 
@@ -374,7 +374,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiMobile
             // execute
             ExecuteAction<LongSwipe>(by: MockBy.Positive(), actionRule);
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion (no assertion here)
             Assert.IsTrue(true);
         }
 
@@ -388,7 +388,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiMobile
             // execute
             ExecuteAction<LongSwipe>(by: MockBy.Positive(), actionRule);
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion (no assertion here)
             Assert.IsTrue(true);
         }
 
@@ -402,7 +402,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiMobile
             // execute
             ExecuteAction<LongSwipe>(by: MockBy.Positive(), actionRule);
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion (no assertion here)
             Assert.IsTrue(true);
         }
 
@@ -416,7 +416,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiMobile
             // execute
             ExecuteAction<LongSwipe>(by: MockBy.Positive(), actionRule);
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion (no assertion here)
             Assert.IsTrue(true);
         }
 
@@ -430,7 +430,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiMobile
             // execute
             ExecuteAction<LongSwipe>(by: MockBy.Positive(), actionRule);
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion (no assertion here)
             Assert.IsTrue(true);
         }
 
@@ -444,7 +444,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiMobile
             // execute
             ExecuteAction<LongSwipe>(by: MockBy.Positive(), actionRule);
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion (no assertion here)
             Assert.IsTrue(true);
         }
 
@@ -458,7 +458,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiMobile
             // execute
             ExecuteAction<LongSwipe>(by: MockBy.Positive(), actionRule);
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion (no assertion here)
             Assert.IsTrue(true);
         }
 
@@ -472,7 +472,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiMobile
             // execute
             ExecuteAction<LongSwipe>(by: MockBy.Positive(), actionRule);
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion (no assertion here)
             Assert.IsTrue(true);
         }
     }

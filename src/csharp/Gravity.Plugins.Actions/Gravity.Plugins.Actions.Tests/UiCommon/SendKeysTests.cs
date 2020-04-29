@@ -3,13 +3,14 @@
  * 
  * online resources
  */
-using OpenQA.Selenium.Appium.Mock;
+using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Actions.UiCommon;
 using Gravity.Plugins.Actions.UnitTests.Base;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Appium.Mock;
 using OpenQA.Selenium.Mock;
-using Gravity.Plugins.Actions.Contracts;
+
 using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
 
 #pragma warning disable S4144
@@ -18,6 +19,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
     [TestClass]
     public class SendKeysTests : ActionTests
     {
+        #region *** tests: documentation ***
         [TestMethod]
         public void SendKeysCreate()
         {
@@ -27,15 +29,20 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         [TestMethod]
         public void SendKeysDocumentation()
         {
-            AssertDocumentation<SendKeys>(CommonPlugins.SendKeys);
+            AssertDocumentation<SendKeys>(
+                pluginName: CommonPlugins.SendKeys);
         }
 
         [TestMethod]
         public void SendKeysDocumentationResourceFile()
         {
-            AssertDocumentation<SendKeys>(CommonPlugins.SendKeys, "send_keys.json");
+            AssertDocumentation<SendKeys>(
+                pluginName: CommonPlugins.SendKeys,
+                resource: "send_keys.json");
         }
+        #endregion
 
+        #region *** tests: OnDriver      ***
         [DataTestMethod]
         [DataRow("{'onElement':'//positive','argument':'unitTesting'}")]
         public void SendKeysPositive(string actionRule)
@@ -43,7 +50,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             // execute
             ExecuteAction<SendKeys>(actionRule);
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion (no assertion here)
             Assert.IsTrue(true);
         }
 
@@ -54,7 +61,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             // execute
             ExecuteAction<SendKeys>(actionRule);
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion (no assertion here)
             Assert.IsTrue(true);
         }
 
@@ -65,7 +72,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             // execute
             ExecuteAction<SendKeys>(actionRule);
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion (no assertion here)
             Assert.IsTrue(true);
         }
 
@@ -76,7 +83,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             // execute
             ExecuteAction<SendKeys>(actionRule);
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion (no assertion here)
             Assert.IsTrue(true);
         }
 
@@ -90,29 +97,21 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             // execute
             ExecuteAction<SendKeys>(actionRule);
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion (no assertion here)
             Assert.IsTrue(true);
         }
 
         [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
         [DataRow("{'onElement':'//null','argument':'{{$ --keys:unitTesting --forceClear}}'}")]
-        public void SendKeysForceClearNull(string actionRule)
-        {
-            // execute
-            ExecuteAction<SendKeys>(actionRule);
-
-            // assertion (no assertion here, expected is no exception)
-            Assert.IsTrue(true);
-        }
-
-        [DataTestMethod, ExpectedException(typeof(WebDriverException))]
+        [DataRow("{'onElement':'//stale','argument':'{{$ --keys:unitTesting --forceClear}}'}")]
+        [DataRow("{'onElement':'//none','argument':'{{$ --keys:unitTesting --forceClear}}'}")]
         [DataRow("{'onElement':'//exception','argument':'{{$ --keys:unitTesting --forceClear}}'}")]
-        public void SendKeysForceClearException(string actionRule)
+        public void SendKeysForceClearNoElement(string actionRule)
         {
             // execute
             ExecuteAction<SendKeys>(actionRule);
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion (no assertion here)
             Assert.IsTrue(true);
         }
 
@@ -123,7 +122,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             // execute
             ExecuteAction<SendKeys>(actionRule);
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion (no assertion here)
             Assert.IsTrue(Stopwatch.Elapsed.TotalMilliseconds > 1000);
         }
 
@@ -134,7 +133,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             // execute
             ExecuteAction<SendKeys>(actionRule);
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion (no assertion here)
             Assert.IsTrue(true);
         }
 
@@ -148,7 +147,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             // execute
             ExecuteAction<SendKeys>(actionRule);
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion (no assertion here)
             Assert.IsTrue(true);
         }
 
@@ -162,10 +161,12 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             // execute
             ExecuteAction<SendKeys>(actionRule);
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion (no assertion here)
             Assert.IsTrue(true);
         }
+        #endregion
 
+        #region *** tests: OnElement     ***
         [DataTestMethod]
         [DataRow("{'onElement':'.//positive','argument':'unitTesting'}")]
         public void SendKeysElementPositive(string actionRule)
@@ -173,7 +174,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             // execute
             ExecuteAction<SendKeys>(MockBy.Positive(), actionRule);
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion (no assertion here)
             Assert.IsTrue(true);
         }
 
@@ -184,7 +185,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             // execute
             ExecuteAction<SendKeys>(MockBy.Negative(), actionRule);
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion (no assertion here)
             Assert.IsTrue(true);
         }
 
@@ -195,7 +196,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             // execute
             ExecuteAction<SendKeys>(MockBy.Positive(), actionRule);
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion (no assertion here)
             Assert.IsTrue(true);
         }
 
@@ -206,7 +207,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             // execute
             ExecuteAction<SendKeys>(MockBy.Positive(), actionRule);
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion (no assertion here)
             Assert.IsTrue(true);
         }
 
@@ -220,7 +221,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             // execute
             ExecuteAction<SendKeys>(MockBy.Positive(), actionRule);
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion (no assertion here)
             Assert.IsTrue(true);
         }
 
@@ -231,7 +232,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             // execute
             ExecuteAction<SendKeys>(MockBy.Positive(), actionRule);
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion (no assertion here)
             Assert.IsTrue(true);
         }
 
@@ -242,7 +243,29 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             // execute
             ExecuteAction<SendKeys>(MockBy.Positive(), actionRule);
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion (no assertion here)
+            Assert.IsTrue(true);
+        }
+
+        [DataTestMethod, ExpectedException(typeof(StaleElementReferenceException))]
+        [DataRow("{'onElement':'.//stale','argument':'{{$ --keys:unitTesting --forceClear}}'}")]
+        public void SendKeysElementForceClearStale(string actionRule)
+        {
+            // execute
+            ExecuteAction<SendKeys>(MockBy.Positive(), actionRule);
+
+            // assertion (no assertion here)
+            Assert.IsTrue(true);
+        }
+
+        [DataTestMethod, ExpectedException(typeof(NoSuchElementException))]
+        [DataRow("{'onElement':'.//none','argument':'{{$ --keys:unitTesting --forceClear}}'}")]
+        public void SendKeysElementForceClearNoElement(string actionRule)
+        {
+            // execute
+            ExecuteAction<SendKeys>(MockBy.Positive(), actionRule);
+
+            // assertion (no assertion here)
             Assert.IsTrue(true);
         }
 
@@ -253,7 +276,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             // execute
             ExecuteAction<SendKeys>(MockBy.Positive(), actionRule);
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion (no assertion here)
             Assert.IsTrue(Stopwatch.Elapsed.TotalMilliseconds > 1000);
         }
 
@@ -264,7 +287,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             // execute
             ExecuteAction<SendKeys>(MockBy.Positive(), actionRule);
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion (no assertion here)
             Assert.IsTrue(true);
         }
 
@@ -278,7 +301,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             // execute
             ExecuteAction<SendKeys>(MockBy.Positive(), actionRule);
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion (no assertion here)
             Assert.IsTrue(true);
         }
 
@@ -292,7 +315,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             // execute
             ExecuteAction<SendKeys>(actionRule);
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion (no assertion here)
             Assert.IsTrue(true);
         }
 
@@ -306,9 +329,10 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             // execute
             ExecuteAction<SendKeys>(MockBy.Positive(), actionRule);
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion (no assertion here)
             Assert.IsTrue(true);
         }
+        #endregion
     }
 }
 #pragma warning restore S4144

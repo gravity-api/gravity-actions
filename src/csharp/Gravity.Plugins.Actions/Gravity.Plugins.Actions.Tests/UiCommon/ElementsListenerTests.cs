@@ -47,7 +47,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             // execute
             ExecuteAction<ElementsListener>(actionRule);
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion (no assertion here)
             Assert.IsTrue(true);
         }
 
@@ -61,7 +61,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             // execute
             ExecuteAction<ElementsListener>(actionRule);
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion (no assertion here)
             Assert.IsTrue(true);
         }
 
@@ -72,7 +72,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             // execute
             ExecuteAction<ElementsListener>(actionRule);
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion (no assertion here)
             Assert.IsTrue(true);
         }
 
@@ -94,7 +94,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             // execute
             ExecuteAction<ElementsListener>(actionRule);
 
-            // assertion (no assertion here, expected is no exception)
+            // assertion (no assertion here)
             Assert.IsTrue(true);
         }
         #endregion

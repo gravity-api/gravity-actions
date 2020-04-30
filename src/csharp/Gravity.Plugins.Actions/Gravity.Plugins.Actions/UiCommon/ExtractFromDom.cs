@@ -35,7 +35,7 @@ namespace Gravity.Plugins.Actions.UiCommon
         /// A list of <see cref="ExtractionRule"/> to execute. This is a zero-based index based on
         /// <see cref="WebAutomation.Extractions"/> collection.
         /// </summary>
-        public const string Extractions = "extractions";
+        public const string ExtractionsKey = "extractions";
         #endregion
 
         #region *** constructors ***
@@ -75,7 +75,7 @@ namespace Gravity.Plugins.Actions.UiCommon
         {
             // setup
             var arguments = CliFactory.Parse(action.Argument);
-            var eList = arguments.ContainsKey(Extractions) ? arguments[Extractions].Split(',') : Array.Empty<string>();
+            var eList = arguments.ContainsKey(ExtractionsKey) ? arguments[ExtractionsKey].Split(',') : Array.Empty<string>();
             var extrctions = Automation.GetExtractionRules(extractions: eList);
 
             for (int i = 0; i < extrctions.Count(); i++)

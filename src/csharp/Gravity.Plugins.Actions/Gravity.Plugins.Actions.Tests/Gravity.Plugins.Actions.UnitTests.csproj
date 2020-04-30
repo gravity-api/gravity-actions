@@ -6,6 +6,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Include="Resources\license.lcn">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Gravity.Drivers.Mock" Version="2020.3.29.5" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.6.1" />
     <PackageReference Include="MSTest.TestAdapter" Version="2.1.1" />
@@ -16,19 +22,7 @@
     </PackageReference>
   </ItemGroup>
 
-  <!-- for latest .NET Standard support -->
-  <ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp3.1' ">
-    <PackageReference Include="Microsoft.Extensions.Logging" Version="3.1.1" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="3.1.1" />
-  </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\Gravity.Plugins.Actions\Gravity.Plugins.Actions.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="Resources/license.lcn">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
 </Project>

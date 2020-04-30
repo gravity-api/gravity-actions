@@ -7,6 +7,7 @@ pool:
 
 variables:
 - group: browserstack.com
+- group: gravity.api
 - name: 'Build.Configuration'
   value: 'Release'
 - name: 'Parallel.Workers'
@@ -37,12 +38,16 @@ steps:
    $gridEndpoint      = $runSettings.SelectSingleNode("//Parameter[@name='Grid.Endpoint']")
    $gridAuthorization = $runSettings.SelectSingleNode("//Parameter[@name='Grid.BasicAuthorization']")
    $buildNumber       = $runSettings.SelectSingleNode("//Parameter[@name='Build.Number']")
+   $gravityUserName   = $runSettings.SelectSingleNode("//Parameter[@name='Gravity.UserName']")
+   $gravityPassword   = $runSettings.SelectSingleNode("//Parameter[@name='Gravity.Password']")
    $workers           = $runSettings.SelectSingleNode("//MSTest//Workers")
    #
    # override with production settings
    $gridEndpoint.Value      = '$(Grid.Endpoint)'
    $gridAuthorization.Value = '$(Grid.BasicAuthorization)'
    $buildNumber.Value       = '$(Build.BuildNumber)'
+   $gravityUserName.value   = '$(Gravity.UserName)'
+   $gravityPassword.value   = '$(Gravity.Password)'
    $workers.InnerText       = '$(Parallel.Workers)'
    #
    # save settings

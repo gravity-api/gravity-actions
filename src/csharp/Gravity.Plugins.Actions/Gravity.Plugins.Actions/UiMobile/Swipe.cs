@@ -10,7 +10,6 @@ using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Attributes;
 using Gravity.Plugins.Base;
 using Gravity.Plugins.Contracts;
-using Microsoft.Extensions.Logging;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Interfaces;
 using OpenQA.Selenium.Appium.MultiTouch;
@@ -197,9 +196,6 @@ namespace Gravity.Plugins.Actions.UiMobile
         // check if arguments value is coordinates
         private double[] TryGetCoordinates(string argument)
         {
-            // constants
-            const string Message = "No coordinates were found. Attempt to swipe by element(s).";
-
             // compliance
             var factors = argument.Split(',');
             var isDoubleFactor = factors.Length == 2;
@@ -207,7 +203,6 @@ namespace Gravity.Plugins.Actions.UiMobile
             // exit conditions
             if (!isDoubleFactor)
             {
-                Logger.LogInformation(Message, argument);
                 return Array.Empty<double>();
             }
 

@@ -3,8 +3,6 @@ using Gravity.Plugins.Extensions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Xml;
 
 namespace Gravity.Plugins.UnitTests.Engine
 {

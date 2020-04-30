@@ -15,11 +15,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Documentation\extract_from_dom.json" />
-    <None Remove="Documentation\extract_from_source.json" />
-  </ItemGroup>
-
-  <ItemGroup>
     <EmbeddedResource Include="Documentation\assert.json" />
     <EmbeddedResource Include="Documentation\close_all_child_windows.json" />
     <EmbeddedResource Include="Documentation\close_browser.json" />

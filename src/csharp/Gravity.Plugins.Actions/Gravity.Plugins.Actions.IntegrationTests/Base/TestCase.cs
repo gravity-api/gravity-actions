@@ -87,6 +87,15 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
                 ElementSearchingTimeout = elementSearchingTimeout
             };
 
+            // authentication
+            var u = TestContext.Parameters.Get("Gravity.UserName", string.Empty);
+            var p = TestContext.Parameters.Get("Gravity.Password", string.Empty);
+            var authentication = new Authentication
+            {
+                UserName = u,
+                Password = p
+            };
+
             // driver parameters
             var testName = GetTestName();
             var driverParams = GetDriverParams(driver, capabilities, testName);
@@ -94,6 +103,7 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
             // result
             return new WebAutomation
             {
+                Authentication = authentication,
                 DriverParams = driverParams,
                 EngineConfiguration = configuration
             };

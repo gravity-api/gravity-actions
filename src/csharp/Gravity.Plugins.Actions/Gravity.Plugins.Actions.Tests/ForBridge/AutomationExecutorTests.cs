@@ -1,7 +1,6 @@
-﻿using Gravity.Plugins.Actions.UnitTests.ForBridge;
-using Gravity.Plugins.Contracts;
+﻿using Gravity.Plugins.Contracts;
+using Gravity.Plugins.Engine;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Newtonsoft.Json;
 using System.Linq;
 
 namespace Gravity.Plugins.UnitTests.Engine

@@ -10,6 +10,7 @@ using Gravity.Plugins.Contracts;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Extensions;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 namespace Gravity.Plugins.Actions.UiWeb
 {
@@ -110,9 +111,10 @@ namespace Gravity.Plugins.Actions.UiWeb
             }
 
             // result
-            return string.IsNullOrEmpty(action.OnAttribute)
+            var url = string.IsNullOrEmpty(action.OnAttribute)
                 ? onElement.Text
                 : onElement.GetAttribute(action.OnAttribute);
+            return Regex.Match(input: url, pattern: action.RegularExpression).Value;
         }
 
         // UTILITIES

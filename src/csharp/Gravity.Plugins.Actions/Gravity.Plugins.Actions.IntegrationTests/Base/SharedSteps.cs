@@ -103,6 +103,17 @@ namespace Gravity.IntegrationTests.Base
         };
 
         /// <summary>
+        /// Gets an assert <see cref="ActionRule"/> for number of windows.
+        /// </summary>
+        /// <param name="greaterThan">Greater than expected result.</param>
+        /// <returns>Assert <see cref="ActionRule"/>.</returns>
+        public static ActionRule AssertWindowsCount(int greaterThan) => new ActionRule
+        {
+            Action = PluginsList.Assert,
+            Argument = "{{$ --windows_count --gt:" + greaterThan + "}}"
+        };
+
+        /// <summary>
         /// Gets an assert <see cref="ActionRule"/> for click outcome results (on UiControls page).
         /// </summary>
         /// <param name="expectedPattern">Expected pattern (regular expression) to assert against.</param>

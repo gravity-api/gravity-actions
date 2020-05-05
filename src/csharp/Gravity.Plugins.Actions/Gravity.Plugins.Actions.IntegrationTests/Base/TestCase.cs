@@ -307,7 +307,8 @@ namespace Gravity.IntegrationTests.Base
         {
             var isEvaluation = responses
                 .SelectMany(i => i.Extractions)
-                .All(i => i.Entities.SelectMany(i => i.Content).Any(i => i.Key == "evaluation"));
+                .SelectMany(i => i.Entities)
+                .Any(i => i.Content.ContainsKey("evaluation"));
 
             // exit condition
             if (isEvaluation)
@@ -454,10 +455,7 @@ namespace Gravity.IntegrationTests.Base
             bool actual = OnAutomationTest(environment, responses);
 
             // is inconclusive
-            if (!actual)
-            {
-                AssertInconclusive(responses);
-            }
+            AssertInconclusive(responses);
 
             // user plugin
             return actual;

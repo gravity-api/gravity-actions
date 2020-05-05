@@ -29,6 +29,8 @@ namespace Gravity.IntegrationTests.Providers
 
         public static IEnumerable CompatibilitiesNoSafari => GetCompatibilitiesNoSafari();
 
+        public static IEnumerable CompatibilitiesMobile => GetCompatibilitiesMobile();
+
         /// <summary>
         /// Gets browsers compatibility matrix for Web UI testing.
         /// </summary>
@@ -208,6 +210,15 @@ namespace Gravity.IntegrationTests.Providers
 
             // Android
             yield return Provider.Get(driver: Driver.Android, capabilities: Provider.AndroidChrome);
+        }
+
+        private static IEnumerable GetCompatibilitiesMobile()
+        {
+            // Android
+            yield return Provider.Get(driver: Driver.Android, capabilities: Provider.AndroidChrome);
+
+            // iOS
+            yield return Provider.Get(driver: Driver.iOS, capabilities: Provider.iPhoneSafari);
         }
     }
 }

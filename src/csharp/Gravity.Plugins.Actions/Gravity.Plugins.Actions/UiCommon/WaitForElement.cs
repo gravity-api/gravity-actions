@@ -4,7 +4,6 @@
  * online resources
  */
 using Gravity.Plugins.Actions.Components;
-using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Extensions;
 using Gravity.Plugins.Attributes;
 using Gravity.Plugins.Base;
@@ -19,7 +18,7 @@ namespace Gravity.Plugins.Actions.UiCommon
     [Plugin(
         assembly: "Gravity.Plugins.Actions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
         resource: "Gravity.Plugins.Actions.Documentation.wait_for_element.json",
-        Name = CommonPlugins.WaitForElement)]
+        Name = Contracts.PluginsList.WaitForElement)]
     public class WaitForElement : WebDriverActionPlugin
     {
         #region *** arguments    ***
@@ -52,7 +51,7 @@ namespace Gravity.Plugins.Actions.UiCommon
         public WaitForElement(WebAutomation automation, IWebDriver driver)
             : base(automation, driver)
         {
-            timeout = TimeSpan.FromMilliseconds(Automation.EngineConfiguration.ElementSearchingTimeout);
+            timeout = TimeSpan.FromMilliseconds(Automation.EngineConfiguration.SearchTimeout);
         }
         #endregion
 

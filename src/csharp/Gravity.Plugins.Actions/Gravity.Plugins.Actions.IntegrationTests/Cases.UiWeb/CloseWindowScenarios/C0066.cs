@@ -16,12 +16,12 @@
 * [4] verify {windows_count} equal {2}
 */
 #pragma warning restore
+using Gravity.IntegrationTests.Base;
 using Gravity.Plugins.Actions.Contracts;
-using Gravity.Plugins.Actions.IntegrationTests.Base;
 using Gravity.Plugins.Contracts;
 using System.Collections.Generic;
 
-namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiWeb.CloseWindowScenarios
+namespace Gravity.IntegrationTests.Cases.UiWeb.CloseWindowScenarios
 {
     public class C0066 : TestCase
     {
@@ -32,30 +32,30 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiWeb.CloseWindowScenar
             {
                 new ActionRule
                 {
-                    ActionType = CommonPlugins.Click,
+                    Action = PluginsList.Click,
                     OnElement = "pop_window",
-                    Locator = LocatorType.Id
+                    Locator = LocatorsList.Id
                 },
                 new ActionRule
                 {
-                    ActionType = CommonPlugins.Click,
+                    Action = PluginsList.Click,
                     OnElement = "pop_window",
-                    Locator = LocatorType.Id
+                    Locator = LocatorsList.Id
                 },
                 new ActionRule
                 {
-                    ActionType = CommonPlugins.Assert,
-                    Argument = "{{$ --windows_count --eq:3}}"
+                    Action = PluginsList.Assert,
+                    Argument = "{{$ --windows_count --gt:1}}"
                 },
                 new ActionRule
                 {
-                    ActionType = WebPlugins.CloseWindow,
-                    Argument = "2"
+                    Action = PluginsList.CloseWindow,
+                    Argument = "1"
                 },
                 new ActionRule
                 {
-                    ActionType = CommonPlugins.Assert,
-                    Argument = "{{$ --windows_count --eq:2}}"
+                    Action = PluginsList.Assert,
+                    Argument = "{{$ --windows_count --gt:0}}"
                 },
             };
         }

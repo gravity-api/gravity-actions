@@ -12,12 +12,12 @@
 * [1] verify {attribute} on {ul > li:nth-child(1) > a} from {class} using {css selector} equal {nav-link text-dark}
 */
 #pragma warning restore
+using Gravity.IntegrationTests.Base;
 using Gravity.Plugins.Actions.Contracts;
-using Gravity.Plugins.Actions.IntegrationTests.Base;
 using Gravity.Plugins.Contracts;
 using System.Collections.Generic;
 
-namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.AssertScenarios
+namespace Gravity.IntegrationTests.Cases.UiCommon.AssertScenarios
 {
     public class C0002 : TestCase
     {
@@ -33,11 +33,11 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.AssertScenario
             {
                 new ActionRule
                 {
-                    ActionType = CommonPlugins.Assert,
+                    Action = PluginsList.Assert,
                     Argument = "{{$ --attribute --eq:" + expected + "}}",
                     OnElement = "ul > li:nth-child(1) > a",
                     OnAttribute = "class",
-                    Locator = LocatorType.CssSelector
+                    Locator = LocatorsList.CssSelector
                 }
             };
         }

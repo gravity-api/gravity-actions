@@ -18,12 +18,18 @@ using System.Text.RegularExpressions;
 using Gravity.Plugins.Utilities.Selenium;
 using Gravity.Plugins.Extensions;
 using Gravity.Plugins.Contracts;
+using System.Reflection;
+using OpenQA.Selenium.Remote;
+using System.Net.Http;
+using System.Text;
 
 namespace Gravity.Plugins.Actions.Extensions
 {
     public static class SeleniumExtensions
     {
-        #region *** element: Exists ***
+        private static readonly HttpClient client = new HttpClient();
+
+        #region *** Element: Exists ***
         /// <summary>
         /// Finds the first <see cref="IWebElement"/> within the current context using the given mechanism.
         /// </summary>
@@ -104,7 +110,7 @@ namespace Gravity.Plugins.Actions.Extensions
             var by = byFactory.Get(action.Locator, action.OnElement);
 
             // setup conditions
-            var isAbsolutePath = action.Locator == LocatorType.Xpath && action.OnElement.StartsWith("/");
+            var isAbsolutePath = action.Locator == LocatorsList.Xpath && action.OnElement.StartsWith("/");
 
             // find on page level
             if (isAbsolutePath)
@@ -117,7 +123,7 @@ namespace Gravity.Plugins.Actions.Extensions
         }
         #endregion
 
-        #region *** element: Find   ***
+        #region *** Element: Find   ***
         /// <summary>
         /// Finds the first <see cref="IWebElement"/> within the current context using the given mechanism.
         /// </summary>
@@ -185,7 +191,7 @@ namespace Gravity.Plugins.Actions.Extensions
             var by = byFactory.Get(actionRule.Locator, actionRule.OnElement);
 
             // setup conditions
-            var isAbsolutePath = actionRule.Locator == LocatorType.Xpath && actionRule.OnElement.StartsWith("/");
+            var isAbsolutePath = actionRule.Locator == LocatorsList.Xpath && actionRule.OnElement.StartsWith("/");
 
             // find on page level
             if (isAbsolutePath)
@@ -198,7 +204,7 @@ namespace Gravity.Plugins.Actions.Extensions
         }
         #endregion
 
-        #region *** elements: Find  ***
+        #region *** Elements: Find  ***
         /// <summary>
         /// Finds all <see cref="IWebElement"/> within the current context using the given mechanism.
         /// </summary>
@@ -273,7 +279,7 @@ namespace Gravity.Plugins.Actions.Extensions
             var by = byFactory.Get(actionRule.Locator, actionRule.OnElement);
 
             // setup conditions
-            var isAbsolutePath = actionRule.Locator == LocatorType.Xpath && actionRule.OnElement.StartsWith("/");
+            var isAbsolutePath = actionRule.Locator == LocatorsList.Xpath && actionRule.OnElement.StartsWith("/");
 
             // find on page level
             if (isAbsolutePath)
@@ -283,6 +289,78 @@ namespace Gravity.Plugins.Actions.Extensions
 
             // on element level
             return e?.FindElements(by);
+        }
+        #endregion
+
+        #region *** Driver: Switch  ***
+        /// <summary>
+        /// Switches the focus of future commands for this driver to the window with the given name.
+        /// </summary>
+        /// <param name="driver">This <see cref="IWebDriver"/> instance.</param>
+        /// <param name="windowName">The handle of the window to select.</param>
+        /// <returns>Self <see cref="IWebDriver"/> reference.</returns>
+        public static IWebDriver SwitchTo(this IWebDriver driver, string windowName)
+        {
+            // setup
+            var endpoint = GetEndpoint(driver);
+            var session = DoGetSession(driver);
+
+            // commands
+            var command = $"{endpoint}session/{session}/window";
+
+            // switch window parameters
+            var body = @"{""handle"":""" + windowName + @"""}";
+            var content = new StringContent(body, Encoding.UTF8, mediaType: "application/json");
+
+            // executes
+            client.PostAsync(command, content).GetAwaiter().GetResult();
+
+            // results
+            return driver;
+        }
+
+        private static SessionId DoGetSession(IWebDriver driver)
+        {
+            if (driver is IHasSessionId id)
+            {
+                return id.SessionId;
+            }
+            return new SessionId($"gravity-{Guid.NewGuid()}");
+        }
+
+        private static string GetEndpoint(IWebDriver driver)
+        {
+            // setup
+            const BindingFlags Flags = BindingFlags.Instance | BindingFlags.NonPublic;
+
+            // get RemoteWebDriver type
+            var remoteWebDriver = GetRemoteWebDriver(driver.GetType());
+
+            // get this instance executor > get this instance internalExecutor
+            var executor = remoteWebDriver.GetField("executor", Flags).GetValue(driver) as ICommandExecutor;
+
+            // get URL
+            var uri = driver.IsAppiumDriver()
+                ? executor.GetType().GetField("URL", Flags).GetValue(executor) as Uri
+                : executor.GetType().GetField("remoteServerUri", Flags).GetValue(executor) as Uri;
+
+            // result
+            return uri.AbsoluteUri;
+        }
+
+        private static Type GetRemoteWebDriver(Type type)
+        {
+            if (!typeof(RemoteWebDriver).IsAssignableFrom(type))
+            {
+                return type;
+            }
+
+            while (type != typeof(RemoteWebDriver))
+            {
+                type = type.BaseType;
+            }
+
+            return type;
         }
         #endregion
 

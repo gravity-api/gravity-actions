@@ -4,14 +4,14 @@
  * online resources
  */
 using OpenQA.Selenium.Mock;
-using Gravity.Plugins.Actions.UnitTests.Base;
+using Gravity.UnitTests.Base;
 using Gravity.Plugins.Actions.UiWeb;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using Gravity.Plugins.Actions.Contracts;
 
 #pragma warning disable S4144
-namespace Gravity.Plugins.Actions.UnitTests.UiWeb
+namespace Gravity.UnitTests.UiWeb
 {
     [TestClass]
     public class TryClickTests : ActionTests
@@ -27,14 +27,14 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         public void TryClickDocumentation()
         {
             AssertDocumentation<TryClick>(
-                pluginName: WebPlugins.TryClick);
+                pluginName: PluginsList.TryClick);
         }
 
         [TestMethod]
         public void TryClickDocumentationResourceFile()
         {
             AssertDocumentation<TryClick>(
-                pluginName: WebPlugins.TryClick,
+                pluginName: PluginsList.TryClick,
                 resource: "try_click.json");
         }
         #endregion

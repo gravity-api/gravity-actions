@@ -14,12 +14,12 @@
 * [3] verify {url} equal {https://gravitymvctestapplication.azurewebsites.net/Student}
 */
 #pragma warning restore
+using Gravity.IntegrationTests.Base;
 using Gravity.Plugins.Actions.Contracts;
-using Gravity.Plugins.Actions.IntegrationTests.Base;
 using Gravity.Plugins.Contracts;
 using System.Collections.Generic;
 
-namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.ConditionScenarios
+namespace Gravity.IntegrationTests.Cases.UiCommon.ConditionScenarios
 {
     public class C0115 : TestCase
     {
@@ -36,7 +36,7 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.ConditionScena
             {
                 new ActionRule
                 {
-                    ActionType = CommonPlugins.Condition,
+                    Action = PluginsList.Condition,
                     Argument = "{{$ --url --gt:" + condition + "}}",
                     RegularExpression = "\\d+",
                     Actions = SharedSteps.BackToList()

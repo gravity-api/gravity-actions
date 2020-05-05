@@ -16,12 +16,12 @@
 * [5] verify {attribute} on {SearchString} using {id} equal {Carson}
 */
 #pragma warning restore
+using Gravity.IntegrationTests.Base;
 using Gravity.Plugins.Actions.Contracts;
-using Gravity.Plugins.Actions.IntegrationTests.Base;
 using Gravity.Plugins.Contracts;
 using System.Collections.Generic;
 
-namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.ConditionScenarios
+namespace Gravity.IntegrationTests.Cases.UiCommon.ConditionScenarios
 {
     public class C0130 : TestCase
     {
@@ -38,28 +38,28 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.ConditionScena
             {
                 new ActionRule
                 {
-                    ActionType = CommonPlugins.Condition,
+                    Action = PluginsList.Condition,
                     Argument = "{{$ --windows_count --eq:1}}",
                     Actions = new[]
                     {
                         new ActionRule
                         {
-                            ActionType = CommonPlugins.SendKeys,
+                            Action = PluginsList.SendKeys,
                             Argument = "Carson",
                             OnElement = "SearchString",
-                            Locator = LocatorType.Id
+                            Locator = LocatorsList.Id
                         },
                         new ActionRule
                         {
-                            ActionType = CommonPlugins.Condition,
+                            Action = PluginsList.Condition,
                             Argument = "{{$ --url --match:" + condition + "}}",
                             Actions = new[]
                             {
                                 new ActionRule
                                 {
-                                    ActionType = CommonPlugins.Click,
+                                    Action = PluginsList.Click,
                                     OnElement = "SearchButton",
-                                    Locator = LocatorType.Id
+                                    Locator = LocatorsList.Id
                                 }
                             }
                         }
@@ -67,11 +67,11 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.ConditionScena
                 },
                 new ActionRule
                 {
-                    ActionType = CommonPlugins.Assert,
+                    Action = PluginsList.Assert,
                     Argument = "{{$ --attribute --eq:Carson}}",
                     OnElement = "SearchString",
                     OnAttribute = "value",
-                    Locator = LocatorType.Id
+                    Locator = LocatorsList.Id
                 },
                 SharedSteps.AssertStudentsCount(count: 3)
             };

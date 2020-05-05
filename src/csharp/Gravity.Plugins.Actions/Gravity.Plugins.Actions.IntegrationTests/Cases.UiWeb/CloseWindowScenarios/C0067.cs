@@ -14,12 +14,12 @@
 * [2] verify {windows_count} equal {1}
 */
 #pragma warning restore
+using Gravity.IntegrationTests.Base;
 using Gravity.Plugins.Actions.Contracts;
-using Gravity.Plugins.Actions.IntegrationTests.Base;
 using Gravity.Plugins.Contracts;
 using System.Collections.Generic;
 
-namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiWeb.CloseWindowScenarios
+namespace Gravity.IntegrationTests.Cases.UiWeb.CloseWindowScenarios
 {
     public class C0067 : TestCase
     {
@@ -30,17 +30,17 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiWeb.CloseWindowScenar
             {
                 new ActionRule
                 {
-                    ActionType = CommonPlugins.Assert,
+                    Action = PluginsList.Assert,
                     Argument = "{{$ --windows_count --eq:1}}"
                 },
                 new ActionRule
                 {
-                    ActionType = WebPlugins.CloseWindow,
+                    Action = PluginsList.CloseWindow,
                     Argument = "2"
                 },
                 new ActionRule
                 {
-                    ActionType = CommonPlugins.Assert,
+                    Action = PluginsList.Assert,
                     Argument = "{{$ --windows_count --eq:1}}"
                 },
             };

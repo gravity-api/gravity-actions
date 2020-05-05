@@ -17,7 +17,7 @@
       "description": "Scrolls [//div] element overflow by 1000 pixels from top.",
       "literalExample": "scroll on {//div} {1000} pixels from top",
       "actionExample": {
-        "actionType": "Scroll",
+        "action": "Scroll",
         "argument": "1000",
         "onElement": "//div"
       }
@@ -26,7 +26,7 @@
       "description": "Scrolls the page overflow by 1000 pixels from top.",
       "literalExample": "scroll page {1000} pixels from top",
       "actionExample": {
-        "actionType": "Scroll",
+        "action": "Scroll",
         "argument": "1000"
       }
     },
@@ -34,7 +34,7 @@
       "description": "Scrolls the page overflow by 100 pixels from top and 100 pixels from left.",
       "literalExample": "scroll page overflow 'by {{$ --left:100 --top:100}}",
       "actionExample": {
-        "actionType": "Scroll",
+        "action": "Scroll",
         "argument": "{{$ --left:100 --top:100}}"
       }
     },
@@ -42,7 +42,7 @@
       "description": "Smoothly Scrolls the page overflow by 100 pixels from top and 100 pixels from left.",
       "literalExample": "scroll page overflow 'by {{$ --left:100 --top:100 --behavior:smooth}}",
       "actionExample": {
-        "actionType": "Scroll",
+        "action": "Scroll",
         "argument": "{{$ --left:100 --top:100 --behavior:smooth}}"
       }
     },
@@ -50,7 +50,7 @@
       "description": "Smoothly Scrolls [//div] element overflow by 100 pixels from top and 100 pixels from left.",
       "literalExample": "scroll on {//div} overflow 'by {{$ --left:100 --top:100 --behavior:smooth}}",
       "actionExample": {
-        "actionType": "Scroll",
+        "action": "Scroll",
         "argument": "{{$ --left:100 --top:100 --behavior:smooth}}"
       }
     }

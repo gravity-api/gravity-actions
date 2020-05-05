@@ -3,14 +3,14 @@
  * 
  * online resources
  */
-using Gravity.Plugins.Actions.Contracts;
-using Gravity.Plugins.Actions.UnitTests.Base;
+using Gravity.UnitTests.Base;
 using Gravity.Plugins.Actions.UiWeb;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium.Mock;
+using Gravity.Plugins.Actions.Contracts;
 
 #pragma warning disable S4144
-namespace Gravity.Plugins.Actions.UnitTests.UiWeb
+namespace Gravity.UnitTests.UiWeb
 {
     [TestClass]
     public class SubmitFormTests: ActionTests
@@ -25,14 +25,14 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         [TestMethod]
         public void SubmitFormDocumentation()
         {
-            AssertDocumentation<SubmitForm>(pluginName: WebPlugins.SubmitForm);
+            AssertDocumentation<SubmitForm>(pluginName: PluginsList.SubmitForm);
         }
 
         [TestMethod]
         public void SubmitFormDocumentationResourceFile()
         {
             AssertDocumentation<SubmitForm>(
-                pluginName: WebPlugins.SubmitForm,
+                pluginName: PluginsList.SubmitForm,
                 resource: "submit_form.json");
         }
         #endregion

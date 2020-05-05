@@ -13,12 +13,12 @@
 * [2] verify {attribute} on {click_outcome} from {value} using {id} not equal {double on element}
 */
 #pragma warning restore
+using Gravity.IntegrationTests.Base;
 using Gravity.Plugins.Actions.Contracts;
-using Gravity.Plugins.Actions.IntegrationTests.Base;
 using Gravity.Plugins.Contracts;
 using System.Collections.Generic;
 
-namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.DoubleClickTests
+namespace Gravity.IntegrationTests.Cases.UiCommon.DoubleClickTests
 {
     public class C0135 : TestCase
     {
@@ -30,7 +30,7 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.DoubleClickTes
             {
                 new ActionRule
                 {
-                    ActionType = CommonPlugins.DoubleClick
+                    Action = PluginsList.DoubleClick
                 },
                 SharedSteps.AssertClickOutcome(expectedPattern: "^$")
             };

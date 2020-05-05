@@ -3,15 +3,15 @@
  * 
  * online resources
  */
-using Gravity.Plugins.Actions.Contracts;
-using Gravity.Plugins.Actions.UnitTests.Base;
+using Gravity.UnitTests.Base;
 using Gravity.Plugins.Actions.UiWeb;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium.Mock;
 using System;
+using Gravity.Plugins.Actions.Contracts;
 
 #pragma warning disable S4144
-namespace Gravity.Plugins.Actions.UnitTests.UiWeb
+namespace Gravity.UnitTests.UiWeb
 {
     [TestClass]
     public class SwitchToDefaultContentTests : ActionTests
@@ -27,14 +27,14 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         public void SwitchToDefaultContentDocumentation()
         {
             AssertDocumentation<SwitchToDefaultContent>(
-                pluginName: WebPlugins.SwitchToDefaultContent);
+                pluginName: PluginsList.SwitchToDefaultContent);
         }
 
         [TestMethod]
         public void SwitchToDefaultContentDocumentationResourceFile()
         {
             AssertDocumentation<SwitchToDefaultContent>(
-                pluginName: WebPlugins.SwitchToDefaultContent,
+                pluginName: PluginsList.SwitchToDefaultContent,
                 resource: "switch_to_default_content.json");
         }
         #endregion

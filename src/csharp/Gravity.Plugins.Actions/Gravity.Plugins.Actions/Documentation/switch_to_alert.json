@@ -10,7 +10,7 @@
       "description": "Dismisses the alert.",
       "literalExample": "switch to alert {dismiss}",
       "actionExample": {
-        "actionType": "SwitchToAlert",
+        "action": "SwitchToAlert",
         "argument": "dismiss"
       }
     },
@@ -18,7 +18,7 @@
       "description": "Accepts the alert.",
       "literalExample": "switch to alert {accept}",
       "actionExample": {
-        "actionType": "SwitchToAlert",
+        "action": "SwitchToAlert",
         "argument": "accept"
       }
     },
@@ -26,7 +26,7 @@
       "description": "Sends keys to the alert.",
       "literalExample": "switch to alert {{$ --keys:hello}}",
       "actionExample": {
-        "actionType": "SwitchToAlert",
+        "action": "SwitchToAlert",
         "argument": "{{$ --keys:hello}}"
       }
     },
@@ -34,7 +34,7 @@
       "description": "Sets the user name and password in an alert prompting for credentials.",
       "literalExample": "switch to alert {{$ --user:userName --pass:userPassword}}",
       "actionExample": {
-        "actionType": "SwitchToAlert",
+        "action": "SwitchToAlert",
         "argument": "{{$ --user:userName --pass:userPassword}}"
       }
     },
@@ -42,7 +42,7 @@
       "description": "Sends keys to the alert & sets the user name and password in an alert prompting for credentials (sends keys first).",
       "literalExample": "switch to alert {{$ --keys:hello --user:userName --pass:userPassword}}",
       "actionExample": {
-        "actionType": "SwitchToAlert",
+        "action": "SwitchToAlert",
         "argument": "{{$ --keys:hello --user:userName --pass:userPassword}}"
       }
     }

@@ -4,10 +4,10 @@
  * online resources   
  */
 using Gravity.Abstraction.Contracts;
-using Gravity.Plugins.Actions.IntegrationTests.Base;
+using Gravity.IntegrationTests.Base;
 using System.Collections;
 
-namespace Gravity.Plugins.Actions.IntegrationTests.Providers
+namespace Gravity.IntegrationTests.Providers
 {
     public static class CompatibilityProvider
     {
@@ -15,6 +15,8 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Providers
         /// Gets browsers compatibility matrix for Web UI testing.
         /// </summary>
         public static IEnumerable Compatibilities => GetCompatibilities();
+
+        public static IEnumerable CompatibilitiesContextClick => GetCompatibilitiesContextClick();
 
         /// <summary>
         /// Gets browsers compatibility matrix for Web UI testing.
@@ -102,7 +104,25 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Providers
             yield return Provider.Get(driver: Driver.Android, capabilities: Provider.AndroidChrome);
 
             // iOS
-            yield return Provider.Get(driver: Driver.iOS, capabilities: Provider.iPhoneSafari);
+            //yield return Provider.Get(driver: Driver.iOS, capabilities: Provider.iPhoneSafari);
+        }
+
+        private static IEnumerable GetCompatibilitiesContextClick()
+        {
+            // Windows 10
+            yield return Provider.Get(driver: Driver.Chrome, capabilities: Provider.Windows10LatestBrowser);
+            yield return Provider.Get(driver: Driver.Firefox, capabilities: Provider.Windows10LatestBrowser);
+            yield return Provider.Get(driver: Driver.InternetExplorer, capabilities: Provider.Windows10LatestBrowser);
+
+            // Windows 7
+            yield return Provider.Get(driver: Driver.InternetExplorer, capabilities: Provider.Windows7IE10);
+
+            // OSX: Catalina
+            yield return Provider.Get(driver: Driver.Chrome, capabilities: Provider.OSXCatalinaLatestBrowser);
+            yield return Provider.Get(driver: Driver.Firefox, capabilities: Provider.OSXCatalinaLatestBrowser);
+
+            // Android
+            yield return Provider.Get(driver: Driver.Android, capabilities: Provider.AndroidChrome);
         }
 
         private static IEnumerable GetCompatibilitiesPopups()
@@ -130,6 +150,7 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Providers
         private static IEnumerable GetCompatibilitiesCloseWindow()
         {
             // Windows 10
+            yield return Provider.Get(driver: Driver.InternetExplorer, capabilities: Provider.Windows10LatestBrowser);
             yield return Provider.Get(driver: Driver.Chrome, capabilities: Provider.Windows10LatestBrowser);
             yield return Provider.Get(driver: Driver.Edge, capabilities: Provider.Windows10LatestBrowser);
             yield return Provider.Get(driver: Driver.Firefox, capabilities: Provider.Windows10LatestBrowser);
@@ -162,7 +183,7 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Providers
 
             // OSX: Catalina
             yield return Provider.Get(driver: Driver.Chrome, capabilities: Provider.OSXCatalinaLatestBrowser);
-            //yield return Provider.Get(driver: Driver.Edge, capabilities: Provider.OSXCatalinaLatestBrowser);
+            yield return Provider.Get(driver: Driver.Edge, capabilities: Provider.OSXCatalinaLatestBrowser);
             yield return Provider.Get(driver: Driver.Firefox, capabilities: Provider.OSXCatalinaLatestBrowser);
 
             // Android

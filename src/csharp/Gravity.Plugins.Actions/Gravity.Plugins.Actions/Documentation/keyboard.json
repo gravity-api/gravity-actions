@@ -5,7 +5,7 @@
       "description": "Simulates <enter> press on the given element.",
       "literalExample": "press keyboard {enter} key on {//form/div/p/input[2]}",
       "actionExample": {
-        "actionType": "Keyboard",
+        "action": "Keyboard",
         "argument": "enter"
       }
     },
@@ -13,7 +13,7 @@
       "description": "Simulates <backspace> press on the given element.",
       "literalExample": "press keyboard {backspace} key on {//form/div/p/input[1]}",
       "actionExample": {
-        "actionType": "Keyboard",
+        "action": "Keyboard",
         "argument": "backspace"
       }
     }

@@ -10,12 +10,11 @@
  *    
  * 2019-01-12
  *    - modify: improve XML comments
- *    - modify: override ActionName using ActionType constant
+ *    - modify: override ActionName using action constant
  * 
  * online resources
  */
 using Gravity.Plugins.Actions.Components;
-using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Attributes;
 using Gravity.Plugins.Base;
 using Gravity.Plugins.Contracts;
@@ -29,7 +28,7 @@ namespace Gravity.Plugins.Actions.UiCommon
     [Plugin(
         assembly: "Gravity.Plugins.Actions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
         resource: "Gravity.Plugins.Actions.Documentation.repeat.json",
-        Name = CommonPlugins.Repeat)]
+        Name = Contracts.PluginsList.Repeat)]
     public class Repeat : WebDriverActionPlugin
     {
         #region *** arguments    ***

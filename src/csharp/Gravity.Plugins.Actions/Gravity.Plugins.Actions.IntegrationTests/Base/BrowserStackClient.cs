@@ -8,7 +8,7 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Gravity.Plugins.Actions.IntegrationTests.Base
+namespace Gravity.IntegrationTests.Base
 {
     public class BrowserStackClient
     {

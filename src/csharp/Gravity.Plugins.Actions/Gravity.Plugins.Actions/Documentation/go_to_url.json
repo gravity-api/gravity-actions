@@ -14,7 +14,7 @@
       "description": "Navigate to [https://gravitymvctestapplication.azurewebsites.net/instructor].",
       "literalExample": "go to url {https://gravitymvctestapplication.azurewebsites.net/instructor}",
       "actionExample": {
-        "actionType": "GoToUrl",
+        "action": "GoToUrl",
         "argument": "https://gravitymvctestapplication.azurewebsites.net/instructor"
       }
     },
@@ -22,7 +22,7 @@
       "description": "Navigate to [https://www.google.com] using [_blank] operation (new tab or window).",
       "literalExample": "go to url {{$ --url:https://www.google.com --blank}}",
       "actionExample": {
-        "actionType": "GoToUrl",
+        "action": "GoToUrl",
         "argument": "{{$ --url:https://www.google.com --blank}}"
       }
     },
@@ -30,7 +30,7 @@
       "description": "Gets the text content of the element found by the given locator and pass it as URL to the current browser.",
       "literalExample": "go to url take {//li[5]/a} inner text",
       "actionExample": {
-        "actionType": "GoToUrl",
+        "action": "GoToUrl",
         "onElement": "//li[5]/a"
       }
     },
@@ -38,7 +38,7 @@
       "description": "Gets the text content of the element found by the given locator and pass it as URL to a new browser tab or window.",
       "literalExample": "go to url {{$ --blank}} take {//li[5]/a} inner text",
       "actionExample": {
-        "actionType": "GoToUrl",
+        "action": "GoToUrl",
         "argument": "{{$ --blank}}",
         "onElement": "//li[5]/a"
       }
@@ -47,7 +47,7 @@
       "description": "Gets the [href] value of the element found by the given locator and pass it as URL to the current browser.",
       "literalExample": "go to url take {//li[5]/a} element from {href} attribute",
       "actionExample": {
-        "actionType": "GoToUrl",
+        "action": "GoToUrl",
         "onElement": "//li[5]/a",
         "onAttribute": "href"
       }
@@ -56,7 +56,7 @@
       "description": "Gets the first match from the element [href] attribute found by the given locator, filtered by the given pattern and pass it as URL to the current browser.",
       "literalExample": "go to url take {//li[5]/a} element from {href} filter {https://gravitymvctestapplication.azurewebsites.net}",
       "actionExample": {
-        "actionType": "GoToUrl",
+        "action": "GoToUrl",
         "onElement": "//li[5]/a",
         "onAttribute": "href",
         "regularExpression": "https://gravitymvctestapplication.azurewebsites.net"

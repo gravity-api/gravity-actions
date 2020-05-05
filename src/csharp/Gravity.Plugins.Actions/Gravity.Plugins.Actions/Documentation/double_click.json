@@ -5,7 +5,7 @@
       "description": "Double clicks the mouse on the specified element.",
       "literalExample": "double click on {click_button} using {id}",
       "actionExample": {
-        "actionType": "DoubleClick",
+        "action": "DoubleClick",
         "onElement": "click_button",
         "locator": "Id"
       }
@@ -14,7 +14,7 @@
       "description": "Double clicks the mouse at the last known mouse coordinates.",
       "literalExample": "double click",
       "actionExample": {
-        "actionType": "DoubleClick"
+        "action": "DoubleClick"
       }
     }
   ],

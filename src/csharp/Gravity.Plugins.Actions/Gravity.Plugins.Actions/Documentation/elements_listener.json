@@ -19,7 +19,7 @@
   "examples": [
     {
       "actionExample": {
-        "actionType": "ElementsListener",
+        "action": "ElementsListener",
         "argument": "500",
         "onElement": "//div[./strong[contains(.,'Random Element.')]]"
       },
@@ -28,7 +28,7 @@
     },
     {
       "actionExample": {
-        "actionType": "ElementsListener",
+        "action": "ElementsListener",
         "argument": "{{$ --interval:500 --timeout:30000}}",
         "onElement": "//div[./strong[contains(.,'Random Element.')]]"
       },
@@ -37,18 +37,18 @@
     },
     {
       "actionExample": {
-        "actionType": "ElementsListener",
+        "action": "ElementsListener",
         "argument": "{{$ --interval:00:00:01 --timeout:00:00:30}}",
         "onElement": "//div[./strong[contains(.,'Random Element.')]]",
         "actions": [
           {
-            "actionType": "SendKeys",
+            "action": "SendKeys",
             "argument": "dismissed",
             "onElement": "input_enabled",
             "locator": "Id"
           },
           {
-            "actionType": "Click",
+            "action": "Click",
             "onElement": "//div[./strong[contains(.,'Random Element.')]]"
           }
         ]

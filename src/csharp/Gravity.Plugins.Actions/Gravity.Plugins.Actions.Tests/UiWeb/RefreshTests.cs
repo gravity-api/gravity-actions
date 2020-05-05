@@ -3,13 +3,13 @@
  * 
  * online resources
  */
-using Gravity.Plugins.Actions.Contracts;
-using Gravity.Plugins.Actions.UnitTests.Base;
+using Gravity.UnitTests.Base;
 using Gravity.Plugins.Actions.UiWeb;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Gravity.Plugins.Actions.Contracts;
 
 #pragma warning disable S4144
-namespace Gravity.Plugins.Actions.UnitTests.UiWeb
+namespace Gravity.UnitTests.UiWeb
 {
     [TestClass]
     public class RefreshTests : ActionTests
@@ -18,13 +18,13 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         [TestInitialize]
         public void Setup()
         {
-            Automation.EngineConfiguration.PageLoadTimeout = 15000;
+            Automation.EngineConfiguration.LoadTimeout = 15000;
         }
 
         [TestCleanup]
         public void Cleanup()
         {
-            Automation.EngineConfiguration.PageLoadTimeout = 100;
+            Automation.EngineConfiguration.LoadTimeout = 100;
         }
         #endregion
 
@@ -38,14 +38,14 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         [TestMethod]
         public void RefreshDocumentation()
         {
-            AssertDocumentation<Refresh>(pluginName: WebPlugins.Refresh);
+            AssertDocumentation<Refresh>(pluginName: PluginsList.Refresh);
         }
 
         [TestMethod]
         public void RefreshDocumentationResourceFile()
         {
             AssertDocumentation<Refresh>(
-                pluginName: WebPlugins.Refresh,
+                pluginName: PluginsList.Refresh,
                 resource: "refresh.json");
         }
         #endregion

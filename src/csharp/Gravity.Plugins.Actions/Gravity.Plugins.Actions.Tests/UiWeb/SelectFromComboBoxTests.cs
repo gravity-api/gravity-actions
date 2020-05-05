@@ -3,16 +3,16 @@
  * 
  * online resources
  */
-using Gravity.Plugins.Actions.Contracts;
-using Gravity.Plugins.Actions.UnitTests.Base;
+using Gravity.UnitTests.Base;
 using Gravity.Plugins.Actions.UiWeb;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Mock;
 using System;
+using Gravity.Plugins.Actions.Contracts;
 
 #pragma warning disable S4144
-namespace Gravity.Plugins.Actions.UnitTests.UiWeb
+namespace Gravity.UnitTests.UiWeb
 {
     [TestClass]
     public class SelectFromComboBoxTests : ActionTests
@@ -28,14 +28,14 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         public void SelectFromComboBoxDocumentation()
         {
             AssertDocumentation<SelectFromComboBox>(
-                pluginName: WebPlugins.SelectFromComboBox);
+                pluginName: PluginsList.SelectFromComboBox);
         }
 
         [TestMethod]
         public void SelectFromComboBoxDocumentationResourceFile()
         {
             AssertDocumentation<SelectFromComboBox>(
-                pluginName: WebPlugins.SelectFromComboBox,
+                pluginName: PluginsList.SelectFromComboBox,
                 resource: "select_from_combo_box.json");
         }
         #endregion

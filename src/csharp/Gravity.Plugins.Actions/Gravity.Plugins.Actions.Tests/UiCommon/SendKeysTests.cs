@@ -5,7 +5,7 @@
  */
 using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Actions.UiCommon;
-using Gravity.Plugins.Actions.UnitTests.Base;
+using Gravity.UnitTests.Base;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Mock;
@@ -14,7 +14,7 @@ using OpenQA.Selenium.Mock;
 using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
 
 #pragma warning disable S4144
-namespace Gravity.Plugins.Actions.UnitTests.UiCommon
+namespace Gravity.UnitTests.UiCommon
 {
     [TestClass]
     public class SendKeysTests : ActionTests
@@ -30,14 +30,14 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         public void SendKeysDocumentation()
         {
             AssertDocumentation<SendKeys>(
-                pluginName: CommonPlugins.SendKeys);
+                pluginName: PluginsList.SendKeys);
         }
 
         [TestMethod]
         public void SendKeysDocumentationResourceFile()
         {
             AssertDocumentation<SendKeys>(
-                pluginName: CommonPlugins.SendKeys,
+                pluginName: PluginsList.SendKeys,
                 resource: "send_keys.json");
         }
         #endregion

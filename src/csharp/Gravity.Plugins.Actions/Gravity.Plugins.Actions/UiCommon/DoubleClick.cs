@@ -9,7 +9,7 @@
  *    - modify: add constructor to override base class types
  *
  * 2019-01-11
- *    - modify: override action-name using ActionType constant
+ *    - modify: override action-name using action constant
  *    
  * 2019-01-03
  *    - modify: add support for double_click without specified element (flat action)
@@ -17,7 +17,6 @@
  *
  * online resources
  */
-using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Actions.Extensions;
 using Gravity.Plugins.Attributes;
 using Gravity.Plugins.Base;
@@ -32,7 +31,7 @@ namespace Gravity.Plugins.Actions.UiCommon
     [Plugin(
         assembly: "Gravity.Plugins.Actions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
         resource: "Gravity.Plugins.Actions.Documentation.double_click.json",
-        Name = CommonPlugins.DoubleClick)]
+        Name = Contracts.PluginsList.DoubleClick)]
     public class DoubleClick : WebDriverActionPlugin
     {
         // members: state

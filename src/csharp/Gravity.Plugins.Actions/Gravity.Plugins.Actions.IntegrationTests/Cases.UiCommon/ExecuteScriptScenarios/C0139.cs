@@ -13,12 +13,12 @@
 * [2] verify {attribute} on {click_outcome} using {id} match {click on element}
 */
 #pragma warning restore
+using Gravity.IntegrationTests.Base;
 using Gravity.Plugins.Actions.Contracts;
-using Gravity.Plugins.Actions.IntegrationTests.Base;
 using Gravity.Plugins.Contracts;
 using System.Collections.Generic;
 
-namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.ExecuteScriptScenarios
+namespace Gravity.IntegrationTests.Cases.UiCommon.ExecuteScriptScenarios
 {
     public class C0139 : TestCase
     {
@@ -32,10 +32,10 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.ExecuteScriptS
             {
                 new ActionRule
                 {
-                    ActionType = CommonPlugins.ExecuteScript,
+                    Action = PluginsList.ExecuteScript,
                     Argument = "{arguments[0].click();}",
                     OnElement = condition,
-                    Locator = LocatorType.Id
+                    Locator = LocatorsList.Id
                 },
                 SharedSteps.AssertClickOutcome(expectedPattern: "click on element")
             };

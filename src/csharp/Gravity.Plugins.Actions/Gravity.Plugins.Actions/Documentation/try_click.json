@@ -5,7 +5,7 @@
       "description": "Clicks the mouse on the specified element.",
       "literalExample": "try click on {//main/p/a}",
       "actionExample": {
-        "actionType": "TryClick",
+        "action": "TryClick",
         "onElement": "//main/p/a"
       }
     }

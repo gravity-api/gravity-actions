@@ -16,14 +16,14 @@ namespace Gravity.Plugins.UnitTests.Engine
             {
                 new Entity
                 {
-                    EntityContent = new Dictionary<string, object>
+                    Content = new Dictionary<string, object>
                     {
                         ["boolean"] = true
                     }
                 },
                 new Entity
                 {
-                    EntityContent = new Dictionary<string, object>
+                    Content = new Dictionary<string, object>
                     {
                         ["boolean"] = true,
                         ["string"] = "value1"
@@ -31,7 +31,7 @@ namespace Gravity.Plugins.UnitTests.Engine
                 },
                 new Entity
                 {
-                    EntityContent = new Dictionary<string, object>
+                    Content = new Dictionary<string, object>
                     {
                         ["boolean"] = true,
                         ["string"] = "value1",
@@ -40,7 +40,7 @@ namespace Gravity.Plugins.UnitTests.Engine
                 },
                 new Entity
                 {
-                    EntityContent = new Dictionary<string, object>
+                    Content = new Dictionary<string, object>
                     {
                         ["boolean"] = true,
                         ["string"] = "value1",
@@ -50,7 +50,7 @@ namespace Gravity.Plugins.UnitTests.Engine
                 },
                 new Entity
                 {
-                    EntityContent = new Dictionary<string, object>
+                    Content = new Dictionary<string, object>
                     {
                         ["boolean"] = false,
                         ["string"] = "value2",

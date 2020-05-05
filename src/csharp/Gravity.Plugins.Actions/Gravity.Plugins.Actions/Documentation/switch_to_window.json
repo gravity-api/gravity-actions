@@ -5,7 +5,7 @@
       "description": "Select the 4th tab/window of the current browser.",
       "literalExample": "switch to window {3}",
       "actionExample": {
-        "actionType": "SwitchToWindow",
+        "action": "SwitchToWindow",
         "argument": "3"
       }
     }

@@ -9,11 +9,10 @@
  * 
  * 2019-01-12
  *    - modify: improve XML comments
- *    - modify: override action-name using ActionType constant
+ *    - modify: override action-name using action constant
  *    
  * online resources
  */
-using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Actions.Extensions;
 using Gravity.Plugins.Attributes;
 using Gravity.Plugins.Base;
@@ -30,7 +29,7 @@ namespace Gravity.Plugins.Actions.UiCommon
     [Plugin(
         assembly: "Gravity.Plugins.Actions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
         resource: "Gravity.Plugins.Actions.Documentation.get_screenshot.json",
-        Name = CommonPlugins.GetScreenshot)]
+        Name = Contracts.PluginsList.GetScreenshot)]
     public class GetScreenshot : WebDriverActionPlugin
     {
         #region *** constructors ***
@@ -78,7 +77,7 @@ namespace Gravity.Plugins.Actions.UiCommon
             // take from element
             else
             {
-                var timeout = TimeSpan.FromMilliseconds(Automation.EngineConfiguration.ElementSearchingTimeout);
+                var timeout = TimeSpan.FromMilliseconds(Automation.EngineConfiguration.SearchTimeout);
                 var e = element != default
                     ? element.GetElement(ByFactory, action, timeout)
                     : WebDriver.GetElement(ByFactory, action, timeout);
@@ -130,7 +129,7 @@ namespace Gravity.Plugins.Actions.UiCommon
             {
                 ["screenshot"] = file
             };
-            var imageEntity = new Entity { EntityContent = imageEntry };
+            var imageEntity = new Entity { Content = imageEntry };
 
             // create an extraction entity
             var imageExtraction = new Extraction().GetDefault(WebDriver?.GetSession()?.ToString());

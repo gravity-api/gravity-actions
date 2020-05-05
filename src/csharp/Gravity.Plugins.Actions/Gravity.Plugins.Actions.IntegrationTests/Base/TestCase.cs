@@ -3,26 +3,25 @@
  * 
  * online resources
  */
+using Gravity.Abstraction.Contracts;
 using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Contracts;
 using Gravity.Plugins.Engine;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using Gravity.Abstraction.Contracts;
-using Newtonsoft.Json.Linq;
-using OpenQA.Selenium;
 
-using TestContext = NUnit.Framework.TestContext;
-using DescriptionAttribute = System.ComponentModel.DescriptionAttribute;
 using Assert = NUnit.Framework.Assert;
+using DescriptionAttribute = System.ComponentModel.DescriptionAttribute;
+using TestContext = NUnit.Framework.TestContext;
 
-namespace Gravity.Plugins.Actions.IntegrationTests.Base
+namespace Gravity.IntegrationTests.Base
 {
     [DeploymentItem("Resources/license.lcn")]
     public abstract class TestCase
@@ -83,8 +82,8 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
             // configuration
             var configuration = new EngineConfiguration
             {
-                PageLoadTimeout = pageLoadTimeout,
-                ElementSearchingTimeout = elementSearchingTimeout
+                LoadTimeout = pageLoadTimeout,
+                SearchTimeout = elementSearchingTimeout
             };
 
             // authentication
@@ -163,7 +162,7 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
                 ["build"] = $"{TestContext.Parameters["Build.Number"]}",
                 ["name"] = testName,
                 ["browserstack.ie.enablePopups"] = true,
-                //["browserstack.selenium_version"] = "4.0.0-alpha-2"
+                ["browserstack.selenium_version"] = "3.141.59"
             };
             foreach (var capability in ((JObject)capabilities["bstack:options"]).ToObject<IDictionary<string, object>>())
             {
@@ -251,20 +250,20 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
             string applicationUnderTest)
         {
             // setup
-            var _actions = new List<ActionRule>
+            var onActions = new List<ActionRule>
             {
-                new ActionRule { ActionType = WebPlugins.GoToUrl, Argument = applicationUnderTest }
+                new ActionRule { Action = PluginsList.GoToUrl, Argument = applicationUnderTest }
             };
 
             // append
             foreach (var action in actions)
             {
-                _actions.Add(action);
+                onActions.Add(action);
             }
-            _actions.Add(new ActionRule { ActionType = CommonPlugins.CloseBrowser });
+            onActions.Add(new ActionRule { Action = PluginsList.CloseBrowser });
 
             // apply
-            webAutomation.Actions = _actions;
+            webAutomation.Actions = onActions;
             webAutomation.Extractions = extractions;
 
             // results
@@ -290,7 +289,7 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
         private static T DoGetActual<T>(OrbitResponse response, string key) => (T)response
             .Extractions
             .SelectMany(i => i.Entities)
-            .SelectMany(i => i.EntityContent)
+            .SelectMany(i => i.Content)
             .First(i => i.Key == key)
             .Value;
 
@@ -299,20 +298,19 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
             return responses
                 .SelectMany(i => i.Extractions)
                 .SelectMany(i => i.Entities)
-                .SelectMany(i => i.EntityContent)
+                .SelectMany(i => i.Content)
                 .Where(i => i.Key == "evaluation")
                 .All(i => (bool)i.Value);
         }
 
-        public static void AssertInconclusive(IEnumerable< OrbitResponse> responses)
+        public static void AssertInconclusive(IEnumerable<OrbitResponse> responses)
         {
-            // assert
-            var isWebDriverException = responses
-                .SelectMany(i => i.OrbitRequest.Exceptions)
-                .Any(i => i.Exception is WebDriverException);
+            var isEvaluation = responses
+                .SelectMany(i => i.Extractions)
+                .All(i => i.Entities.SelectMany(i => i.Content).Any(i => i.Key == "evaluation"));
 
             // exit condition
-            if (!isWebDriverException)
+            if (isEvaluation)
             {
                 return;
             }
@@ -443,18 +441,35 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
             // web automation
             var actions = GetActions(environment);
             var extractions = GetExtractions(environment);
-            var webAutomation = GetWebAutomation(driver, capabilities);
-            webAutomation = AddWebActions(
-                webAutomation, actions, extractions, ApplicationUnderTest);
+            var automation = GetWebAutomation(driver, capabilities);
+            automation = AddWebActions(automation, actions, extractions, ApplicationUnderTest);
+
+            // plugin
+            BeforeExecute(automation);
 
             // execute
-            var response = ExecuteWebAutomation(webAutomation, environment);
+            var responses = ExecuteWebAutomation(automation, environment);
+
+            // update results
+            bool actual = OnAutomationTest(environment, responses);
 
             // is inconclusive
-            AssertInconclusive(response);
+            if (!actual)
+            {
+                AssertInconclusive(responses);
+            }
 
             // user plugin
-            return OnAutomationTest(environment, response);
+            return actual;
+        }
+
+        /// <summary>
+        /// Implements logic to <see cref="WebAutomation"/> object, before executing.
+        /// </summary>
+        /// <param name="automation">This <see cref="WebAutomation"/> object.</param>
+        public virtual void BeforeExecute(WebAutomation automation)
+        {
+            TestContext.WriteLine($"no before_execute implementation for [{GetType().Name}]");
         }
 
         /// <summary>

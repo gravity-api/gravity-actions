@@ -5,14 +5,14 @@
  */
 using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Actions.UiWeb;
-using Gravity.Plugins.Actions.UnitTests.Base;
+using Gravity.UnitTests.Base;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Mock;
 using System;
 
 #pragma warning disable S4144
-namespace Gravity.Plugins.Actions.UnitTests.UiWeb
+namespace Gravity.UnitTests.UiWeb
 {
     [TestClass]
     public class UploadFileTests : ActionTests
@@ -27,14 +27,14 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         [TestMethod]
         public void UploadFileDocumentation()
         {
-            AssertDocumentation<UploadFile>(pluginName: WebPlugins.UploadFile);
+            AssertDocumentation<UploadFile>(pluginName: PluginsList.UploadFile);
         }
 
         [TestMethod]
         public void UploadFileDocumentationResourceFile()
         {
             AssertDocumentation<UploadFile>(
-                pluginName: WebPlugins.UploadFile,
+                pluginName: PluginsList.UploadFile,
                 resource: "upload_file.json");
         }
         #endregion

@@ -5,17 +5,17 @@
       "description": "Saves a web driver screenshot as [page.png] (you can use different format, see below) to the given path (whole page - not including address bar).",
       "literalExample": "get screenshot {C:\\my-images\\page.png}",
       "actionExample": {
-        "actionType": "GetScreenshot",
-        "argument": "C:\\my-images\\page.png"
+        "action": "GetScreenshot",
+        "argument": "GetScreenshot/image.png"
       }
     },
     {
       "description": "Saves a web element screenshot as [element.bmp] to the given path (you can use different format, see below).",
       "literalExample": "get screenshot {C:\\my-images\\element.bmp} on {//h2}",
       "actionExample": {
-        "actionType": "GetScreenshot",
-        "argument": "C:\\my-images\\page.bmp",
-        "onElement": "//h2"
+        "action": "GetScreenshot",
+        "argument": "GetScreenshot/image.png",
+        "onElement": "//div[@class='jumbotron']"
       }
     }
   ],

@@ -3,9 +3,8 @@
  * 
  * online resources
  */
-using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Actions.UiCommon;
-using Gravity.Plugins.Actions.UnitTests.Base;
+using Gravity.UnitTests.Base;
 using Gravity.Plugins.Contracts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
@@ -14,9 +13,10 @@ using System;
 using System.Text.RegularExpressions;
 
 using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
+using Gravity.Plugins.Actions.Contracts;
 
 #pragma warning disable S4144
-namespace Gravity.Plugins.Actions.UnitTests.UiCommon
+namespace Gravity.UnitTests.UiCommon
 {
     [TestClass]
     [DoNotParallelize]
@@ -33,14 +33,14 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         public void RegisterParameterDocumentation()
         {
             AssertDocumentation<RegisterParameter>(
-                pluginName: CommonPlugins.RegisterParameter);
+                pluginName: PluginsList.RegisterParameter);
         }
 
         [TestMethod]
         public void RegisterParameterDocumentationResourceFile()
         {
             AssertDocumentation<RegisterParameter>(
-                pluginName: CommonPlugins.RegisterParameter,
+                pluginName: PluginsList.RegisterParameter,
                 resource: "register_parameter.json");
         }
         #endregion

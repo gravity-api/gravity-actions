@@ -9,7 +9,7 @@
       "description": "Wait for [//main/p/a] to be exist in the DOM or until [ElementSearchTimeout] reached.",
       "literalExample": "wait for element on {//main/p/a}",
       "actionExample": {
-        "actionType": "WaitForElement",
+        "action": "WaitForElement",
         "onElement": "//main/p/a"
       }
     },
@@ -17,7 +17,7 @@
       "description": "Wait for [//main/p/a] to be exist in the DOM and displayed or until [ElementSearchTimeout] reached.",
       "literalExample": "wait for element {{$ --until:visible}} on {//main/p/a}",
       "actionExample": {
-        "actionType": "",
+        "action": "",
         "argument": "{{$ --until:visible}}",
         "onElement": "//main/p/a"
       }
@@ -26,7 +26,7 @@
       "description": "Wait for [//main/p/a] to be stale (StaleElementReferenceException is thrown) or until [5000ms] timeout reached.",
       "literalExample": "wait for element {{$ --until:stale --timeout:5000}} on {//main/p/a}",
       "actionExample": {
-        "actionType": "WaitForElement",
+        "action": "WaitForElement",
         "argument": "{{$ --until:stale --timeout:5000}}",
         "onElement": "//main/p/a"
       }
@@ -35,7 +35,7 @@
       "description": "Wait for [//main/p/a] to be exist in the DOM, displayed and enabled or until [1min] timeout reached.",
       "literalExample": "wait for element {{$ --until:enabled --timeout:00:01:00}} on {//main/p/a}",
       "actionExample": {
-        "actionType": "WaitForElement",
+        "action": "WaitForElement",
         "argument": "{{$ --until:enabled --timeout:00:01:00}}",
         "onElement": "//main/p/a"
       }
@@ -44,7 +44,7 @@
       "description": "Wait for [//main/p/a] to be exist in the DOM but not displayed or until 1min timeout reached.",
       "literalExample": "wait for element {{$ --until:hidden --timeout:00:01:00}} on {//main/p/a}",
       "actionExample": {
-        "actionType": "WaitForElement",
+        "action": "WaitForElement",
         "argument": "{{$ --until:hidden --timeout:00:01:00}}",
         "onElement": "//main/p/a"
       }
@@ -53,7 +53,7 @@
       "description": "Wait for [//main/p/a] to be exist in the DOM and it's @name attribute to match [Create] or until [1min] timeout reached.",
       "literalExample": "wait for element {{$ --until:attribute --timeout:00:01:00}} on {//main/p/a}",
       "actionExample": {
-        "actionType": "WaitForElement",
+        "action": "WaitForElement",
         "argument": "{{$ --until:attribute --timeout:00:01:00}}",
         "onElement": "//main/p/a",
         "onAttribute": "href",
@@ -64,7 +64,7 @@
       "description": "Wait for [//main/p/a] to be exist in the DOM and it's inner text to match [Create] or until [1min] timeout reached.",
       "literalExample": "wait for element {{$ --until:text --timeout:00:01:00}} on {//main/p/a}",
       "actionExample": {
-        "actionType": "WaitForElement",
+        "action": "WaitForElement",
         "argument": "{{$ --until:text --timeout:00:01:00}}",
         "onElement": "//main/p/a",
         "regularExpression": "Create"
@@ -74,7 +74,7 @@
       "description": "Wait for [//main/p/a] to not exists in the DOM (NoSuchElementException is thrown) or until [5000ms] timeout reached.",
       "literalExample": "wait for element {{$ --until:notexists --timeout:5000}} on {//main/p/a}",
       "actionExample": {
-        "actionType": "WaitForElement",
+        "action": "WaitForElement",
         "argument": "{{$ --until:notexists --timeout:5000}}",
         "onElement": "//main/p/a"
       }

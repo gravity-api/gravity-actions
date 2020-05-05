@@ -3,9 +3,8 @@
  * 
  * online resources
  */
-using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Actions.UiWeb;
-using Gravity.Plugins.Actions.UnitTests.Base;
+using Gravity.UnitTests.Base;
 using Gravity.Plugins.Contracts;
 using Gravity.Plugins.Extensions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -17,9 +16,10 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
+using Gravity.Plugins.Actions.Contracts;
 
 #pragma warning disable S4144
-namespace Gravity.Plugins.Actions.UnitTests.UiWeb
+namespace Gravity.UnitTests.UiWeb
 {
     [TestClass]
     [DoNotParallelize]
@@ -99,14 +99,14 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         public void ExtractDataDocumentation()
         {
             AssertDocumentation<ExtractFromSource>(
-                pluginName: WebPlugins.ExtractFromSource);
+                pluginName: PluginsList.ExtractFromSource);
         }
 
         [TestMethod]
         public void ExtractDataDocumentationResourceFile()
         {
             AssertDocumentation<ExtractFromSource>(
-                pluginName: WebPlugins.ExtractFromSource,
+                pluginName: PluginsList.ExtractFromSource,
                 resource: "extract_from_source.json");
         }
         #endregion
@@ -826,7 +826,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
             var isData = plugin.Extractions
                 .First()
                 .Entities
-                .All(i => Regex.IsMatch($"{i.EntityContent["data"]}", expected));
+                .All(i => Regex.IsMatch($"{i.Content["data"]}", expected));
 
             // assertion
             return isCount && isData;

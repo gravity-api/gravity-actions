@@ -5,15 +5,15 @@
  */
 using OpenQA.Selenium.Mock;
 using Gravity.Plugins.Actions.UiCommon;
-using Gravity.Plugins.Actions.UnitTests.Base;
+using Gravity.UnitTests.Base;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
-using Gravity.Plugins.Actions.Contracts;
 
 using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
+using Gravity.Plugins.Actions.Contracts;
 
 #pragma warning disable S4144
-namespace Gravity.Plugins.Actions.UnitTests.UiCommon
+namespace Gravity.UnitTests.UiCommon
 {
     [TestClass]
     public class ExecuteScriptTests : ActionTests
@@ -29,14 +29,14 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         public void ExecuteScriptDocumentation()
         {
             AssertDocumentation<ExecuteScript>(
-                pluginName: CommonPlugins.ExecuteScript);
+                pluginName: PluginsList.ExecuteScript);
         }
 
         [TestMethod]
         public void ExecuteScriptDocumentationResourceFile()
         {
             AssertDocumentation<ExecuteScript>(
-                pluginName: CommonPlugins.ExecuteScript,
+                pluginName: PluginsList.ExecuteScript,
                 resource: "execute_script.json");
         }
         #endregion

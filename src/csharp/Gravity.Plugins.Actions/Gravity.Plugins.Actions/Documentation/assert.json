@@ -26,7 +26,7 @@
       "description": "Asserts that [class] attribute of an element equals [nav-link text-dark].",
       "literalExample": "assert {{$ --attribute --eq:btn btn-default}} from {class} on {ul > li:nth-child(1) > a} using {css selector}",
       "actionExample": {
-        "actionType": "Assert",
+        "action": "Assert",
         "argument": "{{$ --attribute --eq:nav-link text-dark}}",
         "onElement": "ul > li:nth-child(1) > a",
         "locator": "CssSelector",
@@ -37,7 +37,7 @@
       "description": "Asserts that [class] attribute of an element not equals [btn-default btn].",
       "literalExample": "assert {{$ --attribute --ne:btn btn-default}} from {class} on {ul > li:nth-child(1) > a} using {css selector}",
       "actionExample": {
-        "actionType": "Assert",
+        "action": "Assert",
         "argument": "{{$ --attribute --ne:btn-default btn}}",
         "onElement": "p:nth-child(3) > a",
         "locator": "CssSelector",
@@ -48,7 +48,7 @@
       "description": "Asserts that [class] attribute of an element matches [^btn btn-default$].",
       "literalExample": "assert {{$ --attribute --match:^btn btn-default$}} from {class} on {See the tutorial »} using {link text}",
       "actionExample": {
-        "actionType": "Assert",
+        "action": "Assert",
         "argument": "{{$ --attribute --match:^btn btn-default$}}",
         "onElement": "See the tutorial »",
         "locator": "LinkText",
@@ -59,7 +59,7 @@
       "description": "Asserts that [class] attribute of an element not match [^btn-default btn$].",
       "literalExample": "assert {{$ --attribute --not_match:^btn-default btn$}} from {class} on {See the tutorial »} using {link text}",
       "actionExample": {
-        "actionType": "Assert",
+        "action": "Assert",
         "argument": "{{$ --attribute --not_match:^btn-default btn$}}",
         "onElement": "See the tutorial »",
         "locator": "LinkText",
@@ -70,7 +70,7 @@
       "description": "Asserts that [number] attribute of an element is greater than [1].",
       "literalExample": "assert {{$ --attribute --gt:1}} from {number} on {#attribute_div} using {css selector}",
       "actionExample": {
-        "actionType": "Assert",
+        "action": "Assert",
         "argument": "{{$ --attribute --gt:1}}",
         "onElement": "#attribute_div",
         "locator": "CssSelector",
@@ -81,7 +81,7 @@
       "description": "Asserts that [number] attribute of an element is lower than [1].",
       "literalExample": "assert {{$ --attribute --lt:1}} from {number} on {#attribute_div} using {css selector}",
       "actionExample": {
-        "actionType": "Assert",
+        "action": "Assert",
         "argument": "{{$ --attribute --lt:1}}",
         "onElement": "#attribute_div",
         "locator": "CssSelector",
@@ -92,7 +92,7 @@
       "description": "Asserts that [number] attribute of an element is greater or equal than [1].",
       "literalExample": "assert {{$ --attribute --ge:1}} from {number} on {#attribute_div} using {css selector}",
       "actionExample": {
-        "actionType": "Assert",
+        "action": "Assert",
         "argument": "{{$ --attribute --ge:1}}",
         "onElement": "#attribute_div",
         "locator": "CssSelector",
@@ -103,7 +103,7 @@
       "description": "Asserts that [number] attribute of an element is lower or equal than [1].",
       "literalExample": "assert {{$ --attribute --le:1}} from {number} on {#attribute_div} using {css selector}",
       "actionExample": {
-        "actionType": "Assert",
+        "action": "Assert",
         "argument": "{{$ --attribute --le:1}}",
         "onElement": "#attribute_div",
         "locator": "CssSelector",
@@ -114,7 +114,7 @@
       "description": "Asserts that [//tbody/tr] elements count equals [7].",
       "literalExample": "assert {{$ --count --eq:7}} on {//tbody/tr}",
       "actionExample": {
-        "actionType": "Assert",
+        "action": "Assert",
         "argument": "{{$ --count --eq:7}}",
         "onElement": "//tbody/tr"
       }
@@ -123,7 +123,7 @@
       "description": "Asserts that [//tbody/tr] elements count not equals [10].",
       "literalExample": "assert {{$ --count --ne:10}} on {//tbody/tr}",
       "actionExample": {
-        "actionType": "Assert",
+        "action": "Assert",
         "argument": "{{$ --count --ne:10}}",
         "onElement": "//tbody/tr"
       }
@@ -132,7 +132,7 @@
       "description": "Asserts that [//tbody/tr] elements count matches [^\\d{1}$].",
       "literalExample": "assert {{$ --count --match:^\\d{1}$}} on {//tbody/tr}",
       "actionExample": {
-        "actionType": "Assert",
+        "action": "Assert",
         "argument": "{{$ --count --match:^\\d{1}$}}",
         "onElement": "//tbody/tr"
       }
@@ -141,7 +141,7 @@
       "description": "Asserts that [//tbody/tr] elements count not match [^1\\d+$].",
       "literalExample": "assert {{$ --count --not_match:^1\\d+$}} on {//tbody/tr}",
       "actionExample": {
-        "actionType": "Assert",
+        "action": "Assert",
         "argument": "{{$ --count --not_match:^1\\d+$}}",
         "onElement": "//tbody/tr"
       }
@@ -150,7 +150,7 @@
       "description": "Asserts that [//tbody/tr] elements count is greater than [1].",
       "literalExample": "assert {{$ --count --gt:1}} on {//tbody/tr}",
       "actionExample": {
-        "actionType": "Assert",
+        "action": "Assert",
         "argument": "{{$ --count --gt:1}}",
         "onElement": "//tbody/tr"
       }
@@ -159,7 +159,7 @@
       "description": "Asserts that [//tbody/tr] elements count is lower than [10].",
       "literalExample": "assert {{$ --count --lt:10}} on {//tbody/tr}",
       "actionExample": {
-        "actionType": "Assert",
+        "action": "Assert",
         "argument": "{{$ --count --lt:10}}",
         "onElement": "//tbody/tr"
       }
@@ -168,7 +168,7 @@
       "description": "Asserts that [//tbody/tr] elements count is greater or equal than [1].",
       "literalExample": "assert {{$ --count --ge:1}} on {//tbody/tr}",
       "actionExample": {
-        "actionType": "Assert",
+        "action": "Assert",
         "argument": "{{$ --count --ge:1}}",
         "onElement": "//tbody/tr"
       }
@@ -177,7 +177,7 @@
       "description": "Asserts that [//tbody/tr] elements count is lower or equal than [10].",
       "literalExample": "assert {{$ --count --le:1}} on {//tbody/tr}",
       "actionExample": {
-        "actionType": "Assert",
+        "action": "Assert",
         "argument": "{{$ --count --le:10}}",
         "onElement": "//tbody/tr"
       }
@@ -186,7 +186,7 @@
       "description": "Asserts that <input id=\"input_disabled\"> element is [disabled].",
       "literalExample": "assert {{$ --disabled}} on {input_disabled} using {id}",
       "actionExample": {
-        "actionType": "Assert",
+        "action": "Assert",
         "argument": "{{$ --disabled}}",
         "onElement": "input_disabled",
         "locator": "Id"
@@ -196,7 +196,7 @@
       "description": "Asserts that [IWebDriver.FullName] equals [OpenQA.Selenium.Remote.RemoteWebDriver].",
       "literalExample": "assert {{$ --driver --eq:OpenQA.Selenium.Remote.RemoteWebDriver}}",
       "actionExample": {
-        "actionType": "Assert",
+        "action": "Assert",
         "argument": "{{$ --driver --eq:OpenQA.Selenium.Remote.RemoteWebDriver}}"
       }
     },
@@ -204,7 +204,7 @@
       "description": "Asserts that [IWebDriver.FullName] not equals [OpenQA.Selenium.Chrome.ChromeDriver].",
       "literalExample": "assert {{$ --driver --ne:OpenQA.Selenium.Chrome.ChromeDriver}}",
       "actionExample": {
-        "actionType": "Assert",
+        "action": "Assert",
         "argument": "{{$ --driver --ne:OpenQA.Selenium.Chrome.ChromeDriver}}"
       }
     },
@@ -212,7 +212,7 @@
       "description": "Asserts that [IWebDriver.FullName] matches [RemoteWebDriver].",
       "literalExample": "assert {{$ --driver --match:RemoteWebDriver}}",
       "actionExample": {
-        "actionType": "Assert",
+        "action": "Assert",
         "argument": "{{$ --driver --match:RemoteWebDriver}}"
       }
     },
@@ -220,7 +220,7 @@
       "description": "Asserts that [IWebDriver.FullName] not match [ChromeDriver].",
       "literalExample": "assert {{$ --driver --not_match:ChromeDriver}}",
       "actionExample": {
-        "actionType": "Assert",
+        "action": "Assert",
         "argument": "{{$ --driver --not_match:ChromeDriver}}"
       }
     },
@@ -228,7 +228,7 @@
       "description": "Asserts that <input id=\"input_enabled\"> element is [enabled].",
       "literalExample": "assert {{$ --enabled}} on {input_enabled} using {id}",
       "actionExample": {
-        "actionType": "Assert",
+        "action": "Assert",
         "argument": "{{$ --enabled}}",
         "onElement": "input_enabled",
         "locator": "Id"
@@ -238,7 +238,7 @@
       "description": "Asserts that <input id=\"input_enabled\"> element is [exists].",
       "literalExample": "assert {{$ --exists}} on {input_enabled} using {id}",
       "actionExample": {
-        "actionType": "Assert",
+        "action": "Assert",
         "argument": "{{$ --exists}}",
         "onElement": "input_enabled",
         "locator": "Id"
@@ -248,7 +248,7 @@
       "description": "Asserts that <input id=\"input_hidden\"> element is [hidden].",
       "literalExample": "assert {{$ --hidden}} on {input_hidden} using {id}",
       "actionExample": {
-        "actionType": "Assert",
+        "action": "Assert",
         "argument": "{{$ --hidden}}",
         "onElement": "input_hidden",
         "locator": "Id"
@@ -258,7 +258,7 @@
       "description": "Asserts that <input id=\"no_element\"> element is [not_exists].",
       "literalExample": "assert {{$ --hidden}} on {input_hidden} using {id}",
       "actionExample": {
-        "actionType": "Assert",
+        "action": "Assert",
         "argument": "{{$ --not_exists}}",
         "onElement": "no_element",
         "locator": "Id"
@@ -268,7 +268,7 @@
       "description": "Asserts that <input id=\"input_selected\"> element is [selected].",
       "literalExample": "assert {{$ --selected}} on {input_selected} using {id}",
       "actionExample": {
-        "actionType": "Assert",
+        "action": "Assert",
         "argument": "{{$ --selected}}",
         "onElement": "input_selected",
         "locator": "Id"
@@ -278,7 +278,7 @@
       "description": "Asserts that <input id=\"input_not_selected\"> element is [not selected].",
       "literalExample": "assert {{$ --not_selected}} on {input_not_selected} using {id}",
       "actionExample": {
-        "actionType": "Assert",
+        "action": "Assert",
         "argument": "{{$ --not_selected}}",
         "onElement": "input_not_selected",
         "locator": "Id"
@@ -288,7 +288,7 @@
       "description": "Asserts that <div id=\"for_stale_element\"> element is [stale].",
       "literalExample": "assert {{$ --stale}} on {input_selected} using {id}",
       "actionExample": {
-        "actionType": "Assert",
+        "action": "Assert",
         "argument": "{{$ --stale}}",
         "onElement": "for_stale_element",
         "locator": "Id"
@@ -298,7 +298,7 @@
       "description": "Asserts that [text for testing] inner text equals [Foo Bar].",
       "literalExample": "assert {{$ --text --eq:Foo Bar}} on {text for testing} using {name}",
       "actionExample": {
-        "actionType": "Assert",
+        "action": "Assert",
         "argument": "{{$ --text --eq:Foo Bar}}",
         "onElement": "text for testing",
         "locator": "Name"
@@ -308,7 +308,7 @@
       "description": "Asserts that [text for testing] inner text not equals [Bar Foo].",
       "literalExample": "assert {{$ --text --ne:Bar Foo}} on {text for testing} using {name}",
       "actionExample": {
-        "actionType": "Assert",
+        "action": "Assert",
         "argument": "{{$ --text --ne:Bar Foo}}",
         "onElement": "text for testing",
         "locator": "Name"
@@ -318,7 +318,7 @@
       "description": "Asserts that [text for testing] inner text matches [^Foo Bar$].",
       "literalExample": "assert {{$ --text --match:^Foo Bar$}} on {text for testing} using {name}",
       "actionExample": {
-        "actionType": "Assert",
+        "action": "Assert",
         "argument": "{{$ --text --match:^Foo Bar$}}",
         "onElement": "text for testing",
         "locator": "Name"
@@ -328,7 +328,7 @@
       "description": "Asserts that [text for testing] inner text not match [^Bar Foo$].",
       "literalExample": "not supported by literal engine.",
       "actionExample": {
-        "actionType": "Assert",
+        "action": "Assert",
         "argument": "assert {{$ --text --not_match:^Bar Foo$}} on {text for testing} using {name}",
         "onElement": "text for testing",
         "locator": "Name"
@@ -338,7 +338,7 @@
       "description": "Asserts that [number for testing] inner text is greater than [1].",
       "literalExample": "assert {{$ --text --gt:1}} on {number for testing} using {name}",
       "actionExample": {
-        "actionType": "Assert",
+        "action": "Assert",
         "argument": "{{$ --text --gt:1}}",
         "onElement": "number for testing",
         "locator": "Name"
@@ -348,7 +348,7 @@
       "description": "Asserts that [number for testing] inner text is lower than [100].",
       "literalExample": "assert {{$ --text --lt:100}} on {number for testing} using {name}",
       "actionExample": {
-        "actionType": "Assert",
+        "action": "Assert",
         "argument": "{{$ --text --lt:100}}",
         "onElement": "number for testing",
         "locator": "Name"
@@ -358,7 +358,7 @@
       "description": "Asserts that [number for testing] inner text is greater or equal than [10].",
       "literalExample": "assert {{$ --text --ge:10}} on {number for testing} using {name}",
       "actionExample": {
-        "actionType": "Assert",
+        "action": "Assert",
         "argument": "{{$ --text --ge:10}}",
         "onElement": "number for testing",
         "locator": "Name"
@@ -368,7 +368,7 @@
       "description": "Asserts that [number for testing] inner text is lower or equal than [10].",
       "literalExample": "assert {{$ --text --ge:10}} on {number for testing} using {name}",
       "actionExample": {
-        "actionType": "Assert",
+        "action": "Assert",
         "argument": "{{$ --text --le:10}}",
         "onElement": "number for testing",
         "locator": "Name"
@@ -378,7 +378,7 @@
       "description": "Asserts that [IWebDriver.Title] equals [UI Controls v10 - Contoso].",
       "literalExample": "assert {{$ --title --eq:UI Controls v10 - Contoso University}}",
       "actionExample": {
-        "actionType": "Assert",
+        "action": "Assert",
         "argument": "{{$ --title --eq:UI Controls v10 - Contoso University}}"
       }
     },
@@ -386,7 +386,7 @@
       "description": "Asserts that [IWebDriver.Title] not equals [Contoso University - UI Controls v10].",
       "literalExample": "assert {{$ --title --ne:Contoso University - UI Controls v10}}",
       "actionExample": {
-        "actionType": "Assert",
+        "action": "Assert",
         "argument": "{{$ --title --ne:Contoso University - UI Controls v10}}"
       }
     },
@@ -394,7 +394,7 @@
       "description": "Asserts that [IWebDriver.Title] matches [^UI Controls].",
       "literalExample": "assert {{$ --title --match:^UI Controls}}",
       "actionExample": {
-        "actionType": "Assert",
+        "action": "Assert",
         "argument": "{{$ --title --match:^UI Controls}}"
       }
     },
@@ -402,7 +402,7 @@
       "description": "Asserts that [IWebDriver.Title] not match [UI Controls v10$].",
       "literalExample": "assert {{$ --title --not_match:UI Controls v10$}}",
       "actionExample": {
-        "actionType": "Assert",
+        "action": "Assert",
         "argument": "{{$ --title --not_match:UI Controls v10$}}"
       }
     },
@@ -410,7 +410,7 @@
       "description": "Assert that [IWebDriver.Title] filtered by [\\d+] regular expression, is greater than [1].",
       "literalExample": "assert {{$ --title --gt:1}} filter {\\d+}",
       "actionExample": {
-        "actionType": "Assert",
+        "action": "Assert",
         "argument": "{{$ --title --gt:1}}",
         "regularExpression": "\\d+"
       }
@@ -419,7 +419,7 @@
       "description": "Asserts that [IWebDriver.Title] filtered by [\\d+] regular expression, is lower than [100].",
       "literalExample": "assert {{$ --title --gt:100}} filter {\\d+}",
       "actionExample": {
-        "actionType": "Assert",
+        "action": "Assert",
         "argument": "{{$ --title --lt:100}}",
         "regularExpression": "\\d+"
       }
@@ -428,7 +428,7 @@
       "description": "Asserts that [IWebDriver.Title] filtered by [\\d+] regular expression is, greater or equal than [10].",
       "literalExample": "assert {{$ --title --ge:10}} filter {\\d+}",
       "actionExample": {
-        "actionType": "Assert",
+        "action": "Assert",
         "argument": "{{$ --title --ge:10}}",
         "regularExpression": "\\d+"
       }
@@ -437,7 +437,7 @@
       "description": "Asserts that [IWebDriver.Title] filtered by [\\d+] regular expression, is lower or equal than [10].",
       "literalExample": "assert {{$ --title --ge:10}} filter {\\d+}",
       "actionExample": {
-        "actionType": "Assert",
+        "action": "Assert",
         "argument": "{{$ --title --le:10}}",
         "regularExpression": "\\d+"
       }
@@ -446,7 +446,7 @@
       "description": "Asserts that [IWebDriver.Url] equals [https://gravitymvctestapplication.azurewebsites.net/course/].",
       "literalExample": "assert {{$ --url --eq:https://gravitymvctestapplication.azurewebsites.net/course/}}",
       "actionExample": {
-        "actionType": "Assert",
+        "action": "Assert",
         "argument": "{{$ --url --eq:https://gravitymvctestapplication.azurewebsites.net/course/}}"
       }
     },
@@ -454,7 +454,7 @@
       "description": "Asserts that [IWebDriver.Url] not equals [https://gravitymvctestapplication.azurewebsites.net/].",
       "literalExample": "assert {{$ --title --ne:https://gravitymvctestapplication.azurewebsites.net/}}",
       "actionExample": {
-        "actionType": "Assert",
+        "action": "Assert",
         "argument": "{{$ --url --ne:https://gravitymvctestapplication.azurewebsites.net/}}"
       }
     },
@@ -462,7 +462,7 @@
       "description": "Asserts that [IWebDriver.Url] matches [course/$].",
       "literalExample": "assert {{$ --url --match:course/$}}",
       "actionExample": {
-        "actionType": "Assert",
+        "action": "Assert",
         "argument": "{{$ --url --match:course/$}}"
       }
     },
@@ -470,7 +470,7 @@
       "description": "Asserts that [IWebDriver.Url] not match [^course/].",
       "literalExample": "assert {{$ --title --not_match:^course/}}",
       "actionExample": {
-        "actionType": "Assert",
+        "action": "Assert",
         "argument": "{{$ --url --not_match:^course/}}"
       }
     },
@@ -478,7 +478,7 @@
       "description": "Asserts that [IWebDriver.Url] filtered by [\\d+] regular expression, is greater than [1000].",
       "literalExample": "assert {{$ --title --gt:1000}} filter {\\d+}",
       "actionExample": {
-        "actionType": "Assert",
+        "action": "Assert",
         "argument": "{{$ --url --gt:1000}}",
         "regularExpression": "\\d+"
       }
@@ -487,7 +487,7 @@
       "description": "Asserts that [IWebDriver.Url] filtered by [\\d+] regular expression, is lower than [2000].",
       "literalExample": "assert {{$ --url --lt:2000}} filter {\\d+}",
       "actionExample": {
-        "actionType": "Assert",
+        "action": "Assert",
         "argument": "{{$ --url --lt:2000}}",
         "regularExpression": "\\d+"
       }
@@ -496,7 +496,7 @@
       "description": "Asserts that [IWebDriver.Url] filtered by [\\d+] regular expression, is greater or equal than [1045].",
       "literalExample": "assert {{$ --url --ge:1045}} filter {\\d+}",
       "actionExample": {
-        "actionType": "Assert",
+        "action": "Assert",
         "argument": "{{$ --url --ge:1045}}",
         "regularExpression": "\\d+"
       }
@@ -505,7 +505,7 @@
       "description": "Asserts that [IWebDriver.Url] filtered by [\\d+] regular expression, is lower or equal than [1045].",
       "literalExample": "assert {{$ --url --le:1045}} filter {\\d+}",
       "actionExample": {
-        "actionType": "Assert",
+        "action": "Assert",
         "argument": "{{$ --url --le:1045}}",
         "regularExpression": "\\d+"
       }
@@ -514,7 +514,7 @@
       "description": "Asserts that <input id=\"input_enabled\"> element is [visible].",
       "literalExample": "assert {{$ --visible}} on {input_enabled} using {id}",
       "actionExample": {
-        "actionType": "Assert",
+        "action": "Assert",
         "argument": "{{$ --visible}}",
         "onElement": "input_enabled",
         "locator": "Id"
@@ -524,7 +524,7 @@
       "description": "Asserts that [IWebDriver.WindowHandles] count equals [1].",
       "literalExample": "assert {{$ --windows_count --eq:1}}",
       "actionExample": {
-        "actionType": "Assert",
+        "action": "Assert",
         "argument": "{{$ --windows_count --eq:1}}"
       }
     },
@@ -532,7 +532,7 @@
       "description": "Asserts that [IWebDriver.WindowHandles] count not equals [0].",
       "literalExample": "assert {{$ --windows_count --ne:0}}",
       "actionExample": {
-        "actionType": "Assert",
+        "action": "Assert",
         "argument": "{{$ --windows_count --ne:0}}"
       }
     },
@@ -540,7 +540,7 @@
       "description": "Asserts that [IWebDriver.WindowHandles] count matches [\\d{1}].",
       "literalExample": "assert {{$ --windows_count --match:\\d{1}}}",
       "actionExample": {
-        "actionType": "Assert",
+        "action": "Assert",
         "argument": "{{$ --windows_count --match:\\d{1}}}"
       }
     },
@@ -548,7 +548,7 @@
       "description": "Asserts that [IWebDriver.WindowHandles] count not match [1\\d+].",
       "literalExample": "{{$ --windows_count --not_match:1\\d+}}",
       "actionExample": {
-        "actionType": "Assert",
+        "action": "Assert",
         "argument": "{{$ --windows_count --not_match:1\\d+}}"
       }
     },
@@ -556,7 +556,7 @@
       "description": "Asserts that [IWebDriver.WindowHandles] count is greater than [0].",
       "literalExample": "assert {{$ --windows_count --gt:0}}",
       "actionExample": {
-        "actionType": "Assert",
+        "action": "Assert",
         "argument": "{{$ --windows_count --gt:0}}"
       }
     },
@@ -564,7 +564,7 @@
       "description": "Asserts that [IWebDriver.WindowHandles] count is lower than [10].",
       "literalExample": "assert {{$ --windows_count --lt:10}}",
       "actionExample": {
-        "actionType": "Assert",
+        "action": "Assert",
         "argument": "{{$ --windows_count --lt:10}}"
       }
     },
@@ -572,7 +572,7 @@
       "description": "Asserts that [IWebDriver.WindowHandles] count is greater or equal than [1].",
       "literalExample": "assert {{$ --windows_count --ge:1}}",
       "actionExample": {
-        "actionType": "Assert",
+        "action": "Assert",
         "argument": "{{$ --windows_count --ge:1}}"
       }
     },
@@ -580,7 +580,7 @@
       "description": "Asserts that [IWebDriver.WindowHandles] count is lower or equal than [1].",
       "literalExample": "assert {{$ --windows_count --le:1}}",
       "actionExample": {
-        "actionType": "Assert",
+        "action": "Assert",
         "argument": "{{$ --windows_count --le:1}}"
       }
     }

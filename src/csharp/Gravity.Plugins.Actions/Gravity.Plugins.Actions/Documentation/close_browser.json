@@ -3,7 +3,7 @@
   "examples": [
     {
       "actionExample": {
-        "actionType": "CloseBrowser"
+        "action": "CloseBrowser"
       },
       "description": "Quits this driver, closing every associated window.",
       "literalExample": "close browser"

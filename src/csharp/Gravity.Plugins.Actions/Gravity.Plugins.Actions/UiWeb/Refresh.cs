@@ -6,12 +6,11 @@
  *    
  * 2019-01-12
  *    - modify: improve XML comments
- *    - modify: override ActionName using ActionType constant
+ *    - modify: override ActionName using action constant
  * 
  * online resources
  */
 using Gravity.Plugins.Actions.Components;
-using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Attributes;
 using Gravity.Plugins.Base;
 using Gravity.Plugins.Contracts;
@@ -24,7 +23,7 @@ namespace Gravity.Plugins.Actions.UiWeb
     [Plugin(
         assembly: "Gravity.Plugins.Actions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
         resource: "Gravity.Plugins.Actions.Documentation.refresh.json",
-        Name = WebPlugins.Refresh)]
+        Name = Contracts.PluginsList.Refresh)]
     public class Refresh : WebDriverActionPlugin
     {
         #region *** constructors ***
@@ -63,7 +62,7 @@ namespace Gravity.Plugins.Actions.UiWeb
             // setup
             var iterations = 1;
             var factory = new PageStateFactory();
-            var timout = TimeSpan.FromMilliseconds(Automation.EngineConfiguration.PageLoadTimeout);
+            var timout = TimeSpan.FromMilliseconds(Automation.EngineConfiguration.LoadTimeout);
             var wait = new WebDriverWait(WebDriver, timout);
             wait.IgnoreExceptionTypes(new[]
             {

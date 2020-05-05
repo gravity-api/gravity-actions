@@ -8,7 +8,7 @@
  *    - modify: fix a bug where close throws an exception when not implemented on server side
  *    
  * 2019-01-11
- *    - modify: override action-name using ActionType constant
+ *    - modify: override action-name using action constant
  *    
  * 2019-01-03
  *    - modify: use JSON resources
@@ -16,7 +16,6 @@
  *    
  * online resources
  */
-using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Attributes;
 using Gravity.Plugins.Base;
 using Gravity.Plugins.Contracts;
@@ -27,7 +26,7 @@ namespace Gravity.Plugins.Actions.UiCommon
     [Plugin(
         assembly: "Gravity.Plugins.Actions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
         resource: "Gravity.Plugins.Actions.Documentation.close_browser.json",
-        Name = CommonPlugins.CloseBrowser)]
+        Name = Contracts.PluginsList.CloseBrowser)]
     public class CloseBrowser : WebDriverActionPlugin
     {
         #region *** constructors ***

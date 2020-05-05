@@ -12,12 +12,12 @@
 * [1] verify {driver} not equal {OpenQA.Selenium.Remote.RemoteWebDriver}
 */
 #pragma warning restore
+using Gravity.IntegrationTests.Base;
 using Gravity.Plugins.Actions.Contracts;
-using Gravity.Plugins.Actions.IntegrationTests.Base;
 using Gravity.Plugins.Contracts;
 using System.Collections.Generic;
 
-namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.AssertScenarios
+namespace Gravity.IntegrationTests.Cases.UiCommon.AssertScenarios
 {
     public class C0020 : TestCase
     {
@@ -35,7 +35,7 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.AssertScenario
             {
                 new ActionRule
                 {
-                    ActionType = CommonPlugins.Assert,
+                    Action = PluginsList.Assert,
                     Argument = "{{$ --driver --ne:" + onDriver + "}}"
                 }
             };

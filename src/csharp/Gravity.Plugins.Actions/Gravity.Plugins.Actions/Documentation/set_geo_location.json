@@ -10,7 +10,7 @@
       "description": "Sets the current GEO location.",
       "literalExample": "set geo location as {{$ --lat:49 --lon:103 --alt:10}}",
       "actionExample": {
-        "actionType": "SetGeoLocation",
+        "action": "SetGeoLocation",
         "argument": "{{$ --lat:49 --lon:103 --alt:10}}"
       }
     }

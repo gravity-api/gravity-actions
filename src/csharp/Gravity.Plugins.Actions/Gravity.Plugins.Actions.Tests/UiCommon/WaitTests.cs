@@ -3,14 +3,14 @@
  * 
  * online resources
  */
-using Gravity.Plugins.Actions.UiCommon;
 using Gravity.Plugins.Actions.Contracts;
-using Gravity.Plugins.Actions.UnitTests.Base;
+using Gravity.Plugins.Actions.UiCommon;
+using Gravity.UnitTests.Base;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
 
 #pragma warning disable S4144
-namespace Gravity.Plugins.Actions.UnitTests.UiCommon
+namespace Gravity.UnitTests.UiCommon
 {
     [TestClass]
     public class WaitTests : ActionTests
@@ -36,14 +36,14 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         [TestMethod]
         public void WaitDocumentation()
         {
-            AssertDocumentation<Wait>(pluginName: CommonPlugins.Wait);
+            AssertDocumentation<Wait>(pluginName: PluginsList.Wait);
         }
 
         [TestMethod]
         public void WaitDocumentationResourceFile()
         {
             AssertDocumentation<Wait>(
-                pluginName: CommonPlugins.Wait,
+                pluginName: PluginsList.Wait,
                 resource: "Wait.json");
         }
         #endregion

@@ -13,12 +13,12 @@
 * [2] verify {attribute} on {input_enabled} from {value} using {id} match {foo bar}
 */
 #pragma warning restore
+using Gravity.IntegrationTests.Base;
 using Gravity.Plugins.Actions.Contracts;
-using Gravity.Plugins.Actions.IntegrationTests.Base;
 using Gravity.Plugins.Contracts;
 using System.Collections.Generic;
 
-namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.ExecuteScriptScenarios
+namespace Gravity.IntegrationTests.Cases.UiCommon.ExecuteScriptScenarios
 {
     public class C0138 : TestCase
     {
@@ -32,7 +32,7 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.ExecuteScriptS
             {
                 new ActionRule
                 {
-                    ActionType = CommonPlugins.ExecuteScript,
+                    Action = PluginsList.ExecuteScript,
                     Argument = "{document.getElementById('" + condition + "').setAttribute('value', 'foo bar')}"
                 },
                 SharedSteps.AssertInputEnabledValue(expectedPattern: "foo bar")

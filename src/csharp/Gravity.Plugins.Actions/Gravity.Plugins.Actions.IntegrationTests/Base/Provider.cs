@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 using NUnit.Framework;
 using System.Collections.Generic;
 
-namespace Gravity.Plugins.Actions.IntegrationTests.Base
+namespace Gravity.IntegrationTests.Base
 {
     public static class Provider
     {
@@ -58,7 +58,8 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
             "        'deviceName':'gravity_api_test'," +
             "        'platformVersion':'13'," +
             "        'os_version':'13'," +
-            "        'device':'iPhone 11 Pro'," +
+            "        'device':'iPhone XS'," +
+            "        'safariAllowPopups': true," +
             "        'real_mobile':'true'" +
             "    }" +
             "}";

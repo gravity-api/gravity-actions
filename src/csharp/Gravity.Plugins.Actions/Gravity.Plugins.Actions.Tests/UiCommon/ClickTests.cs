@@ -5,7 +5,7 @@
  */
 using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Actions.UiCommon;
-using Gravity.Plugins.Actions.UnitTests.Base;
+using Gravity.UnitTests.Base;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Mock;
@@ -15,7 +15,7 @@ using System.Collections.Generic;
 using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
 
 #pragma warning disable S4144
-namespace Gravity.Plugins.Actions.UnitTests.UiCommon
+namespace Gravity.UnitTests.UiCommon
 {
     [TestClass]
     public class ClickTests : ActionTests
@@ -30,14 +30,14 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         [TestMethod]
         public void ClickDocumentation()
         {
-            AssertDocumentation<Click>(pluginName: CommonPlugins.Click);
+            AssertDocumentation<Click>(pluginName: PluginsList.Click);
         }
 
         [TestMethod]
         public void ClickDocumentationResourceFile()
         {
             AssertDocumentation<Click>(
-                pluginName: CommonPlugins.Click,
+                pluginName: PluginsList.Click,
                 resource: "click.json");
         }
         #endregion

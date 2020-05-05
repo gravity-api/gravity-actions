@@ -3,20 +3,20 @@
  * 
  * online resources
  */
-using Gravity.Plugins.Actions.IntegrationTests.Base;
-using Gravity.Plugins.Actions.IntegrationTests.Cases.UiWeb.CloseWindowScenarios;
-using Gravity.Plugins.Actions.IntegrationTests.Providers;
+using Gravity.IntegrationTests.Base;
+using Gravity.IntegrationTests.Cases.UiWeb.CloseWindowScenarios;
+using Gravity.IntegrationTests.Providers;
 using NUnit.Framework;
 
 using DescriptionAttribute = System.ComponentModel.DescriptionAttribute;
 
-namespace Gravity.Plugins.Actions.IntegrationTests.Suites.UiWeb
+namespace Gravity.IntegrationTests.Suites.UiWeb
 {
     [TestFixture]
     public class CloseWindowTests
     {
         [Description(description: "P - [0066] - Close Window")]
-        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.CompatibilitiesCloseWindow))]
+        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.CompatibilitiesNoIos))]
         public void T0066P(AutomationEnvironment environment)
         {
             // execute
@@ -27,7 +27,7 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Suites.UiWeb
         }
 
         [Description(description: "N - [0067] - Close Window, No Child Windows")]
-        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Compatibilities))]
+        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.CompatibilitiesNoIos))]
         public void T0067P(AutomationEnvironment environment)
         {
             // execute

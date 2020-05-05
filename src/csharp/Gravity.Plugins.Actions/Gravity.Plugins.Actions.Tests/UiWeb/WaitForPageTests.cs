@@ -5,14 +5,14 @@
  */
 using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Actions.UiWeb;
-using Gravity.Plugins.Actions.UnitTests.Base;
+using Gravity.UnitTests.Base;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Mock;
 using System;
 
 #pragma warning disable S4144
-namespace Gravity.Plugins.Actions.UnitTests.UiWeb
+namespace Gravity.UnitTests.UiWeb
 {
     [TestClass]
     public class WaitForPageTests : ActionTests
@@ -25,7 +25,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         [TestInitialize]
         public void Setup()
         {
-            Automation.EngineConfiguration.PageLoadTimeout = 180000;
+            Automation.EngineConfiguration.LoadTimeout = 180000;
         }
         #endregion
 
@@ -40,14 +40,14 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         public void WaitForPageDocumentation()
         {
             AssertDocumentation<WaitForPage>(
-                pluginName: WebPlugins.WaitForPage);
+                pluginName: PluginsList.WaitForPage);
         }
 
         [TestMethod]
         public void WaitForPageDocumentationResourceFile()
         {
             AssertDocumentation<WaitForPage>(
-                pluginName: WebPlugins.WaitForPage,
+                pluginName: PluginsList.WaitForPage,
                 resource: "wait_for_page.json");
         }
         #endregion
@@ -68,7 +68,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         public void WaitForPageTimeout(string actionRule)
         {
             // setup
-            Automation.EngineConfiguration.PageLoadTimeout = 0;
+            Automation.EngineConfiguration.LoadTimeout = 0;
 
             // execute
             ExecuteAction<WaitForPage>(actionRule);

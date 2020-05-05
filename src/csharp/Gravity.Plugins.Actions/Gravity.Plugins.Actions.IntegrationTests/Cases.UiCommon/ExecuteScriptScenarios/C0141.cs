@@ -15,12 +15,12 @@
 * [4] verify {selected} on {input_selected} using {id}
 */
 #pragma warning restore
+using Gravity.IntegrationTests.Base;
 using Gravity.Plugins.Actions.Contracts;
-using Gravity.Plugins.Actions.IntegrationTests.Base;
 using Gravity.Plugins.Contracts;
 using System.Collections.Generic;
 
-namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.ExecuteScriptScenarios
+namespace Gravity.IntegrationTests.Cases.UiCommon.ExecuteScriptScenarios
 {
     public class C0141 : TestCase
     {
@@ -36,14 +36,14 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.ExecuteScriptS
             {
                 new ActionRule
                 {
-                    ActionType = CommonPlugins.ExtractFromDom,
+                    Action = PluginsList.ExtractFromDom,
                 },
                 new ActionRule
                 {
-                    ActionType = CommonPlugins.Assert,
+                    Action = PluginsList.Assert,
                     Argument = "{{$ --" + condition + "}}",
                     OnElement = "input_selected",
-                    Locator = LocatorType.Id
+                    Locator = LocatorsList.Id
                 }
             };
         }
@@ -61,7 +61,7 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.ExecuteScriptS
                     {
                         new ActionRule
                         {
-                            ActionType = CommonPlugins.ExecuteScript,
+                            Action = PluginsList.ExecuteScript,
                             Argument = ".checked=false;"
                         }
                     }

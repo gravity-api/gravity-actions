@@ -5,14 +5,14 @@
       "description": "Refreshes the current page.",
       "literalExample": "refresh",
       "actionExample": {
-        "actionType": "Refresh"
+        "action": "Refresh"
       }
     },
     {
       "description": "Refreshes the current page 3 times.",
       "literalExample": "refresh {3} times",
       "actionExample": {
-        "actionType": "Refresh",
+        "action": "Refresh",
         "argument": "3"
       }
     }

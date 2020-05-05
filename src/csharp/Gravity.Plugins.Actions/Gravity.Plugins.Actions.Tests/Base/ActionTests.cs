@@ -22,7 +22,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 
-namespace Gravity.Plugins.Actions.UnitTests.Base
+namespace Gravity.UnitTests.Base
 {
     [DeploymentItem("Resources/license.lcn")]
     public abstract class ActionTests
@@ -171,7 +171,7 @@ namespace Gravity.Plugins.Actions.UnitTests.Base
         {
             // setup
             var _actionRule = JsonConvert.DeserializeObject<ActionRule>(actionRule);
-            _actionRule.ActionType = typeof(T).Name;
+            _actionRule.Action = typeof(T).Name;
 
             // execute
             var executor = new AutomationExecutor(Automation);
@@ -194,7 +194,7 @@ namespace Gravity.Plugins.Actions.UnitTests.Base
         {
             // setup
             var _actionRule = JsonConvert.DeserializeObject<ActionRule>(actionRule);
-            _actionRule.ActionType = typeof(T).Name;
+            _actionRule.Action = typeof(T).Name;
 
             // setup: parameters
             var _parameters = by == default
@@ -585,8 +585,8 @@ namespace Gravity.Plugins.Actions.UnitTests.Base
             // configuration
             var configuration = new EngineConfiguration
             {
-                ElementSearchingTimeout = 100,
-                PageLoadTimeout = 100
+                SearchTimeout = 100,
+                LoadTimeout = 100
             };
 
             // authentication

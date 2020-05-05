@@ -3,7 +3,6 @@
  * 
  * online resources
  */
-using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Actions.Extensions;
 using Gravity.Plugins.Attributes;
 using Gravity.Plugins.Base;
@@ -17,7 +16,7 @@ namespace Gravity.Plugins.Actions.UiWeb
     [Plugin(
         assembly: "Gravity.Plugins.Actions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
         resource: "Gravity.Plugins.Actions.Documentation.go_to_url.json",
-        Name = WebPlugins.GoToUrl)]
+        Name = Contracts.PluginsList.GoToUrl)]
     public class GoToUrl : WebDriverActionPlugin
     {
         #region *** arguments    ***

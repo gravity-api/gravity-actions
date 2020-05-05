@@ -15,7 +15,7 @@
       "description": "Save [//tr[1]/td[2]] inner text into [first_name] application parameter.",
       "literalExample": "register parameter {first_name} take element {//tr[1]/td[2]} inner text",
       "actionExample": {
-        "actionType": "RegisterParameter",
+        "action": "RegisterParameter",
         "argument": "first_name",
         "onElement": "//tr[1]/td[2]"
       }
@@ -24,7 +24,7 @@
       "description": "Save [//tr[1]/td[2]] inner text into [first_name] application parameter.",
       "literalExample": "register parameter {{$ --key:first_name}} take element {//tr[1]/td[2]} inner text",
       "actionExample": {
-        "actionType": "RegisterParameter",
+        "action": "RegisterParameter",
         "argument": "{{$ --key:first_name}}",
         "onElement": "//tr[1]/td[2]"
       }
@@ -33,7 +33,7 @@
       "description": "Save [John] into [first_name] application parameter.",
       "literalExample": "register parameter {{$ --key:first_name --value:John}}",
       "actionExample": {
-        "actionType": "RegisterParameter",
+        "action": "RegisterParameter",
         "argument": "{{$ --key:first_name --value:John}}"
       }
     },
@@ -41,7 +41,7 @@
       "description": "Save the href attribute value of [//tr[1]/td[6]/a[1]] into [link] application parameter.",
       "literalExample": "register parameter {link} take element {//tr[1]/td[6]/a[1]} from {href} attribute",
       "actionExample": {
-        "actionType": "RegisterParameter",
+        "action": "RegisterParameter",
         "argument": "link",
         "onElement": "//tr[1]/td[6]/a[1]",
         "onAttribute": "href"
@@ -51,7 +51,7 @@
       "description": "Save the first match to [Abe] of element [//tr[1]/td[1]] inner text, into [regex] application parameter.",
       "literalExample": "register parameter {regex} take element {//tr[1]/td[2]} inner text filter with {Abe} pattern",
       "actionExample": {
-        "actionType": "RegisterParameter",
+        "action": "RegisterParameter",
         "argument": "regex",
         "onElement": "//tr[1]/td[1]",
         "regularExpression": "Abe"
@@ -61,7 +61,7 @@
       "description": "Save the current date into [date] application parameter with [yyyy-MM-dd] format.",
       "literalExample": "register parameter {date} take {{$date --format:yyyy-MM-dd}}",
       "actionExample": {
-        "actionType": "RegisterParameter",
+        "action": "RegisterParameter",
         "argument": "{{$ --key:date --value:{{$date --format:yyyy-MM-dd}}}}"
       }
     }

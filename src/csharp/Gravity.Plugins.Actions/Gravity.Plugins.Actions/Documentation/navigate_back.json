@@ -5,14 +5,14 @@
       "description": "Move back a single entry in the browser's history.",
       "literalExample": "navigate back",
       "actionExample": {
-        "actionType": "NavigateBack"
+        "action": "NavigateBack"
       }
     },
     {
       "description": "Move back 3 entries in the browser's history",
       "literalExample": "navigate back {3} pages",
       "actionExample": {
-        "actionType": "NavigateBack",
+        "action": "NavigateBack",
         "argument": "3"
       }
     }

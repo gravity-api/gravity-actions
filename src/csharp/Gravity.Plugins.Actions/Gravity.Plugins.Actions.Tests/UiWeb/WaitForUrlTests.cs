@@ -5,13 +5,13 @@
  */
 using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Actions.UiWeb;
-using Gravity.Plugins.Actions.UnitTests.Base;
+using Gravity.UnitTests.Base;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Mock;
 
 #pragma warning disable S4144
-namespace Gravity.Plugins.Actions.UnitTests.UiWeb
+namespace Gravity.UnitTests.UiWeb
 {
     [TestClass]
     public class WaitForUrlTests : ActionTests
@@ -27,14 +27,14 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         public void WaitForUrlDocumentation()
         {
             AssertDocumentation<WaitForUrl>(
-                pluginName: WebPlugins.WaitForUrl);
+                pluginName: PluginsList.WaitForUrl);
         }
 
         [TestMethod]
         public void WaitForUrlDocumentationResourceFile()
         {
             AssertDocumentation<WaitForUrl>(
-                pluginName: WebPlugins.WaitForUrl,
+                pluginName: PluginsList.WaitForUrl,
                 resource: "wait_for_url.json");
         }
         #endregion

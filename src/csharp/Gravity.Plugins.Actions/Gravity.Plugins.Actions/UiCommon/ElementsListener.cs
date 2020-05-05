@@ -2,7 +2,7 @@
  * CHANGE LOG - keep only last 5 threads
  *
  * 2019-01-11
- *    - modify: override action-name using ActionType constant
+ *    - modify: override action-name using action constant
  *    
  * 2019-01-04
  *    - modify: change ERR constant to WRN
@@ -13,7 +13,6 @@
  * 
  * online resources
  */
-using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Attributes;
 using Gravity.Plugins.Base;
 using Gravity.Plugins.Contracts;
@@ -33,7 +32,7 @@ namespace Gravity.Plugins.Actions.UiCommon
     [Plugin(
         assembly: "Gravity.Plugins.Actions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
         resource: "Gravity.Plugins.Actions.Documentation.elements_listener.json",
-        Name = CommonPlugins.ElementsListener)]
+        Name = Contracts.PluginsList.ElementsListener)]
     public class ElementsListener : WebDriverActionPlugin
     {
         // constants: arguments
@@ -70,7 +69,7 @@ namespace Gravity.Plugins.Actions.UiCommon
             var arguments = CliFactory.Parse(action.Argument);
             var timoutValue = arguments.ContainsKey(ListenerTimeout)
                 ? arguments[ListenerTimeout]
-                : $"{Automation.EngineConfiguration.PageLoadTimeout}";
+                : $"{Automation.EngineConfiguration.LoadTimeout}";
             var intervalValue = arguments.ContainsKey(Interval)
                 ? arguments[Interval]
                 : "500";
@@ -110,7 +109,7 @@ namespace Gravity.Plugins.Actions.UiCommon
 
         private ActionRule GetDefaultActionRule(ActionRule action) => new ActionRule
         {
-            ActionType = CommonPlugins.Click,
+            Action = Contracts.PluginsList.Click,
             OnElement = action.OnElement,
             OnAttribute = action.OnAttribute,
             Locator = action.Locator,
@@ -138,7 +137,7 @@ namespace Gravity.Plugins.Actions.UiCommon
 
         /// <summary>
         /// The timeout for the listener to expire.
-        /// If not specified, <see cref="EngineConfiguration.ElementSearchingTimeout"/> will be used.
+        /// If not specified, <see cref="EngineConfiguration.SearchTimeout"/> will be used.
         /// </summary>
         public int Timeout { get; set; }
 

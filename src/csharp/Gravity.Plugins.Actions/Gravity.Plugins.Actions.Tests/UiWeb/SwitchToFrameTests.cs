@@ -5,13 +5,13 @@
  */
 using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Actions.UiWeb;
-using Gravity.Plugins.Actions.UnitTests.Base;
+using Gravity.UnitTests.Base;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Mock;
 
 #pragma warning disable S4144
-namespace Gravity.Plugins.Actions.UnitTests.UiWeb
+namespace Gravity.UnitTests.UiWeb
 {
     [TestClass]
     public class SwitchToFrameTests : ActionTests
@@ -27,14 +27,14 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         public void SwitchToFrameDocumentation()
         {
             AssertDocumentation<SwitchToFrame>(
-                pluginName: WebPlugins.SwitchToFrame);
+                pluginName: PluginsList.SwitchToFrame);
         }
 
         [TestMethod]
         public void SwitchToFrameDocumentationResourceFile()
         {
             AssertDocumentation<SwitchToFrame>(
-                pluginName: WebPlugins.SwitchToFrame,
+                pluginName: PluginsList.SwitchToFrame,
                 resource: "switch_to_frame.json");
         }
         #endregion

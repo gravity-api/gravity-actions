@@ -8,14 +8,14 @@
       "description": "Wait for url to match [.*] or until [PageLoadTimeout] reached.",
       "literalExample": "wait for url",
       "actionExample": {
-        "actionType": "WaitForUrl"
+        "action": "WaitForUrl"
       }
     },
     {
       "description": "Wait for url to match [google] or until [5000ms] timeout reached.",
       "literalExample": "wait for url {{$ --timeout:5000}} filter {google}",
       "actionExample": {
-        "actionType": "WaitForUrl",
+        "action": "WaitForUrl",
         "argument": "{{$ --timeout:5000}}",
         "regularExpression": "google"
       }
@@ -24,7 +24,7 @@
       "description": "Wait for url to match [google] or until [1min] timeout reached.",
       "literalExample": "wait for url {{$ --timeout:00:01:00}} filter {google}",
       "actionExample": {
-        "actionType": "WaitForUrl",
+        "action": "WaitForUrl",
         "argument": "{{$ --timeout:00:01:00}}",
         "regularExpression": "google"
       }

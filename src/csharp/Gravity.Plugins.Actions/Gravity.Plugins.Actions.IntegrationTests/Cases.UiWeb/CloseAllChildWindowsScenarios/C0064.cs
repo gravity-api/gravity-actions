@@ -15,12 +15,12 @@
 * [3] verify {windows_count} equal {1}
 */
 #pragma warning restore
+using Gravity.IntegrationTests.Base;
 using Gravity.Plugins.Actions.Contracts;
-using Gravity.Plugins.Actions.IntegrationTests.Base;
 using Gravity.Plugins.Contracts;
 using System.Collections.Generic;
 
-namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiWeb.CloseAllChildWindowsScenarios
+namespace Gravity.IntegrationTests.Cases.UiWeb.CloseAllChildWindowsScenarios
 {
     public class C0064 : TestCase
     {
@@ -31,22 +31,22 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiWeb.CloseAllChildWind
             {
                 new ActionRule
                 {
-                    ActionType = CommonPlugins.Click,
+                    Action = PluginsList.Click,
                     OnElement = "pop_windows",
-                    Locator = LocatorType.Id
+                    Locator = LocatorsList.Id
                 },
                 new ActionRule
                 {
-                    ActionType = CommonPlugins.Assert,
+                    Action = PluginsList.Assert,
                     Argument = "{{$ --windows_count --gt:1}}"
                 },
                 new ActionRule
                 {
-                    ActionType = WebPlugins.CloseAllChildWindows
+                    Action = PluginsList.CloseAllChildWindows
                 },
                 new ActionRule
                 {
-                    ActionType = CommonPlugins.Assert,
+                    Action = PluginsList.Assert,
                     Argument = "{{$ --windows_count --eq:1}}"
                 },
             };

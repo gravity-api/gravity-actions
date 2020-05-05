@@ -3,15 +3,15 @@
  * 
  * online resources
  */
-using Gravity.Plugins.Actions.Contracts;
-using Gravity.Plugins.Actions.UnitTests.Base;
+using Gravity.UnitTests.Base;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Gravity.Plugins.Actions.UiCommon;
 
 using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
+using Gravity.Plugins.Actions.Contracts;
 
 #pragma warning disable S4144
-namespace Gravity.Plugins.Actions.UnitTests.UiCommon
+namespace Gravity.UnitTests.UiCommon
 {
     [TestClass]
     public class ElementsListenerTests : ActionTests
@@ -27,14 +27,14 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         public void ElementsListenerDocumentation()
         {
             AssertDocumentation<ElementsListener>(
-                pluginName: CommonPlugins.ElementsListener);
+                pluginName: PluginsList.ElementsListener);
         }
 
         [TestMethod]
         public void ElementsListenerDocumentationResourceFile()
         {
             AssertDocumentation<ElementsListener>(
-                pluginName: CommonPlugins.ElementsListener,
+                pluginName: PluginsList.ElementsListener,
                 resource: "elements_listener.json");
         }
         #endregion
@@ -83,7 +83,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             "    'onElement':'//positive'," +
             "    'actions': [" +
             "        {" +
-            "            'actionType':'SendKeys'," +
+            "            'action':'SendKeys'," +
             "            'argument':'foo bar'," +
             "            'onElement':'//positive'" +
             "        }" +

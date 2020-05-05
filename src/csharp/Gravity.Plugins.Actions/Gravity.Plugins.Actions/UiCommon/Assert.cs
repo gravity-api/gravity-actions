@@ -4,7 +4,6 @@
  * online resources
  */
 using Gravity.Plugins.Actions.Components;
-using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Actions.Extensions;
 using Gravity.Plugins.Attributes;
 using Gravity.Plugins.Base;
@@ -20,7 +19,7 @@ namespace Gravity.Plugins.Actions.UiCommon
     [Plugin(
         assembly: "Gravity.Plugins.Actions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
         resource: "Gravity.Plugins.Actions.Documentation.assert.json",
-        Name = CommonPlugins.Assert)]
+        Name = Contracts.PluginsList.Assert)]
     public class Assert : WebDriverActionPlugin
     {
         #region *** constructors ***
@@ -60,7 +59,7 @@ namespace Gravity.Plugins.Actions.UiCommon
         {
             // setup
             var wait = new WebDriverWait(
-                WebDriver, TimeSpan.FromMilliseconds(Automation.EngineConfiguration.ElementSearchingTimeout));
+                WebDriver, TimeSpan.FromMilliseconds(Automation.EngineConfiguration.SearchTimeout));
             IDictionary<string, object> assertion = null;
 
             // execute assertion
@@ -80,7 +79,7 @@ namespace Gravity.Plugins.Actions.UiCommon
             var extraction = new Extraction().GetDefault($"{WebDriver?.GetSession()}");
             extraction.Entities = new[]
             {
-                new Entity { EntityContent =  assertion}
+                new Entity { Content =  assertion}
             };
             Extractions.Add(extraction);
         }

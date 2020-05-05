@@ -5,15 +5,15 @@
  */
 using OpenQA.Selenium.Mock;
 using Gravity.Plugins.Actions.UiCommon;
-using Gravity.Plugins.Actions.UnitTests.Base;
+using Gravity.UnitTests.Base;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using System.Collections.Generic;
-using Gravity.Plugins.Actions.Contracts;
 
 using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
+using Gravity.Plugins.Actions.Contracts;
 
-namespace Gravity.Plugins.Actions.UnitTests.UiCommon
+namespace Gravity.UnitTests.UiCommon
 {
     [TestClass]
     public class CloseBrowserTests : ActionTests
@@ -29,14 +29,14 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         public void CloseBrowserDocumentation()
         {
             AssertDocumentation<CloseBrowser>(
-                pluginName: CommonPlugins.CloseBrowser);
+                pluginName: PluginsList.CloseBrowser);
         }
 
         [TestMethod]
         public void CloseBrowserDocumentationResourceFile()
         {
             AssertDocumentation<CloseBrowser>(
-                pluginName: CommonPlugins.CloseBrowser,
+                pluginName: PluginsList.CloseBrowser,
                 resource: "close_browser.json");
         }
         #endregion

@@ -6,7 +6,7 @@
       "description": "Right clicks the mouse on the specified element.",
       "literalExample": "context click on {click_button} using {id}",
       "actionExample": {
-        "actionType": "ContextClick",
+        "action": "ContextClick",
         "onElement": "click_button",
         "locator": "Id"
       }
@@ -15,7 +15,7 @@
       "description": "Right clicks the mouse at the last known mouse coordinates.",
       "literalExample": "context click",
       "actionExample": {
-        "actionType": "ContextClick"
+        "action": "ContextClick"
       }
     }
   ],

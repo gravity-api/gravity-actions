@@ -3,7 +3,7 @@
   "examples": [
     {
       "actionExample": {
-        "actionType": "CloseAllChildWindows"
+        "action": "CloseAllChildWindows"
       },
       "description": "Close all open tabs/windows and switch to the main (first) window.",
       "literalExample": "close all child windows"

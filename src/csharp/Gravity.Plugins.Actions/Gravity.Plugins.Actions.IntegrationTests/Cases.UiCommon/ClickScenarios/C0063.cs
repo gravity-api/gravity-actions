@@ -13,12 +13,12 @@
 * [2] verify {attribute} on {pop_alert} from {value} using {id} greater than {1}
 */
 #pragma warning restore
+using Gravity.IntegrationTests.Base;
 using Gravity.Plugins.Actions.Contracts;
-using Gravity.Plugins.Actions.IntegrationTests.Base;
 using Gravity.Plugins.Contracts;
 using System.Collections.Generic;
 
-namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.ClickScenarios
+namespace Gravity.IntegrationTests.Cases.UiCommon.ClickScenarios
 {
     public class C0063 : TestCase
     {
@@ -29,18 +29,18 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.ClickScenarios
             {
                 new ActionRule
                 {
-                    ActionType = CommonPlugins.Click,
+                    Action = PluginsList.Click,
                     Argument = "{{$ --until:no_alert}}",
                     OnElement = "pop_alert",
-                    Locator = LocatorType.Id
+                    Locator = LocatorsList.Id
                 },
                 new ActionRule
                 {
-                    ActionType = CommonPlugins.Assert,
+                    Action = PluginsList.Assert,
                     Argument = "{{$ --attribute --gt:1}}",
                     OnElement = "pop_alert",
                     OnAttribute = "value",
-                    Locator = LocatorType.Id
+                    Locator = LocatorsList.Id
                 }
             };
         }

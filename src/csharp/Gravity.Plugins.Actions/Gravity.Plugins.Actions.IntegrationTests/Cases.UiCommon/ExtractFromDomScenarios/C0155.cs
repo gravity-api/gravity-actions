@@ -11,12 +11,12 @@
 * 4. close browser
 */
 #pragma warning restore
+using Gravity.IntegrationTests.Base;
 using Gravity.Plugins.Actions.Contracts;
-using Gravity.Plugins.Actions.IntegrationTests.Base;
 using Gravity.Plugins.Contracts;
 using System.Collections.Generic;
 
-namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.ExtractFromDomScenarios
+namespace Gravity.IntegrationTests.Cases.UiCommon.ExtractFromDomScenarios
 {
     public class C0155 : TestCase
     {
@@ -36,7 +36,7 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.ExtractFromDom
         {
             new ActionRule
             {
-                ActionType = CommonPlugins.ExtractFromDom
+                Action = PluginsList.ExtractFromDom
             }
         };
 
@@ -48,7 +48,7 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.ExtractFromDom
             {
                 WritePerEntity = (bool)environment.TestParams["is_per_entity"],
                 Source = $"{environment.SystemParams["Integration.MockApi"]}",
-                Type = DataSourceType.RestApi
+                Type = DataSourcesList.RestApi
             };
 
             // entity

@@ -13,11 +13,11 @@
 * [2] verify {attribute} on {click_outcome} from {value} using {id} equal {context on element}
 */
 #pragma warning restore
-using Gravity.Plugins.Actions.IntegrationTests.Base;
+using Gravity.IntegrationTests.Base;
 using Gravity.Plugins.Contracts;
 using System.Collections.Generic;
 
-namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiWeb.ContextClickScenarios
+namespace Gravity.IntegrationTests.Cases.UiWeb.ContextClickScenarios
 {
     public class C0133 : TestCase
     {
@@ -29,9 +29,9 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiWeb.ContextClickScena
             {
                 new ActionRule
                 {
-                    ActionType = "RightClick",
+                    Action = "RightClick",
                     OnElement = "click_button",
-                    Locator = LocatorType.Id
+                    Locator = LocatorsList.Id
                 },
                 SharedSteps.AssertClickOutcome(expectedPattern: "context on element")
             };

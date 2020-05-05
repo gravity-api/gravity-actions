@@ -5,7 +5,7 @@
  */
 using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Actions.UiCommon;
-using Gravity.Plugins.Actions.UnitTests.Base;
+using Gravity.UnitTests.Base;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Mock;
@@ -14,7 +14,7 @@ using System;
 using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
 
 #pragma warning disable S4144
-namespace Gravity.Plugins.Actions.UnitTests.UiCommon
+namespace Gravity.UnitTests.UiCommon
 {
     [TestClass]
     public class MoveToElementTests : ActionTests
@@ -30,14 +30,14 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         public void MoveToElementDocumentation()
         {
             AssertDocumentation<MoveToElement>(
-                pluginName: CommonPlugins.MoveToElement);
+                pluginName: PluginsList.MoveToElement);
         }
 
         [TestMethod]
         public void MoveToElementDocumentationResourceFile()
         {
             AssertDocumentation<MoveToElement>(
-                pluginName: CommonPlugins.MoveToElement,
+                pluginName: PluginsList.MoveToElement,
                 resource: "move_to_element.json");
         }
         #endregion

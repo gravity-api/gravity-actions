@@ -8,19 +8,23 @@
  *    - modify: add on element override to allow calling from extraction rules
  *
  * 2019-01-11
- *    - modify: override action-name using ActionType constant
+ *    - modify: override action-name using action constant
  *    
  * 2019-01-03
  *    - modify: use JSON resources
  *    - modify: improve XML comments
  *
  * online resources
+ * 
+ * work items
+ * TODO: remove "DoSwitch(string windowName)" when available on Gravity.Core 
  */
-using Gravity.Plugins.Actions.Contracts;
+using Gravity.Plugins.Actions.Extensions;
 using Gravity.Plugins.Attributes;
 using Gravity.Plugins.Base;
 using Gravity.Plugins.Contracts;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Remote;
 using System.Threading;
 
 namespace Gravity.Plugins.Actions.UiWeb
@@ -28,7 +32,7 @@ namespace Gravity.Plugins.Actions.UiWeb
     [Plugin(
         assembly: "Gravity.Plugins.Actions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
         resource: "Gravity.Plugins.Actions.Documentation.close_all_child_windows.json",
-        Name = WebPlugins.CloseAllChildWindows)]
+        Name = Contracts.PluginsList.CloseAllChildWindows)]
     public class CloseAllChildWindows : WebDriverActionPlugin
     {
         #region *** constructors ***
@@ -78,12 +82,32 @@ namespace Gravity.Plugins.Actions.UiWeb
                 {
                     continue;
                 }
-                WebDriver.SwitchTo().Window(window).Close();
+                DoSwitch(window).Close();
                 Thread.Sleep(100);
             }
 
             // focus on main windows
-            WebDriver.SwitchTo().Window(windowName: mainWindow);
+            DoSwitch(windowName: mainWindow);
+        }
+
+        private IWebDriver DoSwitch(string windowName)
+        {
+            // exit conditions
+            if (!(WebDriver is RemoteWebDriver rDriver))
+            {
+                return WebDriver.SwitchTo().Window(windowName);
+            }
+
+            // do switch
+            if ($"{rDriver.Capabilities["browserName"]}" == "msedge")
+            {
+                WebDriver.SwitchTo(windowName);
+            }
+            else
+            {
+                WebDriver.SwitchTo().Window(windowName);
+            }
+            return WebDriver;
         }
     }
 }

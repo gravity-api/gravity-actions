@@ -5,7 +5,7 @@
       "description": "Uploads [C:\\myFiles\\image.png] using [input-file] controller.",
       "literalExample": "upload file {C:\\myFiles\\image.png} on {//input}",
       "actionExample": {
-        "actionType": "UploadFile",
+        "action": "UploadFile",
         "argument": "C:\\myFiles\\image.png",
         "onElement": "//input"
       }

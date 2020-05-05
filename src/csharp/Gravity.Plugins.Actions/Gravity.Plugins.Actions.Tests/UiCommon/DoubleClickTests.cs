@@ -5,17 +5,17 @@
  */
 using OpenQA.Selenium.Mock;
 using Gravity.Plugins.Actions.UiCommon;
-using Gravity.Plugins.Actions.UnitTests.Base;
+using Gravity.UnitTests.Base;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
-using Gravity.Plugins.Actions.Contracts;
 using System;
 using System.Collections.Generic;
 
 using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
+using Gravity.Plugins.Actions.Contracts;
 
 #pragma warning disable S4144
-namespace Gravity.Plugins.Actions.UnitTests.UiCommon
+namespace Gravity.UnitTests.UiCommon
 {
     [TestClass]
     public class DoubleClickTests : ActionTests
@@ -30,14 +30,14 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         [TestMethod]
         public void DoubleClickDocumentation()
         {
-            AssertDocumentation<DoubleClick>(pluginName: CommonPlugins.DoubleClick);
+            AssertDocumentation<DoubleClick>(pluginName: PluginsList.DoubleClick);
         }
 
         [TestMethod]
         public void DoubleClickDocumentationResourceFile()
         {
             AssertDocumentation<DoubleClick>(
-                pluginName: CommonPlugins.DoubleClick,
+                pluginName: PluginsList.DoubleClick,
                 resource: "double_click.json");
         }
         #endregion

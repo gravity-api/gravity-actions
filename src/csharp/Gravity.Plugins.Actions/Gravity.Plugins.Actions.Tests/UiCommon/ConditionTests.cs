@@ -3,17 +3,17 @@
  * 
  * online resources
  */
-using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Actions.UiCommon;
-using Gravity.Plugins.Actions.UnitTests.Base;
+using Gravity.UnitTests.Base;
 using Gravity.Plugins.Contracts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium.Mock;
 using System;
 
 using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
+using Gravity.Plugins.Actions.Contracts;
 
-namespace Gravity.Plugins.Actions.UnitTests.UiCommon
+namespace Gravity.UnitTests.UiCommon
 {
     [TestClass]
     [DoNotParallelize]
@@ -34,7 +34,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             "    'onElement':'" + OnElement + "'," +
             "    'actions': [" +
             "    {" +
-            "        'actionType':'RegisterParameter'," +
+            "        'action':'RegisterParameter'," +
             "        'argument':'{{$ --key:test_key --value:true}}'" +
             "    }]" +
             "}";
@@ -46,7 +46,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             "    'onAttribute':'" + OnAttribute + "'," +
             "    'actions': [" +
             "    {" +
-            "        'actionType':'RegisterParameter'," +
+            "        'action':'RegisterParameter'," +
             "        'argument':'{{$ --key:test_key --value:true}}'" +
             "    }]" +
             "}";
@@ -71,14 +71,14 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         public void ConditionDocumentation()
         {
             AssertDocumentation<Condition>(
-                pluginName: CommonPlugins.Condition);
+                pluginName: PluginsList.Condition);
         }
 
         [TestMethod]
         public void ConditionDocumentationResourceFile()
         {
             AssertDocumentation<Condition>(
-                pluginName: CommonPlugins.Condition,
+                pluginName: PluginsList.Condition,
                 resource: "condition.json");
         }
         #endregion

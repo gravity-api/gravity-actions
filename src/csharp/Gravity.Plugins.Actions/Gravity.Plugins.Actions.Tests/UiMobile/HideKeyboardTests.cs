@@ -5,14 +5,14 @@
  */
 using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Actions.UiMobile;
-using Gravity.Plugins.Actions.UnitTests.Base;
+using Gravity.UnitTests.Base;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Mock;
 using OpenQA.Selenium.Mock;
 
 #pragma warning disable S4144
-namespace Gravity.Plugins.Actions.UnitTests.UiMobile
+namespace Gravity.UnitTests.UiMobile
 {
     [TestClass]
     public class HideKeyboardTests : ActionTests
@@ -28,14 +28,14 @@ namespace Gravity.Plugins.Actions.UnitTests.UiMobile
         public void HideKeyboardDocumentation()
         {
             AssertDocumentation<HideKeyboard>(
-                pluginName: MobilePlugins.HideKeyboard);
+                pluginName: PluginsList.HideKeyboard);
         }
 
         [TestMethod]
         public void HideKeyboardDocumentationResourceFile()
         {
             AssertDocumentation<HideKeyboard>(
-                pluginName: MobilePlugins.HideKeyboard,
+                pluginName: PluginsList.HideKeyboard,
                 resource: "hide_keyboard.json");
         }
         #endregion

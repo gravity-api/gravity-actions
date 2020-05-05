@@ -13,12 +13,12 @@
 * [2] verify {attribute} on {click_outcome} from {value} using {id} not equal {context on element}
 */
 #pragma warning restore
+using Gravity.IntegrationTests.Base;
 using Gravity.Plugins.Actions.Contracts;
-using Gravity.Plugins.Actions.IntegrationTests.Base;
 using Gravity.Plugins.Contracts;
 using System.Collections.Generic;
 
-namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiWeb.ContextClickScenarios
+namespace Gravity.IntegrationTests.Cases.UiWeb.ContextClickScenarios
 {
     public class C0132 : TestCase
     {
@@ -30,7 +30,7 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiWeb.ContextClickScena
             {
                 new ActionRule
                 {
-                    ActionType = WebPlugins.ContextClick
+                    Action = PluginsList.ContextClick
                 },
                 SharedSteps.AssertClickOutcome(expectedPattern: "^$")
             };

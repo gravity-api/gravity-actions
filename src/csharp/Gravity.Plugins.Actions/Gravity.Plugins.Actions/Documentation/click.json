@@ -11,7 +11,7 @@
   "examples": [
     {
       "actionExample": {
-        "actionType": "click",
+        "action": "click",
         "onElement": "//a[.='Departments']"
       },
       "comment": "Can be tested on [https://gravitymvctestapplication.azurewebsites.net/UiControls].",
@@ -20,14 +20,14 @@
     },
     {
       "actionExample": {
-        "actionType": "Click"
+        "action": "Click"
       },
       "description": "Clicks the mouse at the last known mouse coordinates.",
       "literalExample": "click"
     },
     {
       "actionExample": {
-        "actionType": "Click",
+        "action": "Click",
         "argument": "{{$ --until:no_alert}}",
         "onElement": "pop_alert",
         "locator": "Id"

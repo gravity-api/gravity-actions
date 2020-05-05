@@ -3,7 +3,6 @@
  * 
  * online resources
  */
-using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Attributes;
 using Gravity.Plugins.Base;
 using Gravity.Plugins.Contracts;
@@ -14,7 +13,7 @@ namespace Gravity.Plugins.Actions.UiWeb
     [Plugin(
         assembly: "Gravity.Plugins.Actions, Version=5.0.0.0, Culture=neutral, PublicKeyToken=null",
         resource: "Gravity.Plugins.Actions.Documentation.switch_to_default_content.json",
-        Name = WebPlugins.SwitchToDefaultContent)]
+        Name = Contracts.PluginsList.SwitchToDefaultContent)]
     public class SwitchToDefaultContent : WebDriverActionPlugin
     {
         #region *** constructors ***

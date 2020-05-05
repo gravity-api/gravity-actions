@@ -6,7 +6,6 @@
  * work items
  * https://github.com/gravity-api/gravity-actions/issues/19
  */
-using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Attributes;
 using Gravity.Plugins.Base;
 using Gravity.Plugins.Contracts;
@@ -22,7 +21,7 @@ namespace Gravity.Plugins.Actions.UiMobile
     [Plugin(
         assembly: "Gravity.Plugins.Actions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
         resource: "Gravity.Plugins.Actions.Documentation.swipe.json",
-        Name = MobilePlugins.Swipe)]
+        Name = Contracts.PluginsList.Swipe)]
     public class Swipe : WebDriverActionPlugin
     {
         #region *** arguments    ***
@@ -155,7 +154,7 @@ namespace Gravity.Plugins.Actions.UiMobile
                 return coordinates;
             }
             // set timeout & locator
-            var timeout = TimeSpan.FromMilliseconds(Automation.EngineConfiguration.ElementSearchingTimeout);
+            var timeout = TimeSpan.FromMilliseconds(Automation.EngineConfiguration.SearchTimeout);
             var by = ByFactory.Get(action.Locator, locatorValue: onElement);
 
             // get element argument

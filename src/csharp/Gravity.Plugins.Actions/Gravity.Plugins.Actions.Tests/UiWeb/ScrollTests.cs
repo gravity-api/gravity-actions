@@ -5,13 +5,13 @@
  */
 using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Actions.UiWeb;
-using Gravity.Plugins.Actions.UnitTests.Base;
+using Gravity.UnitTests.Base;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Mock;
 
 #pragma warning disable S4144
-namespace Gravity.Plugins.Actions.UnitTests.UiWeb
+namespace Gravity.UnitTests.UiWeb
 {
     [TestClass]
     public class ScrollTests : ActionTests
@@ -26,14 +26,14 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         [TestMethod]
         public void ScrollDocumentation()
         {
-            AssertDocumentation<Scroll>(pluginName: WebPlugins.Scroll);
+            AssertDocumentation<Scroll>(pluginName: PluginsList.Scroll);
         }
 
         [TestMethod]
         public void ScrollDocumentationResourceFile()
         {
             AssertDocumentation<Scroll>(
-                pluginName: WebPlugins.Scroll,
+                pluginName: PluginsList.Scroll,
                 resource: "scroll.json");
         }
         #endregion

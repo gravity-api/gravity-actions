@@ -5,7 +5,7 @@
       "description": "Moves the mouse to the specified element.",
       "literalExample": "move to element on {//tr[1]/td[6]/a[1]}",
       "actionExample": {
-        "actionType": "MoveToElement",
+        "action": "MoveToElement",
         "onElement": "//tr[1]/td[6]/a[1]"
       }
     }

@@ -3,14 +3,14 @@
  * 
  * online resources
  */
-using Gravity.Plugins.Actions.Contracts;
-using Gravity.Plugins.Actions.UnitTests.Base;
+using Gravity.UnitTests.Base;
 using Gravity.Plugins.Base;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium.Mock;
 using System.Linq;
+using Gravity.Plugins.Actions.Contracts;
 
-namespace Gravity.Plugins.Actions.UnitTests.UiCommon
+namespace Gravity.UnitTests.UiCommon
 {
     [TestClass]
     public class AssertTests : ActionTests
@@ -52,21 +52,21 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         [TestMethod]
         public void AssertCreate()
         {
-            AssertPlugin<Actions.UiCommon.Assert>();
+            AssertPlugin<Plugins.Actions.UiCommon.Assert>();
         }
 
         [TestMethod]
         public void AssertDocumentation()
         {
-            AssertDocumentation<Actions.UiCommon.Assert>(
-                pluginName: CommonPlugins.Assert);
+            AssertDocumentation<Plugins.Actions.UiCommon.Assert>(
+                pluginName: PluginsList.Assert);
         }
 
         [TestMethod]
         public void AssertDocumentationResourceFile()
         {
-            AssertDocumentation<Actions.UiCommon.Assert>(
-                pluginName: CommonPlugins.Assert,
+            AssertDocumentation<Plugins.Actions.UiCommon.Assert>(
+                pluginName: PluginsList.Assert,
                 resource: "assert.json");
         }
         #endregion
@@ -114,7 +114,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             actionRule = actionRule.Replace(OnElement, onElement).Replace(OnCondition, "disabled");
 
             // execute
-            var plugin = ExecuteAction<Actions.UiCommon.Assert>(actionRule);
+            var plugin = ExecuteAction<Plugins.Actions.UiCommon.Assert>(actionRule);
 
             // assertion
             Assert.IsTrue(GetEvaluation(plugin));
@@ -131,7 +131,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             actionRule = actionRule.Replace(OnElement, onElement).Replace(OnCondition, "disabled");
 
             // execute
-            var plugin = ExecuteAction<Actions.UiCommon.Assert>(actionRule);
+            var plugin = ExecuteAction<Plugins.Actions.UiCommon.Assert>(actionRule);
 
             // assertion
             Assert.IsTrue(!GetEvaluation(plugin));
@@ -151,7 +151,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
                 .Replace(OnOperatorExpected, onOperatorExpected);
 
             // execute
-            var plugin = ExecuteAction<Actions.UiCommon.Assert>(actionRule);
+            var plugin = ExecuteAction<Plugins.Actions.UiCommon.Assert>(actionRule);
 
             // assertion
             Assert.IsTrue(GetEvaluation(plugin));
@@ -165,7 +165,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             actionRule = actionRule.Replace(OnElement, onElement).Replace(OnCondition, "enabled");
 
             // execute
-            var plugin = ExecuteAction<Actions.UiCommon.Assert>(actionRule);
+            var plugin = ExecuteAction<Plugins.Actions.UiCommon.Assert>(actionRule);
 
             // assertion
             Assert.IsTrue(GetEvaluation(plugin));
@@ -182,7 +182,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             actionRule = actionRule.Replace(OnElement, onElement).Replace(OnCondition, "enabled");
 
             // execute
-            var plugin = ExecuteAction<Actions.UiCommon.Assert>(actionRule);
+            var plugin = ExecuteAction<Plugins.Actions.UiCommon.Assert>(actionRule);
 
             // assertion
             Assert.IsTrue(!GetEvaluation(plugin));
@@ -197,7 +197,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             actionRule = actionRule.Replace(OnElement, onElement).Replace(OnCondition, "exists");
 
             // execute
-            var plugin = ExecuteAction<Actions.UiCommon.Assert>(actionRule);
+            var plugin = ExecuteAction<Plugins.Actions.UiCommon.Assert>(actionRule);
 
             // assertion
             Assert.IsTrue(GetEvaluation(plugin));
@@ -213,7 +213,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             actionRule = actionRule.Replace(OnElement, onElement).Replace(OnCondition, "exists");
 
             // execute
-            var plugin = ExecuteAction<Actions.UiCommon.Assert>(actionRule);
+            var plugin = ExecuteAction<Plugins.Actions.UiCommon.Assert>(actionRule);
 
             // assertion
             Assert.IsTrue(!GetEvaluation(plugin));
@@ -227,7 +227,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             actionRule = actionRule.Replace(OnElement, onElement).Replace(OnCondition, "hidden");
 
             // execute
-            var plugin = ExecuteAction<Actions.UiCommon.Assert>(actionRule);
+            var plugin = ExecuteAction<Plugins.Actions.UiCommon.Assert>(actionRule);
 
             // assertion
             Assert.IsTrue(GetEvaluation(plugin));
@@ -244,7 +244,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             actionRule = actionRule.Replace(OnElement, onElement).Replace(OnCondition, "hidden");
 
             // execute
-            var plugin = ExecuteAction<Actions.UiCommon.Assert>(actionRule);
+            var plugin = ExecuteAction<Plugins.Actions.UiCommon.Assert>(actionRule);
 
             // assertion
             Assert.IsTrue(!GetEvaluation(plugin));
@@ -259,7 +259,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             actionRule = actionRule.Replace(OnElement, onElement).Replace(OnCondition, "not_exists");
 
             // execute
-            var plugin = ExecuteAction<Actions.UiCommon.Assert>(actionRule);
+            var plugin = ExecuteAction<Plugins.Actions.UiCommon.Assert>(actionRule);
 
             // assertion
             Assert.IsTrue(GetEvaluation(plugin));
@@ -275,7 +275,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             actionRule = actionRule.Replace(OnElement, onElement).Replace(OnCondition, "not_exists");
 
             // execute
-            var plugin = ExecuteAction<Actions.UiCommon.Assert>(actionRule);
+            var plugin = ExecuteAction<Plugins.Actions.UiCommon.Assert>(actionRule);
 
             // assertion
             Assert.IsTrue(!GetEvaluation(plugin));
@@ -289,7 +289,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             actionRule = actionRule.Replace(OnElement, onElement).Replace(OnCondition, "not_selected");
 
             // execute
-            var plugin = ExecuteAction<Actions.UiCommon.Assert>(actionRule);
+            var plugin = ExecuteAction<Plugins.Actions.UiCommon.Assert>(actionRule);
 
             // assertion
             Assert.IsTrue(GetEvaluation(plugin));
@@ -306,7 +306,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             actionRule = actionRule.Replace(OnElement, onElement).Replace(OnCondition, "not_selected");
 
             // execute
-            var plugin = ExecuteAction<Actions.UiCommon.Assert>(actionRule);
+            var plugin = ExecuteAction<Plugins.Actions.UiCommon.Assert>(actionRule);
 
             // assertion
             Assert.IsTrue(!GetEvaluation(plugin));
@@ -320,7 +320,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             actionRule = actionRule.Replace(OnElement, onElement).Replace(OnCondition, "selected");
 
             // execute
-            var plugin = ExecuteAction<Actions.UiCommon.Assert>(actionRule);
+            var plugin = ExecuteAction<Plugins.Actions.UiCommon.Assert>(actionRule);
 
             // assertion
             Assert.IsTrue(GetEvaluation(plugin));
@@ -337,7 +337,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             actionRule = actionRule.Replace(OnElement, onElement).Replace(OnCondition, "selected");
 
             // execute
-            var plugin = ExecuteAction<Actions.UiCommon.Assert>(actionRule);
+            var plugin = ExecuteAction<Plugins.Actions.UiCommon.Assert>(actionRule);
 
             // assertion
             Assert.IsTrue(!GetEvaluation(plugin));
@@ -351,7 +351,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             actionRule = actionRule.Replace(OnElement, onElement).Replace(OnCondition, "stale");
 
             // execute
-            var plugin = ExecuteAction<Actions.UiCommon.Assert>(actionRule);
+            var plugin = ExecuteAction<Plugins.Actions.UiCommon.Assert>(actionRule);
 
             // assertion
             Assert.IsTrue(GetEvaluation(plugin));
@@ -368,7 +368,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             actionRule = actionRule.Replace(OnElement, onElement).Replace(OnCondition, "stale");
 
             // execute
-            var plugin = ExecuteAction<Actions.UiCommon.Assert>(actionRule);
+            var plugin = ExecuteAction<Plugins.Actions.UiCommon.Assert>(actionRule);
 
             // assertion
             Assert.IsTrue(!GetEvaluation(plugin));
@@ -424,7 +424,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             actionRule = actionRule.Replace(OnElement, onElement).Replace(OnCondition, "visible");
 
             // execute
-            var plugin = ExecuteAction<Actions.UiCommon.Assert>(actionRule);
+            var plugin = ExecuteAction<Plugins.Actions.UiCommon.Assert>(actionRule);
 
             // assertion
             Assert.IsTrue(GetEvaluation(plugin));
@@ -441,7 +441,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             actionRule = actionRule.Replace(OnElement, onElement).Replace(OnCondition, "visible");
 
             // execute
-            var plugin = ExecuteAction<Actions.UiCommon.Assert>(actionRule);
+            var plugin = ExecuteAction<Plugins.Actions.UiCommon.Assert>(actionRule);
 
             // assertion
             Assert.IsTrue(!GetEvaluation(plugin));
@@ -474,7 +474,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             actionRule = actionRule.Replace(OnElement, onElement).Replace(OnCondition, "disabled");
 
             // execute
-            var plugin = ExecuteAction<Actions.UiCommon.Assert>(MockBy.Positive(), actionRule);
+            var plugin = ExecuteAction<Plugins.Actions.UiCommon.Assert>(MockBy.Positive(), actionRule);
 
             // assertion
             Assert.IsTrue(GetEvaluation(plugin));
@@ -491,7 +491,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             actionRule = actionRule.Replace(OnElement, onElement).Replace(OnCondition, "disabled");
 
             // execute
-            var plugin = ExecuteAction<Actions.UiCommon.Assert>(MockBy.Positive(), actionRule);
+            var plugin = ExecuteAction<Plugins.Actions.UiCommon.Assert>(MockBy.Positive(), actionRule);
 
             // assertion
             Assert.IsTrue(!GetEvaluation(plugin));
@@ -505,7 +505,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             actionRule = actionRule.Replace(OnElement, onElement).Replace(OnCondition, "enabled");
 
             // execute
-            var plugin = ExecuteAction<Actions.UiCommon.Assert>(MockBy.Positive(), actionRule);
+            var plugin = ExecuteAction<Plugins.Actions.UiCommon.Assert>(MockBy.Positive(), actionRule);
 
             // assertion
             Assert.IsTrue(GetEvaluation(plugin));
@@ -522,7 +522,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             actionRule = actionRule.Replace(OnElement, onElement).Replace(OnCondition, "enabled");
 
             // execute
-            var plugin = ExecuteAction<Actions.UiCommon.Assert>(MockBy.Positive(), actionRule);
+            var plugin = ExecuteAction<Plugins.Actions.UiCommon.Assert>(MockBy.Positive(), actionRule);
 
             // assertion
             Assert.IsTrue(!GetEvaluation(plugin));
@@ -537,7 +537,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             actionRule = actionRule.Replace(OnElement, onElement).Replace(OnCondition, "exists");
 
             // execute
-            var plugin = ExecuteAction<Actions.UiCommon.Assert>(MockBy.Positive(), actionRule);
+            var plugin = ExecuteAction<Plugins.Actions.UiCommon.Assert>(MockBy.Positive(), actionRule);
 
             // assertion
             Assert.IsTrue(GetEvaluation(plugin));
@@ -553,7 +553,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             actionRule = actionRule.Replace(OnElement, onElement).Replace(OnCondition, "exists");
 
             // execute
-            var plugin = ExecuteAction<Actions.UiCommon.Assert>(MockBy.Positive(), actionRule);
+            var plugin = ExecuteAction<Plugins.Actions.UiCommon.Assert>(MockBy.Positive(), actionRule);
 
             // assertion
             Assert.IsTrue(!GetEvaluation(plugin));
@@ -567,7 +567,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             actionRule = actionRule.Replace(OnElement, onElement).Replace(OnCondition, "hidden");
 
             // execute
-            var plugin = ExecuteAction<Actions.UiCommon.Assert>(MockBy.Positive(), actionRule);
+            var plugin = ExecuteAction<Plugins.Actions.UiCommon.Assert>(MockBy.Positive(), actionRule);
 
             // assertion
             Assert.IsTrue(GetEvaluation(plugin));
@@ -584,7 +584,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             actionRule = actionRule.Replace(OnElement, onElement).Replace(OnCondition, "hidden");
 
             // execute
-            var plugin = ExecuteAction<Actions.UiCommon.Assert>(MockBy.Positive(), actionRule);
+            var plugin = ExecuteAction<Plugins.Actions.UiCommon.Assert>(MockBy.Positive(), actionRule);
 
             // assertion
             Assert.IsTrue(!GetEvaluation(plugin));
@@ -599,7 +599,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             actionRule = actionRule.Replace(OnElement, onElement).Replace(OnCondition, "not_exists");
 
             // execute
-            var plugin = ExecuteAction<Actions.UiCommon.Assert>(MockBy.Positive(), actionRule);
+            var plugin = ExecuteAction<Plugins.Actions.UiCommon.Assert>(MockBy.Positive(), actionRule);
 
             // assertion
             Assert.IsTrue(GetEvaluation(plugin));
@@ -615,7 +615,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             actionRule = actionRule.Replace(OnElement, onElement).Replace(OnCondition, "not_exists");
 
             // execute
-            var plugin = ExecuteAction<Actions.UiCommon.Assert>(MockBy.Positive(), actionRule);
+            var plugin = ExecuteAction<Plugins.Actions.UiCommon.Assert>(MockBy.Positive(), actionRule);
 
             // assertion
             Assert.IsTrue(!GetEvaluation(plugin));
@@ -629,7 +629,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             actionRule = actionRule.Replace(OnElement, onElement).Replace(OnCondition, "not_selected");
 
             // execute
-            var plugin = ExecuteAction<Actions.UiCommon.Assert>(MockBy.Positive(), actionRule);
+            var plugin = ExecuteAction<Plugins.Actions.UiCommon.Assert>(MockBy.Positive(), actionRule);
 
             // assertion
             Assert.IsTrue(GetEvaluation(plugin));
@@ -646,7 +646,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             actionRule = actionRule.Replace(OnElement, onElement).Replace(OnCondition, "not_selected");
 
             // execute
-            var plugin = ExecuteAction<Actions.UiCommon.Assert>(MockBy.Positive(), actionRule);
+            var plugin = ExecuteAction<Plugins.Actions.UiCommon.Assert>(MockBy.Positive(), actionRule);
 
             // assertion
             Assert.IsTrue(!GetEvaluation(plugin));
@@ -660,7 +660,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             actionRule = actionRule.Replace(OnElement, onElement).Replace(OnCondition, "selected");
 
             // execute
-            var plugin = ExecuteAction<Actions.UiCommon.Assert>(MockBy.Positive(), actionRule);
+            var plugin = ExecuteAction<Plugins.Actions.UiCommon.Assert>(MockBy.Positive(), actionRule);
 
             // assertion
             Assert.IsTrue(GetEvaluation(plugin));
@@ -677,7 +677,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             actionRule = actionRule.Replace(OnElement, onElement).Replace(OnCondition, "selected");
 
             // execute
-            var plugin = ExecuteAction<Actions.UiCommon.Assert>(MockBy.Positive(), actionRule);
+            var plugin = ExecuteAction<Plugins.Actions.UiCommon.Assert>(MockBy.Positive(), actionRule);
 
             // assertion
             Assert.IsTrue(!GetEvaluation(plugin));
@@ -691,7 +691,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             actionRule = actionRule.Replace(OnElement, onElement).Replace(OnCondition, "stale");
 
             // execute
-            var plugin = ExecuteAction<Actions.UiCommon.Assert>(MockBy.Positive(), actionRule);
+            var plugin = ExecuteAction<Plugins.Actions.UiCommon.Assert>(MockBy.Positive(), actionRule);
 
             // assertion
             Assert.IsTrue(GetEvaluation(plugin));
@@ -708,7 +708,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             actionRule = actionRule.Replace(OnElement, onElement).Replace(OnCondition, "stale");
 
             // execute
-            var plugin = ExecuteAction<Actions.UiCommon.Assert>(MockBy.Positive(), actionRule);
+            var plugin = ExecuteAction<Plugins.Actions.UiCommon.Assert>(MockBy.Positive(), actionRule);
 
             // assertion
             Assert.IsTrue(!GetEvaluation(plugin));
@@ -722,7 +722,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             actionRule = actionRule.Replace(OnElement, onElement).Replace(OnCondition, "visible");
 
             // execute
-            var plugin = ExecuteAction<Actions.UiCommon.Assert>(MockBy.Positive(), actionRule);
+            var plugin = ExecuteAction<Plugins.Actions.UiCommon.Assert>(MockBy.Positive(), actionRule);
 
             // assertion
             Assert.IsTrue(GetEvaluation(plugin));
@@ -739,7 +739,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             actionRule = actionRule.Replace(OnElement, onElement).Replace(OnCondition, "visible");
 
             // execute
-            var plugin = ExecuteAction<Actions.UiCommon.Assert>(MockBy.Positive(), actionRule);
+            var plugin = ExecuteAction<Plugins.Actions.UiCommon.Assert>(MockBy.Positive(), actionRule);
 
             // assertion
             Assert.IsTrue(!GetEvaluation(plugin));
@@ -764,7 +764,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
                 .Replace(OnElement, onElement);
 
             // execute
-            var plugin = ExecuteAction<Actions.UiCommon.Assert>(actionRule);
+            var plugin = ExecuteAction<Plugins.Actions.UiCommon.Assert>(actionRule);
 
             // result
             return GetEvaluation(plugin);
@@ -775,7 +775,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             .First()
             .Entities
             .First()
-            .EntityContent[TestKey];
+            .Content[TestKey];
         #endregion
     }
 }

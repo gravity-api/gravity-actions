@@ -5,7 +5,7 @@
       "description": "Suspends the current thread for 3000ms (3s).",
       "literalExample": "wait {3000}",
       "actionExample": {
-        "actionType": "Wait",
+        "action": "Wait",
         "argument": "3000"
       }
     },
@@ -13,7 +13,7 @@
       "description": "Suspends the current thread for 0h5m30s.",
       "literalExample": "wait {00:05:30}",
       "actionExample": {
-        "actionType": "Wait",
+        "action": "Wait",
         "argument": "00:05:30"
       }
     }

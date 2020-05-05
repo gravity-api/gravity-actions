@@ -10,7 +10,7 @@
       "description": "Type [Alexander] into [//form//p/input[1]] text input.",
       "literalExample": "try send keys {Alexander} into {//form//p/input[1]}",
       "actionExample": {
-        "actionType": "SendKeys",
+        "action": "SendKeys",
         "argument": "Alexander",
         "onElement": "//form//p/input[1]"
       }
@@ -19,7 +19,7 @@
       "description": "Type [Alexander] into [//form//p/input[1]] text input, after clearing the existing value.",
       "literalExample": "try send keys {{$ --keys:Alexander --clear}} into {//form//p/input[1]}",
       "actionExample": {
-        "actionType": "SendKeys",
+        "action": "SendKeys",
         "argument": "{{$ --keys:gravity api --clear}}",
         "onElement": "//form//p/input[1]"
       }
@@ -28,7 +28,7 @@
       "description": "Type [Alexander] into [//form//p/input[1]] text input with [100ms] interval between each char.",
       "literalExample": "try send keys {{$ --keys:Alexander --interval:100}} into {//form//p/input[1]}",
       "actionExample": {
-        "actionType": "SendKeys",
+        "action": "SendKeys",
         "argument": "{{$ --keys:Alexander --interval:100}}"
       }
     }

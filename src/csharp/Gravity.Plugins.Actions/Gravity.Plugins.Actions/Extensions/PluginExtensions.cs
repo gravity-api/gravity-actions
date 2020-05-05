@@ -31,7 +31,7 @@ namespace Gravity.Plugins.Actions.Extensions
             }
 
             // setup
-            var searchTimeout = plugin.Automation.EngineConfiguration.ElementSearchingTimeout;
+            var searchTimeout = plugin.Automation.EngineConfiguration.SearchTimeout;
             var timeout = TimeSpan.FromMilliseconds(searchTimeout);
 
             // get element

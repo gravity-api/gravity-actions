@@ -3,9 +3,8 @@
  * 
  * online resources
  */
-using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Actions.UiCommon;
-using Gravity.Plugins.Actions.UnitTests.Base;
+using Gravity.UnitTests.Base;
 using Gravity.Plugins.Contracts;
 using Gravity.Plugins.Extensions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -19,9 +18,10 @@ using System.Reflection;
 using System.Text.RegularExpressions;
 
 using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
+using Gravity.Plugins.Actions.Contracts;
 
 #pragma warning disable S4144
-namespace Gravity.Plugins.Actions.UnitTests.UiCommon
+namespace Gravity.UnitTests.UiCommon
 {
     [TestClass]
     [DoNotParallelize]
@@ -63,14 +63,14 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         public void ExtractDataDocumentation()
         {
             AssertDocumentation<ExtractFromDom>(
-                pluginName: CommonPlugins.ExtractFromDom);
+                pluginName: PluginsList.ExtractFromDom);
         }
 
         [TestMethod]
         public void ExtractDataDocumentationResourceFile()
         {
             AssertDocumentation<ExtractFromDom>(
-                pluginName: CommonPlugins.ExtractFromDom,
+                pluginName: PluginsList.ExtractFromDom,
                 resource: "extract_from_dom.json");
         }
         #endregion
@@ -738,7 +738,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             "            'key':'data'," +
             "            'actions': [" +
             "                {" +
-            "                    'actionType':'Click'," +
+            "                    'action':'Click'," +
             "                    'onElement':'.//positive'" +
             "                }" +
             "            ]" +
@@ -770,7 +770,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             var isData = plugin.Extractions
                 .First()
                 .Entities
-                .All(i => Regex.IsMatch($"{i.EntityContent["data"]}", expected));
+                .All(i => Regex.IsMatch($"{i.Content["data"]}", expected));
 
             // assertion
             return isCount && isData;

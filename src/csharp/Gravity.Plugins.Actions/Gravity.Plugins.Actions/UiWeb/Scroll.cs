@@ -6,7 +6,6 @@
  * https://developer.mozilla.org/en-US/docs/Web/API/Element/scroll
  * https://developer.mozilla.org/en-US/docs/Web/API/ScrollToOptions/behavior
  */
-using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Actions.Extensions;
 using Gravity.Plugins.Attributes;
 using Gravity.Plugins.Base;
@@ -19,7 +18,7 @@ namespace Gravity.Plugins.Actions.UiWeb
     [Plugin(
         assembly: "Gravity.Plugins.Actions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
         resource: "Gravity.Plugins.Actions.Documentation.scroll.json",
-        Name = WebPlugins.Scroll)]
+        Name = Contracts.PluginsList.Scroll)]
     public class Scroll : WebDriverActionPlugin
     {
         #region *** arguments    ***

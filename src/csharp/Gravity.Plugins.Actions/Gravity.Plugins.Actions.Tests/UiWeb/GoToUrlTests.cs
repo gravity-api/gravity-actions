@@ -5,17 +5,16 @@
  */
 using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Actions.UiWeb;
-using Gravity.Plugins.Actions.UnitTests.Base;
+using Gravity.UnitTests.Base;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Mock;
 using OpenQA.Selenium.Mock;
 using OpenQA.Selenium.Mock.Extensions;
-using System;
 using System.Collections.Generic;
 
 #pragma warning disable S4144
-namespace Gravity.Plugins.Actions.UnitTests.UiWeb
+namespace Gravity.UnitTests.UiWeb
 {
     [TestClass]
     public class GoToUrlTests : ActionTests
@@ -38,14 +37,14 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         [TestMethod]
         public void GoToUrlDocumentation()
         {
-            AssertDocumentation<GoToUrl>(pluginName: WebPlugins.GoToUrl);
+            AssertDocumentation<GoToUrl>(pluginName: PluginsList.GoToUrl);
         }
 
         [TestMethod]
         public void GoToUrlDocumentationResourceFile()
         {
             AssertDocumentation<GoToUrl>(
-                pluginName: WebPlugins.GoToUrl,
+                pluginName: PluginsList.GoToUrl,
                 resource: "go_to_url.json");
         }
         #endregion

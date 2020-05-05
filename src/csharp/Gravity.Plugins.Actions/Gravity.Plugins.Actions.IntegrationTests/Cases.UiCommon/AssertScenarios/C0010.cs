@@ -12,12 +12,12 @@
 * [1] verify {count} on {//tbody/tr} equal {7}
 */
 #pragma warning restore
+using Gravity.IntegrationTests.Base;
 using Gravity.Plugins.Actions.Contracts;
-using Gravity.Plugins.Actions.IntegrationTests.Base;
 using Gravity.Plugins.Contracts;
 using System.Collections.Generic;
 
-namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.AssertScenarios
+namespace Gravity.IntegrationTests.Cases.UiCommon.AssertScenarios
 {
     public class C0010 : TestCase
     {
@@ -33,7 +33,7 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.AssertScenario
             {
                 new ActionRule
                 {
-                    ActionType = CommonPlugins.Assert,
+                    Action = PluginsList.Assert,
                     Argument = "{{$ --count --eq:" + expected + "}}",
                     OnElement = "//tbody/tr"
                 }

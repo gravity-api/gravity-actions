@@ -218,7 +218,7 @@ namespace Gravity.Plugins.Actions.Components
                 [StateProperties.Evaluation] = actual,
                 [StateProperties.Expected] = Exists,
                 [StateProperties.Actual] = actual ? Exists : NotExists,
-                [StateProperties.Operator] = Contracts.OperatorType.Equal
+                [StateProperties.Operator] = Contracts.OperatorsList.Equal
             };
         });
 
@@ -235,7 +235,7 @@ namespace Gravity.Plugins.Actions.Components
                 [StateProperties.Evaluation] = actual,
                 [StateProperties.Expected] = Visible,
                 [StateProperties.Actual] = actual ? Visible : Hidden,
-                [StateProperties.Operator] = Contracts.OperatorType.Equal
+                [StateProperties.Operator] = Contracts.OperatorsList.Equal
             };
         });
 
@@ -252,7 +252,7 @@ namespace Gravity.Plugins.Actions.Components
                 [StateProperties.Evaluation] = actual,
                 [StateProperties.Expected] = Hidden,
                 [StateProperties.Actual] = actual ? Hidden : Visible,
-                [StateProperties.Operator] = Contracts.OperatorType.Equal
+                [StateProperties.Operator] = Contracts.OperatorsList.Equal
             };
         });
 
@@ -280,7 +280,7 @@ namespace Gravity.Plugins.Actions.Components
                 [StateProperties.Evaluation] = actual,
                 [StateProperties.Actual] = actual ? NotExists : Exists,
                 [StateProperties.Expected] = Exists,
-                [StateProperties.Operator] = Contracts.OperatorType.Equal
+                [StateProperties.Operator] = Contracts.OperatorsList.Equal
             };
         }
 
@@ -308,7 +308,7 @@ namespace Gravity.Plugins.Actions.Components
                 [StateProperties.Evaluation] = actual,
                 [StateProperties.Actual] = actual ? Stale : "not_stale",
                 [StateProperties.Expected] = Stale,
-                [StateProperties.Operator] = Contracts.OperatorType.Equal
+                [StateProperties.Operator] = Contracts.OperatorsList.Equal
             };
         }
 
@@ -325,7 +325,7 @@ namespace Gravity.Plugins.Actions.Components
                 [StateProperties.Evaluation] = actual,
                 [StateProperties.Expected] = Enabled,
                 [StateProperties.Actual] = actual ? Enabled : Disabled,
-                [StateProperties.Operator] = Contracts.OperatorType.Equal
+                [StateProperties.Operator] = Contracts.OperatorsList.Equal
             };
         });
 
@@ -342,7 +342,7 @@ namespace Gravity.Plugins.Actions.Components
                 [StateProperties.Evaluation] = actual,
                 [StateProperties.Expected] = Disabled,
                 [StateProperties.Actual] = actual ? Disabled : Enabled,
-                [StateProperties.Operator] = Contracts.OperatorType.Equal
+                [StateProperties.Operator] = Contracts.OperatorsList.Equal
             };
         });
 
@@ -359,7 +359,7 @@ namespace Gravity.Plugins.Actions.Components
                 [StateProperties.Evaluation] = actual,
                 [StateProperties.Expected] = Selected,
                 [StateProperties.Actual] = actual ? Selected : NotSelected,
-                [StateProperties.Operator] = Contracts.OperatorType.Equal
+                [StateProperties.Operator] = Contracts.OperatorsList.Equal
             };
         });
 
@@ -376,7 +376,7 @@ namespace Gravity.Plugins.Actions.Components
                 [StateProperties.Evaluation] = actual,
                 [StateProperties.Expected] = NotSelected,
                 [StateProperties.Actual] = actual ? NotSelected : Selected,
-                [StateProperties.Operator] = Contracts.OperatorType.Equal
+                [StateProperties.Operator] = Contracts.OperatorsList.Equal
             };
         });
 
@@ -577,31 +577,31 @@ namespace Gravity.Plugins.Actions.Components
         #endregion
 
         #region *** operators    ***
-        [Description(Contracts.OperatorType.Equal)]
+        [Description(Contracts.OperatorsList.Equal)]
         private bool Eqaul(string actual, string expected)
         {
             return actual.Equals(expected, StringComparison.Ordinal);
         }
 
-        [Description(Contracts.OperatorType.NotEqual)]
+        [Description(Contracts.OperatorsList.NotEqual)]
         private bool NotEqaul(string actual, string expected)
         {
             return !actual.Equals(expected, StringComparison.Ordinal);
         }
 
-        [Description(Contracts.OperatorType.Match)]
+        [Description(Contracts.OperatorsList.Match)]
         private bool Match(string actual, string expected)
         {
             return Regex.IsMatch(input: actual, pattern: expected);
         }
 
-        [Description(Contracts.OperatorType.NotMatch)]
+        [Description(Contracts.OperatorsList.NotMatch)]
         private bool NotMatch(string actual, string expected)
         {
             return !Regex.IsMatch(input: actual, pattern: expected);
         }
 
-        [Description(Contracts.OperatorType.GreaterThan)]
+        [Description(Contracts.OperatorsList.GreaterThan)]
         private bool GreaterThan(string actual, string expected)
         {
             // get as numbers
@@ -612,7 +612,7 @@ namespace Gravity.Plugins.Actions.Components
             return isActual && isExpected && (actualOut > expectedOut);
         }
 
-        [Description(Contracts.OperatorType.LowerThan)]
+        [Description(Contracts.OperatorsList.LowerThan)]
         private bool LowerThan(string actual, string expected)
         {
             // get as numbers
@@ -623,7 +623,7 @@ namespace Gravity.Plugins.Actions.Components
             return isActual && isExpected && (actualOut < expectedOut);
         }
 
-        [Description(Contracts.OperatorType.GreaterOrEqualThan)]
+        [Description(Contracts.OperatorsList.GreaterOrEqualThan)]
         private bool GreaterOrEqualThan(string actual, string expected)
         {
             // get as numbers
@@ -634,7 +634,7 @@ namespace Gravity.Plugins.Actions.Components
             return isActual && isExpected && (actualOut >= expectedOut);
         }
 
-        [Description(Contracts.OperatorType.LowerOrEqualThan)]
+        [Description(Contracts.OperatorsList.LowerOrEqualThan)]
         private bool LowerOrEqualThan(string actual, string expected)
         {
             // get as numbers

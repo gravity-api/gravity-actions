@@ -3,7 +3,6 @@
  * 
  * online resources
  */
-using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Attributes;
 using Gravity.Plugins.Base;
 using Gravity.Plugins.Contracts;
@@ -14,7 +13,7 @@ namespace Gravity.Plugins.Actions.UiWeb
     [Plugin(
         assembly: "Gravity.Plugins.Actions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
         resource: "Gravity.Plugins.Actions.Documentation.switch_to_window.json",
-        Name = WebPlugins.SwitchToWindow)]
+        Name = Contracts.PluginsList.SwitchToWindow)]
     public class SwitchToWindow : WebDriverActionPlugin
     {
         #region *** constructors ***

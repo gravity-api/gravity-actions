@@ -12,20 +12,20 @@
 * [1] verify {enabled} on {input_enabled} using {id}
 */
 #pragma warning restore
+using Gravity.IntegrationTests.Base;
 using Gravity.Plugins.Actions.Contracts;
-using Gravity.Plugins.Actions.IntegrationTests.Base;
 using Gravity.Plugins.Contracts;
 using System.Collections.Generic;
 
-namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.AssertScenarios
+namespace Gravity.IntegrationTests.Cases.UiCommon.AssertScenarios
 {
     public class C0023 : TestCase
     {
         // gets the actions collection of this test
         public override IEnumerable<ActionRule> GetActions(AutomationEnvironment environment)
         {
-            var onElement = (bool)environment.TestParams["negative"] 
-                ? "input_disabled" 
+            var onElement = (bool)environment.TestParams["negative"]
+                ? "input_disabled"
                 : "input_enabled";
 
             // setup
@@ -33,10 +33,10 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.AssertScenario
             {
                 new ActionRule
                 {
-                    ActionType = CommonPlugins.Assert,
+                    Action = PluginsList.Assert,
                     Argument = "{{$ --enabled}}",
                     OnElement = onElement,
-                    Locator = LocatorType.Id
+                    Locator = LocatorsList.Id
                 }
             };
         }

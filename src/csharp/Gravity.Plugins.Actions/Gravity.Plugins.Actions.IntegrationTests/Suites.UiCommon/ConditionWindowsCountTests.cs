@@ -3,14 +3,14 @@
  * 
  * online resources
  */
-using Gravity.Plugins.Actions.IntegrationTests.Base;
-using Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.ConditionScenarios;
-using Gravity.Plugins.Actions.IntegrationTests.Providers;
+using Gravity.IntegrationTests.Base;
+using Gravity.IntegrationTests.Cases.UiCommon.ConditionScenarios;
+using Gravity.IntegrationTests.Providers;
 using NUnit.Framework;
 
 using DescriptionAttribute = System.ComponentModel.DescriptionAttribute;
 
-namespace Gravity.Plugins.Actions.IntegrationTests.Suites.UiCommon
+namespace Gravity.IntegrationTests.Suites.UiCommon
 {
     [TestFixture]
     public class ConditionWindowsCountTests

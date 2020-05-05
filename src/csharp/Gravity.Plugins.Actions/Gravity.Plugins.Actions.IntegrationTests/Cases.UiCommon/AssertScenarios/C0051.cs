@@ -12,12 +12,12 @@
 * [1] verify {url} filter {\d+} greater or equal {1045}
 */
 #pragma warning restore
+using Gravity.IntegrationTests.Base;
 using Gravity.Plugins.Actions.Contracts;
-using Gravity.Plugins.Actions.IntegrationTests.Base;
 using Gravity.Plugins.Contracts;
 using System.Collections.Generic;
 
-namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.AssertScenarios
+namespace Gravity.IntegrationTests.Cases.UiCommon.AssertScenarios
 {
     public class C0051 : TestCase
     {
@@ -33,7 +33,7 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.AssertScenario
             {
                 new ActionRule
                 {
-                    ActionType = CommonPlugins.Assert,
+                    Action = PluginsList.Assert,
                     Argument = "{{$ --url --ge:" + expected + "}}",
                     RegularExpression = "\\d+"
                 }

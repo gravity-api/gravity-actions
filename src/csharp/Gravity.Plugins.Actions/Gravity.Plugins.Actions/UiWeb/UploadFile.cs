@@ -3,7 +3,6 @@
  * 
  * online resources
  */
-using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Actions.Extensions;
 using Gravity.Plugins.Attributes;
 using Gravity.Plugins.Base;
@@ -16,7 +15,7 @@ namespace Gravity.Plugins.Actions.UiWeb
     [Plugin(
         assembly: "Gravity.Plugins.Actions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
         resource: "Gravity.Plugins.Actions.Documentation.upload_file.json",
-        Name = WebPlugins.UploadFile)]
+        Name = Contracts.PluginsList.UploadFile)]
     public class UploadFile : WebDriverActionPlugin
     {
         #region *** constructors ***

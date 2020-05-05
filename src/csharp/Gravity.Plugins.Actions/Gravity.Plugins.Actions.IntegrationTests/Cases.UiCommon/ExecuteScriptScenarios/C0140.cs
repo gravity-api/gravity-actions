@@ -13,12 +13,12 @@
 * [2] verify {attribute} on {scroll_y_outcome} using {id} match {^1\d+$}
 */
 #pragma warning restore
+using Gravity.IntegrationTests.Base;
 using Gravity.Plugins.Actions.Contracts;
-using Gravity.Plugins.Actions.IntegrationTests.Base;
 using Gravity.Plugins.Contracts;
 using System.Collections.Generic;
 
-namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.ExecuteScriptScenarios
+namespace Gravity.IntegrationTests.Cases.UiCommon.ExecuteScriptScenarios
 {
     public class C0140 : TestCase
     {
@@ -32,7 +32,7 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.ExecuteScriptS
             {
                 new ActionRule
                 {
-                    ActionType = CommonPlugins.ExecuteScript,
+                    Action = PluginsList.ExecuteScript,
                     Argument = "{{$ --src:window.scrollTo(arguments[0], arguments[1]); --args:[0, "+ $"{condition}" +"]}}"
                 },
                 SharedSteps.AssertScrollOutcome(offset: "y", greaterThan: condition - 1)

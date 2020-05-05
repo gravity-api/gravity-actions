@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 
-namespace Gravity.Plugins.Actions.IntegrationTests.Base
+namespace Gravity.IntegrationTests.Base
 {
     public static class SharedSteps
     {
@@ -22,16 +22,16 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
         {
             new ActionRule
             {
-                ActionType = CommonPlugins.SendKeys,
+                Action = PluginsList.SendKeys,
                 Argument = searchFor,
                 OnElement = "SearchString",
-                Locator = LocatorType.Id
+                Locator = LocatorsList.Id
             },
             new ActionRule
             {
-                ActionType = CommonPlugins.Click,
+                Action = PluginsList.Click,
                 OnElement = "SearchButton",
-                Locator = LocatorType.Id
+                Locator = LocatorsList.Id
             }
         };
 
@@ -44,10 +44,10 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
         {
             new ActionRule
             {
-                ActionType = CommonPlugins.SendKeys,
+                Action = PluginsList.SendKeys,
                 Argument = $"{numberOfAlerts}",
                 OnElement = "number_of_alerts",
-                Locator = LocatorType.Id
+                Locator = LocatorsList.Id
             }
         };
 
@@ -59,9 +59,9 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
         {
             new ActionRule
             {
-                ActionType = CommonPlugins.Click,
+                Action = PluginsList.Click,
                 OnElement = "Back to List",
-                Locator = LocatorType.LinkText
+                Locator = LocatorsList.LinkText
             }
         };
 
@@ -72,7 +72,7 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
         /// <returns>Assert <see cref="ActionRule"/>.</returns>
         public static ActionRule AssertStudentsCount(int count) => new ActionRule
         {
-            ActionType = CommonPlugins.Assert,
+            Action = PluginsList.Assert,
             Argument = "{{$ --count --eq:" + $"{count}" + "}}",
             OnElement = "//tr[./td[@id]]"
         };
@@ -84,10 +84,10 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
         /// <returns>Assert <see cref="ActionRule"/>.</returns>
         public static ActionRule AssertNumberOfAlerts(int greaterThan) => new ActionRule
         {
-            ActionType = CommonPlugins.Assert,
+            Action = PluginsList.Assert,
             Argument = "{{$ --attribute --gt:" + $"{greaterThan}" + "}}",
             OnElement = "number_of_alerts",
-            Locator = LocatorType.Id,
+            Locator = LocatorsList.Id,
             OnAttribute = "value"
         };
 
@@ -98,7 +98,7 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
         /// <returns>Assert <see cref="ActionRule"/>.</returns>
         public static ActionRule AssertUrl(string expectedPattern) => new ActionRule
         {
-            ActionType = CommonPlugins.Assert,
+            Action = PluginsList.Assert,
             Argument = "{{$ --url --match:" + expectedPattern + "}}"
         };
 
@@ -109,11 +109,11 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
         /// <returns>Assert <see cref="ActionRule"/>.</returns>
         public static ActionRule AssertClickOutcome(string expectedPattern) => new ActionRule
         {
-            ActionType = CommonPlugins.Assert,
+            Action = PluginsList.Assert,
             Argument = "{{$ --attribute --match:" + expectedPattern + "}}",
             OnElement = "click_outcome",
             OnAttribute = "value",
-            Locator = LocatorType.Id
+            Locator = LocatorsList.Id
         };
 
         /// <summary>
@@ -123,10 +123,10 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
         /// <returns>Assert <see cref="ActionRule"/>.</returns>
         public static ActionRule AssertListenerOutcome(int greaterThan) => new ActionRule
         {
-            ActionType = CommonPlugins.Assert,
+            Action = PluginsList.Assert,
             Argument = "{{$ --attribute --gt:" + $"{greaterThan}" + "}}",
             OnElement = "dismissed_elements",
-            Locator = LocatorType.Id,
+            Locator = LocatorsList.Id,
             OnAttribute = "value"
         };
 
@@ -137,10 +137,10 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
         /// <returns>Assert <see cref="ActionRule"/>.</returns>
         public static ActionRule AssertInputEnabledValue(string expectedPattern) => new ActionRule
         {
-            ActionType = CommonPlugins.Assert,
+            Action = PluginsList.Assert,
             Argument = "{{$ --attribute --match:" + expectedPattern + "}}",
             OnElement = "input_enabled",
-            Locator = LocatorType.Id,
+            Locator = LocatorsList.Id,
             OnAttribute = "value"
         };
 
@@ -152,10 +152,10 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
         /// <returns>Assert <see cref="ActionRule"/>.</returns>
         public static ActionRule AssertScrollOutcome(string offset, int greaterThan) => new ActionRule
         {
-            ActionType = CommonPlugins.Assert,
+            Action = PluginsList.Assert,
             Argument = "{{$ --attribute --gt:" + $"{greaterThan}" + "}}",
             OnElement = $"scroll_{offset.ToLower()}_outcome",
-            Locator = LocatorType.Id,
+            Locator = LocatorsList.Id,
             OnAttribute = "value"
         };
 
@@ -173,10 +173,10 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
 
             // get all entities
             var entities = responses.SelectMany(i=>i.Extractions).SelectMany(i => i.Entities);
-            var entries = entities.SelectMany(i => i.EntityContent).Where(i => !excluded.Contains(i.Key));
+            var entries = entities.SelectMany(i => i.Content).Where(i => !excluded.Contains(i.Key));
 
             // assertion, add +1 to fields count to normalize automatic fields.
-            var isCount = entities.All(i => i.EntityContent.Count == fieldsCount + excluded.Length);
+            var isCount = entities.All(i => i.Content.Count == fieldsCount + excluded.Length);
             var isValues = entries
                 .All(i => !string.IsNullOrEmpty(i.Key) && Regex.IsMatch(input: $"{i.Value}", pattern: expectedPattern));
 
@@ -198,10 +198,10 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Base
 
             // get all entities
             var entities = responses.SelectMany(i=>i.Extractions).SelectMany(i => i.Entities);
-            var entries = entities.SelectMany(i => i.EntityContent).Where(i => !excluded.Contains(i.Key));
+            var entries = entities.SelectMany(i => i.Content).Where(i => !excluded.Contains(i.Key));
 
             // assertion, add +1 to fields count to normalize automatic fields.
-            var isCount = entities.All(i => i.EntityContent.Count == fieldsCount + excluded.Length);
+            var isCount = entities.All(i => i.Content.Count == fieldsCount + excluded.Length);
             var isKeys = entries
                 .All(i => !string.IsNullOrEmpty(i.Key) && Regex.IsMatch(input: $"{i.Key}", pattern: expectedPattern));
 

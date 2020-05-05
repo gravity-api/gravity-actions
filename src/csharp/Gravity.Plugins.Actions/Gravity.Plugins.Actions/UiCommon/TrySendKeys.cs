@@ -3,7 +3,6 @@
  * 
  * online resources
  */
-using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Actions.Extensions;
 using Gravity.Plugins.Attributes;
 using Gravity.Plugins.Base;
@@ -17,7 +16,7 @@ namespace Gravity.Plugins.Actions.UiCommon
     [Plugin(
         assembly: "Gravity.Plugins.Actions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
         resource: "Gravity.Plugins.Actions.Documentation.try_send_keys.json",
-        Name = CommonPlugins.TrySendKeys)]
+        Name = Contracts.PluginsList.TrySendKeys)]
     public class TrySendKeys : WebDriverActionPlugin
     {
         #region *** constructors ***
@@ -55,7 +54,7 @@ namespace Gravity.Plugins.Actions.UiCommon
         {
             // setup
             var wait = new WebDriverWait(
-                WebDriver, TimeSpan.FromMilliseconds(Automation.EngineConfiguration.ElementSearchingTimeout));
+                WebDriver, TimeSpan.FromMilliseconds(Automation.EngineConfiguration.SearchTimeout));
 
             // persist send keys
             var sendKeys = new SendKeys(automation: Automation, driver: WebDriver);

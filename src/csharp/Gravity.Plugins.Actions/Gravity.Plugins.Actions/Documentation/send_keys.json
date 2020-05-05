@@ -13,7 +13,7 @@
       "description": "Type [Alexander] into [//form//p/input[1]] text input.",
       "literalExample": "send keys {Alexander} into {//form//p/input[1]}",
       "actionExample": {
-        "actionType": "SendKeys",
+        "action": "SendKeys",
         "argument": "Alexander",
         "onElement": "//form//p/input[1]"
       }
@@ -22,7 +22,7 @@
       "description": "Simulates a keys combination of [ctrl]+a (a, c, v, etc. must be lower case).",
       "literalExample": "send keys {{$ --down:control --keys:a}}",
       "actionExample": {
-        "actionType": "SendKeys",
+        "action": "SendKeys",
         "argument": "{{$ --down:control --keys:a}}"
       }
     },
@@ -30,7 +30,7 @@
       "description": "Simulates a keys combination of [ctrl]+[alt]+[delete].",
       "literalExample": "send keys {{$ --down:control,alt,delete}}",
       "actionExample": {
-        "actionType": "SendKeys",
+        "action": "SendKeys",
         "argument": "{{$ --down:control,alt,delete}}"
       }
     },
@@ -38,7 +38,7 @@
       "description": "Type [Alexander] into [//form//p/input[1]] text input, after clearing the existing value.",
       "literalExample": "send keys {{$ --keys:Alexander --clear}} into {//form//p/input[1]}",
       "actionExample": {
-        "actionType": "SendKeys",
+        "action": "SendKeys",
         "argument": "{{$ --keys:gravity api --clear}}",
         "onElement": "//form//p/input[1]"
       }
@@ -47,7 +47,7 @@
       "description": "Type [Alexander] into [//form//p/input[1]] text input, after clearing the existing value using real keyboard actions.",
       "literalExample": "send keys {{$ --keys:Alexander --forceClear}} into {//form//p/input[1]}",
       "actionExample": {
-        "actionType": "SendKeys",
+        "action": "SendKeys",
         "argument": "{{$ --keys:Alexander --forceClear}}"
       }
     },
@@ -55,7 +55,7 @@
       "description": "Type [Alexander] into [//form//p/input[1]] text input with [100ms] interval between each char.",
       "literalExample": "send keys {{$ --keys:Alexander --interval:100}} into {//form//p/input[1]}",
       "actionExample": {
-        "actionType": "SendKeys",
+        "action": "SendKeys",
         "argument": "{{$ --keys:Alexander --interval:100}}"
       }
     }

@@ -15,19 +15,19 @@ namespace Gravity.Plugins.UnitTests.Engine
 
             var actions = new[]
             {
-                new ActionRule { ActionType = "GenericAction", Argument="{{Prop}}_{{Number}}", Actions = new[]
+                new ActionRule { Action = "GenericAction", Argument="{{Prop}}_{{Number}}", Actions = new[]
                 {
-                    new ActionRule { ActionType = "GenericAction", Argument="{{Prop}}_{{Number}}", Actions = new[]
+                    new ActionRule { Action = "GenericAction", Argument="{{Prop}}_{{Number}}", Actions = new[]
                     {
-                        new ActionRule { ActionType = "GenericAction", Argument="{{Prop}}_{{Number}}", Actions = new[]
+                        new ActionRule { Action = "GenericAction", Argument="{{Prop}}_{{Number}}", Actions = new[]
                         {
-                            new ActionRule { ActionType = "GenericAction", Argument="{{Prop}}_{{Number}}", Actions = new[]
+                            new ActionRule { Action = "GenericAction", Argument="{{Prop}}_{{Number}}", Actions = new[]
                             {
-                                new ActionRule { ActionType = "GenericAction", Argument="{{Prop}}_{{Number}}", Actions = new[]
+                                new ActionRule { Action = "GenericAction", Argument="{{Prop}}_{{Number}}", Actions = new[]
                                 {
-                                    new ActionRule { ActionType = "GenericAction", Argument="{{Prop}}_{{Number}}", Actions = new[]
+                                    new ActionRule { Action = "GenericAction", Argument="{{Prop}}_{{Number}}", Actions = new[]
                                     {
-                                        new ActionRule { ActionType = "GenericAction", Argument="{{Prop}}_{{Number}}", }
+                                        new ActionRule { Action = "GenericAction", Argument="{{Prop}}_{{Number}}", }
                                     } }
                                 } }
                             } }
@@ -47,7 +47,7 @@ namespace Gravity.Plugins.UnitTests.Engine
             //};
             //automation.DataSource = dataSource;
             automation.Actions = actions;
-            automation.EngineConfiguration.MaxParallelExecution = 5;
+            automation.EngineConfiguration.MaxParallel = 5;
 
             var actual = new AutomationExecutor(automation).Execute();
             Assert.IsTrue(actual.All(i => i.Value.Extractions.Count() == 7));

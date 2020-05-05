@@ -5,14 +5,14 @@
  */
 using OpenQA.Selenium.Mock;
 using OpenQA.Selenium.Mock.Extensions;
-using Gravity.Plugins.Actions.UnitTests.Base;
+using Gravity.UnitTests.Base;
 using Gravity.Plugins.Actions.UiWeb;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using System.Collections.Generic;
 using Gravity.Plugins.Actions.Contracts;
 
-namespace Gravity.Plugins.Actions.UnitTests.UiWeb
+namespace Gravity.UnitTests.UiWeb
 {
     [TestClass]
     public class CloseAllChildWindowsTests : ActionTests
@@ -34,14 +34,14 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         public void CloseAllChildWindowsDocumentation()
         {
             AssertDocumentation<CloseAllChildWindows>(
-                pluginName: WebPlugins.CloseAllChildWindows);
+                pluginName: PluginsList.CloseAllChildWindows);
         }
 
         [TestMethod]
         public void CloseAllChildWindowsDocumentationResourceFile()
         {
             AssertDocumentation<CloseAllChildWindows>(
-                pluginName: WebPlugins.CloseAllChildWindows,
+                pluginName: PluginsList.CloseAllChildWindows,
                 resource: "close_all_child_windows.json");
         }
         #endregion

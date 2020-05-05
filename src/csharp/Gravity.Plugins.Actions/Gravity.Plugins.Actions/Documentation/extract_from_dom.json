@@ -1,227 +1,291 @@
 {
-  "cliArguments": {},
-  "description": "Executes the extraction rule collection under provided under WebAutomation and return or populates the data collected. Due to the nature of this action, it supports only XPath locator.",
+  "cliArguments": {
+    "extractions": {
+      "description": "Comma separated, zero-based index of the extractions to execute, under your extraction rule collection. Leaving this value empty, will execute all PageSource based extractions. Each extraction will be returned under a separate extraction results.",
+      "value": "0,1,4"
+    }
+  },
+  "description": "Executes the extraction rules collection provided under this WebAutomation and return or populates the data collected. Due to the nature of this action, it supports only XPath locator. This action will executes the extraction on the page DOM.",
   "examples": [
     {
       "actionExample": {
-        "actionType": "ExtractData"
+        "action": "ExtractFromDom"
       },
       "extractionExample": {
-        "onRootElements": "//div",
+        "onRootElements": "//td[contains(@id,'student_first_name')]",
         "onElements": [
           {
-            "key": "data"
+            "key": "FirstName"
           }
         ]
       },
-      "description": "Extracts the inner text of all root elements, found in the page source.",
-      "literalExample": "not supported by literal engine."
+      "description": "Extract all students First Name into a table with FirstName column.",
+      "literalExample": "extract from dom on {//td[contains(@id,'student_first_name')]}\n    < column {FirstName}"
     },
     {
       "actionExample": {
-        "actionType": "ExtractData"
+        "action": "ExtractFromDom"
       },
       "extractionExample": {
-        "onRootElements": "//div",
+        "onRootElements": "//td[contains(@id,'student_first_name')]",
         "onElements": [
           {
-            "regularExpression": "foo bar",
-            "key": "data"
+            "key": "FirstName",
+            "regularExpression": "^\\w{1}"
           }
         ]
       },
-      "description": "Extracts the inner text of all root elements, found in the page source and apply a pattern on it.",
-      "literalExample": "not supported by literal engine."
+      "description": "Extract only the first character from all students First Name into a table with FirstName column.",
+      "literalExample": "extract from dom on {//td[contains(@id,'student_first_name')]}\n    < column {FirstName} filter {^\\w{1}}"
     },
     {
       "actionExample": {
-        "actionType": "ExtractData"
+        "action": "ExtractFromDom"
       },
       "extractionExample": {
-        "onRootElements": "//div",
+        "onRootElements": "//td[contains(@id,'student_first_name')]",
         "onElements": [
           {
-            "onAttribute": "class",
-            "key": "data"
+            "key": "FirstName",
+            "onAttribute": "id"
           }
         ]
       },
-      "description": "Extracts a value from a given attribute for all root elements, found in the page source.",
-      "literalExample": "not supported by literal engine."
+      "description": "Extract the HTML ``id`` property, from all students First Name HTML element, into a table with FirstName column.",
+      "literalExample": "extract from dom on {//td[contains(@id,'student_first_name')]}\n    < column {FirstName} from {id}"
     },
     {
       "actionExample": {
-        "actionType": "ExtractData"
+        "action": "ExtractFromDom"
       },
       "extractionExample": {
-        "onRootElements": "//div",
+        "onRootElements": "//tbody/tr",
         "onElements": [
           {
-            "onAttribute": "class",
-            "regularExpression": "foo bar",
-            "key": "data"
+            "key": "FirstName",
+            "onElement": ".//td[contains(@id,'student_first_name')]"
+          },
+          {
+            "key": "LastName",
+            "onElement": ".//td[contains(@id,'student_last_name')]"
           }
         ]
       },
-      "description": "Extracts a value from a given attribute for all root elements, found in the page source and apply a pattern on it.",
-      "literalExample": "not supported by literal engine."
+      "description": "Extract all students First Name and Last Name into a table with FirstName and Last Name columns.",
+      "literalExample": "extract from dom on {//td[contains(@id,'student_first_name')]}\n    < column {FirstName} take {.//td[contains(@id,'student_first_name')]}\n    < column {LastName} take {.//td[contains(@id,'student_last_name')]}"
     },
     {
       "actionExample": {
-        "actionType": "ExtractData"
+        "action": "ExtractFromDom"
       },
       "extractionExample": {
-        "onRootElements": "//div",
+        "onRootElements": "//td[contains(@id,'student_first_name')]",
         "onElements": [
           {
-            "onElement": "./span[1]",
-            "key": "data"
+            "key": "FirstName",
+            "onAttribute": "html"
           }
         ]
       },
-      "description": "Extracts the inner text of the given element under all root elements, found in the page source.",
-      "literalExample": "not supported by literal engine."
+      "description": "Extract the HTML Markup of all students First Name HTML element, into a table with FirstName column.",
+      "literalExample": "extract from dom on {//td[contains(@id,'student_first_name')]}\n    < column {FirstName} from {html}"
     },
     {
       "actionExample": {
-        "actionType": "ExtractData"
+        "action": "ExtractFromDom"
       },
       "extractionExample": {
-        "onRootElements": "//div",
+        "dataSource": {
+          "type": "SQLServer",
+          "source": "Data Source=.\\SQLEXPRESS;Initial Catalog=FooDatabase;Integrated Security=True",
+          "repository": "StudentsTable"
+        },
+        "onRootElement": "//td[contains(@id,'student_first_name')]",
         "onElements": [
           {
-            "onElement": "./span[1]",
-            "regularExpression": "foo bar",
-            "key": "data"
+            "key": "FirstName"
           }
         ]
       },
-      "description": "Extracts the inner text of the given element under all root elements, found in the page source and apply a pattern on it.",
-      "literalExample": "not supported by literal engine."
+      "description": "Extract all students First Name into a table with FirstName column and save it to SQL Server. The saving will be done when the extraction rule execution completed.",
+      "literalExample": "extract from dom on {//td[contains(@id,'student_first_name')]}\\n    < column {FirstName}\n    save {StudentsTable} on {Data Source=.\\SQLEXPRESS;Initial Catalog=FooDatabase;Integrated Security=True} using {SQLServer}"
     },
     {
       "actionExample": {
-        "actionType": "ExtractData"
+        "action": "ExtractFromDom"
       },
       "extractionExample": {
-        "onRootElements": "//div",
+        "dataSource": {
+          "type": "SQLServer",
+          "source": "Data Source=.\\SQLEXPRESS;Initial Catalog=FooDatabase;Integrated Security=True",
+          "repository": "StudentsTable",
+          "writePerEntry": true
+        },
+        "onRootElement": "//td[contains(@id,'student_first_name')]",
         "onElements": [
           {
-            "onElement": "./span[1]",
-            "onAttribute": "class",
-            "key": "data"
+            "key": "FirstName"
           }
         ]
       },
-      "description": "Extracts the inner text of the given element under all root elements, found in the page source and apply a pattern on it.",
-      "literalExample": "not supported by literal engine."
+      "description": "Extract all students First Name into a table with FirstName column and save it to SQL Server. The saving will be done when the content entry execution completed.",
+      "literalExample": "extract from dom on {//td[contains(@id,'student_first_name')]}\\n    < column {FirstName}\n    save {{$ --repository:StudentsTable --write_per_entry}} on {Data Source=.\\SQLEXPRESS;Initial Catalog=FooDatabase;Integrated Security=True} using {SQLServer}"
     },
     {
       "actionExample": {
-        "actionType": "ExtractData"
+        "action": "ExtractFromDom"
       },
       "extractionExample": {
-        "onRootElements": "//div",
+        "dataSource": {
+          "type": "CSV",
+          "source": "Data/StudentsTable.csv"
+        },
+        "onRootElement": "//td[contains(@id,'student_first_name')]",
         "onElements": [
           {
-            "onElement": "./span[1]",
-            "onAttribute": "class",
-            "regularExpression": "foo bar",
-            "key": "data"
+            "key": "FirstName"
           }
         ]
       },
-      "description": "Extracts the attribute value of the given element under all root elements, found in the page source and apply a pattern on it.",
-      "literalExample": "not supported by literal engine."
+      "description": "Extract all students First Name into a table with FirstName column and save it a CSV file. The saving will be done when the extraction rule execution completed.",
+      "literalExample": "extract from dom on {//td[contains(@id,'student_first_name')]}\n    < column {FirstName}\n    < save on {Data/StudentsTable.csv} using {csv}"
     },
     {
       "actionExample": {
-        "actionType": "ExtractData"
+        "action": "ExtractFromDom"
       },
       "extractionExample": {
-        "onRootElements": "//div",
+        "dataSource": {
+          "type": "CSV",
+          "source": "Data/StudentsTable.csv",
+          "writePerEntry": true
+        },
+        "onRootElement": "//td[contains(@id,'student_first_name')]",
         "onElements": [
           {
-            "onAttribute": "html",
-            "key": "data"
+            "key": "FirstName"
           }
         ]
       },
-      "description": "Extracts the outer HTML of all root elements.",
-      "literalExample": "not supported by literal engine."
+      "description": "Extract all students First Name into a table with FirstName column and save it to a CSV file. The saving will be done when the content entry execution completed.",
+      "literalExample": "extract from dom on {//td[contains(@id,'student_first_name')]}\n    < column {FirstName}\n    < save {{$ --write_per_entry}} on {Data/StudentsTable.csv} using {csv}"
     },
     {
       "actionExample": {
-        "actionType": "ExtractData"
+        "action": "ExtractFromDom"
       },
       "extractionExample": {
-        "onRootElements": "//div",
+        "dataSource": {
+          "type": "JSON",
+          "source": "Data/StudentsTable.json"
+        },
+        "onRootElement": "//td[contains(@id,'student_first_name')]",
         "onElements": [
           {
-            "onElement": "./span[1]",
-            "onAttribute": "html",
-            "key": "data"
+            "key": "FirstName"
           }
         ]
       },
-      "description": "Extracts the outer HTML of the given element under all root elements.",
-      "literalExample": "not supported by literal engine."
+      "description": "Extract all students First Name into a table with FirstName column and save it a JSON file. The saving will be done when the extraction rule execution completed.",
+      "literalExample": "extract from dom on {//td[contains(@id,'student_first_name')]}\n    < column {FirstName}\n    < save on {Data/StudentsTable.json} using {json}"
     },
     {
       "actionExample": {
-        "actionType": "ExtractData"
+        "action": "ExtractFromDom"
       },
       "extractionExample": {
-        "onRootElements": "//div",
+        "dataSource": {
+          "type": "JSON",
+          "source": "Data/StudentsTable.json",
+          "writePerEntry": true
+        },
+        "onRootElement": "//td[contains(@id,'student_first_name')]",
         "onElements": [
           {
-            "onElement": "//p[1]",
-            "key": "data"
+            "key": "FirstName"
           }
         ]
       },
-      "description": "Extracts inner text of the given absolute element for all root elements (will be the same for all extractions on the same page).",
-      "literalExample": "not supported by literal engine."
+      "description": "Extract all students First Name into a table with FirstName column and save it to a JSON file. The saving will be done when the content entry execution completed.",
+      "literalExample": "extract from dom on {//td[contains(@id,'student_first_name')]}\n    < column {FirstName}\n   < save {{$ --write_per_entry}} on {Data/StudentsTable.json} using {json}"
     },
     {
       "actionExample": {
-        "actionType": "ExtractData"
+        "action": "ExtractFromDom"
       },
       "extractionExample": {
-        "onRootElements": "//div",
+        "dataSource": {
+          "type": "XML",
+          "source": "Data/StudentsTable.xml"
+        },
+        "onRootElement": "//td[contains(@id,'student_first_name')]",
         "onElements": [
           {
-            "onElement": "//p[1]",
-            "onAttribute": "id",
-            "key": "data"
+            "key": "FirstName"
           }
         ]
       },
-      "description": "Extracts the attribute value of the given absolute element for all root elements (will be the same for all extractions on the same page).",
-      "literalExample": "not supported by literal engine."
+      "description": "Extract all students First Name into a table with FirstName column and save it to XML file. The saving will be done when the extraction rule execution completed.",
+      "literalExample": "extract from dom on {//td[contains(@id,'student_first_name')]}\n   < column {FirstName}\n    < save on {Data/StudentsTable.xml} using {xml}"
     },
     {
       "actionExample": {
-        "actionType": "ExtractData"
+        "action": "ExtractFromDom"
       },
       "extractionExample": {
-        "onRootElements": "//div",
+        "dataSource": {
+          "type": "XML",
+          "source": "Data/StudentsTable.xml",
+          "writePerEntry": true
+        },
+        "onRootElement": "//td[contains(@id,'student_first_name')]",
         "onElements": [
           {
-            "onElement": "//p[1]",
-            "onAttribute": "id",
-            "key": "data",
-            "actions": [
-              {
-                "actionType": "Click",
-                "onElement": "//button"
-              }
-            ]
+            "key": "FirstName"
           }
         ]
       },
-      "description": "Extracts the attribute value of the given absolute element for all root elements (will be the same for all extractions on the same page). The sub action will be performed for each root element.",
-      "literalExample": "not supported by literal engine."
+      "description": "Extract all students First Name into a table with FirstName column and save it to XML file. The saving will be done when the content entry execution completed.",
+      "literalExample": "extract from dom on {//td[contains(@id,'student_first_name')]}\n   < column {FirstName}\n    < save {{$ --write_per_entry}} on {Data/StudentsTable.xml} using {xml}"
+    },
+    {
+      "actionExample": {
+        "action": "ExtractFromDom"
+      },
+      "extractionExample": {
+        "dataSource": {
+          "type": "RestApi",
+          "source": "http://www.@foo-bar.io/data"
+        },
+        "onRootElement": "//td[contains(@id,'student_first_name')]",
+        "onElements": [
+          {
+            "key": "FirstName"
+          }
+        ]
+      },
+      "description": "Extract all students First Name into a table with FirstName column and send it to a Rest API using HTTP post. The saving will be done when the extraction rule execution completed.",
+      "literalExample": "extract from dom on {//td[contains(@id,'student_first_name')]}\n    < column {FirstName}\n    < save on {http://www.@foo-bar.io/data} using {RestApi}"
+    },
+    {
+      "actionExample": {
+        "action": "ExtractFromDom"
+      },
+      "extractionExample": {
+        "dataSource": {
+          "type": "RestApi",
+          "source": "http://www.@foo-bar.io/data",
+          "writePerEntity": true
+        },
+        "onRootElement": "//td[contains(@id,'student_first_name')]",
+        "onElements": [
+          {
+            "key": "FirstName"
+          }
+        ]
+      },
+      "description": "Extract all students First Name into a table with FirstName column and send it to a Rest API using HTTP post. The saving will be done when the content entry execution completed.",
+      "literalExample": "extract from dom on {//td[contains(@id,'student_first_name')]}\n    < column {FirstName}\n    < save {{$ --write_per_entry}} on {http://www.@foo-bar.io/data} using {RestApi}"
     }
   ],
   "name": "ExtractFromDom",
@@ -233,11 +297,7 @@
     "endpoint": "none",
     "w3c": "https://www.w3.org/TR/webdriver/#actions"
   },
-  "scope": [
-    "web",
-    "mobile-web",
-    "mobile-native"
-  ],
+  "scope": [ "web", "mobile-web" ],
   "summary": "Executes the extraction rule collection under provided under WebAutomation.",
   "testOn": "https://gravitymvctestapplication.azurewebsites.net/instructor"
 }

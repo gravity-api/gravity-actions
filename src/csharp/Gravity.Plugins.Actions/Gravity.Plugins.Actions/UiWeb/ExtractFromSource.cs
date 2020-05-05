@@ -3,7 +3,6 @@
  * 
  * online resources
  */
-using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Actions.Extensions;
 using Gravity.Plugins.Extensions;
 using Gravity.Plugins.Attributes;
@@ -24,7 +23,7 @@ namespace Gravity.Plugins.Actions.UiWeb
     [Plugin(
         assembly: "Gravity.Plugins.Actions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
         resource: "Gravity.Plugins.Actions.Documentation.extract_from_source.json",
-        Name = WebPlugins.ExtractFromSource)]
+        Name = Contracts.PluginsList.ExtractFromSource)]
     public class ExtractFromSource : WebDriverActionPlugin
     {
         // members
@@ -109,7 +108,7 @@ namespace Gravity.Plugins.Actions.UiWeb
             .GetDefault($"{WebDriver.GetSession()}");
 
             // apply
-            base.Extractions.Add(onExtraction);
+            Extractions.Add(onExtraction);
 
             // populate
             if(extraction.DataSource != default && !extraction.DataSource.WritePerEntity)
@@ -125,15 +124,15 @@ namespace Gravity.Plugins.Actions.UiWeb
             // setup
             var entity = new Entity()
             {
-                EntityContent = new Dictionary<string, object>()
+                Content = new Dictionary<string, object>()
             };
-            entity.EntityContent["EntityIndex"] = index;
+            entity.Content["EntityIndex"] = index;
 
             // extract
             foreach (var entry in extraction.OnElements)
             {
                 var contentEntry = DoContentEntryFromSource(entry, element);
-                entity.EntityContent[contentEntry.Key] = contentEntry.Value;
+                entity.Content[contentEntry.Key] = contentEntry.Value;
             }
 
             // populate
@@ -171,10 +170,29 @@ namespace Gravity.Plugins.Actions.UiWeb
                 ? htmlNode.InnerText
                 : GetAttributeValue(element: htmlNode, attribute: onEntry.OnAttribute);
 
+            // normalization (before and after regular expression)
+            value = ValueFactory(onEntry, value);
+            value = Regex.Match(input: value, pattern: onEntry.RegularExpression).Value;
+            value = ValueFactory(onEntry, value);
+
             // result
-            return new KeyValuePair<string, object>(
-                key: onEntry.Key,
-                value: Regex.Match(input: value, pattern: onEntry.RegularExpression).Value);
+            return new KeyValuePair<string, object>(key: onEntry.Key, value);
+        }
+
+        private string ValueFactory(ContentEntry entry, string value)
+        {
+            // message configuration
+            if (entry.Trim)
+            {
+                value = value.Trim();
+            }
+            if (entry.ClearLinesBreak)
+            {
+                value = Regex.Replace(input: value, pattern: @"(\r\n|\r|\n)", " ");
+            }
+
+            // results
+            return value;
         }
         #endregion
 

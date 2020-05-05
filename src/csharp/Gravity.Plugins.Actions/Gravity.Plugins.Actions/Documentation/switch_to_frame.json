@@ -5,7 +5,7 @@
       "description": "Select a frame by its (zero-based) index.",
       "literalExample": "switch to frame {0}",
       "actionExample": {
-        "actionType": "SwitchToFrame",
+        "action": "SwitchToFrame",
         "argument": "0"
       }
     },
@@ -13,7 +13,7 @@
       "description": "Select a frame by its name or ID.",
       "literalExample": "switch to frame {main-frame}",
       "actionExample": {
-        "actionType": "SwitchToFrame",
+        "action": "SwitchToFrame",
         "argument": "main-frame"
       }
     },
@@ -21,7 +21,7 @@
       "description": "Select a frame using its previously located OpenQA.Selenium.IWebElement.",
       "literalExample": "switch to frame on {//frame}",
       "actionExample": {
-        "actionType": "SwitchToFrame",
+        "action": "SwitchToFrame",
         "onElement": "//frame"
       }
     }

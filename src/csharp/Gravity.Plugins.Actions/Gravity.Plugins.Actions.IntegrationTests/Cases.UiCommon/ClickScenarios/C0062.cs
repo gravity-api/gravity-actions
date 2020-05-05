@@ -13,12 +13,12 @@
 * [2] verify {text} on {//h2[1]} equal {UI Controls}
 */
 #pragma warning restore
+using Gravity.IntegrationTests.Base;
 using Gravity.Plugins.Actions.Contracts;
-using Gravity.Plugins.Actions.IntegrationTests.Base;
 using Gravity.Plugins.Contracts;
 using System.Collections.Generic;
 
-namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.ClickScenarios
+namespace Gravity.IntegrationTests.Cases.UiCommon.ClickScenarios
 {
     public class C0062 : TestCase
     {
@@ -27,7 +27,7 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.ClickScenarios
         {
             return new[]
             {
-                new ActionRule { ActionType = CommonPlugins.Click },
+                new ActionRule { Action = PluginsList.Click },
                 SharedSteps.AssertUrl("(?i)uicontrols")
             };
         }

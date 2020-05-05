@@ -3,7 +3,6 @@
  * 
  * online resources
  */
-using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Actions.Extensions;
 using Gravity.Plugins.Attributes;
 using Gravity.Plugins.Base;
@@ -20,7 +19,7 @@ namespace Gravity.Plugins.Actions.UiWeb
     [Plugin(
         assembly: "Gravity.Plugins.Actions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
         resource: "Gravity.Plugins.Actions.Documentation.select_from_combo_box.json",
-        Name = WebPlugins.SelectFromComboBox)]
+        Name = Contracts.PluginsList.SelectFromComboBox)]
     public class SelectFromComboBox : WebDriverActionPlugin
     {
         #region *** arguments    ***
@@ -64,7 +63,7 @@ namespace Gravity.Plugins.Actions.UiWeb
         private void DoAction(ActionRule action, IWebElement element)
         {
             // get element to act on
-            var timeout = TimeSpan.FromMilliseconds(Automation.EngineConfiguration.ElementSearchingTimeout);
+            var timeout = TimeSpan.FromMilliseconds(Automation.EngineConfiguration.SearchTimeout);
             var webElement = element != default
                 ? element.GetElement(ByFactory, action, timeout)
                 : WebDriver.GetElement(ByFactory, action, timeout);

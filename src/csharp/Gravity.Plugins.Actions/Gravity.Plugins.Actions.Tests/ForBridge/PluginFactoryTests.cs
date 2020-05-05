@@ -21,7 +21,7 @@ namespace Gravity.Plugins.UnitTests.Engine
         public void GenericPluginFactorEmptyAttribute()
         {
             // setup
-            var actionRule = new ActionRule { ActionType = nameof(GenericAction) };
+            var actionRule = new ActionRule { Action = nameof(GenericAction) };
 
             // execute
             var plugin = new PluginFactory(new WebAutomation()).Factor(actionRule);
@@ -34,7 +34,7 @@ namespace Gravity.Plugins.UnitTests.Engine
         public void GenericPluginFactorNoAttribute()
         {
             // setup
-            var actionRule = new ActionRule { ActionType = nameof(GenericActionNoAttribute) };
+            var actionRule = new ActionRule { Action = nameof(GenericActionNoAttribute) };
 
             // execute
             var plugin = new PluginFactory(new WebAutomation()).Factor(actionRule);
@@ -47,7 +47,7 @@ namespace Gravity.Plugins.UnitTests.Engine
         public void GenericPluginFactorNoPlugin()
         {
             // setup
-            var actionRule = new ActionRule { ActionType = nameof(GenericActionNoPlugin) };
+            var actionRule = new ActionRule { Action = nameof(GenericActionNoPlugin) };
 
             // execute
             var plugin = new PluginFactory(new WebAutomation()).Factor(actionRule);
@@ -60,7 +60,7 @@ namespace Gravity.Plugins.UnitTests.Engine
         public void GenericPluginFactorEmpty()
         {
             // setup
-            var actionRule = new ActionRule { ActionType = nameof(GenericActionEmpty) };
+            var actionRule = new ActionRule { Action = nameof(GenericActionEmpty) };
 
             // execute
             var plugin = new PluginFactory(new WebAutomation()).Factor(actionRule);
@@ -83,7 +83,7 @@ namespace Gravity.Plugins.UnitTests.Engine
         public void GenericPluginFactorActionRuleParameters()
         {
             // setup
-            var actionRule = new ActionRule { ActionType = nameof(GenericAction) };
+            var actionRule = new ActionRule { Action = nameof(GenericAction) };
 
             // execute
             var plugin = new PluginFactory(new WebAutomation(), null).Factor(actionRule);
@@ -96,7 +96,7 @@ namespace Gravity.Plugins.UnitTests.Engine
         public void GenericPluginExecute()
         {
             // setup
-            var actionRule = new ActionRule { ActionType = nameof(GenericAction) };
+            var actionRule = new ActionRule { Action = nameof(GenericAction) };
 
             // execute
             var plugin = new PluginFactory(new WebAutomation()).Factor(actionRule).Execute(actionRule: default);
@@ -109,7 +109,7 @@ namespace Gravity.Plugins.UnitTests.Engine
         public void GenericPluginExecuteWithActionRule()
         {
             // setup
-            var actionRule = new ActionRule { ActionType = nameof(GenericAction) };
+            var actionRule = new ActionRule { Action = nameof(GenericAction) };
 
             // execute
             var plugin = new PluginFactory(new WebAutomation()).Factor(actionRule).Execute(actionRule);

@@ -5,7 +5,7 @@
       "description": "Submits the form with [searchForm] id.",
       "literalExample": "submit form {searchForm}",
       "actionExample": {
-        "actionType": "SubmitForm",
+        "action": "SubmitForm",
         "argument": "searchForm"
       }
     },
@@ -13,7 +13,7 @@
       "description": "Submits the form which it's index is [0] (counting from the first form in the DOM).",
       "literalExample": "submit form {1}",
       "actionExample": {
-        "actionType": "SubmitForm",
+        "action": "SubmitForm",
         "argument": "0"
       }
     },
@@ -21,7 +21,7 @@
       "description": "Submits [//form]",
       "literalExample": "submit form on {//form}",
       "actionExample": {
-        "actionType": "SubmitForm",
+        "action": "SubmitForm",
         "onElement": "//form"
       }
     }

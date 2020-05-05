@@ -3,16 +3,16 @@
  * 
  * online resources
  */
-using Gravity.Plugins.Actions.Contracts;
-using Gravity.Plugins.Actions.UnitTests.Base;
+using Gravity.UnitTests.Base;
 using Gravity.Plugins.Actions.UiWeb;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Mock;
 using System;
+using Gravity.Plugins.Actions.Contracts;
 
 #pragma warning disable S4144
-namespace Gravity.Plugins.Actions.UnitTests.UiWeb
+namespace Gravity.UnitTests.UiWeb
 {
     [TestClass]
     public class KeyboardTests : ActionTests
@@ -24,14 +24,14 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         [TestMethod]
         public void KeyboardDocumentation()
         {
-            AssertDocumentation<Keyboard>(pluginName: WebPlugins.Keyboard);
+            AssertDocumentation<Keyboard>(pluginName: PluginsList.Keyboard);
         }
 
         [TestMethod]
         public void KeyboardDocumentationResourceFile()
         {
             AssertDocumentation<Keyboard>(
-                pluginName: WebPlugins.Keyboard,
+                pluginName: PluginsList.Keyboard,
                 resource: "Keyboard.json");
         }
         #endregion

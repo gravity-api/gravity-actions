@@ -5,7 +5,7 @@
  */
 using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Actions.UiCommon;
-using Gravity.Plugins.Actions.UnitTests.Base;
+using Gravity.UnitTests.Base;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Mock;
@@ -13,7 +13,7 @@ using OpenQA.Selenium.Mock;
 using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
 
 #pragma warning disable S4144
-namespace Gravity.Plugins.Actions.UnitTests.UiCommon
+namespace Gravity.UnitTests.UiCommon
 {
     [TestClass]
     public class WaitForElementTests: ActionTests
@@ -33,14 +33,14 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         public void WaitForElementDocumentation()
         {
             AssertDocumentation<WaitForElement>(
-                pluginName: CommonPlugins.WaitForElement);
+                pluginName: PluginsList.WaitForElement);
         }
 
         [TestMethod]
         public void WaitForElementDocumentationResourceFile()
         {
             AssertDocumentation<WaitForElement>(
-                pluginName: CommonPlugins.WaitForElement,
+                pluginName: PluginsList.WaitForElement,
                 resource: "wait_for_element.json");
         }
         #endregion

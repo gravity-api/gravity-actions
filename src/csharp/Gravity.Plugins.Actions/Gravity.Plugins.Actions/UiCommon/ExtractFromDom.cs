@@ -3,7 +3,6 @@
  * 
  * online resources
  */
-using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Actions.Extensions;
 using Gravity.Plugins.Attributes;
 using Gravity.Plugins.Base;
@@ -24,7 +23,7 @@ namespace Gravity.Plugins.Actions.UiCommon
     [Plugin(
         assembly: "Gravity.Plugins.Actions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
         resource: "Gravity.Plugins.Actions.Documentation.extract_from_dom.json",
-        Name = CommonPlugins.ExtractFromDom)]
+        Name = Contracts.PluginsList.ExtractFromDom)]
     public class ExtractFromDom : WebDriverActionPlugin
     {
         // members
@@ -111,7 +110,7 @@ namespace Gravity.Plugins.Actions.UiCommon
             .GetDefault($"{WebDriver.GetSession()}");
 
             // apply
-            base.Extractions.Add(onExtraction);
+            Extractions.Add(onExtraction);
 
             // populate
             if (extraction.DataSource != default && !extraction.DataSource.WritePerEntity)
@@ -127,15 +126,15 @@ namespace Gravity.Plugins.Actions.UiCommon
             // setup
             var entity = new Entity()
             {
-                EntityContent = new Dictionary<string, object>()
+                Content = new Dictionary<string, object>()
             };
-            entity.EntityContent["EntityIndex"] = i;
+            entity.Content["EntityIndex"] = i;
 
             // extract
             foreach (var entry in extraction.OnElements)
             {
                 var contentEntry = DoContentEntryFromDom(entry, element);
-                entity.EntityContent[contentEntry.Key] = contentEntry.Value;
+                entity.Content[contentEntry.Key] = contentEntry.Value;
                 ExecuteSubActions(actions: entry.Actions, element);
             }
 

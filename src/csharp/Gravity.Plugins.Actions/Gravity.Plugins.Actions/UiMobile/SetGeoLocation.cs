@@ -3,7 +3,7 @@
  *  
  * 2019-02-19
  *    - modify: improve XML comments
- *    - modify: override action-name using ActionType constant
+ *    - modify: override action-name using action constant
  *    
  * 2019-12-31
  *    - modify: add constructor to override base class types
@@ -14,7 +14,6 @@
  * work items
  * https://github.com/gravity-api/gravity-actions/issues/20
  */
-using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Actions.Extensions;
 using Gravity.Plugins.Base;
 using OpenQA.Selenium;
@@ -28,7 +27,7 @@ namespace Gravity.Plugins.Actions.UiMobile
     [Plugin(
         assembly: "Gravity.Plugins.Actions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
         resource: "Gravity.Plugins.Actions.Documentation.set_geo_location.json",
-        Name = MobilePlugins.SetGeoLocation)]
+        Name = Contracts.PluginsList.SetGeoLocation)]
     public class SetGeoLocation : WebDriverActionPlugin
     {
         #region *** arguments    ***

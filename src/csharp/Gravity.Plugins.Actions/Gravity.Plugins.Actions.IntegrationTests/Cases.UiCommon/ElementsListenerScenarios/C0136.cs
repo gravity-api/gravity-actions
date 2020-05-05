@@ -14,12 +14,12 @@
 * [3] verify {attribute} on {dismissed_elements} from {value} using {id} greater than {1}
 */
 #pragma warning restore
+using Gravity.IntegrationTests.Base;
 using Gravity.Plugins.Actions.Contracts;
-using Gravity.Plugins.Actions.IntegrationTests.Base;
 using Gravity.Plugins.Contracts;
 using System.Collections.Generic;
 
-namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.ElementsListenerScenarios
+namespace Gravity.IntegrationTests.Cases.UiCommon.ElementsListenerScenarios
 {
     public class C0136 : TestCase
     {
@@ -33,19 +33,19 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.ElementsListen
             {
                 new ActionRule
                 {
-                    ActionType = CommonPlugins.ElementsListener,
+                    Action = PluginsList.ElementsListener,
                     Argument = "{{$ --interval:500 --timeout:" + condition + "}}",
                     OnElement = "//div[./strong[contains(.,'Random Element.')]]"
                 },
                 new ActionRule
                 {
-                    ActionType = CommonPlugins.Click,
+                    Action = PluginsList.Click,
                     OnElement = "generate_elements",
-                    Locator = LocatorType.Id
+                    Locator = LocatorsList.Id
                 },
                 new ActionRule
                 {
-                    ActionType = "Wait",
+                    Action = "Wait",
                     Argument = $"{condition}"
                 },
                 SharedSteps.AssertListenerOutcome(greaterThan: 1)

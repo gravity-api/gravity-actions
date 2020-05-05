@@ -3,9 +3,8 @@
  * 
  * online resources
  */
-using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Actions.UiCommon;
-using Gravity.Plugins.Actions.UnitTests.Base;
+using Gravity.UnitTests.Base;
 using Gravity.Plugins.Base;
 using Gravity.Plugins.Contracts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -14,9 +13,10 @@ using OpenQA.Selenium.Extensions;
 using OpenQA.Selenium.Mock;
 
 using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
+using Gravity.Plugins.Actions.Contracts;
 
 #pragma warning disable S4144
-namespace Gravity.Plugins.Actions.UnitTests.UiCommon
+namespace Gravity.UnitTests.UiCommon
 {
     [TestClass]
     public class RepeatTests : ActionTests
@@ -29,7 +29,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             "   'argument':'index'," +
             "   'actions':[" +
             "       {" +
-            "           'actionType':'Click'," +
+            "           'action':'Click'," +
             "           'onElement':'//positive'" +
             "       }" +
             "   ]" +
@@ -41,7 +41,7 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
             "   'onElement':'random'," +
             "   'actions':[" +
             "       {" +
-            "           'actionType':'Click'," +
+            "           'action':'Click'," +
             "           'onElement':'//positive'" +
             "       }" +
             "   ]" +
@@ -58,14 +58,14 @@ namespace Gravity.Plugins.Actions.UnitTests.UiCommon
         [TestMethod]
         public void RepeatDocumentation()
         {
-            AssertDocumentation<Repeat>(pluginName: CommonPlugins.Repeat);
+            AssertDocumentation<Repeat>(pluginName: PluginsList.Repeat);
         }
 
         [TestMethod]
         public void RepeatDocumentationResourceFile()
         {
             AssertDocumentation<Repeat>(
-                pluginName: CommonPlugins.Repeat,
+                pluginName: PluginsList.Repeat,
                 resource: "repeat.json");
         }
         #endregion

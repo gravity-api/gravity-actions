@@ -3,7 +3,6 @@
  * 
  * online resources
  */
-using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Extensions;
 using Gravity.Plugins.Attributes;
 using Gravity.Plugins.Base;
@@ -18,7 +17,7 @@ namespace Gravity.Plugins.Actions.UiWeb
     [Plugin(
         assembly: "Gravity.Plugins.Actions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
         resource: "Gravity.Plugins.Actions.Documentation.wait_for_url.json",
-        Name = WebPlugins.WaitForUrl)]
+        Name = Contracts.PluginsList.WaitForUrl)]
     public class WaitForUrl : WebDriverActionPlugin
     {
         #region *** arguments    ***
@@ -41,7 +40,7 @@ namespace Gravity.Plugins.Actions.UiWeb
         public WaitForUrl(WebAutomation automation, IWebDriver driver)
             : base(automation, driver)
         {
-            timeout = TimeSpan.FromMilliseconds(Automation.EngineConfiguration.PageLoadTimeout);
+            timeout = TimeSpan.FromMilliseconds(Automation.EngineConfiguration.LoadTimeout);
         }
         #endregion
 

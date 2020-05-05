@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Gravity.Plugins.Actions.IntegrationTests.Base
+namespace Gravity.IntegrationTests.Base
 {
     public class AutomationEnvironment
     {

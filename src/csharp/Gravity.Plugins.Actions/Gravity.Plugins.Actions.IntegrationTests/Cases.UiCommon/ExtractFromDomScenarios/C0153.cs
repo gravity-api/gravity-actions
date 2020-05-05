@@ -14,12 +14,12 @@
 * 7. close browser
 */
 #pragma warning restore
+using Gravity.IntegrationTests.Base;
 using Gravity.Plugins.Actions.Contracts;
-using Gravity.Plugins.Actions.IntegrationTests.Base;
 using Gravity.Plugins.Contracts;
 using System.Collections.Generic;
 
-namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.ExtractFromDomScenarios
+namespace Gravity.IntegrationTests.Cases.UiCommon.ExtractFromDomScenarios
 {
     public class C0153 : TestCase
     {
@@ -40,7 +40,7 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.ExtractFromDom
         {
             new ActionRule
             {
-                ActionType = CommonPlugins.ExtractFromDom
+                Action = PluginsList.ExtractFromDom
             }
         };
 
@@ -56,9 +56,9 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.ExtractFromDom
                 {
                     new ActionRule
                     {
-                        ActionType = CommonPlugins.Click,
+                        Action = PluginsList.Click,
                         OnElement = "Details",
-                        Locator = LocatorType.LinkText
+                        Locator = LocatorsList.LinkText
                     }
                 }
             };
@@ -68,7 +68,7 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.ExtractFromDom
                 OnElement = "//tbody/tr/td[1]",
                 Actions = new[]
                 {
-                    new ActionRule { ActionType = WebPlugins.NavigateBack }
+                    new ActionRule { Action = PluginsList.NavigateBack }
                 }
             };
             var contentEntries = new[] { getFirstName, getFirstCourse };

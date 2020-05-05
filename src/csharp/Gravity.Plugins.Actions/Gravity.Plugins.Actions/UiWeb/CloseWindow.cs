@@ -6,26 +6,30 @@
  *    - modify: improve XML comments
  * 
  * 2019-01-11
- *    - modify: override action-name using ActionType constant
+ *    - modify: override action-name using action constant
  *    
  * 2019-12-24
  *    - modify: add constructor to override base class types
  *    
  * online resources
+ * 
+ * work items
+ * TODO: remove "EDGE WORKAROUND - UNTIL SELENIUM 4" region when close extension method is available on Gravity.Core 
  */
-using Gravity.Plugins.Actions.Contracts;
+using Gravity.Plugins.Actions.Extensions;
 using Gravity.Plugins.Attributes;
 using Gravity.Plugins.Base;
 using Gravity.Plugins.Contracts;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Extensions;
+using OpenQA.Selenium.Remote;
 
 namespace Gravity.Plugins.Actions.UiWeb
 {
     [Plugin(
         assembly: "Gravity.Plugins.Actions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
         resource: "Gravity.Plugins.Actions.Documentation.close_browser.json",
-        Name = WebPlugins.CloseWindow)]
+        Name = Contracts.PluginsList.CloseWindow)]
     public class CloseWindow : WebDriverActionPlugin
     {
         #region *** constructors ***
@@ -66,7 +70,43 @@ namespace Gravity.Plugins.Actions.UiWeb
             {
                 return;
             }
-            WebDriver.CloseWindow(indexOut);
+
+            // selenium client
+            if (!IsEdge())
+            {
+                WebDriver.Close(indexOut);
+                return;
+            }
+
+            // EDGE WORKAROUND - UNTIL SELENIUM 4
+            // if index is out of bound, take no action
+            if (indexOut > (WebDriver.WindowHandles.Count - 1))
+            {
+                return;
+            }
+
+            // setup
+            var mainWindow = WebDriver.WindowHandles[0];
+            var window = WebDriver.WindowHandles[indexOut];
+
+            // action routine: close > switch back to main window
+            WebDriver.SwitchTo(windowName: window).Close();
+            if (WebDriver.WindowHandles?.Count > 0)
+            {
+                WebDriver.SwitchTo(windowName: mainWindow);
+            }
+        }
+
+        private bool IsEdge()
+        {
+            // exit conditions
+            if (!(WebDriver is RemoteWebDriver rDriver))
+            {
+                return false;
+            }
+
+            // is edge
+            return $"{rDriver.Capabilities["browserName"]}" == "msedge";
         }
     }
 }

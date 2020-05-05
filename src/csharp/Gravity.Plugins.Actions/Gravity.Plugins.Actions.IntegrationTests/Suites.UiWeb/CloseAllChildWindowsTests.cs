@@ -3,20 +3,20 @@
  * 
  * online resources
  */
-using Gravity.Plugins.Actions.IntegrationTests.Base;
-using Gravity.Plugins.Actions.IntegrationTests.Cases.UiWeb.CloseAllChildWindowsScenarios;
-using Gravity.Plugins.Actions.IntegrationTests.Providers;
+using Gravity.IntegrationTests.Base;
+using Gravity.IntegrationTests.Cases.UiWeb.CloseAllChildWindowsScenarios;
+using Gravity.IntegrationTests.Providers;
 using NUnit.Framework;
 
 using DescriptionAttribute = System.ComponentModel.DescriptionAttribute;
 
-namespace Gravity.Plugins.Actions.IntegrationTests.Suites.UiWeb
+namespace Gravity.IntegrationTests.Suites.UiWeb
 {
     [TestFixture]
     public class CloseAllChildWindowsTests
     {
         [Description(description: "P - [0064] - Close All Child Windows")]
-        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.CompatibilitiesPopups))]
+        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.CompatibilitiesNoIos))]
         public void T0064P(AutomationEnvironment environment)
         {
             // execute
@@ -27,7 +27,7 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Suites.UiWeb
         }
 
         [Description(description: "N - [0065] - Close All Child Windows, No Child Windows")]
-        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Compatibilities))]
+        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.CompatibilitiesNoIos))]
         public void T0065P(AutomationEnvironment environment)
         {
             // execute

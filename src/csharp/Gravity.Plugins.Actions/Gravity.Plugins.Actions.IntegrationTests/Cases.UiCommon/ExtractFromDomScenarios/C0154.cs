@@ -15,12 +15,12 @@
 * 8. close browser
 */
 #pragma warning restore
+using Gravity.IntegrationTests.Base;
 using Gravity.Plugins.Actions.Contracts;
-using Gravity.Plugins.Actions.IntegrationTests.Base;
 using Gravity.Plugins.Contracts;
 using System.Collections.Generic;
 
-namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.ExtractFromDomScenarios
+namespace Gravity.IntegrationTests.Cases.UiCommon.ExtractFromDomScenarios
 {
     public class C0154 : TestCase
     {
@@ -41,7 +41,7 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.ExtractFromDom
         {
             new ActionRule
             {
-                ActionType = CommonPlugins.ExtractFromDom
+                Action = PluginsList.ExtractFromDom
             }
         };
 
@@ -57,15 +57,15 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.ExtractFromDom
                 {
                     new ActionRule
                     {
-                        ActionType = WebPlugins.GoToUrl,
+                        Action = PluginsList.GoToUrl,
                         Argument = "{{$ --blank}}",
                         OnElement = "Details",
                         OnAttribute = "href",
-                        Locator = LocatorType.LinkText
+                        Locator = LocatorsList.LinkText
                     },
                     new ActionRule
                     {
-                        ActionType = WebPlugins.SwitchToWindow,
+                        Action = PluginsList.SwitchToWindow,
                         Argument = "1"
                     }
                 }
@@ -76,7 +76,7 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.ExtractFromDom
                 OnElement = "//tbody/tr/td[1]",
                 Actions = new[]
                 {
-                    new ActionRule { ActionType = WebPlugins.CloseAllChildWindows }
+                    new ActionRule { Action = PluginsList.CloseAllChildWindows }
                 }
             };
             var contentEntries = new[] { getFirstName, getFirstCourse };

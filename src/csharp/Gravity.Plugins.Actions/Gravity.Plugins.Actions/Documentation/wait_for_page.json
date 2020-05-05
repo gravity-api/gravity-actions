@@ -9,14 +9,14 @@
       "description": "Wait for page ready state to be [complete] or until [PageLoadTimeout] reached.",
       "literalExample": "wait for page",
       "actionExample": {
-        "actionType": "WaitForPage"
+        "action": "WaitForPage"
       }
     },
     {
       "description": "Wait for page ready state to be [interactive] or until [PageLoadTimeout] reached.",
       "literalExample": "wait for page {{$ --until:interactive}}",
       "actionExample": {
-        "actionType": "WaitForPage",
+        "action": "WaitForPage",
         "argument": "{{$ --until:interactive}}"
       }
     },
@@ -24,7 +24,7 @@
       "description": "Wait for page ready state to be [loaded] or until [PageLoadTimeout] reached.",
       "literalExample": "wait for page {{$ --until:loaded}}",
       "actionExample": {
-        "actionType": "WaitForPage",
+        "action": "WaitForPage",
         "argument": "{{$ --until:loaded}}"
       }
     },
@@ -32,7 +32,7 @@
       "description": "Wait for page ready state to be [loading] or until [00:00:03] reached.",
       "literalExample": "wait for page {{$ --until:loading --timeout:00:00:03}}",
       "actionExample": {
-        "actionType": "WaitForPage",
+        "action": "WaitForPage",
         "argument": "{{$ --until:loading}}"
       }
     },
@@ -40,7 +40,7 @@
       "description": "Wait for page ready state to be [uninitialized] or until [3000ms] reached.",
       "literalExample": "wait for page {{$ --until:uninitialized}}",
       "actionExample": {
-        "actionType": "WaitForPage",
+        "action": "WaitForPage",
         "argument": "{{$ --until:uninitialized --timeout:3000}}"
       }
     }

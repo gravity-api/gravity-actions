@@ -5,7 +5,7 @@
       "description": "Selects either the first frame on the page or the main document when a page contains frames.",
       "literalExample": "switch to default content.",
       "actionExample": {
-        "actionType": "SwitchToDefaultContent"
+        "action": "SwitchToDefaultContent"
       }
     }
   ],

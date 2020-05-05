@@ -3,17 +3,17 @@
  * 
  * online resources
  */
-using Gravity.Plugins.Actions.Contracts;
-using Gravity.Plugins.Actions.UnitTests.Base;
+using Gravity.UnitTests.Base;
 using Gravity.Plugins.Actions.UiWeb;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium.Mock;
 using OpenQA.Selenium.Mock.Extensions;
 using System.Collections.Generic;
 using System.Linq;
+using Gravity.Plugins.Actions.Contracts;
 
 #pragma warning disable S4144
-namespace Gravity.Plugins.Actions.UnitTests.UiWeb
+namespace Gravity.UnitTests.UiWeb
 {
     [TestClass]
     public class SwitchToWindowTests : ActionTests
@@ -37,14 +37,14 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         public void SwitchToWindowDocumentation()
         {
             AssertDocumentation<SwitchToWindow>(
-                pluginName: WebPlugins.SwitchToWindow);
+                pluginName: PluginsList.SwitchToWindow);
         }
 
         [TestMethod]
         public void SwitchToWindowDocumentationResourceFile()
         {
             AssertDocumentation<SwitchToWindow>(
-                pluginName: WebPlugins.SwitchToWindow,
+                pluginName: PluginsList.SwitchToWindow,
                 resource: "switch_to_window.json");
         }
         #endregion

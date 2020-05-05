@@ -13,12 +13,12 @@
 * [2] verify {attribute} on {click_outcome} from {value} using {id} equal {context on element}
 */
 #pragma warning restore
+using Gravity.IntegrationTests.Base;
 using Gravity.Plugins.Actions.Contracts;
-using Gravity.Plugins.Actions.IntegrationTests.Base;
 using Gravity.Plugins.Contracts;
 using System.Collections.Generic;
 
-namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiWeb.ContextClickScenarios
+namespace Gravity.IntegrationTests.Cases.UiWeb.ContextClickScenarios
 {
     public class C0131 : TestCase
     {
@@ -30,9 +30,9 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiWeb.ContextClickScena
             {
                 new ActionRule
                 {
-                    ActionType = WebPlugins.ContextClick,
+                    Action = PluginsList.ContextClick,
                     OnElement = "click_button",
-                    Locator = LocatorType.Id
+                    Locator = LocatorsList.Id
                 },
                 SharedSteps.AssertClickOutcome(expectedPattern: "context on element")
             };

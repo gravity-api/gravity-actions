@@ -3,16 +3,16 @@
  * 
  * online resources
  */
-using Gravity.Plugins.Actions.Contracts;
-using Gravity.Plugins.Actions.UnitTests.Base;
+using Gravity.UnitTests.Base;
 using Gravity.Plugins.Actions.UiWeb;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium.Mock;
 using OpenQA.Selenium.Mock.Extensions;
 using System.Collections.Generic;
+using Gravity.Plugins.Actions.Contracts;
 
 #pragma warning disable S4144
-namespace Gravity.Plugins.Actions.UnitTests.UiWeb
+namespace Gravity.UnitTests.UiWeb
 {
     [TestClass]
     public class SwitchToAlertTests : ActionTests
@@ -27,14 +27,14 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         [TestMethod]
         public void SwitchToAlertDocumentation()
         {
-            AssertDocumentation<SwitchToAlert>(pluginName: WebPlugins.SwitchToAlert);
+            AssertDocumentation<SwitchToAlert>(pluginName: PluginsList.SwitchToAlert);
         }
 
         [TestMethod]
         public void SwitchToAlertDocumentationResourceFile()
         {
             AssertDocumentation<SwitchToAlert>(
-                pluginName: WebPlugins.SwitchToAlert,
+                pluginName: PluginsList.SwitchToAlert,
                 resource: "switch_to_alert.json");
         }
         #endregion

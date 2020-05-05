@@ -8,7 +8,7 @@
       "description": "Select an option by the value.",
       "literalExample": "select from combo box on {//select} from {value} {4}",
       "actionExample": {
-        "actionType": "SelectFromComboBox",
+        "action": "SelectFromComboBox",
         "argument": "4",
         "onElement": "//select",
         "onAttribute": "value"
@@ -18,7 +18,7 @@
       "description": "Select the option by the index, as determined by the [index] attribute of the element.",
       "literalExample": "select from combo box on {//select} from {index} {1}",
       "actionExample": {
-        "actionType": "SelectFromComboBox",
+        "action": "SelectFromComboBox",
         "argument": "1",
         "onElement": "//select",
         "onAttribute": "index"
@@ -28,7 +28,7 @@
       "description": "Select all options by the text displayed (exact match only).",
       "literalExample": "select from combo box {Economics} on {//select}",
       "actionExample": {
-        "actionType": "SelectFromComboBox",
+        "action": "SelectFromComboBox",
         "argument": "Economics",
         "onElement": "//select"
       }
@@ -37,7 +37,7 @@
       "description": "Select all options (if this is a multi selection box).",
       "literalExample": "select from combo box {{$ --all}} on {//select}",
       "actionExample": {
-        "actionType": "SelectFromComboBox",
+        "action": "SelectFromComboBox",
         "argument": "{{$ --all}}",
         "onElement": "//select"
       }
@@ -46,7 +46,7 @@
       "description": "Select all options which their text can be matched with the given pattern.",
       "literalExample": "select from combo box {{$ --all}} on {//select} filter with {Eco} pattern.",
       "actionExample": {
-        "actionType": "SelectFromComboBox",
+        "action": "SelectFromComboBox",
         "argument": "{{$ --all}}",
         "onElement": "//select",
         "regularExpression": "Eco"

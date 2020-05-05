@@ -13,13 +13,12 @@
  *    
  * 2019-01-12
  *    - modify: improve XML comments
- *    - modify: override ActionName using ActionType constant
+ *    - modify: override ActionName using action constant
  *    - modify: code cleaning
  * 
  * online resources
  * http://appium.io/docs/en/writing-running-appium/android/android-shell/
  */
-using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Actions.Extensions;
 using Gravity.Plugins.Attributes;
 using Gravity.Plugins.Base;
@@ -43,7 +42,7 @@ namespace Gravity.Plugins.Actions.UiCommon
     [Plugin(
         assembly: "Gravity.Plugins.Actions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
         resource: "Gravity.Plugins.Actions.Documentation.send_keys.json",
-        Name = CommonPlugins.SendKeys)]
+        Name = Contracts.PluginsList.SendKeys)]
     public class SendKeys : WebDriverActionPlugin
     {
         #region *** arguments    ***

@@ -12,7 +12,7 @@
  *    - modify: add support for special cases - for action only, NOT for extraction
  *    
  * 2019-01-11
- *    - modify: override action-name using ActionType constant
+ *    - modify: override action-name using action constant
  *    - modify: improve element-level action
  *    -    fix: on element action always takes absolute XPath 
  *    
@@ -23,7 +23,6 @@
  * 
  * online resources
  */
-using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Actions.Extensions;
 using Gravity.Plugins.Attributes;
 using Gravity.Plugins.Base;
@@ -43,7 +42,7 @@ namespace Gravity.Plugins.Actions.UiCommon
     [Plugin(
         assembly: "Gravity.Plugins.Actions, Version=5.0.0.0, Culture=neutral, PublicKeyToken=null",
         resource: "Gravity.Plugins.Actions.Documentation.click.json",
-        Name = CommonPlugins.Click)]
+        Name = Contracts.PluginsList.Click)]
     public class Click : WebDriverActionPlugin
     {
         #region *** conditions   ***
@@ -77,7 +76,7 @@ namespace Gravity.Plugins.Actions.UiCommon
             actions = new SeleniumActions(driver);
 
             // set waiter instance
-            var timeout = Automation.EngineConfiguration.ElementSearchingTimeout;
+            var timeout = Automation.EngineConfiguration.SearchTimeout;
             wait = new WebDriverWait(driver, TimeSpan.FromMilliseconds(timeout));
         }
         #endregion
@@ -122,7 +121,7 @@ namespace Gravity.Plugins.Actions.UiCommon
             }
 
             // on element action
-            var timeout = TimeSpan.FromMilliseconds(Automation.EngineConfiguration.ElementSearchingTimeout);
+            var timeout = TimeSpan.FromMilliseconds(Automation.EngineConfiguration.SearchTimeout);
             if (element != default)
             {
                 element.GetElement(ByFactory, action, timeout).Click();

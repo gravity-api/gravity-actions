@@ -3,14 +3,14 @@
  * 
  * online resources
  */
-using Gravity.Plugins.Actions.IntegrationTests.Base;
-using Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.ExtractFromDomScenarios;
-using Gravity.Plugins.Actions.IntegrationTests.Providers;
+using Gravity.IntegrationTests.Base;
+using Gravity.IntegrationTests.Cases.UiCommon.ExtractFromDomScenarios;
+using Gravity.IntegrationTests.Providers;
 using NUnit.Framework;
 
 using DescriptionAttribute = System.ComponentModel.DescriptionAttribute;
 
-namespace Gravity.Plugins.Actions.IntegrationTests.Suites.UiCommon
+namespace Gravity.IntegrationTests.Suites.UiCommon
 {
     [TestFixture]
     public class ExtractFromDomTests
@@ -187,6 +187,18 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Suites.UiCommon
 
             // execute
             var actual = new C0156().AddEnvironments(environment).Execute();
+
+            // assertion
+            Assert.IsTrue(actual);
+        }
+
+        [NonParallelizable]
+        [Description(description: "P - [0157] - Extract Data from DOM, Default, Data Driven")]
+        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.CompatibilitiesChrome))]
+        public void T0157P(AutomationEnvironment environment)
+        {
+            // execute
+            var actual = new C0157().AddEnvironments(environment).Execute();
 
             // assertion
             Assert.IsTrue(actual);

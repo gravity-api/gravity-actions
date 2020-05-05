@@ -5,13 +5,13 @@
  */
 using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Actions.UiMobile;
-using Gravity.Plugins.Actions.UnitTests.Base;
+using Gravity.UnitTests.Base;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Mock;
 
 #pragma warning disable S4144
-namespace Gravity.Plugins.Actions.UnitTests.UiMobile
+namespace Gravity.UnitTests.UiMobile
 {
     [TestClass]
     public class GeoLocationTests : ActionTests
@@ -27,14 +27,14 @@ namespace Gravity.Plugins.Actions.UnitTests.UiMobile
         public void GeoLocationDocumentation()
         {
             AssertDocumentation<SetGeoLocation>(
-                pluginName: MobilePlugins.SetGeoLocation);
+                pluginName: PluginsList.SetGeoLocation);
         }
 
         [TestMethod]
         public void GeoLocationDocumentationResourceFile()
         {
             AssertDocumentation<SetGeoLocation>(
-                pluginName: MobilePlugins.SetGeoLocation,
+                pluginName: PluginsList.SetGeoLocation,
                 resource: "set_geo_location.json");
         }
         #endregion

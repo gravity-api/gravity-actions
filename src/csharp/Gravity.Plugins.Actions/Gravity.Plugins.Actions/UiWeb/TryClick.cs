@@ -6,11 +6,10 @@
  *    
  * 2019-01-12
  *    - modify: improve XML comments
- *    - modify: override ActionName using ActionType constant
+ *    - modify: override ActionName using action constant
  * 
  * online resources
  */
-using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Actions.Extensions;
 using Gravity.Plugins.Attributes;
 using Gravity.Plugins.Base;
@@ -24,7 +23,7 @@ namespace Gravity.Plugins.Actions.UiWeb
     [Plugin(
         assembly: "Gravity.Plugins.Actions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
         resource: "Gravity.Plugins.Actions.Documentation.try_click.json",
-        Name = WebPlugins.TryClick)]
+        Name = Contracts.PluginsList.TryClick)]
     public class TryClick : WebDriverActionPlugin
     {
         // constants
@@ -52,7 +51,7 @@ namespace Gravity.Plugins.Actions.UiWeb
             };
 
             // setup waiter
-            var milliseconds = Automation.EngineConfiguration.ElementSearchingTimeout;
+            var milliseconds = Automation.EngineConfiguration.SearchTimeout;
             wait = new WebDriverWait(driver, TimeSpan.FromMilliseconds(milliseconds));
             wait.IgnoreExceptionTypes(ignoreList);
         }

@@ -6,20 +6,20 @@
  * work items
  * TODO: add more compatibilities on Selenium 4.0
  */
-using Gravity.Plugins.Actions.IntegrationTests.Base;
-using Gravity.Plugins.Actions.IntegrationTests.Cases.UiWeb.ContextClickScenarios;
-using Gravity.Plugins.Actions.IntegrationTests.Providers;
+using Gravity.IntegrationTests.Base;
+using Gravity.IntegrationTests.Cases.UiWeb.ContextClickScenarios;
+using Gravity.IntegrationTests.Providers;
 using NUnit.Framework;
 
 using DescriptionAttribute = System.ComponentModel.DescriptionAttribute;
 
-namespace Gravity.Plugins.Actions.IntegrationTests.Suites.UiWeb
+namespace Gravity.IntegrationTests.Suites.UiWeb
 {
     [TestFixture]
     public class ContextClickTests
     {
         [Description(description: "P - [0131] - Right Click on Element, ID")]
-        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.CompatibilitiesChrome))]
+        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.CompatibilitiesContextClick))]
         public void T0131P(AutomationEnvironment environment)
         {
             // execute
@@ -30,7 +30,7 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Suites.UiWeb
         }
 
         [Description(description: "P - [0132] - Right Click")]
-        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.CompatibilitiesChrome))]
+        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.CompatibilitiesContextClick))]
         public void T0132P(AutomationEnvironment environment)
         {
             // execute
@@ -41,7 +41,7 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Suites.UiWeb
         }
 
         [Description(description: "P - [0133] - Right Click on Element, Alias, RightClick, ID")]
-        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.CompatibilitiesChrome))]
+        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.CompatibilitiesContextClick))]
         public void T0133P(AutomationEnvironment environment)
         {
             // execute

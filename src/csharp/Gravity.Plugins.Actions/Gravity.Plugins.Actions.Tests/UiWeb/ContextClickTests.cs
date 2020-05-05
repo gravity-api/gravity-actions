@@ -4,17 +4,17 @@
  * online resources
  */
 
-using Gravity.Plugins.Actions.Contracts;
-using Gravity.Plugins.Actions.UnitTests.Base;
+using Gravity.UnitTests.Base;
 using Gravity.Plugins.Actions.UiWeb;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Mock;
 using System;
 using System.Collections.Generic;
+using Gravity.Plugins.Actions.Contracts;
 
 #pragma warning disable S4144
-namespace Gravity.Plugins.Actions.UnitTests.UiWeb
+namespace Gravity.UnitTests.UiWeb
 {
     [TestClass]
     public class ContextClickTests : ActionTests
@@ -30,14 +30,14 @@ namespace Gravity.Plugins.Actions.UnitTests.UiWeb
         public void ContextClickDocumentation()
         {
             AssertDocumentation<ContextClick>(
-                pluginName: WebPlugins.ContextClick);
+                pluginName: PluginsList.ContextClick);
         }
 
         [TestMethod]
         public void ContextClickDocumentationResourceFile()
         {
             AssertDocumentation<ContextClick>(
-                pluginName: WebPlugins.ContextClick,
+                pluginName: PluginsList.ContextClick,
                 resource:"context_click.json");
         }
         #endregion

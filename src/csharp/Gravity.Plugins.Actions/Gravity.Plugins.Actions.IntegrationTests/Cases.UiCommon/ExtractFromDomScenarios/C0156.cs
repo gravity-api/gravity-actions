@@ -8,12 +8,12 @@
 * Not supported by literal engine
 */
 #pragma warning restore
+using Gravity.IntegrationTests.Base;
 using Gravity.Plugins.Actions.Contracts;
-using Gravity.Plugins.Actions.IntegrationTests.Base;
 using Gravity.Plugins.Contracts;
 using System.Collections.Generic;
 
-namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.ExtractFromDomScenarios
+namespace Gravity.IntegrationTests.Cases.UiCommon.ExtractFromDomScenarios
 {
     public class C0156 : TestCase
     {
@@ -38,7 +38,7 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.ExtractFromDom
         {
             new ActionRule
             {
-                ActionType = CommonPlugins.ExtractFromDom,
+                Action = PluginsList.ExtractFromDom,
                 Argument = "{{$ --extractions:" + environment.TestParams["extraction"] + "}}"
             }
         };

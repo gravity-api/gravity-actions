@@ -15,12 +15,12 @@
 * [4] verify {count} on {//tr[./td[@id]]} equal {1}
 */
 #pragma warning restore
+using Gravity.IntegrationTests.Base;
 using Gravity.Plugins.Actions.Contracts;
-using Gravity.Plugins.Actions.IntegrationTests.Base;
 using Gravity.Plugins.Contracts;
 using System.Collections.Generic;
 
-namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.ConditionScenarios
+namespace Gravity.IntegrationTests.Cases.UiCommon.ConditionScenarios
 {
     public class C0074 : TestCase
     {
@@ -37,12 +37,12 @@ namespace Gravity.Plugins.Actions.IntegrationTests.Cases.UiCommon.ConditionScena
             {
                 new ActionRule
                 {
-                    ActionType = CommonPlugins.Condition,
+                    Action = PluginsList.Condition,
                     Argument = "{{$ --attribute --ge:" + condition + "}}",
                     OnElement = "Edit",
                     OnAttribute = "href",
                     RegularExpression = "\\d+",
-                    Locator = LocatorType.LinkText,
+                    Locator = LocatorsList.LinkText,
                     Actions = SharedSteps.SearchStudent(searchFor: "Carson")
                 },
                 SharedSteps.AssertStudentsCount(count: 1)

@@ -4,7 +4,6 @@
  * online resources
  */
 using Gravity.Plugins.Actions.Components;
-using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Attributes;
 using Gravity.Plugins.Base;
 using Gravity.Plugins.Contracts;
@@ -16,7 +15,7 @@ namespace Gravity.Plugins.Actions.UiCommon
     [Plugin(
         assembly: "Gravity.Plugins.Actions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
         resource: "Gravity.Plugins.Actions.Documentation.condition.json",
-        Name = CommonPlugins.Condition)]
+        Name = Contracts.PluginsList.Condition)]
     public class Condition : WebDriverActionPlugin
     {
         #region *** constructors ***

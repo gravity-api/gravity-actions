@@ -295,6 +295,11 @@ namespace Gravity.IntegrationTests.Base
 
         public static bool GetAssertions(IEnumerable<OrbitResponse> responses)
         {
+            if (!responses.SelectMany(i => i.Extractions).Any())
+            {
+                return false;
+            }
+
             return responses
                 .SelectMany(i => i.Extractions)
                 .SelectMany(i => i.Entities)
@@ -455,7 +460,10 @@ namespace Gravity.IntegrationTests.Base
             bool actual = OnAutomationTest(environment, responses);
 
             // is inconclusive
-            AssertInconclusive(responses);
+            if (!actual)
+            {
+                AssertInconclusive(responses);
+            }
 
             // user plugin
             return actual;

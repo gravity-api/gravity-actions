@@ -31,6 +31,8 @@ namespace Gravity.IntegrationTests.Providers
 
         public static IEnumerable CompatibilitiesMobile => GetCompatibilitiesMobile();
 
+        public static IEnumerable CompatibilitiesNoMobile => GetCompatibilitiesNoMobile();
+
         /// <summary>
         /// Gets browsers compatibility matrix for Web UI testing.
         /// </summary>
@@ -219,6 +221,26 @@ namespace Gravity.IntegrationTests.Providers
 
             // iOS
             //yield return Provider.Get(driver: Driver.iOS, capabilities: Provider.iPhoneSafari);
+        }
+
+        private static IEnumerable GetCompatibilitiesNoMobile()
+        {
+            // Windows 10
+            yield return Provider.Get(driver: Driver.Chrome, capabilities: Provider.Windows10LatestBrowser);
+            yield return Provider.Get(driver: Driver.Edge, capabilities: Provider.Windows10LatestBrowser);
+            yield return Provider.Get(driver: Driver.Firefox, capabilities: Provider.Windows10LatestBrowser);
+            yield return Provider.Get(driver: Driver.InternetExplorer, capabilities: Provider.Windows10LatestBrowser);
+
+            // Windows 7
+            yield return Provider.Get(driver: Driver.InternetExplorer, capabilities: Provider.Windows7IE10);
+
+            // OSX: Mojave
+            yield return Provider.Get(driver: Driver.Safari, capabilities: Provider.OSXMojaveSafari);
+
+            // OSX: Catalina
+            yield return Provider.Get(driver: Driver.Chrome, capabilities: Provider.OSXCatalinaLatestBrowser);
+            yield return Provider.Get(driver: Driver.Edge, capabilities: Provider.OSXCatalinaLatestBrowser);
+            yield return Provider.Get(driver: Driver.Firefox, capabilities: Provider.OSXCatalinaLatestBrowser);
         }
     }
 }

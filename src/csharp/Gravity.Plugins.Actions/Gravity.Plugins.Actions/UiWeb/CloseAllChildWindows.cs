@@ -25,6 +25,7 @@ using Gravity.Plugins.Base;
 using Gravity.Plugins.Contracts;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Remote;
+using System;
 using System.Threading;
 
 namespace Gravity.Plugins.Actions.UiWeb
@@ -92,20 +93,13 @@ namespace Gravity.Plugins.Actions.UiWeb
 
         private IWebDriver DoSwitch(string windowName)
         {
-            // exit conditions
-            if (!(WebDriver is RemoteWebDriver rDriver))
-            {
-                return WebDriver.SwitchTo().Window(windowName);
-            }
-
-            // do switch
-            if ($"{rDriver.Capabilities["browserName"]}" == "msedge")
-            {
-                WebDriver.SwitchTo(windowName);
-            }
-            else
+            try
             {
                 WebDriver.SwitchTo().Window(windowName);
+            }
+            catch (Exception e) when (e is WebDriverException)
+            {
+                WebDriver.SwitchTo(windowName);
             }
             return WebDriver;
         }

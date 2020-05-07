@@ -437,7 +437,7 @@
         "action": "Condition",
         "argument": "{{$ --disabled}}",
         "onElement": "//form/div[6]/input",
-        "action": [
+        "actions": [
           {
             "action": "Click",
             "onElement": "//form/div[6]/input"
@@ -600,7 +600,7 @@
         "action": "Condition",
         "argument": "{{$ --enabled}}",
         "onElement": "//form/div[6]/input",
-        "action": [
+        "actions": [
           {
             "action": "Click",
             "onElement": "//form/div[6]/input"
@@ -619,7 +619,7 @@
         "action": "Condition",
         "argument": "{{$ --exists}}",
         "onElement": "//form/div[6]/input",
-        "action": [
+        "actions": [
           {
             "action": "Click",
             "onElement": "//form/div[6]/input"
@@ -638,7 +638,7 @@
         "action": "Condition",
         "argument": "{{$ --hidden}}",
         "onElement": "//form/div[6]/input",
-        "action": [
+        "actions": [
           {
             "action": "Click",
             "onElement": "//form/div[6]/input"
@@ -657,7 +657,7 @@
         "action": "Condition",
         "argument": "{{$ --not_exists}}",
         "onElement": "//form/div[6]/input",
-        "action": [
+        "actions": [
           {
             "action": "Click",
             "onElement": "//form/div[6]/input"
@@ -676,7 +676,7 @@
         "action": "Condition",
         "argument": "{{$ --selected}}",
         "onElement": "//form/div[6]/input",
-        "action": [
+        "actions": [
           {
             "action": "Click",
             "onElement": "//form/div[6]/input"
@@ -695,7 +695,7 @@
         "action": "Condition",
         "argument": "{{$ --not_selected}}",
         "onElement": "//form/div[6]/input",
-        "action": [
+        "actions": [
           {
             "action": "Click",
             "onElement": "//form/div[6]/input"
@@ -714,7 +714,7 @@
         "action": "Condition",
         "argument": "{{$ --stale}}",
         "onElement": "//form/div[6]/input",
-        "action": [
+        "actions": [
           {
             "action": "Click",
             "onElement": "//form/div[6]/input"
@@ -1175,7 +1175,7 @@
         "action": "Condition",
         "argument": "{{$ --visible}}",
         "onElement": "//form/div[6]/input",
-        "action": [
+        "actions": [
           {
             "action": "Click",
             "onElement": "//form/div[6]/input"

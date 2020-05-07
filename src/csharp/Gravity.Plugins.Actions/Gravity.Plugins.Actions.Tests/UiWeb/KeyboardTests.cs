@@ -70,6 +70,17 @@ namespace Gravity.UnitTests.UiWeb
             Assert.IsTrue(true);
         }
 
+        [DataTestMethod]
+        [DataRow("{'onElement':'//positive','argument':'Control,a'}")]
+        public void KeyboardSequence(string actionRule)
+        {
+            // execute
+            ExecuteAction<Keyboard>(actionRule);
+
+            // assertion (no assertion here)
+            Assert.IsTrue(true);
+        }
+
         [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
         [DataRow("{'onElement':'//stale','argument':'Enter'}")]
         [DataRow("{'onElement':'//exception','argument':'Enter'}")]
@@ -111,6 +122,17 @@ namespace Gravity.UnitTests.UiWeb
         [DataTestMethod, ExpectedException(typeof(ElementNotVisibleException))]
         [DataRow("{'onElement':'.//negative','argument':'Enter'}")]
         public void KeyboardElementNegative(string actionRule)
+        {
+            // execute
+            ExecuteAction<Keyboard>(MockBy.Positive(), actionRule);
+
+            // assertion (no assertion here)
+            Assert.IsTrue(true);
+        }
+
+        [DataTestMethod]
+        [DataRow("{'onElement':'.//positive','argument':'Control,a'}")]
+        public void KeyboardElementSequence(string actionRule)
         {
             // execute
             ExecuteAction<Keyboard>(MockBy.Positive(), actionRule);

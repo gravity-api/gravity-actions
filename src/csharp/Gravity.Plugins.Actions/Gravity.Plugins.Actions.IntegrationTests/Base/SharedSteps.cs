@@ -156,6 +156,20 @@ namespace Gravity.IntegrationTests.Base
         };
 
         /// <summary>
+        /// Gets an assert <see cref="ActionRule"/> for text area value (on UiControls page).
+        /// </summary>
+        /// <param name="expectedPattern">Expected pattern (regular expression) to assert against.</param>
+        /// <returns>Assert <see cref="ActionRule"/>.</returns>
+        public static ActionRule AssertTextAreaValue(string expectedPattern) => new ActionRule
+        {
+            Action = PluginsList.Assert,
+            Argument = "{{$ --attribute --match:" + expectedPattern + "}}",
+            OnElement = "input_enabled",
+            Locator = LocatorsList.Id,
+            OnAttribute = "value"
+        };
+
+        /// <summary>
         /// Gets an assert <see cref="ActionRule"/> for click outcome results (on UiControls page).
         /// </summary>
         /// <param name="offset">X or Y</param>

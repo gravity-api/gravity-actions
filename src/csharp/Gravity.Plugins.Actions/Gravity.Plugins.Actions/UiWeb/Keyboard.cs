@@ -12,6 +12,8 @@ using Gravity.Plugins.Attributes;
 using Gravity.Plugins.Base;
 using Gravity.Plugins.Contracts;
 using OpenQA.Selenium;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Gravity.Plugins.Actions.UiWeb
 {
@@ -57,8 +59,21 @@ namespace Gravity.Plugins.Actions.UiWeb
             // on element action
             var onElement = this.ConditionalGetElement(element, action);
 
+            // get keys sequence
+            var keyes = new List<string>();
+            foreach (var key in action.Argument.Split(',').Select(i => i.Trim()))
+            {
+                var k = GetKeyboardKey(key);
+                if (string.IsNullOrEmpty(k))
+                {
+                    keyes.Add(key);
+                    continue;
+                }
+                keyes.Add(k);
+            }
+
             // execute action
-            onElement.SendKeys(GetKeyboardKey(key: action.Argument));
+            onElement.SendKeys(string.Concat(keyes));
         }
     }
 }

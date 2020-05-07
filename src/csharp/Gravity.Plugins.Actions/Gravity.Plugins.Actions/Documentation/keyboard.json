@@ -2,19 +2,23 @@
   "description": "Simulates keys able to be pressed that are not text keys to the browser. Full list of supported keys can be found here: https://github.com/SeleniumHQ/selenium/blob/master/dotnet/src/webdriver/Keys.cs (pass the field name as the action argument).",
   "examples": [
     {
-      "description": "Simulates <enter> press on the given element.",
-      "literalExample": "press keyboard {enter} key on {//form/div/p/input[2]}",
+      "description": "Perform keyboard [Enter] action (press enter) on the specified element.",
+      "literalExample": "press keyboard {enter} key on {SearchString} using {id}",
       "actionExample": {
         "action": "Keyboard",
-        "argument": "enter"
+        "argument": "Enter",
+        "onElement": "SearchString",
+        "locator": "Id"
       }
     },
     {
-      "description": "Simulates <backspace> press on the given element.",
-      "literalExample": "press keyboard {backspace} key on {//form/div/p/input[1]}",
+      "description": "Perform keyboard [Control]+[A] action (ctrl+A) on the specified element.",
+      "literalExample": "press keyboard {Control,a} key on {text_area_enabled} using {id}",
       "actionExample": {
         "action": "Keyboard",
-        "argument": "backspace"
+        "argument": "Control,a",
+        "onElement": "text_area_enabled",
+        "locator": "Id"
       }
     }
   ],

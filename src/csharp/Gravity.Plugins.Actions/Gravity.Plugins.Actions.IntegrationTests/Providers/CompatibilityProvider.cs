@@ -218,7 +218,7 @@ namespace Gravity.IntegrationTests.Providers
             yield return Provider.Get(driver: Driver.Android, capabilities: Provider.AndroidChrome);
 
             // iOS
-            yield return Provider.Get(driver: Driver.iOS, capabilities: Provider.iPhoneSafari);
+            //yield return Provider.Get(driver: Driver.iOS, capabilities: Provider.iPhoneSafari);
         }
     }
 }

@@ -15,16 +15,12 @@
  *    - modify: improve XML comments
  *
  * online resources
- * 
- * work items
- * TODO: remove "DoSwitch(string windowName)" when available on Gravity.Core 
  */
 using Gravity.Plugins.Actions.Extensions;
 using Gravity.Plugins.Attributes;
 using Gravity.Plugins.Base;
 using Gravity.Plugins.Contracts;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Remote;
 using System;
 using System.Threading;
 

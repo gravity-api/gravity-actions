@@ -15,6 +15,7 @@
 * [4] verify {count} on {//tr[./td[@id]]} equal {1}
 */
 #pragma warning restore
+using Graivty.IntegrationTests.Extensions;
 using Gravity.IntegrationTests.Base;
 using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Contracts;
@@ -27,11 +28,11 @@ namespace Gravity.IntegrationTests.Cases.UiCommon.ConditionScenarios
         public override string ApplicationUnderTest => StudentsPage;
 
         // gets the actions collection of this test
-        public override IEnumerable<ActionRule> GetActions(AutomationEnvironment environment)
+        public override IEnumerable<ActionRule> OnActions(AutomationEnvironment environment)
         {
             // setup
             var onDriver = (bool)environment.TestParams["negative"]
-                ? GetDriverFullName($"{environment.TestParams["driver"]}")
+                ? environment.GetDriverFullName()
                 : "not_a_driver";
 
             // actions to execute

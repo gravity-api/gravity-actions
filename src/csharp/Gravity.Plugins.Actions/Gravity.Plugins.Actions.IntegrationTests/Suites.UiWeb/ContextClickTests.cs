@@ -18,6 +18,7 @@ namespace Gravity.IntegrationTests.Suites.UiWeb
     [TestFixture]
     public class ContextClickTests
     {
+        [Ignore(reason: "Wait for Selenium 4")]
         [Description(description: "P - [0131] - Right Click on Element, ID")]
         [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.CompatibilitiesContextClick))]
         public void T0131P(AutomationEnvironment environment)
@@ -29,6 +30,7 @@ namespace Gravity.IntegrationTests.Suites.UiWeb
             Assert.IsTrue(actual);
         }
 
+        [Ignore(reason: "Wait for Selenium 4")]
         [Description(description: "P - [0132] - Right Click")]
         [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.CompatibilitiesContextClick))]
         public void T0132P(AutomationEnvironment environment)
@@ -40,6 +42,7 @@ namespace Gravity.IntegrationTests.Suites.UiWeb
             Assert.IsTrue(actual);
         }
 
+        [Ignore(reason: "Wait for Selenium 4")]
         [Description(description: "P - [0133] - Right Click on Element, Alias, RightClick, ID")]
         [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.CompatibilitiesContextClick))]
         public void T0133P(AutomationEnvironment environment)

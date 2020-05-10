@@ -12,6 +12,7 @@
 * [1] verify {driver} not match {ChromeDriver}
 */
 #pragma warning restore
+using Graivty.IntegrationTests.Extensions;
 using Gravity.IntegrationTests.Base;
 using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Contracts;
@@ -22,10 +23,10 @@ namespace Gravity.IntegrationTests.Cases.UiCommon.AssertScenarios
     public class C0022 : TestCase
     {
         // gets the actions collection of this test
-        public override IEnumerable<ActionRule> GetActions(AutomationEnvironment environment)
+        public override IEnumerable<ActionRule> OnActions(AutomationEnvironment environment)
         {
             var onDriver = (bool)environment.TestParams["negative"]
-                ? GetDriverFullName($"{environment.TestParams["driver"]}")
+                ? environment.GetDriverFullName()
                 : "not_a_driver";
 
             // setup

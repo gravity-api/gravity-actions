@@ -27,7 +27,7 @@ namespace Gravity.IntegrationTests.Cases.UiCommon.ExtractFromDomScenarios
         public override string ApplicationUnderTest => StudentsPage;
 
         // assertion implementation
-        public override bool OnAutomationTest(AutomationEnvironment environment, IEnumerable<OrbitResponse> responses)
+        public override bool OnAfterAutomation(AutomationEnvironment environment, IEnumerable<OrbitResponse> responses)
         {
             // assertion
             return SharedSteps.AssertEntitiesValues(
@@ -37,7 +37,7 @@ namespace Gravity.IntegrationTests.Cases.UiCommon.ExtractFromDomScenarios
         }
 
         // gets the actions collection of this test
-        public override IEnumerable<ActionRule> GetActions(AutomationEnvironment environment) => new[]
+        public override IEnumerable<ActionRule> OnActions(AutomationEnvironment environment) => new[]
         {
             new ActionRule
             {
@@ -46,7 +46,7 @@ namespace Gravity.IntegrationTests.Cases.UiCommon.ExtractFromDomScenarios
         };
 
         // gets the extractions collection of this test
-        public override IEnumerable<ExtractionRule> GetExtractions(AutomationEnvironment environment)
+        public override IEnumerable<ExtractionRule> OnExtractions(AutomationEnvironment environment)
         {
             // entity
             var getFirstName = new ContentEntry

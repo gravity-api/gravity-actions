@@ -22,7 +22,7 @@ namespace Graivty.IntegrationTests.Cases.UiWeb.GoToUrlScenarios
     public class C0173 : TestCase
     {
         // gets the actions collection of this test
-        public override IEnumerable<ActionRule> GetActions(AutomationEnvironment environment)
+        public override IEnumerable<ActionRule> OnActions(AutomationEnvironment environment)
         {
             // setup
             return new[]

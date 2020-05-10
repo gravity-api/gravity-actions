@@ -24,7 +24,7 @@ namespace Gravity.IntegrationTests.Cases.UiCommon.AssertScenarios
         public override string ApplicationUnderTest => $"{CoursesPage}/edit/1045";
 
         // gets the actions collection of this test
-        public override IEnumerable<ActionRule> GetActions(AutomationEnvironment environment)
+        public override IEnumerable<ActionRule> OnActions(AutomationEnvironment environment)
         {
             var expected = (bool)environment.TestParams["negative"] ? "2000" : "1000";
 

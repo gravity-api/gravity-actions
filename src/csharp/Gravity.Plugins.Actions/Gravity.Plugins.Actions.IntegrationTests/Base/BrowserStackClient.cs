@@ -2,6 +2,7 @@
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Serialization;
 using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -67,7 +68,7 @@ namespace Gravity.IntegrationTests.Base
 
             // get response
             var response = await SendAsync(() => client.GetAsync(requestUri)).ConfigureAwait(false);
-            if(response.StatusCode == HttpStatusCode.NotFound)
+            if (response.StatusCode == HttpStatusCode.NotFound)
             {
                 return;
             }
@@ -163,6 +164,39 @@ namespace Gravity.IntegrationTests.Base
             {
                 return "running";
             }
+        }
+
+        /// <summary>
+        /// Uploads application to BrowserStack for native testing
+        /// </summary>
+        /// <param name="name">Application name to be used under "app" capability.</param>
+        /// <param name="puplicAccessUrl">Any public hosted location.</param>
+        /// <returns>Upload results</returns>
+        public IDictionary<string, object> UploadApplication(string name, string puplicAccessUrl)
+        {
+            // setup
+            var requestBody = JsonConvert.SerializeObject(new Dictionary<string, object>
+            {
+                ["url"] = puplicAccessUrl,
+                ["custom_id"] = name
+            });
+            var content = new StringContent(requestBody, Encoding.UTF8, "application/json");
+
+            // send
+            const string requestUrl = "https://api-cloud.browserstack.com/app-automate/upload";
+            client.DefaultRequestHeaders.Authorization =
+                new AuthenticationHeaderValue(scheme: "Basic", parameter: BasicAuthorization);
+            var response = client.PostAsync(requestUrl, content).GetAwaiter().GetResult();
+
+            // exit conditions
+            if (!response.IsSuccessStatusCode)
+            {
+                return new Dictionary<string, object>();
+            }
+
+            // complete
+            var responseBody = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+            return JsonConvert.DeserializeObject<IDictionary<string, object>>(responseBody);
         }
     }
 }

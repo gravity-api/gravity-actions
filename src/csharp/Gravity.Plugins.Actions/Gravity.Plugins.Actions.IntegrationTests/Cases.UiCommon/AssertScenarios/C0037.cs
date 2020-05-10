@@ -22,7 +22,7 @@ namespace Gravity.IntegrationTests.Cases.UiCommon.AssertScenarios
     public class C0037 : TestCase
     {
         // gets the actions collection of this test
-        public override IEnumerable<ActionRule> GetActions(AutomationEnvironment environment)
+        public override IEnumerable<ActionRule> OnActions(AutomationEnvironment environment)
         {
             var expected = (bool)environment.TestParams["negative"]
                 ? "Contoso University - UI Controls v10"

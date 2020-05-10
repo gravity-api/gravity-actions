@@ -12,6 +12,7 @@
 * [1] verify {driver} match {RemoteWebDriver}
 */
 #pragma warning restore
+using Graivty.IntegrationTests.Extensions;
 using Gravity.IntegrationTests.Base;
 using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Contracts;
@@ -22,11 +23,11 @@ namespace Gravity.IntegrationTests.Cases.UiCommon.AssertScenarios
     public class C0021 : TestCase
     {
         // gets the actions collection of this test
-        public override IEnumerable<ActionRule> GetActions(AutomationEnvironment environment)
+        public override IEnumerable<ActionRule> OnActions(AutomationEnvironment environment)
         {
             var onDriver = (bool)environment.TestParams["negative"]
                 ? "not_a_driver"
-                : GetDriverFullName($"{environment.TestParams["driver"]}");
+                : environment.GetDriverFullName();
 
             // setup
             return new List<ActionRule>()

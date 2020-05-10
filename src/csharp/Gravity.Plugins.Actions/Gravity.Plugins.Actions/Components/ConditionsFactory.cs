@@ -30,6 +30,11 @@ namespace Gravity.Plugins.Actions.Components
         }
 
         /// <summary>
+        /// Assert that <see cref="IWebElement"/> is active element (focused).
+        /// </summary>
+        public const string Active = "active";
+
+        /// <summary>
         /// Assert that <see cref="IWebElement"/> exists in the DOM.
         /// </summary>
         public const string Exists = "exists";
@@ -205,6 +210,23 @@ namespace Gravity.Plugins.Actions.Components
 
 #pragma warning disable IDE0051
         #region *** repository   ***
+        [Description(Active)]
+        private IDictionary<string, object> ElementActive(ActionRule actionRule, IWebElement element)
+            => AssertState(() =>
+        {
+            // get actual
+            var actual = ConditionalGetElement(actionRule, element) == driver.SwitchTo().ActiveElement();
+
+            // compose
+            return new Dictionary<string, object>
+            {
+                [StateProperties.Evaluation] = actual,
+                [StateProperties.Expected] = Exists,
+                [StateProperties.Actual] = actual ? Exists : NotExists,
+                [StateProperties.Operator] = Contracts.OperatorsList.Equal
+            };
+        });
+
         [Description(Exists)]
         private IDictionary<string, object> ElementExists(ActionRule actionRule, IWebElement element)
             => AssertState(() =>

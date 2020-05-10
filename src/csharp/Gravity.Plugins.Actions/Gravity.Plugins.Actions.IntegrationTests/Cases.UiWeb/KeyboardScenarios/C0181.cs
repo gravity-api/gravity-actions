@@ -26,7 +26,7 @@ namespace Graivty.IntegrationTests.Cases.UiWeb.KeyboardScenarios
         public override string ApplicationUnderTest => StudentsPage;
 
         // gets the actions collection of this test
-        public override IEnumerable<ActionRule> GetActions(AutomationEnvironment environment)
+        public override IEnumerable<ActionRule> OnActions(AutomationEnvironment environment)
         {
             return new[]
             {

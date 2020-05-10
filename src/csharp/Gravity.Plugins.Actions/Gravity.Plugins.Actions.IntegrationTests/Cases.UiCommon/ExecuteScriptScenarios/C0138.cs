@@ -23,7 +23,7 @@ namespace Gravity.IntegrationTests.Cases.UiCommon.ExecuteScriptScenarios
     public class C0138 : TestCase
     {
         // gets the actions collection of this test
-        public override IEnumerable<ActionRule> GetActions(AutomationEnvironment environment)
+        public override IEnumerable<ActionRule> OnActions(AutomationEnvironment environment)
         {
             var condition = (bool)environment.TestParams["negative"] ? "no_element" : "input_enabled";
 

@@ -1,26 +1,29 @@
 ﻿#pragma warning disable S125
 /*
 * TEST SCENARIO (Rhino)
-* [test-id] 0132
-* [test-scenario] - Right Click
+* [test-id] 0183
+* [test-scenario] - Long Swipe, Element to Coordinates
 * 
 * [test-actions]
 * 1. navigate to {https://gravitymvctestapplication.azurewebsites.net/uicontrols/}
-* 2. right click
+* 2. long swipt {{$ --target:#input_range --source:200,200}} using {css selector}
 * 3. close browser
 * 
 * [test-expected-results]
-* [2] verify {attribute} on {click_outcome} from {value} using {id} not equal {context on element}
+* [2] verify {attribute} on {} greater than {50}
 */
 #pragma warning restore
 using Gravity.IntegrationTests.Base;
 using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Contracts;
+using OpenQA.Selenium.Chrome;
+using System;
 using System.Collections.Generic;
+using System.Text;
 
-namespace Gravity.IntegrationTests.Cases.UiWeb.ContextClickScenarios
+namespace Graivty.IntegrationTests.Cases.UiMobile.LongSwipeScenarios
 {
-    public class C0132 : TestCase
+    public class C0183 : TestCase
     {
         // gets the actions collection of this test
         public override IEnumerable<ActionRule> OnActions(AutomationEnvironment environment)
@@ -30,9 +33,11 @@ namespace Gravity.IntegrationTests.Cases.UiWeb.ContextClickScenarios
             {
                 new ActionRule
                 {
-                    Action = PluginsList.ContextClick
+                    Action = PluginsList.LongSwipe,
+                    Argument = "{{$ --source:#input_range --target:200,200}}",
+                    Locator = LocatorsList.CssSelector
                 },
-                SharedSteps.AssertClickOutcome(expectedPattern: "^$")
+                // TODO: assert keyboard hidden
             };
         }
     }

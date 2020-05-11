@@ -17,7 +17,7 @@ namespace Gravity.IntegrationTests.Suites.UiCommon
     {
         [Description(description: "P - [0024] - Assert, Exists, ID")]
         [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Compatibilities))]
-        public void T0024P(AutomationEnvironment environment)
+        public void T0024P(Context environment)
         {
             // setup
             environment.TestParams["negative"] = false;
@@ -31,7 +31,7 @@ namespace Gravity.IntegrationTests.Suites.UiCommon
 
         [Description(description: "N - [0024] - Assert, Exists, ID")]
         [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.CompatibilitiesChrome))]
-        public void T0024N(AutomationEnvironment environment)
+        public void T0024N(Context environment)
         {
             // setup
             environment.TestParams["negative"] = true;

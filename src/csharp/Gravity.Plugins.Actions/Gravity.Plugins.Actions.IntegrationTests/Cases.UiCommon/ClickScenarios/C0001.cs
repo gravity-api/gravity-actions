@@ -24,7 +24,7 @@ namespace Gravity.IntegrationTests.Cases.UiCommon.ClickScenarios
     public class C0001 : TestCase
     {
         // gets the actions collection of this test
-        public override IEnumerable<ActionRule> OnActions(AutomationEnvironment environment)
+        public override IEnumerable<ActionRule> OnActions(Context environment)
         {
             // setup
             var actions = new List<ActionRule>();

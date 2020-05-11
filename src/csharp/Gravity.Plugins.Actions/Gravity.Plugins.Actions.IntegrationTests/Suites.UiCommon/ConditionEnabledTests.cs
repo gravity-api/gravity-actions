@@ -17,7 +17,7 @@ namespace Gravity.IntegrationTests.Suites.UiCommon
     {
         [Description(description: "P - [0089] - Condition,Enabled, ID")]
         [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Compatibilities))]
-        public void T0089P(AutomationEnvironment environment)
+        public void T0089P(Context environment)
         {
             // setup
             environment.TestParams["negative"] = false;
@@ -31,7 +31,7 @@ namespace Gravity.IntegrationTests.Suites.UiCommon
 
         [Description(description: "N - [0089] - Condition, Enabled, ID")]
         [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.CompatibilitiesChrome))]
-        public void T0089N(AutomationEnvironment environment)
+        public void T0089N(Context environment)
         {
             // setup
             environment.TestParams["negative"] = true;

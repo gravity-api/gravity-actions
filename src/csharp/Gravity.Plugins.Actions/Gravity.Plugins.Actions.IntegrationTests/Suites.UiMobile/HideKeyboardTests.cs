@@ -17,7 +17,7 @@ namespace Graivty.IntegrationTests.Suites.UiMobile
     {
         [Description(description: "P - [0180] - Hide Keyboard, Default")]
         [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.CompatibilitiesMobile))]
-        public void T180P(AutomationEnvironment environment)
+        public void T180P(Context environment)
         {
             // execute
             var actual = new C0180().AddEnvironments(environment).Execute();

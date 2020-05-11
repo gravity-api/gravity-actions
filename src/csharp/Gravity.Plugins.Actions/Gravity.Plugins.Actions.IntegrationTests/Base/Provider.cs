@@ -39,6 +39,18 @@ namespace Gravity.IntegrationTests.Base
             "    }" +
             "}";
 
+        // Android
+        public const string AndroidNative = "" +
+            "{" +
+            "    'bstack:options': {" +
+            "        'os_version':'10.0'," +
+            "        'device':'Samsung Galaxy S20'," +
+            "        'browserstack.debug':'true'," +
+            "        'browserstack.console':'verbose'," +
+            "        'real_mobile':'true'" +
+            "    }" +
+            "}";
+
         // iOS
         public const string iPhoneChrome = "" +
             "{" +
@@ -66,15 +78,15 @@ namespace Gravity.IntegrationTests.Base
         #endregion
 
         /// <summary>
-        /// Gets an <see cref="AutomationEnvironment"/> instance.
+        /// Gets an <see cref="Context"/> instance.
         /// </summary>
         /// <param name="driver">Driver type.</param>
         /// <param name="capabilities">Driver capabilities.</param>
-        /// <returns>New <see cref="AutomationEnvironment"/> instance.</returns>
-        public static AutomationEnvironment Get(string driver, string capabilities)
+        /// <returns>New <see cref="Context"/> instance.</returns>
+        public static Context Get(string driver, string capabilities)
         {
             // setup
-            var environment = new AutomationEnvironment
+            var environment = new Context
             {
                 SystemParams = new Dictionary<string, object>(),
                 TestParams = new Dictionary<string, object>()

@@ -24,7 +24,7 @@ namespace Gravity.IntegrationTests.Cases.UiCommon.AssertScenarios
         public override string ApplicationUnderTest => HomePage;
 
         // gets the actions collection of this test
-        public override IEnumerable<ActionRule> OnActions(AutomationEnvironment environment)
+        public override IEnumerable<ActionRule> OnActions(Context environment)
         {
             var expected = (bool)environment.TestParams["negative"] ? "text-dark nav-link" : "nav-link text-dark";
 

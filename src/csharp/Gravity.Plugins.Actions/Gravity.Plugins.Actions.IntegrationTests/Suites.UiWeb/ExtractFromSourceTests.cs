@@ -17,7 +17,7 @@ namespace Gravity.IntegrationTests.Suites.UiWeb
     {
         [Description(description: "P - [0158] - Extract Data from Source, Default")]
         [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Compatibilities))]
-        public void T0158P(AutomationEnvironment environment)
+        public void T0158P(Context environment)
         {
             // execute
             var actual = new C0158().AddEnvironments(environment).Execute();
@@ -28,7 +28,7 @@ namespace Gravity.IntegrationTests.Suites.UiWeb
 
         [Description(description: "P - [0159] - Extract Data from Source, Default, Regular Expression")]
         [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Compatibilities))]
-        public void T0159P(AutomationEnvironment environment)
+        public void T0159P(Context environment)
         {
             // execute
             var actual = new C0159().AddEnvironments(environment).Execute();
@@ -39,7 +39,7 @@ namespace Gravity.IntegrationTests.Suites.UiWeb
 
         [Description(description: "P - [0160] - Extract Data from Source, Default, Attribute")]
         [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Compatibilities))]
-        public void T0160P(AutomationEnvironment environment)
+        public void T0160P(Context environment)
         {
             // execute
             var actual = new C0160().AddEnvironments(environment).Execute();
@@ -50,7 +50,7 @@ namespace Gravity.IntegrationTests.Suites.UiWeb
 
         [Description(description: "P - [0161] - Extract Data from Source, Element")]
         [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Compatibilities))]
-        public void T0161P(AutomationEnvironment environment)
+        public void T0161P(Context environment)
         {
             // execute
             var actual = new C0161().AddEnvironments(environment).Execute();
@@ -61,7 +61,7 @@ namespace Gravity.IntegrationTests.Suites.UiWeb
 
         [Description(description: "P - [0162] - Extract Data from Source, Element, Regular Expression")]
         [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Compatibilities))]
-        public void T0162P(AutomationEnvironment environment)
+        public void T0162P(Context environment)
         {
             // execute
             var actual = new C0162().AddEnvironments(environment).Execute();
@@ -72,7 +72,7 @@ namespace Gravity.IntegrationTests.Suites.UiWeb
 
         [Description(description: "P - [0163] - Extract Data from Source, Default, HTML")]
         [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Compatibilities))]
-        public void T0163P(AutomationEnvironment environment)
+        public void T0163P(Context environment)
         {
             // execute
             var actual = new C0163().AddEnvironments(environment).Execute();
@@ -83,7 +83,7 @@ namespace Gravity.IntegrationTests.Suites.UiWeb
 
         [Description(description: "P - [0164] - Extract Data from Source, Default, HTML, Regular Expression")]
         [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Compatibilities))]
-        public void T0164P(AutomationEnvironment environment)
+        public void T0164P(Context environment)
         {
             // execute
             var actual = new C0164().AddEnvironments(environment).Execute();
@@ -94,7 +94,7 @@ namespace Gravity.IntegrationTests.Suites.UiWeb
 
         [Description(description: "P - [0165] - Extract Data from Source, Element, HTML, Regular Expression")]
         [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Compatibilities))]
-        public void T0165P(AutomationEnvironment environment)
+        public void T0165P(Context environment)
         {
             // execute
             var actual = new C0165().AddEnvironments(environment).Execute();
@@ -105,7 +105,7 @@ namespace Gravity.IntegrationTests.Suites.UiWeb
 
         [Description(description: "P - [0166] - Extract Data from Source, Element, Absolute XPath")]
         [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Compatibilities))]
-        public void T0166P(AutomationEnvironment environment)
+        public void T0166P(Context environment)
         {
             // execute
             var actual = new C0166().AddEnvironments(environment).Execute();
@@ -116,7 +116,7 @@ namespace Gravity.IntegrationTests.Suites.UiWeb
 
         [Description(description: "P - [0167] - Extract Data from Source, Default, Data Source")]
         [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Compatibilities))]
-        public void T0167A(AutomationEnvironment environment)
+        public void T0167A(Context environment)
         {
             // setup
             environment.TestParams["is_per_entity"] = false;
@@ -130,7 +130,7 @@ namespace Gravity.IntegrationTests.Suites.UiWeb
 
         [Description(description: "P - [0167] - Extract Data from Source, Default, Data Source")]
         [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Compatibilities))]
-        public void T0167E(AutomationEnvironment environment)
+        public void T0167E(Context environment)
         {
             // setup
             environment.TestParams["is_per_entity"] = true;
@@ -144,7 +144,7 @@ namespace Gravity.IntegrationTests.Suites.UiWeb
 
         [Description(description: "P - [0168] - Extract Data from Source, Default, Multiple Extractions")]
         [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Compatibilities))]
-        public void T0168F(AutomationEnvironment environment)
+        public void T0168F(Context environment)
         {
             // setup
             environment.TestParams["extraction"] = "0";
@@ -158,7 +158,7 @@ namespace Gravity.IntegrationTests.Suites.UiWeb
 
         [Description(description: "P - [0168] - Extract Data from Source, Default, Multiple Extractions")]
         [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Compatibilities))]
-        public void T0168L(AutomationEnvironment environment)
+        public void T0168L(Context environment)
         {
             // setup
             environment.TestParams["extraction"] = "1";
@@ -173,7 +173,7 @@ namespace Gravity.IntegrationTests.Suites.UiWeb
         [NonParallelizable]
         [Description(description: "P - [0169] - Extract Data from Source, Default, Data Driven")]
         [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.CompatibilitiesChrome))]
-        public void T0169P(AutomationEnvironment environment)
+        public void T0169P(Context environment)
         {
             // execute
             var actual = new C0169().AddEnvironments(environment).Execute();

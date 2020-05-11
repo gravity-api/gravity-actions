@@ -23,7 +23,7 @@ namespace Gravity.IntegrationTests.Cases.UiCommon.AssertScenarios
     public class C0021 : TestCase
     {
         // gets the actions collection of this test
-        public override IEnumerable<ActionRule> OnActions(AutomationEnvironment environment)
+        public override IEnumerable<ActionRule> OnActions(Context environment)
         {
             var onDriver = (bool)environment.TestParams["negative"]
                 ? "not_a_driver"

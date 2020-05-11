@@ -17,7 +17,7 @@ namespace Gravity.IntegrationTests.Suites.UiCommon
     {
         [Description(description: "P - [0103] - Condition, Title, Equal")]
         [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Compatibilities))]
-        public void T0103P(AutomationEnvironment environment)
+        public void T0103P(Context environment)
         {
             // setup
             environment.TestParams["negative"] = false;
@@ -31,7 +31,7 @@ namespace Gravity.IntegrationTests.Suites.UiCommon
 
         [Description(description: "N - [0103] - Condition, Title, Equal")]
         [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.CompatibilitiesChrome))]
-        public void T0103N(AutomationEnvironment environment)
+        public void T0103N(Context environment)
         {
             // setup
             environment.TestParams["negative"] = true;
@@ -45,7 +45,7 @@ namespace Gravity.IntegrationTests.Suites.UiCommon
 
         [Description(description: "P - [0104] - Condition, Title, Not Equal")]
         [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Compatibilities))]
-        public void T0104P(AutomationEnvironment environment)
+        public void T0104P(Context environment)
         {
             // setup
             environment.TestParams["negative"] = false;
@@ -59,7 +59,7 @@ namespace Gravity.IntegrationTests.Suites.UiCommon
 
         [Description(description: "N - [0104] - Condition, Title, Not Equal")]
         [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.CompatibilitiesChrome))]
-        public void T0104N(AutomationEnvironment environment)
+        public void T0104N(Context environment)
         {
             // setup
             environment.TestParams["negative"] = true;
@@ -73,7 +73,7 @@ namespace Gravity.IntegrationTests.Suites.UiCommon
 
         [Description(description: "P - [0105] - Condition, Title, Match")]
         [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Compatibilities))]
-        public void T0105P(AutomationEnvironment environment)
+        public void T0105P(Context environment)
         {
             // setup
             environment.TestParams["negative"] = false;
@@ -87,7 +87,7 @@ namespace Gravity.IntegrationTests.Suites.UiCommon
 
         [Description(description: "N - [0105] - Condition, Title, Match")]
         [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.CompatibilitiesChrome))]
-        public void T0105N(AutomationEnvironment environment)
+        public void T0105N(Context environment)
         {
             // setup
             environment.TestParams["negative"] = true;
@@ -101,7 +101,7 @@ namespace Gravity.IntegrationTests.Suites.UiCommon
 
         [Description(description: "P - [0106] - Condition, Title, Not Match")]
         [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Compatibilities))]
-        public void T0106P(AutomationEnvironment environment)
+        public void T0106P(Context environment)
         {
             // setup
             environment.TestParams["negative"] = false;
@@ -115,7 +115,7 @@ namespace Gravity.IntegrationTests.Suites.UiCommon
 
         [Description(description: "N - [0106] - Condition, Title, Not Match")]
         [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.CompatibilitiesChrome))]
-        public void T0106N(AutomationEnvironment environment)
+        public void T0106N(Context environment)
         {
             // setup
             environment.TestParams["negative"] = true;
@@ -129,7 +129,7 @@ namespace Gravity.IntegrationTests.Suites.UiCommon
 
         [Description(description: "P - [0107] - Condition, Title, Greater Than, Regular Expression")]
         [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Compatibilities))]
-        public void T0107P(AutomationEnvironment environment)
+        public void T0107P(Context environment)
         {
             // setup
             environment.TestParams["negative"] = false;
@@ -143,7 +143,7 @@ namespace Gravity.IntegrationTests.Suites.UiCommon
 
         [Description(description: "N - [0107] - Condition, Title, Greater Than, Regular Expression")]
         [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.CompatibilitiesChrome))]
-        public void T0107N(AutomationEnvironment environment)
+        public void T0107N(Context environment)
         {
             // setup
             environment.TestParams["negative"] = true;
@@ -157,7 +157,7 @@ namespace Gravity.IntegrationTests.Suites.UiCommon
 
         [Description(description: "P - [0108] - Condition, Title, Lower Than, Regular Expression")]
         [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Compatibilities))]
-        public void T0108P(AutomationEnvironment environment)
+        public void T0108P(Context environment)
         {
             // setup
             environment.TestParams["negative"] = false;
@@ -171,7 +171,7 @@ namespace Gravity.IntegrationTests.Suites.UiCommon
 
         [Description(description: "N - [0108] - Condition, Title, Lower Than, Regular Expression")]
         [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.CompatibilitiesChrome))]
-        public void T0108N(AutomationEnvironment environment)
+        public void T0108N(Context environment)
         {
             // setup
             environment.TestParams["negative"] = true;
@@ -185,7 +185,7 @@ namespace Gravity.IntegrationTests.Suites.UiCommon
 
         [Description(description: "P - [0109] - Condition, Title, Greater or Equal, Regular Expression")]
         [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Compatibilities))]
-        public void T0109P(AutomationEnvironment environment)
+        public void T0109P(Context environment)
         {
             // setup
             environment.TestParams["negative"] = false;
@@ -199,7 +199,7 @@ namespace Gravity.IntegrationTests.Suites.UiCommon
 
         [Description(description: "N - [0109] - Condition, Title, Greater or Equal, Regular Expression")]
         [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.CompatibilitiesChrome))]
-        public void T0109N(AutomationEnvironment environment)
+        public void T0109N(Context environment)
         {
             // setup
             environment.TestParams["negative"] = true;
@@ -213,7 +213,7 @@ namespace Gravity.IntegrationTests.Suites.UiCommon
 
         [Description(description: "P - [0110] - Condition, Title, Lower or Equal, Regular Expression")]
         [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Compatibilities))]
-        public void T0110P(AutomationEnvironment environment)
+        public void T0110P(Context environment)
         {
             // setup
             environment.TestParams["negative"] = false;
@@ -227,7 +227,7 @@ namespace Gravity.IntegrationTests.Suites.UiCommon
 
         [Description(description: "N - [0110] - Condition, Title, Lower or Equal, Regular Expression")]
         [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.CompatibilitiesChrome))]
-        public void T0110N(AutomationEnvironment environment)
+        public void T0110N(Context environment)
         {
             // setup
             environment.TestParams["negative"] = true;

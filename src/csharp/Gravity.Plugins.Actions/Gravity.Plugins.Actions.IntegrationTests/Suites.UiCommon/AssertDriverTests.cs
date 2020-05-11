@@ -17,7 +17,7 @@ namespace Gravity.IntegrationTests.Suites.UiCommon
     {
         [Description(description: "P - [0019] - Assert, Driver, Equal")]
         [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.CompatibilitiesChrome))]
-        public void T0019P(AutomationEnvironment environment)
+        public void T0019P(Context environment)
         {
             // setup
             environment.TestParams["negative"] = false;
@@ -31,7 +31,7 @@ namespace Gravity.IntegrationTests.Suites.UiCommon
 
         [Description(description: "N - [0019] - Assert, Driver, Equal")]
         [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.CompatibilitiesChrome))]
-        public void T0019N(AutomationEnvironment environment)
+        public void T0019N(Context environment)
         {
             // setup
             environment.TestParams["negative"] = true;
@@ -45,7 +45,7 @@ namespace Gravity.IntegrationTests.Suites.UiCommon
 
         [Description(description: "P - [0020] - Assert, Driver, Not Equal")]
         [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.CompatibilitiesChrome))]
-        public void T0020P(AutomationEnvironment environment)
+        public void T0020P(Context environment)
         {
             // setup
             environment.TestParams["negative"] = false;
@@ -59,7 +59,7 @@ namespace Gravity.IntegrationTests.Suites.UiCommon
 
         [Description(description: "N - [0020] - Assert, Driver, Not Equal")]
         [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.CompatibilitiesChrome))]
-        public void T0020N(AutomationEnvironment environment)
+        public void T0020N(Context environment)
         {
             // setup
             environment.TestParams["negative"] = true;
@@ -73,7 +73,7 @@ namespace Gravity.IntegrationTests.Suites.UiCommon
 
         [Description(description: "P - [0021] - Assert, Driver, Match")]
         [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Compatibilities))]
-        public void T0021P(AutomationEnvironment environment)
+        public void T0021P(Context environment)
         {
             // setup
             environment.TestParams["negative"] = false;
@@ -87,7 +87,7 @@ namespace Gravity.IntegrationTests.Suites.UiCommon
 
         [Description(description: "N - [0021] - Assert, Driver, Match")]
         [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.CompatibilitiesChrome))]
-        public void T0021N(AutomationEnvironment environment)
+        public void T0021N(Context environment)
         {
             // setup
             environment.TestParams["negative"] = true;
@@ -101,7 +101,7 @@ namespace Gravity.IntegrationTests.Suites.UiCommon
 
         [Description(description: "P - [0022] - Assert, Driver, Not Match")]
         [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Compatibilities))]
-        public void T0022P(AutomationEnvironment environment)
+        public void T0022P(Context environment)
         {
             // setup
             environment.TestParams["negative"] = false;
@@ -115,7 +115,7 @@ namespace Gravity.IntegrationTests.Suites.UiCommon
 
         [Description(description: "N - [0022] - Assert, Driver, Not Match")]
         [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.CompatibilitiesChrome))]
-        public void T0022N(AutomationEnvironment environment)
+        public void T0022N(Context environment)
         {
             // setup
             environment.TestParams["negative"] = true;

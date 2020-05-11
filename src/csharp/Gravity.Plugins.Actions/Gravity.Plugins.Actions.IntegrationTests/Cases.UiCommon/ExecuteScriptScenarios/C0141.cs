@@ -25,7 +25,7 @@ namespace Gravity.IntegrationTests.Cases.UiCommon.ExecuteScriptScenarios
     public class C0141 : TestCase
     {
         // gets the actions collection of this test
-        public override IEnumerable<ActionRule> OnActions(AutomationEnvironment environment)
+        public override IEnumerable<ActionRule> OnActions(Context environment)
         {
             var condition = (bool)environment.TestParams["negative"]
                 ? "selected"
@@ -49,7 +49,7 @@ namespace Gravity.IntegrationTests.Cases.UiCommon.ExecuteScriptScenarios
         }
 
         // gets the extractions collection of this test
-        public override IEnumerable<ExtractionRule> OnExtractions(AutomationEnvironment environment)
+        public override IEnumerable<ExtractionRule> OnExtractions(Context environment)
         {
             // entity
             var contentEntries = new[]

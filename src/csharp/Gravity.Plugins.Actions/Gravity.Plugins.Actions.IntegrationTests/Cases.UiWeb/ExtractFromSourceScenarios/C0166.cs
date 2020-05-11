@@ -24,7 +24,7 @@ namespace Graivty.IntegrationTests.Cases.UiWeb.ExtractFromSourceScenarios
         public override string ApplicationUnderTest => StudentsPage;
 
         // assertion implementation
-        public override bool OnAfterAutomation(AutomationEnvironment environment, IEnumerable<OrbitResponse> responses)
+        public override bool OnAfterAutomation(Context environment, IEnumerable<OrbitResponse> responses)
         {
             // setup
             var entity = responses.SelectMany(i => i.Extractions).ElementAt(0).Entities.ElementAt(0);
@@ -37,7 +37,7 @@ namespace Graivty.IntegrationTests.Cases.UiWeb.ExtractFromSourceScenarios
         }
 
         // gets the actions collection of this test
-        public override IEnumerable<ActionRule> OnActions(AutomationEnvironment environment) => new[]
+        public override IEnumerable<ActionRule> OnActions(Context environment) => new[]
         {
             new ActionRule
             {
@@ -46,7 +46,7 @@ namespace Graivty.IntegrationTests.Cases.UiWeb.ExtractFromSourceScenarios
         };
 
         // gets the extractions collection of this test
-        public override IEnumerable<ExtractionRule> OnExtractions(AutomationEnvironment environment)
+        public override IEnumerable<ExtractionRule> OnExtractions(Context environment)
         {
             // entity
             var contentEntry = new ContentEntry

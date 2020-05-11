@@ -17,7 +17,7 @@ namespace Gravity.IntegrationTests.Suites.UiWeb
     {
         [Description(description: "P - [0066] - Close Window")]
         [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.CompatibilitiesNoIos))]
-        public void T0066P(AutomationEnvironment environment)
+        public void T0066P(Context environment)
         {
             // execute
             var actual = new C0066().AddEnvironments(environment).Execute();
@@ -28,7 +28,7 @@ namespace Gravity.IntegrationTests.Suites.UiWeb
 
         [Description(description: "N - [0067] - Close Window, No Child Windows")]
         [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.CompatibilitiesNoIos))]
-        public void T0067P(AutomationEnvironment environment)
+        public void T0067P(Context environment)
         {
             // execute
             var actual = new C0067().AddEnvironments(environment).Execute();

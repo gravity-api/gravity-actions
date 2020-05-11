@@ -15,7 +15,7 @@ namespace Gravity.IntegrationTests.Suites.UiCommon
     {
         [Description(description: "P - [0128] - Condition, Nested Condition, 2 levels")]
         [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Compatibilities))]
-        public void T0128P(AutomationEnvironment environment)
+        public void T0128P(Context environment)
         {
             // setup
             environment.TestParams["negative"] = false;
@@ -29,7 +29,7 @@ namespace Gravity.IntegrationTests.Suites.UiCommon
 
         [Description(description: "N - [0128] - Condition, Nested Condition, 2 levels")]
         [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.CompatibilitiesChrome))]
-        public void T0128N(AutomationEnvironment environment)
+        public void T0128N(Context environment)
         {
             // setup
             environment.TestParams["negative"] = true;
@@ -43,7 +43,7 @@ namespace Gravity.IntegrationTests.Suites.UiCommon
 
         [Description(description: "P - [0129] - Condition, Nested Condition, 2 levels, Split Actions, Second Layer")]
         [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Compatibilities))]
-        public void T0129P(AutomationEnvironment environment)
+        public void T0129P(Context environment)
         {
             // setup
             environment.TestParams["negative"] = false;
@@ -57,7 +57,7 @@ namespace Gravity.IntegrationTests.Suites.UiCommon
 
         [Description(description: "N - [0129] - Condition, Nested Condition, 2 levels, Split Actions, Second Layer")]
         [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.CompatibilitiesChrome))]
-        public void T0129N(AutomationEnvironment environment)
+        public void T0129N(Context environment)
         {
             // setup
             environment.TestParams["negative"] = true;
@@ -71,7 +71,7 @@ namespace Gravity.IntegrationTests.Suites.UiCommon
 
         [Description(description: "P - [0129] - Condition, Nested Condition, 2 levels, Split Actions, First Layer")]
         [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Compatibilities))]
-        public void T0130P(AutomationEnvironment environment)
+        public void T0130P(Context environment)
         {
             // setup
             environment.TestParams["negative"] = false;
@@ -85,7 +85,7 @@ namespace Gravity.IntegrationTests.Suites.UiCommon
 
         [Description(description: "N - [0129] - Condition, Nested Condition, 2 levels, Split Actions, First Layer")]
         [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.CompatibilitiesChrome))]
-        public void T0130N(AutomationEnvironment environment)
+        public void T0130N(Context environment)
         {
             // setup
             environment.TestParams["negative"] = true;

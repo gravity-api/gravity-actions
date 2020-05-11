@@ -64,9 +64,9 @@ namespace Graivty.IntegrationTests.Extensions
         /// <summary>
         /// Gets a driver full name.
         /// </summary>
-        /// <param name="environment"><see cref="AutomationEnvironment"/> to get driver full name by.</param>
+        /// <param name="environment"><see cref="Context"/> to get driver full name by.</param>
         /// <returns>Driver full name</returns>
-        public static string GetDriverFullName(this AutomationEnvironment environment)
+        public static string GetDriverFullName(this Context environment)
         {
             // setup conditions
             var isKey = environment.TestParams?.ContainsKey("driver") == true;

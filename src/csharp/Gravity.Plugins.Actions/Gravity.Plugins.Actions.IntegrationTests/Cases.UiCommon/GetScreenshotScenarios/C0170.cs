@@ -23,7 +23,7 @@ namespace Graivty.IntegrationTests.Cases.UiCommon.GetScreenshotScenarios
     public class C0170 : TestCase
     {
         // gets the actions collection of this test
-        public override IEnumerable<ActionRule> OnActions(AutomationEnvironment environment)
+        public override IEnumerable<ActionRule> OnActions(Context environment)
         {
             var action = new ActionRule
             {
@@ -34,7 +34,7 @@ namespace Graivty.IntegrationTests.Cases.UiCommon.GetScreenshotScenarios
         }
 
         // assertions
-        public override bool OnAfterAutomation(AutomationEnvironment environment, IEnumerable<OrbitResponse> responses)
+        public override bool OnAfterAutomation(Context environment, IEnumerable<OrbitResponse> responses)
         {
             // setup
             var path = responses

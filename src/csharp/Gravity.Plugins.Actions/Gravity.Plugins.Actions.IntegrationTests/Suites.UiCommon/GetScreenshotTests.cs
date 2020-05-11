@@ -28,7 +28,7 @@ namespace Gravity.IntegrationTests.Suites.UiCommon
 
         [Description(description: "P - [0170] - Get Screenshot, Default")]
         [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Compatibilities))]
-        public void T0170P(AutomationEnvironment environment)
+        public void T0170P(Context environment)
         {
             // execute
             var actual = new C0170().AddEnvironments(environment).Execute();
@@ -40,7 +40,7 @@ namespace Gravity.IntegrationTests.Suites.UiCommon
         [Ignore(reason: "Not implemented")]
         [Description(description: "P - [0171] - Get Screenshot, Element, Default")]
         [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Compatibilities))]
-        public void T0171P(AutomationEnvironment environment)
+        public void T0171P(Context environment)
         {
             // execute
             var actual = new C0171().AddEnvironments(environment).Execute();

@@ -7,7 +7,7 @@ using Graivty.IntegrationTests.Cases.UiMobile.LongSwipeScenarios;
 using Gravity.IntegrationTests.Base;
 using Gravity.IntegrationTests.Providers;
 using NUnit.Framework;
-
+using System.Collections.Generic;
 using DescriptionAttribute = System.ComponentModel.DescriptionAttribute;
 
 namespace Graivty.IntegrationTests.Suites.UiMobile
@@ -34,9 +34,10 @@ namespace Graivty.IntegrationTests.Suites.UiMobile
             AppUrl = client.UploadApplication(name, publicAccessUrl)["app_url"].ToString();
         }
 
-        [Description(description: "P - [0183] - ")]
-        //[Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.CompatibilitiesMobile))]
-        public void T183P(AutomationEnvironment environment)
+        [Ignore(reason: "development")]
+        [Description(description: "P - [0183] - Long Swipe, Element to Coordinates")]
+        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.CompatibilitiesNativeMobile))]
+        public void T183P(Context environment)
         {
             // setup
             environment.TestParams[nameof(AppUrl)] = AppUrl;

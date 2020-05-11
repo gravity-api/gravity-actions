@@ -31,6 +31,8 @@ namespace Gravity.IntegrationTests.Providers
 
         public static IEnumerable CompatibilitiesMobile => GetCompatibilitiesMobile();
 
+        public static IEnumerable CompatibilitiesNativeMobile => GetCompatibilitiesNativeMobile();
+
         public static IEnumerable CompatibilitiesNoMobile => GetCompatibilitiesNoMobile();
 
         /// <summary>
@@ -241,6 +243,15 @@ namespace Gravity.IntegrationTests.Providers
             yield return Provider.Get(driver: Driver.Chrome, capabilities: Provider.OSXCatalinaLatestBrowser);
             yield return Provider.Get(driver: Driver.Edge, capabilities: Provider.OSXCatalinaLatestBrowser);
             yield return Provider.Get(driver: Driver.Firefox, capabilities: Provider.OSXCatalinaLatestBrowser);
+        }
+
+        private static IEnumerable GetCompatibilitiesNativeMobile()
+        {
+            // Android
+            yield return Provider.Get(driver: Driver.Android, capabilities: Provider.AndroidNative);
+
+            // iOS
+            //yield return Provider.Get(driver: Driver.iOS, capabilities: Provider.iPhoneSafari);
         }
     }
 }

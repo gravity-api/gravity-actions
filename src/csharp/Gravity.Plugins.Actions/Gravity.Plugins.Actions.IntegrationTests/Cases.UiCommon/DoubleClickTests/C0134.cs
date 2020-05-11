@@ -23,7 +23,7 @@ namespace Gravity.IntegrationTests.Cases.UiCommon.DoubleClickTests
     public class C0134 : TestCase
     {
         // gets the actions collection of this test
-        public override IEnumerable<ActionRule> OnActions(AutomationEnvironment environment)
+        public override IEnumerable<ActionRule> OnActions(Context environment)
         {
             // setup
             return new[]

@@ -22,7 +22,7 @@ namespace Gravity.IntegrationTests.Cases.UiCommon.AssertScenarios
     public class C0057 : TestCase
     {
         // gets the actions collection of this test
-        public override IEnumerable<ActionRule> OnActions(AutomationEnvironment environment)
+        public override IEnumerable<ActionRule> OnActions(Context environment)
         {
             var expected = (bool)environment.TestParams["negative"] ? "\\d{1}" : "1\\d+";
 

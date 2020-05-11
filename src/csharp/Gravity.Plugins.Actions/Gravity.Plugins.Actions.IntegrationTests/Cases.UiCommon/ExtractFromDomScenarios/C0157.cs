@@ -65,7 +65,7 @@ namespace Gravity.IntegrationTests.Cases.UiCommon.ExtractFromDomScenarios
         }
 
         // assertion implementation
-        public override bool OnAfterAutomation(AutomationEnvironment environment, IEnumerable<OrbitResponse> responses)
+        public override bool OnAfterAutomation(Context environment, IEnumerable<OrbitResponse> responses)
         {
             // keys extracted
             var isKeys = SharedSteps.AssertEntitiesKeys(
@@ -87,7 +87,7 @@ namespace Gravity.IntegrationTests.Cases.UiCommon.ExtractFromDomScenarios
         }
 
         // gets the actions collection of this test
-        public override IEnumerable<ActionRule> OnActions(AutomationEnvironment environment) => new[]
+        public override IEnumerable<ActionRule> OnActions(Context environment) => new[]
         {
             new ActionRule
             {
@@ -96,7 +96,7 @@ namespace Gravity.IntegrationTests.Cases.UiCommon.ExtractFromDomScenarios
         };
 
         // gets the extractions collection of this test
-        public override IEnumerable<ExtractionRule> OnExtractions(AutomationEnvironment environment)
+        public override IEnumerable<ExtractionRule> OnExtractions(Context environment)
         {
             // entity
             var contentEntries = new[]

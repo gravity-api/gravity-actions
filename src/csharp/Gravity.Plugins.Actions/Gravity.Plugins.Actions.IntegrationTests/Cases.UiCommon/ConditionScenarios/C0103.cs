@@ -27,7 +27,7 @@ namespace Gravity.IntegrationTests.Cases.UiCommon.ConditionScenarios
         public override string ApplicationUnderTest => StudentsPage;
 
         // gets the actions collection of this test
-        public override IEnumerable<ActionRule> OnActions(AutomationEnvironment environment)
+        public override IEnumerable<ActionRule> OnActions(Context environment)
         {
             var condition = (bool)environment.TestParams["negative"]
                 ? "Contoso University - Students"

@@ -23,7 +23,7 @@ namespace Gravity.IntegrationTests.Cases.UiCommon.ExecuteScriptScenarios
     public class C0139 : TestCase
     {
         // gets the actions collection of this test
-        public override IEnumerable<ActionRule> OnActions(AutomationEnvironment environment)
+        public override IEnumerable<ActionRule> OnActions(Context environment)
         {
             var condition = (bool)environment.TestParams["negative"] ? "no_element" : "click_button";
 

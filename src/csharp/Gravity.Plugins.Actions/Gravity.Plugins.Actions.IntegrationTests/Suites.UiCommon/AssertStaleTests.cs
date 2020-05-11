@@ -17,7 +17,7 @@ namespace Gravity.IntegrationTests.Suites.UiCommon
     {
         [Description(description: "N - [0028] - Assert, Stale, ID")]
         [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Compatibilities))]
-        public void T0028N(AutomationEnvironment environment)
+        public void T0028N(Context environment)
         {
             // setup
             environment.TestParams["negative"] = true;

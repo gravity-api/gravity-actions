@@ -24,7 +24,7 @@ namespace Gravity.IntegrationTests.Cases.UiWeb.CloseWindowScenarios
     public class C0067 : TestCase
     {
         // gets the actions collection of this test
-        public override IEnumerable<ActionRule> OnActions(AutomationEnvironment environment)
+        public override IEnumerable<ActionRule> OnActions(Context environment)
         {
             return new[]
             {

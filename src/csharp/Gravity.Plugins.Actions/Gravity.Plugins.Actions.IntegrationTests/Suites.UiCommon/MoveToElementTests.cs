@@ -1,0 +1,29 @@
+﻿/*
+ * CHANGE LOG - keep only last 5 threads
+ * 
+ * online resources
+ */
+using Graivty.IntegrationTests.Cases.UiCommon.MoveToElementScenarios;
+using Gravity.IntegrationTests.Base;
+using Gravity.IntegrationTests.Providers;
+using NUnit.Framework;
+
+using DescriptionAttribute = System.ComponentModel.DescriptionAttribute;
+
+namespace Graivty.IntegrationTests.Suites.UiCommon
+{
+    [TestFixture]
+    public class MoveToElementTests
+    {
+        [Description(description: "P - [0184] - Move To Element, Default")]
+        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Compatibilities))]
+        public void T0184P(Context environment)
+        {
+            // execute
+            var actual = new C0184().AddEnvironments(environment).Execute();
+
+            // assertion
+            Assert.IsTrue(actual);
+        }
+    }
+}

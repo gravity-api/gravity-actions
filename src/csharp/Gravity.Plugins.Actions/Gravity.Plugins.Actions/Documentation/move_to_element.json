@@ -3,10 +3,11 @@
   "examples": [
     {
       "description": "Moves the mouse to the specified element.",
-      "literalExample": "move to element on {//tr[1]/td[6]/a[1]}",
+      "literalExample": "move to element on {over_outcome} using {id}",
       "actionExample": {
         "action": "MoveToElement",
-        "onElement": "//tr[1]/td[6]/a[1]"
+        "onElement": "over_outcome",
+        "locator": "Id"
       }
     }
   ],

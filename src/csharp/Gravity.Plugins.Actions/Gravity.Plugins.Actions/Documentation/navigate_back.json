@@ -9,11 +9,11 @@
       }
     },
     {
-      "description": "Move back 3 entries in the browser's history",
-      "literalExample": "navigate back {3} pages",
+      "description": "Move back 2 entries in the browser's history.",
+      "literalExample": "navigate back {2} pages",
       "actionExample": {
         "action": "NavigateBack",
-        "argument": "3"
+        "argument": "2"
       }
     }
   ],

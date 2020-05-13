@@ -142,6 +142,20 @@ namespace Gravity.IntegrationTests.Base
         };
 
         /// <summary>
+        /// Gets an assert <see cref="ActionRule"/> for stale element class (on UiControls page).
+        /// </summary>
+        /// <param name="expectedPattern">Expected pattern (regular expression) to assert against.</param>
+        /// <returns>Assert <see cref="ActionRule"/>.</returns>
+        public static ActionRule AssertStaleElementClass(string expectedPattern) => new ActionRule
+        {
+            Action = PluginsList.Assert,
+            Argument = "{{$ --attribute --match:" + $"{expectedPattern}" + "}}",
+            OnElement = "for_stale_element",
+            Locator = LocatorsList.Id,
+            OnAttribute = "class"
+        };
+
+        /// <summary>
         /// Gets an assert <see cref="ActionRule"/> for click outcome results (on UiControls page).
         /// </summary>
         /// <param name="expectedPattern">Expected pattern (regular expression) to assert against.</param>

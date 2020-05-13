@@ -10,10 +10,10 @@
     },
     {
       "description": "Refreshes the current page 3 times.",
-      "literalExample": "refresh {3} times",
+      "literalExample": "refresh {2} times",
       "actionExample": {
         "action": "Refresh",
-        "argument": "3"
+        "argument": "2"
       }
     }
   ],

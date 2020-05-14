@@ -23,6 +23,78 @@
   "description": "Asserts that a given value meets a condition. That value can be, for an instance, element text, element attribute, element status or current address. The results of the assertion evaluation will be returned in the response extractions. When asserting on elements state, this action will wait for the expected state until [ElementSearchingTimout] reached.",
   "examples": [
     {
+      "description": "Asserts that [my_parameter] value equals [10].",
+      "literalExample": "assert {{$ --parameter --eq:10}} on {my_parameter}",
+      "actionExample": {
+        "action": "Assert",
+        "argument": "{{$ --parameter --eq:10}}",
+        "onElement": "my_parameter"
+      }
+    },
+    {
+      "description": "Asserts that [my_parameter] value not equals [1].",
+      "literalExample": "assert {{$ --parameter --ne:1}} on {my_parameter}",
+      "actionExample": {
+        "action": "Assert",
+        "argument": "{{$ --parameter --ne:1}}",
+        "onElement": "my_parameter"
+      }
+    },
+    {
+      "description": "Asserts that [my_parameter] value greater than [1].",
+      "literalExample": "assert {{$ --parameter --eq:10}} on {my_parameter}",
+      "actionExample": {
+        "action": "Assert",
+        "argument": "{{$ --parameter --gt:1}}",
+        "onElement": "my_parameter"
+      }
+    },
+    {
+      "description": "Asserts that [my_parameter] value lower than [11].",
+      "literalExample": "assert {{$ --parameter --lt:11}} on {my_parameter}",
+      "actionExample": {
+        "action": "Assert",
+        "argument": "{{$ --parameter --lt:11}}",
+        "onElement": "my_parameter"
+      }
+    },
+    {
+      "description": "Asserts that [my_parameter] value greater or equal [10].",
+      "literalExample": "assert {{$ --parameter --ge:10}} on {my_parameter}",
+      "actionExample": {
+        "action": "Assert",
+        "argument": "{{$ --parameter --ge:10}}",
+        "onElement": "my_parameter"
+      }
+    },
+    {
+      "description": "Asserts that [my_parameter] value lower or equal [10].",
+      "literalExample": "assert {{$ --parameter --le:10}} on {my_parameter}",
+      "actionExample": {
+        "action": "Assert",
+        "argument": "{{$ --parameter --ge:10}}",
+        "onElement": "my_parameter"
+      }
+    },
+    {
+      "description": "Asserts that [my_parameter] value match [^10$].",
+      "literalExample": "assert {{$ --parameter --match:^10$}} on {my_parameter}",
+      "actionExample": {
+        "action": "Assert",
+        "argument": "{{$ --parameter --match:^10$}}",
+        "onElement": "my_parameter"
+      }
+    },
+    {
+      "description": "Asserts that [my_parameter] value not match [^1$].",
+      "literalExample": "assert {{$ --parameter --not_match:^1$}} on {my_parameter}",
+      "actionExample": {
+        "action": "Assert",
+        "argument": "{{$ --parameter --not_match:^1$}}",
+        "onElement": "my_parameter"
+      }
+    },
+    {
       "description": "Asserts that [class] attribute of an element equals [nav-link text-dark].",
       "literalExample": "assert {{$ --attribute --eq:btn btn-default}} from {class} on {ul > li:nth-child(1) > a} using {css selector}",
       "actionExample": {

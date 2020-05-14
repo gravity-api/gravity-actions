@@ -3,12 +3,17 @@
  * 
  * online resources
  */
-using Gravity.UnitTests.Base;
+using Gravity.Plugins.Actions.Contracts;
+using Gravity.Plugins.Actions.UiCommon;
 using Gravity.Plugins.Base;
+using Gravity.Plugins.Contracts;
+using Gravity.UnitTests.Base;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Newtonsoft.Json;
 using OpenQA.Selenium.Mock;
 using System.Linq;
-using Gravity.Plugins.Actions.Contracts;
+
+using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
 
 namespace Gravity.UnitTests.UiCommon
 {
@@ -72,6 +77,71 @@ namespace Gravity.UnitTests.UiCommon
         #endregion
 
         #region *** tests: OnDriver      ***
+        [DataTestMethod]
+        [DataRow(ActionRuleNoAttributeOperator, "eq", "10")]
+        [DataRow(ActionRuleNoAttributeOperator, "ne", "1")]
+        [DataRow(ActionRuleNoAttributeOperator, "gt", "1")]
+        [DataRow(ActionRuleNoAttributeOperator, "lt", "11")]
+        [DataRow(ActionRuleNoAttributeOperator, "ge", "10")]
+        [DataRow(ActionRuleNoAttributeOperator, "le", "10")]
+        [DataRow(ActionRuleNoAttributeOperator, "match", "^10$")]
+        [DataRow(ActionRuleNoAttributeOperator, "not_match", "^1$")]
+        public void AssertParameter(string actionRule, string onOperator, string onOperatorExpected)
+        {
+            // execute
+            ExecuteAction<RegisterParameter>("{'argument':'{{$ --key:test_key --value:10}}'}");
+            var actual = GetActual(actionRule, string.Empty, onOperator, onOperatorExpected, "parameter", "test_key");
+
+            // assertion
+            Assert.IsTrue(actual);
+        }
+
+        [DataTestMethod]
+        [DataRow(ActionRuleNoAttributeOperator, "eq", "1")]
+        [DataRow(ActionRuleNoAttributeOperator, "ne", "10")]
+        [DataRow(ActionRuleNoAttributeOperator, "gt", "0")]
+        [DataRow(ActionRuleNoAttributeOperator, "lt", "10")]
+        [DataRow(ActionRuleNoAttributeOperator, "ge", "1")]
+        [DataRow(ActionRuleNoAttributeOperator, "le", "1")]
+        [DataRow(ActionRuleNoAttributeOperator, "match", "^1$")]
+        [DataRow(ActionRuleNoAttributeOperator, "not_match", "^10$")]
+        public void AssertParameterReqularExpression(string actionRule, string onOperator, string onOperatorExpected)
+        {
+            // setup
+            var onActionRule = JsonConvert.DeserializeObject<ActionRule>(actionRule);
+            onActionRule.RegularExpression = "\\d{1}";
+            actionRule = JsonConvert.SerializeObject(onActionRule);
+
+            // execute
+            ExecuteAction<RegisterParameter>("{'argument':'{{$ --key:test_key --value:10}}'}");
+            var actual = GetActual(actionRule, string.Empty, onOperator, onOperatorExpected, "parameter", "test_key");
+
+            // assertion
+            Assert.IsTrue(actual);
+        }
+
+        [DataTestMethod]
+        [DataRow(ActionRuleNoAttributeOperator, "eq", "1")]
+        [DataRow(ActionRuleNoAttributeOperator, "gt", "0")]
+        [DataRow(ActionRuleNoAttributeOperator, "lt", "10")]
+        [DataRow(ActionRuleNoAttributeOperator, "ge", "1")]
+        [DataRow(ActionRuleNoAttributeOperator, "le", "1")]
+        [DataRow(ActionRuleNoAttributeOperator, "match", "^1$")]
+        public void AssertParameterNoKey(string actionRule, string onOperator, string onOperatorExpected)
+        {
+            // setup
+            var onActionRule = JsonConvert.DeserializeObject<ActionRule>(actionRule);
+            onActionRule.RegularExpression = "\\d{1}";
+            actionRule = JsonConvert.SerializeObject(onActionRule);
+
+            // execute
+            ExecuteAction<RegisterParameter>("{'argument':'{{$ --key:test_key --value:10}}'}");
+            var actual = GetActual(actionRule, string.Empty, onOperator, onOperatorExpected, "parameter", "no_test_key");
+
+            // assertion
+            Assert.IsFalse(actual);
+        }
+
         [DataTestMethod]
         [DataRow(ActionRuleAttributeOperator, "index", "eq", "0")]
         [DataRow(ActionRuleAttributeOperator, "index", "ne", "1")]

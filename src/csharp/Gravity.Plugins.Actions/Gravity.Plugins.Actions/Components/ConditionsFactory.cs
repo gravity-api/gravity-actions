@@ -35,6 +35,11 @@ namespace Gravity.Plugins.Actions.Components
         public const string Active = "active";
 
         /// <summary>
+        /// Assert that <see cref="EnvironmentContext.ApplicationParams"/> parameter meets a condition.
+        /// </summary>
+        public const string Parameter = "parameter";
+
+        /// <summary>
         /// Assert that <see cref="IWebElement"/> exists in the DOM.
         /// </summary>
         public const string Exists = "exists";
@@ -555,6 +560,32 @@ namespace Gravity.Plugins.Actions.Components
 
                 // invoke
                 var evaluation = (bool)method.Invoke(this, new object[] { $"{actual}", arguments[StateProperties.Expected] });
+
+                // compose
+                return new Dictionary<string, object>
+                {
+                    [StateProperties.Evaluation] = evaluation,
+                    [StateProperties.Expected] = arguments[StateProperties.Expected],
+                    [StateProperties.Actual] = actual,
+                    [StateProperties.Operator] = arguments[StateProperties.Operator]
+                };
+            });
+
+        [Description(Parameter)]
+        private IDictionary<string, object> ApplicationParameter(ActionRule actionRule)
+            => AssertState(() =>
+            {
+                // get actual
+                var input = EnvironmentContext.ApplicationParams.ContainsKey(actionRule.OnElement)
+                    ? $"{EnvironmentContext.ApplicationParams[actionRule.OnElement]}"
+                    : string.Empty;
+                var actual = Regex.Match(input, pattern: actionRule.RegularExpression).Value;
+
+                // get operator method
+                var method = GetType().GetMethodByDescription(arguments[StateProperties.Operator]);
+
+                // invoke
+                var evaluation = (bool)method.Invoke(this, new object[] { actual, arguments[StateProperties.Expected] });
 
                 // compose
                 return new Dictionary<string, object>

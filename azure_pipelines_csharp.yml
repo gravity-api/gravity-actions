@@ -1,10 +1,11 @@
-# https://docs.microsoft.com/en-us/azure/devops/pipelines/build/variables?view=azure-devops&tabs=yaml
-
+# set build name, this will be the package name
 name: Gravity.Services.Actions.$(Year:yyyy).$(Month).$(DayOfMonth)$(Rev:.r)
 
+# set agents pool (Default for local agent)
 pool:
   name: Default
 
+# set pipeline variables (groups are predefined on Azure DevOps)
 variables:
 - group: browserstack.com
 - group: gravity.api
@@ -12,8 +13,11 @@ variables:
   value: 'Release'
 - name: 'Parallel.Workers'
   value: '10'
+- name: 'GitHub.Repository'
+  value: 'gravity-api/gravity-actions'
 
 steps:
+# dependencies restore
 - task: DotNetCoreCLI@2
   displayName: restore dependencies
   inputs:
@@ -23,6 +27,7 @@ steps:
     vstsFeed: '6ed1caf9-de4f-48e8-8276-201533d86a19'
     verbosityRestore: 'Diagnostic'
 
+# projects build (builds all projects under this path)
 - task: DotNetCoreCLI@2
   displayName: build projects
   inputs:
@@ -30,50 +35,64 @@ steps:
     projects: '**/*.csproj'
     arguments: '--configuration $(buildConfiguration)'
 
-- powershell: |
-   # read test settings
-   [xml]$runSettings = Get-Content azure_settings_mstest.runsettings
-   #
-   # setup
-   $gridEndpoint      = $runSettings.SelectSingleNode("//Parameter[@name='Grid.Endpoint']")
-   $gridAuthorization = $runSettings.SelectSingleNode("//Parameter[@name='Grid.BasicAuthorization']")
-   $buildNumber       = $runSettings.SelectSingleNode("//Parameter[@name='Build.Number']")
-   $gravityUserName   = $runSettings.SelectSingleNode("//Parameter[@name='Gravity.UserName']")
-   $gravityPassword   = $runSettings.SelectSingleNode("//Parameter[@name='Gravity.Password']")
-   $workers           = $runSettings.SelectSingleNode("//MSTest//Workers")
-   #
-   # override with production settings
-   $gridEndpoint.Value      = '$(Grid.Endpoint)'
-   $gridAuthorization.Value = '$(Grid.BasicAuthorization)'
-   $buildNumber.Value       = '$(Build.BuildNumber)'
-   $gravityUserName.value   = '$(Gravity.UserName)'
-   $gravityPassword.value   = '$(Gravity.Password)'
-   $workers.InnerText       = '$(Parallel.Workers)'
-   #
-   # save settings
-   $runSettings.Save("azure_settings_mstest_prod.runsettings")
-  displayName: create test settings > override with production parameters
+# create test run settings, for unit and integration tests on deployment environment
+# development time parameters will be replaced by deployment time parameters
+- task: PowerShell@2
+  displayName: 'create test settings > override with production parameters'
+  inputs:
+    targetType: 'inline'
+    script: |
+      # read test settings
+      [xml]$runSettings = Get-Content azure_settings_mstest.runsettings
+      #
+      # setup
+      $gridEndpoint      = $runSettings.SelectSingleNode("//Parameter[@name='Grid.Endpoint']")
+      $gridAuthorization = $runSettings.SelectSingleNode("//Parameter[@name='Grid.BasicAuthorization']")
+      $buildNumber       = $runSettings.SelectSingleNode("//Parameter[@name='Build.Number']")
+      $gravityUserName   = $runSettings.SelectSingleNode("//Parameter[@name='Gravity.UserName']")
+      $gravityPassword   = $runSettings.SelectSingleNode("//Parameter[@name='Gravity.Password']")
+      $workers           = $runSettings.SelectSingleNode("//MSTest//Workers")
+      #
+      # override with deployment settings
+      $gridEndpoint.Value      = '$(Grid.Endpoint)'
+      $gridAuthorization.Value = '$(Grid.BasicAuthorization)'
+      $buildNumber.Value       = '$(Build.BuildNumber)'
+      $gravityUserName.value   = '$(Gravity.UserName)'
+      $gravityPassword.value   = '$(Gravity.Password)'
+      $workers.InnerText       = '$(Parallel.Workers)'
+      #
+      # save settings
+      $runSettings.Save("azure_settings_mstest_deploy.runsettings")
 
+# execute all unit testing in the path
+# unit tests project must end with UnitTests suffix (not case sensitive)
 - task: DotNetCoreCLI@2
   displayName: execute unit testing
   inputs:
     command: 'test'
     projects: '**/*[Uu]nit*[Tt]ests/*.csproj'
-    arguments: '--configuration $(Build.Configuration) -s azure_settings_mstest_prod.runsettings'
+    arguments: '--configuration $(Build.Configuration) -s azure_settings_mstest_deploy.runsettings'
     testRunTitle: 'Unit Testing --- $(Build.BuildNumber)'
 
+# execute all integration testing in the path
+# integration tests project must end with IntegrationTests suffix (not case sensitive)
 - task: DotNetCoreCLI@2
   displayName: execute integration testing
   inputs:
     command: 'test'
     projects: '**/*[Ii]ntegration*[Tt]ests/*.csproj'
-    arguments: '--configuration $(Build.Configuration) -s azure_settings_mstest_prod.runsettings'
+    arguments: '--configuration $(Build.Configuration) -s azure_settings_mstest_deploy.runsettings'
     testRunTitle: 'Integration Testing --- $(Build.BuildNumber)'
 
-- powershell: |
-   Remove-Item azure_settings_mstest_prod.runsettings
-  displayName: cleanup
+# clean all test settings created earlier in the pipeline
+- task: PowerShell@2
+  displayName: 'cleanup test settings'
+  inputs:
+    targetType: 'inline'
+    script: |
+      Remove-Item azure_settings_mstest_deploy.runsettings
 
+# package the project as NuGet (will happen only if all tests have passed)
 - task: DotNetCoreCLI@2
   displayName: create package
   inputs:
@@ -81,3 +100,32 @@ steps:
     packagesToPack: '**/!(*[Tt]ests)/*.csproj'
     versioningScheme: 'byBuildNumber'
     verbosityPack: 'Diagnostic'
+
+# extract build version from Build.BuildNumber parameter and pass it as Build.Version
+- task: PowerShell@2
+  displayName: 'parse build version for git-hub tag'
+  inputs:
+    targetType: 'inline'
+    script: |
+      # setup
+      #
+      [regex]$pattern = '(\d+.?)+'
+      $version        = $pattern.Matches('$(Build.BuildNumber)') | foreach-object {$_.Value}      
+      #
+      # set value
+      Write-Host "##vso[task.setvariable variable=Build.Version]$version"
+
+# create a git-hub tag of this release
+- task: GitHubRelease@1
+  displayName: 'create git-hub tag'
+  inputs:
+    gitHubConnection: 'GitHub connection - Gravity API'
+    repositoryName: '$(GitHub.Repository)'
+    action: 'create'
+    target: '$(Build.SourceVersion)'
+    tagSource: 'userSpecifiedTag'
+    tag: 'v$(Build.Version)'
+    title: 'Production v$(Build.Version)'
+    releaseNotesSource: 'inline'
+    changeLogCompareToRelease: 'lastFullRelease'
+    changeLogType: 'commitBased'

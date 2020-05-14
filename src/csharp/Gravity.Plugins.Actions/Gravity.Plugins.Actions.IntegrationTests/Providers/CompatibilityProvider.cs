@@ -11,166 +11,125 @@ namespace Gravity.IntegrationTests.Providers
 {
     public static class CompatibilityProvider
     {
-        /// <summary>
-        /// Gets browsers compatibility matrix for Web UI testing.
-        /// </summary>
+        #region *** capabilities: single browser    ***
+        public static IEnumerable Win10Chrome
+            => GetCapabilities(driver: Driver.Chrome, capabilities: Provider.Windows10LatestBrowser);
+
+        public static IEnumerable Win10Edge
+            => GetCapabilities(driver: Driver.Edge, capabilities: Provider.Windows10LatestBrowser);
+
+        public static IEnumerable Win10Firefox
+            => GetCapabilities(driver: Driver.Firefox, capabilities: Provider.Windows10LatestBrowser);
+
+        public static IEnumerable Win10InternetExplorer
+            => GetCapabilities(driver: Driver.InternetExplorer, capabilities: Provider.Windows10LatestBrowser);
+
+        public static IEnumerable Win7InternetExplorer
+            => GetCapabilities(driver: Driver.InternetExplorer, capabilities: Provider.Windows7IE10);
+
+        public static IEnumerable OSXMojaveSafari
+            => GetCapabilities(driver: Driver.Safari, capabilities: Provider.OSXMojaveSafari);
+
+        public static IEnumerable OSXCatalinaChrome
+            => GetCapabilities(driver: Driver.Chrome, capabilities: Provider.OSXCatalinaLatestBrowser);
+
+        public static IEnumerable OSXCatalinaEdge
+            => GetCapabilities(driver: Driver.Edge, capabilities: Provider.OSXCatalinaLatestBrowser);
+
+        public static IEnumerable OSXCatalinaFirefox
+            => GetCapabilities(driver: Driver.Firefox, capabilities: Provider.OSXCatalinaLatestBrowser);
+
+        public static IEnumerable AndroidChrome
+            => GetCapabilities(driver: Driver.Android, capabilities: Provider.AndroidChrome);
+
+        public static IEnumerable IphoneSafari
+            => GetCapabilities(driver: Driver.iOS, capabilities: Provider.iPhoneSafari);
+        #endregion
+
+        #region *** capabilities: multiple browsers ***
         public static IEnumerable Compatibilities => GetCompatibilities();
 
-        public static IEnumerable CompatibilitiesContextClick => GetCompatibilitiesContextClick();
+        public static IEnumerable CompatibilitiesNoEdgeNoSafari => GetCompatibilitiesNoEdgeNoSafari();
 
-        /// <summary>
-        /// Gets browsers compatibility matrix for Web UI testing.
-        /// </summary>
-        public static IEnumerable CompatibilitiesPopups => GetCompatibilitiesPopups();
-
-        public static IEnumerable CompatibilitiesCloseWindow => GetCompatibilitiesCloseWindow();
+        public static IEnumerable CompatibilitiesNoIe11NoIos => GetCompatibilitiesNoIe11NoIos();
 
         public static IEnumerable CompatibilitiesNoIos => GetCompatibilitiesNoIos();
 
         public static IEnumerable CompatibilitiesNoSafari => GetCompatibilitiesNoSafari();
 
-        public static IEnumerable CompatibilitiesMobile => GetCompatibilitiesMobile();
+        public static IEnumerable CompatibilitiesMobileWeb => GetCompatibilitiesMobileWeb();
 
-        public static IEnumerable CompatibilitiesNativeMobile => GetCompatibilitiesNativeMobile();
+        public static IEnumerable CompatibilitiesMobileNative => GetCompatibilitiesMobileNative();
 
         public static IEnumerable CompatibilitiesNoMobile => GetCompatibilitiesNoMobile();
 
-        /// <summary>
-        /// Gets browsers compatibility matrix for Web UI testing.
-        /// </summary>
-        public static IEnumerable CompatibilitiesChrome
-        {
-            get
-            {
-                yield return Provider.Get(driver: Driver.Chrome, capabilities: Provider.Windows10LatestBrowser);
-            }
-        }
-
-        public static IEnumerable CompatibilitiesSafariMojave
-        {
-            get
-            {
-                yield return Provider.Get(driver: Driver.Safari, capabilities: Provider.OSXMojaveSafari);
-            }
-        }
-
-        /// <summary>
-        /// Gets browsers compatibility matrix for Web UI testing.
-        /// </summary>
-        public static IEnumerable CompatibilitiesEdge
-        {
-            get
-            {
-                yield return Provider.Get(driver: Driver.Edge, capabilities: Provider.Windows10Edge80);
-            }
-        }
-
-        /// <summary>
-        /// Gets browsers compatibility matrix for Web UI testing.
-        /// </summary>
-        public static IEnumerable CompatibilitiesAndroidChrome
-        {
-            get
-            {
-                yield return Provider.Get(driver: Driver.Android, capabilities: Provider.AndroidChrome);
-            }
-        }
-
-        /// <summary>
-        /// Gets browsers compatibility matrix for Web UI testing.
-        /// </summary>
-        public static IEnumerable CompatibilitiesIosSafari
-        {
-            get
-            {
-                yield return Provider.Get(driver: Driver.iOS, capabilities: Provider.iPhoneSafari);
-            }
-        }
-
         private static IEnumerable GetCompatibilities()
         {
+            yield return GetCapabilities(driver: Driver.Chrome, capabilities: Provider.Windows10LatestBrowser);
+
             // Windows 10
-            yield return Provider.Get(driver: Driver.Chrome, capabilities: Provider.Windows10LatestBrowser);
-            yield return Provider.Get(driver: Driver.Edge, capabilities: Provider.Windows10LatestBrowser);
-            yield return Provider.Get(driver: Driver.Firefox, capabilities: Provider.Windows10LatestBrowser);
-            yield return Provider.Get(driver: Driver.InternetExplorer, capabilities: Provider.Windows10LatestBrowser);
+            yield return GetCapabilities(driver: Driver.Chrome, capabilities: Provider.Windows10LatestBrowser);
+            yield return GetCapabilities(driver: Driver.Edge, capabilities: Provider.Windows10LatestBrowser);
+            yield return GetCapabilities(driver: Driver.Firefox, capabilities: Provider.Windows10LatestBrowser);
+            yield return GetCapabilities(driver: Driver.InternetExplorer, capabilities: Provider.Windows10LatestBrowser);
 
             // Windows 7
-            yield return Provider.Get(driver: Driver.InternetExplorer, capabilities: Provider.Windows7IE10);
+            yield return GetCapabilities(driver: Driver.InternetExplorer, capabilities: Provider.Windows7IE10);
 
             // OSX: Mojave
-            yield return Provider.Get(driver: Driver.Safari, capabilities: Provider.OSXMojaveSafari);
+            yield return GetCapabilities(driver: Driver.Safari, capabilities: Provider.OSXMojaveSafari);
 
             // OSX: Catalina
-            yield return Provider.Get(driver: Driver.Chrome, capabilities: Provider.OSXCatalinaLatestBrowser);
-            yield return Provider.Get(driver: Driver.Edge, capabilities: Provider.OSXCatalinaLatestBrowser);
-            yield return Provider.Get(driver: Driver.Firefox, capabilities: Provider.OSXCatalinaLatestBrowser);
+            yield return GetCapabilities(driver: Driver.Chrome, capabilities: Provider.OSXCatalinaLatestBrowser);
+            yield return GetCapabilities(driver: Driver.Edge, capabilities: Provider.OSXCatalinaLatestBrowser);
+            yield return GetCapabilities(driver: Driver.Firefox, capabilities: Provider.OSXCatalinaLatestBrowser);
 
             // Android
-            yield return Provider.Get(driver: Driver.Android, capabilities: Provider.AndroidChrome);
+            yield return GetCapabilities(driver: Driver.Android, capabilities: Provider.AndroidChrome);
 
+            // TODO: return when iOS is stable on browser stack.
             // iOS
-            //yield return Provider.Get(driver: Driver.iOS, capabilities: Provider.iPhoneSafari);
+            // yield return GetCapabilities(driver: Driver.iOS, capabilities: Provider.iPhoneSafari);
         }
 
-        private static IEnumerable GetCompatibilitiesContextClick()
+        private static IEnumerable GetCompatibilitiesNoEdgeNoSafari()
         {
             // Windows 10
-            yield return Provider.Get(driver: Driver.Chrome, capabilities: Provider.Windows10LatestBrowser);
-            yield return Provider.Get(driver: Driver.Firefox, capabilities: Provider.Windows10LatestBrowser);
-            yield return Provider.Get(driver: Driver.InternetExplorer, capabilities: Provider.Windows10LatestBrowser);
+            yield return GetCapabilities(driver: Driver.Chrome, capabilities: Provider.Windows10LatestBrowser);
+            yield return GetCapabilities(driver: Driver.Firefox, capabilities: Provider.Windows10LatestBrowser);
+            yield return GetCapabilities(driver: Driver.InternetExplorer, capabilities: Provider.Windows10LatestBrowser);
 
             // Windows 7
-            yield return Provider.Get(driver: Driver.InternetExplorer, capabilities: Provider.Windows7IE10);
+            yield return GetCapabilities(driver: Driver.InternetExplorer, capabilities: Provider.Windows7IE10);
 
             // OSX: Catalina
-            yield return Provider.Get(driver: Driver.Chrome, capabilities: Provider.OSXCatalinaLatestBrowser);
-            yield return Provider.Get(driver: Driver.Firefox, capabilities: Provider.OSXCatalinaLatestBrowser);
+            yield return GetCapabilities(driver: Driver.Chrome, capabilities: Provider.OSXCatalinaLatestBrowser);
+            yield return GetCapabilities(driver: Driver.Firefox, capabilities: Provider.OSXCatalinaLatestBrowser);
 
             // Android
-            yield return Provider.Get(driver: Driver.Android, capabilities: Provider.AndroidChrome);
+            yield return GetCapabilities(driver: Driver.Android, capabilities: Provider.AndroidChrome);
         }
 
-        private static IEnumerable GetCompatibilitiesPopups()
+        private static IEnumerable GetCompatibilitiesNoIe11NoIos()
         {
             // Windows 10
-            yield return Provider.Get(driver: Driver.Chrome, capabilities: Provider.Windows10LatestBrowser);
-            yield return Provider.Get(driver: Driver.Edge, capabilities: Provider.Windows10LatestBrowser);
-            yield return Provider.Get(driver: Driver.Firefox, capabilities: Provider.Windows10LatestBrowser);
+            yield return GetCapabilities(driver: Driver.Chrome, capabilities: Provider.Windows10LatestBrowser);
+            yield return GetCapabilities(driver: Driver.Edge, capabilities: Provider.Windows10LatestBrowser);
+            yield return GetCapabilities(driver: Driver.Firefox, capabilities: Provider.Windows10LatestBrowser);
 
             // Windows 7
-            yield return Provider.Get(driver: Driver.InternetExplorer, capabilities: Provider.Windows7IE10);
+            yield return GetCapabilities(driver: Driver.InternetExplorer, capabilities: Provider.Windows7IE10);
 
             // OSX: Mojave
-            yield return Provider.Get(driver: Driver.Safari, capabilities: Provider.OSXMojaveSafari);
+            yield return GetCapabilities(driver: Driver.Safari, capabilities: Provider.OSXMojaveSafari);
 
             // OSX: Catalina
-            yield return Provider.Get(driver: Driver.Chrome, capabilities: Provider.OSXCatalinaLatestBrowser);
-            yield return Provider.Get(driver: Driver.Edge, capabilities: Provider.OSXCatalinaLatestBrowser);
-            yield return Provider.Get(driver: Driver.Firefox, capabilities: Provider.OSXCatalinaLatestBrowser);
+            yield return GetCapabilities(driver: Driver.Chrome, capabilities: Provider.OSXCatalinaLatestBrowser);
+            yield return GetCapabilities(driver: Driver.Edge, capabilities: Provider.OSXCatalinaLatestBrowser);
+            yield return GetCapabilities(driver: Driver.Firefox, capabilities: Provider.OSXCatalinaLatestBrowser);
 
             // Android
-            yield return Provider.Get(driver: Driver.Android, capabilities: Provider.AndroidChrome);
-        }
-
-        private static IEnumerable GetCompatibilitiesCloseWindow()
-        {
-            // Windows 10
-            yield return Provider.Get(driver: Driver.InternetExplorer, capabilities: Provider.Windows10LatestBrowser);
-            yield return Provider.Get(driver: Driver.Chrome, capabilities: Provider.Windows10LatestBrowser);
-            yield return Provider.Get(driver: Driver.Edge, capabilities: Provider.Windows10LatestBrowser);
-            yield return Provider.Get(driver: Driver.Firefox, capabilities: Provider.Windows10LatestBrowser);
-
-            // Windows 7
-            yield return Provider.Get(driver: Driver.InternetExplorer, capabilities: Provider.Windows7IE10);
-
-            // OSX: Catalina
-            yield return Provider.Get(driver: Driver.Chrome, capabilities: Provider.OSXCatalinaLatestBrowser);
-            yield return Provider.Get(driver: Driver.Edge, capabilities: Provider.OSXCatalinaLatestBrowser);
-            yield return Provider.Get(driver: Driver.Firefox, capabilities: Provider.OSXCatalinaLatestBrowser);
-
-            // Android
-            yield return Provider.Get(driver: Driver.Android, capabilities: Provider.AndroidChrome);
+            yield return GetCapabilities(driver: Driver.Android, capabilities: Provider.AndroidChrome);
         }
 
         private static IEnumerable GetCompatibilitiesNoIos()
@@ -216,13 +175,24 @@ namespace Gravity.IntegrationTests.Providers
             yield return Provider.Get(driver: Driver.Android, capabilities: Provider.AndroidChrome);
         }
 
-        private static IEnumerable GetCompatibilitiesMobile()
+        private static IEnumerable GetCompatibilitiesMobileWeb()
         {
             // Android
             yield return Provider.Get(driver: Driver.Android, capabilities: Provider.AndroidChrome);
 
+            // TODO: return when iOS is stable on browser stack.
             // iOS
-            //yield return Provider.Get(driver: Driver.iOS, capabilities: Provider.iPhoneSafari);
+            // yield return GetCapabilities(driver: Driver.iOS, capabilities: Provider.iPhoneSafari);
+        }
+
+        private static IEnumerable GetCompatibilitiesMobileNative()
+        {
+            // Android
+            yield return Provider.Get(driver: Driver.Android, capabilities: Provider.AndroidNative);
+
+            // TODO: return when iOS is stable on browser stack.
+            // iOS
+            // yield return GetCapabilities(driver: Driver.iOS, capabilities: Provider.iPhoneSafari);
         }
 
         private static IEnumerable GetCompatibilitiesNoMobile()
@@ -244,14 +214,11 @@ namespace Gravity.IntegrationTests.Providers
             yield return Provider.Get(driver: Driver.Edge, capabilities: Provider.OSXCatalinaLatestBrowser);
             yield return Provider.Get(driver: Driver.Firefox, capabilities: Provider.OSXCatalinaLatestBrowser);
         }
+        #endregion
 
-        private static IEnumerable GetCompatibilitiesNativeMobile()
+        private static IEnumerable GetCapabilities(string driver, string capabilities)
         {
-            // Android
-            yield return Provider.Get(driver: Driver.Android, capabilities: Provider.AndroidNative);
-
-            // iOS
-            //yield return Provider.Get(driver: Driver.iOS, capabilities: Provider.iPhoneSafari);
+            yield return Provider.Get(driver, capabilities);
         }
     }
 }

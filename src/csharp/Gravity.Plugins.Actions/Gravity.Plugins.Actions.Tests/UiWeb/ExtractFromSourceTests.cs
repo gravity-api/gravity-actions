@@ -64,6 +64,12 @@ namespace Gravity.UnitTests.UiWeb
         [ClassInitialize]
         public static void ClassSetup(TestContext context)
         {
+            // data files
+            if (Directory.Exists("Data"))
+            {
+                Directory.Delete(path: "Data", true);
+            }
+
             connectionString =
                 $"{context.Properties["Data.ConnectionString"]}".Replace("[catalog]", "ExtractFromSourceTests");
         }

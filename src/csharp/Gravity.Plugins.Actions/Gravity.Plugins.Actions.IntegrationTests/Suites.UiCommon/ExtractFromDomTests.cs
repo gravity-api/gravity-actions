@@ -194,7 +194,7 @@ namespace Gravity.IntegrationTests.Suites.UiCommon
 
         [NonParallelizable]
         [Description(description: "P - [0157] - Extract Data from DOM, Default, Data Driven")]
-        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.CompatibilitiesChrome))]
+        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Win10Chrome))]
         public void T0157P(Context environment)
         {
             // execute

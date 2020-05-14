@@ -36,6 +36,17 @@ namespace Gravity.IntegrationTests.Base
         };
 
         /// <summary>
+        /// Gets a collection of <see cref="ActionRule"/> to perform "Register Parameter" sequence.
+        /// </summary>
+        /// <param name="value">The parameter value (the key is "integration_parameter").</param>
+        /// <returns>A collection of <see cref="ActionRule"/>.</returns>
+        public static ActionRule RegisterParameter(string value) => new ActionRule
+        {
+            Action = PluginsList.RegisterParameter,
+            Argument = "{{$ --key:integration_parameter --value:" + value + "}}"
+        };
+
+        /// <summary>
         /// Gets a collection of <see cref="ActionRule"/> to perform "Set Number of Alerts" sequence.
         /// </summary>
         /// <param name="numberOfAlerts">Value to set.</param>

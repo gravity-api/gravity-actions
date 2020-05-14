@@ -20,7 +20,7 @@ namespace Gravity.IntegrationTests.Suites.UiWeb
     {
         [Ignore(reason: "Wait for Selenium 4")]
         [Description(description: "P - [0131] - Right Click on Element, ID")]
-        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.CompatibilitiesContextClick))]
+        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.CompatibilitiesNoEdgeNoSafari))]
         public void T0131P(Context environment)
         {
             // execute
@@ -32,7 +32,7 @@ namespace Gravity.IntegrationTests.Suites.UiWeb
 
         [Ignore(reason: "Wait for Selenium 4")]
         [Description(description: "P - [0132] - Right Click")]
-        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.CompatibilitiesContextClick))]
+        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.CompatibilitiesNoEdgeNoSafari))]
         public void T0132P(Context environment)
         {
             // execute
@@ -44,7 +44,7 @@ namespace Gravity.IntegrationTests.Suites.UiWeb
 
         [Ignore(reason: "Wait for Selenium 4")]
         [Description(description: "P - [0133] - Right Click on Element, Alias, RightClick, ID")]
-        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.CompatibilitiesContextClick))]
+        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.CompatibilitiesNoEdgeNoSafari))]
         public void T0133P(Context environment)
         {
             // execute

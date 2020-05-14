@@ -172,7 +172,7 @@ namespace Gravity.IntegrationTests.Suites.UiWeb
 
         [NonParallelizable]
         [Description(description: "P - [0169] - Extract Data from Source, Default, Data Driven")]
-        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.CompatibilitiesChrome))]
+        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Win10Chrome))]
         public void T0169P(Context environment)
         {
             // execute

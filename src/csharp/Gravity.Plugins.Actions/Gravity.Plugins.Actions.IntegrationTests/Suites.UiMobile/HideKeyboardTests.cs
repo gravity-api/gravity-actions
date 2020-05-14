@@ -16,7 +16,7 @@ namespace Graivty.IntegrationTests.Suites.UiMobile
     public class HideKeyboardTests
     {
         [Description(description: "P - [0180] - Hide Keyboard, Default")]
-        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.CompatibilitiesMobile))]
+        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.CompatibilitiesMobileWeb))]
         public void T180P(Context environment)
         {
             // execute

@@ -5,6 +5,7 @@
  */
 using Newtonsoft.Json;
 using NUnit.Framework;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace Gravity.IntegrationTests.Base
@@ -101,10 +102,59 @@ namespace Gravity.IntegrationTests.Base
             // load test parameters
             environment.TestParams["driver"] = driver;
             environment.TestParams["capabilities"]
-                = JsonConvert.DeserializeObject<Dictionary<string,object>>(capabilities);
+                = JsonConvert.DeserializeObject<Dictionary<string, object>>(capabilities);
 
             // results
             return environment;
+        }
+
+        /// <summary>
+        /// Gets an <see cref="Context"/> instance.
+        /// </summary>
+        /// <param name="driver">Driver type.</param>
+        /// <param name="capabilities">Driver capabilities.</param>
+        /// <param name="json">JSON object with additional test parameters</param>
+        /// <returns>New <see cref="Context"/> instance.</returns>
+        public static Context Get(string driver, string capabilities, string json)
+        {
+            // setup
+            var environment = new Context
+            {
+                SystemParams = new Dictionary<string, object>(),
+                TestParams = new Dictionary<string, object>()
+            };
+
+            // load system parameters
+            foreach (var name in TestContext.Parameters.Names)
+            {
+                environment.SystemParams[name] = TestContext.Parameters[name];
+            }
+
+            // load test parameters
+            environment.TestParams["driver"] = driver;
+            environment.TestParams["capabilities"]
+                = JsonConvert.DeserializeObject<Dictionary<string, object>>(capabilities);
+
+            // add additional parameters
+            foreach (var item in JsonConvert.DeserializeObject<Dictionary<string, object>>(json))
+            {
+                environment.TestParams[item.Key] = item.Value;
+            }
+
+            // results
+            return environment;
+        }
+
+        /// <summary>
+        /// Gets an <see cref="Context"/> instance.
+        /// </summary>
+        /// <param name="driver">Driver type.</param>
+        /// <param name="capabilities">Driver capabilities.</param>
+        /// <param name="json">JSON object with additional test parameters</param>
+        /// <returns>New <see cref="Context"/> instance.</returns>
+        public static IEnumerable Yield(string driver, string capabilities, string json)
+        {
+            yield return Get(driver, capabilities, json);
         }
     }
 }

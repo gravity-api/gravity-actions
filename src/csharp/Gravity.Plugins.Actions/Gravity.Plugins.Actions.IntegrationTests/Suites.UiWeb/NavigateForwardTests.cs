@@ -15,7 +15,7 @@ namespace Graivty.IntegrationTests.Suites.UiWeb
     public class NavigateForwardTests
     {
         [Description(description: "P - [0188] - Navigate Forward, Default")]
-        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Compatibilities))]
+        [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.Capabilities))]
         public void T0187P(Context environment)
         {
             // execute
@@ -26,7 +26,7 @@ namespace Graivty.IntegrationTests.Suites.UiWeb
         }
 
         [Description(description: "P - [0188] - Navigate Forward, Multiple Times")]
-        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Compatibilities))]
+        [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.Capabilities))]
         public void T0188P(Context environment)
         {
             // execute

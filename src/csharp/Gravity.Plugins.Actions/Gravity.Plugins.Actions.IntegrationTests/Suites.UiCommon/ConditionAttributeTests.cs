@@ -16,7 +16,7 @@ namespace Gravity.IntegrationTests.Suites.UiCommon
     public class ConditionAttributeTests
     {
         [Description(description: "P - [0068] - Condition, Attribute, Equal, ID")]
-        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Compatibilities))]
+        [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.Capabilities))]
         public void T0068P(Context environment)
         {
             // setup
@@ -30,7 +30,7 @@ namespace Gravity.IntegrationTests.Suites.UiCommon
         }
 
         [Description(description: "N - [0068] - Condition, Attribute, Equal, ID")]
-        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Win10Chrome))]
+        [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.Win10Chrome))]
         public void T0068N(Context environment)
         {
             // setup
@@ -44,7 +44,7 @@ namespace Gravity.IntegrationTests.Suites.UiCommon
         }
 
         [Description(description: "P - [0069] - Condition, Attribute, Not Equal, ID")]
-        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Compatibilities))]
+        [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.Capabilities))]
         public void T0069P(Context environment)
         {
             // setup
@@ -58,7 +58,7 @@ namespace Gravity.IntegrationTests.Suites.UiCommon
         }
 
         [Description(description: "N - [0069] - Condition, Attribute, Not Equal, ID")]
-        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Win10Chrome))]
+        [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.Win10Chrome))]
         public void T0069N(Context environment)
         {
             // setup
@@ -72,7 +72,7 @@ namespace Gravity.IntegrationTests.Suites.UiCommon
         }
 
         [Description(description: "P - [0070] - Condition, Attribute, Match, ID")]
-        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Compatibilities))]
+        [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.Capabilities))]
         public void T0070P(Context environment)
         {
             // setup
@@ -86,7 +86,7 @@ namespace Gravity.IntegrationTests.Suites.UiCommon
         }
 
         [Description(description: "N - [0070] - Condition, Attribute, Match, ID")]
-        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Win10Chrome))]
+        [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.Win10Chrome))]
         public void T0070N(Context environment)
         {
             // setup
@@ -100,7 +100,7 @@ namespace Gravity.IntegrationTests.Suites.UiCommon
         }
 
         [Description(description: "P - [0071] - Condition, Attribute, Not Match, ID")]
-        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Compatibilities))]
+        [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.Capabilities))]
         public void T0071P(Context environment)
         {
             // setup
@@ -114,7 +114,7 @@ namespace Gravity.IntegrationTests.Suites.UiCommon
         }
 
         [Description(description: "N - [0071] - Condition, Attribute, Not Match, ID")]
-        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Win10Chrome))]
+        [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.Win10Chrome))]
         public void T0071N(Context environment)
         {
             // setup
@@ -128,7 +128,7 @@ namespace Gravity.IntegrationTests.Suites.UiCommon
         }
 
         [Description(description: "P - [0072] - Condition, Attribute, Greater Than, Link Text, Regular Expression")]
-        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Compatibilities))]
+        [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.Capabilities))]
         public void T0072P(Context environment)
         {
             // setup
@@ -142,7 +142,7 @@ namespace Gravity.IntegrationTests.Suites.UiCommon
         }
 
         [Description(description: "N - [0072] - Condition, Attribute, Greater Than, Link Text, Regular Expression")]
-        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Win10Chrome))]
+        [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.Win10Chrome))]
         public void T0072N(Context environment)
         {
             // setup
@@ -156,7 +156,7 @@ namespace Gravity.IntegrationTests.Suites.UiCommon
         }
 
         [Description(description: "P - [0073] - Condition, Attribute, Lower Than, Link Text, Regular Expression")]
-        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Compatibilities))]
+        [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.Capabilities))]
         public void T0073P(Context environment)
         {
             // setup
@@ -170,7 +170,7 @@ namespace Gravity.IntegrationTests.Suites.UiCommon
         }
 
         [Description(description: "N - [0073] - Condition, Attribute, Lower Than, Link Text, Regular Expression")]
-        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Win10Chrome))]
+        [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.Win10Chrome))]
         public void T0073N(Context environment)
         {
             // setup
@@ -184,7 +184,7 @@ namespace Gravity.IntegrationTests.Suites.UiCommon
         }
 
         [Description(description: "P - [0074] - Condition, Attribute, Greater or Equal, Link Text, Regular Expression")]
-        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Compatibilities))]
+        [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.Capabilities))]
         public void T0074P(Context environment)
         {
             // setup
@@ -198,7 +198,7 @@ namespace Gravity.IntegrationTests.Suites.UiCommon
         }
 
         [Description(description: "N - [0074] - Condition, Attribute, Greater or Equal, Link Text, Regular Expression")]
-        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Win10Chrome))]
+        [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.Win10Chrome))]
         public void T0074N(Context environment)
         {
             // setup
@@ -212,7 +212,7 @@ namespace Gravity.IntegrationTests.Suites.UiCommon
         }
 
         [Description(description: "P - [0075] - Condition, Attribute, Lower or Equal, Link Text, Regular Expression")]
-        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Compatibilities))]
+        [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.Capabilities))]
         public void T0075P(Context environment)
         {
             // setup
@@ -226,7 +226,7 @@ namespace Gravity.IntegrationTests.Suites.UiCommon
         }
 
         [Description(description: "N - [0075] - Condition, Attribute, Lower or Equal, Link Text, Regular Expression")]
-        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Win10Chrome))]
+        [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.Win10Chrome))]
         public void T0075N(Context environment)
         {
             // setup

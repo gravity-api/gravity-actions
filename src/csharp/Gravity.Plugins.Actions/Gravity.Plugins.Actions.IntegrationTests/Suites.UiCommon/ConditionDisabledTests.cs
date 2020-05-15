@@ -16,7 +16,7 @@ namespace Gravity.IntegrationTests.Suites.UiCommon
     public class ConditionDisabledTests
     {
         [Description(description: "P - [0084] - Condition, Disabled, ID")]
-        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Compatibilities))]
+        [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.Capabilities))]
         public void T0084P(Context environment)
         {
             // setup
@@ -30,7 +30,7 @@ namespace Gravity.IntegrationTests.Suites.UiCommon
         }
 
         [Description(description: "N - [0084] - Condition, Disabled, ID")]
-        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Win10Chrome))]
+        [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.Win10Chrome))]
         public void T0084N(Context environment)
         {
             // setup

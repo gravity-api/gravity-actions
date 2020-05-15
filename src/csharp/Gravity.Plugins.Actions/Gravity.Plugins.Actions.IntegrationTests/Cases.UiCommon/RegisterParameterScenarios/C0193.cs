@@ -1,12 +1,12 @@
 ﻿#pragma warning disable S125
 /*
 * TEST SCENARIO (Rhino)
-* [test-id] 0191
-* [test-scenario] - Register Parameter, Literal
+* [test-id] 0193
+* [test-scenario] - Register Parameter, Element, Attribute
 * 
 * [test-actions]
 * 1. navigate to {https://gravitymvctestapplication.azurewebsites.net/uicontrols/}
-* 2. register parameter {{$ --key:integration_parameter --value:10}}
+* 2. register parameter {integration_parameter} on {attribute_div} using {id} from {number}
 * 3. close browser
 * 
 * [test-expected-results]
@@ -20,7 +20,7 @@ using System.Collections.Generic;
 
 namespace Graivty.IntegrationTests.Cases.UiCommon.RegisterParameterScenarios
 {
-    public class C0191 : TestCase
+    public class C0193 : TestCase
     {
         // gets the actions collection of this test
         public override IEnumerable<ActionRule> OnActions(Context environment)
@@ -31,9 +31,12 @@ namespace Graivty.IntegrationTests.Cases.UiCommon.RegisterParameterScenarios
                 new ActionRule
                 {
                     Action = PluginsList.RegisterParameter,
-                    Argument = "{{$ --key:integration_parameter --value:10}}"
+                    Argument = "integration_parameter",
+                    OnElement = "attribute_div",
+                    OnAttribute = "number",
+                    Locator = LocatorsList.Id
                 },
-                SharedSteps.AssertParameter(equal: "10")
+                SharedSteps.AssertParameter(equal: "10"),
             };
         }
     }

@@ -36,14 +36,15 @@ namespace Gravity.IntegrationTests.Base
         };
 
         /// <summary>
-        /// Gets a collection of <see cref="ActionRule"/> to perform "Register Parameter" sequence.
+        /// Gets a collection of <see cref="ActionRule"/> to assert "Register Parameter" value.
         /// </summary>
-        /// <param name="value">The parameter value (the key is "integration_parameter").</param>
+        /// <param name="equal">The parameter value (the key is "integration_parameter").</param>
         /// <returns>A collection of <see cref="ActionRule"/>.</returns>
-        public static ActionRule RegisterParameter(string value) => new ActionRule
+        public static ActionRule AssertParameter(string equal) => new ActionRule
         {
-            Action = PluginsList.RegisterParameter,
-            Argument = "{{$ --key:integration_parameter --value:" + value + "}}"
+            Action = PluginsList.Assert,
+            Argument = "{{$ --parameter --eq:" + equal + "}}",
+            OnElement = "integration_parameter"
         };
 
         /// <summary>

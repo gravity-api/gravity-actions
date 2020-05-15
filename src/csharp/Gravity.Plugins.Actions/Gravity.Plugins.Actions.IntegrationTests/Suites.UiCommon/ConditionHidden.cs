@@ -16,7 +16,7 @@ namespace Gravity.IntegrationTests.Suites.UiCommon
     public class ConditionHiddenTests
     {
         [Description(description: "P - [0091] - Condition, Hidden, ID")]
-        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Compatibilities))]
+        [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.Capabilities))]
         public void T0091P(Context environment)
         {
             // setup
@@ -30,7 +30,7 @@ namespace Gravity.IntegrationTests.Suites.UiCommon
         }
 
         [Description(description: "N - [0091] - Condition, Hidden, ID")]
-        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Win10Chrome))]
+        [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.Win10Chrome))]
         public void T0091N(Context environment)
         {
             // setup

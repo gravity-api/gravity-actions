@@ -16,7 +16,7 @@ namespace Gravity.IntegrationTests.Suites.UiWeb
     public class ExtractFromSourceTests
     {
         [Description(description: "P - [0158] - Extract Data from Source, Default")]
-        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Compatibilities))]
+        [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.Capabilities))]
         public void T0158P(Context environment)
         {
             // execute
@@ -27,7 +27,7 @@ namespace Gravity.IntegrationTests.Suites.UiWeb
         }
 
         [Description(description: "P - [0159] - Extract Data from Source, Default, Regular Expression")]
-        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Compatibilities))]
+        [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.Capabilities))]
         public void T0159P(Context environment)
         {
             // execute
@@ -38,7 +38,7 @@ namespace Gravity.IntegrationTests.Suites.UiWeb
         }
 
         [Description(description: "P - [0160] - Extract Data from Source, Default, Attribute")]
-        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Compatibilities))]
+        [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.Capabilities))]
         public void T0160P(Context environment)
         {
             // execute
@@ -49,7 +49,7 @@ namespace Gravity.IntegrationTests.Suites.UiWeb
         }
 
         [Description(description: "P - [0161] - Extract Data from Source, Element")]
-        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Compatibilities))]
+        [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.Capabilities))]
         public void T0161P(Context environment)
         {
             // execute
@@ -60,7 +60,7 @@ namespace Gravity.IntegrationTests.Suites.UiWeb
         }
 
         [Description(description: "P - [0162] - Extract Data from Source, Element, Regular Expression")]
-        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Compatibilities))]
+        [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.Capabilities))]
         public void T0162P(Context environment)
         {
             // execute
@@ -71,7 +71,7 @@ namespace Gravity.IntegrationTests.Suites.UiWeb
         }
 
         [Description(description: "P - [0163] - Extract Data from Source, Default, HTML")]
-        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Compatibilities))]
+        [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.Capabilities))]
         public void T0163P(Context environment)
         {
             // execute
@@ -82,7 +82,7 @@ namespace Gravity.IntegrationTests.Suites.UiWeb
         }
 
         [Description(description: "P - [0164] - Extract Data from Source, Default, HTML, Regular Expression")]
-        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Compatibilities))]
+        [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.Capabilities))]
         public void T0164P(Context environment)
         {
             // execute
@@ -93,7 +93,7 @@ namespace Gravity.IntegrationTests.Suites.UiWeb
         }
 
         [Description(description: "P - [0165] - Extract Data from Source, Element, HTML, Regular Expression")]
-        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Compatibilities))]
+        [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.Capabilities))]
         public void T0165P(Context environment)
         {
             // execute
@@ -104,7 +104,7 @@ namespace Gravity.IntegrationTests.Suites.UiWeb
         }
 
         [Description(description: "P - [0166] - Extract Data from Source, Element, Absolute XPath")]
-        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Compatibilities))]
+        [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.Capabilities))]
         public void T0166P(Context environment)
         {
             // execute
@@ -115,7 +115,7 @@ namespace Gravity.IntegrationTests.Suites.UiWeb
         }
 
         [Description(description: "P - [0167] - Extract Data from Source, Default, Data Source")]
-        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Compatibilities))]
+        [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.Capabilities))]
         public void T0167A(Context environment)
         {
             // setup
@@ -129,7 +129,7 @@ namespace Gravity.IntegrationTests.Suites.UiWeb
         }
 
         [Description(description: "P - [0167] - Extract Data from Source, Default, Data Source")]
-        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Compatibilities))]
+        [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.Capabilities))]
         public void T0167E(Context environment)
         {
             // setup
@@ -143,7 +143,7 @@ namespace Gravity.IntegrationTests.Suites.UiWeb
         }
 
         [Description(description: "P - [0168] - Extract Data from Source, Default, Multiple Extractions")]
-        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Compatibilities))]
+        [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.Capabilities))]
         public void T0168F(Context environment)
         {
             // setup
@@ -157,7 +157,7 @@ namespace Gravity.IntegrationTests.Suites.UiWeb
         }
 
         [Description(description: "P - [0168] - Extract Data from Source, Default, Multiple Extractions")]
-        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Compatibilities))]
+        [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.Capabilities))]
         public void T0168L(Context environment)
         {
             // setup
@@ -172,7 +172,7 @@ namespace Gravity.IntegrationTests.Suites.UiWeb
 
         [NonParallelizable]
         [Description(description: "P - [0169] - Extract Data from Source, Default, Data Driven")]
-        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Win10Chrome))]
+        [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.Win10Chrome))]
         public void T0169P(Context environment)
         {
             // execute

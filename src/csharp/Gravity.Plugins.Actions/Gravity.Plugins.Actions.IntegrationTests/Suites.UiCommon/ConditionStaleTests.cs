@@ -16,7 +16,7 @@ namespace Gravity.IntegrationTests.Suites.UiCommon
     public class ConditionStaleTests
     {
         [Description(description: "N - [0094] - Condition, Stale, ID")]
-        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Compatibilities))]
+        [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.Capabilities))]
         public void T0094N(Context environment)
         {
             // setup

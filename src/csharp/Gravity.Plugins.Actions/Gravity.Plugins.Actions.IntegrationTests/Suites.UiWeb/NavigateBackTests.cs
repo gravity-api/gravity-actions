@@ -15,7 +15,7 @@ namespace Graivty.IntegrationTests.Suites.UiWeb
     public class NavigateBackTests
     {
         [Description(description: "P - [0185] - Navigate Back, Default")]
-        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Compatibilities))]
+        [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.Capabilities))]
         public void T0185P(Context environment)
         {
             // execute
@@ -26,7 +26,7 @@ namespace Graivty.IntegrationTests.Suites.UiWeb
         }
 
         [Description(description: "P - [0186] - Navigate Back, Multiple Times")]
-        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Compatibilities))]
+        [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.Capabilities))]
         public void T0186P(Context environment)
         {
             // execute

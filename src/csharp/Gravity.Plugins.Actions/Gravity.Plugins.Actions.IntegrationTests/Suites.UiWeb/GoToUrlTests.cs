@@ -15,7 +15,7 @@ namespace Gravity.IntegrationTests.Suites.UiWeb
     public class GoToUrlTests
     {
         [Description(description: "P - [0172] - Go To URL, Default")]
-        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Compatibilities))]
+        [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.Capabilities))]
         public void T0172P(Context environment)
         {
             // execute
@@ -26,7 +26,7 @@ namespace Gravity.IntegrationTests.Suites.UiWeb
         }
 
         [Description(description: "P - [0173] - Go To URL, Blank")]
-        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Compatibilities))]
+        [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.Capabilities))]
         public void T0173P(Context environment)
         {
             // execute
@@ -37,7 +37,7 @@ namespace Gravity.IntegrationTests.Suites.UiWeb
         }
 
         [Description(description: "P - [0174] - Go To URL, Element, Text")]
-        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Compatibilities))]
+        [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.Capabilities))]
         public void T0174P(Context environment)
         {
             // execute
@@ -48,7 +48,7 @@ namespace Gravity.IntegrationTests.Suites.UiWeb
         }
 
         [Description(description: "P - [0175] - Go To URL, Element, Text, Blank")]
-        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Compatibilities))]
+        [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.Capabilities))]
         public void T0175P(Context environment)
         {
             // execute
@@ -59,7 +59,7 @@ namespace Gravity.IntegrationTests.Suites.UiWeb
         }
 
         [Description(description: "P - [0176] - Go To URL, Element, Attribute")]
-        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Compatibilities))]
+        [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.Capabilities))]
         public void T0176P(Context environment)
         {
             // execute
@@ -70,7 +70,7 @@ namespace Gravity.IntegrationTests.Suites.UiWeb
         }
 
         [Description(description: "P - [0177] - Go To URL, Element, Attribute, Blank")]
-        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Compatibilities))]
+        [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.Capabilities))]
         public void T0177P(Context environment)
         {
             // execute
@@ -81,7 +81,7 @@ namespace Gravity.IntegrationTests.Suites.UiWeb
         }
 
         [Description(description: "P - [0178] - Go To URL, Default, Alias")]
-        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Win10Chrome))]
+        [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.Win10Chrome))]
         public void T0178A(Context environment)
         {
             // setup
@@ -95,7 +95,7 @@ namespace Gravity.IntegrationTests.Suites.UiWeb
         }
 
         [Description(description: "P - [0178] - Go To URL, Default, Alias")]
-        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Win10Chrome))]
+        [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.Win10Chrome))]
         public void T0178B(Context environment)
         {
             // setup
@@ -109,7 +109,7 @@ namespace Gravity.IntegrationTests.Suites.UiWeb
         }
 
         [Description(description: "P - [0178] - Go To URL, Default, Alias")]
-        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Win10Chrome))]
+        [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.Win10Chrome))]
         public void T0178C(Context environment)
         {
             // setup
@@ -123,7 +123,7 @@ namespace Gravity.IntegrationTests.Suites.UiWeb
         }
 
         [Description(description: "P - [0179] - Go To URL, Element, Text, Regular Expression")]
-        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Compatibilities))]
+        [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.Capabilities))]
         public void T0179C(Context environment)
         {
             // execute

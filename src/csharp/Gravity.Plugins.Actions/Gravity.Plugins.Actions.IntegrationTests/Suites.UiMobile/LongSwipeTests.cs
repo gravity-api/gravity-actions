@@ -36,7 +36,7 @@ namespace Graivty.IntegrationTests.Suites.UiMobile
 
         [Ignore(reason: "development")]
         [Description(description: "P - [0183] - Long Swipe, Element to Coordinates")]
-        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.CompatibilitiesMobileNative))]
+        [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.CapabilitiesMobileNative))]
         public void T183P(Context environment)
         {
             // setup

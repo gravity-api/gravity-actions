@@ -16,7 +16,7 @@ namespace Graivty.IntegrationTests.Suites.UiCommon
     public class MoveToElementTests
     {
         [Description(description: "P - [0184] - Move To Element, Default")]
-        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Compatibilities))]
+        [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.Capabilities))]
         public void T0184P(Context environment)
         {
             // execute

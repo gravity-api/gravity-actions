@@ -16,7 +16,7 @@ namespace Gravity.IntegrationTests.Suites.UiWeb
     public class CloseAllChildWindowsTests
     {
         [Description(description: "P - [0064] - Close All Child Windows")]
-        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.CompatibilitiesNoIos))]
+        [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.CapabilitiesNoIos))]
         public void T0064P(Context environment)
         {
             // execute
@@ -27,7 +27,7 @@ namespace Gravity.IntegrationTests.Suites.UiWeb
         }
 
         [Description(description: "N - [0065] - Close All Child Windows, No Child Windows")]
-        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.CompatibilitiesNoIos))]
+        [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.CapabilitiesNoIos))]
         public void T0065P(Context environment)
         {
             // execute

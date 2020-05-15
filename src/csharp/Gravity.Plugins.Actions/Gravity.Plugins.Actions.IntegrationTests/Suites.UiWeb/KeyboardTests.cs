@@ -16,7 +16,7 @@ namespace Gravity.IntegrationTests.Suites.UiWeb
     public class KeyboardTests
     {
         [Description(description: "P - [0181] - Keyboard, Enter, Element")]
-        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.CompatibilitiesNoMobile))]
+        [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.CapabilitiesNoMobile))]
         public void T0181P(Context environment)
         {
             // execute
@@ -27,7 +27,7 @@ namespace Gravity.IntegrationTests.Suites.UiWeb
         }
 
         [Description(description: "P - [0182] - Keyboard, Sequence, Element")]
-        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.CompatibilitiesNoMobile))]
+        [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.CapabilitiesNoMobile))]
         public void T0182P(Context environment)
         {
             // execute

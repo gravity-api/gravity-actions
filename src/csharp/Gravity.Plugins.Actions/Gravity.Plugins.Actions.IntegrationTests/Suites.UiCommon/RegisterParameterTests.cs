@@ -15,12 +15,34 @@ namespace Graivty.IntegrationTests.Suites.UiCommon
     [TestFixture]
     public class RegisterParameterTests
     {
-        [Description(description: "P - [0191] - Move To Element, Default")]
-        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Compatibilities))]
+        [Description(description: "P - [0191] - Register Parameter, Literal")]
+        [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.Win10Chrome))]
         public void T0191P(Context environment)
         {
             // execute
             var actual = new C0191().AddEnvironments(environment).Execute();
+
+            // assertion
+            Assert.IsTrue(actual);
+        }
+
+        [Description(description: "P - [0192] - Register Parameter, Element, Text")]
+        [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.CapabilitiesMobileWeb))]
+        public void T0192P(Context environment)
+        {
+            // execute
+            var actual = new C0192().AddEnvironments(environment).Execute();
+
+            // assertion
+            Assert.IsTrue(actual);
+        }
+
+        [Description(description: "P - [0193] - Register Parameter, Element, Attribute")]
+        [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.Capabilities))]
+        public void T0193P(Context environment)
+        {
+            // execute
+            var actual = new C0193().AddEnvironments(environment).Execute();
 
             // assertion
             Assert.IsTrue(actual);

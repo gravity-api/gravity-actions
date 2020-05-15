@@ -15,7 +15,7 @@ namespace Graivty.IntegrationTests.Suites.UiWeb
     public class RefreshTests
     {
         [Description(description: "P - [0189] - Refresh, Default")]
-        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Compatibilities))]
+        [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.Capabilities))]
         public void T0189P(Context environment)
         {
             // execute
@@ -26,7 +26,7 @@ namespace Graivty.IntegrationTests.Suites.UiWeb
         }
 
         [Description(description: "P - [0190] - Refresh, Multiple Times")]
-        [Test, TestCaseSource(typeof(CompatibilityProvider), nameof(CompatibilityProvider.Compatibilities))]
+        [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.Capabilities))]
         public void T0190P(Context environment)
         {
             // execute

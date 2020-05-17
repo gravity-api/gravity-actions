@@ -1,12 +1,12 @@
 {
   "cliArguments": {
-    "until": "Repeats the nested actions until a condition is met. Available conditions are: ['visible','hidden','exists','not_exists']."
+    "until": "Repeats the nested actions until a condition is met. All conditions under [ConditionsFactory] are available."
   },
-  "description": "Repeats a subset of actions for a given number of times or under condition is met. This action is recursive and actions subset can be another [Repeat] action.",
+  "description": "Repeats a subset of actions for a given number of times or until condition is met. This action is recursive and actions subset can be another [Repeat] action.",
   "examples": [
     {
-      "description": "Repeat [SendKeys] action with [a] argument into [//form/div/p/input[1]] <input>, 10 times.",
-      "literalExample": "not supported by literal engine.",
+      "description": "Repeat [SendKeys] action with [a] argument into [//input[@id='SearchString']], 10 times.",
+      "literalExample": "repeat {10}\n    > send keys {a} into {//input[@id='SearchString']}",
       "actionExample": {
         "action": "Repeat",
         "argument": "10",
@@ -14,77 +14,28 @@
           {
             "action": "SendKeys",
             "argument": "a",
-            "onElement": "//form/div/p/input[1]"
+            "onElement": "//input[@id='SearchString']"
           }
         ]
       }
     },
     {
-      "description": "Repeat [SendKeys] action with [a] argument into [//form/div/p/input[1]] <input>, until element [//div] is visible.",
-      "literalExample": "not supported by literal engine.",
-      "actionExample": {
-        "action": "Repeat",
-        "argument": "{{$ --until:visible}}",
-        "onElement": "//div",
-        "actions": [
-          {
-            "action": "SendKeys",
-            "argument": "a",
-            "onElement": "//form/div/p/input[1]"
-          }
-        ]
-      }
-    },
-    {
-      "description": "Repeat [SendKeys] action with [a] argument into [//form/div/p/input[1]] <input>, until element [//div] is not visible.",
-      "literalExample": "not supported by literal engine.",
-      "actionExample": {
-        "action": "Repeat",
-        "argument": "{{$ --until:not-visible}}",
-        "onElement": "//div",
-        "actions": [
-          {
-            "action": "SendKeys",
-            "argument": "a",
-            "onElement": "//form/div/p/input[1]"
-          }
-        ]
-      }
-    },
-    {
-      "description": "Repeat [SendKeys] action with [a] argument into [//form/div/p/input[1]] <input>, until element [//div] exists.",
-      "literalExample": "not supported by literal engine.",
+      "description": "Repeat [Click] action on [//a[contains(.,'Next') and @class='btn btn-default ']], until element [//a[contains(.,'Next') and @class='btn btn-default disabled']] exists.",
+      "literalExample": "repeat {{$ --until:exists}} on {//a[contains(.,'Next') and @class='btn btn-default disabled']}\n    > click on {//a[contains(.,'Next') and @class='btn btn-default ']}",
       "actionExample": {
         "action": "Repeat",
         "argument": "{{$ --until:exists}}",
-        "onElement": "//div",
+        "onElement": "//a[contains(.,'Next') and @class='btn btn-default disabled']",
         "actions": [
           {
-            "action": "SendKeys",
-            "argument": "a",
-            "onElement": "//form/div/p/input[1]"
+            "action": "Click",
+            "onElement": "//a[contains(.,'Next') and @class='btn btn-default ']"
           }
         ]
       }
     },
     {
-      "description": "Repeat [SendKeys] action with [a] argument into [//form/div/p/input[1]] <input>, until element [//div] is not exists.",
-      "literalExample": "not supported by literal engine.",
-      "actionExample": {
-        "action": "Repeat",
-        "argument": "{{$ --until:not-exists}}",
-        "onElement": "//div",
-        "actions": [
-          {
-            "action": "SendKeys",
-            "argument": "a",
-            "onElement": "//form/div/p/input[1]"
-          }
-        ]
-      }
-    },
-    {
-      "description": "For each repeat [SendKeys] action with [a] argument into [//form/div/p/input[1]] <input>, repeat [SendKeys] action with [a] argument into [//form/div/p/input[1]] <input> (repeat inside repeat).",
+      "description": "For each repeat [SendKeys] action with [a] argument into [//input[@id='SearchString']], repeat [SendKeys] action with [b] argument into [//input[@id='SearchString']] (repeat inside repeat).",
       "literalExample": "not supported by literal engine.",
       "actionExample": {
         "action": "Repeat",
@@ -93,7 +44,7 @@
           {
             "action": "SendKeys",
             "argument": "a",
-            "onElement": "//form/div/p/input[1]"
+            "onElement": "//input[@id='SearchString']"
           },
           {
             "action": "Repeat",
@@ -102,7 +53,7 @@
               {
                 "action": "SendKeys",
                 "argument": "b",
-                "onElement": "//form/div/p/input[1]"
+                "onElement": "//input[@id='SearchString']"
               }
             ]
           }

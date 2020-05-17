@@ -5,7 +5,9 @@
  */
 using Gravity.Abstraction.Contracts;
 using Gravity.IntegrationTests.Base;
+using Newtonsoft.Json;
 using System.Collections;
+using System.Collections.Generic;
 
 namespace Gravity.IntegrationTests.Providers
 {

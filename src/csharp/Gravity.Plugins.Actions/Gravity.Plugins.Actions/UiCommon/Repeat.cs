@@ -19,6 +19,7 @@ using Gravity.Plugins.Attributes;
 using Gravity.Plugins.Base;
 using Gravity.Plugins.Contracts;
 using Gravity.Plugins.Engine;
+using Gravity.Plugins.Extensions;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Extensions;
 using System.Collections.Generic;
@@ -79,6 +80,7 @@ namespace Gravity.Plugins.Actions.UiCommon
         {
             // setup
             SetArguments(action);
+            action.ExecuteSubActions(doExecute: false);
 
             // setup conditions
             var isCondition = arguments.ContainsKey(Until) && !string.IsNullOrEmpty(arguments[Until]);
@@ -91,7 +93,7 @@ namespace Gravity.Plugins.Actions.UiCommon
             else
             {
                 int.TryParse(action.Argument, out int iterations);
-                ExecuteByIteration(element, action, iterations);
+                ExecuteByIteration(action, element, iterations);
             }
         }
 
@@ -133,7 +135,7 @@ namespace Gravity.Plugins.Actions.UiCommon
         }
 
         // execute actions based on given number of iterations
-        private void ExecuteByIteration(IWebElement element, ActionRule action, int iterations)
+        private void ExecuteByIteration(ActionRule action, IWebElement element, int iterations)
         {
             for (int i = 0; i < iterations; i++)
             {
@@ -142,21 +144,21 @@ namespace Gravity.Plugins.Actions.UiCommon
         }
 
         // update environment >> executes actions under the given action rule
-        private void Execute(IWebElement element, IEnumerable<ActionRule> action, int reference)
+        private void Execute(IWebElement element, IEnumerable<ActionRule> actions, int reference)
         {
             // setup
             var session = WebDriver.GetSession().ToString();
             var referenceKey = $"rptpos_{session}";
 
             // iterate
-            foreach (var actionRule in action)
+            foreach (var action in actions)
             {
                 // update environment
                 EnvironmentContext.ApplicationParams[referenceKey] = reference;
-                actionRule.RepeatReference = reference;
+                action.RepeatReference = reference;
 
                 // execute actions
-                pluginFactory.Execute(actionRule, new object[] { element });
+                Executor.Execute(Automation, action, new object[] { element });
             }
         }
     }

@@ -10,7 +10,7 @@ using NUnit.Framework;
 
 using DescriptionAttribute = System.ComponentModel.DescriptionAttribute;
 
-namespace Graivty.IntegrationTests.Suites.UiCommon
+namespace Gravity.IntegrationTests.Suites.UiCommon
 {
     [TestFixture]
     public class MoveToElementTests

@@ -10,7 +10,7 @@ using NUnit.Framework;
 
 using DescriptionAttribute = System.ComponentModel.DescriptionAttribute;
 
-namespace Graivty.IntegrationTests.Suites.UiCommon
+namespace Gravity.IntegrationTests.Suites.UiCommon
 {
     [TestFixture]
     public class RegisterParameterTests
@@ -27,7 +27,7 @@ namespace Graivty.IntegrationTests.Suites.UiCommon
         }
 
         [Description(description: "P - [0192] - Register Parameter, Element, Text")]
-        [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.CapabilitiesMobileWeb))]
+        [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.Capabilities))]
         public void T0192P(Context environment)
         {
             // execute
@@ -43,6 +43,28 @@ namespace Graivty.IntegrationTests.Suites.UiCommon
         {
             // execute
             var actual = new C0193().AddEnvironments(environment).Execute();
+
+            // assertion
+            Assert.IsTrue(actual);
+        }
+
+        [Description(description: "P - [0194] - Register Parameter, Element, Text, Regular Expression")]
+        [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.Capabilities))]
+        public void T0194P(Context environment)
+        {
+            // execute
+            var actual = new C0194().AddEnvironments(environment).Execute();
+
+            // assertion
+            Assert.IsTrue(actual);
+        }
+
+        [Description(description: "P - [0194] - Register Parameter, Element, Attribute, Regular Expression")]
+        [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.Capabilities))]
+        public void T0195P(Context environment)
+        {
+            // execute
+            var actual = new C0195().AddEnvironments(environment).Execute();
 
             // assertion
             Assert.IsTrue(actual);

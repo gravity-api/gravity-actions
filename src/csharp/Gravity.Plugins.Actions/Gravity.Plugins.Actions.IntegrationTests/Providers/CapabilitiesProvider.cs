@@ -176,11 +176,11 @@ namespace Gravity.IntegrationTests.Providers
         private static IEnumerable GetCapabilitiesMobileWeb()
         {
             // Android
-            //yield return Provider.Get(driver: Driver.Android, capabilities: Provider.AndroidChrome);
+            yield return Provider.Get(driver: Driver.Android, capabilities: Provider.AndroidChrome);
 
             // TODO: return when iOS is stable on browser stack.
             // iOS
-            yield return Provider.Get(driver: Driver.iOS, capabilities: Provider.iPhoneSafari);
+            // yield return Provider.Get(driver: Driver.iOS, capabilities: Provider.iPhoneSafari);
         }
 
         private static IEnumerable GetCapabilitiesMobileNative()

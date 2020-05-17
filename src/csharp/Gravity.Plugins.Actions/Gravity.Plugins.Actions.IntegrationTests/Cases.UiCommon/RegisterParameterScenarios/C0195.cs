@@ -1,16 +1,16 @@
 ﻿#pragma warning disable S125
 /*
 * TEST SCENARIO (Rhino)
-* [test-id] 0192
-* [test-scenario] - Register Parameter, Element, Text
+* [test-id] 0193
+* [test-scenario] - Register Parameter, Element, Attribute, Regular Expression
 * 
 * [test-actions]
 * 1. navigate to {https://gravitymvctestapplication.azurewebsites.net/uicontrols/}
-* 2. register parameter {integration_parameter} on {text_div_number} using {id}
+* 2. register parameter {integration_parameter} on {attribute_div} using {id} from {number} filter {\d{1}}
 * 3. close browser
 * 
 * [test-expected-results]
-* [2] verify {parameter} on {integration_parameter} equal {1}
+* [2] verify {parameter} on {integration_parameter} equal {10}
 */
 #pragma warning restore
 using Gravity.IntegrationTests.Base;
@@ -20,7 +20,7 @@ using System.Collections.Generic;
 
 namespace Graivty.IntegrationTests.Cases.UiCommon.RegisterParameterScenarios
 {
-    public class C0192 : TestCase
+    public class C0195 : TestCase
     {
         // gets the actions collection of this test
         public override IEnumerable<ActionRule> OnActions(Context environment)
@@ -32,10 +32,12 @@ namespace Graivty.IntegrationTests.Cases.UiCommon.RegisterParameterScenarios
                 {
                     Action = PluginsList.RegisterParameter,
                     Argument = "integration_parameter",
-                    OnElement = "text_div_number",
-                    Locator = LocatorsList.Id
+                    OnElement = "attribute_div",
+                    OnAttribute = "number",
+                    Locator = LocatorsList.Id,
+                    RegularExpression = "\\d{1}"
                 },
-                SharedSteps.AssertParameter(equal: "10"),
+                SharedSteps.AssertParameter(equal: "1"),
             };
         }
     }

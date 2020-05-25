@@ -65,6 +65,8 @@ namespace Gravity.IntegrationTests.Providers
 
         public static IEnumerable CapabilitiesNoMobile => GetCapabilitiesNoMobile();
 
+        public static IEnumerable CapabilitiesNoIeNoSafari => GetCapabilitiesNoIeNoSafari();
+
         private static IEnumerable GetCapabilities()
         {
             // Windows 10
@@ -213,6 +215,22 @@ namespace Gravity.IntegrationTests.Providers
             yield return Provider.Get(driver: Driver.Chrome, capabilities: Provider.OSXCatalinaLatestBrowser);
             yield return Provider.Get(driver: Driver.Edge, capabilities: Provider.OSXCatalinaLatestBrowser);
             yield return Provider.Get(driver: Driver.Firefox, capabilities: Provider.OSXCatalinaLatestBrowser);
+        }
+
+        private static IEnumerable GetCapabilitiesNoIeNoSafari()
+        {
+            // Windows 10
+            yield return Provider.Get(driver: Driver.Chrome, capabilities: Provider.Windows10LatestBrowser);
+            yield return Provider.Get(driver: Driver.Edge, capabilities: Provider.Windows10LatestBrowser);
+            yield return Provider.Get(driver: Driver.Firefox, capabilities: Provider.Windows10LatestBrowser);
+
+            // OSX: Catalina
+            yield return Provider.Get(driver: Driver.Chrome, capabilities: Provider.OSXCatalinaLatestBrowser);
+            yield return Provider.Get(driver: Driver.Edge, capabilities: Provider.OSXCatalinaLatestBrowser);
+            yield return Provider.Get(driver: Driver.Firefox, capabilities: Provider.OSXCatalinaLatestBrowser);
+
+            // Android
+            yield return Provider.Get(driver: Driver.Android, capabilities: Provider.AndroidChrome);
         }
         #endregion
 

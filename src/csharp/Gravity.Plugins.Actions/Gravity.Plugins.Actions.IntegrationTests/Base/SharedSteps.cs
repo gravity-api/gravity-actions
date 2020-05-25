@@ -211,6 +211,51 @@ namespace Gravity.IntegrationTests.Base
         };
 
         /// <summary>
+        /// Gets an assert <see cref="ActionRule"/> for click outcome results (on UiControls page).
+        /// </summary>
+        /// <param name="offset">X or Y</param>
+        /// <param name="expectedPattern">Expected pattern (regular expression) to assert content value against.</param>
+        /// <returns>Assert <see cref="ActionRule"/>.</returns>
+        public static ActionRule AssertScrollOutcome(string offset, string expectedPattern) => new ActionRule
+        {
+            Action = PluginsList.Assert,
+            Argument = "{{$ --attribute --match:" + $"{expectedPattern}" + "}}",
+            OnElement = $"scroll_{offset.ToLower()}_outcome",
+            Locator = LocatorsList.Id,
+            OnAttribute = "value"
+        };
+
+        /// <summary>
+        /// Gets an assert <see cref="ActionRule"/> for click outcome results (on UiControls page).
+        /// </summary>
+        /// <param name="offset">X or Y</param>
+        /// <param name="greaterThan">Greater than expected result.</param>
+        /// <returns>Assert <see cref="ActionRule"/>.</returns>
+        public static ActionRule AssertElementScrollOutcome(string offset, int greaterThan) => new ActionRule
+        {
+            Action = PluginsList.Assert,
+            Argument = "{{$ --attribute --gt:" + $"{greaterThan}" + "}}",
+            OnElement = $"e_scroll_{offset.ToLower()}_outcome",
+            Locator = LocatorsList.Id,
+            OnAttribute = "value"
+        };
+
+        /// <summary>
+        /// Gets an assert <see cref="ActionRule"/> for click outcome results (on UiControls page).
+        /// </summary>
+        /// <param name="offset">X or Y</param>
+        /// <param name="expectedPattern">Expected pattern (regular expression) to assert content value against.</param>
+        /// <returns>Assert <see cref="ActionRule"/>.</returns>
+        public static ActionRule AssertElementScrollOutcome(string offset, string expectedPattern) => new ActionRule
+        {
+            Action = PluginsList.Assert,
+            Argument = "{{$ --attribute --match:" + $"{expectedPattern}" + "}}",
+            OnElement = $"e_scroll_{offset.ToLower()}_outcome",
+            Locator = LocatorsList.Id,
+            OnAttribute = "value"
+        };
+
+        /// <summary>
         /// Assert extractions count and values (not null or empty).
         /// </summary>
         /// <param name="responses"><see cref="OrbitResponse"/> from which to fetch entities.</param>

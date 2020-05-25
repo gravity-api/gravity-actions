@@ -37,7 +37,7 @@ namespace Gravity.IntegrationTests.Suites.UiCommon
             Assert.IsTrue(actual);
         }
 
-        [Description(description: "P - [0198] - Repeat, Iterations, Click")]
+        [Description(description: "P - [0198] - Repeat Inside Repeat, Send Keys, Element")]
         [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.Capabilities))]
         public void T0198P(Context environment)
         {

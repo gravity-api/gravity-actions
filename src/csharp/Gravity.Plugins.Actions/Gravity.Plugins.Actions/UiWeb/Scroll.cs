@@ -42,7 +42,6 @@ namespace Gravity.Plugins.Actions.UiWeb
         // members: state
         private readonly string left = "0";
         private readonly string top = "0";
-        private readonly string behavior = "auto";
 
         #region *** constructors ***
         /// <summary>
@@ -79,8 +78,7 @@ namespace Gravity.Plugins.Actions.UiWeb
         {
             // setup
             var arguments = GetArguments(action);
-            var scriptFormat =
-                $"on.scroll({{top: {arguments[Top]}, left: {arguments[Left]}, behavior: {arguments[Behavior]}}})";
+            var scriptFormat = ScriptFactory(arguments);
 
             element = this.ConditionalGetElement(element, action);
             var script = element == default
@@ -88,7 +86,7 @@ namespace Gravity.Plugins.Actions.UiWeb
                 : scriptFormat.Replace("on", "arguments[0]");
 
             // execute action
-            if(element == default)
+            if (element == default)
             {
                 ((IJavaScriptExecutor)WebDriver).ExecuteScript(script);
             }
@@ -106,8 +104,7 @@ namespace Gravity.Plugins.Actions.UiWeb
                 return new Dictionary<string, string>
                 {
                     [Top] = $"{yOut}",
-                    [Left] = left,
-                    [Behavior] = behavior
+                    [Left] = left
                 };
             }
 
@@ -124,14 +121,25 @@ namespace Gravity.Plugins.Actions.UiWeb
             {
                 arguments[Top] = top;
             }
-            // Behavior
-            if (!arguments.ContainsKey(Behavior))
-            {
-                arguments[Behavior] = behavior;
-            }
 
             // result
             return arguments;
+        }
+
+        private string ScriptFactory(IDictionary<string, string> arguments)
+        {
+            // setup conditions
+            var isBehavior = arguments.ContainsKey(Behavior);
+
+            // factory
+            if (isBehavior)
+            {
+                return
+                    $"on.scroll({{top: {arguments[Top]}, left: {arguments[Left]}, behavior: '{arguments[Behavior]}'}})";
+            }
+
+            // default
+            return $"on.scroll({arguments[Left]}, {arguments[Top]})";
         }
     }
 }

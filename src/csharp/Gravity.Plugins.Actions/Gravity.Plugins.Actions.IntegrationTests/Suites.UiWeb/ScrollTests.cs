@@ -30,7 +30,7 @@ namespace Graivty.IntegrationTests.Suites.UiWeb
             Assert.IsTrue(actual);
         }
 
-        [Description(description: "P - [0200] - Scroll, Top, Page, JS Argument, top")]
+        [Description(description: "P - [0200] - Scroll, Top, Page, JS Argument")]
         [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.Capabilities))]
         public void T0200P(Context environment)
         {
@@ -52,12 +52,56 @@ namespace Graivty.IntegrationTests.Suites.UiWeb
             Assert.IsTrue(actual);
         }
 
-        [Description(description: "P - [0202] - Scroll, Top, Element, JS Argument, top")]
+        [Description(description: "P - [0202] - Scroll, Top, Element, JS Argument")]
         [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.CapabilitiesNoIeNoSafari))]
         public void T0202P(Context environment)
         {
             // execute
             var actual = new C0202().AddEnvironments(environment).Execute();
+
+            // assertion
+            Assert.IsTrue(actual);
+        }
+
+        [Description(description: "P - [0203] - Scroll, Left, Element, JS Argument")]
+        [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.CapabilitiesNoIeNoSafari))]
+        public void T0203P(Context environment)
+        {
+            // execute
+            var actual = new C0203().AddEnvironments(environment).Execute();
+
+            // assertion
+            Assert.IsTrue(actual);
+        }
+
+        [Description(description: "P - [0204] - Scroll, Top, Left, Element, JS Argument")]
+        [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.CapabilitiesNoIeNoSafari))]
+        public void T0204P(Context environment)
+        {
+            // execute
+            var actual = new C0204().AddEnvironments(environment).Execute();
+
+            // assertion
+            Assert.IsTrue(actual);
+        }
+
+        [Description(description: "P - [0205] - Scroll, Top, Left, Behavior, Element, JS Argument")]
+        [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.CapabilitiesNoIeNoSafari))]
+        public void T0205P(Context environment)
+        {
+            // execute
+            var actual = new C0205().AddEnvironments(environment).Execute();
+
+            // assertion
+            Assert.IsTrue(actual);
+        }
+
+        [Description(description: "P - [0206] - Scroll, Top, Behavior, Page, JS Argument")]
+        [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.CapabilitiesNoIeNoSafari))]
+        public void T0206P(Context environment)
+        {
+            // execute
+            var actual = new C0206().AddEnvironments(environment).Execute();
 
             // assertion
             Assert.IsTrue(actual);

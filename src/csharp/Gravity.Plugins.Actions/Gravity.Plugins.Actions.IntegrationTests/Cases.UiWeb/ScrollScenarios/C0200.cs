@@ -2,7 +2,7 @@
 /*
 * TEST SCENARIO (Rhino)
 * [test-id] 0199
-* [test-scenario] - Scroll, Top, Page, JS Argument, top
+* [test-scenario] - Scroll, Top, Page, JS Argument
 * 
 * [test-actions]
 * 1. navigate to {https://gravitymvctestapplication.azurewebsites.net/uicontrols}

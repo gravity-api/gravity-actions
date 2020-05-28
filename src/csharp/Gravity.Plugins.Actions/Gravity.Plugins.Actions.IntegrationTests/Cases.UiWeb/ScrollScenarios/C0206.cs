@@ -1,12 +1,12 @@
 ﻿#pragma warning disable S125
 /*
 * TEST SCENARIO (Rhino)
-* [test-id] 0199
-* [test-scenario] - Scroll, Top, Element, JS Argument
+* [test-id] 0206
+* [test-scenario] - Scroll, Top, Behavior, Page, JS Argument
 * 
 * [test-actions]
 * 1. navigate to {https://gravitymvctestapplication.azurewebsites.net/uicontrols}
-* 2. scroll {{$ --top:1000}} on {e_scroll_y_outcome} using {id}
+* 2. scroll {{$ --top:1000 --behavior:smooth}}
 * 3. close browser
 * 
 * [test-expected-results]
@@ -21,7 +21,7 @@ using System.Collections.Generic;
 
 namespace Graivty.IntegrationTests.Cases.UiWeb.ScrollScenarios
 {
-    public class C0202 : TestCase
+    public class C0206 : TestCase
     {
         // gets the actions collection of this test
         public override IEnumerable<ActionRule> OnActions(Context environment)
@@ -29,15 +29,13 @@ namespace Graivty.IntegrationTests.Cases.UiWeb.ScrollScenarios
             // setup
             return new[]
             {
-                SharedSteps.AssertElementScrollOutcome(offset: "y", expectedPattern: "^$" ),
+                SharedSteps.AssertScrollOutcome(offset: "y", expectedPattern: "^$" ),
                 new ActionRule
                 {
                     Action = PluginsList.Scroll,
-                    Argument = "{{$ --top:1000}}",
-                    OnElement = "text_area_enabled",
-                    Locator = LocatorsList.Id
+                    Argument = "{{$ --top:1000 --behavior:smooth}}"
                 },
-                SharedSteps.AssertElementScrollOutcome(offset: "y", greaterThan: 0 ),
+                SharedSteps.AssertScrollOutcome(offset: "y", greaterThan: 0 ),
             };
         }
     }

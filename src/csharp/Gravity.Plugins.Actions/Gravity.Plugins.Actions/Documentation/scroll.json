@@ -14,44 +14,77 @@
   "description": "Scrolls the window or element to a particular set of coordinates inside a given window or element.",
   "examples": [
     {
-      "description": "Scrolls [//div] element overflow by 1000 pixels from top.",
-      "literalExample": "scroll on {//div} {1000} pixels from top",
-      "actionExample": {
-        "action": "Scroll",
-        "argument": "1000",
-        "onElement": "//div"
-      }
-    },
-    {
-      "description": "Scrolls the page overflow by 1000 pixels from top.",
-      "literalExample": "scroll page {1000} pixels from top",
+      "description": "Scrolls the page overflow by [1000] pixels from top.",
+      "literalExample": "scroll {1000}",
       "actionExample": {
         "action": "Scroll",
         "argument": "1000"
       }
     },
     {
-      "description": "Scrolls the page overflow by 100 pixels from top and 100 pixels from left.",
-      "literalExample": "scroll page overflow 'by {{$ --left:100 --top:100}}",
+      "description": "Scrolls the page overflow by [1000] pixels from top.",
+      "literalExample": "scroll {{$ --top:1000}}",
       "actionExample": {
         "action": "Scroll",
-        "argument": "{{$ --left:100 --top:100}}"
+        "argument": "{{$ --top:1000}}"
       }
     },
     {
-      "description": "Smoothly Scrolls the page overflow by 100 pixels from top and 100 pixels from left.",
-      "literalExample": "scroll page overflow 'by {{$ --left:100 --top:100 --behavior:smooth}}",
+      "description": "Scroll the element overflow by [1000] pixels from top.",
+      "literalExample": "scroll {1000} on {text_area_enabled} using {id}",
       "actionExample": {
         "action": "Scroll",
-        "argument": "{{$ --left:100 --top:100 --behavior:smooth}}"
+        "argument": "1000",
+        "onElement": "text_area_enabled",
+        "locator": "Id"
       }
     },
     {
-      "description": "Smoothly Scrolls [//div] element overflow by 100 pixels from top and 100 pixels from left.",
-      "literalExample": "scroll on {//div} overflow 'by {{$ --left:100 --top:100 --behavior:smooth}}",
+      "description": "Scroll the element overflow by [1000] pixels from top.",
+      "literalExample": "scroll {{$ --top:1000}} on {text_area_enabled} using {id}",
       "actionExample": {
         "action": "Scroll",
-        "argument": "{{$ --left:100 --top:100 --behavior:smooth}}"
+        "argument": "{{$ --top:1000}}",
+        "onElement": "text_area_enabled",
+        "locator": "Id"
+      }
+    },
+    {
+      "description": "Scroll the element overflow by [1000] pixels from left.",
+      "literalExample": "scroll {{$ --left:1000}} on {text_area_enabled} using {id}",
+      "actionExample": {
+        "action": "Scroll",
+        "argument": "{{$ --left:1000}}",
+        "onElement": "text_area_enabled",
+        "locator": "Id"
+      }
+    },
+    {
+      "description": "Scroll the element overflow by [1000] pixels from top and [1000] from left.",
+      "literalExample": "scroll {{$ --top:1000 --left:1000}} on {text_area_enabled} using {id}",
+      "actionExample": {
+        "action": "Scroll",
+        "argument": "{{$ --top:1000 --left:1000}}",
+        "onElement": "text_area_enabled",
+        "locator": "Id"
+      }
+    },
+    {
+      "description": "[Smoothly] scroll the element overflow by [1000] pixels from top and [1000] from left.",
+      "literalExample": "scroll {{$ --top:1000 --left:1000 --behavior:smooth}} on {text_area_enabled} using {id}",
+      "actionExample": {
+        "action": "Scroll",
+        "argument": "{{$ --top:1000 --left:1000 --behavior:smooth}}",
+        "onElement": "text_area_enabled",
+        "locator": "Id"
+      }
+    },
+    {
+      "description": "[Smoothly] scroll the page overflow by [1000] pixels from top.",
+      "literalExample": "scroll {{$ --top:1000 --left:1000 --behavior:smooth}} on {text_area_enabled} using {id}",
+      "actionExample": {
+        "action": "Scroll",
+        "argument": "{{$ --top:1000 --behavior:smooth}}"
       }
     }
   ],

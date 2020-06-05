@@ -77,6 +77,56 @@ namespace Gravity.UnitTests.UiCommon
         #endregion
 
         #region *** tests: OnDriver      ***
+        [TestMethod]
+        public void HasAlert()
+        {
+            // setup
+            const string actionRule = "{'argument':'{{$ --alert_exists}}'}";
+            WebDriver.Capabilities[MockCapabilities.HasAlert] = true;
+
+            // execute
+            var plugin = ExecuteAction<Plugins.Actions.UiCommon.Assert>(actionRule);
+
+            // result
+            var actual = GetEvaluation(plugin);
+
+            // assertion
+            Assert.IsTrue(actual);
+        }
+
+        [TestMethod]
+        public void HasAlertFalse()
+        {
+            // setup
+            const string actionRule = "{'argument':'{{$ --no_alert}}'}";
+            WebDriver.Capabilities[MockCapabilities.HasAlert] = false;
+
+            // execute
+            var plugin = ExecuteAction<Plugins.Actions.UiCommon.Assert>(actionRule);
+
+            // result
+            var actual = GetEvaluation(plugin);
+
+            // assertion
+            Assert.IsTrue(actual);
+        }
+
+        [TestMethod]
+        public void HasNoAlert()
+        {
+            // setup
+            const string actionRule = "{'argument':'{{$ --no_alert}}'}";
+
+            // execute
+            var plugin = ExecuteAction<Plugins.Actions.UiCommon.Assert>(actionRule);
+
+            // result
+            var actual = GetEvaluation(plugin);
+
+            // assertion
+            Assert.IsTrue(actual);
+        }
+
         [DataTestMethod]
         [DataRow(ActionRuleNoAttributeOperator, "eq", "10")]
         [DataRow(ActionRuleNoAttributeOperator, "ne", "1")]

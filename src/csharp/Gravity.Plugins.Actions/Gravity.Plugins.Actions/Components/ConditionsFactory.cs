@@ -15,6 +15,7 @@ using System.Linq;
 using Gravity.Plugins.Utilities;
 using System.Collections.ObjectModel;
 using Gravity.Plugins.Contracts;
+using OpenQA.Selenium.Extensions;
 
 namespace Gravity.Plugins.Actions.Components
 {
@@ -28,6 +29,16 @@ namespace Gravity.Plugins.Actions.Components
             public const string Expected = "expected";
             public const string Operator = "operator";
         }
+
+        /// <summary>
+        /// Assert that <see cref="IAlert"/> exists.
+        /// </summary>
+        public const string AlertExists = "alert_exists";
+
+        /// <summary>
+        /// Assert that <see cref="IAlert"/> does not exists.
+        /// </summary>
+        public const string NoAlert = "no_alert";
 
         /// <summary>
         /// Assert that <see cref="IWebElement"/> is active element (focused).
@@ -215,6 +226,38 @@ namespace Gravity.Plugins.Actions.Components
 
 #pragma warning disable IDE0051
         #region *** repository   ***
+        [Description(AlertExists)]
+        private IDictionary<string, object> HasAlert() => AssertState(() =>
+        {
+            // get actual
+            var actual = driver.HasAlert();
+
+            // compose
+            return new Dictionary<string, object>
+            {
+                [StateProperties.Evaluation] = actual,
+                [StateProperties.Expected] = Exists,
+                [StateProperties.Actual] = actual ? Exists : NotExists,
+                [StateProperties.Operator] = Contracts.OperatorsList.Equal
+            };
+        });
+
+        [Description(NoAlert)]
+        private IDictionary<string, object> HasNoAlert() => AssertState(() =>
+        {
+            // get actual
+            var actual = !driver.HasAlert();
+
+            // compose
+            return new Dictionary<string, object>
+            {
+                [StateProperties.Evaluation] = actual,
+                [StateProperties.Expected] = Exists,
+                [StateProperties.Actual] = actual ? Exists : NotExists,
+                [StateProperties.Operator] = Contracts.OperatorsList.Equal
+            };
+        });
+
         [Description(Active)]
         private IDictionary<string, object> ElementActive(ActionRule actionRule, IWebElement element)
             => AssertState(() =>

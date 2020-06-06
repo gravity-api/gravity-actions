@@ -226,6 +226,17 @@ namespace Gravity.IntegrationTests.Base
         };
 
         /// <summary>
+        /// Gets an assert <see cref="ActionRule"/> for asserting that <see cref="OpenQA.Selenium.IAlert"/> presence.
+        /// </summary>
+        /// <param name="exists"><see cref="true"/> for exists <see cref="false"/> if not.</param>
+        /// <returns>Assert <see cref="ActionRule"/>.</returns>
+        public static ActionRule AssertAlert(bool exists) => new ActionRule
+        {
+            Action = PluginsList.Assert,
+            Argument = exists ? "{{$ --alert_exists}}" : "{{$ --no_alert}}"
+        };
+
+        /// <summary>
         /// Gets an assert <see cref="ActionRule"/> for click outcome results (on UiControls page).
         /// </summary>
         /// <param name="offset">X or Y</param>
@@ -315,6 +326,20 @@ namespace Gravity.IntegrationTests.Base
             Action = PluginsList.Assert,
             Argument = "{{$ --attribute --match:" + expectedPattern + "}}",
             OnElement = "over_outcome",
+            Locator = LocatorsList.Id,
+            OnAttribute = "value"
+        };
+
+        /// <summary>
+        /// Gets an assert <see cref="ActionRule"/> for combo box (on UiControls page).
+        /// </summary>
+        /// <param name="expectedPattern">Expected pattern (regular expression) to assert against.</param>
+        /// <returns>Assert <see cref="ActionRule"/>.</returns>
+        public static ActionRule AssertComboBox(string expectedPattern) => new ActionRule
+        {
+            Action = PluginsList.Assert,
+            Argument = "{{$ --attribute --match:" + expectedPattern + "}}",
+            OnElement = "select_menu",
             Locator = LocatorsList.Id,
             OnAttribute = "value"
         };

@@ -2,12 +2,16 @@
  * CHANGE LOG - keep only last 5 threads
  * 
  * online resources
+ * 
+ * work items
+ * TODO: improve JavaScriptSelect for better readability and code reuse.
  */
 using Gravity.Plugins.Actions.Extensions;
 using Gravity.Plugins.Attributes;
 using Gravity.Plugins.Base;
 using Gravity.Plugins.Contracts;
 using Gravity.Plugins.Extensions;
+using Newtonsoft.Json;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
@@ -91,7 +95,14 @@ namespace Gravity.Plugins.Actions.UiWeb
             var method = GetType().GetMethodByDescription(description);
 
             // execute
-            method.Invoke(this, new object[] { action, selectElement });
+            try
+            {
+                method.Invoke(this, new object[] { action, selectElement });
+            }
+            catch (Exception e) when (e != null)
+            {
+                JavaScriptSelect(action, selectElement);
+            }
         }
 
 #pragma warning disable S1144, RCS1213, IDE0051
@@ -99,14 +110,41 @@ namespace Gravity.Plugins.Actions.UiWeb
         [Description("DEFAULT")]
         private void Select00(ActionRule action, SelectElement selectElement)
         {
-            selectElement.SelectByText(action.Argument);
+            // single
+            if (!selectElement.IsMultiple)
+            {
+                selectElement.SelectByText(action.Argument);
+                return;
+            }
+
+            // multiple
+            foreach (var option in JsonConvert.DeserializeObject<string[]>(action.Argument))
+            {
+                selectElement.SelectByText(option);
+            }
         }
 
         // select the option by the index, as determined by the "index" attribute of the element
         [Description("INDEX")]
         private void Select01(ActionRule action, SelectElement selectElement)
         {
-            var index = int.TryParse(action.Argument, out int indexOut) ? indexOut : 0;
+            // single
+            if (!selectElement.IsMultiple)
+            {
+                DoSelect01(action.Argument, selectElement);
+                return;
+            }
+
+            // multiple
+            foreach (var option in JsonConvert.DeserializeObject<string[]>(action.Argument))
+            {
+                DoSelect01(option, selectElement);
+            }
+        }
+
+        private void DoSelect01(string option, SelectElement selectElement)
+        {
+            var index = int.TryParse(option, out int indexOut) ? indexOut : 0;
             selectElement.SelectByIndex(index);
         }
 
@@ -114,7 +152,18 @@ namespace Gravity.Plugins.Actions.UiWeb
         [Description("VALUE")]
         private void Select02(ActionRule action, SelectElement selectElement)
         {
-            selectElement.SelectByValue(action.Argument);
+            // single
+            if (!selectElement.IsMultiple)
+            {
+                selectElement.SelectByValue(action.Argument);
+                return;
+            }
+
+            // multiple
+            foreach (var option in JsonConvert.DeserializeObject<string[]>(action.Argument))
+            {
+                selectElement.SelectByValue(option);
+            }
         }
 
         // select all options which their text match to the action-rule regular-expression
@@ -131,5 +180,56 @@ namespace Gravity.Plugins.Actions.UiWeb
             }
         }
 #pragma warning restore
+
+        // JavaScript execution of select functionality for unsupported drivers.
+        private void JavaScriptSelect(ActionRule action, SelectElement selectElement)
+        {
+            // constants
+            var script =
+                "" + // setup preconditions and global values
+                $"var onAttribute = '{action.OnAttribute ?? string.Empty}';" +
+                $"var onValue = '{action.Argument ?? string.Empty}';" +
+                " var options = arguments[0].getElementsByTagName('option');" +
+                $"var isMultiple = {selectElement.IsMultiple.ToString().ToLower()};" +
+                "" + // set values for iteration
+                "var values = isMultiple ? onValue : [onValue];" +
+                "" + // by index
+                "if(onAttribute.toLowerCase() === 'index') {" +
+                "    for(i = 0; i < values.length; i++) {" +
+                "        index = parseInt(values[i]);" +
+                "        options[index].selected = true;" +
+                "    }" +
+                "}" +
+                "" + // by inner text
+                "if(onAttribute === '') {" +
+                "    for(i = 0; i < values.length; i++) {" +
+                "        for(j = 0; j < options.length; j++) {" +
+                "            if(options[j].innerText !== values[i]) {" +
+                "                continue;" +
+                "            }" +
+                "            options[j].selected = true;" +
+                "            break;" +
+                "        }" +
+                "    }" +
+                "}" +
+                "" + // by options values
+                "if(onAttribute.toLowerCase() === 'value') {" +
+                "    for(i = 0; i < values.length; i++) {" +
+                "        for(j = 0; j < options.length; j++) {" +
+                "            if(options[j].getAttribute('value') !== values[i]) {" +
+                "                continue;" +
+                "            }" +
+                "            options[j].selected = true;" +
+                "            break;" +
+                "         }" +
+                "    }" +
+                "}";
+
+            // web element to act on
+            var onElement = selectElement.WrappedElement;
+
+            // execute
+            ((IJavaScriptExecutor)WebDriver).ExecuteScript(script, onElement);
+        }
     }
 }

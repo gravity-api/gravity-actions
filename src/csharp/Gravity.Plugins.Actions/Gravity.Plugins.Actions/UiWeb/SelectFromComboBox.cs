@@ -12,9 +12,12 @@ using Gravity.Plugins.Base;
 using Gravity.Plugins.Contracts;
 using Gravity.Plugins.Extensions;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text.RegularExpressions;
 
@@ -118,7 +121,7 @@ namespace Gravity.Plugins.Actions.UiWeb
             }
 
             // multiple
-            foreach (var option in JsonConvert.DeserializeObject<string[]>(action.Argument))
+            foreach (var option in GetOptions(options: action.Argument))
             {
                 selectElement.SelectByText(option);
             }
@@ -136,7 +139,7 @@ namespace Gravity.Plugins.Actions.UiWeb
             }
 
             // multiple
-            foreach (var option in JsonConvert.DeserializeObject<string[]>(action.Argument))
+            foreach (var option in GetOptions(options: action.Argument))
             {
                 DoSelect01(option, selectElement);
             }
@@ -160,7 +163,7 @@ namespace Gravity.Plugins.Actions.UiWeb
             }
 
             // multiple
-            foreach (var option in JsonConvert.DeserializeObject<string[]>(action.Argument))
+            foreach (var option in GetOptions(options: action.Argument))
             {
                 selectElement.SelectByValue(option);
             }
@@ -230,6 +233,19 @@ namespace Gravity.Plugins.Actions.UiWeb
 
             // execute
             ((IJavaScriptExecutor)WebDriver).ExecuteScript(script, onElement);
+        }
+
+        // gets options array from argument
+        private IEnumerable<string> GetOptions(string options)
+        {
+            // single value
+            if (!options.IsJson())
+            {
+                return new[] { options };
+            }
+
+            // multiple values
+            return JsonConvert.DeserializeObject<string[]>(value: options);
         }
     }
 }

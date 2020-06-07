@@ -38,7 +38,7 @@ namespace Graivty.IntegrationTests.Suites.UiWeb
         }
 
         [Description(description: "P - [0209] - Select From Combo Box, Index, Single")]
-        [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.OSXMojaveSafari))]
+        [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.Capabilities))]
         public void T0209P(Context environment)
         {
             // execute
@@ -48,59 +48,88 @@ namespace Graivty.IntegrationTests.Suites.UiWeb
             Assert.IsTrue(actual);
         }
 
-        //[Description(description: "P - [0202] - Scroll, Top, Element, JS Argument")]
-        //[Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.CapabilitiesNoIeNoSafari))]
-        //public void T0202P(Context environment)
-        //{
-        //    // execute
-        //    var actual = new C0202().AddEnvironments(environment).Execute();
+        [Description(description: "P - [0210] - (A) Select From Combo Box, Text, Multiple, Single Value")]
+        [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.Capabilities))]
+        public void T0210A(Context environment)
+        {
+            // setup
+            environment.TestParams["argument"] = "Two";
 
-        //    // assertion
-        //    Assert.IsTrue(actual);
-        //}
+            // execute
+            var actual = new C0210().AddEnvironments(environment).Execute();
 
-        //[Description(description: "P - [0203] - Scroll, Left, Element, JS Argument")]
-        //[Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.CapabilitiesNoIeNoSafari))]
-        //public void T0203P(Context environment)
-        //{
-        //    // execute
-        //    var actual = new C0203().AddEnvironments(environment).Execute();
+            // assertion
+            Assert.IsTrue(actual);
+        }
 
-        //    // assertion
-        //    Assert.IsTrue(actual);
-        //}
+        [Description(description: "P - [0210] - (B) Select From Combo Box, Text, Multiple, Single Value")]
+        [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.Win10Chrome))]
+        public void T0210B(Context environment)
+        {
+            // setup
+            environment.TestParams["argument"] = "['Two']";
 
-        //[Description(description: "P - [0204] - Scroll, Top, Left, Element, JS Argument")]
-        //[Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.CapabilitiesNoIeNoSafari))]
-        //public void T0204P(Context environment)
-        //{
-        //    // execute
-        //    var actual = new C0204().AddEnvironments(environment).Execute();
+            // execute
+            var actual = new C0210().AddEnvironments(environment).Execute();
 
-        //    // assertion
-        //    Assert.IsTrue(actual);
-        //}
+            // assertion
+            Assert.IsTrue(actual);
+        }
 
-        //[Description(description: "P - [0205] - Scroll, Top, Left, Behavior, Element, JS Argument")]
-        //[Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.CapabilitiesNoIeNoSafari))]
-        //public void T0205P(Context environment)
-        //{
-        //    // execute
-        //    var actual = new C0205().AddEnvironments(environment).Execute();
+        [Description(description: "P - [0211] - (A) Select From Combo Box, Value, Multiple, Single Value")]
+        [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.Capabilities))]
+        public void T0211A(Context environment)
+        {
+            // setup
+            environment.TestParams["argument"] = "2";
 
-        //    // assertion
-        //    Assert.IsTrue(actual);
-        //}
+            // execute
+            var actual = new C0211().AddEnvironments(environment).Execute();
 
-        //[Description(description: "P - [0206] - Scroll, Top, Behavior, Page, JS Argument")]
-        //[Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.CapabilitiesNoIeNoSafari))]
-        //public void T0206P(Context environment)
-        //{
-        //    // execute
-        //    var actual = new C0206().AddEnvironments(environment).Execute();
+            // assertion
+            Assert.IsTrue(actual);
+        }
 
-        //    // assertion
-        //    Assert.IsTrue(actual);
-        //}
+        [Description(description: "P - [0211] - (B) Select From Combo Box, Value, Multiple, Single Value")]
+        [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.Win10Chrome))]
+        public void T0211B(Context environment)
+        {
+            // setup
+            environment.TestParams["argument"] = "['2']";
+
+            // execute
+            var actual = new C0211().AddEnvironments(environment).Execute();
+
+            // assertion
+            Assert.IsTrue(actual);
+        }
+
+        [Description(description: "P - [0212] - (A) Select From Combo Box, Index, Multiple, Single Value")]
+        [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.Capabilities))]
+        public void T0212A(Context environment)
+        {
+            // setup
+            environment.TestParams["argument"] = "1";
+
+            // execute
+            var actual = new C0212().AddEnvironments(environment).Execute();
+
+            // assertion
+            Assert.IsTrue(actual);
+        }
+
+        [Description(description: "P - [0212] - (B) Select From Combo Box, Value, Multiple, Single Value")]
+        [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.Win10Chrome))]
+        public void T0212B(Context environment)
+        {
+            // setup
+            environment.TestParams["argument"] = "['1']";
+
+            // execute
+            var actual = new C0212().AddEnvironments(environment).Execute();
+
+            // assertion
+            Assert.IsTrue(actual);
+        }
     }
 }

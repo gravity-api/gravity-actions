@@ -279,7 +279,7 @@ namespace Gravity.IntegrationTests.Base
             var excluded = new[] { "EntityIndex" };
 
             // get all entities
-            var entities = responses.SelectMany(i=>i.Extractions).SelectMany(i => i.Entities);
+            var entities = responses.SelectMany(i => i.Extractions).SelectMany(i => i.Entities);
             var entries = entities.SelectMany(i => i.Content).Where(i => !excluded.Contains(i.Key));
 
             // assertion, add +1 to fields count to normalize automatic fields.
@@ -304,7 +304,7 @@ namespace Gravity.IntegrationTests.Base
             var excluded = new[] { "EntityIndex" };
 
             // get all entities
-            var entities = responses.SelectMany(i=>i.Extractions).SelectMany(i => i.Entities);
+            var entities = responses.SelectMany(i => i.Extractions).SelectMany(i => i.Entities);
             var entries = entities.SelectMany(i => i.Content).Where(i => !excluded.Contains(i.Key));
 
             // assertion, add +1 to fields count to normalize automatic fields.
@@ -342,6 +342,34 @@ namespace Gravity.IntegrationTests.Base
             OnElement = "select_menu",
             Locator = LocatorsList.Id,
             OnAttribute = "value"
+        };
+
+        /// <summary>
+        /// Gets an assert <see cref="ActionRule"/> for combo box (on UiControls page).
+        /// </summary>
+        /// <param name="expectedPattern">Expected pattern (regular expression) to assert against.</param>
+        /// <param name="option">Selected option index to assert against</param>
+        /// <returns>Assert <see cref="ActionRule"/>.</returns>
+        public static ActionRule AssertMultipleComboBox(string expectedPattern, int option) => new ActionRule
+        {
+            Action = PluginsList.Assert,
+            Argument = "{{$ --attribute --match:" + expectedPattern + "}}",
+            OnElement = $"#select_menu_multiple > option:checked:nth-child({option})",
+            Locator = LocatorsList.CssSelector,
+            OnAttribute = "value"
+        };
+
+        /// <summary>
+        /// Gets an assert <see cref="ActionRule"/> for combo box (on UiControls page).
+        /// </summary>
+        /// <param name="count">Count expected result.</param>
+        /// <returns>Assert <see cref="ActionRule"/>.</returns>
+        public static ActionRule AssertMultipleComboBoxSelectedCount(int count) => new ActionRule
+        {
+            Action = PluginsList.Assert,
+            Argument = "{{$ --count --eq:" + count + "}}",
+            OnElement = "#select_menu_multiple > option:checked",
+            Locator = LocatorsList.CssSelector
         };
     }
 }

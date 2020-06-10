@@ -1,28 +1,27 @@
 ﻿#pragma warning disable S125
 /*
 * TEST SCENARIO (Rhino)
-* [test-id] 0210
-* [test-scenario] - Select From Combo Box, Text, Multiple, Single Value
+* [test-id] 0213
+* [test-scenario] - Select From Combo Box, Text, Multiple, Multiple Values
 * 
 * [test-actions]
 * 1. navigate to {https://gravitymvctestapplication.azurewebsites.net/uicontrols}
-* 2. scroll {1000}
-* 3. Select From Combo Box {Two} on {select_menu_multiple} using {id}
-* 4. close browser
+* 2. Select From Combo Box {['One','Two']} on {select_menu_multiple} using {id}
+* 3. close browser
 * 
 * [test-expected-results]
-* [2] verify {count} on {#select_menu_multiple > option:checked} using {css selector} equal {1}
-* [3] verify {attribute} on {#select_menu_multiple > option:checked:nth-child(2)} from {value} using {css selector} match {2}
+* [2] verify {attribute} on {select_menu_multiple} from {value} using {id} match {2}
 */
 #pragma warning restore
 using Gravity.IntegrationTests.Base;
 using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Contracts;
+
 using System.Collections.Generic;
 
 namespace Graivty.IntegrationTests.Cases.UiWeb.SelectFromComboBoxScenarios
 {
-    public class C0210 : TestCase
+    public class C0213 : TestCase
     {
         // gets the actions collection of this test
         public override IEnumerable<ActionRule> OnActions(Context environment)
@@ -39,11 +38,10 @@ namespace Graivty.IntegrationTests.Cases.UiWeb.SelectFromComboBoxScenarios
                 {
                     Action = PluginsList.SelectFromComboBox,
                     OnElement = "select_menu_multiple",
-                    Argument = $"{environment.TestParams["argument"]}",
+                    Argument = "['One', 'Two']",
                     Locator = LocatorsList.Id
                 },
-                SharedSteps.AssertMultipleComboBoxSelectedCount(count: 1),
-                SharedSteps.AssertMultipleComboBox(expectedPattern: "2", option: 2)
+                SharedSteps.AssertMultipleComboBoxSelectedCount(count: 2)
             };
         }
     }

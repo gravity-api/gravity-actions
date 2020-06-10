@@ -7,7 +7,7 @@ using Graivty.IntegrationTests.Cases.UiMobile.LongSwipeScenarios;
 using Gravity.IntegrationTests.Base;
 using Gravity.IntegrationTests.Providers;
 using NUnit.Framework;
-using System.Collections.Generic;
+
 using DescriptionAttribute = System.ComponentModel.DescriptionAttribute;
 
 namespace Graivty.IntegrationTests.Suites.UiMobile

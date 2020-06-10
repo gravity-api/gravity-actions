@@ -6,7 +6,7 @@
 * 
 * [test-actions]
 * 1. navigate to {https://gravitymvctestapplication.azurewebsites.net/uicontrols}
-* 2. Select From Combo Box {Two}
+* 2. select from combo box {Two} on {select_menu} using {id}
 * 3. close browser
 * 
 * [test-expected-results]

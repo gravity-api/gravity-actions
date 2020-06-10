@@ -131,5 +131,49 @@ namespace Graivty.IntegrationTests.Suites.UiWeb
             // assertion
             Assert.IsTrue(actual);
         }
+
+        [Description(description: "P - [0213] - Select From Combo Box, Text, Multiple, Multiple Values")]
+        [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.Capabilities))]
+        public void T0213(Context environment)
+        {
+            // execute
+            var actual = new C0213().AddEnvironments(environment).Execute();
+
+            // assertion
+            Assert.IsTrue(actual);
+        }
+
+        [Description(description: "P - [0214] - Select From Combo Box, Value, Multiple, Multiple Values")]
+        [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.Capabilities))]
+        public void T0214(Context environment)
+        {
+            // execute
+            var actual = new C0214().AddEnvironments(environment).Execute();
+
+            // assertion
+            Assert.IsTrue(actual);
+        }
+
+        [Description(description: "P - [0215] - Select From Combo Box, Index, Multiple, Multiple Values")]
+        [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.Capabilities))]
+        public void T0215(Context environment)
+        {
+            // execute
+            var actual = new C0215().AddEnvironments(environment).Execute();
+
+            // assertion
+            Assert.IsTrue(actual);
+        }
+
+        [Description(description: "P - [0216] - Select From Combo Box, Index, Multiple, All Values")]
+        [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.Capabilities))]
+        public void T0216(Context environment)
+        {
+            // execute
+            var actual = new C0216().AddEnvironments(environment).Execute();
+
+            // assertion
+            Assert.IsTrue(actual);
+        }
     }
 }

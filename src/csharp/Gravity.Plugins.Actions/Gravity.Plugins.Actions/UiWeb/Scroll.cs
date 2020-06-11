@@ -139,7 +139,7 @@ namespace Gravity.Plugins.Actions.UiWeb
             }
 
             // default
-            return $"on.scroll({arguments[Left]}, {arguments[Top]})";
+            return $"on.scroll({arguments[Top]}, {arguments[Left]})";
         }
     }
 }

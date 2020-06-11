@@ -177,7 +177,7 @@ namespace Gravity.Plugins.Actions.UiWeb
             {
                 if (!Regex.IsMatch(option.Text, action.RegularExpression))
                 {
-                    return;
+                    continue;
                 }
                 ((IJavaScriptExecutor)WebDriver).ExecuteScript("arguments[0].selected=true;", option);
             }

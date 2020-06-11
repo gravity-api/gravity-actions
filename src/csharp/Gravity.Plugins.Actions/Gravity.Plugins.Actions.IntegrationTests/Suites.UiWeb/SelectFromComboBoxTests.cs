@@ -122,9 +122,6 @@ namespace Graivty.IntegrationTests.Suites.UiWeb
         [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.Win10Chrome))]
         public void T0212B(Context environment)
         {
-            // setup
-            environment.TestParams["argument"] = "['1']";
-
             // execute
             var actual = new C0212().AddEnvironments(environment).Execute();
 
@@ -171,6 +168,17 @@ namespace Graivty.IntegrationTests.Suites.UiWeb
         {
             // execute
             var actual = new C0216().AddEnvironments(environment).Execute();
+
+            // assertion
+            Assert.IsTrue(actual);
+        }
+
+        [Description(description: "P - [0217] - Select From Combo Box, Index, Multiple, All Values, Regular Expression")]
+        [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.Capabilities))]
+        public void T0217(Context environment)
+        {
+            // execute
+            var actual = new C0217().AddEnvironments(environment).Execute();
 
             // assertion
             Assert.IsTrue(actual);

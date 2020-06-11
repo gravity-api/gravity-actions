@@ -1,55 +1,81 @@
 {
   "cliArguments": {
-    "all": "Tells the engine to select all options (if this is a multi selection box)."
+    "all": "Select all values in the combo box (combo must be of type multiple)."
   },
   "description": "Provides a convenience method for manipulating selections of options in an HTML select element. This action supports different selection options as well as multiple selection based on a pattern.",
   "examples": [
     {
-      "description": "Select an option by the value.",
-      "literalExample": "select from combo box on {//select} from {value} {4}",
+      "description": "Selects a single value from select_menu combo box, by item text.",
+      "literalExample": "select from combo box {Two} on {select_menu} using {id}",
       "actionExample": {
         "action": "SelectFromComboBox",
-        "argument": "4",
-        "onElement": "//select",
+        "argument": "Two",
+        "onElement": "select_menu",
+        "locator": "Id"
+      }
+    },
+    {
+      "description": "Selects a single value from select_menu combo box, by item value.",
+      "literalExample": "select from combo box {2} on {select_menu} using {id} from {value}",
+      "actionExample": {
+        "action": "SelectFromComboBox",
+        "argument": "2",
+        "onElement": "select_menu",
+        "locator": "Id",
         "onAttribute": "value"
       }
     },
     {
-      "description": "Select the option by the index, as determined by the [index] attribute of the element.",
-      "literalExample": "select from combo box on {//select} from {index} {1}",
+      "description": "Selects a single value from select_menu combo box, by item index.",
+      "literalExample": "select from combo box {2} on {select_menu} using {id} from {index}",
       "actionExample": {
         "action": "SelectFromComboBox",
-        "argument": "1",
-        "onElement": "//select",
+        "argument": "2",
+        "onElement": "select_menu",
+        "locator": "Id",
         "onAttribute": "index"
       }
     },
     {
-      "description": "Select all options by the text displayed (exact match only).",
-      "literalExample": "select from combo box {Economics} on {//select}",
+      "description": "Selects multiple values from select_menu_multiple combo box, by item text.",
+      "literalExample": "select from combo box {['One', 'Two']} on {select_menu_multiple} using {id}",
       "actionExample": {
         "action": "SelectFromComboBox",
-        "argument": "Economics",
-        "onElement": "//select"
+        "argument": "['One', 'Two']",
+        "onElement": "select_menu_multiple",
+        "locator": "Id"
       }
     },
     {
-      "description": "Select all options (if this is a multi selection box).",
-      "literalExample": "select from combo box {{$ --all}} on {//select}",
+      "description": "Selects multiple values from select_menu_multiple combo box, by item value.",
+      "literalExample": "select from combo box {['1', '2']} on {select_menu_multiple} using {id} from {value}",
       "actionExample": {
         "action": "SelectFromComboBox",
-        "argument": "{{$ --all}}",
-        "onElement": "//select"
+        "argument": "['1', '2']",
+        "onElement": "select_menu_multiple",
+        "locator": "Id",
+        "onAttribute": "value"
       }
     },
     {
-      "description": "Select all options which their text can be matched with the given pattern.",
-      "literalExample": "select from combo box {{$ --all}} on {//select} filter with {Eco} pattern.",
+      "description": "Selects multiple values from select_menu_multiple combo box, by item index.",
+      "literalExample": "select from combo box {['1', '2']} on {select_menu_multiple} using {id} from {index}",
+      "actionExample": {
+        "action": "SelectFromComboBox",
+        "argument": "['1', '2']",
+        "onElement": "select_menu_multiple",
+        "locator": "Id",
+        "onAttribute": "index"
+      }
+    },
+    {
+      "description": "Selects all values from select_menu_multiple combo box.",
+      "literalExample": "select from combo box {{$ --all}} on {select_menu_multiple} using {id}",
       "actionExample": {
         "action": "SelectFromComboBox",
         "argument": "{{$ --all}}",
-        "onElement": "//select",
-        "regularExpression": "Eco"
+        "onElement": "select_menu_multiple",
+        "locator": "Id"
       }
     }
   ],

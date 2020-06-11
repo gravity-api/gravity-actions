@@ -10,7 +10,7 @@
 * 3. close browser
 * 
 * [test-expected-results]
-* [2] verify {attribute} on {select_menu_multiple} from {value} using {id} match {2}
+* [2] verify {attribute} on {select_menu_multiple} from {value} using {id} match {3}
 */
 #pragma warning restore
 using Gravity.IntegrationTests.Base;

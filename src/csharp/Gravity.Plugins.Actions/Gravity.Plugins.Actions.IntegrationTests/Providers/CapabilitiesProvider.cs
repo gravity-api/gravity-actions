@@ -5,9 +5,7 @@
  */
 using Gravity.Abstraction.Contracts;
 using Gravity.IntegrationTests.Base;
-using Newtonsoft.Json;
 using System.Collections;
-using System.Collections.Generic;
 
 namespace Gravity.IntegrationTests.Providers
 {
@@ -115,23 +113,28 @@ namespace Gravity.IntegrationTests.Providers
         private static IEnumerable GetCapabilitiesNoIe11NoIos()
         {
             // Windows 10
-            yield return Get(driver: Driver.Chrome, capabilities: Provider.Windows10LatestBrowser);
-            yield return Get(driver: Driver.Edge, capabilities: Provider.Windows10LatestBrowser);
-            yield return Get(driver: Driver.Firefox, capabilities: Provider.Windows10LatestBrowser);
+            yield return Provider.Get(driver: Driver.Chrome, capabilities: Provider.Windows10LatestBrowser);
+            yield return Provider.Get(driver: Driver.Edge, capabilities: Provider.Windows10LatestBrowser);
+            yield return Provider.Get(driver: Driver.Firefox, capabilities: Provider.Windows10LatestBrowser);
+            //yield return Provider.Get(driver: Driver.InternetExplorer, capabilities: Provider.Windows10LatestBrowser);
 
             // Windows 7
-            yield return Get(driver: Driver.InternetExplorer, capabilities: Provider.Windows7IE10);
+            yield return Provider.Get(driver: Driver.InternetExplorer, capabilities: Provider.Windows7IE10);
 
             // OSX: Mojave
-            yield return Get(driver: Driver.Safari, capabilities: Provider.OSXMojaveSafari);
+            yield return Provider.Get(driver: Driver.Safari, capabilities: Provider.OSXMojaveSafari);
 
             // OSX: Catalina
-            yield return Get(driver: Driver.Chrome, capabilities: Provider.OSXCatalinaLatestBrowser);
-            yield return Get(driver: Driver.Edge, capabilities: Provider.OSXCatalinaLatestBrowser);
-            yield return Get(driver: Driver.Firefox, capabilities: Provider.OSXCatalinaLatestBrowser);
+            yield return Provider.Get(driver: Driver.Chrome, capabilities: Provider.OSXCatalinaLatestBrowser);
+            yield return Provider.Get(driver: Driver.Edge, capabilities: Provider.OSXCatalinaLatestBrowser);
+            yield return Provider.Get(driver: Driver.Firefox, capabilities: Provider.OSXCatalinaLatestBrowser);
 
             // Android
-            yield return Get(driver: Driver.Android, capabilities: Provider.AndroidChrome);
+            yield return Provider.Get(driver: Driver.Android, capabilities: Provider.AndroidChrome);
+
+            // TODO: return when iOS is stable on browser stack.
+            // iOS
+            // yield return Provider.Get(driver: Driver.iOS, capabilities: Provider.iPhoneSafari);
         }
 
         private static IEnumerable GetCapabilitiesNoIos()

@@ -76,6 +76,7 @@ namespace Gravity.UnitTests.UiWeb
 
         [DataTestMethod]
         [DataRow("{'onElement':'//select-element','argument':'{{$ --all}}'}")]
+        [DataRow("{'onElement':'//select-element','argument':'{{$ --all}}','regularExpression':'T'}")]
         public void SelectFromComboBoxAllPositive(string actionRule)
         {
             // execute

@@ -1,16 +1,15 @@
 ﻿#pragma warning disable S125
 /*
 * TEST SCENARIO (Rhino)
-* [test-id] 0212
-* [test-scenario] - Select From Combo Box, Index, Multiple, Single Value
+* [test-id] 0215
+* [test-scenario] - Select From Combo Box, Index, Multiple, All Values, Regular Expression
 * 
 * [test-actions]
 * 1. navigate to {https://gravitymvctestapplication.azurewebsites.net/uicontrols}
-* 2. Select From Combo Box {1} on {select_menu_multiple} using {id} from {index}
+* 2. Select From Combo Box {{$ --all}} on {select_menu_multiple} using {id} filter {T}
 * 3. close browser
 * 
 * [test-expected-results]
-* [1] verify {attribute} on {select_menu_multiple} from {value} using {id} match {Open this select menu}
 * [2] verify {attribute} on {select_menu_multiple} from {value} using {id} match {2}
 */
 #pragma warning restore
@@ -21,7 +20,7 @@ using System.Collections.Generic;
 
 namespace Graivty.IntegrationTests.Cases.UiWeb.SelectFromComboBoxScenarios
 {
-    public class C0212 : TestCase
+    public class C0217 : TestCase
     {
         // gets the actions collection of this test
         public override IEnumerable<ActionRule> OnActions(Context environment)
@@ -38,12 +37,11 @@ namespace Graivty.IntegrationTests.Cases.UiWeb.SelectFromComboBoxScenarios
                 {
                     Action = PluginsList.SelectFromComboBox,
                     OnElement = "select_menu_multiple",
-                    OnAttribute = "index",
-                    Argument = "['1']",
-                    Locator = LocatorsList.Id
+                    Argument = "{{$ --all}}",
+                    Locator = LocatorsList.Id,
+                    RegularExpression = "T"
                 },
-                SharedSteps.AssertMultipleComboBoxSelectedCount(count: 1),
-                SharedSteps.AssertMultipleComboBox(expectedPattern: "2", option: 2)
+                SharedSteps.AssertMultipleComboBoxSelectedCount(count: 2)
             };
         }
     }

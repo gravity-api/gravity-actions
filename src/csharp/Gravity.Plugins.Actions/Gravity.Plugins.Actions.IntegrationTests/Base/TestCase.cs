@@ -16,6 +16,7 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Threading;
 
 using Assert = NUnit.Framework.Assert;
 using DescriptionAttribute = System.ComponentModel.DescriptionAttribute;
@@ -36,6 +37,8 @@ namespace Gravity.IntegrationTests.Base
         private ConcurrentBag<Context> environments;
         private int attempts =
             TestContext.Parameters.Get(name: "Integration.NumberOfAttempts", defaultValue: 1);
+        private readonly int attemptsInterval =
+            TestContext.Parameters.Get(name: "Integration.AttemptsInterval", defaultValue: 15000);
 
         #region *** Test: Properties    ***
         /// <summary>
@@ -158,6 +161,7 @@ namespace Gravity.IntegrationTests.Base
             catch (Exception e) when (e != null)
             {
                 TestContext.WriteLine($"Failed to execute [{GetType().Name}] iteration; Reason [{e}]");
+                Thread.Sleep(attemptsInterval);
             }
             finally
             {

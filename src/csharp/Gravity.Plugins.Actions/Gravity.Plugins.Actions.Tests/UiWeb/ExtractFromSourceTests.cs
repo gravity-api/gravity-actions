@@ -414,6 +414,7 @@ namespace Gravity.UnitTests.UiWeb
         #region *** extract into SQL     ***
         // 0: extracts inner text of all root elements and save it to SQL Server.
         //    the saving will be done when the extraction rule execution completed.
+        [Ignore(message: "MSTest Bug. Not loading settings. Consider migration to NUnit")]
         [DataTestMethod]
         [DataRow("" +
             "{" +
@@ -445,6 +446,7 @@ namespace Gravity.UnitTests.UiWeb
 
         // 0: extracts inner text of all root elements and save it to SQL Server.
         //    the saving will be done when the content entry execution completed.
+        [Ignore(message: "MSTest Bug. Not loading settings. Consider migration to NUnit")]
         [DataTestMethod]
         [DataRow("" +
             "{" +
@@ -508,6 +510,7 @@ namespace Gravity.UnitTests.UiWeb
 
         // 0: extracts inner text of all root elements and save it to SQL Server.
         //    the saving will be done when the extraction rule execution completed.
+        [Ignore(message: "MSTest Bug. Not loading settings. Consider migration to NUnit")]
         [DataTestMethod]
         [DataRow("" +
             "{" +

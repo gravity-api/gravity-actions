@@ -152,7 +152,7 @@ namespace Graivty.IntegrationTests.Suites.UiWeb
         }
 
         [Description(description: "P - [0215] - Select From Combo Box, Index, Multiple, Multiple Values")]
-        [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.Capabilities))]
+        [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.OSXMojaveSafari))]
         public void T0215(Context environment)
         {
             // execute

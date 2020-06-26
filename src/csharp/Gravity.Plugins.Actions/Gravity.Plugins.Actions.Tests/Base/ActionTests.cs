@@ -9,11 +9,15 @@ using Gravity.Plugins.Base;
 using Gravity.Plugins.Contracts;
 using Gravity.Plugins.Engine;
 using Gravity.Plugins.Extensions;
+
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+
 using Newtonsoft.Json;
+
 using OpenQA.Selenium;
 using OpenQA.Selenium.Mock;
 using OpenQA.Selenium.Mock.Extensions;
+
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -288,7 +292,7 @@ namespace Gravity.UnitTests.Base
             {
                 if (e.InnerException != null)
                 {
-                    throw e.InnerException;
+                    throw e.GetFirstNonReflection();
                 }
                 throw;
             }

@@ -172,11 +172,11 @@ namespace Gravity.IntegrationTests.Base
         /// </summary>
         /// <param name="expectedPattern">Expected pattern (regular expression) to assert against.</param>
         /// <returns>Assert <see cref="ActionRule"/>.</returns>
-        public static ActionRule AssertInputEnabledValue(string expectedPattern) => new ActionRule
+        public static ActionRule AssertInputEnabledValue(string expectedPattern, string id = "input_enabled") => new ActionRule
         {
             Action = PluginsList.Assert,
             Argument = "{{$ --attribute --match:" + expectedPattern + "}}",
-            OnElement = "input_enabled",
+            OnElement = id,
             Locator = LocatorsList.Id,
             OnAttribute = "value"
         };

@@ -55,7 +55,7 @@ namespace Gravity.Plugins.Actions.UiCommon
         /// Clears the element value using <backspace> key, performing the clearing using real keyboard actions.
         /// This action is not supported on [mobile-native] applications.
         /// </summary>
-        public const string ForceClear = "forceClear";
+        public const string ForceClear = "force_clear";
 
         /// <summary>
         /// The interval time between each character typing.
@@ -134,11 +134,15 @@ namespace Gravity.Plugins.Actions.UiCommon
             // initialize CLI factory
             var args = CliFactory.Parse(action.Argument);
 
-            // initialize arguments (if needed)
-            if (!args.ContainsKey(Keystrokes))
+            // setup conditions
+            if (!CliFactory.CliCompliant)
             {
                 args[Keystrokes] = action.Argument;
+                return args;
             }
+
+            // setup keys
+            args[Keystrokes] = args.ContainsKey(Keystrokes) ? args[Keystrokes] : string.Empty;
             return args;
         }
 
@@ -155,6 +159,7 @@ namespace Gravity.Plugins.Actions.UiCommon
             var isInterval = !isDown && arguments.ContainsKey(Interval);
             var isUiautomator2 = driverParams.Values.Any(i => !Regex.IsMatch($"{i}", "uiautomator1", RegexOptions.IgnoreCase));
             var isAndroid = isUiautomator2 && (WebDriver.IsAppiumDriver());
+            var isKeys = !isAndroid && !isInterval && arguments.ContainsKey(Keystrokes);
 
             return new Dictionary<string, bool>
             {
@@ -162,7 +167,8 @@ namespace Gravity.Plugins.Actions.UiCommon
                 [nameof(isForceClear)] = isForceClear,
                 [nameof(isDown)] = isDown,
                 [nameof(isInterval)] = isInterval,
-                [nameof(isAndroid)] = isAndroid
+                [nameof(isAndroid)] = isAndroid,
+                [nameof(isKeys)] = isKeys
             };
         }
 
@@ -271,6 +277,9 @@ namespace Gravity.Plugins.Actions.UiCommon
                 focusedElement.SendKeys(arguments[Keystrokes]);
             }
         }
+
+        [Description("isKeys")]
+        private void DoKeys(IWebElement element) => element?.SendKeys(arguments["keys"]);
 #pragma warning restore
     }
 }

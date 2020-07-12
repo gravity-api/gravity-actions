@@ -14,7 +14,13 @@ namespace Gravity.IntegrationTests.Base
     {
         #region *** constants      ***
         // Windows
-        public const string Windows10LatestBrowser = "{'bstack:options':{'os':'Windows','os_version':'10'}}";
+        public const string Windows10LatestBrowser =
+            "{" +
+            "    'bstack:options': {" +
+            "        'os':'Windows'," +
+            "        'os_version':'10'" +
+            "    }" +
+            "}";
         public const string Windows10Edge80 = "{'bstack:options':{'os':'Windows','os_version':'10'}}";
         public const string Windows7LatestBrowser = "{'bstack:options':{'os':'Windows','os_version':'7'}}";
         public const string Windows7IE10 = "{'bstack:options':{'os':'Windows','os_version':'7','browser_version':'10.0'}}";
@@ -72,7 +78,6 @@ namespace Gravity.IntegrationTests.Base
             "        'platformVersion':'13'," +
             "        'os_version':'13'," +
             "        'device':'iPhone XS'," +
-            "        'safariAllowPopups': true," +
             "        'real_mobile':'true'" +
             "    }" +
             "}";

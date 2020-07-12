@@ -12,6 +12,7 @@ using NUnit.Framework;
 
 using DescriptionAttribute = System.ComponentModel.DescriptionAttribute;
 
+#pragma warning disable S4144
 namespace Graivty.IntegrationTests.Suites.UiCommon
 {
     [TestFixture]
@@ -71,5 +72,70 @@ namespace Graivty.IntegrationTests.Suites.UiCommon
             // assertion
             Assert.IsTrue(actual);
         }
+
+        [Description(description: "P - [0223] - Send Keys, Keys, Clear, Interval")]
+        [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.Capabilities))]
+        public void T0223P(Context environment)
+        {
+            // execute
+            var actual = new C0223().AddEnvironments(environment).Execute();
+
+            // assertion
+            Assert.IsTrue(actual);
+        }
+
+        #region *** T0224 ***
+        [Description(description: "P - [0224] - Send Keys, Combination, Control+A, Windows")]
+        [Test]
+        [TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.Win10Chrome))]
+        [TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.Win10Firefox))]
+        [TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.Win7InternetExplorer))]
+        public void T0224P(Context environment)
+        {
+            // setup
+            environment.TestParams["downKey"] = "control";
+            environment.TestParams["key"] = "a";
+
+            // execute
+            var actual = new C0224().AddEnvironments(environment).Execute();
+
+            // assertion
+            Assert.IsTrue(actual);
+        }
+
+        [Description(description: "P - [0224] - Send Keys, Combination, Control+A, OSX")]
+        [Test]
+        [TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.OSXCatalinaFirefox))]
+        [TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.OSXMojaveSafari))]
+        public void T0224M(Context environment)
+        {
+            // setup
+            environment.TestParams["downKey"] = "command";
+            environment.TestParams["key"] = "A";
+
+            // execute
+            var actual = new C0224().AddEnvironments(environment).Execute();
+
+            // assertion
+            Assert.IsTrue(actual);
+        }
+
+        // TODO: move to 224P when stable
+        [Ignore("Not supported or not working properly for this platform. Check again when new WebDriver version is available.")]
+        [Description(description: "P - [0224] - Send Keys, Combination, Control+A")]
+        [Test]
+        [TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.OSXCatalinaChrome))]
+        [TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.Win10Edge))]
+        [TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.Win10InternetExplorer))]
+        public void T0224N(Context environment)
+        {
+            // execute
+            var actual = new C0224().AddEnvironments(environment).Execute();
+
+            // assertion
+            Assert.IsTrue(actual);
+        }
+        #endregion
     }
 }
+#pragma warning restore

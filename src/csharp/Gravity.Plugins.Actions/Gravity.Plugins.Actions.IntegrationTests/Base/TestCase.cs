@@ -307,6 +307,11 @@ namespace Gravity.IntegrationTests.Base
             // setup: from user
             var fromUser = (IDictionary<string, object>)environment.TestParams["capabilities"];
 
+            // set selenium capabilities
+            var capabilities = fromUser
+                .Where(i => !i.Key.Equals("bstack:options", StringComparison.OrdinalIgnoreCase))
+                .ToDictionary(i => i.Key, i => i.Value);
+
             // exit conditions
             if (!fromUser.ContainsKey("bstack:options"))
             {
@@ -314,14 +319,12 @@ namespace Gravity.IntegrationTests.Base
             }
 
             // setup: from settings
-            var capabilities = new Dictionary<string, object>
-            {
-                ["resolution"] = "1920x1080",
-                ["project"] = $"{environment.SystemParams["Project.Name"]}",
-                ["build"] = $"{environment.SystemParams["Build.Number"]}",
-                ["name"] = GetTestName(),
-                ["browserstack.ie.enablePopups"] = true
-            };
+            capabilities["resolution"] = "1920x1080";
+            capabilities["project"] = $"{environment.SystemParams["Project.Name"]}";
+            capabilities["build"] = $"{environment.SystemParams["Build.Number"]}";
+            capabilities["name"] = GetTestName();
+            capabilities["browserstack.ie.enablePopups"] = true;
+
             foreach (var capability in ((JObject)fromUser["bstack:options"]).ToObject<IDictionary<string, object>>())
             {
                 capabilities[capability.Key] = capability.Value;

@@ -9,6 +9,8 @@ using Gravity.Plugins.Base;
 using Gravity.Plugins.Contracts;
 using OpenQA.Selenium;
 
+using System;
+
 namespace Gravity.Plugins.Actions.UiCommon
 {
     [Plugin(
@@ -50,6 +52,11 @@ namespace Gravity.Plugins.Actions.UiCommon
         // execute action routine
         private void DoAction(ActionRule action, IWebElement element)
         {
+            // constants
+            const string fallbackScript =
+                "var rect = arguments[0].getBoundingClientRect(); " +
+                "window.scroll(rect.left, rect.top);";
+
             // get element
             var onElement = this.ConditionalGetElement(element, action);
 
@@ -57,7 +64,14 @@ namespace Gravity.Plugins.Actions.UiCommon
             var actions = new OpenQA.Selenium.Interactions.Actions(WebDriver);
 
             // move to element
-            actions.MoveToElement(onElement).Build().Perform();
+            try
+            {
+                actions.MoveToElement(onElement).Build().Perform();
+            }
+            catch (Exception e) when (e is WebDriverException)
+            {
+                ((IJavaScriptExecutor)WebDriver).ExecuteScript(script: fallbackScript, args: element);
+            }
         }
     }
 }

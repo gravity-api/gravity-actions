@@ -87,9 +87,8 @@ namespace Gravity.IntegrationTests.Providers
             // Android
             yield return Provider.Get(driver: Driver.Android, capabilities: Provider.AndroidChrome);
 
-            // TODO: return when iOS is stable on browser stack.
             // iOS
-            // yield return Provider.Get(driver: Driver.iOS, capabilities: Provider.iPhoneSafari);
+            yield return Provider.Get(driver: Driver.iOS, capabilities: Provider.iPhoneSafari);
         }
 
         private static IEnumerable GetCapabilitiesNoEdgeNoSafari()
@@ -116,7 +115,6 @@ namespace Gravity.IntegrationTests.Providers
             yield return Provider.Get(driver: Driver.Chrome, capabilities: Provider.Windows10LatestBrowser);
             yield return Provider.Get(driver: Driver.Edge, capabilities: Provider.Windows10LatestBrowser);
             yield return Provider.Get(driver: Driver.Firefox, capabilities: Provider.Windows10LatestBrowser);
-            //yield return Provider.Get(driver: Driver.InternetExplorer, capabilities: Provider.Windows10LatestBrowser);
 
             // Windows 7
             yield return Provider.Get(driver: Driver.InternetExplorer, capabilities: Provider.Windows7IE10);
@@ -131,10 +129,6 @@ namespace Gravity.IntegrationTests.Providers
 
             // Android
             yield return Provider.Get(driver: Driver.Android, capabilities: Provider.AndroidChrome);
-
-            // TODO: return when iOS is stable on browser stack.
-            // iOS
-            // yield return Provider.Get(driver: Driver.iOS, capabilities: Provider.iPhoneSafari);
         }
 
         private static IEnumerable GetCapabilitiesNoIos()

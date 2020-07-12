@@ -1,6 +1,9 @@
 ﻿/*
  * CHANGE LOG - keep only last 5 threads
  * 
+ * 2020-07-01
+ *    - modify: re-factor
+ *    
  * 2020-01-19
  *    -    fix: bug - default action did not send keys from arguments[Keystrokes]
  * 
@@ -23,14 +26,13 @@ using Gravity.Plugins.Actions.Extensions;
 using Gravity.Plugins.Attributes;
 using Gravity.Plugins.Base;
 using Gravity.Plugins.Contracts;
-using Gravity.Plugins.Extensions;
+
+using Newtonsoft.Json;
+
 using OpenQA.Selenium;
 using OpenQA.Selenium.Extensions;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Threading;
 
@@ -73,9 +75,6 @@ namespace Gravity.Plugins.Actions.UiCommon
         public const string Down = "down";
         #endregion
 
-        // members: state
-        private IDictionary<string, string> arguments;
-
         #region *** constructors ***
         /// <summary>
         /// Creates a new instance of this plugin.
@@ -109,27 +108,18 @@ namespace Gravity.Plugins.Actions.UiCommon
         // execute action routine
         private void DoAction(ActionRule action, IWebElement element)
         {
-            // setup            
-            arguments = SetArguments(action);
-            var conditions = SetConditions().Where(i => i.Value);
-            var regex = conditions.Any() ? string.Join("|", conditions.Select(i => i.Key)) : string.Empty;
+            // setup
             var onElement = this.ConditionalGetElement(element, action);
+            var arguments = GetArguments(action);
 
-            // execute: default
-            if (string.IsNullOrEmpty(regex))
-            {
-                onElement.SendKeys(arguments[Keystrokes]);
-                return;
-            }
+            // clear (will only clear if needed)
+            DoClear(onElement, arguments);
 
-            foreach (var method in GetType().GetMethodsByDescription(regex))
-            {
-                DoActionIteration(method, element: onElement);
-            }
+            // send keys routine
+            DoSendKeys(element: onElement, arguments);
         }
 
-        // populate action arguments based on action rule or CLI
-        private IDictionary<string, string> SetArguments(ActionRule action)
+        private IDictionary<string, string> GetArguments(ActionRule action)
         {
             // initialize CLI factory
             var args = CliFactory.Parse(action.Argument);
@@ -146,53 +136,27 @@ namespace Gravity.Plugins.Actions.UiCommon
             return args;
         }
 
-        // setup the different conditions for invoking SendKeys scenarios
-        private IDictionary<string, bool> SetConditions()
-        {
-            // setup
-            var driverParams = Automation.DriverParams ?? new Dictionary<string, object>();
-
-            // setup conditions
-            var isClear = arguments.ContainsKey(Clear);
-            var isForceClear = !isClear && arguments.ContainsKey(ForceClear);
-            var isDown = arguments.ContainsKey(Down);
-            var isInterval = !isDown && arguments.ContainsKey(Interval);
-            var isUiautomator2 = driverParams.Values.Any(i => !Regex.IsMatch($"{i}", "uiautomator1", RegexOptions.IgnoreCase));
-            var isAndroid = isUiautomator2 && (WebDriver.IsAppiumDriver());
-            var isKeys = !isAndroid && !isInterval && arguments.ContainsKey(Keystrokes);
-
-            return new Dictionary<string, bool>
-            {
-                [nameof(isClear)] = isClear,
-                [nameof(isForceClear)] = isForceClear,
-                [nameof(isDown)] = isDown,
-                [nameof(isInterval)] = isInterval,
-                [nameof(isAndroid)] = isAndroid,
-                [nameof(isKeys)] = isKeys
-            };
-        }
-
-        // executes a single send keys method
-        private void DoActionIteration(MethodInfo method, IWebElement element)
-        {
-            if (method.GetParameters().Length == 0)
-            {
-                method.Invoke(obj: this, parameters: null);
-                return;
-            }
-            method.Invoke(obj: this, parameters: new object[] { element });
-        }
-
-        // CONDITIONS REPOSITORY
-#pragma warning disable S1144, RCS1213, IDE0051
-        [Description("isClear")]
-        private void DoClear(IWebElement element) => element.Clear();
-
-        [Description("isForceClear")]
-        private void DoForceClear(IWebElement element)
+        private void DoClear(IWebElement element, IDictionary<string, string> arguments)
         {
             // exit conditions
-            if (WebDriver.IsAppiumDriver())
+            if (element == default)
+            {
+                return;
+            }
+            if (!arguments.ContainsKey(Clear) && !arguments.ContainsKey(ForceClear))
+            {
+                return;
+            }
+
+            // clear conditions
+            if (arguments.ContainsKey(Clear) && !arguments.ContainsKey(ForceClear))
+            {
+                element.Clear();
+                return;
+            }
+
+            // exit conditions
+            if (IsMobileNative())
             {
                 return;
             }
@@ -214,18 +178,39 @@ namespace Gravity.Plugins.Actions.UiCommon
             }
         }
 
-        [Description("isInterval")]
-        private void DoInterval(IWebElement element)
+        private void DoSendKeys(IWebElement element, IDictionary<string, string> arguments)
         {
-            // parse typing interval
-            int.TryParse(arguments[Interval], out int intervalOut);
+            // setup conditions
+            var isElement = element != default;
+            var isCombination = arguments.ContainsKey(Down);
 
-            // execute action
-            element.DelayedSendKeys(arguments[Keystrokes], intervalOut);
+            // no element
+            if (!isElement)
+            {
+                DoKeysNoElement(arguments);
+                return;
+            }
+
+            // combination
+            if (isCombination)
+            {
+                DoKeysCombination(arguments);
+                return;
+            }
+
+            // send keys
+            DoKeysOnElement(element, arguments);
         }
 
-        [Description("isDown")]
-        private void DoDownCombination()
+        private void DoKeysNoElement(IDictionary<string, string> arguments)
+        {
+            new SeleniumActions(WebDriver)
+                .SendKeys(keysToSend: arguments[Keystrokes])
+                .Build()
+                .Perform();
+        }
+
+        private void DoKeysCombination(IDictionary<string, string> arguments)
         {
             // exit conditions
             if (WebDriver.IsAppiumDriver())
@@ -258,15 +243,25 @@ namespace Gravity.Plugins.Actions.UiCommon
             actions.Build().Perform();
         }
 
-        [Description("isAndroid")]
-        private void DoAndroid(IWebElement element)
+        private void DoKeysOnElement(IWebElement element, IDictionary<string, string> arguments)
         {
+            // setup conditions
+            var isDelayed = arguments.ContainsKey(Interval);
+
+            // execute
             try
             {
-                element.SendKeys(arguments[Keystrokes]);
+                var keysAction = isDelayed ? DoInterval(element, arguments) : DoKeys(element, arguments);
+                keysAction.Invoke();
             }
             catch (Exception e) when (e is InvalidElementStateException)
             {
+                // exit conditions
+                if (!WebDriver.IsAppiumDriver() && !IsMobileNative())
+                {
+                    throw;
+                }
+
                 // focus on the element
                 new SeleniumActions(WebDriver).MoveToElement(element).Click().Perform();
 
@@ -274,12 +269,35 @@ namespace Gravity.Plugins.Actions.UiCommon
                 var focusedElement = WebDriver.FindElement(By.XPath("//*[@focused='true']"));
 
                 // send keystrokes
-                focusedElement.SendKeys(arguments[Keystrokes]);
+                var keysAction = isDelayed ? DoInterval(focusedElement, arguments) : DoKeys(focusedElement, arguments);
+                keysAction.Invoke();
             }
         }
 
-        [Description("isKeys")]
-        private void DoKeys(IWebElement element) => element?.SendKeys(arguments["keys"]);
-#pragma warning restore
+        private Action DoKeys(IWebElement element, IDictionary<string, string> arguments)
+        {
+            return new Action(() => element?.SendKeys(text: arguments[Keystrokes]));
+        }
+
+        private Action DoInterval(IWebElement element, IDictionary<string, string> arguments)
+        {
+            return new Action(() =>
+            {
+                // parse typing interval
+                int.TryParse(arguments[Interval], out int intervalOut);
+
+                // execute action
+                element?.DelayedSendKeys(arguments[Keystrokes], intervalOut);
+            });
+        }
+
+        private bool IsMobileNative()
+        {
+            // setup
+            var driverParams = JsonConvert.SerializeObject(Automation.DriverParams);
+
+            // conditions
+            return Regex.IsMatch(input: driverParams, pattern: "(?i)\"app\"(\\s+)?:(\\s+)?\".+?\"");
+        }
     }
 }

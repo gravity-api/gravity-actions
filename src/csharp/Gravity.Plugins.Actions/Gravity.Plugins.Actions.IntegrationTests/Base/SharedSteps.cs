@@ -5,6 +5,8 @@
  */
 using Gravity.Plugins.Actions.Contracts;
 using Gravity.Plugins.Contracts;
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -371,5 +373,25 @@ namespace Gravity.IntegrationTests.Base
             OnElement = "#select_menu_multiple > option:checked",
             Locator = LocatorsList.CssSelector
         };
+
+        /// <summary>
+        /// Gets an assert <see cref="ActionRule"/> for selectable element (find by id).
+        /// </summary>
+        /// <param name="id">Element id to find by.</param>
+        /// <param name="selected"><see cref="true"/> to assert if element is selected; <see cref="false"/> if not.</param>
+        /// <returns>Assert <see cref="ActionRule"/>.</returns>
+        public static ActionRule AssertSelectable(string id, bool selected)
+        {
+            // setup
+            var assertions = selected ? "selected" : "not_selected";
+
+            return new ActionRule
+            {
+                Action = PluginsList.Assert,
+                Argument = "{{$ --" + assertions + "}}",
+                OnElement = id,
+                Locator = LocatorsList.Id
+            };
+        }
     }
 }

@@ -8,4 +8,4 @@ In order to execute your plugins using Gravity API, you need to create an accoun
 4. Validate your password
 5. Click on "Register" button
 
-![register_1_1.png](https://user-images.githubusercontent.com/59060103/75519213-642c8200-5a0b-11ea-9c34-b300f6ea5abc.png)
+![register_1_1.png](../images/register_1_1.png)

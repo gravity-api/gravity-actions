@@ -1,5 +1,5 @@
 ## How To?
-* [Register (Free)](./register 'Register')
+* [Register (Free)](./register.md 'Register')
 * Add Common Plugin
 * Add Mobile Plugin
 * Add Web Plugin

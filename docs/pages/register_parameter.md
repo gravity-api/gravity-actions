@@ -5,13 +5,13 @@ Saves a parameter under application parameters collection (key/value collection)
 **Web**, **Mobile Web**, **Mobile Native** or any other Web Driver implementation.
 
 ## Properties
-| Property                    | Description                                             |
-|-------------------------------|-------------------------------------------------------|
-| _**argument**_                | Plugin conditions and additional information.         |
-| _**elementAttributeToActOn**_ | The element attribute from which to extract information for action execution. If not specified, information will be taken from the element inner text.                       |
-| _**elementToActOn**_          | The locator value by which the element will be found. |
-| _**locator**_                 | The locator type by which the element will be found.  |
-| _**regularExpression**_       |A pattern by which the extracted information will be evaluated. Returns the first match.|
+| Property               | Description                                           |
+|------------------------|-------------------------------------------------------|
+| _**argument**_         | Plugin conditions and additional information.         |
+| _**onAttribute**_      | The element attribute from which to extract information for action execution. If not specified, information will be taken from the element inner text.|
+| _**onElement**_        | The locator value by which the element will be found. |
+| _**locator**_          | The locator type by which the element will be found.  |
+| _**regularExpression**_|A pattern by which the extracted information will be evaluated. Returns the first match.|
 
 ## Command Line Arguments (CLI)
 ### _key_
@@ -32,7 +32,7 @@ Save ```//tr[1]/td[2]``` inner text into ```[first_name]``` application paramete
 {
     "actionType": "RegisterParameter",
     "argument": "first_name",
-    "elementToActOn": "//tr[1]/td[2]"
+    "onElement": "//tr[1]/td[2]"
 }
 ```
 
@@ -48,7 +48,7 @@ var actionRule = new ActionRule
 {
     ActionType = CommonPlugins.RegisterParameter,
     Argument = "first_name",
-    ElementToActOn = "//tr[1]/td[2]"
+    OnElement = "//tr[1]/td[2]"
 };
 
 // option no.2
@@ -56,7 +56,7 @@ var actionRule = new
 {
     ActionType = "RegisterParameter",
     Argument = "first_name",
-    ElementToActOn = "//tr[1]/td[2]"
+    OnElement = "//tr[1]/td[2]"
 };
 ```
 
@@ -65,7 +65,7 @@ var actionRule = new
 action_rule = {
     "actionType": "RegisterParameter",
     "argument": "first_name",
-    "elementToActOn": "//tr[1]/td[2]"
+    "onElement": "//tr[1]/td[2]"
 }
 ```
 
@@ -74,7 +74,7 @@ action_rule = {
 var actionRule = {
     actionType: "RegisterParameter",
     argument: "first_name",
-    elementToActOn: "(//table//a)[1]"
+    onElement: "(//table//a)[1]"
 };
 ```
 
@@ -83,7 +83,7 @@ var actionRule = {
 ActionRule actionRule = new ActionRule()
         .setActionType("RegisterParameter")
         .setArgument("first_name")
-        .setElementToActOn("(//table//a)[1]");
+        .setonElement("(//table//a)[1]");
 ```
 
 ***
@@ -96,7 +96,7 @@ Save ```//tr[1]/td[2]``` inner text into ```[first_name]``` application paramete
 {
     "actionType": "RegisterParameter",
     "argument": "{{$ --key:first_name}}",
-    "elementToActOn": "//tr[1]/td[2]"
+    "onElement": "//tr[1]/td[2]"
 }
 ```
 
@@ -112,7 +112,7 @@ var actionRule = new ActionRule
 {
     ActionType = CommonPlugins.RegisterParameter,
     Argument = "{{$ --key:first_name}}",
-    ElementToActOn = "//tr[1]/td[2]"
+    OnElement = "//tr[1]/td[2]"
 };
 
 // option no.2
@@ -120,7 +120,7 @@ var actionRule = new
 {
     ActionType = "RegisterParameter",
     Argument = "{{$ --key:first_name}}",
-    ElementToActOn = "//tr[1]/td[2]"
+    OnElement = "//tr[1]/td[2]"
 };
 ```
 
@@ -129,7 +129,7 @@ var actionRule = new
 action_rule = {
     "actionType": "RegisterParameter",
     "argument": "{{$ --key:first_name}}",
-    "elementToActOn": "//tr[1]/td[2]"
+    "onElement": "//tr[1]/td[2]"
 }
 ```
 
@@ -138,7 +138,7 @@ action_rule = {
 var actionRule = {
     actionType: "RegisterParameter",
     argument: "{{$ --key:first_name}}",
-    elementToActOn: "(//table//a)[1]"
+    onElement: "(//table//a)[1]"
 };
 ```
 
@@ -147,7 +147,7 @@ var actionRule = {
 ActionRule actionRule = new ActionRule()
         .setActionType("RegisterParameter")
         .setArgument("{{$ --key:first_name}}")
-        .setElementToActOn("(//table//a)[1]");
+        .setonElement("(//table//a)[1]");
 ```
 
 ***
@@ -218,8 +218,8 @@ Save the ```[href]``` attribute value of ```//tr[1]/td[6]/a[1]``` into ```[link]
 {
     "actionType": "RegisterParameter",
     "argument": "link",
-    "elementToActOn": "//tr[1]/td[6]/a[1]",
-    "elementAttributeToActOn": "href"
+    "onElement": "//tr[1]/td[6]/a[1]",
+    "onAttribute": "href"
 }
 ```
 
@@ -235,8 +235,8 @@ var actionRule = new ActionRule
 {
     ActionType = CommonPlugins.RegisterParameter,
     Argument = "link",
-    ElementToActOn = "//tr[1]/td[6]/a[1]",
-    ElementAttributeToActOn = "href"
+    OnElement = "//tr[1]/td[6]/a[1]",
+    OnAttribute = "href"
 };
 
 // option no.2
@@ -244,8 +244,8 @@ var actionRule = new
 {
     ActionType = "RegisterParameter",
     Argument = "link",
-    ElementToActOn = "//tr[1]/td[6]/a[1]",
-    ElementAttributeToActOn = "href"
+    OnElement = "//tr[1]/td[6]/a[1]",
+    OnAttribute = "href"
 };
 ```
 
@@ -254,8 +254,8 @@ var actionRule = new
 action_rule = {
     "actionType": "RegisterParameter",
     "argument": "link",
-    "elementToActOn": "//tr[1]/td[6]/a[1]",
-    "elementAttributeToActOn": "href"
+    "onElement": "//tr[1]/td[6]/a[1]",
+    "onAttribute": "href"
 }
 ```
 
@@ -264,8 +264,8 @@ action_rule = {
 var actionRule = {
     actionType: "RegisterParameter",
     argument: "link",
-    elementToActOn: "//tr[1]/td[6]/a[1]",
-    elementAttributeToActOn: "href"
+    onElement: "//tr[1]/td[6]/a[1]",
+    onAttribute: "href"
 };
 ```
 
@@ -274,8 +274,8 @@ var actionRule = {
 ActionRule actionRule = new ActionRule()
         .setActionType("RegisterParameter")
         .setArgument("link")
-        .setElementToActOn("//tr[1]/td[6]/a[1]")
-        .setElementAttributeToActOn("href");
+        .setonElement("//tr[1]/td[6]/a[1]")
+        .setonAttribute("href");
 ```
 
 ***
@@ -288,7 +288,7 @@ Save the first ```[Abe]``` match, from element ```//tr[1]/td[1]``` inner text, i
 {
     "actionType": "RegisterParameter",
     "argument": "regex",
-    "elementToActOn": "//tr[1]/td[1]",
+    "onElement": "//tr[1]/td[1]",
     "regularExpression": "Abe"
 }
 ```
@@ -305,7 +305,7 @@ var actionRule = new ActionRule
 {
     ActionType = CommonPlugins.RegisterParameter,
     Argument = "regex",
-    ElementToActOn = "//tr[1]/td[2]",
+    OnElement = "//tr[1]/td[2]",
     RegularExpression = "Abe"
 };
 
@@ -314,7 +314,7 @@ var actionRule = new
 {
     ActionType = "RegisterParameter",
     Argument = "regex",
-    ElementToActOn = "//tr[1]/td[2]",
+    OnElement = "//tr[1]/td[2]",
     RegularExpression = "Abe"
 };
 ```
@@ -324,7 +324,7 @@ var actionRule = new
 action_rule = {
     "actionType": "RegisterParameter",
     "argument": "regex",
-    "elementToActOn": "//tr[1]/td[2]",
+    "onElement": "//tr[1]/td[2]",
     "regularExpression" : "Abe"
 }
 ```
@@ -334,7 +334,7 @@ action_rule = {
 var actionRule = {
     actionType: "RegisterParameter",
     argument: "regex",
-    elementToActOn: "//tr[1]/td[2]",
+    onElement: "//tr[1]/td[2]",
     regularExpression: "Abe"
 };
 ```
@@ -344,7 +344,7 @@ var actionRule = {
 ActionRule actionRule = new ActionRule()
         .setActionType("RegisterParameter")
         .setArgument("regex")
-        .setElementToActOn("//tr[1]/td[2]")
+        .setonElement("//tr[1]/td[2]")
         .setRegularExpression("Abe");
 ```
 

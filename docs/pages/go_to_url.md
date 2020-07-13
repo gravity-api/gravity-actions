@@ -21,6 +21,12 @@ Opens the URL address using ```_blank``` property (under new tab or window).
 The ```URL``` address to navigate to.
 > If the action ```argument``` is the ```URL``` to navigate to, this argument is not mandatory (see examples).
 
+## Aliases
+The following keywords can be used instead of ```send keys```
+1. open
+2. navigate to
+3. go to
+
 ## W3C Web Driver Protocol
 [https://www.w3.org/TR/webdriver/#navigate-to](https://www.w3.org/TR/webdriver/#navigate-to)
 

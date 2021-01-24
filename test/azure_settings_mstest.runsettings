@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RunSettings>
+  <TestRunParameters>
+    <!-- Settings: Selenium Grid -->
+    <Parameter name="Grid.Endpoint" value="https://gravityapi1:pyhBifB6z1YxJv53xLip@hub-cloud.browserstack.com/wd/hub" />
+    <Parameter name="Grid.BasicAuthorization" value="Z3Jhdml0eS5hcGlAb3V0bG9vay5jb206cWF3c2VkMSE=" />
+    <Parameter name="Grid.Legacy" value="true" />
+    <Parameter name="Grid.UpdateTimeout" value="30000" />
+    <Parameter name="Grid.PutBrowserStackSuccess" value="true" />
+    <!--
+    <Parameter name="Grid.Endpoint" value="http://localhost:4444/wd/hub" />
+    <Parameter name="Grid.BasicAuthorization" value="" />
+    <Parameter name="Grid.Endpoint" value="https://gravityapi1:pyhBifB6z1YxJv53xLip@hub-cloud.browserstack.com/wd/hub" />
+    <Parameter name="Grid.BasicAuthorization" value="Z3Jhdml0eS5hcGlAb3V0bG9vay5jb206cWF3c2VkMSE=" /> 
+    -->
+
+    <!-- Settings: Project and Build -->
+    <Parameter name="Build.Number" value="development" />
+    <Parameter name="Project.Name" value="Gravity API - Action Plugins Package" />
+    
+    <!-- Settings: Data -->
+    <Parameter name="Data.ConnectionString" value="Data Source=.\\SQLEXPRESS;Initial Catalog=[catalog];Integrated Security=True" />
+    
+    <!-- Settings: Integration Testing -->
+    <parameter name="Integration.AttemptsInterval" value="15000" />
+    <Parameter name="Integration.LoadTimeout" value="60000" />
+    <Parameter name="Integration.SearchTimeout" value="15000" />
+    <Parameter name="Integration.NumberOfAttempts" value="3" />
+    <Parameter name="Integration.ApplicationUnderTest" value="https://gravitymvctestapplication.azurewebsites.net/" />
+    <Parameter name="Integration.MockApi" value="https://gravitymvctestapplication.azurewebsites.net/api/mock" />
+    <Parameter name="Gravity.UserName" value="pyhBifB6z1YxJv53xLip" />
+    <Parameter name="Gravity.Password" value="" />
+    <Parameter name="Appium.App.Name" value="gravity_native_app" />
+    <Parameter name="Appium.App.PublicAccessUrl" value="https://www.browserstack.com/app-automate/sample-apps/android/WikipediaSample.apk" />
+        
+    <!--
+    <Parameter name="Gravity.UserName" value="s_roei@msn.com" />
+    <Parameter name="Gravity.Password" value="Aa123456!" />
+    <Parameter name="Gravity.UserName" value="pyhBifB6z1YxJv53xLip" />
+    <Parameter name="Gravity.Password" value="" />
+    -->
+  </TestRunParameters>
+
+  <MSTest>
+    <TestRunParameters>
+      <Parameter name="Data.ConnectionString" value="Data Source=.\\SQLEXPRESS;Initial Catalog=[catalog];Integrated Security=True" />
+    </TestRunParameters>
+    <Parallelize>
+      <Workers>10</Workers>
+      <Scope>MethodLevel</Scope>
+    </Parallelize>
+  </MSTest>
+</RunSettings>

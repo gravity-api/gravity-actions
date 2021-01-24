@@ -15,7 +15,7 @@
  *    - modify: add support for double_click without specified element (flat action)
  *    - modify: improve XML comments
  *
- * online resources
+ * RESOURCES
  */
 using Gravity.Plugins.Actions.Extensions;
 using Gravity.Plugins.Attributes;

@@ -8,7 +8,7 @@
  *    - modify: improve XML comments
  *    - modify: override ActionName using action constant
  * 
- * online resources
+ * RESOURCES
  */
 using Gravity.Plugins.Actions.Extensions;
 using Gravity.Plugins.Attributes;

@@ -1,7 +1,7 @@
 ﻿/*
  * CHANGE LOG - keep only last 5 threads
  * 
- * online resources
+ * RESOURCES
  */
 using OpenQA.Selenium.Mock;
 using OpenQA.Selenium.Mock.Extensions;
@@ -11,7 +11,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using System.Collections.Generic;
 using System.Linq;
-using Gravity.Plugins.Actions.Contracts;
+using Gravity.Plugins.Contracts;
 
 namespace Gravity.UnitTests.UiWeb
 {

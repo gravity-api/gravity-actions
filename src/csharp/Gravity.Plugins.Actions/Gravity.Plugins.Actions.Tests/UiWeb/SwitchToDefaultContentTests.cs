@@ -1,14 +1,14 @@
 ﻿/*
  * CHANGE LOG - keep only last 5 threads
  * 
- * online resources
+ * RESOURCES
  */
 using Gravity.UnitTests.Base;
 using Gravity.Plugins.Actions.UiWeb;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium.Mock;
 using System;
-using Gravity.Plugins.Actions.Contracts;
+using Gravity.Plugins.Contracts;
 
 #pragma warning disable S4144
 namespace Gravity.UnitTests.UiWeb

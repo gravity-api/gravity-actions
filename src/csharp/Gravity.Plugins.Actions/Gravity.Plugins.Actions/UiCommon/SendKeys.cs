@@ -19,7 +19,7 @@
  *    - modify: override ActionName using action constant
  *    - modify: code cleaning
  * 
- * online resources
+ * RESOURCES
  * http://appium.io/docs/en/writing-running-appium/android/android-shell/
  */
 using Gravity.Plugins.Actions.Extensions;
@@ -31,6 +31,7 @@ using Newtonsoft.Json;
 
 using OpenQA.Selenium;
 using OpenQA.Selenium.Extensions;
+
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
@@ -262,15 +263,14 @@ namespace Gravity.Plugins.Actions.UiCommon
                     throw;
                 }
 
+                // setup
+                var actions = new SeleniumActions(WebDriver);
+
                 // focus on the element
-                new SeleniumActions(WebDriver).MoveToElement(element).Click().Perform();
+                element.Click();
 
-                // get the focused element
-                var focusedElement = WebDriver.FindElement(By.XPath("//*[@focused='true']"));
-
-                // send keystrokes
-                var keysAction = isDelayed ? DoInterval(focusedElement, arguments) : DoKeys(focusedElement, arguments);
-                keysAction.Invoke();
+                // send keys
+                actions.SendKeys(keysToSend: arguments[Keystrokes]).Build().Perform();
             }
         }
 

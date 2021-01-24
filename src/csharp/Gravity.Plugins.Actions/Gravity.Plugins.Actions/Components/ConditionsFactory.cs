@@ -1,7 +1,7 @@
 ﻿/*
  * CHANGE LOG - keep only last 5 threads
  * 
- * online resources
+ * RESOURCES
  */
 using Gravity.Plugins.Extensions;
 using Gravity.Plugins.Utilities.Selenium;
@@ -224,7 +224,6 @@ namespace Gravity.Plugins.Actions.Components
         }
         #endregion
 
-#pragma warning disable IDE0051
         #region *** repository   ***
         [Description(AlertExists)]
         private IDictionary<string, object> HasAlert() => AssertState(() =>
@@ -741,6 +740,5 @@ namespace Gravity.Plugins.Actions.Components
             return isActual && isExpected && (actualOut <= expectedOut);
         }
         #endregion
-#pragma warning restore IDE0051
     }
 }

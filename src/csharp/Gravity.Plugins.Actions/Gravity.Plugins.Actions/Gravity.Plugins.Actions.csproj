@@ -1,11 +1,16 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
+  <!-- Project -->
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
-    <PackageId>Gravity.Plugins.Actions</PackageId>
+    <TargetFrameworks>netstandard2.1;net5.0</TargetFrameworks>
     <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+
+  <!-- Package -->
+  <PropertyGroup>
+    <PackageId>Gravity.Plugins.Actions</PackageId>
     <Title>Gravity API - Action Plugins Package</Title>
-    <Authors>Gravity-API Community</Authors>
+    <Authors>Gravity-API Community, Rhino-API Community</Authors>
     <Description>Gravity API Actions repository. FREE register at "https://g-api.azurewebsites.net/Identity/Account/Register" in order to be able to use Gravity API.</Description>
     <PackageTags>automation,crawling,crawl,selenium,appium,automation testing,automation test,qa,gravity,gravity api,scrapping,scrap</PackageTags>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
@@ -14,6 +19,7 @@
     <NeutralLanguage>en-US</NeutralLanguage>
   </PropertyGroup>
 
+  <!-- Resources -->
   <ItemGroup>
     <EmbeddedResource Include="Documentation\assert.json" />
     <EmbeddedResource Include="Documentation\close_all_child_windows.json" />
@@ -57,12 +63,16 @@
     <EmbeddedResource Include="Documentation\wait_for_url.json" />
   </ItemGroup>
 
+  <!-- Packages -->
   <ItemGroup>
-    <PackageReference Include="Gravity.Core" Version="2020.5.13.1" />
-    <PackageReference Include="HtmlAgilityPack" Version="1.11.24" />
+    <PackageReference Include="Gravity.Core" Version="2020.7.5.3" />
+    <PackageReference Include="HtmlAgilityPack" Version="1.11.29" />
   </ItemGroup>
 
+  <!-- Projects -->
   <ItemGroup>
+    <ProjectReference Include="..\Gravity.Plugins.Contracts\Gravity.Plugins.Contracts.csproj" />
     <ProjectReference Include="..\Gravity.Plugins\Gravity.Plugins.csproj" />
   </ItemGroup>
+  
 </Project>

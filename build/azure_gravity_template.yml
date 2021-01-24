@@ -1,0 +1,133 @@
+parameters:
+- name: 'Build.Configuration'
+  default: ''
+- name: 'Parallel.Workers'
+  default: ''
+- name: 'Test.Settings.FileName.Deploy'
+  default: ''
+- name: 'Test.Settings.FileName.Development'
+  default: ''
+- name: 'Grid.Endpoint.Rhino'
+  default: ''
+- name: 'Build.Number'
+  default: ''
+- name: 'Rhino.UserName'
+  default: ''
+- name: 'Rhino.Password'
+  default: ''
+- name: 'NuGet.Public.Source'
+  default: ''
+- name: 'NuGet.Public.Key'
+  default: ''
+
+steps:
+- task: DotNetCoreCLI@2
+  displayName: Restore Dependencies
+  inputs:
+    command: 'restore'
+    projects: '**/*.csproj'
+    feedsToUse: 'select'
+    vstsFeed: '6ed1caf9-de4f-48e8-8276-201533d86a19'
+    verbosityRestore: 'Diagnostic'
+
+- task: DotNetCoreCLI@2
+  displayName: Build Projects
+  inputs:
+    command: 'build'
+    projects: '**/*.csproj'
+    arguments: '--configuration $(Build.Configuration)'
+
+# create test run settings, for unit and integration tests on deployment environment
+# development time parameters will be replaced by deployment time parameters
+- task: PowerShell@2
+  displayName: 'Create Test Settings > Override with Production Settings'
+  inputs:
+    targetType: 'inline'
+    script: |
+      # read test settings
+      [xml]$runSettings = Get-Content '$(Test.Settings.FileName.Development)'
+      #
+      # setup
+      $gridEndpoint      = $runSettings.SelectSingleNode("//Parameter[@name='Grid.Endpoint.Rhino']")
+      $buildNumber       = $runSettings.SelectSingleNode("//Parameter[@name='Build.Number']")
+      $gravityUserName   = $runSettings.SelectSingleNode("//Parameter[@name='Rhino.UserName']")
+      $gravityPassword   = $runSettings.SelectSingleNode("//Parameter[@name='Rhino.Password']")
+      $workers           = $runSettings.SelectSingleNode("//MSTest//Workers")
+      #
+      # override with deployment settings
+      $gridEndpoint.Value      = '$(Grid.Endpoint.Rhino)'
+      $buildNumber.Value       = '$(Build.BuildNumber)'
+      $gravityUserName.value   = '$(Rhino.UserName)'
+      $gravityPassword.value   = '$(Rhino.Password)'
+      $workers.InnerText       = '$(Parallel.Workers)'
+      #
+      # save settings
+      $runSettings.Save('$(Test.Settings.FileName.Deploy)')
+
+- task: DotNetCoreCLI@2
+  displayName: Unit Tests
+  inputs:
+    command: 'test'
+    projects: '**/*[Uu]nit*[Tt]ests/*.csproj'
+    arguments: '--configuration $(Build.Configuration) -s $(Test.Settings.FileName.Deploy)'
+    testRunTitle: 'Unit Testing --- $(Build.BuildNumber)'
+
+- task: DotNetCoreCLI@2
+  displayName: Integration Tests
+  inputs:
+    command: 'test'
+    projects: '**/*[Ii]ntegration*[Tt]ests/*.csproj'
+    arguments: '--configuration $(Build.Configuration) -s $(Test.Settings.FileName.Deploy)'
+    testRunTitle: 'Integration Testing --- $(Build.BuildNumber)'
+
+- task: PowerShell@2
+  displayName: 'cleanup'
+  inputs:
+    targetType: 'inline'
+    script: |
+      Remove-Item $(Test.Settings.FileName.Deploy)
+
+- task: DotNetCoreCLI@2
+  displayName: Create Package
+  inputs:
+    command: 'pack'
+    packagesToPack: '**/!(*[Tt]ests)/*.csproj'
+    versioningScheme: 'byBuildNumber'
+    verbosityPack: 'Diagnostic'
+    packDirectory: $(Build.ArtifactStagingDirectory)
+
+- task: PowerShell@2
+  displayName: 'Parse Build Version for GitHub Tag'
+  inputs:
+    targetType: 'inline'
+    script: |
+      # setup
+      [regex]$pattern = '(\d+.?)+'
+      $version        = $pattern.Matches('$(Build.BuildNumber)') | foreach-object {$_.Value}      
+      # set value
+      Write-Host "##vso[task.setvariable variable=buildVersion]$version"
+
+- task: GitHubRelease@1
+  displayName: 'Create GitHub Tag'
+  inputs:
+    gitHubConnection: 'GitHub connection - Gravity API'
+    repositoryName: 'savanna-projects/rhino-connectors-atlassian'
+    action: 'create'
+    target: '$(Build.SourceVersion)'
+    tagSource: 'userSpecifiedTag'
+    tag: 'v$(buildVersion)'
+    title: 'Production v$(buildVersion)'
+    releaseNotesSource: 'inline'
+    changeLogCompareToRelease: 'lastFullRelease'
+    changeLogType: 'commitBased'
+
+- task: DotNetCoreCLI@2
+  displayName: Push Packages
+  inputs:
+    command: custom
+    custom: nuget
+    arguments: >
+      push $(Build.ArtifactStagingDirectory)/**.nupkg
+      -s $(NuGet.Public.Source)
+      -k $(NuGet.Public.Key)
+      -t 300001

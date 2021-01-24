@@ -1,11 +1,21 @@
 {
   "aliases": [ "Type", "Write", "Print" ],
   "cliArguments": {
-    "clear": "Clears the element value, before typing into it.",
-    "down": "Array of keys to press down while sending keys (use to simulate [CRTL+A], [CTRL+SHIFT+DELETE], etc.",
-    "forceClear": "Clears the element value using [BACKSPACE] key, performing the clearing using real keyboard actions. This action is not supported by [Mobile Native] applications.",
-    "interval": "The interval time between each character typing in milliseconds.",
-    "keys": "The text to type into the element."
+    "clear": {
+      "description": "Clears the element value, before typing into it."
+    },
+    "down": {
+      "descritpion": "Array of keys to press down while sending keys (use to simulate [CRTL+A], [CTRL+SHIFT+DELETE], etc."
+    },
+    "forceClear": {
+      "description": "Clears the element value using [BACKSPACE] key, performing the clearing using real keyboard actions. This action is not supported by [Mobile Native] applications."
+    },
+    "interval": {
+      "description": "The interval time between each character typing in milliseconds."
+    },
+    "keys": {
+      "description": "The text to type into the element."
+    }
   },
   "description": "Simulates typing text into the element. This actions supports typing interval and various clearing options.",
   "examples": [

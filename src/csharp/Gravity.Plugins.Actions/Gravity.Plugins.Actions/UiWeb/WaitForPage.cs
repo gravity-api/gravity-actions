@@ -1,7 +1,7 @@
 ﻿/*
  * CHANGE LOG - keep only last 5 threads
  * 
- * online resources
+ * RESOURCES
  * https://www.w3schools.com/jsref/prop_doc_readystate.asp
  */
 using Gravity.Plugins.Actions.Components;

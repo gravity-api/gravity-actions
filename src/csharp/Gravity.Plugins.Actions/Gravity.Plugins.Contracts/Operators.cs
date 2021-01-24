@@ -1,9 +1,9 @@
 ﻿/*
  * CHANGE LOG - keep only last 5 threads
  * 
- * online resources
+ * RESOURCES
  */
-namespace Gravity.Plugins.Actions.Contracts
+namespace Gravity.Plugins.Contracts
 {
     public static class OperatorsList
     {

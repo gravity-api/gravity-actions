@@ -11,7 +11,7 @@
 * 4. close browser
 */
 #pragma warning restore
-using Gravity.Plugins.Actions.Contracts;
+using Gravity.Plugins.Contracts;
 using Gravity.IntegrationTests.Base;
 using Gravity.Plugins.Contracts;
 using System.Collections.Generic;

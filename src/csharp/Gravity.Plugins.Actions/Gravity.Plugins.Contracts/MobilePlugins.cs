@@ -1,16 +1,17 @@
 ﻿/*
  * CHANGE LOG - keep only last 5 threads
  * 
- * online resources
+ * RESOURCES
  */
 using System.Runtime.Serialization;
 
-namespace Gravity.Plugins.Actions.Contracts
+namespace Gravity.Plugins.Contracts
 {
     /// <summary>
     /// Available mobile native plugins under Gravity.Plugins.Actions.dll
     /// </summary>
-    public static partial class PluginsList
+    [DataContract]
+    public static class MobilePlugins
     {
         [DataMember]
         public const string HideKeyboard = "HideKeyboard";

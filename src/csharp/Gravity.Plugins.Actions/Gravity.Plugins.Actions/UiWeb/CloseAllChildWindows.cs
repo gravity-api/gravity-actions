@@ -14,7 +14,7 @@
  *    - modify: use JSON resources
  *    - modify: improve XML comments
  *
- * online resources
+ * RESOURCES
  */
 using Gravity.Plugins.Actions.Extensions;
 using Gravity.Plugins.Attributes;

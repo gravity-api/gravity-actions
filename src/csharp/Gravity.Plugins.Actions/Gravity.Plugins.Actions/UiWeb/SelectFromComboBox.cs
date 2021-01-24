@@ -1,7 +1,7 @@
 ﻿/*
  * CHANGE LOG - keep only last 5 threads
  * 
- * online resources
+ * RESOURCES
  * 
  * work items
  * TODO: improve JavaScriptSelect for better readability and code reuse.

@@ -8,7 +8,7 @@
  * 2019-12-31
  *    - modify: add constructor to override base class types
  * 
- * online resources
+ * RESOURCES
  * http://appium.io/docs/en/writing-running-appium/android/android-shell/
  * 
  * work items

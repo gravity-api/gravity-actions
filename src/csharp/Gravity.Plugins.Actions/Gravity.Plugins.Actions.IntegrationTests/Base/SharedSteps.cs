@@ -1,9 +1,9 @@
 ﻿/*
  * CHANGE LOG - keep only last 5 threads
  * 
- * online resources
+ * RESOURCES
  */
-using Gravity.Plugins.Actions.Contracts;
+using Gravity.Plugins.Contracts;
 using Gravity.Plugins.Contracts;
 
 using System;

@@ -1,7 +1,7 @@
 ﻿/*
  * CHANGE LOG - keep only last 5 threads
  * 
- * online resources
+ * RESOURCES
  * https://dev.to/franndotexe/mstest-v2---new-old-kid-on-the-block
  */
 using Gravity.Plugins.Attributes;

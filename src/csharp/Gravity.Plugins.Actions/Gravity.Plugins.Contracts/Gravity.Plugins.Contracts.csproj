@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- Project -->
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.1;net5.0</TargetFrameworks>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+
+  <!-- Package -->
+  <PropertyGroup>
+    <PackageId>Gravity.Plugins.Contracts</PackageId>
+    <Title>Gravity API - Contracts</Title>
+    <Authors>Gravity-API Community, Rhino-API Community</Authors>
+    <Description>Gravity API, Contracts and other DTOs.</Description>
+    <PackageTags>automation,crawling,crawl,selenium,appium,automation testing,automation test,qa,gravity,gravity api,scrapping,scrap</PackageTags>
+  </PropertyGroup>
+
+  <!-- Dependencies -->
+  <ItemGroup>
+    <PackageReference Include="Selenium.WebDriver" Version="3.141.0" />
+  </ItemGroup>
+
+</Project>

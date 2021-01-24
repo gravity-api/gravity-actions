@@ -1,7 +1,7 @@
 ﻿/*
  * CHANGE LOG - keep only last 5 threads
  * 
- * online resources
+ * RESOURCES
  * 
  * work items
  * TODO: add more Capabilities on Selenium 4.0

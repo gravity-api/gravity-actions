@@ -1,0 +1,27 @@
+# https://docs.microsoft.com/en-us/azure/devops/pipelines/build/variables?view=azure-devops&tabs=yaml
+
+name: Gravity.Plugins.Actions.$(Year:yyyy).$(Month).$(DayOfMonth)$(Rev:.r)
+
+trigger:
+  branches:
+    include:
+    - master
+
+pool:
+  name: Default
+
+variables:
+- group: browserstack.com
+- group: gravity.api
+- group: nuget
+- name: 'Build.Configuration'
+  value: 'Release'
+- name: 'Parallel.Workers'
+  value: '5'
+- name: 'Test.Settings.FileName.Deploy'
+  value: './test/azure_settings_deploy.runsettings'
+- name: 'Test.Settings.FileName.Development'
+  value: './test/azure_settings_mstest.runsettings'
+
+steps:
+- template: azure_gravity_template.yml

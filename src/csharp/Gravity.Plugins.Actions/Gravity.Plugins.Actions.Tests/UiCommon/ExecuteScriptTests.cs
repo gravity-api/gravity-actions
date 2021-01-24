@@ -1,7 +1,7 @@
 ﻿/*
  * CHANGE LOG - keep only last 5 threads
  * 
- * online resources
+ * RESOURCES
  */
 using OpenQA.Selenium.Mock;
 using Gravity.Plugins.Actions.UiCommon;
@@ -10,7 +10,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 
 using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
-using Gravity.Plugins.Actions.Contracts;
+using Gravity.Plugins.Contracts;
 
 #pragma warning disable S4144
 namespace Gravity.UnitTests.UiCommon

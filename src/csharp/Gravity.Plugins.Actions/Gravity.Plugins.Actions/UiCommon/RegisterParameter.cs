@@ -16,7 +16,7 @@
  *    - modify: override ActionName using action constant
  *    - modify: code cleaning
  *    
- * online resources
+ * RESOURCES
  */
 using Gravity.Plugins.Actions.Extensions;
 using Gravity.Plugins.Attributes;

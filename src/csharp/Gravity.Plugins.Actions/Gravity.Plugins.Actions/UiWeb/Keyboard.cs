@@ -5,7 +5,7 @@
  *    - modify: add on-element event (action can now be executed on the element without searching for a child)
  *    - modify: use FindByActionRule/GetByActionRule methods to reduce code base and increase code usage
  *    
- * online resources
+ * RESOURCES
  */
 using Gravity.Plugins.Actions.Extensions;
 using Gravity.Plugins.Attributes;

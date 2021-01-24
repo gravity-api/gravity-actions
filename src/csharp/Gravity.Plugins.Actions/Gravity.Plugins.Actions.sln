@@ -9,16 +9,19 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gravity.Plugins.Actions.Uni
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gravity.Plugins", "Gravity.Plugins\Gravity.Plugins.csproj", "{638E4D5C-6DA6-4C42-B90C-87F866A1B11B}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C97DCFD0-F3DA-4BCA-923B-8C8064D3B3E3}"
-	ProjectSection(SolutionItems) = preProject
-		..\..\..\azure_pipelines_csharp.yml = ..\..\..\azure_pipelines_csharp.yml
-		..\..\..\azure_settings_mstest.runsettings = ..\..\..\azure_settings_mstest.runsettings
-		..\..\..\README.md = ..\..\..\README.md
-	EndProjectSection
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gravity.Plugins.Actions.IntegrationTests", "Gravity.Plugins.Actions.IntegrationTests\Gravity.Plugins.Actions.IntegrationTests.csproj", "{57CEBAB5-8581-40FA-8136-0B04FE59ECB3}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{42ED53CE-7BC5-4198-861B-49627DB98AFC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gravity.Plugins.Contracts", "Gravity.Plugins.Contracts\Gravity.Plugins.Contracts.csproj", "{E0EA54F0-D899-406E-88C8-E6CE07420B7B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gravity.Plugins.Attributes", "Gravity.Plugins.Attributes\Gravity.Plugins.Attributes.csproj", "{F61B810E-8946-4624-A6BF-233164649E1B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{13F77FB2-96B6-4FB8-8AF2-A4D2BF7EB6D5}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\build\azure_gravity_api.yml = ..\..\..\build\azure_gravity_api.yml
+		..\..\..\build\azure_gravity_template.yml = ..\..\..\build\azure_gravity_template.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentation", "{59FBDB11-9681-4016-9806-435FBB5CBA7D}"
 	ProjectSection(SolutionItems) = preProject
 		..\..\..\docs\pages\assert.md = ..\..\..\docs\pages\assert.md
 		..\..\..\docs\pages\assert_samples_no1.md = ..\..\..\docs\pages\assert_samples_no1.md
@@ -50,6 +53,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{42ED53CE-7
 		..\..\..\docs\pages\move_to_element.md = ..\..\..\docs\pages\move_to_element.md
 		..\..\..\docs\pages\navigate_back.md = ..\..\..\docs\pages\navigate_back.md
 		..\..\..\docs\pages\navigate_forward.md = ..\..\..\docs\pages\navigate_forward.md
+		..\..\..\README.md = ..\..\..\README.md
 		..\..\..\docs\pages\refresh.md = ..\..\..\docs\pages\refresh.md
 		..\..\..\docs\pages\register.md = ..\..\..\docs\pages\register.md
 		..\..\..\docs\pages\register_parameter.md = ..\..\..\docs\pages\register_parameter.md
@@ -57,6 +61,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{42ED53CE-7
 		..\..\..\docs\pages\scroll.md = ..\..\..\docs\pages\scroll.md
 		..\..\..\docs\pages\select_from_combo_box.md = ..\..\..\docs\pages\select_from_combo_box.md
 		..\..\..\docs\pages\send_keys.md = ..\..\..\docs\pages\send_keys.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{94B210CB-BF2C-4430-A109-FEC892B59131}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\test\azure_settings_mstest.runsettings = ..\..\..\test\azure_settings_mstest.runsettings
 	EndProjectSection
 EndProject
 Global
@@ -81,12 +90,17 @@ Global
 		{57CEBAB5-8581-40FA-8136-0B04FE59ECB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{57CEBAB5-8581-40FA-8136-0B04FE59ECB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{57CEBAB5-8581-40FA-8136-0B04FE59ECB3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E0EA54F0-D899-406E-88C8-E6CE07420B7B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E0EA54F0-D899-406E-88C8-E6CE07420B7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E0EA54F0-D899-406E-88C8-E6CE07420B7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E0EA54F0-D899-406E-88C8-E6CE07420B7B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F61B810E-8946-4624-A6BF-233164649E1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F61B810E-8946-4624-A6BF-233164649E1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F61B810E-8946-4624-A6BF-233164649E1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F61B810E-8946-4624-A6BF-233164649E1B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{42ED53CE-7BC5-4198-861B-49627DB98AFC} = {C97DCFD0-F3DA-4BCA-923B-8C8064D3B3E3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EC3E67C2-FFCE-48EA-A9E0-3533B5E8C37B}

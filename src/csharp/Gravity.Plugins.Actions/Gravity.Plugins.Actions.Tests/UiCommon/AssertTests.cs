@@ -1,12 +1,11 @@
 ﻿/*
  * CHANGE LOG - keep only last 5 threads
  * 
- * online resources
+ * RESOURCES
  */
-using Gravity.Plugins.Actions.Contracts;
+using Gravity.Plugins.Contracts;
 using Gravity.Plugins.Actions.UiCommon;
 using Gravity.Plugins.Base;
-using Gravity.Plugins.Contracts;
 using Gravity.UnitTests.Base;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;

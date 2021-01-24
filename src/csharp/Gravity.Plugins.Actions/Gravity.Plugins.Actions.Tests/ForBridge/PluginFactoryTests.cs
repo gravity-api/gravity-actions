@@ -4,7 +4,7 @@
  * 2020-02-03
  *    - modify: refactoring
  * 
- * online resources
+ * RESOURCES
  */
 using Gravity.Plugins.Contracts;
 using Gravity.Plugins.Engine;

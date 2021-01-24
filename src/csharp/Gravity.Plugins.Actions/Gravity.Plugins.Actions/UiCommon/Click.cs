@@ -21,7 +21,7 @@
  *    - modify: improve XML comments
  *    - modify: change to JSON resource
  * 
- * online resources
+ * RESOURCES
  */
 using Gravity.Plugins.Actions.Extensions;
 using Gravity.Plugins.Attributes;

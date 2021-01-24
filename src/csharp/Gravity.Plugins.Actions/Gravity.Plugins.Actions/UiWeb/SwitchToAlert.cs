@@ -1,7 +1,7 @@
 ﻿/*
  * CHANGE LOG - keep only last 5 threads
  *
- * online resources
+ * RESOURCES
  */
 using Gravity.Plugins.Attributes;
 using Gravity.Plugins.Base;

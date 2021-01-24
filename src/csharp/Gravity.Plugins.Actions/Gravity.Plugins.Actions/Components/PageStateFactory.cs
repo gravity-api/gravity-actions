@@ -1,7 +1,7 @@
 ﻿/*
  * CHANGE LOG - keep only last 5 threads
  * 
- * online resources
+ * RESOURCES
  */
 using Gravity.Plugins.Extensions;
 using OpenQA.Selenium;
@@ -69,7 +69,6 @@ namespace Gravity.Plugins.Actions.Components
         }
         #endregion
 
-#pragma warning disable IDE0051
         #region *** repository   ***
         [Description(Complete)]
         private bool StateComplete(IWebDriver driver)
@@ -115,6 +114,5 @@ namespace Gravity.Plugins.Actions.Components
             }
         }
         #endregion
-#pragma warning restore IDE0051
     }
 }

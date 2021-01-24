@@ -1,7 +1,7 @@
 ﻿/*
  * CHANGE LOG - keep only last 5 threads
  * 
- * online resources
+ * RESOURCES
  * https://developer.mozilla.org/en-US/docs/Web/API/Window/scroll
  * https://developer.mozilla.org/en-US/docs/Web/API/Element/scroll
  * https://developer.mozilla.org/en-US/docs/Web/API/ScrollToOptions/behavior

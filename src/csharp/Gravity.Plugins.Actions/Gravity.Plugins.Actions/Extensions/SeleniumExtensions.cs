@@ -1,7 +1,7 @@
 ﻿/*
  * CHANGE LOG - keep only last 5 threads
  * 
- * online resources
+ * RESOURCES
  * 
  * work items
  * TODO: merge GetElementByActionRule(this IWebElement e, ByFactory byFactory, ActionRule actionRule, TimeSpan timeout)

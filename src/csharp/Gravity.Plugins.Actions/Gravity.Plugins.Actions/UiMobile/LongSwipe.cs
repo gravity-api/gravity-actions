@@ -1,7 +1,7 @@
 ﻿/*
  * CHANGE LOG - keep only last 5 threads
  * 
- * online resources
+ * RESOURCES
  * 
  * work items
  * https://github.com/gravity-api/gravity-actions/issues/18

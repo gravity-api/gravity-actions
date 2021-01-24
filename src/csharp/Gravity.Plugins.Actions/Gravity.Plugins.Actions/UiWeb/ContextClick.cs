@@ -11,7 +11,7 @@
  * 2019-01-11
  *    - modify: improve XML comments
  *
- * online resources
+ * RESOURCES
  */
 using Gravity.Plugins.Actions.Extensions;
 using Gravity.Plugins.Attributes;

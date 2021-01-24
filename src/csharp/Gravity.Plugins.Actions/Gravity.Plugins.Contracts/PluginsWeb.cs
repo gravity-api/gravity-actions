@@ -1,17 +1,16 @@
 ﻿/*
  * CHANGE LOG - keep only last 5 threads
  * 
- * online resources
+ * RESOURCES
  */
 using System.Runtime.Serialization;
 
-namespace Gravity.Plugins.Actions.Contracts
+namespace Gravity.Plugins.Contracts
 {
     /// <summary>
     /// Available web plugins under Gravity.Plugins.Actions.dll
     /// </summary>
-    [DataContract]
-    public static class WebPlugins
+    public static partial class PluginsList
     {
         [DataMember]
         public const string CloseAllChildWindows = "CloseAllChildWindows";

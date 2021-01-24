@@ -11,7 +11,7 @@
  * 2019-12-24
  *    - modify: add constructor to override base class types
  *    
- * online resources
+ * RESOURCES
  * 
  * work items
  * TODO: remove "EDGE WORKAROUND - UNTIL SELENIUM 4" region when close extension method is available on Gravity.Core 

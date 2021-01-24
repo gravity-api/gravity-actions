@@ -1,4 +1,4 @@
-﻿namespace Gravity.Plugins.Actions.Contracts
+﻿namespace Gravity.Plugins.Contracts
 {
     public static class OperatorType
     {

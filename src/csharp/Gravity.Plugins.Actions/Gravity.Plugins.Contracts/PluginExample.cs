@@ -3,6 +3,8 @@
  * 
  * RESOURCES
  */
+using System.Collections;
+using System.Collections.Generic;
 using System.Runtime.Serialization;
 
 namespace Gravity.Plugins.Contracts
@@ -20,33 +22,21 @@ namespace Gravity.Plugins.Contracts
         public string Description { get; set; }
 
         /// <summary>
-        /// Gets or sets the action rule from this example.
+        /// Gets or set an application link or page link where this action can tested.
         /// </summary>
         [DataMember]
-        public ActionRule ActionExample { get; set; }
+        public string CanBeTestedOn { get; set; }
 
         /// <summary>
-        /// Gets or sets a literal example of how this action is described as a sentence
+        /// Gets or sets a collection of examples for this action.
         /// </summary>
         [DataMember]
-        public string LiteralExample { get; set; }
+        public IEnumerable<PluginExampleLanguageModel> Examples { get; set; }
 
         /// <summary>
         /// Gets or sets a comment for this example
         /// </summary>
         [DataMember]
         public string Comment { get; set; }
-
-        /// <summary>
-        /// Gets or sets extraction rule for this example
-        /// </summary>
-        [DataMember]
-        public ExtractionRule ExtractionExample { get; set; }
-
-        /// <summary>
-        /// Gets or sets macro for this example
-        /// </summary>
-        [DataMember]
-        public string MacroExample { get; set; }
     }
 }

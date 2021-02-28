@@ -357,7 +357,7 @@ namespace Gravity.UnitTests.Base
             Assert.IsTrue(!string.IsNullOrEmpty(attribute.Description), "Plugin must have a description.");
             Assert.IsTrue(!string.IsNullOrEmpty(attribute.Summary), "Plugin must have a summary.");
             Assert.IsTrue(attribute.Name.Equals(pluginName), "Plugin name does not match to action name.");
-            Assert.IsTrue(attribute.Examples.Length > 0, "Plugin must have at least one example.");
+            Assert.IsTrue(attribute.Examples.Any(), "Plugin must have at least one example.");
         }
         #endregion
 
@@ -377,7 +377,7 @@ namespace Gravity.UnitTests.Base
 
             // validation
             Assert.IsTrue(action != default, "Plugin was not generated correctly.");
-            Assert.IsTrue(Plugin.Types.Count > 0, "Plugin types were not loaded.");
+            Assert.IsTrue(!Plugin.Types.IsEmpty, "Plugin types were not loaded.");
 
             if (action is WebDriverActionPlugin)
             {

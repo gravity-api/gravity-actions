@@ -2,17 +2,11 @@
 <RunSettings>
   <TestRunParameters>
     <!-- Settings: Selenium Grid -->
-    <Parameter name="Grid.Endpoint" value="https://gravityapi1:pyhBifB6z1YxJv53xLip@hub-cloud.browserstack.com/wd/hub" />
+    <Parameter name="Grid.Endpoint" value="http://localhost:4444/wd/hub" />
     <Parameter name="Grid.BasicAuthorization" value="Z3Jhdml0eS5hcGlAb3V0bG9vay5jb206cWF3c2VkMSE=" />
     <Parameter name="Grid.Legacy" value="true" />
     <Parameter name="Grid.UpdateTimeout" value="30000" />
     <Parameter name="Grid.PutBrowserStackSuccess" value="true" />
-    <!--
-    <Parameter name="Grid.Endpoint" value="http://localhost:4444/wd/hub" />
-    <Parameter name="Grid.BasicAuthorization" value="" />
-    <Parameter name="Grid.Endpoint" value="https://gravityapi1:pyhBifB6z1YxJv53xLip@hub-cloud.browserstack.com/wd/hub" />
-    <Parameter name="Grid.BasicAuthorization" value="Z3Jhdml0eS5hcGlAb3V0bG9vay5jb206cWF3c2VkMSE=" /> 
-    -->
 
     <!-- Settings: Project and Build -->
     <Parameter name="Build.Number" value="development" />

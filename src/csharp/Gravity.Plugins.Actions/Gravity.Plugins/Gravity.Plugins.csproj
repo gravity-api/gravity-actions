@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Project -->
+  <PropertyGroup>
+    <TargetFrameworks>net5.0</TargetFrameworks>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+  
+  <!-- Package -->
+  <PropertyGroup>
+    <PackageId>Gravity.Plugins</PackageId>
+    <Title>Gravity API - Plugins Base Components</Title>
+    <Authors>Gravity-API Community, Rhino-API Community</Authors>
+    <Description>Gravity API, plugins base components - for parsing and executing Gravity Plugins.</Description>
+    <Copyright>© 2014 ROEI SABAG; UNIVERSE SYSTEM, GRAVITY API ALL RIGHTS RESERVED</Copyright>
+    <PackageTags>automation,crawling,crawl,selenium,appium,automation testing,automation test,qa,gravity,gravity api,scrapping,scrap</PackageTags> 
+  </PropertyGroup>
+  
+  <!-- cross framework -->
+  <ItemGroup>
+    <PackageReference Include="Gravity.Abstraction" Version="2021.1.25.2" />
+    <PackageReference Include="Gravity.Drivers.Mock" Version="2020.6.12.1" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.2" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Gravity.Plugins.Contracts\Gravity.Plugins.Contracts.csproj" />
+  </ItemGroup>
+</Project>

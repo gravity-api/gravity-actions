@@ -9,6 +9,8 @@ using Gravity.Plugins.Base;
 using Gravity.Plugins.Contracts;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Extensions;
+
+using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
@@ -86,7 +88,17 @@ namespace Gravity.Plugins.Actions.UiWeb
             {
                 return;
             }
-            WebDriver.Manage().Window.Maximize();
+
+            try
+            {
+                var size = WebDriver.Manage().Window.Size;
+                WebDriver.Manage().Window.Size = new System.Drawing.Size { Height = size.Height - 1, Width = size.Width - 1 };
+                WebDriver.Manage().Window.Maximize();
+            }
+            catch (Exception e) when (e != null)
+            {
+                // ignore exceptions
+            }
         }
 
         private IDictionary<string, string> GetArguments(string cli) => Utilities.CliFactory.Compile(cli)

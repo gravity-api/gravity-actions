@@ -26,13 +26,6 @@
     <Parameter name="Gravity.Password" value="" />
     <Parameter name="Appium.App.Name" value="gravity_native_app" />
     <Parameter name="Appium.App.PublicAccessUrl" value="https://www.browserstack.com/app-automate/sample-apps/android/WikipediaSample.apk" />
-        
-    <!--
-    <Parameter name="Gravity.UserName" value="s_roei@msn.com" />
-    <Parameter name="Gravity.Password" value="Aa123456!" />
-    <Parameter name="Gravity.UserName" value="pyhBifB6z1YxJv53xLip" />
-    <Parameter name="Gravity.Password" value="" />
-    -->
   </TestRunParameters>
 
   <MSTest>

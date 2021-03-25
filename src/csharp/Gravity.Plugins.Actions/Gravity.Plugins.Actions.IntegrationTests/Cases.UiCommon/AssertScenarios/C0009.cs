@@ -14,7 +14,6 @@
 #pragma warning restore
 using Gravity.IntegrationTests.Base;
 using Gravity.Plugins.Contracts;
-using Gravity.Plugins.Contracts;
 using System.Collections.Generic;
 
 namespace Gravity.IntegrationTests.Cases.UiCommon.AssertScenarios

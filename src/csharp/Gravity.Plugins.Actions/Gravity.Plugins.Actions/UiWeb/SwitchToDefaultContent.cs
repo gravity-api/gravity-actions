@@ -6,14 +6,15 @@
 using Gravity.Plugins.Attributes;
 using Gravity.Plugins.Base;
 using Gravity.Plugins.Contracts;
+
 using OpenQA.Selenium;
 
 namespace Gravity.Plugins.Actions.UiWeb
 {
     [Plugin(
         assembly: "Gravity.Plugins.Actions, Version=5.0.0.0, Culture=neutral, PublicKeyToken=null",
-        resource: "Gravity.Plugins.Actions.Documentation.switch_to_default_content.json",
-        Name = Contracts.PluginsList.SwitchToDefaultContent)]
+        resource: "Gravity.Plugins.Actions.Manifest.SwitchToDefaultContent.json",
+        Name = PluginsList.SwitchToDefaultContent)]
     public class SwitchToDefaultContent : WebDriverActionPlugin
     {
         #region *** constructors ***

@@ -20,7 +20,7 @@ _None_
 Can be tested on
 * https://gravitymvctestapplication.azurewebsites.net/UiControls
 
-Close the given window by it's position index, quitting the browser if it is the last window currently open.
+Close the given window by it\"s position index, quitting the browser if it is the last window currently open.
 
 #### _Action Rule (JSON)_
 ```js

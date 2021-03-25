@@ -36,7 +36,7 @@ namespace Gravity.UnitTests.UiMobile
         {
             AssertDocumentation<HideKeyboard>(
                 pluginName: PluginsList.HideKeyboard,
-                resource: "hide_keyboard.json");
+                resource: "HideKeyboard.json");
         }
         #endregion
 
@@ -55,7 +55,7 @@ namespace Gravity.UnitTests.UiMobile
         }
 
         [DataTestMethod]
-        [DataRow("{'onElement':'//positive'}")]
+        [DataRow("{\"onElement\":\"//positive\"}")]
         public void HideKeyboardElementPositive(string actionRule)
         {
             // set new mock driver for mobile device

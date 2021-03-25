@@ -13,7 +13,7 @@
 #pragma warning restore
 using Gravity.IntegrationTests.Base;
 using Gravity.Plugins.Contracts;
-using Gravity.Plugins.Contracts;
+
 using System.Collections.Generic;
 using System.Linq;
 

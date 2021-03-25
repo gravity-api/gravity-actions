@@ -38,13 +38,13 @@ namespace Gravity.UnitTests.UiCommon
         {
             AssertDocumentation<DoubleClick>(
                 pluginName: PluginsList.DoubleClick,
-                resource: "double_click.json");
+                resource: "DoubleClick.json");
         }
         #endregion
 
         #region *** tests: OnDriver      ***
         [DataTestMethod]
-        [DataRow("{'onElement':'//positive'}")]
+        [DataRow("{\"onElement\":\"//positive\"}")]
         public void DoubleClickPositive(string actionRule)
         {
             // execute
@@ -55,9 +55,9 @@ namespace Gravity.UnitTests.UiCommon
         }
 
         [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
-        [DataRow("{'onElement':'//none'}")]
-        [DataRow("{'onElement':'//null'}")]
-        [DataRow("{'onElement':'//stale'}")]
+        [DataRow("{\"onElement\":\"//none\"}")]
+        [DataRow("{\"onElement\":\"//null\"}")]
+        [DataRow("{\"onElement\":\"//stale\"}")]
         public void DoubleClickNoElement(string actionRule)
         {
             // execute
@@ -68,7 +68,7 @@ namespace Gravity.UnitTests.UiCommon
         }
 
         [DataTestMethod]
-        [DataRow("{'onElement':'//negative'}")]
+        [DataRow("{\"onElement\":\"//negative\"}")]
         public void DoubleClickNegative(string actionRule)
         {
             // execute
@@ -89,7 +89,7 @@ namespace Gravity.UnitTests.UiCommon
         }
 
         [DataTestMethod]
-        [DataRow("{'Argument':'{{$ --until:no_alert}}','onElement':'//positive'}")]
+        [DataRow("{\"Argument\":\"{{$ --until:no_alert}}\",\"onElement\":\"//positive\"}")]
         public void DoubleClickUntilNoAlert(string actionRule)
         {
             // execute
@@ -105,7 +105,7 @@ namespace Gravity.UnitTests.UiCommon
 
         #region *** tests: OnElement     ***
         [DataTestMethod]
-        [DataRow("{'onElement':'//positive'}")]
+        [DataRow("{\"onElement\":\"//positive\"}")]
         public void DoubleClickElementAbsolutePositive(string actionRule)
         {
             // execute
@@ -116,7 +116,7 @@ namespace Gravity.UnitTests.UiCommon
         }
 
         [DataTestMethod]
-        [DataRow("{'onElement':'.//positive'}")]
+        [DataRow("{\"onElement\":\".//positive\"}")]
         public void DoubleClickElementRelativePositive(string actionRule)
         {
             // execute
@@ -127,9 +127,9 @@ namespace Gravity.UnitTests.UiCommon
         }
 
         [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
-        [DataRow("{'onElement':'//none','locator':'Xpath'}")]
-        [DataRow("{'onElement':'//null','locator':'Xpath'}")]
-        [DataRow("{'onElement':'//stale','locator':'Xpath'}")]
+        [DataRow("{\"onElement\":\"//none\",\"locator\":\"Xpath\"}")]
+        [DataRow("{\"onElement\":\"//null\",\"locator\":\"Xpath\"}")]
+        [DataRow("{\"onElement\":\"//stale\",\"locator\":\"Xpath\"}")]
         public void DoubleClickElementAbsoluteNoElement(string actionRule)
         {
             // execute
@@ -140,7 +140,7 @@ namespace Gravity.UnitTests.UiCommon
         }
 
         [DataTestMethod, ExpectedException(typeof(NoSuchElementException))]
-        [DataRow("{'onElement':'.//none'}")]
+        [DataRow("{\"onElement\":\".//none\"}")]
         public void DoubleClickElementRelativeNoElement(string actionRule)
         {
             // execute
@@ -151,7 +151,7 @@ namespace Gravity.UnitTests.UiCommon
         }
 
         [DataTestMethod, ExpectedException(typeof(ArgumentException))]
-        [DataRow("{'onElement':'.//null'}")]
+        [DataRow("{\"onElement\":\".//null\"}")]
         public void DoubleClickElementRelativeNull(string actionRule)
         {
             // execute
@@ -162,7 +162,7 @@ namespace Gravity.UnitTests.UiCommon
         }
 
         [DataTestMethod, ExpectedException(typeof(StaleElementReferenceException))]
-        [DataRow("{'onElement':'.//stale'}")]
+        [DataRow("{\"onElement\":\".//stale\"}")]
         public void DoubleClickElementRelativeStale(string actionRule)
         {
             // execute
@@ -173,9 +173,9 @@ namespace Gravity.UnitTests.UiCommon
         }
 
         [TestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
-        [DataRow("{'onElement':'.//null'}")]
-        [DataRow("{'onElement':'.//stale'}")]
-        [DataRow("{'onElement':'.//none'}")]
+        [DataRow("{\"onElement\":\".//null\"}")]
+        [DataRow("{\"onElement\":\".//stale\"}")]
+        [DataRow("{\"onElement\":\".//none\"}")]
         public void DoubleClickElementFlatNoElement(string actionRule)
         {
             // execute

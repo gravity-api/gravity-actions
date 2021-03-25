@@ -17,19 +17,21 @@ using Gravity.Plugins.Actions.Extensions;
 using Gravity.Plugins.Attributes;
 using Gravity.Plugins.Base;
 using Gravity.Plugins.Contracts;
+
 using OpenQA.Selenium;
 using OpenQA.Selenium.Extensions;
+
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 
-#pragma warning disable S4144, IDE0022, S1172
 namespace Gravity.Plugins.Actions.UiCommon
 {
     [Plugin(
         assembly: "Gravity.Plugins.Actions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
-        resource: "Gravity.Plugins.Actions.Documentation.get_screenshot.json",
-        Name = Contracts.PluginsList.GetScreenshot)]
+        resource: "Gravity.Plugins.Actions.Manifest.GetScreenshot.json",
+        Name = PluginsList.GetScreenshot)]
     public class GetScreenshot : WebDriverActionPlugin
     {
         #region *** constructors ***
@@ -90,6 +92,8 @@ namespace Gravity.Plugins.Actions.UiCommon
         }
 
         // get image format factory
+        [SuppressMessage("Major Code Smell", "S1172:Unused method parameters should be removed", Justification = "Warning false positive.")]
+        [SuppressMessage("CodeQuality", "IDE0079:Remove unnecessary suppression", Justification = "Warning S1172 false positive.")]
         private static ScreenshotImageFormat GetFormat(string file) => (Path.GetExtension(file).ToUpper()) switch
         {
             _ => ScreenshotImageFormat.Png
@@ -140,4 +144,3 @@ namespace Gravity.Plugins.Actions.UiCommon
         }
     }
 }
-#pragma warning restore

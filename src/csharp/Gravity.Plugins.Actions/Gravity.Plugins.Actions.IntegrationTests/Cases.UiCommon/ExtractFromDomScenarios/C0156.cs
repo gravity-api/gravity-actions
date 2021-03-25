@@ -10,7 +10,7 @@
 #pragma warning restore
 using Gravity.IntegrationTests.Base;
 using Gravity.Plugins.Contracts;
-using Gravity.Plugins.Contracts;
+
 using System.Collections.Generic;
 
 namespace Gravity.IntegrationTests.Cases.UiCommon.ExtractFromDomScenarios
@@ -71,7 +71,7 @@ namespace Gravity.IntegrationTests.Cases.UiCommon.ExtractFromDomScenarios
             // get extractions
             var extraction1 = new ExtractionRule
             {
-                OnRootElements = "//td[contains(@id,'student_last_name')]",
+                OnRootElements = "//td[contains(@id,\"student_last_name\")]",
                 OnElements = contentEntries1
             };
             #endregion

@@ -7,18 +7,21 @@ using Gravity.Plugins.Attributes;
 using Gravity.Plugins.Base;
 using Gravity.Plugins.Contracts;
 using Gravity.Plugins.Extensions;
+
 using OpenQA.Selenium;
 using OpenQA.Selenium.Extensions;
+
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 
 namespace Gravity.Plugins.Actions.UiWeb
 {
     [Plugin(
         assembly: "Gravity.Plugins.Actions, Version=5.0.0.0, Culture=neutral, PublicKeyToken=null",
-        resource: "Gravity.Plugins.Actions.Documentation.switch_to_alert.json",
-        Name = Contracts.PluginsList.SwitchToAlert)]
+        resource: "Gravity.Plugins.Actions.Manifest.SwitchToAlert.json",
+        Name = PluginsList.SwitchToAlert)]
     public class SwitchToAlert : WebDriverActionPlugin
     {
         #region *** arguments    ***
@@ -102,14 +105,16 @@ namespace Gravity.Plugins.Actions.UiWeb
         }
 
         // FACTORY
-#pragma warning disable S1144, RCS1213, IDE0051
         [Description("^dismiss$")]
+        [SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "Used by reflection, must be private.")]
         private void Dismiss() => WebDriver.SwitchTo().Alert().Dismiss();
 
         [Description("^accept$")]
+        [SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "Used by reflection, must be private.")]
         private void Accept() => WebDriver.SwitchTo().Alert().Accept();
 
         [Description("--user:[^(--)]*|--pass:[^(--)]*")]
+        [SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "Used by reflection, must be private.")]
         private void Credentials()
         {
             // parameters
@@ -124,6 +129,7 @@ namespace Gravity.Plugins.Actions.UiWeb
         }
 
         [Description("--keys:[^(--)]*")]
+        [SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "Used by reflection, must be private.")]
         private void SendKeys()
         {
             if (!arguments.ContainsKey(Keys))
@@ -134,6 +140,5 @@ namespace Gravity.Plugins.Actions.UiWeb
             // set keys
             WebDriver.SwitchTo().Alert().SendKeys(arguments[Keys]);
         }
-#pragma warning restore
     }
 }

@@ -22,7 +22,9 @@ using Gravity.Plugins.Actions.Extensions;
 using Gravity.Plugins.Attributes;
 using Gravity.Plugins.Base;
 using Gravity.Plugins.Contracts;
+
 using OpenQA.Selenium;
+
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
@@ -31,8 +33,8 @@ namespace Gravity.Plugins.Actions.UiCommon
 {
     [Plugin(
         assembly: "Gravity.Plugins.Actions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
-        resource: "Gravity.Plugins.Actions.Documentation.register_parameter.json",
-        Name = Contracts.PluginsList.RegisterParameter)]
+        resource: "Gravity.Plugins.Actions.Manifest.RegisterParameter.json",
+        Name = PluginsList.RegisterParameter)]
     public class RegisterParameter : WebDriverActionPlugin
     {
         #region *** arguments    ***

@@ -6,7 +6,7 @@
 * 
 * [test-actions]
 * 1. navigate to {https://gravitymvctestapplication.azurewebsites.net/uicontrols/}
-* 2. click on {//a[.='Departments']}
+* 2. click on {//a[.=\"Departments\"]}
 * 3. close browser
 * 
 * [test-expected-results]
@@ -16,7 +16,7 @@
 using Gravity.Abstraction.Contracts;
 using Gravity.IntegrationTests.Base;
 using Gravity.Plugins.Contracts;
-using Gravity.Plugins.Contracts;
+
 using System.Collections.Generic;
 
 namespace Gravity.IntegrationTests.Cases.UiCommon.ClickScenarios
@@ -40,7 +40,7 @@ namespace Gravity.IntegrationTests.Cases.UiCommon.ClickScenarios
             }
 
             // common actions
-            actions.Add(new ActionRule { Action = PluginsList.Click, OnElement = "//a[.='Departments']" });
+            actions.Add(new ActionRule { Action = PluginsList.Click, OnElement = "//a[.=\"Departments\"]" });
             actions.Add(new ActionRule
             {
                 Action = PluginsList.Assert,

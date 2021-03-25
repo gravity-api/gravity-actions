@@ -7,6 +7,7 @@ using Gravity.Plugins.Actions.Extensions;
 using Gravity.Plugins.Attributes;
 using Gravity.Plugins.Base;
 using Gravity.Plugins.Contracts;
+
 using OpenQA.Selenium;
 
 using System;
@@ -15,8 +16,8 @@ namespace Gravity.Plugins.Actions.UiCommon
 {
     [Plugin(
         assembly: "Gravity.Plugins.Actions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
-        resource: "Gravity.Plugins.Actions.Documentation.move_to_element.json",
-        Name = Contracts.PluginsList.MoveToElement)]
+        resource: "Gravity.Plugins.Actions.Manifest.MoveToElement.json",
+        Name = PluginsList.MoveToElement)]
     public class MoveToElement : WebDriverActionPlugin
     {
         #region *** constructors ***
@@ -54,8 +55,8 @@ namespace Gravity.Plugins.Actions.UiCommon
         {
             // constants
             const string fallbackScript =
-                "var rect = arguments[0].getBoundingClientRect(); " +
-                "window.scroll(rect.left, rect.top);";
+                "var rectangle = arguments[0].getBoundingClientRect(); " +
+                "window.scroll(rectangle.left, rectangle.top);";
 
             // get element
             var onElement = this.ConditionalGetElement(element, action);
@@ -70,7 +71,7 @@ namespace Gravity.Plugins.Actions.UiCommon
             }
             catch (Exception e) when (e is WebDriverException)
             {
-                ((IJavaScriptExecutor)WebDriver).ExecuteScript(script: fallbackScript, args: element);
+                ((IJavaScriptExecutor)WebDriver).ExecuteScript(script: fallbackScript, args: onElement);
             }
         }
     }

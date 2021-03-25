@@ -62,7 +62,7 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'argument':'3'}")]
+        [DataRow("{\"argument\":\"3\"}")]
         public void RefreshMultiple(string actionRule)
         {
             // execute
@@ -73,7 +73,7 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'argument':'NoNumber'}")]
+        [DataRow("{\"argument\":\"NoNumber\"}")]
         public void RefreshNotNumber(string actionRule)
         {
             // execute
@@ -84,7 +84,7 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'argument':'-1'}")]
+        [DataRow("{\"argument\":\"-1\"}")]
         public void RefreshNegative(string actionRule)
         {
             // execute

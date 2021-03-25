@@ -11,7 +11,6 @@ using OpenQA.Selenium.Mock;
 using System;
 
 using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
-using Gravity.Plugins.Contracts;
 
 namespace Gravity.UnitTests.UiCommon
 {
@@ -30,24 +29,24 @@ namespace Gravity.UnitTests.UiCommon
 
         private const string ActionRuleBoolean =
             "{" +
-            "    'argument':'{{$ --" + OnCondition + "}}'," +
-            "    'onElement':'" + OnElement + "'," +
-            "    'actions': [" +
+            "    \"argument\":\"{{$ --" + OnCondition + "}}\"," +
+            "    \"onElement\":\"" + OnElement + "\"," +
+            "    \"actions\": [" +
             "    {" +
-            "        'action':'RegisterParameter'," +
-            "        'argument':'{{$ --key:test_key --value:true}}'" +
+            "        \"action\":\"RegisterParameter\"," +
+            "        \"argument\":\"{{$ --key:test_key --value:true}}\"" +
             "    }]" +
             "}";
 
         private const string ActionRuleOperator =
             "{" +
-            "    'argument':'{{$ --" + OnCondition + " --" + OnOperator + ":" + OnOperatorExpected + "}}'," +
-            "    'onElement':'" + OnElement + "'," +
-            "    'onAttribute':'" + OnAttribute + "'," +
-            "    'actions': [" +
+            "    \"argument\":\"{{$ --" + OnCondition + " --" + OnOperator + ":" + OnOperatorExpected + "}}\"," +
+            "    \"onElement\":\"" + OnElement + "\"," +
+            "    \"onAttribute\":\"" + OnAttribute + "\"," +
+            "    \"actions\": [" +
             "    {" +
-            "        'action':'RegisterParameter'," +
-            "        'argument':'{{$ --key:test_key --value:true}}'" +
+            "        \"action\":\"RegisterParameter\"," +
+            "        \"argument\":\"{{$ --key:test_key --value:true}}\"" +
             "    }]" +
             "}";
         #endregion

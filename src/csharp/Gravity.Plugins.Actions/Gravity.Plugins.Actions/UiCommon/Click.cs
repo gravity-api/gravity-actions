@@ -28,11 +28,14 @@ using Gravity.Plugins.Attributes;
 using Gravity.Plugins.Base;
 using Gravity.Plugins.Contracts;
 using Gravity.Plugins.Extensions;
+
 using OpenQA.Selenium;
 using OpenQA.Selenium.Extensions;
 using OpenQA.Selenium.Support.UI;
+
 using System;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 
 // consolidate references
 using SeleniumActions = OpenQA.Selenium.Interactions.Actions;
@@ -41,8 +44,8 @@ namespace Gravity.Plugins.Actions.UiCommon
 {
     [Plugin(
         assembly: "Gravity.Plugins.Actions, Version=5.0.0.0, Culture=neutral, PublicKeyToken=null",
-        resource: "Gravity.Plugins.Actions.Documentation.click.json",
-        Name = Contracts.PluginsList.Click)]
+        resource: "Gravity.Plugins.Actions.Manifest.Click.json",
+        Name = PluginsList.Click)]
     public class Click : WebDriverActionPlugin
     {
         #region *** conditions   ***
@@ -54,7 +57,7 @@ namespace Gravity.Plugins.Actions.UiCommon
 
         #region *** arguments    ***
         /// <summary>
-        /// Repeats the click action until condition is met. Available conditions are: ['no-alert'].
+        /// Repeats the click action until condition is met. Available conditions are: [\"no-alert\"].
         /// </summary>
         public const string Until = "until";
         #endregion
@@ -142,8 +145,8 @@ namespace Gravity.Plugins.Actions.UiCommon
             method.Invoke(this, new object[] { action, element });
         }
 
-#pragma warning disable S1144, RCS1213, IDE0051
         [Description(NoAlert)]
+        [SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "Used by reflection, must be private.")]
         private void Alert(ActionRule action, IWebElement element) => wait.Until(driver =>
         {
             // click (supposed to trigger alert)
@@ -159,6 +162,5 @@ namespace Gravity.Plugins.Actions.UiCommon
             // results
             return driver;
         });
-#pragma warning restore
     }
 }

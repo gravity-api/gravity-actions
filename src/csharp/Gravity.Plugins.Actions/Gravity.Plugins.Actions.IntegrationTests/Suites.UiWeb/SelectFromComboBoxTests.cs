@@ -67,7 +67,7 @@ namespace Graivty.IntegrationTests.Suites.UiWeb
         public void T0210B(Context environment)
         {
             // setup
-            environment.TestParams["argument"] = "['Two']";
+            environment.TestParams["argument"] = "[\"Two\"]";
 
             // execute
             var actual = new C0210().AddEnvironments(environment).Execute();
@@ -95,7 +95,7 @@ namespace Graivty.IntegrationTests.Suites.UiWeb
         public void T0211B(Context environment)
         {
             // setup
-            environment.TestParams["argument"] = "['2']";
+            environment.TestParams["argument"] = "[\"2\"]";
 
             // execute
             var actual = new C0211().AddEnvironments(environment).Execute();

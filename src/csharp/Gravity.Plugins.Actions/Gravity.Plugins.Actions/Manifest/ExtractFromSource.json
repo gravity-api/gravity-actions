@@ -5,14 +5,15 @@
       "value": "0,1,4"
     }
   },
-  "description": "Executes the extraction rules collection provided under this WebAutomation and return or populates the data collected. Due to the nature of this action, it supports only XPath locator. This action will executes the extraction on the page DOM.",
+  "description": "Executes the extraction rules collection provided under this WebAutomation and return or populates the data collected. Due to the nature of this action, it supports only XPath locator. This action will executes the extraction on the page source.",
   "examples": [
     {
       "actionExample": {
-        "action": "ExtractFromDom"
+        "action": "ExtractFromSource"
       },
       "extractionExample": {
         "onRootElements": "//td[contains(@id,'student_first_name')]",
+        "pageSource": true,
         "onElements": [
           {
             "key": "FirstName"
@@ -20,14 +21,15 @@
         ]
       },
       "description": "Extract all students First Name into a table with FirstName column.",
-      "literalExample": "extract from dom on {//td[contains(@id,'student_first_name')]}\n    < column {FirstName}"
+      "literalExample": "extract from source on {//td[contains(@id,'student_first_name')]}\n    < column {FirstName}"
     },
     {
       "actionExample": {
-        "action": "ExtractFromDom"
+        "action": "ExtractFromSource"
       },
       "extractionExample": {
         "onRootElements": "//td[contains(@id,'student_first_name')]",
+        "pageSource": true,
         "onElements": [
           {
             "key": "FirstName",
@@ -36,14 +38,15 @@
         ]
       },
       "description": "Extract only the first character from all students First Name into a table with FirstName column.",
-      "literalExample": "extract from dom on {//td[contains(@id,'student_first_name')]}\n    < column {FirstName} filter {^\\w{1}}"
+      "literalExample": "extract from source on {//td[contains(@id,'student_first_name')]}\n    < column {FirstName} filter {^\\w{1}}"
     },
     {
       "actionExample": {
-        "action": "ExtractFromDom"
+        "action": "ExtractFromSource"
       },
       "extractionExample": {
         "onRootElements": "//td[contains(@id,'student_first_name')]",
+        "pageSource": true,
         "onElements": [
           {
             "key": "FirstName",
@@ -52,14 +55,15 @@
         ]
       },
       "description": "Extract the HTML ``id`` property, from all students First Name HTML element, into a table with FirstName column.",
-      "literalExample": "extract from dom on {//td[contains(@id,'student_first_name')]}\n    < column {FirstName} from {id}"
+      "literalExample": "extract from source on {//td[contains(@id,'student_first_name')]}\n    < column {FirstName} from {id}"
     },
     {
       "actionExample": {
-        "action": "ExtractFromDom"
+        "action": "ExtractFromSource"
       },
       "extractionExample": {
         "onRootElements": "//tbody/tr",
+        "pageSource": true,
         "onElements": [
           {
             "key": "FirstName",
@@ -67,19 +71,20 @@
           },
           {
             "key": "LastName",
-            "onElement": ".//td[contains(@id,'student_last_name')]"
+            "onElement": ".//td[contains(@id,\"student_last_name\")]"
           }
         ]
       },
       "description": "Extract all students First Name and Last Name into a table with FirstName and Last Name columns.",
-      "literalExample": "extract from dom on {//td[contains(@id,'student_first_name')]}\n    < column {FirstName} take {.//td[contains(@id,'student_first_name')]}\n    < column {LastName} take {.//td[contains(@id,'student_last_name')]}"
+      "literalExample": "extract from source on {//td[contains(@id,'student_first_name')]}\n    < column {FirstName} take {.//td[contains(@id,'student_first_name')]}\n    < column {LastName} take {.//td[contains(@id,\"student_last_name\")]}"
     },
     {
       "actionExample": {
-        "action": "ExtractFromDom"
+        "action": "ExtractFromSource"
       },
       "extractionExample": {
         "onRootElements": "//td[contains(@id,'student_first_name')]",
+        "pageSource": true,
         "onElements": [
           {
             "key": "FirstName",
@@ -88,11 +93,11 @@
         ]
       },
       "description": "Extract the HTML Markup of all students First Name HTML element, into a table with FirstName column.",
-      "literalExample": "extract from dom on {//td[contains(@id,'student_first_name')]}\n    < column {FirstName} from {html}"
+      "literalExample": "extract from source on {//td[contains(@id,'student_first_name')]}\n    < column {FirstName} from {html}"
     },
     {
       "actionExample": {
-        "action": "ExtractFromDom"
+        "action": "ExtractFromSource"
       },
       "extractionExample": {
         "dataSource": {
@@ -101,6 +106,7 @@
           "repository": "StudentsTable"
         },
         "onRootElement": "//td[contains(@id,'student_first_name')]",
+        "pageSource": true,
         "onElements": [
           {
             "key": "FirstName"
@@ -108,11 +114,11 @@
         ]
       },
       "description": "Extract all students First Name into a table with FirstName column and save it to SQL Server. The saving will be done when the extraction rule execution completed.",
-      "literalExample": "extract from dom on {//td[contains(@id,'student_first_name')]}\\n    < column {FirstName}\n    save {StudentsTable} on {Data Source=.\\SQLEXPRESS;Initial Catalog=FooDatabase;Integrated Security=True} using {SQLServer}"
+      "literalExample": "extract from source on {//td[contains(@id,'student_first_name')]}\\n    < column {FirstName}\n    save {StudentsTable} on {Data Source=.\\SQLEXPRESS;Initial Catalog=FooDatabase;Integrated Security=True} using {SQLServer}"
     },
     {
       "actionExample": {
-        "action": "ExtractFromDom"
+        "action": "ExtractFromSource"
       },
       "extractionExample": {
         "dataSource": {
@@ -122,6 +128,7 @@
           "writePerEntry": true
         },
         "onRootElement": "//td[contains(@id,'student_first_name')]",
+        "pageSource": true,
         "onElements": [
           {
             "key": "FirstName"
@@ -129,11 +136,11 @@
         ]
       },
       "description": "Extract all students First Name into a table with FirstName column and save it to SQL Server. The saving will be done when the content entry execution completed.",
-      "literalExample": "extract from dom on {//td[contains(@id,'student_first_name')]}\\n    < column {FirstName}\n    save {{$ --repository:StudentsTable --write_per_entry}} on {Data Source=.\\SQLEXPRESS;Initial Catalog=FooDatabase;Integrated Security=True} using {SQLServer}"
+      "literalExample": "extract from source on {//td[contains(@id,'student_first_name')]}\\n    < column {FirstName}\n    save {{$ --repository:StudentsTable --write_per_entry}} on {Data Source=.\\SQLEXPRESS;Initial Catalog=FooDatabase;Integrated Security=True} using {SQLServer}"
     },
     {
       "actionExample": {
-        "action": "ExtractFromDom"
+        "action": "ExtractFromSource"
       },
       "extractionExample": {
         "dataSource": {
@@ -141,6 +148,7 @@
           "source": "Data/StudentsTable.csv"
         },
         "onRootElement": "//td[contains(@id,'student_first_name')]",
+        "pageSource": true,
         "onElements": [
           {
             "key": "FirstName"
@@ -148,11 +156,11 @@
         ]
       },
       "description": "Extract all students First Name into a table with FirstName column and save it a CSV file. The saving will be done when the extraction rule execution completed.",
-      "literalExample": "extract from dom on {//td[contains(@id,'student_first_name')]}\n    < column {FirstName}\n    < save on {Data/StudentsTable.csv} using {csv}"
+      "literalExample": "extract from source on {//td[contains(@id,'student_first_name')]}\n    < column {FirstName}\n    < save on {Data/StudentsTable.csv} using {csv}"
     },
     {
       "actionExample": {
-        "action": "ExtractFromDom"
+        "action": "ExtractFromSource"
       },
       "extractionExample": {
         "dataSource": {
@@ -161,6 +169,7 @@
           "writePerEntry": true
         },
         "onRootElement": "//td[contains(@id,'student_first_name')]",
+        "pageSource": true,
         "onElements": [
           {
             "key": "FirstName"
@@ -168,11 +177,11 @@
         ]
       },
       "description": "Extract all students First Name into a table with FirstName column and save it to a CSV file. The saving will be done when the content entry execution completed.",
-      "literalExample": "extract from dom on {//td[contains(@id,'student_first_name')]}\n    < column {FirstName}\n    < save {{$ --write_per_entry}} on {Data/StudentsTable.csv} using {csv}"
+      "literalExample": "extract from source on {//td[contains(@id,'student_first_name')]}\n    < column {FirstName}\n    < save {{$ --write_per_entry}} on {Data/StudentsTable.csv} using {csv}"
     },
     {
       "actionExample": {
-        "action": "ExtractFromDom"
+        "action": "ExtractFromSource"
       },
       "extractionExample": {
         "dataSource": {
@@ -180,6 +189,7 @@
           "source": "Data/StudentsTable.json"
         },
         "onRootElement": "//td[contains(@id,'student_first_name')]",
+        "pageSource": true,
         "onElements": [
           {
             "key": "FirstName"
@@ -187,11 +197,11 @@
         ]
       },
       "description": "Extract all students First Name into a table with FirstName column and save it a JSON file. The saving will be done when the extraction rule execution completed.",
-      "literalExample": "extract from dom on {//td[contains(@id,'student_first_name')]}\n    < column {FirstName}\n    < save on {Data/StudentsTable.json} using {json}"
+      "literalExample": "extract from source on {//td[contains(@id,'student_first_name')]}\n    < column {FirstName}\n    < save on {Data/StudentsTable.json} using {json}"
     },
     {
       "actionExample": {
-        "action": "ExtractFromDom"
+        "action": "ExtractFromSource"
       },
       "extractionExample": {
         "dataSource": {
@@ -200,6 +210,7 @@
           "writePerEntry": true
         },
         "onRootElement": "//td[contains(@id,'student_first_name')]",
+        "pageSource": true,
         "onElements": [
           {
             "key": "FirstName"
@@ -207,11 +218,11 @@
         ]
       },
       "description": "Extract all students First Name into a table with FirstName column and save it to a JSON file. The saving will be done when the content entry execution completed.",
-      "literalExample": "extract from dom on {//td[contains(@id,'student_first_name')]}\n    < column {FirstName}\n   < save {{$ --write_per_entry}} on {Data/StudentsTable.json} using {json}"
+      "literalExample": "extract from source on {//td[contains(@id,'student_first_name')]}\n    < column {FirstName}\n   < save {{$ --write_per_entry}} on {Data/StudentsTable.json} using {json}"
     },
     {
       "actionExample": {
-        "action": "ExtractFromDom"
+        "action": "ExtractFromSource"
       },
       "extractionExample": {
         "dataSource": {
@@ -219,6 +230,7 @@
           "source": "Data/StudentsTable.xml"
         },
         "onRootElement": "//td[contains(@id,'student_first_name')]",
+        "pageSource": true,
         "onElements": [
           {
             "key": "FirstName"
@@ -226,11 +238,11 @@
         ]
       },
       "description": "Extract all students First Name into a table with FirstName column and save it to XML file. The saving will be done when the extraction rule execution completed.",
-      "literalExample": "extract from dom on {//td[contains(@id,'student_first_name')]}\n   < column {FirstName}\n    < save on {Data/StudentsTable.xml} using {xml}"
+      "literalExample": "extract from source on {//td[contains(@id,'student_first_name')]}\n   < column {FirstName}\n    < save on {Data/StudentsTable.xml} using {xml}"
     },
     {
       "actionExample": {
-        "action": "ExtractFromDom"
+        "action": "ExtractFromSource"
       },
       "extractionExample": {
         "dataSource": {
@@ -239,6 +251,7 @@
           "writePerEntry": true
         },
         "onRootElement": "//td[contains(@id,'student_first_name')]",
+        "pageSource": true,
         "onElements": [
           {
             "key": "FirstName"
@@ -246,11 +259,11 @@
         ]
       },
       "description": "Extract all students First Name into a table with FirstName column and save it to XML file. The saving will be done when the content entry execution completed.",
-      "literalExample": "extract from dom on {//td[contains(@id,'student_first_name')]}\n   < column {FirstName}\n    < save {{$ --write_per_entry}} on {Data/StudentsTable.xml} using {xml}"
+      "literalExample": "extract from source on {//td[contains(@id,'student_first_name')]}\n   < column {FirstName}\n    < save {{$ --write_per_entry}} on {Data/StudentsTable.xml} using {xml}"
     },
     {
       "actionExample": {
-        "action": "ExtractFromDom"
+        "action": "ExtractFromSource"
       },
       "extractionExample": {
         "dataSource": {
@@ -258,6 +271,7 @@
           "source": "http://www.@foo-bar.io/data"
         },
         "onRootElement": "//td[contains(@id,'student_first_name')]",
+        "pageSource": true,
         "onElements": [
           {
             "key": "FirstName"
@@ -265,11 +279,11 @@
         ]
       },
       "description": "Extract all students First Name into a table with FirstName column and send it to a Rest API using HTTP post. The saving will be done when the extraction rule execution completed.",
-      "literalExample": "extract from dom on {//td[contains(@id,'student_first_name')]}\n    < column {FirstName}\n    < save on {http://www.@foo-bar.io/data} using {RestApi}"
+      "literalExample": "extract from source on {//td[contains(@id,'student_first_name')]}\n    < column {FirstName}\n    < save on {http://www.@foo-bar.io/data} using {RestApi}"
     },
     {
       "actionExample": {
-        "action": "ExtractFromDom"
+        "action": "ExtractFromSource"
       },
       "extractionExample": {
         "dataSource": {
@@ -278,6 +292,7 @@
           "writePerEntity": true
         },
         "onRootElement": "//td[contains(@id,'student_first_name')]",
+        "pageSource": true,
         "onElements": [
           {
             "key": "FirstName"
@@ -285,10 +300,10 @@
         ]
       },
       "description": "Extract all students First Name into a table with FirstName column and send it to a Rest API using HTTP post. The saving will be done when the content entry execution completed.",
-      "literalExample": "extract from dom on {//td[contains(@id,'student_first_name')]}\n    < column {FirstName}\n    < save {{$ --write_per_entry}} on {http://www.@foo-bar.io/data} using {RestApi}"
+      "literalExample": "extract from source on {//td[contains(@id,'student_first_name')]}\n    < column {FirstName}\n    < save {{$ --write_per_entry}} on {http://www.@foo-bar.io/data} using {RestApi}"
     }
   ],
-  "name": "ExtractFromDom",
+  "name": "ExtractFromSource",
   "pluginType": "Action",
   "properties": {
     "argument": "Plugin conditions and additional information."

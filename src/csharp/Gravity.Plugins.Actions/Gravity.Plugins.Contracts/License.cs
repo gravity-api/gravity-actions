@@ -1,6 +1,11 @@
-﻿using Newtonsoft.Json;
+﻿/*
+ * CHANGE LOG - keep only last 5 threads
+ * 
+ * RESOURCES
+ */
 using System;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 namespace Gravity.Plugins.Contracts
 {
@@ -13,6 +18,7 @@ namespace Gravity.Plugins.Contracts
         /// <summary>
         /// license file name under current location
         /// </summary>
+        [Newtonsoft.Json.JsonIgnore]
         [JsonIgnore]
         public const string FileName = "license.lcn";
 

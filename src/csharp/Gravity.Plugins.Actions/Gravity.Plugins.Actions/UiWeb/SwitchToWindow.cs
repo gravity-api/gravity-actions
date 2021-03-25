@@ -6,14 +6,15 @@
 using Gravity.Plugins.Attributes;
 using Gravity.Plugins.Base;
 using Gravity.Plugins.Contracts;
+
 using OpenQA.Selenium;
 
 namespace Gravity.Plugins.Actions.UiWeb
 {
     [Plugin(
         assembly: "Gravity.Plugins.Actions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
-        resource: "Gravity.Plugins.Actions.Documentation.switch_to_window.json",
-        Name = Contracts.PluginsList.SwitchToWindow)]
+        resource: "Gravity.Plugins.Actions.Manifest.SwitchToWindow.json",
+        Name = PluginsList.SwitchToWindow)]
     public class SwitchToWindow : WebDriverActionPlugin
     {
         #region *** constructors ***
@@ -56,7 +57,7 @@ namespace Gravity.Plugins.Actions.UiWeb
             }
 
             // parse window index
-            int.TryParse(action.Argument, out int indexOut);
+            _ = int.TryParse(action.Argument, out int indexOut);
 
             // last tab/window conditions
             if (WebDriver.WindowHandles.Count < indexOut + 1)

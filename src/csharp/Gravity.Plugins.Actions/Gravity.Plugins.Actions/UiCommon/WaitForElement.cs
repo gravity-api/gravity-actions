@@ -8,8 +8,10 @@ using Gravity.Plugins.Extensions;
 using Gravity.Plugins.Attributes;
 using Gravity.Plugins.Base;
 using Gravity.Plugins.Contracts;
+
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+
 using System;
 using System.Linq;
 
@@ -17,13 +19,13 @@ namespace Gravity.Plugins.Actions.UiCommon
 {
     [Plugin(
         assembly: "Gravity.Plugins.Actions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
-        resource: "Gravity.Plugins.Actions.Documentation.wait_for_element.json",
-        Name = Contracts.PluginsList.WaitForElement)]
+        resource: "Gravity.Plugins.Actions.Manifest.WaitForElement.json",
+        Name = PluginsList.WaitForElement)]
     public class WaitForElement : WebDriverActionPlugin
     {
         #region *** arguments    ***
         /// <summary>
-        /// Element condition to meet. Available values ['exists', 'visible', 'stale', 'enabled', 'attribute', 'text', 'hidden'].
+        /// Element condition to meet. Available values [\"exists\", \"visible\", \"stale\", \"enabled\", \"attribute\", \"text\", \"hidden\"].
         /// </summary>
         public const string Until = "until";
 

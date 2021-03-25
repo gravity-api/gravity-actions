@@ -1,6 +1,6 @@
 {
   "cliArguments": {
-    "until": "Page condition to meet. Available values ['complete', 'interactive', 'loaded', 'loading', 'uninitialized'].",
+    "until": "Page condition to meet. Available values [\"complete\", \"interactive\", \"loaded\", \"loading\", \"uninitialized\"].",
     "timeout": "Timeout to wait before throwing [TimeoutException], value can be TimeSpan [hh:mm:ss] or in millisecond [3000]. If not provided, default will be [PageLoadTimeout]."
   },
   "description": "Wait until the provided page state condition is met.",

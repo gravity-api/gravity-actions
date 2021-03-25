@@ -16,8 +16,8 @@ namespace Gravity.Plugins.Actions.UiWeb
 {
     [Plugin(
         assembly: "Gravity.Plugins.Actions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
-        resource: "Gravity.Plugins.Actions.Documentation.wait_for_url.json",
-        Name = Contracts.PluginsList.WaitForUrl)]
+        resource: "Gravity.Plugins.Actions.Manifest.WaitForUrl.json",
+        Name = PluginsList.WaitForUrl)]
     public class WaitForUrl : WebDriverActionPlugin
     {
         #region *** arguments    ***
@@ -72,12 +72,10 @@ namespace Gravity.Plugins.Actions.UiWeb
             {
                 timeout = arguments[Timeout].AsTimeSpan();
             }
-
             var wait = new WebDriverWait(WebDriver, timeout);
 
             // wait
-            wait.Until(driver
-                => Regex.IsMatch(driver.Url, action.RegularExpression));
+            wait.Until(driver => Regex.IsMatch(driver.Url, action.RegularExpression));
         }
     }
 }

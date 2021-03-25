@@ -1,15 +1,15 @@
 {
-  "description": "Move back a single entry in the browser's history. The action will be completed when page ready state equal [complete] or until page loading timeout reached.",
+  "description": "Move back a single entry in the browser\"s history. The action will be completed when page ready state equal [complete] or until page loading timeout reached.",
   "examples": [
     {
-      "description": "Move back a single entry in the browser's history.",
+      "description": "Move back a single entry in the browser\"s history.",
       "literalExample": "navigate back",
       "actionExample": {
         "action": "NavigateBack"
       }
     },
     {
-      "description": "Move back 2 entries in the browser's history.",
+      "description": "Move back 2 entries in the browser\"s history.",
       "literalExample": "navigate back {2} pages",
       "actionExample": {
         "action": "NavigateBack",
@@ -27,6 +27,6 @@
     "w3c": "https://www.w3.org/TR/webdriver/#back"
   },
   "scope": [ "web", "mobile-web" ],
-  "summary": "Move back a single entry in the browser's history.",
+  "summary": "Move back a single entry in the browser\"s history.",
   "testOn": "https://gravitymvctestapplication.azurewebsites.net/instructor"
 }

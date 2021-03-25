@@ -7,7 +7,7 @@ Gets an ```OpenQA.Selenium.Screenshot``` object representing the image of the pa
 ## Properties
 | Property             | Description                                                                                                     |
 |----------------------|-----------------------------------------------------------------------------------------------------------------|
-| _**argument**_       | The full path and file name to save the screenshot to. Support formats ```['BMP','GIF','JPEG','TIFF','PNG']```. |
+| _**argument**_       | The full path and file name to save the screenshot to. Support formats ```[\"BMP\",\"GIF\",\"JPEG\",\"TIFF\",\"PNG\"]```. |
 | _**onElement**_      | The locator value by which the element will be found.                                                           |
 | _**locator**_        | The locator type by which the element will be found.                                                            |
 
@@ -90,13 +90,13 @@ Saves a web element screenshot as ```element.png``` to the given path (you can u
 {
     "action": "GetScreenshot",
     "argument": "GetScreenshot/image.png",
-    "onElement": "//div[@class='jumbotron']"
+    "onElement": "//div[@class=\"jumbotron\"]"
 }
 ```
 
 #### _Rhino Literal_
 ```
-get screenshot {GetScreenshot/image.png} on {//div[@class='jumbotron']}
+get screenshot {GetScreenshot/image.png} on {//div[@class=\"jumbotron\"]}
 ```
 
 #### _CSharp_
@@ -106,7 +106,7 @@ var actionRule = new ActionRule
 {
     Action = PluginsList.GetScreenshot,
     Argument = "GetScreenshot/image.png",
-    OnElement = "//div[@class='jumbotron']"
+    OnElement = "//div[@class=\"jumbotron\"]"
 };
 
 // option no.2
@@ -114,7 +114,7 @@ var actionRule = new
 {
     Action = "GetScreenshot",
     Argument = "GetScreenshot/image.png",
-    OnElement = "//div[@class='jumbotron']"
+    OnElement = "//div[@class=\"jumbotron\"]"
 };
 ```
 
@@ -123,7 +123,7 @@ var actionRule = new
 action_rule = {
     "action": "GetScreenshot",
     "argument": "GetScreenshot/image.png",
-    "onElement": "//div[@class='jumbotron']"
+    "onElement": "//div[@class=\"jumbotron\"]"
 }
 ```
 
@@ -132,7 +132,7 @@ action_rule = {
 var actionRule = {
     "action": "GetScreenshot",
     "argument": "GetScreenshot/image.png",
-    "onElement": "//div[@class='jumbotron']"
+    "onElement": "//div[@class=\"jumbotron\"]"
 };
 ```
 
@@ -141,5 +141,5 @@ var actionRule = {
 ActionRule actionRule = new ActionRule()
         .setAction("GetScreenshot")
         .setArgument("GetScreenshot/image.png")
-        .setOnElement("//div[@class='jumbotron']");
+        .setOnElement("//div[@class=\"jumbotron\"]");
 ```

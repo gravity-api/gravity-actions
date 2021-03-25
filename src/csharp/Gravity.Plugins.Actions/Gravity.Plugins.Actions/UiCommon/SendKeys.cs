@@ -27,13 +27,12 @@ using Gravity.Plugins.Attributes;
 using Gravity.Plugins.Base;
 using Gravity.Plugins.Contracts;
 
-using Newtonsoft.Json;
-
 using OpenQA.Selenium;
 using OpenQA.Selenium.Extensions;
 
 using System;
 using System.Collections.Generic;
+using System.Text.Json;
 using System.Text.RegularExpressions;
 using System.Threading;
 
@@ -44,8 +43,8 @@ namespace Gravity.Plugins.Actions.UiCommon
 {
     [Plugin(
         assembly: "Gravity.Plugins.Actions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
-        resource: "Gravity.Plugins.Actions.Documentation.send_keys.json",
-        Name = Contracts.PluginsList.SendKeys)]
+        resource: "Gravity.Plugins.Actions.Manifest.SendKeys.json",
+        Name = PluginsList.SendKeys)]
     public class SendKeys : WebDriverActionPlugin
     {
         #region *** arguments    ***
@@ -274,17 +273,17 @@ namespace Gravity.Plugins.Actions.UiCommon
             }
         }
 
-        private Action DoKeys(IWebElement element, IDictionary<string, string> arguments)
+        private static Action DoKeys(IWebElement element, IDictionary<string, string> arguments)
         {
             return new Action(() => element?.SendKeys(text: arguments[Keystrokes]));
         }
 
-        private Action DoInterval(IWebElement element, IDictionary<string, string> arguments)
+        private static Action DoInterval(IWebElement element, IDictionary<string, string> arguments)
         {
             return new Action(() =>
             {
                 // parse typing interval
-                int.TryParse(arguments[Interval], out int intervalOut);
+                _ = int.TryParse(arguments[Interval], out int intervalOut);
 
                 // execute action
                 element?.DelayedSendKeys(arguments[Keystrokes], intervalOut);
@@ -294,7 +293,7 @@ namespace Gravity.Plugins.Actions.UiCommon
         private bool IsMobileNative()
         {
             // setup
-            var driverParams = JsonConvert.SerializeObject(Automation.DriverParams);
+            var driverParams = JsonSerializer.Serialize(Automation.DriverParams);
 
             // conditions
             return Regex.IsMatch(input: driverParams, pattern: "(?i)\"app\"(\\s+)?:(\\s+)?\".+?\"");

@@ -14,16 +14,18 @@ using Gravity.Plugins.Actions.Extensions;
 using Gravity.Plugins.Attributes;
 using Gravity.Plugins.Base;
 using Gravity.Plugins.Contracts;
+
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+
 using System;
 
 namespace Gravity.Plugins.Actions.UiWeb
 {
     [Plugin(
         assembly: "Gravity.Plugins.Actions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
-        resource: "Gravity.Plugins.Actions.Documentation.try_click.json",
-        Name = Contracts.PluginsList.TryClick)]
+        resource: "Gravity.Plugins.Actions.Manifest.TryClick.json",
+        Name = PluginsList.TryClick)]
     public class TryClick : WebDriverActionPlugin
     {
         // constants

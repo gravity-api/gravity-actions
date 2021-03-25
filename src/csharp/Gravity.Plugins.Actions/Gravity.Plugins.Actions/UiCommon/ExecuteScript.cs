@@ -24,16 +24,20 @@ using Gravity.Plugins.Actions.Extensions;
 using Gravity.Plugins.Attributes;
 using Gravity.Plugins.Base;
 using Gravity.Plugins.Contracts;
-using Newtonsoft.Json;
+using Gravity.Plugins.Extensions;
+
 using OpenQA.Selenium;
+
 using System.Collections.Generic;
+using System.Linq;
+using System.Text.Json;
 
 namespace Gravity.Plugins.Actions.UiCommon
 {
     [Plugin(
         assembly: "Gravity.Plugins.Actions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
-        resource: "Gravity.Plugins.Actions.Documentation.execute_script.json",
-        Name = Contracts.PluginsList.ExecuteScript)]
+        resource: "Gravity.Plugins.Actions.Manifest.ExecuteScript.json",
+        Name = PluginsList.ExecuteScript)]
     public class ExecuteScript : WebDriverActionPlugin
     {
         #region *** constants    ***
@@ -91,8 +95,8 @@ namespace Gravity.Plugins.Actions.UiCommon
             // add arguments
             if (cliArgs.ContainsKey(Args))
             {
-                var a = JsonConvert.DeserializeObject<object[]>(cliArgs[Args]);
-                srcArgs.AddRange(a);
+                var args = JsonSerializer.Deserialize<IEnumerable<object>>(cliArgs[Args]).Select(i => i.GetUnderline());
+                srcArgs.AddRange(args);
             }
 
             // on element script            

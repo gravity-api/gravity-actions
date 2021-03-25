@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace Gravity.Plugins.Actions.Extensions
 {
-    public static class CollectionExtensions
+    internal static class CollectionExtensions
     {
         /// <summary>
         /// Adds the elements of the specified collection to the end of the <see cref="ConcurrentBag{T}"/>.

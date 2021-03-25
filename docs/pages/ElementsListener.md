@@ -41,20 +41,20 @@ The time to wait before terminating the listener. This will not terminate the au
 Can be tested on
 * https://gravitymvctestapplication.azurewebsites.net/UiControls
 
-Every ```500 milliseconds```, the ```ElementsListener``` will search for ```//div[./strong[contains(.,'Random Element.')]]```. If exists, it will be clicked. This will apply for all the elements found by the given locator.
+Every ```500 milliseconds```, the ```ElementsListener``` will search for ```//div[./strong[contains(.,\"Random Element.\")]]```. If exists, it will be clicked. This will apply for all the elements found by the given locator.
 
 #### _Action Rule (JSON)_
 ```js
 {
     "action": "ElementsListener",
     "argument": "500",
-    "onElement": "//div[./strong[contains(.,'Random Element.')]]"
+    "onElement": "//div[./strong[contains(.,\"Random Element.\")]]"
 }
 ```
 
 #### _Rhino Literal_
 ```
-elements listener {500} on {//div[./strong[contains(.,'Random Element.')]]}
+elements listener {500} on {//div[./strong[contains(.,\"Random Element.\")]]}
 ```
 
 #### _CSharp_
@@ -63,7 +63,7 @@ var actionRule = new ActionRule
 {
     Action = PluginsList.ElementsListener,
     Argument = "500",
-    OnElement = "//div[./strong[contains(.,'Random Element.')]]"
+    OnElement = "//div[./strong[contains(.,\"Random Element.\")]]"
 };
 ```
 
@@ -72,7 +72,7 @@ var actionRule = new ActionRule
 action_rule = {
     "action": "ElementsListener",
     "argument": "500",
-    "onElement": "//div[./strong[contains(.,'Random Element.')]]"
+    "onElement": "//div[./strong[contains(.,\"Random Element.\")]]"
 }
 ```
 
@@ -81,7 +81,7 @@ action_rule = {
 var actionRule = {
     action: "ElementsListener",
     argument: "500",
-    onElement: "//div[./strong[contains(.,'Random Element.')]]"
+    onElement: "//div[./strong[contains(.,\"Random Element.\")]]"
 };
 ```
 
@@ -90,7 +90,7 @@ var actionRule = {
 ActionRule actionRule = new ActionRule()
         .setAction("ElementsListener")
         .setArgument("500")
-        .setOnElement("//div[./strong[contains(.,'Random Element.')]]");
+        .setOnElement("//div[./strong[contains(.,\"Random Element.\")]]");
 ```
 
 ***
@@ -99,20 +99,20 @@ ActionRule actionRule = new ActionRule()
 Can be tested on
 * https://gravitymvctestapplication.azurewebsites.net/UiControls
 
-Every ```500 milliseconds``` and for total time of ```30000 milliseconds```, the ```ElementsListener``` will search for ```//div[./strong[contains(.,'Random Element.')]]```. If exists, it will be clicked. This will apply for all the elements found by the given locator.
+Every ```500 milliseconds``` and for total time of ```30000 milliseconds```, the ```ElementsListener``` will search for ```//div[./strong[contains(.,\"Random Element.\")]]```. If exists, it will be clicked. This will apply for all the elements found by the given locator.
 
 #### _Action Rule (JSON)_
 ```js
 {
     "action": "ElementsListener",
     "argument": "{{$ --interval:500 --timeout:30000}}",
-    "onElement": "//div[./strong[contains(.,'Random Element.')]]"
+    "onElement": "//div[./strong[contains(.,\"Random Element.\")]]"
 }
 ```
 
 #### _Rhino Literal_
 ```
-elements listener {{$ --interval:500 --timeout:30000}} on {//div[./strong[contains(.,'Random Element.')]]}
+elements listener {{$ --interval:500 --timeout:30000}} on {//div[./strong[contains(.,\"Random Element.\")]]}
 ```
 
 #### _CSharp_
@@ -121,7 +121,7 @@ var actionRule = new ActionRule
 {
     Action = PluginsList.ElementsListener,
     Argument = "{{$ --interval:500 --timeout:30000}}",
-    OnElement = "//div[./strong[contains(.,'Random Element.')]]"
+    OnElement = "//div[./strong[contains(.,\"Random Element.\")]]"
 };
 ```
 
@@ -130,7 +130,7 @@ var actionRule = new ActionRule
 action_rule = {
     "action": "ElementsListener",
     "argument": "{{$ --interval:500 --timeout:30000}}",
-    "onElement": "//div[./strong[contains(.,'Random Element.')]]"
+    "onElement": "//div[./strong[contains(.,\"Random Element.\")]]"
 }
 ```
 
@@ -139,7 +139,7 @@ action_rule = {
 var actionRule = {
     action: "ElementsListener",
     argument: "{{$ --interval:500 --timeout:30000}}",
-    onElement: "//div[./strong[contains(.,'Random Element.')]]"
+    onElement: "//div[./strong[contains(.,\"Random Element.\")]]"
 };
 ```
 
@@ -148,7 +148,7 @@ var actionRule = {
 ActionRule actionRule = new ActionRule()
         .setAction("ElementsListener")
         .setArgument("{{$ --interval:500 --timeout:30000}}")
-        .setOnElement("//div[./strong[contains(.,'Random Element.')]]");
+        .setOnElement("//div[./strong[contains(.,\"Random Element.\")]]");
 ```
 
 ***
@@ -157,14 +157,14 @@ ActionRule actionRule = new ActionRule()
 Can be tested on
 * https://gravitymvctestapplication.azurewebsites.net/UiControls
 
-Every ```1 second(s)``` and for total time of ```30 second(s)```, the ```ElementsListener``` will search for ```//div[./strong[contains(.,'Random Element.')]]```. If exists, ```Actions``` will be executed. This will apply for all the elements found by the given locator.
+Every ```1 second(s)``` and for total time of ```30 second(s)```, the ```ElementsListener``` will search for ```//div[./strong[contains(.,\"Random Element.\")]]```. If exists, ```Actions``` will be executed. This will apply for all the elements found by the given locator.
 
 #### _Action Rule (JSON)_
 ```js
 {
     "action": "ElementsListener",
     "argument": "{{$ --interval:00:00:01 --timeout:00:00:30}}",
-    "onElement": "//div[./strong[contains(.,'Random Element.')]]",
+    "onElement": "//div[./strong[contains(.,\"Random Element.\")]]",
     "actions": [
         {
             "action": "SendKeys",
@@ -174,7 +174,7 @@ Every ```1 second(s)``` and for total time of ```30 second(s)```, the ```Element
         },
         {
             "action": "Click",
-            "onElement": "//div[./strong[contains(.,'Random Element.')]]"
+            "onElement": "//div[./strong[contains(.,\"Random Element.\")]]"
         }
     ]        
 }
@@ -182,9 +182,9 @@ Every ```1 second(s)``` and for total time of ```30 second(s)```, the ```Element
 
 #### _Rhino Literal_
 ```
-elements listener {{$ --interval:00:00:01 --timeout:00:00:30}} on {//div[./strong[contains(.,'Random Element.')]]}
+elements listener {{$ --interval:00:00:01 --timeout:00:00:30}} on {//div[./strong[contains(.,\"Random Element.\")]]}
     > type {dismissed} into {input_enabled} using {id}
-    > click on {//div[./strong[contains(.,'Random Element.')]]}
+    > click on {//div[./strong[contains(.,\"Random Element.\")]]}
 ```
 
 #### _CSharp_
@@ -193,7 +193,7 @@ var actionRule = new ActionRule
 {
     Action = PluginsList.ElementsListener,
     Argument = "{{$ --interval:00:00:01 --timeout:00:00:30}}",
-    OnElement = "//div[./strong[contains(.,'Random Element.')]]"
+    OnElement = "//div[./strong[contains(.,\"Random Element.\")]]"
     actions: [
         {
             action: PluginsList.SendKeys,
@@ -203,7 +203,7 @@ var actionRule = new ActionRule
         },
         {
             action: PluginsList.Click,
-            onElement: "//div[./strong[contains(.,'Random Element.')]]"
+            onElement: "//div[./strong[contains(.,\"Random Element.\")]]"
         }
     ]      
 };
@@ -214,7 +214,7 @@ var actionRule = new ActionRule
 action_rule = {
     "action": "ElementsListener",
     "argument": "{{$ --interval:00:00:01 --timeout:00:00:30}}",
-    "onElement": "//div[./strong[contains(.,'Random Element.')]]",
+    "onElement": "//div[./strong[contains(.,\"Random Element.\")]]",
     "actions": [
         {
             "action": "SendKeys",
@@ -224,7 +224,7 @@ action_rule = {
         },
         {
             "action": "Click",
-            "onElement": "//div[./strong[contains(.,'Random Element.')]]"
+            "onElement": "//div[./strong[contains(.,\"Random Element.\")]]"
         }
     ]    
 }
@@ -235,7 +235,7 @@ action_rule = {
 var actionRule = {
     action: "ElementsListener",
     argument: "{{$ --interval:00:00:01 --timeout:00:00:30}}",
-    onElement: "//div[./strong[contains(.,'Random Element.')]]",
+    onElement: "//div[./strong[contains(.,\"Random Element.\")]]",
     actions: [
         {
             action: "SendKeys",
@@ -245,7 +245,7 @@ var actionRule = {
         },
         {
             action: "Click",
-            onElement: "//div[./strong[contains(.,'Random Element.')]]"
+            onElement: "//div[./strong[contains(.,\"Random Element.\")]]"
         }
     ]     
 };
@@ -256,7 +256,7 @@ var actionRule = {
 ActionRule actionRule = new ActionRule()
         .setAction("ElementsListener")
         .setArgument("{{$ --interval:00:00:01 --timeout:00:00:30}}")
-        .setOnElement("//div[./strong[contains(.,'Random Element.')]]")
+        .setOnElement("//div[./strong[contains(.,\"Random Element.\")]]")
         .setActions(
             new ActionRule()
                     .setAction("SendKeys")

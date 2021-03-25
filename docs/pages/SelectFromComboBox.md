@@ -228,7 +228,7 @@ Selects multiple values from ```select_menu_multiple``` combo box, by item ```te
 ```js
 {
     "action": "SelectFromComboBox",
-    "argument": "['One', 'Two']",
+    "argument": "[\"One\", \"Two\"]",
     "onElement": "select_menu_multiple",
     "locator": "Id"
 }
@@ -236,7 +236,7 @@ Selects multiple values from ```select_menu_multiple``` combo box, by item ```te
 
 #### _Rhino Literal_
 ```
-select from combo box {['One', 'Two']} on {select_menu_multiple} using {id}
+select from combo box {[\"One\", \"Two\"]} on {select_menu_multiple} using {id}
 ```
 
 #### _CSharp_
@@ -244,7 +244,7 @@ select from combo box {['One', 'Two']} on {select_menu_multiple} using {id}
 var actionRule = new ActionRule
 {
     Action = PluginsList.SelectFromComboBox,
-    Argument = "['One', 'Two']",
+    Argument = "[\"One\", \"Two\"]",
     OnElement: "select_menu_multiple",
     Locator: "Id"
 };
@@ -254,7 +254,7 @@ var actionRule = new ActionRule
 ```python
 action_rule = {
     "action": "SelectFromComboBox",
-    "argument": "['One', 'Two']",
+    "argument": "[\"One\", \"Two\"]",
     "onElement": "select_menu_multiple",
     "locator": "Id"
 }
@@ -264,7 +264,7 @@ action_rule = {
 ```js
 action_rule = {
     action: "SelectFromComboBox",
-    argument: "['One', 'Two']",
+    argument: "[\"One\", \"Two\"]",
     onElement: "select_menu_multiple",
     locator: "Id"
 };
@@ -274,7 +274,7 @@ action_rule = {
 ```java
 ActionRule actionRule = new ActionRule()
         .setAction("SelectFromComboBox")
-        .setArgument("['One', 'Two']")
+        .setArgument("[\"One\", \"Two\"]")
         .setOnElement("select_menu_multiple")
         .setLocator("Id");
 ```
@@ -289,7 +289,7 @@ Selects multiple values from ```select_menu_multiple``` combo box, by item ```va
 ```js
 {
     "action": "SelectFromComboBox",
-    "argument": "['1', '2']",
+    "argument": "[\"1\", \"2\"]",
     "onElement": "select_menu_multiple",
     "locator": "Id",
     "onAttribute": "value"
@@ -298,7 +298,7 @@ Selects multiple values from ```select_menu_multiple``` combo box, by item ```va
 
 #### _Rhino Literal_
 ```
-select from combo box {['1', '2']} on {select_menu_multiple} using {id} from {value}
+select from combo box {[\"1\", \"2\"]} on {select_menu_multiple} using {id} from {value}
 ```
 
 #### _CSharp_
@@ -306,7 +306,7 @@ select from combo box {['1', '2']} on {select_menu_multiple} using {id} from {va
 var actionRule = new ActionRule
 {
     Action = PluginsList.SelectFromComboBox,
-    Argument = "['1', '2']",
+    Argument = "[\"1\", \"2\"]",
     OnElement: "select_menu_multiple",
     Locator: "Id",
     OnAttribute: "value"
@@ -317,7 +317,7 @@ var actionRule = new ActionRule
 ```python
 action_rule = {
     "action": "SelectFromComboBox",
-    "argument": "['1', '2']",
+    "argument": "[\"1\", \"2\"]",
     "onElement": "select_menu_multiple",
     "locator": "Id",
     "onAttribute": "value"
@@ -328,7 +328,7 @@ action_rule = {
 ```js
 action_rule = {
     action: "SelectFromComboBox",
-    argument: "['1', '2']",
+    argument: "[\"1\", \"2\"]",
     onElement: "select_menu_multiple",
     locator: "Id",
     onAttribute: "value"
@@ -339,7 +339,7 @@ action_rule = {
 ```java
 ActionRule actionRule = new ActionRule()
         .setAction("SelectFromComboBox")
-        .setArgument("['1', '2']")
+        .setArgument("[\"1\", \"2\"]")
         .setOnElement("select_menu_multiple")
         .setLocator("Id")
         .setOnAttribute("value");
@@ -355,7 +355,7 @@ Selects multiple values from ```select_menu_multiple``` combo box, by item ```in
 ```js
 {
     "action": "SelectFromComboBox",
-    "argument": "['1', '2']",
+    "argument": "[\"1\", \"2\"]",
     "onElement": "select_menu_multiple",
     "locator": "Id",
     "onAttribute": "index"
@@ -364,7 +364,7 @@ Selects multiple values from ```select_menu_multiple``` combo box, by item ```in
 
 #### _Rhino Literal_
 ```
-select from combo box {['1', '2']} on {select_menu_multiple} using {id} from {index}
+select from combo box {[\"1\", \"2\"]} on {select_menu_multiple} using {id} from {index}
 ```
 
 #### _CSharp_
@@ -372,7 +372,7 @@ select from combo box {['1', '2']} on {select_menu_multiple} using {id} from {in
 var actionRule = new ActionRule
 {
     Action = PluginsList.SelectFromComboBox,
-    Argument = "['1', '2']",
+    Argument = "[\"1\", \"2\"]",
     OnElement: "select_menu_multiple",
     Locator: "Id",
     OnAttribute: "index"
@@ -383,7 +383,7 @@ var actionRule = new ActionRule
 ```python
 action_rule = {
     "action": "SelectFromComboBox",
-    "argument": "['1', '2']",
+    "argument": "[\"1\", \"2\"]",
     "onElement": "select_menu_multiple",
     "locator": "Id",
     "onAttribute": "index"
@@ -394,7 +394,7 @@ action_rule = {
 ```js
 action_rule = {
     action: "SelectFromComboBox",
-    argument: "['1', '2']",
+    argument: "[\"1\", \"2\"]",
     onElement: "select_menu_multiple",
     locator: "Id",
     onAttribute: "index"
@@ -405,7 +405,7 @@ action_rule = {
 ```java
 ActionRule actionRule = new ActionRule()
         .setAction("SelectFromComboBox")
-        .setArgument("['1', '2']")
+        .setArgument("[\"1\", \"2\"]")
         .setOnElement("select_menu_multiple")
         .setLocator("Id")
         .setOnAttribute("index");

@@ -4,7 +4,6 @@
  * RESOURCES
  */
 using Gravity.Plugins.Contracts;
-using Gravity.Plugins.Contracts;
 
 using System;
 using System.Collections.Generic;
@@ -278,7 +277,7 @@ namespace Gravity.IntegrationTests.Base
         public static bool AssertEntitiesValues(IEnumerable<OrbitResponse> responses, int fieldsCount, string expectedPattern)
         {
             // setup
-            var excluded = new[] { "EntityIndex" };
+            var excluded = new[] { "entityIndex" };
 
             // get all entities
             var entities = responses.SelectMany(i => i.Extractions).SelectMany(i => i.Entities);
@@ -303,7 +302,7 @@ namespace Gravity.IntegrationTests.Base
         public static bool AssertEntitiesKeys(IEnumerable<OrbitResponse> responses, int fieldsCount, string expectedPattern)
         {
             // setup
-            var excluded = new[] { "EntityIndex" };
+            var excluded = new[] { "entityIndex" };
 
             // get all entities
             var entities = responses.SelectMany(i => i.Extractions).SelectMany(i => i.Entities);

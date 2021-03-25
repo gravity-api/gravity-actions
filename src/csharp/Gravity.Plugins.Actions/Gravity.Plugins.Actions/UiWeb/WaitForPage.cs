@@ -5,20 +5,22 @@
  * https://www.w3schools.com/jsref/prop_doc_readystate.asp
  */
 using Gravity.Plugins.Actions.Components;
-using Gravity.Plugins.Extensions;
 using Gravity.Plugins.Attributes;
 using Gravity.Plugins.Base;
 using Gravity.Plugins.Contracts;
+using Gravity.Plugins.Extensions;
+
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+
 using System;
 
 namespace Gravity.Plugins.Actions.UiWeb
 {
     [Plugin(
         assembly: "Gravity.Plugins.Actions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
-        resource: "Gravity.Plugins.Actions.Documentation.wait_for_page.json",
-        Name = Contracts.PluginsList.WaitForPage)]
+        resource: "Gravity.Plugins.Actions.Manifest.WaitForPage.json",
+        Name = PluginsList.WaitForPage)]
     public class WaitForPage : WebDriverActionPlugin
     {
         #region *** arguments    ***
@@ -29,7 +31,7 @@ namespace Gravity.Plugins.Actions.UiWeb
         public const string Timeout = "timeout";
 
         /// <summary>
-        /// Page condition to meet. Available values ['complete', 'interactive', 'loaded', 'loading', 'uninitialized'].
+        /// Page condition to meet. Available values [\"complete\", \"interactive\", \"loaded\", \"loading\", \"uninitialized\"].
         /// </summary>
         public const string Until = "until";
         #endregion
@@ -78,14 +80,12 @@ namespace Gravity.Plugins.Actions.UiWeb
             SetArguments(action.Argument);
             var factory = new PageStateFactory();
             var wait = new WebDriverWait(WebDriver, timeout);
-            wait.IgnoreExceptionTypes(new[]
-            {
-                typeof(WebDriverException)
-            });
+
+            // build
+            wait.IgnoreExceptionTypes(new[] { typeof(WebDriverException) });
 
             // wait
-            wait.Until(driver
-                => factory.Factor(until, new object[] { driver }));
+            wait.Until(driver => factory.Factor(until, new object[] { driver }));
         }
 
         private void SetArguments(string cli)

@@ -20,6 +20,7 @@ using Gravity.Plugins.Actions.Extensions;
 using Gravity.Plugins.Attributes;
 using Gravity.Plugins.Base;
 using Gravity.Plugins.Contracts;
+
 using OpenQA.Selenium;
 using OpenQA.Selenium.Extensions;
 using OpenQA.Selenium.Remote;
@@ -28,8 +29,8 @@ namespace Gravity.Plugins.Actions.UiWeb
 {
     [Plugin(
         assembly: "Gravity.Plugins.Actions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
-        resource: "Gravity.Plugins.Actions.Documentation.close_browser.json",
-        Name = Contracts.PluginsList.CloseWindow)]
+        resource: "Gravity.Plugins.Actions.Manifest.CloseWindow.json",
+        Name = PluginsList.CloseWindow)]
     public class CloseWindow : WebDriverActionPlugin
     {
         #region *** constructors ***
@@ -100,7 +101,7 @@ namespace Gravity.Plugins.Actions.UiWeb
         private bool IsEdge()
         {
             // exit conditions
-            if (!(WebDriver is RemoteWebDriver rDriver))
+            if (WebDriver is not RemoteWebDriver rDriver)
             {
                 return false;
             }

@@ -37,7 +37,7 @@ namespace Gravity.UnitTests.UiCommon
         {
             AssertDocumentation<CloseBrowser>(
                 pluginName: PluginsList.CloseBrowser,
-                resource: "close_browser.json");
+                resource: "CloseBrowser.json");
         }
         #endregion
 

@@ -1,15 +1,15 @@
 {
-  "description": "Move forward a single entry in the browser's history. The action will be completed when page ready state [complete] or until page loading timeout reached.",
+  "description": "Move forward a single entry in the browser\"s history. The action will be completed when page ready state [complete] or until page loading timeout reached.",
   "examples": [
     {
-      "description": "Move forward a single entry in the browser's history.",
+      "description": "Move forward a single entry in the browser\"s history.",
       "literalExample": "navigate forward",
       "actionExample": {
         "action": "NavigateForward"
       }
     },
     {
-      "description": "Move forward 2 entries in the browser's history.",
+      "description": "Move forward 2 entries in the browser\"s history.",
       "literalExample": "navigate forward {2} pages",
       "actionExample": {
         "action": "NavigateForward",
@@ -27,6 +27,6 @@
     "w3c": "https://www.w3.org/TR/webdriver/#forward"
   },
   "scope": [ "web", "mobile-web" ],
-  "summary": "Move forward a single entry in the browser's history.",
+  "summary": "Move forward a single entry in the browser\"s history.",
   "testOn": "https://gravitymvctestapplication.azurewebsites.net/instructor"
 }

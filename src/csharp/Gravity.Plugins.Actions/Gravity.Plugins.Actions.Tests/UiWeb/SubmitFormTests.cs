@@ -33,13 +33,13 @@ namespace Gravity.UnitTests.UiWeb
         {
             AssertDocumentation<SubmitForm>(
                 pluginName: PluginsList.SubmitForm,
-                resource: "submit_form.json");
+                resource: "SubmitForm.json");
         }
         #endregion
 
         #region *** tests: OnDriver      ***
         [DataTestMethod]
-        [DataRow("{'argument':'mock_form'}")]
+        [DataRow("{\"argument\":\"mock_form\"}")]
         public void SubmitFormNamePositive(string actionRule)
         {
             // execute
@@ -50,7 +50,7 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'argument':'mock_form'}")]
+        [DataRow("{\"argument\":\"mock_form\"}")]
         public void SubmitFormNameNegative(string actionRule)
         {
             // execute
@@ -61,7 +61,7 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'argument':'mock_form'}")]
+        [DataRow("{\"argument\":\"mock_form\"}")]
         public void SubmitFormNameNone(string actionRule)
         {
             // execute
@@ -72,7 +72,7 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'argument':'mock_form'}")]
+        [DataRow("{\"argument\":\"mock_form\"}")]
         public void SubmitFormNameStale(string actionRule)
         {
             // execute
@@ -83,7 +83,7 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'argument':'mock_form'}")]
+        [DataRow("{\"argument\":\"mock_form\"}")]
         public void SubmitFormNameNull(string actionRule)
         {
             // execute
@@ -94,7 +94,7 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'argument':'1'}")]
+        [DataRow("{\"argument\":\"1\"}")]
         public void SubmitFormIdPositive(string actionRule)
         {
             // execute
@@ -107,7 +107,7 @@ namespace Gravity.UnitTests.UiWeb
 
         #region *** tests: OnElement     ***
         [DataTestMethod]
-        [DataRow("{'onElement':'.//positive','argument':'mock-form'}")]
+        [DataRow("{\"onElement\":\".//positive\",\"argument\":\"mock-form\"}")]
         public void SubmitFormElementNamePositive(string actionRule)
         {
             // execute
@@ -118,7 +118,7 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'onElement':'.//negative','argument':'mock-form'}")]
+        [DataRow("{\"onElement\":\".//negative\",\"argument\":\"mock-form\"}")]
         public void SubmitFormElementNameNegative(string actionRule)
         {
             // execute
@@ -129,7 +129,7 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'onElement':'.//none','argument':'mock-form'}")]
+        [DataRow("{\"onElement\":\".//none\",\"argument\":\"mock-form\"}")]
         public void SubmitFormElementNameNone(string actionRule)
         {
             // execute
@@ -140,7 +140,7 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'onElement':'.//stale','argument':'mock-form'}")]
+        [DataRow("{\"onElement\":\".//stale\",\"argument\":\"mock-form\"}")]
         public void SubmitFormElementNameStale(string actionRule)
         {
             // execute
@@ -151,7 +151,7 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'onElement':'.//null','argument':'mock-form'}")]
+        [DataRow("{\"onElement\":\".//null\",\"argument\":\"mock-form\"}")]
         public void SubmitFormElementNameNull(string actionRule)
         {
             // execute

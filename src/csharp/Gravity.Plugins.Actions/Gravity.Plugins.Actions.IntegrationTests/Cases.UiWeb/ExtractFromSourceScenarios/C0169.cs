@@ -27,10 +27,10 @@
 #pragma warning restore
 using Gravity.IntegrationTests.Base;
 using Gravity.Plugins.Contracts;
-using Gravity.Plugins.Contracts;
-using Newtonsoft.Json;
+
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
 
 namespace Graivty.IntegrationTests.Cases.UiWeb.ExtractFromSourceScenarios
 {
@@ -40,7 +40,7 @@ namespace Graivty.IntegrationTests.Cases.UiWeb.ExtractFromSourceScenarios
         public override void OnAutomation(WebAutomation automation)
         {
             // data object
-            var data = JsonConvert.SerializeObject(new[]
+            var data = JsonSerializer.Serialize(new[]
             {
                 new
                 {
@@ -54,7 +54,7 @@ namespace Graivty.IntegrationTests.Cases.UiWeb.ExtractFromSourceScenarios
                     RootElement = "//tbody/tr/td[2]",
                     ColumnName = "InstructorFirstName"
                 }
-            });
+            }, SerializerOptions);
 
             // data source
             automation.DataSource = new DataSource

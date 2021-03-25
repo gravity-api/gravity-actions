@@ -38,14 +38,14 @@ namespace Gravity.UnitTests.UiCommon
         {
             AssertDocumentation<MoveToElement>(
                 pluginName: PluginsList.MoveToElement,
-                resource: "move_to_element.json");
+                resource: "MoveToElement.json");
         }
         #endregion
 
         #region *** tests: OnDriver      ***
         [DataTestMethod]
-        [DataRow("{'onElement':'//positive'}")]
-        [DataRow("{'onElement':'//negative'}")]
+        [DataRow("{\"onElement\":\"//positive\"}")]
+        [DataRow("{\"onElement\":\"//negative\"}")]
         public void MoveToElement(string actionRule)
         {
             // execute
@@ -56,10 +56,10 @@ namespace Gravity.UnitTests.UiCommon
         }
 
         [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
-        [DataRow("{'onElement':'//none'}")]
-        [DataRow("{'onElement':'//null'}")]
-        [DataRow("{'onElement':'//stale'}")]
-        [DataRow("{'onElement':'//exception'}")]
+        [DataRow("{\"onElement\":\"//none\"}")]
+        [DataRow("{\"onElement\":\"//null\"}")]
+        [DataRow("{\"onElement\":\"//stale\"}")]
+        [DataRow("{\"onElement\":\"//exception\"}")]
         public void MoveToElementTimeout(string actionRule)
         {
             // execute
@@ -82,8 +82,8 @@ namespace Gravity.UnitTests.UiCommon
 
         #region *** tests: OnElement     ***
         [DataTestMethod]
-        [DataRow("{'onElement':'.//positive'}")]
-        [DataRow("{'onElement':'.//negative'}")]
+        [DataRow("{\"onElement\":\".//positive\"}")]
+        [DataRow("{\"onElement\":\".//negative\"}")]
         public void MoveToNestedElement(string actionRule)
         {
             // execute
@@ -94,7 +94,7 @@ namespace Gravity.UnitTests.UiCommon
         }
 
         [DataTestMethod, ExpectedException(typeof(NoSuchElementException))]
-        [DataRow("{'onElement':'.//none'}")]
+        [DataRow("{\"onElement\":\".//none\"}")]
         public void MoveToNestedElementNone(string actionRule)
         {
             // execute
@@ -105,7 +105,7 @@ namespace Gravity.UnitTests.UiCommon
         }
 
         [DataTestMethod, ExpectedException(typeof(ArgumentException))]
-        [DataRow("{'onElement':'.//null'}")]
+        [DataRow("{\"onElement\":\".//null\"}")]
         public void MoveToNestedElementNull(string actionRule)
         {
             // execute
@@ -116,7 +116,7 @@ namespace Gravity.UnitTests.UiCommon
         }
 
         [DataTestMethod, ExpectedException(typeof(StaleElementReferenceException))]
-        [DataRow("{'onElement':'.//stale'}")]
+        [DataRow("{\"onElement\":\".//stale\"}")]
         public void MoveToNestedElementStale(string actionRule)
         {
             // execute
@@ -127,7 +127,7 @@ namespace Gravity.UnitTests.UiCommon
         }
 
         [DataTestMethod, ExpectedException(typeof(WebDriverException))]
-        [DataRow("{'onElement':'.//exception'}")]
+        [DataRow("{\"onElement\":\".//exception\"}")]
         public void MoveToNestedElementException(string actionRule)
         {
             // execute

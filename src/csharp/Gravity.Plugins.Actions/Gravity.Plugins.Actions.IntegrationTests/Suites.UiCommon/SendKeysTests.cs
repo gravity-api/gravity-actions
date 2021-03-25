@@ -12,7 +12,6 @@ using NUnit.Framework;
 
 using DescriptionAttribute = System.ComponentModel.DescriptionAttribute;
 
-#pragma warning disable S4144
 namespace Graivty.IntegrationTests.Suites.UiCommon
 {
     [TestFixture]
@@ -106,7 +105,7 @@ namespace Graivty.IntegrationTests.Suites.UiCommon
         [Description(description: "P - [0224] - Send Keys, Combination, Control+A, OSX")]
         [Test]
         [TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.OSXCatalinaFirefox))]
-        [TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.OSXMojaveSafari))]
+        //[TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.OSXMojaveSafari))]
         public void T0224M(Context environment)
         {
             // setup
@@ -138,4 +137,3 @@ namespace Graivty.IntegrationTests.Suites.UiCommon
         #endregion
     }
 }
-#pragma warning restore

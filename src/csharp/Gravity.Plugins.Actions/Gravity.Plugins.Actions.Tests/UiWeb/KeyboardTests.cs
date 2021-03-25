@@ -38,7 +38,7 @@ namespace Gravity.UnitTests.UiWeb
 
         #region *** tests: OnDriver      ***
         [DataTestMethod]
-        [DataRow("{'onElement':'//positive','argument':'Enter'}")]
+        [DataRow("{\"onElement\":\"//positive\",\"argument\":\"Enter\"}")]
         public void KeyboardPositive(string actionRule)
         {
             // execute
@@ -49,7 +49,7 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'onElement':'//positive','argument':'NoSuckKey'}")]
+        [DataRow("{\"onElement\":\"//positive\",\"argument\":\"NoSuckKey\"}")]
         public void KeyboardInvalidKeyName(string actionRule)
         {
             // execute
@@ -60,7 +60,7 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod, ExpectedException(typeof(ElementNotVisibleException))]
-        [DataRow("{'onElement':'//negative','argument':'Enter'}")]
+        [DataRow("{\"onElement\":\"//negative\",\"argument\":\"Enter\"}")]
         public void KeyboardNegative(string actionRule)
         {
             // execute
@@ -71,7 +71,7 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'onElement':'//positive','argument':'Control,a'}")]
+        [DataRow("{\"onElement\":\"//positive\",\"argument\":\"Control,a\"}")]
         public void KeyboardSequence(string actionRule)
         {
             // execute
@@ -82,10 +82,10 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
-        [DataRow("{'onElement':'//stale','argument':'Enter'}")]
-        [DataRow("{'onElement':'//exception','argument':'Enter'}")]
-        [DataRow("{'onElement':'//null','argument':'Enter'}")]
-        [DataRow("{'onElement':'//none','argument':'Enter'}")]
+        [DataRow("{\"onElement\":\"//stale\",\"argument\":\"Enter\"}")]
+        [DataRow("{\"onElement\":\"//exception\",\"argument\":\"Enter\"}")]
+        [DataRow("{\"onElement\":\"//null\",\"argument\":\"Enter\"}")]
+        [DataRow("{\"onElement\":\"//none\",\"argument\":\"Enter\"}")]
         public void KeyboardTimeout(string actionRule)
         {
             // execute
@@ -98,7 +98,7 @@ namespace Gravity.UnitTests.UiWeb
 
         #region *** tests: OnElement     ***
         [DataTestMethod]
-        [DataRow("{'onElement':'.//positive','argument':'Enter'}")]
+        [DataRow("{\"onElement\":\".//positive\",\"argument\":\"Enter\"}")]
         public void KeyboardElementPositive(string actionRule)
         {
             // execute
@@ -109,7 +109,7 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'onElement':'.//positive','argument':'NoSuckKey'}")]
+        [DataRow("{\"onElement\":\".//positive\",\"argument\":\"NoSuckKey\"}")]
         public void KeyboardElementInvalidKeyName(string actionRule)
         {
             // execute
@@ -120,7 +120,7 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod, ExpectedException(typeof(ElementNotVisibleException))]
-        [DataRow("{'onElement':'.//negative','argument':'Enter'}")]
+        [DataRow("{\"onElement\":\".//negative\",\"argument\":\"Enter\"}")]
         public void KeyboardElementNegative(string actionRule)
         {
             // execute
@@ -131,7 +131,7 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'onElement':'.//positive','argument':'Control,a'}")]
+        [DataRow("{\"onElement\":\".//positive\",\"argument\":\"Control,a\"}")]
         public void KeyboardElementSequence(string actionRule)
         {
             // execute
@@ -142,7 +142,7 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod, ExpectedException(typeof(StaleElementReferenceException))]
-        [DataRow("{'onElement':'.//stale','argument':'Enter'}")]
+        [DataRow("{\"onElement\":\".//stale\",\"argument\":\"Enter\"}")]
         public void KeyboardElementStale(string actionRule)
         {
             // execute
@@ -153,7 +153,7 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod, ExpectedException(typeof(WebDriverException))]
-        [DataRow("{'onElement':'.//exception','argument':'Enter'}")]
+        [DataRow("{\"onElement\":\".//exception\",\"argument\":\"Enter\"}")]
         public void KeyboardElementException(string actionRule)
         {
             // execute
@@ -164,7 +164,7 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod, ExpectedException(typeof(NullReferenceException))]
-        [DataRow("{'onElement':'.//null','argument':'Enter'}")]
+        [DataRow("{\"onElement\":\".//null\",\"argument\":\"Enter\"}")]
         public void KeyboardElementNull(string actionRule)
         {
             // execute
@@ -175,7 +175,7 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod, ExpectedException(typeof(NoSuchElementException))]
-        [DataRow("{'onElement':'.//none','argument':'Enter'}")]
+        [DataRow("{\"onElement\":\".//none\",\"argument\":\"Enter\"}")]
         public void KeyboardElementNone(string actionRule)
         {
             // execute

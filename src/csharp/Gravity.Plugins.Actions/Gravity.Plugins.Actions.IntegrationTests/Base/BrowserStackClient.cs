@@ -1,12 +1,15 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using Newtonsoft.Json.Serialization;
+﻿/*
+ * CHANGE LOG - keep only last 5 threads
+ * 
+ * RESOURCES
+ */
 using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace Gravity.IntegrationTests.Base
@@ -18,9 +21,9 @@ namespace Gravity.IntegrationTests.Base
 
         public BrowserStackClient()
         {
-            SerializerSettings = new JsonSerializerSettings
+            SerializerOptions = new JsonSerializerOptions
             {
-                ContractResolver = new CamelCasePropertyNamesContractResolver()
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase
             };
         }
 
@@ -52,7 +55,7 @@ namespace Gravity.IntegrationTests.Base
         /// <summary>
         /// Gets or sets the contract <see cref="JsonSerializerSettings"/> for this client requests.
         /// </summary>
-        public JsonSerializerSettings SerializerSettings { get; set; }
+        public JsonSerializerOptions SerializerOptions { get; set; }
 
         /// <summary>
         /// You can mark tests as passed or failed, using PUT. You can also pass a reason for failure.
@@ -62,7 +65,7 @@ namespace Gravity.IntegrationTests.Base
         public async Task PutAsync(string session, object requestBody)
         {
             // setup
-            var body = JsonConvert.SerializeObject(requestBody, settings: SerializerSettings);
+            var body = JsonSerializer.Serialize(requestBody, SerializerOptions);
             var content = new StringContent(content: body, Encoding.UTF8, mediaType: "application/json");
             var requestUri = string.Format(format: BrowserStackApiFormat, session);
 
@@ -150,7 +153,7 @@ namespace Gravity.IntegrationTests.Base
             return response;
         }
 
-        private async Task<string> GetStatusAsync(HttpResponseMessage response)
+        private static async Task<string> GetStatusAsync(HttpResponseMessage response)
         {
             // get response body
             var responseBody = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
@@ -158,7 +161,12 @@ namespace Gravity.IntegrationTests.Base
             // parse for results
             try
             {
-                return JToken.Parse(responseBody)["automation_session"]["status"].ToString();
+                return JsonDocument
+                    .Parse(responseBody)
+                    .RootElement
+                    .GetProperty("automation_session")
+                    .GetProperty("status")
+                    .GetString();
             }
             catch (Exception e) when (e != null)
             {
@@ -175,7 +183,7 @@ namespace Gravity.IntegrationTests.Base
         public IDictionary<string, object> UploadApplication(string name, string puplicAccessUrl)
         {
             // setup
-            var requestBody = JsonConvert.SerializeObject(new Dictionary<string, object>
+            var requestBody = JsonSerializer.Serialize(new Dictionary<string, object>
             {
                 ["url"] = puplicAccessUrl,
                 ["custom_id"] = name
@@ -196,7 +204,7 @@ namespace Gravity.IntegrationTests.Base
 
             // complete
             var responseBody = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
-            return JsonConvert.DeserializeObject<IDictionary<string, object>>(responseBody);
+            return JsonSerializer.Deserialize<IDictionary<string, object>>(responseBody);
         }
     }
 }

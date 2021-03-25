@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gravity.Plugins.Actions.Int
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gravity.Plugins.Contracts", "Gravity.Plugins.Contracts\Gravity.Plugins.Contracts.csproj", "{E0EA54F0-D899-406E-88C8-E6CE07420B7B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gravity.Plugins.Attributes", "Gravity.Plugins.Attributes\Gravity.Plugins.Attributes.csproj", "{F61B810E-8946-4624-A6BF-233164649E1B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gravity.Plugins.Attributes", "Gravity.Plugins.Attributes\Gravity.Plugins.Attributes.csproj", "{F61B810E-8946-4624-A6BF-233164649E1B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{13F77FB2-96B6-4FB8-8AF2-A4D2BF7EB6D5}"
 	ProjectSection(SolutionItems) = preProject
@@ -23,50 +23,51 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{13F77FB2
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentation", "{59FBDB11-9681-4016-9806-435FBB5CBA7D}"
 	ProjectSection(SolutionItems) = preProject
-		..\..\..\docs\pages\assert.md = ..\..\..\docs\pages\assert.md
-		..\..\..\docs\pages\assert_samples_no1.md = ..\..\..\docs\pages\assert_samples_no1.md
-		..\..\..\docs\pages\assert_samples_no2.md = ..\..\..\docs\pages\assert_samples_no2.md
-		..\..\..\docs\pages\assert_samples_no3.md = ..\..\..\docs\pages\assert_samples_no3.md
-		..\..\..\docs\pages\click.md = ..\..\..\docs\pages\click.md
-		..\..\..\docs\pages\close_all_child_windows.md = ..\..\..\docs\pages\close_all_child_windows.md
-		..\..\..\docs\pages\close_browser.md = ..\..\..\docs\pages\close_browser.md
-		..\..\..\docs\pages\close_window.md = ..\..\..\docs\pages\close_window.md
+		..\..\..\docs\pages\Assert.md = ..\..\..\docs\pages\Assert.md
+		..\..\..\docs\pages\AssertSamplesNo1.md = ..\..\..\docs\pages\AssertSamplesNo1.md
+		..\..\..\docs\pages\AssertSamplesNo2.md = ..\..\..\docs\pages\AssertSamplesNo2.md
+		..\..\..\docs\pages\AssertSamplesNo3.md = ..\..\..\docs\pages\AssertSamplesNo3.md
+		..\..\..\docs\pages\Click.md = ..\..\..\docs\pages\Click.md
+		..\..\..\docs\pages\CloseAllChildWindows.md = ..\..\..\docs\pages\CloseAllChildWindows.md
+		..\..\..\docs\pages\CloseBrowser.md = ..\..\..\docs\pages\CloseBrowser.md
+		..\..\..\docs\pages\CloseWindow.md = ..\..\..\docs\pages\CloseWindow.md
 		..\..\..\docs\pages\condition.md = ..\..\..\docs\pages\condition.md
-		..\..\..\docs\pages\condition_samples_no1.md = ..\..\..\docs\pages\condition_samples_no1.md
-		..\..\..\docs\pages\condition_samples_no2.md = ..\..\..\docs\pages\condition_samples_no2.md
-		..\..\..\docs\pages\condition_samples_no3.md = ..\..\..\docs\pages\condition_samples_no3.md
-		..\..\..\docs\pages\context_click.md = ..\..\..\docs\pages\context_click.md
-		..\..\..\docs\pages\double_click.md = ..\..\..\docs\pages\double_click.md
-		..\..\..\docs\pages\elements_listener.md = ..\..\..\docs\pages\elements_listener.md
-		..\..\..\docs\pages\execute_script.md = ..\..\..\docs\pages\execute_script.md
-		..\..\..\docs\pages\extract_from_dom.md = ..\..\..\docs\pages\extract_from_dom.md
-		..\..\..\docs\pages\extract_from_dom_samples_extractions.md = ..\..\..\docs\pages\extract_from_dom_samples_extractions.md
-		..\..\..\docs\pages\extract_from_dom_samples_population.md = ..\..\..\docs\pages\extract_from_dom_samples_population.md
-		..\..\..\docs\pages\extract_from_source.md = ..\..\..\docs\pages\extract_from_source.md
-		..\..\..\docs\pages\extract_from_source_samples_extractions.md = ..\..\..\docs\pages\extract_from_source_samples_extractions.md
-		..\..\..\docs\pages\extract_from_source_samples_population.md = ..\..\..\docs\pages\extract_from_source_samples_population.md
-		..\..\..\docs\pages\get_screenshot.md = ..\..\..\docs\pages\get_screenshot.md
-		..\..\..\docs\pages\go_to_url.md = ..\..\..\docs\pages\go_to_url.md
-		..\..\..\docs\pages\hide_keyboard.md = ..\..\..\docs\pages\hide_keyboard.md
-		..\..\..\docs\pages\home.md = ..\..\..\docs\pages\home.md
-		..\..\..\docs\pages\keyboard.md = ..\..\..\docs\pages\keyboard.md
-		..\..\..\docs\pages\move_to_element.md = ..\..\..\docs\pages\move_to_element.md
-		..\..\..\docs\pages\navigate_back.md = ..\..\..\docs\pages\navigate_back.md
-		..\..\..\docs\pages\navigate_forward.md = ..\..\..\docs\pages\navigate_forward.md
-		..\..\..\README.md = ..\..\..\README.md
-		..\..\..\docs\pages\refresh.md = ..\..\..\docs\pages\refresh.md
-		..\..\..\docs\pages\register.md = ..\..\..\docs\pages\register.md
-		..\..\..\docs\pages\register_parameter.md = ..\..\..\docs\pages\register_parameter.md
-		..\..\..\docs\pages\repeat.md = ..\..\..\docs\pages\repeat.md
-		..\..\..\docs\pages\scroll.md = ..\..\..\docs\pages\scroll.md
-		..\..\..\docs\pages\select_from_combo_box.md = ..\..\..\docs\pages\select_from_combo_box.md
-		..\..\..\docs\pages\send_keys.md = ..\..\..\docs\pages\send_keys.md
+		..\..\..\docs\pages\ConditionSamplesNo1.md = ..\..\..\docs\pages\ConditionSamplesNo1.md
+		..\..\..\docs\pages\ConditionSamplesNo2.md = ..\..\..\docs\pages\ConditionSamplesNo2.md
+		..\..\..\docs\pages\ConditionSamplesNo3.md = ..\..\..\docs\pages\ConditionSamplesNo3.md
+		..\..\..\docs\pages\ContextClick.md = ..\..\..\docs\pages\ContextClick.md
+		..\..\..\docs\pages\DoubleClick.md = ..\..\..\docs\pages\DoubleClick.md
+		..\..\..\docs\pages\ElementsListener.md = ..\..\..\docs\pages\ElementsListener.md
+		..\..\..\docs\pages\ExecuteScript.md = ..\..\..\docs\pages\ExecuteScript.md
+		..\..\..\docs\pages\ExtractFromDom.md = ..\..\..\docs\pages\ExtractFromDom.md
+		..\..\..\docs\pages\ExtractFromDomSamplesExtractions.md = ..\..\..\docs\pages\ExtractFromDomSamplesExtractions.md
+		..\..\..\docs\pages\ExtractFromDomSamplesPopulation.md = ..\..\..\docs\pages\ExtractFromDomSamplesPopulation.md
+		..\..\..\docs\pages\ExtractFromSource.md = ..\..\..\docs\pages\ExtractFromSource.md
+		..\..\..\docs\pages\ExtractFromSourceSamplesExtractions.md = ..\..\..\docs\pages\ExtractFromSourceSamplesExtractions.md
+		..\..\..\docs\pages\ExtractFromSourceSamplesPopulation.md = ..\..\..\docs\pages\ExtractFromSourceSamplesPopulation.md
+		..\..\..\docs\pages\GetScreenshot.md = ..\..\..\docs\pages\GetScreenshot.md
+		..\..\..\docs\pages\GoToUrl.md = ..\..\..\docs\pages\GoToUrl.md
+		..\..\..\docs\pages\HideKeyboard.md = ..\..\..\docs\pages\HideKeyboard.md
+		..\..\..\docs\pages\Home.md = ..\..\..\docs\pages\Home.md
+		..\..\..\docs\pages\Keyboard.md = ..\..\..\docs\pages\Keyboard.md
+		..\..\..\docs\pages\MoveToElement.md = ..\..\..\docs\pages\MoveToElement.md
+		..\..\..\docs\pages\NavigateBack.md = ..\..\..\docs\pages\NavigateBack.md
+		..\..\..\docs\pages\NavigateForward.md = ..\..\..\docs\pages\NavigateForward.md
+		..\..\..\docs\pages\Refresh.md = ..\..\..\docs\pages\Refresh.md
+		..\..\..\docs\pages\Register.md = ..\..\..\docs\pages\Register.md
+		..\..\..\docs\pages\RegisterParameter.md = ..\..\..\docs\pages\RegisterParameter.md
+		..\..\..\docs\pages\Repeat.md = ..\..\..\docs\pages\Repeat.md
+		..\..\..\docs\pages\Scroll.md = ..\..\..\docs\pages\Scroll.md
+		..\..\..\docs\pages\SelectFromComboBox.md = ..\..\..\docs\pages\SelectFromComboBox.md
+		..\..\..\docs\pages\SendKeys.md = ..\..\..\docs\pages\SendKeys.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{94B210CB-BF2C-4430-A109-FEC892B59131}"
 	ProjectSection(SolutionItems) = preProject
 		..\..\..\test\azure_settings_mstest.runsettings = ..\..\..\test\azure_settings_mstest.runsettings
 	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gravity.Drivers.Mock", "..\..\..\..\gravity-mockdriver\src\csharp\Gravity.Drivers.Mock\Gravity.Drivers.Mock\Gravity.Drivers.Mock.csproj", "{046F81A8-8725-4F2A-967B-0D5A68DF0E42}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -98,6 +99,10 @@ Global
 		{F61B810E-8946-4624-A6BF-233164649E1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F61B810E-8946-4624-A6BF-233164649E1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F61B810E-8946-4624-A6BF-233164649E1B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{046F81A8-8725-4F2A-967B-0D5A68DF0E42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{046F81A8-8725-4F2A-967B-0D5A68DF0E42}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{046F81A8-8725-4F2A-967B-0D5A68DF0E42}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{046F81A8-8725-4F2A-967B-0D5A68DF0E42}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

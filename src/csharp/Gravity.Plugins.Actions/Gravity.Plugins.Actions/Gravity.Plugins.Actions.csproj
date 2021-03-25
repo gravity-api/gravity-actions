@@ -21,56 +21,57 @@
 
   <!-- Resources -->
   <ItemGroup>
-    <EmbeddedResource Include="Documentation\assert.json" />
-    <EmbeddedResource Include="Documentation\close_all_child_windows.json" />
-    <EmbeddedResource Include="Documentation\close_browser.json" />
-    <EmbeddedResource Include="Documentation\close_window.json" />
-    <EmbeddedResource Include="Documentation\condition.json" />
-    <EmbeddedResource Include="Documentation\click.json" />
-    <EmbeddedResource Include="Documentation\context_click.json" />
-    <EmbeddedResource Include="Documentation\double_click.json" />
-    <EmbeddedResource Include="Documentation\elements_listener.json" />
-    <EmbeddedResource Include="Documentation\execute_script.json" />
-    <EmbeddedResource Include="Documentation\extract_from_dom.json" />
-    <EmbeddedResource Include="Documentation\extract_from_source.json" />
-    <EmbeddedResource Include="Documentation\get_screenshot.json" />
-    <EmbeddedResource Include="Documentation\go_to_url.json" />
-    <EmbeddedResource Include="Documentation\hide_keyboard.json" />
-    <EmbeddedResource Include="Documentation\keyboard.json" />
-    <EmbeddedResource Include="Documentation\long_swipe.json" />
-    <EmbeddedResource Include="Documentation\move_to_element.json" />
-    <EmbeddedResource Include="Documentation\navigate_back.json" />
-    <EmbeddedResource Include="Documentation\navigate_forward.json" />
-    <EmbeddedResource Include="Documentation\register_parameter.json" />
-    <EmbeddedResource Include="Documentation\select_from_combo_box.json" />
-    <EmbeddedResource Include="Documentation\send_keys.json" />
-    <EmbeddedResource Include="Documentation\set_geo_location.json" />
-    <EmbeddedResource Include="Documentation\submit_form.json" />
-    <EmbeddedResource Include="Documentation\swipe.json" />
-    <EmbeddedResource Include="Documentation\scroll.json" />
-    <EmbeddedResource Include="Documentation\refresh.json" />
-    <EmbeddedResource Include="Documentation\repeat.json" />
-    <EmbeddedResource Include="Documentation\switch_to_alert.json" />
-    <EmbeddedResource Include="Documentation\switch_to_default_content.json" />
-    <EmbeddedResource Include="Documentation\switch_to_frame.json" />
-    <EmbeddedResource Include="Documentation\switch_to_window.json" />
-    <EmbeddedResource Include="Documentation\try_click.json" />
-    <EmbeddedResource Include="Documentation\try_send_keys.json" />
-    <EmbeddedResource Include="Documentation\upload_file.json" />
-    <EmbeddedResource Include="Documentation\wait.json" />
-    <EmbeddedResource Include="Documentation\wait_for_element.json" />
-    <EmbeddedResource Include="Documentation\wait_for_page.json" />
-    <EmbeddedResource Include="Documentation\wait_for_url.json" />
+    <EmbeddedResource Include="Manifest\Assert.json" />
+    <EmbeddedResource Include="Manifest\CloseAllChildWindows.json" />
+    <EmbeddedResource Include="Manifest\CloseBrowser.json" />
+    <EmbeddedResource Include="Manifest\CloseWindow.json" />
+    <EmbeddedResource Include="Manifest\Condition.json" />
+    <EmbeddedResource Include="Manifest\Click.json" />
+    <EmbeddedResource Include="Manifest\ContextClick.json" />
+    <EmbeddedResource Include="Manifest\DoubleClick.json" />
+    <EmbeddedResource Include="Manifest\ElementsListener.json" />
+    <EmbeddedResource Include="Manifest\ExecuteScript.json" />
+    <EmbeddedResource Include="Manifest\ExtractFromDom.json" />
+    <EmbeddedResource Include="Manifest\ExtractFromSource.json" />
+    <EmbeddedResource Include="Manifest\GetScreenshot.json" />
+    <EmbeddedResource Include="Manifest\GoToUrl.json" />
+    <EmbeddedResource Include="Manifest\HideKeyboard.json" />
+    <EmbeddedResource Include="Manifest\Keyboard.json" />
+    <EmbeddedResource Include="Manifest\LongSwipe.json" />
+    <EmbeddedResource Include="Manifest\MoveToElement.json" />
+    <EmbeddedResource Include="Manifest\NavigateBack.json" />
+    <EmbeddedResource Include="Manifest\NavigateForward.json" />
+    <EmbeddedResource Include="Manifest\RegisterParameter.json" />
+    <EmbeddedResource Include="Manifest\SelectFromComboBox.json" />
+    <EmbeddedResource Include="Manifest\SendKeys.json" />
+    <EmbeddedResource Include="Manifest\SetGeoLocation.json" />
+    <EmbeddedResource Include="Manifest\SubmitForm.json" />
+    <EmbeddedResource Include="Manifest\Swipe.json" />
+    <EmbeddedResource Include="Manifest\Scroll.json" />
+    <EmbeddedResource Include="Manifest\Refresh.json" />
+    <EmbeddedResource Include="Manifest\Repeat.json" />
+    <EmbeddedResource Include="Manifest\SwitchToAlert.json" />
+    <EmbeddedResource Include="Manifest\SwitchToDefaultContent.json" />
+    <EmbeddedResource Include="Manifest\SwitchToFrame.json" />
+    <EmbeddedResource Include="Manifest\SwitchToWindow.json" />
+    <EmbeddedResource Include="Manifest\TryClick.json" />
+    <EmbeddedResource Include="Manifest\TrySendKeys.json" />
+    <EmbeddedResource Include="Manifest\UploadFile.json" />
+    <EmbeddedResource Include="Manifest\Wait.json" />
+    <EmbeddedResource Include="Manifest\WaitForElement.json" />
+    <EmbeddedResource Include="Manifest\WaitForPage.json" />
+    <EmbeddedResource Include="Manifest\WaitForUrl.json" />
   </ItemGroup>
 
   <!-- Packages -->
   <ItemGroup>
     <PackageReference Include="Gravity.Core" Version="2020.7.5.3" />
-    <PackageReference Include="HtmlAgilityPack" Version="1.11.30" />
+    <PackageReference Include="HtmlAgilityPack" Version="1.11.31" />
   </ItemGroup>
 
   <!-- Projects -->
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\gravity-mockdriver\src\csharp\Gravity.Drivers.Mock\Gravity.Drivers.Mock\Gravity.Drivers.Mock.csproj" />
     <ProjectReference Include="..\Gravity.Plugins.Contracts\Gravity.Plugins.Contracts.csproj" />
     <ProjectReference Include="..\Gravity.Plugins\Gravity.Plugins.csproj" />
   </ItemGroup>

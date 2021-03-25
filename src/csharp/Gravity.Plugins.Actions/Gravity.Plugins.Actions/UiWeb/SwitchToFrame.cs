@@ -7,14 +7,15 @@ using Gravity.Plugins.Actions.Extensions;
 using Gravity.Plugins.Attributes;
 using Gravity.Plugins.Base;
 using Gravity.Plugins.Contracts;
+
 using OpenQA.Selenium;
 
 namespace Gravity.Plugins.Actions.UiWeb
 {
     [Plugin(
         assembly: "Gravity.Plugins.Actions, Version=5.0.0.0, Culture=neutral, PublicKeyToken=null",
-        resource: "Gravity.Plugins.Actions.Documentation.switch_to_frame.json",
-        Name = Contracts.PluginsList.SwitchToFrame)]
+        resource: "Gravity.Plugins.Actions.Manifest.SwitchToFrame.json",
+        Name = PluginsList.SwitchToFrame)]
     public class SwitchToFrame : WebDriverActionPlugin
     {
         #region *** constructors ***

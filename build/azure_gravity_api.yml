@@ -14,14 +14,14 @@ variables:
 - group: browserstack.com
 - group: gravity.api
 - group: nuget
-- name: 'Build.Configuration'
-  value: 'Release'
-- name: 'Parallel.Workers'
-  value: '5'
-- name: 'Test.Settings.FileName.Deploy'
-  value: './test/azure_settings_deploy.runsettings'
-- name: 'Test.Settings.FileName.Development'
-  value: './test/azure_settings_mstest.runsettings'
+- name: \"Build.Configuration\"
+  value: \"Release\"
+- name: \"Parallel.Workers\"
+  value: \"5\"
+- name: \"Test.Settings.FileName.Deploy\"
+  value: \"./test/azure_settings_deploy.runsettings\"
+- name: \"Test.Settings.FileName.Development\"
+  value: \"./test/azure_settings_mstest.runsettings\"
 
 steps:
 - template: azure_gravity_template.yml

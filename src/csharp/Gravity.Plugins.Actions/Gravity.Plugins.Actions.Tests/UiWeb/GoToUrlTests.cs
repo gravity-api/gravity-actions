@@ -45,13 +45,13 @@ namespace Gravity.UnitTests.UiWeb
         {
             AssertDocumentation<GoToUrl>(
                 pluginName: PluginsList.GoToUrl,
-                resource: "go_to_url.json");
+                resource: "GoToUrl.json");
         }
         #endregion
 
         #region *** tests: OnDriver      ***
         [TestMethod]
-        [DataRow("{'argument':'http://noaddress.io'}")]
+        [DataRow("{\"argument\":\"http://noaddress.io\"}")]
         public void GoToUrlPositive(string actionRule)
         {
             // execute
@@ -62,7 +62,7 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [TestMethod]
-        [DataRow("{'argument':'{{$ --url:http://noaddress.io --blank}}'}")]
+        [DataRow("{\"argument\":\"{{$ --url:http://noaddress.io --blank}}\"}")]
         public void GoToUrlNewTab(string actionRule)
         {
             // setup
@@ -78,7 +78,7 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [TestMethod]
-        [DataRow("{'argument':'{{$ --url:http://noaddress.io --blank}}'}")]
+        [DataRow("{\"argument\":\"{{$ --url:http://noaddress.io --blank}}\"}")]
         public void GoToUrlNewMultipleWindows(string actionRule)
         {
             // setup
@@ -98,7 +98,7 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [TestMethod]
-        [DataRow("{'onElement':'//positive'}")]
+        [DataRow("{\"onElement\":\"//positive\"}")]
         public void GoToUrlText(string actionRule)
         {
             // execute
@@ -109,8 +109,8 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [TestMethod]
-        [DataRow("{'onElement':'//positive', 'onAttribute':'href'}")]
-        [DataRow("{'onElement':'//negative', 'onAttribute':'href'}")]
+        [DataRow("{\"onElement\":\"//positive\", \"onAttribute\":\"href\"}")]
+        [DataRow("{\"onElement\":\"//negative\", \"onAttribute\":\"href\"}")]
         public void GoToUrlAttribute(string actionRule)
         {
             // execute
@@ -121,7 +121,7 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [TestMethod]
-        [DataRow("{'argument':'http://noaddress.io'}")]
+        [DataRow("{\"argument\":\"http://noaddress.io\"}")]
         public void GoToUrlAppiumDriver(string actionRule)
         {
             // setup
@@ -135,10 +135,10 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [TestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
-        [DataRow("{'onElement':'//none'}")]
-        [DataRow("{'onElement':'//null'}")]
-        [DataRow("{'onElement':'//stale'}")]
-        [DataRow("{'onElement':'//exception'}")]
+        [DataRow("{\"onElement\":\"//none\"}")]
+        [DataRow("{\"onElement\":\"//null\"}")]
+        [DataRow("{\"onElement\":\"//stale\"}")]
+        [DataRow("{\"onElement\":\"//exception\"}")]
         public void GoToUrlTimeout(string actionRule)
         {
             // execute
@@ -151,7 +151,7 @@ namespace Gravity.UnitTests.UiWeb
 
         #region *** tests: OnElement     ***
         [TestMethod]
-        [DataRow("{'argument':'http://noaddress.io'}")]
+        [DataRow("{\"argument\":\"http://noaddress.io\"}")]
         public void GoToUrlElementPositive(string actionRule)
         {
             // execute
@@ -162,7 +162,7 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [TestMethod]
-        [DataRow("{'argument':'{{$ --url:http://noaddress.io --user:myUesr --password:myPassword}}'}")]
+        [DataRow("{\"argument\":\"{{$ --url:http://noaddress.io --user:myUesr --password:myPassword}}\"}")]
         public void GoToUrlElementCredentials(string actionRule)
         {
             // execute
@@ -173,7 +173,7 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [TestMethod]
-        [DataRow("{'argument':'{{$ --url:http://noaddress.io --blank}}'}")]
+        [DataRow("{\"argument\":\"{{$ --url:http://noaddress.io --blank}}\"}")]
         public void GoToUrlElementNewTab(string actionRule)
         {
             // setup
@@ -189,7 +189,7 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [TestMethod]
-        [DataRow("{'argument':'{{$ --url:http://noaddress.io --blank}}'}")]
+        [DataRow("{\"argument\":\"{{$ --url:http://noaddress.io --blank}}\"}")]
         public void GoToUrlElementNewMultipleWindows(string actionRule)
         {
             // setup
@@ -209,7 +209,7 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [TestMethod]
-        [DataRow("{'onElement':'.//positive'}")]
+        [DataRow("{\"onElement\":\".//positive\"}")]
         public void GoToUrlElementText(string actionRule)
         {
             // execute
@@ -220,7 +220,7 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [TestMethod]
-        [DataRow("{'onElement':'.//positive', 'onAttribute':'href'}")]
+        [DataRow("{\"onElement\":\".//positive\", \"onAttribute\":\"href\"}")]
         public void GoToUrlElementAttribute(string actionRule)
         {
             // execute
@@ -231,7 +231,7 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [TestMethod]
-        [DataRow("{'argument':'http://noaddress.io'}")]
+        [DataRow("{\"argument\":\"http://noaddress.io\"}")]
         public void GoToUrlElementAppiumDriver(string actionRule)
         {
             // setup
@@ -245,7 +245,7 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [TestMethod, ExpectedException(typeof(NoSuchElementException))]
-        [DataRow("{'onElement':'.//none'}")]
+        [DataRow("{\"onElement\":\".//none\"}")]
         public void GoToUrlElementNone(string actionRule)
         {
             // execute
@@ -256,7 +256,7 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [TestMethod]
-        [DataRow("{'onElement':'.//null'}")]
+        [DataRow("{\"onElement\":\".//null\"}")]
         public void GoToUrlElementNull(string actionRule)
         {
             // execute
@@ -267,7 +267,7 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [TestMethod, ExpectedException(typeof(StaleElementReferenceException))]
-        [DataRow("{'onElement':'.//stale'}")]
+        [DataRow("{\"onElement\":\".//stale\"}")]
         public void GoToUrlElementStale(string actionRule)
         {
             // execute
@@ -278,7 +278,7 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [TestMethod, ExpectedException(typeof(WebDriverException))]
-        [DataRow("{'onElement':'.//exception'}")]
+        [DataRow("{\"onElement\":\".//exception\"}")]
         public void GoToUrlElementException(string actionRule)
         {
             // execute

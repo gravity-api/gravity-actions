@@ -8,14 +8,15 @@ using Gravity.Plugins.Attributes;
 using Gravity.Plugins.Base;
 using Gravity.Plugins.Contracts;
 using Gravity.Plugins.Extensions;
+
 using OpenQA.Selenium;
 
 namespace Gravity.Plugins.Actions.UiCommon
 {
     [Plugin(
         assembly: "Gravity.Plugins.Actions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
-        resource: "Gravity.Plugins.Actions.Documentation.condition.json",
-        Name = Contracts.PluginsList.Condition)]
+        resource: "Gravity.Plugins.Actions.Manifest.Condition.json",
+        Name = PluginsList.Condition)]
     public class Condition : WebDriverActionPlugin
     {
         #region *** constructors ***

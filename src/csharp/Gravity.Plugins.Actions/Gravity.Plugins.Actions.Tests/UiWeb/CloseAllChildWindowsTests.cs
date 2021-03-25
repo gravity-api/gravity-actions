@@ -42,7 +42,7 @@ namespace Gravity.UnitTests.UiWeb
         {
             AssertDocumentation<CloseAllChildWindows>(
                 pluginName: PluginsList.CloseAllChildWindows,
-                resource: "close_all_child_windows.json");
+                resource: "CloseAllChildWindows.json");
         }
         #endregion
 
@@ -69,7 +69,7 @@ namespace Gravity.UnitTests.UiWeb
 
         #region *** tests: OnElement     ***
         [DataTestMethod]
-        [DataRow("{'onElement':'.//positive'}")]
+        [DataRow("{\"onElement\":\".//positive\"}")]
         public void CloseAllElementPositive(string actionRule)
         {
             // open child windows

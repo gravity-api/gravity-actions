@@ -35,13 +35,13 @@ namespace Gravity.UnitTests.UiWeb
         {
             AssertDocumentation<SwitchToAlert>(
                 pluginName: PluginsList.SwitchToAlert,
-                resource: "switch_to_alert.json");
+                resource: "SwitchToAlert.json");
         }
         #endregion
 
         #region *** tests: OnDriver      ***
         [DataTestMethod]
-        [DataRow("{'argument':'accept'}")]
+        [DataRow("{\"argument\":\"accept\"}")]
         public void SwitchToAlertAccept(string actionRule)
         {
             // apply alert
@@ -58,7 +58,7 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'argument':'dismiss'}")]
+        [DataRow("{\"argument\":\"dismiss\"}")]
         public void SwitchToAlertDismiss(string actionRule)
         {
             // apply alert
@@ -75,7 +75,7 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'argument':'{{$ --user:userName --pass:Password}}'}")]
+        [DataRow("{\"argument\":\"{{$ --user:userName --pass:Password}}\"}")]
         public void SwitchToAlertCredentials(string actionRule)
         {
             // apply alert
@@ -92,7 +92,7 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'argument':'{{$ --keys:automation}}'}")]
+        [DataRow("{\"argument\":\"{{$ --keys:automation}}\"}")]
         public void SwitchToAlertKeys(string actionRule)
         {
             // apply alert
@@ -109,7 +109,7 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'argument':'{{$ --keys:automation --user:userName --pass:Password}}'}")]
+        [DataRow("{\"argument\":\"{{$ --keys:automation --user:userName --pass:Password}}\"}")]
         public void SwitchToAlertAll(string actionRule)
         {
             // apply alert
@@ -126,7 +126,7 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'argument':'accept'}")]
+        [DataRow("{\"argument\":\"accept\"}")]
         public void SwitchToAlertNoAlert(string actionRule)
         {
             // execute
@@ -137,7 +137,7 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'argument':'accept'}")]
+        [DataRow("{\"argument\":\"accept\"}")]
         public void SwitchToAlertElementAccept(string actionRule)
         {
             // apply alert

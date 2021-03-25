@@ -57,16 +57,16 @@ namespace Gravity.UnitTests.UiCommon
         {
             AssertDocumentation<GetScreenshot>(
                 pluginName: PluginsList.GetScreenshot,
-                resource: "get_screenshot.json");
+                resource: "GetScreenshot.json");
         }
         #endregion
 
         #region *** tests: OnDriver      ***
         [DataTestMethod]
-        [DataRow("{'action':'GetScreenshot','argument':'" + OutputDir + "/image-a.tiff'}", "image-a.png")]
-        [DataRow("{'action':'GetScreenshot','argument':'" + OutputDir + "/image-a.gif'}", "image-a.png")]
-        [DataRow("{'action':'GetScreenshot','argument':'" + OutputDir + "/image-a.bmp'}", "image-a.png")]
-        [DataRow("{'action':'GetScreenshot','argument':'" + OutputDir + "/image-a.png'}", "image-a.png")]
+        [DataRow("{\"action\":\"GetScreenshot\",\"argument\":\"" + OutputDir + "/image-a.tiff\"}", "image-a.png")]
+        [DataRow("{\"action\":\"GetScreenshot\",\"argument\":\"" + OutputDir + "/image-a.gif\"}", "image-a.png")]
+        [DataRow("{\"action\":\"GetScreenshot\",\"argument\":\"" + OutputDir + "/image-a.bmp\"}", "image-a.png")]
+        [DataRow("{\"action\":\"GetScreenshot\",\"argument\":\"" + OutputDir + "/image-a.png\"}", "image-a.png")]
         public void GetScreenshotDriverPositive(string actionRule, string expected)
         {
             // execute
@@ -78,10 +78,10 @@ namespace Gravity.UnitTests.UiCommon
         }
 
         [DataTestMethod]
-        [DataRow("{'action':'GetScreenshot','argument':'" + OutputDir + "/image-b.png','onElement':'//positive'}", "image-b.png")]
-        [DataRow("{'action':'GetScreenshot','argument':'" + OutputDir + "/image-b.bmp','onElement':'//positive'}", "image-b.png")]
-        [DataRow("{'action':'GetScreenshot','argument':'" + OutputDir + "/image-b.gif','onElement':'//positive'}", "image-b.png")]
-        [DataRow("{'action':'GetScreenshot','argument':'" + OutputDir + "/image-b.tiff','onElement':'//positive'}", "image-b.png")]
+        [DataRow("{\"action\":\"GetScreenshot\",\"argument\":\"" + OutputDir + "/image-b.png\",\"onElement\":\"//positive\"}", "image-b.png")]
+        [DataRow("{\"action\":\"GetScreenshot\",\"argument\":\"" + OutputDir + "/image-b.bmp\",\"onElement\":\"//positive\"}", "image-b.png")]
+        [DataRow("{\"action\":\"GetScreenshot\",\"argument\":\"" + OutputDir + "/image-b.gif\",\"onElement\":\"//positive\"}", "image-b.png")]
+        [DataRow("{\"action\":\"GetScreenshot\",\"argument\":\"" + OutputDir + "/image-b.tiff\",\"onElement\":\"//positive\"}", "image-b.png")]
         public void GetScreenshotOnElementPositive(string actionRule, string expected)
         {
             // execute
@@ -93,9 +93,9 @@ namespace Gravity.UnitTests.UiCommon
         }
 
         [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
-        [DataRow("{'action':'GetScreenshot','argument':'" + OutputDir + "/image-b.png','onElement':'//null'}")]
-        [DataRow("{'action':'GetScreenshot','argument':'" + OutputDir + "/image-b.png','onElement':'//stale'}")]
-        [DataRow("{'action':'GetScreenshot','argument':'" + OutputDir + "/image-b.png','onElement':'//none'}")]
+        [DataRow("{\"action\":\"GetScreenshot\",\"argument\":\"" + OutputDir + "/image-b.png\",\"onElement\":\"//null\"}")]
+        [DataRow("{\"action\":\"GetScreenshot\",\"argument\":\"" + OutputDir + "/image-b.png\",\"onElement\":\"//stale\"}")]
+        [DataRow("{\"action\":\"GetScreenshot\",\"argument\":\"" + OutputDir + "/image-b.png\",\"onElement\":\"//none\"}")]
         public void GetScreenshotOnElementNoElement(string actionRule)
         {
             // execute
@@ -106,7 +106,7 @@ namespace Gravity.UnitTests.UiCommon
         }
 
         [DataTestMethod]
-        [DataRow("{'action':'GetScreenshot','argument':'" + OutputDir + "/image-b.png','onElement':'//negative'}")]
+        [DataRow("{\"action\":\"GetScreenshot\",\"argument\":\"" + OutputDir + "/image-b.png\",\"onElement\":\"//negative\"}")]
         public void GetScreenshotOnElementNegative(string actionRule)
         {
             // execute
@@ -120,10 +120,10 @@ namespace Gravity.UnitTests.UiCommon
 
         #region *** tests: OnElement     ***
         [DataTestMethod]
-        [DataRow("{'action':'GetScreenshot','argument':'" + OutputDir + "/image-b.png','onElement':'.//positive'}", "image-b.png")]
-        [DataRow("{'action':'GetScreenshot','argument':'" + OutputDir + "/image-b.bmp','onElement':'.//positive'}", "image-b.png")]
-        [DataRow("{'action':'GetScreenshot','argument':'" + OutputDir + "/image-b.gif','onElement':'.//positive'}", "image-b.png")]
-        [DataRow("{'action':'GetScreenshot','argument':'" + OutputDir + "/image-b.tiff','onElement':'.//positive'}", "image-b.png")]
+        [DataRow("{\"action\":\"GetScreenshot\",\"argument\":\"" + OutputDir + "/image-b.png\",\"onElement\":\".//positive\"}", "image-b.png")]
+        [DataRow("{\"action\":\"GetScreenshot\",\"argument\":\"" + OutputDir + "/image-b.bmp\",\"onElement\":\".//positive\"}", "image-b.png")]
+        [DataRow("{\"action\":\"GetScreenshot\",\"argument\":\"" + OutputDir + "/image-b.gif\",\"onElement\":\".//positive\"}", "image-b.png")]
+        [DataRow("{\"action\":\"GetScreenshot\",\"argument\":\"" + OutputDir + "/image-b.tiff\",\"onElement\":\".//positive\"}", "image-b.png")]
         public void GetScreenshotElementPositive(string actionRule, string expected)
         {
             // execute
@@ -135,7 +135,7 @@ namespace Gravity.UnitTests.UiCommon
         }
 
         [DataTestMethod, ExpectedException(typeof(NullReferenceException))]
-        [DataRow("{'action':'GetScreenshot','argument':'" + OutputDir + "/image-b.png','onElement':'.//null'}")]
+        [DataRow("{\"action\":\"GetScreenshot\",\"argument\":\"" + OutputDir + "/image-b.png\",\"onElement\":\".//null\"}")]
         public void GetScreenshotElementNull(string actionRule)
         {
             // execute
@@ -146,7 +146,7 @@ namespace Gravity.UnitTests.UiCommon
         }
 
         [DataTestMethod]
-        [DataRow("{'action':'GetScreenshot','argument':'" + OutputDir + "/image-b.png','onElement':'.//negative'}")]
+        [DataRow("{\"action\":\"GetScreenshot\",\"argument\":\"" + OutputDir + "/image-b.png\",\"onElement\":\".//negative\"}")]
         public void GetScreenshotElementNegative(string actionRule)
         {
             // execute
@@ -158,7 +158,7 @@ namespace Gravity.UnitTests.UiCommon
         }
 
         [DataTestMethod, ExpectedException(typeof(StaleElementReferenceException))]
-        [DataRow("{'action':'GetScreenshot','argument':'" + OutputDir + "/image-b.png','onElement':'.//stale'}")]
+        [DataRow("{\"action\":\"GetScreenshot\",\"argument\":\"" + OutputDir + "/image-b.png\",\"onElement\":\".//stale\"}")]
         public void GetScreenshotElementStale(string actionRule)
         {
             // execute
@@ -169,7 +169,7 @@ namespace Gravity.UnitTests.UiCommon
         }
 
         [DataTestMethod, ExpectedException(typeof(NoSuchElementException))]
-        [DataRow("{'action':'GetScreenshot','argument':'" + OutputDir + "/image-b.png','onElement':'.//none'}")]
+        [DataRow("{\"action\":\"GetScreenshot\",\"argument\":\"" + OutputDir + "/image-b.png\",\"onElement\":\".//none\"}")]
         public void GetScreenshotElementNone(string actionRule)
         {
             // execute

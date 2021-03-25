@@ -20,7 +20,9 @@ using Gravity.Plugins.Actions.Extensions;
 using Gravity.Plugins.Attributes;
 using Gravity.Plugins.Base;
 using Gravity.Plugins.Contracts;
+
 using OpenQA.Selenium;
+
 using System;
 using System.Threading;
 
@@ -28,8 +30,8 @@ namespace Gravity.Plugins.Actions.UiWeb
 {
     [Plugin(
         assembly: "Gravity.Plugins.Actions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
-        resource: "Gravity.Plugins.Actions.Documentation.close_all_child_windows.json",
-        Name = Contracts.PluginsList.CloseAllChildWindows)]
+        resource: "Gravity.Plugins.Actions.Manifest.CloseAllChildWindows.json",
+        Name = PluginsList.CloseAllChildWindows)]
     public class CloseAllChildWindows : WebDriverActionPlugin
     {
         #region *** constructors ***

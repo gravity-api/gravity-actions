@@ -6,10 +6,12 @@
 using Gravity.Abstraction.Contracts;
 using Gravity.IntegrationTests.Base;
 using Gravity.Plugins.Contracts;
-using Newtonsoft.Json;
+
 using NUnit.Framework;
+
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
 
 namespace Graivty.IntegrationTests.Extensions
 {
@@ -57,7 +59,7 @@ namespace Graivty.IntegrationTests.Extensions
             }
 
             // throw
-            var message = JsonConvert.SerializeObject(exceptions);
+            var message = JsonSerializer.Serialize(exceptions);
             throw new InconclusiveException(message);
         }
 

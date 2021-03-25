@@ -143,7 +143,7 @@ namespace Gravity.Plugins.Actions.Components
         /// </summary>
         /// <param name="driver"><see cref="IWebDriver"/> implementation by which to execute the action.</param>
         public ConditionsFactory(IWebDriver driver)
-            : this(driver, Misc.GetTypes()) { }
+            : this(driver, Misc.Types) { }
 
         /// <summary>
         /// Creates a new instance of <see cref="ConditionsFactory"/> (with 15sec default timeout).

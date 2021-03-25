@@ -8,7 +8,7 @@ namespace Gravity.Plugins.UnitTests.Engine
     [TestClass]
     public class AutomationExecutorTests
     {
-        [TestMethod]
+        //[TestMethod]
         public void A()
         {
             var automation = new WebAutomation();

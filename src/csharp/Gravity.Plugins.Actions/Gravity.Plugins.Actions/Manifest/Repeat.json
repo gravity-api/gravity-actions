@@ -5,8 +5,8 @@
   "description": "Repeats a subset of actions for a given number of times or until condition is met. This action is recursive and actions subset can be another [Repeat] action.",
   "examples": [
     {
-      "description": "Repeat [SendKeys] action with [a] argument into [//input[@id='SearchString']], 10 times.",
-      "literalExample": "repeat {10}\n    > send keys {a} into {//input[@id='SearchString']}",
+      "description": "Repeat [SendKeys] action with [a] argument into [//input[@id=\"SearchString\"]], 10 times.",
+      "literalExample": "repeat {10}\n    > send keys {a} into {//input[@id=\"SearchString\"]}",
       "actionExample": {
         "action": "Repeat",
         "argument": "10",
@@ -14,28 +14,28 @@
           {
             "action": "SendKeys",
             "argument": "a",
-            "onElement": "//input[@id='SearchString']"
+            "onElement": "//input[@id=\"SearchString\"]"
           }
         ]
       }
     },
     {
-      "description": "Repeat [Click] action on [//a[contains(.,'Next') and @class='btn btn-default ']], until element [//a[contains(.,'Next') and @class='btn btn-default disabled']] exists.",
-      "literalExample": "repeat {{$ --until:exists}} on {//a[contains(.,'Next') and @class='btn btn-default disabled']}\n    > click on {//a[contains(.,'Next') and @class='btn btn-default ']}",
+      "description": "Repeat [Click] action on [//a[contains(.,\"Next\") and @class=\"btn btn-default \"]], until element [//a[contains(.,\"Next\") and @class=\"btn btn-default disabled\"]] exists.",
+      "literalExample": "repeat {{$ --until:exists}} on {//a[contains(.,\"Next\") and @class=\"btn btn-default disabled\"]}\n    > click on {//a[contains(.,\"Next\") and @class=\"btn btn-default \"]}",
       "actionExample": {
         "action": "Repeat",
         "argument": "{{$ --until:exists}}",
-        "onElement": "//a[contains(.,'Next') and @class='btn btn-default disabled']",
+        "onElement": "//a[contains(.,\"Next\") and @class=\"btn btn-default disabled\"]",
         "actions": [
           {
             "action": "Click",
-            "onElement": "//a[contains(.,'Next') and @class='btn btn-default ']"
+            "onElement": "//a[contains(.,\"Next\") and @class=\"btn btn-default \"]"
           }
         ]
       }
     },
     {
-      "description": "For each repeat [SendKeys] action with [a] argument into [//input[@id='SearchString']], repeat [SendKeys] action with [b] argument into [//input[@id='SearchString']] (repeat inside repeat).",
+      "description": "For each repeat [SendKeys] action with [a] argument into [//input[@id=\"SearchString\"]], repeat [SendKeys] action with [b] argument into [//input[@id=\"SearchString\"]] (repeat inside repeat).",
       "literalExample": "not supported by literal engine.",
       "actionExample": {
         "action": "Repeat",
@@ -44,7 +44,7 @@
           {
             "action": "SendKeys",
             "argument": "a",
-            "onElement": "//input[@id='SearchString']"
+            "onElement": "//input[@id=\"SearchString\"]"
           },
           {
             "action": "Repeat",
@@ -53,7 +53,7 @@
               {
                 "action": "SendKeys",
                 "argument": "b",
-                "onElement": "//input[@id='SearchString']"
+                "onElement": "//input[@id=\"SearchString\"]"
               }
             ]
           }

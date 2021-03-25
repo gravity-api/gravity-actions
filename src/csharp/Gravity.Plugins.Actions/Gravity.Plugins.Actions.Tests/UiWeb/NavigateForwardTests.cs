@@ -47,7 +47,7 @@ namespace Gravity.UnitTests.UiWeb
         {
             AssertDocumentation<NavigateForward>(
                 pluginName: PluginsList.NavigateForward,
-                resource: "navigate_forward.json");
+                resource: "NavigateForward.json");
         }
         #endregion
 
@@ -63,7 +63,7 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'argument':'3'}")]
+        [DataRow("{\"argument\":\"3\"}")]
         public void NavigateForwardMultiple(string actionRule)
         {
             // execute
@@ -74,7 +74,7 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'argument':'NoNumber'}")]
+        [DataRow("{\"argument\":\"NoNumber\"}")]
         public void NavigateForwardNotNumber(string actionRule)
         {
             // execute
@@ -85,7 +85,7 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'argument':'-1'}")]
+        [DataRow("{\"argument\":\"-1\"}")]
         public void NavigateForwardNegative(string actionRule)
         {
             // execute

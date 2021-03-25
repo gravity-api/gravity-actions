@@ -7,16 +7,17 @@ using Gravity.Plugins.Actions.UiWeb;
 using Gravity.UnitTests.Base;
 using Gravity.Plugins.Contracts;
 using Gravity.Plugins.Extensions;
+
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
+
 using System;
 using System.Data;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
-using Gravity.Plugins.Contracts;
+using System.Text.Json;
+using Gravity.Extensions;
 
 #pragma warning disable S4144
 namespace Gravity.UnitTests.UiWeb
@@ -55,6 +56,12 @@ namespace Gravity.UnitTests.UiWeb
             "    </body>" +
             "</html>";
         #endregion
+
+        // members
+        private readonly JsonSerializerOptions serializerOptions = new JsonSerializerOptions
+        {
+            PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+        };
 
         #region *** tests: properties    ***
         public TestContext TestContext { get; set; }
@@ -113,7 +120,7 @@ namespace Gravity.UnitTests.UiWeb
         {
             AssertDocumentation<ExtractFromSource>(
                 pluginName: PluginsList.ExtractFromSource,
-                resource: "extract_from_source.json");
+                resource: "ExtractFromSource.json");
         }
         #endregion
 
@@ -122,11 +129,11 @@ namespace Gravity.UnitTests.UiWeb
         [DataTestMethod]
         [DataRow("" +
             "{" +
-            "    'pageSource':true," +
-            "    'onRootElements':'//positive'," +
-            "    'onElements': [" +
+            "    \"pageSource\":true," +
+            "    \"onRootElements\":\"//positive\"," +
+            "    \"onElements\": [" +
             "        {" +
-            "            'key':'data'" +
+            "            \"key\":\"data\"" +
             "        }" +
             "    ]" +
             "}", @"^mock div text \d+$")]
@@ -143,12 +150,12 @@ namespace Gravity.UnitTests.UiWeb
         [DataTestMethod]
         [DataRow("" +
             "{" +
-            "    'pageSource':true," +
-            "    'onRootElements':'//positive'," +
-            "    'onElements': [" +
+            "    \"pageSource\":true," +
+            "    \"onRootElements\":\"//positive\"," +
+            "    \"onElements\": [" +
             "        {" +
-            "            'regularExpression':'mock div'," +
-            "            'key':'data'" +
+            "            \"regularExpression\":\"mock div\"," +
+            "            \"key\":\"data\"" +
             "        }" +
             "    ]" +
             "}", "^mock div$")]
@@ -165,12 +172,12 @@ namespace Gravity.UnitTests.UiWeb
         [DataTestMethod]
         [DataRow("" +
             "{" +
-            "    'pageSource':true," +
-            "    'onRootElements':'//positive'," +
-            "    'onElements': [" +
+            "    \"pageSource\":true," +
+            "    \"onRootElements\":\"//positive\"," +
+            "    \"onElements\": [" +
             "        {" +
-            "            'onAttribute':'mock_attribute'," +
-            "            'key':'data'" +
+            "            \"onAttribute\":\"mock_attribute\"," +
+            "            \"key\":\"data\"" +
             "        }" +
             "    ]" +
             "}", @"^attribute_\d+$")]
@@ -187,13 +194,13 @@ namespace Gravity.UnitTests.UiWeb
         [DataTestMethod]
         [DataRow("" +
             "{" +
-            "    'pageSource':true," +
-            "    'onRootElements':'//positive'," +
-            "    'onElements': [" +
+            "    \"pageSource\":true," +
+            "    \"onRootElements\":\"//positive\"," +
+            "    \"onElements\": [" +
             "        {" +
-            "            'onAttribute':'mock_attribute'," +
-            @"           'regularExpression':'\\d+'," +
-            "            'key':'data'" +
+            "            \"onAttribute\":\"mock_attribute\"," +
+            @"           ""regularExpression"":""\\d+""," +
+            "            \"key\":\"data\"" +
             "        }" +
             "    ]" +
             "}", @"^\d+$")]
@@ -210,12 +217,12 @@ namespace Gravity.UnitTests.UiWeb
         [DataTestMethod]
         [DataRow("" +
             "{" +
-            "    'pageSource':true," +
-            "    'onRootElements':'//div'," +
-            "    'onElements': [" +
+            "    \"pageSource\":true," +
+            "    \"onRootElements\":\"//div\"," +
+            "    \"onElements\": [" +
             "        {" +
-            "            'onElement':'./span[1]'," +
-            "            'key':'data'" +
+            "            \"onElement\":\"./span[1]\"," +
+            "            \"key\":\"data\"" +
             "        }" +
             "    ]" +
             "}", "^child div 1 inner text$")]
@@ -232,13 +239,13 @@ namespace Gravity.UnitTests.UiWeb
         [DataTestMethod]
         [DataRow("" +
             "{" +
-            "    'pageSource':true," +
-            "    'onRootElements':'//div'," +
-            "    'onElements': [" +
+            "    \"pageSource\":true," +
+            "    \"onRootElements\":\"//div\"," +
+            "    \"onElements\": [" +
             "        {" +
-            "            'onElement':'./span[1]'," +
-            @"           'regularExpression':'child div \\d'," +
-            "            'key':'data'" +
+            "            \"onElement\":\"./span[1]\"," +
+            @"           ""regularExpression"":""child div \\d""," +
+            "            \"key\":\"data\"" +
             "        }" +
             "    ]" +
             "}", @"^child div \d$")]
@@ -255,13 +262,13 @@ namespace Gravity.UnitTests.UiWeb
         [DataTestMethod]
         [DataRow("" +
             "{" +
-            "    'pageSource':true," +
-            "    'onRootElements':'//div'," +
-            "    'onElements': [" +
+            "    \"pageSource\":true," +
+            "    \"onRootElements\":\"//div\"," +
+            "    \"onElements\": [" +
             "        {" +
-            "            'onElement':'./span[1]'," +
-            "            'onAttribute':'id'," +
-            "            'key':'data'" +
+            "            \"onElement\":\"./span[1]\"," +
+            "            \"onAttribute\":\"id\"," +
+            "            \"key\":\"data\"" +
             "        }" +
             "    ]" +
             "}", @"^childDiv\d+$")]
@@ -278,14 +285,14 @@ namespace Gravity.UnitTests.UiWeb
         [DataTestMethod]
         [DataRow("" +
             "{" +
-            "    'pageSource':true," +
-            "    'onRootElements':'//div'," +
-            "    'onElements': [" +
+            "    \"pageSource\":true," +
+            "    \"onRootElements\":\"//div\"," +
+            "    \"onElements\": [" +
             "        {" +
-            "            'onElement':'./span[1]'," +
-            "            'onAttribute':'id'," +
-            @"           'regularExpression':'\\d+'," +
-            "            'key':'data'" +
+            "            \"onElement\":\"./span[1]\"," +
+            "            \"onAttribute\":\"id\"," +
+            @"           ""regularExpression"":""\\d+""," +
+            "            \"key\":\"data\"" +
             "        }" +
             "    ]" +
             "}", @"^\d+$")]
@@ -302,12 +309,12 @@ namespace Gravity.UnitTests.UiWeb
         [DataTestMethod]
         [DataRow("" +
             "{" +
-            "    'pageSource':true," +
-            "    'onRootElements':'//positive'," +
-            "    'onElements': [" +
+            "    \"pageSource\":true," +
+            "    \"onRootElements\":\"//positive\"," +
+            "    \"onElements\": [" +
             "        {" +
-            "            'onAttribute':'html'," +
-            "            'key':'data'" +
+            "            \"onAttribute\":\"html\"," +
+            "            \"key\":\"data\"" +
             "        }" +
             "    ]" +
             "}", "positive mock_attribute=")]
@@ -324,13 +331,13 @@ namespace Gravity.UnitTests.UiWeb
         [DataTestMethod]
         [DataRow("" +
             "{" +
-            "    'pageSource':true," +
-            "    'onRootElements':'//div'," +
-            "    'onElements': [" +
+            "    \"pageSource\":true," +
+            "    \"onRootElements\":\"//div\"," +
+            "    \"onElements\": [" +
             "        {" +
-            "            'onElement':'./span[1]'," +
-            "            'onAttribute':'html'," +
-            "            'key':'data'" +
+            "            \"onElement\":\"./span[1]\"," +
+            "            \"onAttribute\":\"html\"," +
+            "            \"key\":\"data\"" +
             "        }" +
             "    ]" +
             "}", "span id=")]
@@ -347,12 +354,12 @@ namespace Gravity.UnitTests.UiWeb
         [DataTestMethod]
         [DataRow("" +
             "{" +
-            "    'pageSource':true," +
-            "    'onRootElements':'//div'," +
-            "    'onElements': [" +
+            "    \"pageSource\":true," +
+            "    \"onRootElements\":\"//div\"," +
+            "    \"onElements\": [" +
             "        {" +
-            "            'onElement':'//p[1]'," +
-            "            'key':'data'" +
+            "            \"onElement\":\"//p[1]\"," +
+            "            \"key\":\"data\"" +
             "        }" +
             "    ]" +
             "}", "^mock, page level paragraph, inner text$")]
@@ -369,13 +376,13 @@ namespace Gravity.UnitTests.UiWeb
         [DataTestMethod]
         [DataRow("" +
             "{" +
-            "    'pageSource':true," +
-            "    'onRootElements':'//div'," +
-            "    'onElements': [" +
+            "    \"pageSource\":true," +
+            "    \"onRootElements\":\"//div\"," +
+            "    \"onElements\": [" +
             "        {" +
-            "            'onElement':'//p[1]'," +
-            "            'onAttribute':'id'," +
-            "            'key':'data'" +
+            "            \"onElement\":\"//p[1]\"," +
+            "            \"onAttribute\":\"id\"," +
+            "            \"key\":\"data\"" +
             "        }" +
             "    ]" +
             "}", @"pageLevel\d+$")]
@@ -392,12 +399,12 @@ namespace Gravity.UnitTests.UiWeb
         [DataTestMethod]
         [DataRow("" +
             "{" +
-            "    'pageSource':false," +
-            "    'onRootElements':'//positive'," +
-            "    'onElements': [" +
+            "    \"pageSource\":false," +
+            "    \"onRootElements\":\"//positive\"," +
+            "    \"onElements\": [" +
             "        {" +
-            "            'regularExpression':'mock element nested inner'," +
-            "            'key':'data'" +
+            "            \"regularExpression\":\"mock element nested inner\"," +
+            "            \"key\":\"data\"" +
             "        }" +
             "    ]" +
             "}", "^mock element nested inner$")]
@@ -418,16 +425,16 @@ namespace Gravity.UnitTests.UiWeb
         [DataTestMethod]
         [DataRow("" +
             "{" +
-            "    'dataSource': {" +
-            "        'type':'SQLServer'," +
-            "        'source':'[Data.ConnectionString]'," +
-            "        'repository':'[Data.Repository]'" +
+            "    \"dataSource\": {" +
+            "        \"type\":\"SQLServer\"," +
+            "        \"source\":\"[Data.ConnectionString]\"," +
+            "        \"repository\":\"[Data.Repository]\"" +
             "    }," +
-            "    'pageSource':true," +
-            "    'onRootElements':'//positive'," +
-            "    'onElements': [" +
+            "    \"pageSource\":true," +
+            "    \"onRootElements\":\"//positive\"," +
+            "    \"onElements\": [" +
             "        {" +
-            "            'key':'data'" +
+            "            \"key\":\"data\"" +
             "        }" +
             "    ]" +
             "}")]
@@ -450,17 +457,17 @@ namespace Gravity.UnitTests.UiWeb
         [DataTestMethod]
         [DataRow("" +
             "{" +
-            "    'dataSource': {" +
-            "        'type':'SQLServer'," +
-            "        'source':'[Data.ConnectionString]'," +
-            "        'repository':'[Data.Repository]'," +
-            "        'writePerEntity':true" +
+            "    \"dataSource\": {" +
+            "        \"type\":\"SQLServer\"," +
+            "        \"source\":\"[Data.ConnectionString]\"," +
+            "        \"repository\":\"[Data.Repository]\"," +
+            "        \"writePerEntity\":true" +
             "    }," +
-            "    'pageSource':true," +
-            "    'onRootElements':'//positive'," +
-            "    'onElements': [" +
+            "    \"pageSource\":true," +
+            "    \"onRootElements\":\"//positive\"," +
+            "    \"onElements\": [" +
             "        {" +
-            "            'key':'data'" +
+            "            \"key\":\"data\"" +
             "        }" +
             "    ]" +
             "}")]
@@ -482,16 +489,16 @@ namespace Gravity.UnitTests.UiWeb
         [DataTestMethod]
         [DataRow("" +
             "{" +
-            "    'dataSource': {" +
-            "        'type':'SQLServer'," +
-            "        'source':'[Data.ConnectionString]'," +
-            "        'repository':'[Data.Repository]'" +
+            "    \"dataSource\": {" +
+            "        \"type\":\"SQLServer\"," +
+            "        \"source\":\"[Data.ConnectionString]\"," +
+            "        \"repository\":\"[Data.Repository]\"" +
             "    }," +
-            "    'pageSource':true," +
-            "    'onRootElements':'//positive'," +
-            "    'onElements': [" +
+            "    \"pageSource\":true," +
+            "    \"onRootElements\":\"//positive\"," +
+            "    \"onElements\": [" +
             "        {" +
-            "            'key':'data'" +
+            "            \"key\":\"data\"" +
             "        }" +
             "    ]" +
             "}")]
@@ -514,16 +521,16 @@ namespace Gravity.UnitTests.UiWeb
         [DataTestMethod]
         [DataRow("" +
             "{" +
-            "    'dataSource': {" +
-            "        'type':'SQLServer'," +
-            "        'source':'[Data.ConnectionString]'," +
-            "        'repository':'[Data.Repository]'" +
+            "    \"dataSource\": {" +
+            "        \"type\":\"SQLServer\"," +
+            "        \"source\":\"[Data.ConnectionString]\"," +
+            "        \"repository\":\"[Data.Repository]\"" +
             "    }," +
-            "    'pageSource':true," +
-            "    'onRootElements':'//positive'," +
-            "    'onElements': [" +
+            "    \"pageSource\":true," +
+            "    \"onRootElements\":\"//positive\"," +
+            "    \"onElements\": [" +
             "        {" +
-            "            'key':'data'" +
+            "            \"key\":\"data\"" +
             "        }" +
             "    ]" +
             "}")]
@@ -547,15 +554,15 @@ namespace Gravity.UnitTests.UiWeb
         [DataTestMethod]
         [DataRow("" +
             "{" +
-            "    'dataSource': {" +
-            "        'type':'CSV'," +
-            "        'source':'data/extract_from_source/[File.Name].csv'" +
+            "    \"dataSource\": {" +
+            "        \"type\":\"CSV\"," +
+            "        \"source\":\"data/extract_from_source/[File.Name].csv\"" +
             "    }," +
-            "    'pageSource':true," +
-            "    'onRootElements':'//positive'," +
-            "    'onElements': [" +
+            "    \"pageSource\":true," +
+            "    \"onRootElements\":\"//positive\"," +
+            "    \"onElements\": [" +
             "        {" +
-            "            'key':'data'" +
+            "            \"key\":\"data\"" +
             "        }" +
             "    ]" +
             "}")]
@@ -577,16 +584,16 @@ namespace Gravity.UnitTests.UiWeb
         [DataTestMethod]
         [DataRow("" +
             "{" +
-            "    'dataSource': {" +
-            "        'type':'CSV'," +
-            "        'source':'data/extract_from_source/[File.Name].csv'," +
-            "        'writePerEntity':true" +
+            "    \"dataSource\": {" +
+            "        \"type\":\"CSV\"," +
+            "        \"source\":\"data/extract_from_source/[File.Name].csv\"," +
+            "        \"writePerEntity\":true" +
             "    }," +
-            "    'pageSource':true," +
-            "    'onRootElements':'//positive'," +
-            "    'onElements': [" +
+            "    \"pageSource\":true," +
+            "    \"onRootElements\":\"//positive\"," +
+            "    \"onElements\": [" +
             "        {" +
-            "            'key':'data'" +
+            "            \"key\":\"data\"" +
             "        }" +
             "    ]" +
             "}")]
@@ -608,15 +615,15 @@ namespace Gravity.UnitTests.UiWeb
         [DataTestMethod, ExpectedException(typeof(ArgumentException))]
         [DataRow("" +
             "{" +
-            "    'dataSource': {" +
-            "        'type':'CSV'," +
-            "        'source':''" +
+            "    \"dataSource\": {" +
+            "        \"type\":\"CSV\"," +
+            "        \"source\":\"\"" +
             "    }," +
-            "    'pageSource':true," +
-            "    'onRootElements':'//positive'," +
-            "    'onElements': [" +
+            "    \"pageSource\":true," +
+            "    \"onRootElements\":\"//positive\"," +
+            "    \"onElements\": [" +
             "        {" +
-            "            'key':'data'" +
+            "            \"key\":\"data\"" +
             "        }" +
             "    ]" +
             "}")]
@@ -640,15 +647,15 @@ namespace Gravity.UnitTests.UiWeb
         [DataTestMethod]
         [DataRow("" +
             "{" +
-            "    'dataSource': {" +
-            "        'type':'JSON'," +
-            "        'source':'data/extract_from_source/[File.Name].json'" +
+            "    \"dataSource\": {" +
+            "        \"type\":\"JSON\"," +
+            "        \"source\":\"data/extract_from_source/[File.Name].json\"" +
             "    }," +
-            "    'pageSource':true," +
-            "    'onRootElements':'//positive'," +
-            "    'onElements': [" +
+            "    \"pageSource\":true," +
+            "    \"onRootElements\":\"//positive\"," +
+            "    \"onElements\": [" +
             "        {" +
-            "            'key':'data'" +
+            "            \"key\":\"data\"" +
             "        }" +
             "    ]" +
             "}")]
@@ -670,16 +677,16 @@ namespace Gravity.UnitTests.UiWeb
         [DataTestMethod]
         [DataRow("" +
             "{" +
-            "    'dataSource': {" +
-            "        'type':'JSON'," +
-            "        'source':'data/extract_from_source/[File.Name].json'," +
-            "        'writePerEntity':true" +
+            "    \"dataSource\": {" +
+            "        \"type\":\"JSON\"," +
+            "        \"source\":\"data/extract_from_source/[File.Name].json\"," +
+            "        \"writePerEntity\":true" +
             "    }," +
-            "    'pageSource':true," +
-            "    'onRootElements':'//positive'," +
-            "    'onElements': [" +
+            "    \"pageSource\":true," +
+            "    \"onRootElements\":\"//positive\"," +
+            "    \"onElements\": [" +
             "        {" +
-            "            'key':'data'" +
+            "            \"key\":\"data\"" +
             "        }" +
             "    ]" +
             "}")]
@@ -701,15 +708,15 @@ namespace Gravity.UnitTests.UiWeb
         [DataTestMethod, ExpectedException(typeof(ArgumentException))]
         [DataRow("" +
             "{" +
-            "    'dataSource': {" +
-            "        'type':'JSON'," +
-            "        'source':''" +
+            "    \"dataSource\": {" +
+            "        \"type\":\"JSON\"," +
+            "        \"source\":\"\"" +
             "    }," +
-            "    'pageSource':true," +
-            "    'onRootElements':'//positive'," +
-            "    'onElements': [" +
+            "    \"pageSource\":true," +
+            "    \"onRootElements\":\"//positive\"," +
+            "    \"onElements\": [" +
             "        {" +
-            "            'key':'data'" +
+            "            \"key\":\"data\"" +
             "        }" +
             "    ]" +
             "}")]
@@ -733,15 +740,15 @@ namespace Gravity.UnitTests.UiWeb
         [DataTestMethod]
         [DataRow("" +
             "{" +
-            "    'dataSource': {" +
-            "        'type':'XML'," +
-            "        'source':'data/extract_from_source/[File.Name].xml'" +
+            "    \"dataSource\": {" +
+            "        \"type\":\"XML\"," +
+            "        \"source\":\"data/extract_from_source/[File.Name].xml\"" +
             "    }," +
-            "    'pageSource':true," +
-            "    'onRootElements':'//positive'," +
-            "    'onElements': [" +
+            "    \"pageSource\":true," +
+            "    \"onRootElements\":\"//positive\"," +
+            "    \"onElements\": [" +
             "        {" +
-            "            'key':'data'" +
+            "            \"key\":\"data\"" +
             "        }" +
             "    ]" +
             "}")]
@@ -763,16 +770,16 @@ namespace Gravity.UnitTests.UiWeb
         [DataTestMethod]
         [DataRow("" +
             "{" +
-            "    'dataSource': {" +
-            "        'type':'XML'," +
-            "        'source':'data/extract_from_source/[File.Name].xml'," +
-            "        'writePerEntity':true" +
+            "    \"dataSource\": {" +
+            "        \"type\":\"XML\"," +
+            "        \"source\":\"data/extract_from_source/[File.Name].xml\"," +
+            "        \"writePerEntity\":true" +
             "    }," +
-            "    'pageSource':true," +
-            "    'onRootElements':'//positive'," +
-            "    'onElements': [" +
+            "    \"pageSource\":true," +
+            "    \"onRootElements\":\"//positive\"," +
+            "    \"onElements\": [" +
             "        {" +
-            "            'key':'data'" +
+            "            \"key\":\"data\"" +
             "        }" +
             "    ]" +
             "}")]
@@ -794,15 +801,15 @@ namespace Gravity.UnitTests.UiWeb
         [DataTestMethod, ExpectedException(typeof(ArgumentException))]
         [DataRow("" +
             "{" +
-            "    'dataSource': {" +
-            "        'type':'XML'," +
-            "        'source':''" +
+            "    \"dataSource\": {" +
+            "        \"type\":\"XML\"," +
+            "        \"source\":\"\"" +
             "    }," +
-            "    'pageSource':true," +
-            "    'onRootElements':'//positive'," +
-            "    'onElements': [" +
+            "    \"pageSource\":true," +
+            "    \"onRootElements\":\"//positive\"," +
+            "    \"onElements\": [" +
             "        {" +
-            "            'key':'data'" +
+            "            \"key\":\"data\"" +
             "        }" +
             "    ]" +
             "}")]
@@ -847,22 +854,17 @@ namespace Gravity.UnitTests.UiWeb
             // setup
             SetExtractionRules(extractionRule);
             var dataSource = Automation.Extractions.ElementAt(0).DataSource;
-            var settings = new JsonSerializerSettings
-            {
-                ContractResolver = new CamelCasePropertyNamesContractResolver(),
-                Formatting = Formatting.None
-            };
 
             // execute
             var plugin = ExecuteAction<ExtractFromSource>();
 
             // results
-            var expected = plugin.Extractions.First().ToDataTable();
-            var actual = new DataTable().Load(dataSource);
+            var expected = plugin.Extractions.First().ToDataTable().ToDictionary();
+            var actual = new DataTable().Load(dataSource).ToDictionary();
 
             // comparing
-            var sExpected = new string(JsonConvert.SerializeObject(expected, settings).OrderBy(i => i).ToArray());
-            var sActual = new string(JsonConvert.SerializeObject(actual, settings).OrderBy(i => i).ToArray());
+            var sExpected = new string(JsonSerializer.Serialize(expected, serializerOptions).OrderBy(i => i).ToArray());
+            var sActual = new string(JsonSerializer.Serialize(actual, serializerOptions).OrderBy(i => i).ToArray());
 
             // assertion
             return sExpected.Equals(sActual, StringComparison.Ordinal);
@@ -872,14 +874,14 @@ namespace Gravity.UnitTests.UiWeb
         private void SetExtractionRules(string extractionRule)
         {
             // setup
-            var rule = JsonConvert.DeserializeObject<ExtractionRule>(extractionRule);
+            var rule = JsonSerializer.Deserialize<ExtractionRule>(extractionRule, serializerOptions);
 
             // apply
             Automation.Extractions = new[] { rule };
         }
 
         // replace placeholder for extraction rules data source
-        private string SetSqlDataSource(string extractionRule, string repository)
+        private static string SetSqlDataSource(string extractionRule, string repository)
         {
             return extractionRule
                 .Replace(oldValue: "[Data.ConnectionString]", newValue: connectionString)

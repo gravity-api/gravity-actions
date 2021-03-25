@@ -4,26 +4,30 @@
  * RESOURCES
  */
 using Gravity.Plugins.Actions.Extensions;
-using Gravity.Plugins.Extensions;
 using Gravity.Plugins.Attributes;
 using Gravity.Plugins.Base;
 using Gravity.Plugins.Contracts;
+using Gravity.Plugins.Extensions;
+using Gravity.Plugins.Utilities;
+
 using HtmlAgilityPack;
+
 using OpenQA.Selenium;
 using OpenQA.Selenium.Extensions;
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text.RegularExpressions;
-using Gravity.Plugins.Utilities;
 
 namespace Gravity.Plugins.Actions.UiWeb
 {
     [Plugin(
         assembly: "Gravity.Plugins.Actions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
-        resource: "Gravity.Plugins.Actions.Documentation.extract_from_source.json",
-        Name = Contracts.PluginsList.ExtractFromSource)]
+        resource: "Gravity.Plugins.Actions.Manifest.ExtractFromSource.json",
+        Name = PluginsList.ExtractFromSource)]
     public class ExtractFromSource : WebDriverActionPlugin
     {
         // members
@@ -111,7 +115,7 @@ namespace Gravity.Plugins.Actions.UiWeb
             Extractions.Add(onExtraction);
 
             // populate
-            if(extraction.DataSource != default && !extraction.DataSource.WritePerEntity)
+            if (extraction.DataSource?.WritePerEntity == false)
             {
                 onExtraction.Populate(extraction.DataSource);
             }
@@ -126,7 +130,7 @@ namespace Gravity.Plugins.Actions.UiWeb
             {
                 Content = new Dictionary<string, object>()
             };
-            entity.Content["EntityIndex"] = index;
+            entity.Content["entityIndex"] = index;
 
             // extract
             foreach (var entry in extraction.OnElements)
@@ -136,7 +140,7 @@ namespace Gravity.Plugins.Actions.UiWeb
             }
 
             // populate
-            if (extraction.DataSource != default && extraction.DataSource.WritePerEntity)
+            if (extraction.DataSource?.WritePerEntity == true)
             {
                 entity.Populate(extraction.DataSource);
             }
@@ -179,7 +183,7 @@ namespace Gravity.Plugins.Actions.UiWeb
             return new KeyValuePair<string, object>(key: onEntry.Key, value);
         }
 
-        private string ValueFactory(ContentEntry entry, string value)
+        private static string ValueFactory(ContentEntry entry, string value)
         {
             // message configuration
             if (entry.Trim)
@@ -222,11 +226,11 @@ namespace Gravity.Plugins.Actions.UiWeb
         }
         #endregion
 
-#pragma warning disable IDE0051
         #region *** Special Attributes      ***
         [Description("html")]
+        [SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "Used by reflection, must be non-static.")]
+        [SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "Used by reflection, must be private.")]
         private string Html(HtmlNode element) => element.OuterHtml;
         #endregion
-#pragma warning restore
     }
 }

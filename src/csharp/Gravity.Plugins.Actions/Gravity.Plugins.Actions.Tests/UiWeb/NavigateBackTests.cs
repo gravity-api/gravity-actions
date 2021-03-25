@@ -47,7 +47,7 @@ namespace Gravity.UnitTests.UiWeb
         {
             AssertDocumentation<NavigateBack>(
                 pluginName: PluginsList.NavigateBack,
-                resource: "navigate_back.json");
+                resource: "NavigateBack.json");
         }
         #endregion
 
@@ -63,7 +63,7 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'argument':'3'}")]
+        [DataRow("{\"argument\":\"3\"}")]
         public void NavigateBackMultiple(string actionRule)
         {
             // execute
@@ -74,7 +74,7 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'argument':'NoNumber'}")]
+        [DataRow("{\"argument\":\"NoNumber\"}")]
         public void NavigateBackNotNumber(string actionRule)
         {
             // execute
@@ -85,7 +85,7 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'argument':'-1'}")]
+        [DataRow("{\"argument\":\"-1\"}")]
         public void NavigateBackNegative(string actionRule)
         {
             // execute

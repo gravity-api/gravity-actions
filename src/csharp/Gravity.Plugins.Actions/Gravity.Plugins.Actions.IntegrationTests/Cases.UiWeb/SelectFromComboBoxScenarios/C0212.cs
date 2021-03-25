@@ -16,7 +16,7 @@
 #pragma warning restore
 using Gravity.IntegrationTests.Base;
 using Gravity.Plugins.Contracts;
-using Gravity.Plugins.Contracts;
+
 using System.Collections.Generic;
 
 namespace Graivty.IntegrationTests.Cases.UiWeb.SelectFromComboBoxScenarios
@@ -39,7 +39,7 @@ namespace Graivty.IntegrationTests.Cases.UiWeb.SelectFromComboBoxScenarios
                     Action = PluginsList.SelectFromComboBox,
                     OnElement = "select_menu_multiple",
                     OnAttribute = "index",
-                    Argument = "['1']",
+                    Argument = "[\"1\"]",
                     Locator = LocatorsList.Id
                 },
                 SharedSteps.AssertMultipleComboBoxSelectedCount(count: 1),

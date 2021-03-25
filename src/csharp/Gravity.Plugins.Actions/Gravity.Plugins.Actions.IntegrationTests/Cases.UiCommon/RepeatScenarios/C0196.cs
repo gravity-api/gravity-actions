@@ -6,8 +6,8 @@
 * 
 * [test-actions]
 * 1. navigate to {https://gravitymvctestapplication.azurewebsites.net/student/}
-* 2. repeat {{$ --until:exists}} on {//a[contains(.,'Next') and @class='btn btn-default disabled']}
-*        3. > click on {//a[contains(.,'Next') and @class='btn btn-default ']}
+* 2. repeat {{$ --until:exists}} on {//a[contains(.,\"Next\") and @class=\"btn btn-default disabled\"]}
+*        3. > click on {//a[contains(.,\"Next\") and @class=\"btn btn-default \"]}
 * 4. close browser
 * 
 * [test-expected-results]
@@ -16,7 +16,7 @@
 #pragma warning restore
 using Gravity.IntegrationTests.Base;
 using Gravity.Plugins.Contracts;
-using Gravity.Plugins.Contracts;
+
 using System.Collections.Generic;
 
 namespace Graivty.IntegrationTests.Cases.UiCommon.RepeatScenarios
@@ -35,7 +35,7 @@ namespace Graivty.IntegrationTests.Cases.UiCommon.RepeatScenarios
                 new ActionRule
                 {
                     Action = PluginsList.Click,
-                    OnElement = "//a[contains(.,'Next') and @class='btn btn-default ']"
+                    OnElement = "//a[contains(.,\"Next\") and @class=\"btn btn-default \"]"
                 }
             };
 
@@ -46,7 +46,7 @@ namespace Graivty.IntegrationTests.Cases.UiCommon.RepeatScenarios
                 {
                     Action = PluginsList.Repeat,
                     Argument = "{{$ --until:exists}}",
-                    OnElement = "//a[contains(.,'Next') and @class='btn btn-default disabled']",
+                    OnElement = "//a[contains(.,\"Next\") and @class=\"btn btn-default disabled\"]",
                     Actions = actions
                 },
                 new ActionRule

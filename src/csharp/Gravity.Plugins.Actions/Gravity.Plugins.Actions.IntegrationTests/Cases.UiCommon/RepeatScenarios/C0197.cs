@@ -7,7 +7,7 @@
 * [test-actions]
 * 1. navigate to {https://gravitymvctestapplication.azurewebsites.net/student/}
 * 2. repeat {2}
-*        3. > click on {//a[contains(.,'Next') and @class='btn btn-default ']}
+*        3. > click on {//a[contains(.,\"Next\") and @class=\"btn btn-default \"]}
 * 4. close browser
 * 
 * [test-expected-results]
@@ -16,7 +16,7 @@
 #pragma warning restore
 using Gravity.IntegrationTests.Base;
 using Gravity.Plugins.Contracts;
-using Gravity.Plugins.Contracts;
+
 using System.Collections.Generic;
 
 namespace Graivty.IntegrationTests.Cases.UiCommon.RepeatScenarios
@@ -35,7 +35,7 @@ namespace Graivty.IntegrationTests.Cases.UiCommon.RepeatScenarios
                 new ActionRule
                 {
                     Action = PluginsList.Click,
-                    OnElement = "//a[contains(.,'Next') and @class='btn btn-default ']"
+                    OnElement = "//a[contains(.,\"Next\") and @class=\"btn btn-default \"]"
                 }
             };
 

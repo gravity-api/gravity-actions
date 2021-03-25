@@ -35,7 +35,7 @@ namespace Gravity.UnitTests.UiWeb
         {
             AssertDocumentation<SwitchToDefaultContent>(
                 pluginName: PluginsList.SwitchToDefaultContent,
-                resource: "switch_to_default_content.json");
+                resource: "SwitchToDefaultContent.json");
         }
         #endregion
 

@@ -13,7 +13,6 @@
 #pragma warning restore
 using Gravity.Plugins.Contracts;
 using Gravity.IntegrationTests.Base;
-using Gravity.Plugins.Contracts;
 using System.Collections.Generic;
 
 namespace Graivty.IntegrationTests.Cases.UiWeb.ExtractFromSourceScenarios

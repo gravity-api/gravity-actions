@@ -8,8 +8,7 @@ using Gravity.UnitTests.Base;
 using Gravity.Plugins.Contracts;
 using Gravity.Plugins.Extensions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
+
 using System;
 using System.Data;
 using System.IO;
@@ -18,7 +17,8 @@ using System.Reflection;
 using System.Text.RegularExpressions;
 
 using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
-using Gravity.Plugins.Contracts;
+using System.Text.Json;
+using Gravity.Extensions;
 
 #pragma warning disable S4144
 namespace Gravity.UnitTests.UiCommon
@@ -29,6 +29,10 @@ namespace Gravity.UnitTests.UiCommon
     {
         // members state
         private static string connectionString;
+        private static readonly JsonSerializerOptions options = new JsonSerializerOptions
+        {
+            PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+        };
 
         // properties
         public TestContext TestContext { get; set; }
@@ -44,14 +48,14 @@ namespace Gravity.UnitTests.UiCommon
         [ClassCleanup]
         public static void Dispose()
         {
-            // database
-            DropDatabase(connectionString);
-
             // data files
             if (Directory.Exists("Data"))
             {
                 Directory.Delete(path: "Data", true);
             }
+
+            // database
+            DropDatabase(connectionString);
         }
         #endregion
 
@@ -71,7 +75,7 @@ namespace Gravity.UnitTests.UiCommon
         {
             AssertDocumentation<ExtractFromDom>(
                 pluginName: PluginsList.ExtractFromDom,
-                resource: "extract_from_dom.json");
+                resource: "ExtractFromDom.json");
         }
         #endregion
 
@@ -80,11 +84,11 @@ namespace Gravity.UnitTests.UiCommon
         [DataTestMethod]
         [DataRow("" +
             "{" +
-            "    'onRootElements':'//positive'," +
-            "    'onElements': [" +
+            "    \"onRootElements\":\"//positive\"," +
+            "    \"onElements\": [" +
             "        {" +
-            "            'regularExpression':'Positive Element'," +
-            "            'key':'data'" +
+            "            \"regularExpression\":\"Positive Element\"," +
+            "            \"key\":\"data\"" +
             "        }" +
             "    ]" +
             "}", "^Positive Element$")]
@@ -101,10 +105,10 @@ namespace Gravity.UnitTests.UiCommon
         [DataTestMethod]
         [DataRow("" +
             "{" +
-            "    'onRootElements':'//positive'," +
-            "    'onElements': [" +
+            "    \"onRootElements\":\"//positive\"," +
+            "    \"onElements\": [" +
             "        {" +
-            "            'key':'data'" +
+            "            \"key\":\"data\"" +
             "        }" +
             "    ]" +
             "}", "^Mock: Positive Element$")]
@@ -121,11 +125,11 @@ namespace Gravity.UnitTests.UiCommon
         [DataTestMethod]
         [DataRow("" +
             "{" +
-            "    'onRootElements':'//positive'," +
-            "    'onElements': [" +
+            "    \"onRootElements\":\"//positive\"," +
+            "    \"onElements\": [" +
             "        {" +
-            "            'onAttribute':'html'," +
-            "            'key':'data'" +
+            "            \"onAttribute\":\"html\"," +
+            "            \"key\":\"data\"" +
             "        }" +
             "    ]" +
             "}", "mock element inner-text")]
@@ -142,12 +146,12 @@ namespace Gravity.UnitTests.UiCommon
         [DataTestMethod]
         [DataRow("" +
             "{" +
-            "    'onRootElements':'//positive'," +
-            "    'onElements': [" +
+            "    \"onRootElements\":\"//positive\"," +
+            "    \"onElements\": [" +
             "        {" +
-            "            'onAttribute':'class'," +
-            @"           'regularExpression':'\\d+'," +
-            "            'key':'data'" +
+            "            \"onAttribute\":\"class\"," +
+            @"           ""regularExpression"":""\\d+""," +
+            "            \"key\":\"data\"" +
             "        }" +
             "    ]" +
             "}", @"^\d+$")]
@@ -164,11 +168,11 @@ namespace Gravity.UnitTests.UiCommon
         [DataTestMethod]
         [DataRow("" +
             "{" +
-            "    'onRootElements':'//positive'," +
-            "    'onElements': [" +
+            "    \"onRootElements\":\"//positive\"," +
+            "    \"onElements\": [" +
             "        {" +
-            "            'onAttribute':'class'," +
-            "            'key':'data'" +
+            "            \"onAttribute\":\"class\"," +
+            "            \"key\":\"data\"" +
             "        }" +
             "    ]" +
             "}", @"^mock attribute value \d+$")]
@@ -185,12 +189,12 @@ namespace Gravity.UnitTests.UiCommon
         [DataTestMethod]
         [DataRow("" +
             "{" +
-            "    'onRootElements':'//positive'," +
-            "    'onElements': [" +
+            "    \"onRootElements\":\"//positive\"," +
+            "    \"onElements\": [" +
             "        {" +
-            "            'onElement':'./negative[1]'," +
-            "            'regularExpression':'Negative Element'," +
-            "            'key':'data'" +
+            "            \"onElement\":\"./negative[1]\"," +
+            "            \"regularExpression\":\"Negative Element\"," +
+            "            \"key\":\"data\"" +
             "        }" +
             "    ]" +
             "}", "^Negative Element$")]
@@ -207,11 +211,11 @@ namespace Gravity.UnitTests.UiCommon
         [DataTestMethod]
         [DataRow("" +
             "{" +
-            "    'onRootElements':'//positive'," +
-            "    'onElements': [" +
+            "    \"onRootElements\":\"//positive\"," +
+            "    \"onElements\": [" +
             "        {" +
-            "            'onElement':'./negative[1]'," +
-            "            'key':'data'" +
+            "            \"onElement\":\"./negative[1]\"," +
+            "            \"key\":\"data\"" +
             "        }" +
             "    ]" +
             "}", "^Mock: Negative Element$")]
@@ -228,12 +232,12 @@ namespace Gravity.UnitTests.UiCommon
         [DataTestMethod]
         [DataRow("" +
             "{" +
-            "    'onRootElements':'//positive'," +
-            "    'onElements': [" +
+            "    \"onRootElements\":\"//positive\"," +
+            "    \"onElements\": [" +
             "        {" +
-            "            'onElement':'./negative[1]'," +
-            "            'onAttribute':'html'," +
-            "            'key':'data'" +
+            "            \"onElement\":\"./negative[1]\"," +
+            "            \"onAttribute\":\"html\"," +
+            "            \"key\":\"data\"" +
             "        }" +
             "    ]" +
             "}", "mock element inner-text")]
@@ -250,13 +254,13 @@ namespace Gravity.UnitTests.UiCommon
         [DataTestMethod]
         [DataRow("" +
             "{" +
-            "    'onRootElements':'//positive'," +
-            "    'onElements': [" +
+            "    \"onRootElements\":\"//positive\"," +
+            "    \"onElements\": [" +
             "        {" +
-            "            'onElement':'./negative[1]'," +
-            "            'onAttribute':'class'," +
-            @"           'regularExpression':'\\d+'," +
-            "            'key':'data'" +
+            "            \"onElement\":\"./negative[1]\"," +
+            "            \"onAttribute\":\"class\"," +
+            @"           ""regularExpression"":""\\d+""," +
+            "            \"key\":\"data\"" +
             "        }" +
             "    ]" +
             "}", @"^\d+$")]
@@ -273,12 +277,12 @@ namespace Gravity.UnitTests.UiCommon
         [DataTestMethod]
         [DataRow("" +
             "{" +
-            "    'onRootElements':'//positive'," +
-            "    'onElements': [" +
+            "    \"onRootElements\":\"//positive\"," +
+            "    \"onElements\": [" +
             "        {" +
-            "            'onElement':'./negative[1]'," +
-            "            'onAttribute':'class'," +
-            "            'key':'data'" +
+            "            \"onElement\":\"./negative[1]\"," +
+            "            \"onAttribute\":\"class\"," +
+            "            \"key\":\"data\"" +
             "        }" +
             "    ]" +
             "}", @"^mock attribute value \d+$")]
@@ -295,11 +299,11 @@ namespace Gravity.UnitTests.UiCommon
         [DataTestMethod]
         [DataRow("" +
             "{" +
-            "    'onRootElements':'//positive'," +
-            "    'onElements': [" +
+            "    \"onRootElements\":\"//positive\"," +
+            "    \"onElements\": [" +
             "        {" +
-            "            'onElement':'//negative[1]'," +
-            "            'key':'data'" +
+            "            \"onElement\":\"//negative[1]\"," +
+            "            \"key\":\"data\"" +
             "        }" +
             "    ]" +
             "}", "^Mock: Negative Element$")]
@@ -316,12 +320,12 @@ namespace Gravity.UnitTests.UiCommon
         [DataTestMethod]
         [DataRow("" +
             "{" +
-            "    'onRootElements':'//positive'," +
-            "    'onElements': [" +
+            "    \"onRootElements\":\"//positive\"," +
+            "    \"onElements\": [" +
             "        {" +
-            "            'onElement':'//negative[1]'," +
-            "            'onAttribute':'class'," +
-            "            'key':'data'" +
+            "            \"onElement\":\"//negative[1]\"," +
+            "            \"onAttribute\":\"class\"," +
+            "            \"key\":\"data\"" +
             "        }" +
             "    ]" +
             "}", @"^mock attribute value \d+$")]
@@ -342,15 +346,15 @@ namespace Gravity.UnitTests.UiCommon
         [DataTestMethod]
         [DataRow("" +
             "{" +
-            "    'dataSource': {" +
-            "        'type':'SQLServer'," +
-            "        'source':'[Data.ConnectionString]'," +
-            "        'repository':'[Data.Repository]'" +
+            "    \"dataSource\": {" +
+            "        \"type\":\"SQLServer\"," +
+            "        \"source\":\"[Data.ConnectionString]\"," +
+            "        \"repository\":\"[Data.Repository]\"" +
             "    }," +
-            "    'onRootElements':'//positive'," +
-            "    'onElements': [" +
+            "    \"onRootElements\":\"//positive\"," +
+            "    \"onElements\": [" +
             "        {" +
-            "            'key':'data'" +
+            "            \"key\":\"data\"" +
             "        }" +
             "    ]" +
             "}")]
@@ -373,16 +377,16 @@ namespace Gravity.UnitTests.UiCommon
         [DataTestMethod]
         [DataRow("" +
             "{" +
-            "    'dataSource': {" +
-            "        'type':'SQLServer'," +
-            "        'source':'[Data.ConnectionString]'," +
-            "        'repository':'[Data.Repository]'," +
-            "        'writePerEntity':true" +
+            "    \"dataSource\": {" +
+            "        \"type\":\"SQLServer\"," +
+            "        \"source\":\"[Data.ConnectionString]\"," +
+            "        \"repository\":\"[Data.Repository]\"," +
+            "        \"writePerEntity\":true" +
             "    }," +
-            "    'onRootElements':'//positive'," +
-            "    'onElements': [" +
+            "    \"onRootElements\":\"//positive\"," +
+            "    \"onElements\": [" +
             "        {" +
-            "            'key':'data'" +
+            "            \"key\":\"data\"" +
             "        }" +
             "    ]" +
             "}")]
@@ -404,15 +408,15 @@ namespace Gravity.UnitTests.UiCommon
         [DataTestMethod]
         [DataRow("" +
             "{" +
-            "    'dataSource': {" +
-            "        'type':'SQLServer'," +
-            "        'source':'[Data.ConnectionString]'," +
-            "        'repository':'[Data.Repository]'" +
+            "    \"dataSource\": {" +
+            "        \"type\":\"SQLServer\"," +
+            "        \"source\":\"[Data.ConnectionString]\"," +
+            "        \"repository\":\"[Data.Repository]\"" +
             "    }," +
-            "    'onRootElements':'//positive'," +
-            "    'onElements': [" +
+            "    \"onRootElements\":\"//positive\"," +
+            "    \"onElements\": [" +
             "        {" +
-            "            'key':'data'" +
+            "            \"key\":\"data\"" +
             "        }" +
             "    ]" +
             "}")]
@@ -435,15 +439,15 @@ namespace Gravity.UnitTests.UiCommon
         [DataTestMethod]
         [DataRow("" +
             "{" +
-            "    'dataSource': {" +
-            "        'type':'SQLServer'," +
-            "        'source':'[Data.ConnectionString]'," +
-            "        'repository':'[Data.Repository]'" +
+            "    \"dataSource\": {" +
+            "        \"type\":\"SQLServer\"," +
+            "        \"source\":\"[Data.ConnectionString]\"," +
+            "        \"repository\":\"[Data.Repository]\"" +
             "    }," +
-            "    'onRootElements':'//positive'," +
-            "    'onElements': [" +
+            "    \"onRootElements\":\"//positive\"," +
+            "    \"onElements\": [" +
             "        {" +
-            "            'key':'data'" +
+            "            \"key\":\"data\"" +
             "        }" +
             "    ]" +
             "}")]
@@ -467,14 +471,14 @@ namespace Gravity.UnitTests.UiCommon
         [DataTestMethod]
         [DataRow("" +
             "{" +
-            "    'dataSource': {" +
-            "        'type':'CSV'," +
-            "        'source':'data/extract_from_dom/[File.Name].csv'" +
+            "    \"dataSource\": {" +
+            "        \"type\":\"CSV\"," +
+            "        \"source\":\"data/extract_from_dom/[File.Name].csv\"" +
             "    }," +
-            "    'onRootElements':'//positive'," +
-            "    'onElements': [" +
+            "    \"onRootElements\":\"//positive\"," +
+            "    \"onElements\": [" +
             "        {" +
-            "            'key':'data'" +
+            "            \"key\":\"data\"" +
             "        }" +
             "    ]" +
             "}")]
@@ -496,15 +500,15 @@ namespace Gravity.UnitTests.UiCommon
         [DataTestMethod]
         [DataRow("" +
             "{" +
-            "    'dataSource': {" +
-            "        'type':'CSV'," +
-            "        'source':'data/extract_from_dom/[File.Name].csv'," +
-            "        'writePerEntity':true" +
+            "    \"dataSource\": {" +
+            "        \"type\":\"CSV\"," +
+            "        \"source\":\"data/extract_from_dom/[File.Name].csv\"," +
+            "        \"writePerEntity\":true" +
             "    }," +
-            "    'onRootElements':'//positive'," +
-            "    'onElements': [" +
+            "    \"onRootElements\":\"//positive\"," +
+            "    \"onElements\": [" +
             "        {" +
-            "            'key':'data'" +
+            "            \"key\":\"data\"" +
             "        }" +
             "    ]" +
             "}")]
@@ -526,14 +530,14 @@ namespace Gravity.UnitTests.UiCommon
         [DataTestMethod, ExpectedException(typeof(ArgumentException))]
         [DataRow("" +
             "{" +
-            "    'dataSource': {" +
-            "        'type':'CSV'," +
-            "        'source':''" +
+            "    \"dataSource\": {" +
+            "        \"type\":\"CSV\"," +
+            "        \"source\":\"\"" +
             "    }," +
-            "    'onRootElements':'//positive'," +
-            "    'onElements': [" +
+            "    \"onRootElements\":\"//positive\"," +
+            "    \"onElements\": [" +
             "        {" +
-            "            'key':'data'" +
+            "            \"key\":\"data\"" +
             "        }" +
             "    ]" +
             "}")]
@@ -557,14 +561,14 @@ namespace Gravity.UnitTests.UiCommon
         [DataTestMethod]
         [DataRow("" +
             "{" +
-            "    'dataSource': {" +
-            "        'type':'JSON'," +
-            "        'source':'data/extract_from_dom/[File.Name].json'" +
+            "    \"dataSource\": {" +
+            "        \"type\":\"JSON\"," +
+            "        \"source\":\"data/extract_from_dom/[File.Name].json\"" +
             "    }," +
-            "    'onRootElements':'//positive'," +
-            "    'onElements': [" +
+            "    \"onRootElements\":\"//positive\"," +
+            "    \"onElements\": [" +
             "        {" +
-            "            'key':'data'" +
+            "            \"key\":\"data\"" +
             "        }" +
             "    ]" +
             "}")]
@@ -586,15 +590,15 @@ namespace Gravity.UnitTests.UiCommon
         [DataTestMethod]
         [DataRow("" +
             "{" +
-            "    'dataSource': {" +
-            "        'type':'JSON'," +
-            "        'source':'data/extract_from_dom/[File.Name].json'," +
-            "        'writePerEntity':true" +
+            "    \"dataSource\": {" +
+            "        \"type\":\"JSON\"," +
+            "        \"source\":\"data/extract_from_dom/[File.Name].json\"," +
+            "        \"writePerEntity\":true" +
             "    }," +
-            "    'onRootElements':'//positive'," +
-            "    'onElements': [" +
+            "    \"onRootElements\":\"//positive\"," +
+            "    \"onElements\": [" +
             "        {" +
-            "            'key':'data'" +
+            "            \"key\":\"data\"" +
             "        }" +
             "    ]" +
             "}")]
@@ -616,14 +620,14 @@ namespace Gravity.UnitTests.UiCommon
         [DataTestMethod, ExpectedException(typeof(ArgumentException))]
         [DataRow("" +
             "{" +
-            "    'dataSource': {" +
-            "        'type':'JSON'," +
-            "        'source':''" +
+            "    \"dataSource\": {" +
+            "        \"type\":\"JSON\"," +
+            "        \"source\":\"\"" +
             "    }," +
-            "    'onRootElements':'//positive'," +
-            "    'onElements': [" +
+            "    \"onRootElements\":\"//positive\"," +
+            "    \"onElements\": [" +
             "        {" +
-            "            'key':'data'" +
+            "            \"key\":\"data\"" +
             "        }" +
             "    ]" +
             "}")]
@@ -647,14 +651,14 @@ namespace Gravity.UnitTests.UiCommon
         [DataTestMethod]
         [DataRow("" +
             "{" +
-            "    'dataSource': {" +
-            "        'type':'XML'," +
-            "        'source':'data/extract_from_dom/[File.Name].xml'" +
+            "    \"dataSource\": {" +
+            "        \"type\":\"XML\"," +
+            "        \"source\":\"data/extract_from_dom/[File.Name].xml\"" +
             "    }," +
-            "    'onRootElements':'//positive'," +
-            "    'onElements': [" +
+            "    \"onRootElements\":\"//positive\"," +
+            "    \"onElements\": [" +
             "        {" +
-            "            'key':'data'" +
+            "            \"key\":\"data\"" +
             "        }" +
             "    ]" +
             "}")]
@@ -676,15 +680,15 @@ namespace Gravity.UnitTests.UiCommon
         [DataTestMethod]
         [DataRow("" +
             "{" +
-            "    'dataSource': {" +
-            "        'type':'XML'," +
-            "        'source':'data/extract_from_dom/[File.Name].xml'," +
-            "        'writePerEntity':true" +
+            "    \"dataSource\": {" +
+            "        \"type\":\"XML\"," +
+            "        \"source\":\"data/extract_from_dom/[File.Name].xml\"," +
+            "        \"writePerEntity\":true" +
             "    }," +
-            "    'onRootElements':'//positive'," +
-            "    'onElements': [" +
+            "    \"onRootElements\":\"//positive\"," +
+            "    \"onElements\": [" +
             "        {" +
-            "            'key':'data'" +
+            "            \"key\":\"data\"" +
             "        }" +
             "    ]" +
             "}")]
@@ -706,14 +710,14 @@ namespace Gravity.UnitTests.UiCommon
         [DataTestMethod, ExpectedException(typeof(ArgumentException))]
         [DataRow("" +
             "{" +
-            "    'dataSource': {" +
-            "        'type':'XML'," +
-            "        'source':''" +
+            "    \"dataSource\": {" +
+            "        \"type\":\"XML\"," +
+            "        \"source\":\"\"" +
             "    }," +
-            "    'onRootElements':'//positive'," +
-            "    'onElements': [" +
+            "    \"onRootElements\":\"//positive\"," +
+            "    \"onElements\": [" +
             "        {" +
-            "            'key':'data'" +
+            "            \"key\":\"data\"" +
             "        }" +
             "    ]" +
             "}")]
@@ -735,14 +739,14 @@ namespace Gravity.UnitTests.UiCommon
         [DataTestMethod]
         [DataRow("" +
             "{" +
-            "    'onRootElements':'//positive'," +
-            "    'onElements': [" +
+            "    \"onRootElements\":\"//positive\"," +
+            "    \"onElements\": [" +
             "        {" +
-            "            'key':'data'," +
-            "            'actions': [" +
+            "            \"key\":\"data\"," +
+            "            \"actions\": [" +
             "                {" +
-            "                    'action':'Click'," +
-            "                    'onElement':'.//positive'" +
+            "                    \"action\":\"Click\"," +
+            "                    \"onElement\":\".//positive\"" +
             "                }" +
             "            ]" +
             "        }" +
@@ -783,14 +787,14 @@ namespace Gravity.UnitTests.UiCommon
         private void SetExtractionRules(string extractionRule)
         {
             // setup
-            var rule = JsonConvert.DeserializeObject<ExtractionRule>(extractionRule);
+            var rule = JsonSerializer.Deserialize<ExtractionRule>(extractionRule, options);
 
             // apply
             Automation.Extractions = new[] { rule };
         }
 
         // replace placeholder for extraction rules data source
-        private string SetSqlDataSource(string extractionRule, string repository)
+        private static string SetSqlDataSource(string extractionRule, string repository)
         {
             return extractionRule
                 .Replace(oldValue: "[Data.ConnectionString]", newValue: connectionString)
@@ -803,11 +807,6 @@ namespace Gravity.UnitTests.UiCommon
             // setup
             SetExtractionRules(extractionRule);
             var dataSource = Automation.Extractions.ElementAt(0).DataSource;
-            var settings = new JsonSerializerSettings
-            {
-                ContractResolver = new CamelCasePropertyNamesContractResolver(),
-                Formatting = Formatting.None
-            };
 
             // execute
             var plugin = ExecuteAction<ExtractFromDom>();
@@ -817,8 +816,8 @@ namespace Gravity.UnitTests.UiCommon
             var actual = new DataTable().Load(dataSource);
 
             // comparing
-            var sExpected = new string(JsonConvert.SerializeObject(expected, settings).OrderBy(i => i).ToArray());
-            var sActual = new string(JsonConvert.SerializeObject(actual, settings).OrderBy(i => i).ToArray());
+            var sExpected = new string(JsonSerializer.Serialize(expected.ToDictionary(), options).OrderBy(i => i).ToArray());
+            var sActual = new string(JsonSerializer.Serialize(actual.ToDictionary(), options).OrderBy(i => i).ToArray());
 
             // assertion
             return sExpected.Equals(sActual, StringComparison.Ordinal);

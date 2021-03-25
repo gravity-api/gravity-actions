@@ -7,9 +7,9 @@
 * [test-actions]
 * 1. navigate to {https://gravitymvctestapplication.azurewebsites.net/student/}
 * 2. repeat {2}
-*        3. > send keys {a} into {//input[@id='SearchString']}
+*        3. > send keys {a} into {//input[@id=\"SearchString\"]}
 *        4. > repeat {6}
-*                 5. > send keys {b} into {//input[@id='SearchString']}
+*                 5. > send keys {b} into {//input[@id=\"SearchString\"]}
 * 4. close browser
 * 
 * [test-expected-results]
@@ -18,7 +18,7 @@
 #pragma warning restore
 using Gravity.IntegrationTests.Base;
 using Gravity.Plugins.Contracts;
-using Gravity.Plugins.Contracts;
+
 using System.Collections.Generic;
 
 namespace Graivty.IntegrationTests.Cases.UiCommon.RepeatScenarios
@@ -38,7 +38,7 @@ namespace Graivty.IntegrationTests.Cases.UiCommon.RepeatScenarios
                 {
                     Action = PluginsList.SendKeys,
                     Argument = "a",
-                    OnElement = "//input[@id='SearchString']"
+                    OnElement = "//input[@id=\"SearchString\"]"
                 },
                 new ActionRule
                 {
@@ -50,7 +50,7 @@ namespace Graivty.IntegrationTests.Cases.UiCommon.RepeatScenarios
                         {
                             Action = PluginsList.SendKeys,
                             Argument = "b",
-                            OnElement = "//input[@id='SearchString']"
+                            OnElement = "//input[@id=\"SearchString\"]"
                         }
                     }
                 }
@@ -69,7 +69,7 @@ namespace Graivty.IntegrationTests.Cases.UiCommon.RepeatScenarios
                 {
                     Action = PluginsList.Assert,
                     Argument = "{{$ --attribute --eq:abbbabbb}}",
-                    OnElement = "//input[@id='SearchString']",
+                    OnElement = "//input[@id=\"SearchString\"]",
                     OnAttribute = "value"
                 }
             };

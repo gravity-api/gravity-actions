@@ -45,13 +45,13 @@ namespace Gravity.UnitTests.UiWeb
         {
             AssertDocumentation<SwitchToWindow>(
                 pluginName: PluginsList.SwitchToWindow,
-                resource: "switch_to_window.json");
+                resource: "SwitchToWindow.json");
         }
         #endregion
 
         #region *** tests: OnDriver      ***
         [DataTestMethod]
-        [DataRow("{'argument':'3'}")]
+        [DataRow("{\"argument\":\"3\"}")]
         public void SwitchToWindowPositive(string actionRule)
         {
             // get first handler
@@ -65,7 +65,7 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'argument':'-1'}")]
+        [DataRow("{\"argument\":\"-1\"}")]
         public void SwitchToWindowNegativeNumber(string actionRule)
         {
             // get first handler
@@ -79,7 +79,7 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'argument':'50'}")]
+        [DataRow("{\"argument\":\"50\"}")]
         public void SwitchToWindowOutOfRange(string actionRule)
         {
             // get first handler
@@ -93,7 +93,7 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'argument':'A'}")]
+        [DataRow("{\"argument\":\"A\"}")]
         public void SwitchToWindowNotNumber(string actionRule)
         {
             // get first handler
@@ -108,7 +108,7 @@ namespace Gravity.UnitTests.UiWeb
 
         [DoNotParallelize]
         [DataTestMethod]
-        [DataRow("{'argument':'10'}")]
+        [DataRow("{\"argument\":\"10\"}")]
         public void SwitchToWindowNoWindows(string actionRule)
         {
             // setup
@@ -127,12 +127,12 @@ namespace Gravity.UnitTests.UiWeb
 
         #region *** tests: OnElement     ***
         [DataTestMethod]
-        [DataRow("{'argument':'3','onElement':'.//positive'}")]
-        [DataRow("{'argument':'3','onElement':'.//negative'}")]
-        [DataRow("{'argument':'3','onElement':'.//null'}")]
-        [DataRow("{'argument':'3','onElement':'.//none'}")]
-        [DataRow("{'argument':'3','onElement':'.//stale'}")]
-        [DataRow("{'argument':'3','onElement':'.//exception'}")]
+        [DataRow("{\"argument\":\"3\",\"onElement\":\".//positive\"}")]
+        [DataRow("{\"argument\":\"3\",\"onElement\":\".//negative\"}")]
+        [DataRow("{\"argument\":\"3\",\"onElement\":\".//null\"}")]
+        [DataRow("{\"argument\":\"3\",\"onElement\":\".//none\"}")]
+        [DataRow("{\"argument\":\"3\",\"onElement\":\".//stale\"}")]
+        [DataRow("{\"argument\":\"3\",\"onElement\":\".//exception\"}")]
         public void SwitchToWindowElementPositive(string actionRule)
         {
             // get first handler
@@ -146,12 +146,12 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'argument':'-1','onElement':'.//positive'}")]
-        [DataRow("{'argument':'-1','onElement':'.//negative'}")]
-        [DataRow("{'argument':'-1','onElement':'.//null'}")]
-        [DataRow("{'argument':'-1','onElement':'.//none'}")]
-        [DataRow("{'argument':'-1','onElement':'.//stale'}")]
-        [DataRow("{'argument':'-1','onElement':'.//exception'}")]
+        [DataRow("{\"argument\":\"-1\",\"onElement\":\".//positive\"}")]
+        [DataRow("{\"argument\":\"-1\",\"onElement\":\".//negative\"}")]
+        [DataRow("{\"argument\":\"-1\",\"onElement\":\".//null\"}")]
+        [DataRow("{\"argument\":\"-1\",\"onElement\":\".//none\"}")]
+        [DataRow("{\"argument\":\"-1\",\"onElement\":\".//stale\"}")]
+        [DataRow("{\"argument\":\"-1\",\"onElement\":\".//exception\"}")]
         public void SwitchToWindowElementNegativeNumber(string actionRule)
         {
             // get first handler
@@ -165,12 +165,12 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'argument':'50','onElement':'.//positive'}")]
-        [DataRow("{'argument':'50','onElement':'.//negative'}")]
-        [DataRow("{'argument':'50','onElement':'.//null'}")]
-        [DataRow("{'argument':'50','onElement':'.//none'}")]
-        [DataRow("{'argument':'50','onElement':'.//stale'}")]
-        [DataRow("{'argument':'50','onElement':'.//exception'}")]
+        [DataRow("{\"argument\":\"50\",\"onElement\":\".//positive\"}")]
+        [DataRow("{\"argument\":\"50\",\"onElement\":\".//negative\"}")]
+        [DataRow("{\"argument\":\"50\",\"onElement\":\".//null\"}")]
+        [DataRow("{\"argument\":\"50\",\"onElement\":\".//none\"}")]
+        [DataRow("{\"argument\":\"50\",\"onElement\":\".//stale\"}")]
+        [DataRow("{\"argument\":\"50\",\"onElement\":\".//exception\"}")]
         public void SwitchToWindowElementOutOfRange(string actionRule)
         {
             // get first handler
@@ -184,12 +184,12 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'argument':'A','onElement':'.//positive'}")]
-        [DataRow("{'argument':'A','onElement':'.//negative'}")]
-        [DataRow("{'argument':'A','onElement':'.//null'}")]
-        [DataRow("{'argument':'A','onElement':'.//none'}")]
-        [DataRow("{'argument':'A','onElement':'.//stale'}")]
-        [DataRow("{'argument':'A','onElement':'.//exception'}")]
+        [DataRow("{\"argument\":\"A\",\"onElement\":\".//positive\"}")]
+        [DataRow("{\"argument\":\"A\",\"onElement\":\".//negative\"}")]
+        [DataRow("{\"argument\":\"A\",\"onElement\":\".//null\"}")]
+        [DataRow("{\"argument\":\"A\",\"onElement\":\".//none\"}")]
+        [DataRow("{\"argument\":\"A\",\"onElement\":\".//stale\"}")]
+        [DataRow("{\"argument\":\"A\",\"onElement\":\".//exception\"}")]
         public void SwitchToWindowElementNotNumber(string actionRule)
         {
             // get first handler
@@ -204,12 +204,12 @@ namespace Gravity.UnitTests.UiWeb
 
         [DoNotParallelize]
         [DataTestMethod]
-        [DataRow("{'argument':'10','onElement':'.//positive'}")]
-        [DataRow("{'argument':'10','onElement':'.//negative'}")]
-        [DataRow("{'argument':'10','onElement':'.//null'}")]
-        [DataRow("{'argument':'10','onElement':'.//none'}")]
-        [DataRow("{'argument':'10','onElement':'.//stale'}")]
-        [DataRow("{'argument':'10','onElement':'.//exception'}")]
+        [DataRow("{\"argument\":\"10\",\"onElement\":\".//positive\"}")]
+        [DataRow("{\"argument\":\"10\",\"onElement\":\".//negative\"}")]
+        [DataRow("{\"argument\":\"10\",\"onElement\":\".//null\"}")]
+        [DataRow("{\"argument\":\"10\",\"onElement\":\".//none\"}")]
+        [DataRow("{\"argument\":\"10\",\"onElement\":\".//stale\"}")]
+        [DataRow("{\"argument\":\"10\",\"onElement\":\".//exception\"}")]
         public void SwitchToWindowElementNoWindows(string actionRule)
         {
             // setup

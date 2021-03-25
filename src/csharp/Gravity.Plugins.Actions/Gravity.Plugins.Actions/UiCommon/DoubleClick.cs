@@ -21,6 +21,7 @@ using Gravity.Plugins.Actions.Extensions;
 using Gravity.Plugins.Attributes;
 using Gravity.Plugins.Base;
 using Gravity.Plugins.Contracts;
+
 using OpenQA.Selenium;
 
 // consolidate references
@@ -30,8 +31,8 @@ namespace Gravity.Plugins.Actions.UiCommon
 {
     [Plugin(
         assembly: "Gravity.Plugins.Actions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
-        resource: "Gravity.Plugins.Actions.Documentation.double_click.json",
-        Name = Contracts.PluginsList.DoubleClick)]
+        resource: "Gravity.Plugins.Actions.Manifest.DoubleClick.json",
+        Name = PluginsList.DoubleClick)]
     public class DoubleClick : WebDriverActionPlugin
     {
         // members: state

@@ -44,7 +44,7 @@ namespace Gravity.UnitTests.UiCommon
 
         #region *** tests: OnDriver      ***
         [DataTestMethod]
-        [DataRow("{'onElement':'//positive'}")]
+        [DataRow("{\"onElement\":\"//positive\"}")]
         public void ClickPositive(string actionRule)
         {
             // execute
@@ -55,9 +55,9 @@ namespace Gravity.UnitTests.UiCommon
         }
 
         [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
-        [DataRow("{'onElement':'//none'}")]
-        [DataRow("{'onElement':'//null'}")]
-        [DataRow("{'onElement':'//stale'}")]
+        [DataRow("{\"onElement\":\"//none\"}")]
+        [DataRow("{\"onElement\":\"//null\"}")]
+        [DataRow("{\"onElement\":\"//stale\"}")]
         public void ClickNoElement(string actionRule)
         {
             // execute
@@ -68,7 +68,7 @@ namespace Gravity.UnitTests.UiCommon
         }
 
         [DataTestMethod, ExpectedException(typeof(ElementNotVisibleException))]
-        [DataRow("{'onElement':'//negative'}")]
+        [DataRow("{\"onElement\":\"//negative\"}")]
         public void ClickNegative(string actionRule)
         {
             // execute
@@ -89,7 +89,7 @@ namespace Gravity.UnitTests.UiCommon
         }
 
         [DataTestMethod]
-        [DataRow("{'Argument':'{{$ --until:no_alert}}','onElement':'//positive'}")]
+        [DataRow("{\"Argument\":\"{{$ --until:no_alert}}\",\"onElement\":\"//positive\"}")]
         public void ClickUntilNoAlert(string actionRule)
         {
             // execute
@@ -105,7 +105,7 @@ namespace Gravity.UnitTests.UiCommon
 
         #region *** tests: OnElement     ***
         [DataTestMethod]
-        [DataRow("{'onElement':'//positive'}")]
+        [DataRow("{\"onElement\":\"//positive\"}")]
         public void ClickElementAbsolutePositive(string actionRule)
         {
             // execute
@@ -116,7 +116,7 @@ namespace Gravity.UnitTests.UiCommon
         }
 
         [DataTestMethod]
-        [DataRow("{'onElement':'.//positive'}")]
+        [DataRow("{\"onElement\":\".//positive\"}")]
         public void ClickElementRelativePositive(string actionRule)
         {
             // execute
@@ -127,9 +127,9 @@ namespace Gravity.UnitTests.UiCommon
         }
 
         [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
-        [DataRow("{'onElement':'//none','locator':'Xpath'}")]
-        [DataRow("{'onElement':'//null','locator':'Xpath'}")]
-        [DataRow("{'onElement':'//stale','locator':'Xpath'}")]
+        [DataRow("{\"onElement\":\"//none\",\"locator\":\"Xpath\"}")]
+        [DataRow("{\"onElement\":\"//null\",\"locator\":\"Xpath\"}")]
+        [DataRow("{\"onElement\":\"//stale\",\"locator\":\"Xpath\"}")]
         public void ClickElementAbsoluteNoElement(string actionRule)
         {
             // execute
@@ -140,7 +140,7 @@ namespace Gravity.UnitTests.UiCommon
         }
 
         [DataTestMethod, ExpectedException(typeof(NoSuchElementException))]
-        [DataRow("{'onElement':'.//none'}")]
+        [DataRow("{\"onElement\":\".//none\"}")]
         public void ClickElementRelativeNoElement(string actionRule)
         {
             // execute
@@ -151,7 +151,7 @@ namespace Gravity.UnitTests.UiCommon
         }
 
         [DataTestMethod, ExpectedException(typeof(NullReferenceException))]
-        [DataRow("{'onElement':'.//null'}")]
+        [DataRow("{\"onElement\":\".//null\"}")]
         public void ClickElementRelativeNull(string actionRule)
         {
             // execute
@@ -162,7 +162,7 @@ namespace Gravity.UnitTests.UiCommon
         }
 
         [DataTestMethod, ExpectedException(typeof(StaleElementReferenceException))]
-        [DataRow("{'onElement':'.//stale'}")]
+        [DataRow("{\"onElement\":\".//stale\"}")]
         public void ClickElementRelativeStale(string actionRule)
         {
             // execute
@@ -173,9 +173,9 @@ namespace Gravity.UnitTests.UiCommon
         }
 
         [TestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
-        [DataRow("{'onElement':'.//null'}")]
-        [DataRow("{'onElement':'.//stale'}")]
-        [DataRow("{'onElement':'.//none'}")]
+        [DataRow("{\"onElement\":\".//null\"}")]
+        [DataRow("{\"onElement\":\".//stale\"}")]
+        [DataRow("{\"onElement\":\".//none\"}")]
         public void ClickElementFlatNoElement(string actionRule)
         {
             // execute

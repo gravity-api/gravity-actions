@@ -7,10 +7,13 @@ using Gravity.Plugins.Contracts;
 using Gravity.Plugins.Actions.UiCommon;
 using Gravity.Plugins.Base;
 using Gravity.UnitTests.Base;
+
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Newtonsoft.Json;
+
 using OpenQA.Selenium.Mock;
+
 using System.Linq;
+using System.Text.Json;
 
 using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
 
@@ -29,28 +32,34 @@ namespace Gravity.UnitTests.UiCommon
 
         private const string ActionRuleArgumentOperator =
             "{" +
-            "    'argument':'{{$ --" + OnCondition + " --" + OnOperator + ":" + OnOperatorExpected + "}}'" +
+            "    \"argument\":\"{{$ --" + OnCondition + " --" + OnOperator + ":" + OnOperatorExpected + "}}\"" +
             "}";
 
         private const string ActionRuleBoolean =
             "{" +
-            "    'argument':'{{$ --" + OnCondition + "}}'," +
-            "    'onElement':'" + OnElement + "'" +
+            "    \"argument\":\"{{$ --" + OnCondition + "}}\"," +
+            "    \"onElement\":\"" + OnElement + "\"" +
             "}";
 
         private const string ActionRuleAttributeOperator =
             "{" +
-            "    'argument':'{{$ --" + OnCondition + " --" + OnOperator + ":" + OnOperatorExpected + "}}'," +
-            "    'onElement':'" + OnElement + "'," +
-            "    'onAttribute':'" + OnAttribute + "'" +
+            "    \"argument\":\"{{$ --" + OnCondition + " --" + OnOperator + ":" + OnOperatorExpected + "}}\"," +
+            "    \"onElement\":\"" + OnElement + "\"," +
+            "    \"onAttribute\":\"" + OnAttribute + "\"" +
             "}";
 
         private const string ActionRuleNoAttributeOperator =
             "{" +
-            "    'argument':'{{$ --" + OnCondition + " --" + OnOperator + ":" + OnOperatorExpected + "}}'," +
-            "    'onElement':'" + OnElement + "'" +
+            "    \"argument\":\"{{$ --" + OnCondition + " --" + OnOperator + ":" + OnOperatorExpected + "}}\"," +
+            "    \"onElement\":\"" + OnElement + "\"" +
             "}";
         #endregion
+
+        // members
+        private readonly JsonSerializerOptions serializerOptions = new JsonSerializerOptions
+        {
+            PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+        };
 
         #region *** tests: documentation ***
         [TestMethod]
@@ -80,7 +89,7 @@ namespace Gravity.UnitTests.UiCommon
         public void HasAlert()
         {
             // setup
-            const string actionRule = "{'argument':'{{$ --alert_exists}}'}";
+            const string actionRule = "{\"argument\":\"{{$ --alert_exists}}\"}";
             WebDriver.Capabilities[MockCapabilities.HasAlert] = true;
 
             // execute
@@ -97,7 +106,7 @@ namespace Gravity.UnitTests.UiCommon
         public void HasAlertFalse()
         {
             // setup
-            const string actionRule = "{'argument':'{{$ --no_alert}}'}";
+            const string actionRule = "{\"argument\":\"{{$ --no_alert}}\"}";
             WebDriver.Capabilities[MockCapabilities.HasAlert] = false;
 
             // execute
@@ -114,7 +123,7 @@ namespace Gravity.UnitTests.UiCommon
         public void HasNoAlert()
         {
             // setup
-            const string actionRule = "{'argument':'{{$ --no_alert}}'}";
+            const string actionRule = "{\"argument\":\"{{$ --no_alert}}\"}";
 
             // execute
             var plugin = ExecuteAction<Plugins.Actions.UiCommon.Assert>(actionRule);
@@ -138,7 +147,7 @@ namespace Gravity.UnitTests.UiCommon
         public void AssertParameter(string actionRule, string onOperator, string onOperatorExpected)
         {
             // execute
-            ExecuteAction<RegisterParameter>("{'argument':'{{$ --key:test_key --value:10}}'}");
+            ExecuteAction<RegisterParameter>("{\"argument\":\"{{$ --key:test_key --value:10}}\"}");
             var actual = GetActual(actionRule, string.Empty, onOperator, onOperatorExpected, "parameter", "test_key");
 
             // assertion
@@ -157,12 +166,12 @@ namespace Gravity.UnitTests.UiCommon
         public void AssertParameterReqularExpression(string actionRule, string onOperator, string onOperatorExpected)
         {
             // setup
-            var onActionRule = JsonConvert.DeserializeObject<ActionRule>(actionRule);
+            var onActionRule = JsonSerializer.Deserialize<ActionRule>(actionRule, serializerOptions);
             onActionRule.RegularExpression = "\\d{1}";
-            actionRule = JsonConvert.SerializeObject(onActionRule);
+            actionRule = JsonSerializer.Serialize(onActionRule, serializerOptions);
 
             // execute
-            ExecuteAction<RegisterParameter>("{'argument':'{{$ --key:test_key --value:10}}'}");
+            ExecuteAction<RegisterParameter>("{\"argument\":\"{{$ --key:test_key --value:10}}\"}");
             var actual = GetActual(actionRule, string.Empty, onOperator, onOperatorExpected, "parameter", "test_key");
 
             // assertion
@@ -179,12 +188,12 @@ namespace Gravity.UnitTests.UiCommon
         public void AssertParameterNoKey(string actionRule, string onOperator, string onOperatorExpected)
         {
             // setup
-            var onActionRule = JsonConvert.DeserializeObject<ActionRule>(actionRule);
+            var onActionRule = JsonSerializer.Deserialize<ActionRule>(actionRule, serializerOptions);
             onActionRule.RegularExpression = "\\d{1}";
-            actionRule = JsonConvert.SerializeObject(onActionRule);
+            actionRule = JsonSerializer.Serialize(onActionRule, serializerOptions);
 
             // execute
-            ExecuteAction<RegisterParameter>("{'argument':'{{$ --key:test_key --value:10}}'}");
+            ExecuteAction<RegisterParameter>("{\"argument\":\"{{$ --key:test_key --value:10}}\"}");
             var actual = GetActual(actionRule, string.Empty, onOperator, onOperatorExpected, "parameter", "no_test_key");
 
             // assertion

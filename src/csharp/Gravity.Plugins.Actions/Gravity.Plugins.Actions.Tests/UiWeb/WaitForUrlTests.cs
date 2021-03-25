@@ -35,13 +35,13 @@ namespace Gravity.UnitTests.UiWeb
         {
             AssertDocumentation<WaitForUrl>(
                 pluginName: PluginsList.WaitForUrl,
-                resource: "wait_for_url.json");
+                resource: "WaitForUrl.json");
         }
         #endregion
 
         #region *** tests: OnDriver      ***
         [DataTestMethod]
-        [DataRow("{'regularExpression':'positive.io'}")]
+        [DataRow("{\"regularExpression\":\"positive.io\"}")]
         public void WaitForUrlPositive(string actionRule)
         {
             // execute
@@ -52,7 +52,7 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
-        [DataRow("{'regularExpression':'negative'}")]
+        [DataRow("{\"regularExpression\":\"negative\"}")]
         public void WaitForUrlNegative(string actionRule)
         {
             // execute
@@ -63,10 +63,10 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'argument':'2000','regularExpression':'positive.io'}")]
-        [DataRow("{'argument':'00:00:02','regularExpression':'positive.io'}")]
-        [DataRow("{'argument':'{{$ --timeout:2000}}','regularExpression':'positive.io'}")]
-        [DataRow("{'argument':'{{$ --timeout:00:00:02}}','regularExpression':'positive.io'}")]
+        [DataRow("{\"argument\":\"2000\",\"regularExpression\":\"positive.io\"}")]
+        [DataRow("{\"argument\":\"00:00:02\",\"regularExpression\":\"positive.io\"}")]
+        [DataRow("{\"argument\":\"{{$ --timeout:2000}}\",\"regularExpression\":\"positive.io\"}")]
+        [DataRow("{\"argument\":\"{{$ --timeout:00:00:02}}\",\"regularExpression\":\"positive.io\"}")]
         public void WaitForUrlPositiveTimeout(string actionRule)
         {
             // execute
@@ -77,10 +77,10 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
-        [DataRow("{'argument':'1000','regularExpression':'negative'}")]
-        [DataRow("{'argument':'00:00:01','regularExpression':'negative'}")]
-        [DataRow("{'argument':'{{$ --timeout:1000}}','regularExpression':'negative'}")]
-        [DataRow("{'argument':'{{$ --timeout:00:00:01}}','regularExpression':'negative'}")]
+        [DataRow("{\"argument\":\"1000\",\"regularExpression\":\"negative\"}")]
+        [DataRow("{\"argument\":\"00:00:01\",\"regularExpression\":\"negative\"}")]
+        [DataRow("{\"argument\":\"{{$ --timeout:1000}}\",\"regularExpression\":\"negative\"}")]
+        [DataRow("{\"argument\":\"{{$ --timeout:00:00:01}}\",\"regularExpression\":\"negative\"}")]
         public void WaitForUrlNegativeTimeout(string actionRule)
         {
             // execute
@@ -93,7 +93,7 @@ namespace Gravity.UnitTests.UiWeb
 
         #region *** tests: OnElement     ***
         [DataTestMethod]
-        [DataRow("{'regularExpression':'positive.io'}")]
+        [DataRow("{\"regularExpression\":\"positive.io\"}")]
         public void WaitForUrlElementPositive(string actionRule)
         {
             // execute
@@ -104,7 +104,7 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod, ExpectedException(typeof(NoSuchElementException))]
-        [DataRow("{'regularExpression':'positive.io'}")]
+        [DataRow("{\"regularExpression\":\"positive.io\"}")]
         public void WaitForUrlElementNone(string actionRule)
         {
             // execute
@@ -115,7 +115,7 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'regularExpression':'positive.io'}")]
+        [DataRow("{\"regularExpression\":\"positive.io\"}")]
         public void WaitForUrlElementNull(string actionRule)
         {
             // execute
@@ -126,7 +126,7 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod, ExpectedException(typeof(StaleElementReferenceException))]
-        [DataRow("{'regularExpression':'positive.io'}")]
+        [DataRow("{\"regularExpression\":\"positive.io\"}")]
         public void WaitForUrlElementStale(string actionRule)
         {
             // execute
@@ -137,7 +137,7 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod, ExpectedException(typeof(WebDriverException))]
-        [DataRow("{'regularExpression':'positive.io'}")]
+        [DataRow("{\"regularExpression\":\"positive.io\"}")]
         public void WaitForUrlElementException(string actionRule)
         {
             // execute
@@ -148,7 +148,7 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
-        [DataRow("{'regularExpression':'negative'}")]
+        [DataRow("{\"regularExpression\":\"negative\"}")]
         public void WaitForUrlElementNegative(string actionRule)
         {
             // execute
@@ -159,10 +159,10 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'argument':'2000','regularExpression':'positive.io'}")]
-        [DataRow("{'argument':'00:00:02','regularExpression':'positive.io'}")]
-        [DataRow("{'argument':'{{$ --timeout:2000}}','regularExpression':'positive.io'}")]
-        [DataRow("{'argument':'{{$ --timeout:00:00:02}}','regularExpression':'positive.io'}")]
+        [DataRow("{\"argument\":\"2000\",\"regularExpression\":\"positive.io\"}")]
+        [DataRow("{\"argument\":\"00:00:02\",\"regularExpression\":\"positive.io\"}")]
+        [DataRow("{\"argument\":\"{{$ --timeout:2000}}\",\"regularExpression\":\"positive.io\"}")]
+        [DataRow("{\"argument\":\"{{$ --timeout:00:00:02}}\",\"regularExpression\":\"positive.io\"}")]
         public void WaitForUrlElementPositiveTimeout(string actionRule)
         {
             // execute
@@ -173,10 +173,10 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
-        [DataRow("{'argument':'1000','regularExpression':'negative'}")]
-        [DataRow("{'argument':'00:00:01','regularExpression':'negative'}")]
-        [DataRow("{'argument':'{{$ --timeout:1000}}','regularExpression':'negative'}")]
-        [DataRow("{'argument':'{{$ --timeout:00:00:01}}','regularExpression':'negative'}")]
+        [DataRow("{\"argument\":\"1000\",\"regularExpression\":\"negative\"}")]
+        [DataRow("{\"argument\":\"00:00:01\",\"regularExpression\":\"negative\"}")]
+        [DataRow("{\"argument\":\"{{$ --timeout:1000}}\",\"regularExpression\":\"negative\"}")]
+        [DataRow("{\"argument\":\"{{$ --timeout:00:00:01}}\",\"regularExpression\":\"negative\"}")]
         public void WaitForUrlElementNegativeTimeout(string actionRule)
         {
             // execute

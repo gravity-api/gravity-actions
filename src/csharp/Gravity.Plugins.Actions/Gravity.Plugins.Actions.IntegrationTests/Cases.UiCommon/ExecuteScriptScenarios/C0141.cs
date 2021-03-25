@@ -8,7 +8,7 @@
 * 1. navigate to {https://gravitymvctestapplication.azurewebsites.net/uicontrols}
 * 2. extract from page on {//body}
 *        3. < column {inner_text}
-*        4.    > execute script {.checked=false;} on {.//input[@id='input_selected']}
+*        4.    > execute script {.checked=false;} on {.//input[@id=\"input_selected\"]}
 * 5. close browser
 * 
 * [test-expected-results]
@@ -17,7 +17,7 @@
 #pragma warning restore
 using Gravity.IntegrationTests.Base;
 using Gravity.Plugins.Contracts;
-using Gravity.Plugins.Contracts;
+
 using System.Collections.Generic;
 
 namespace Gravity.IntegrationTests.Cases.UiCommon.ExecuteScriptScenarios
@@ -71,7 +71,7 @@ namespace Gravity.IntegrationTests.Cases.UiCommon.ExecuteScriptScenarios
             // get extractions
             var extraction = new ExtractionRule
             {
-                OnRootElements = "//input[@id='input_selected']",
+                OnRootElements = "//input[@id=\"input_selected\"]",
                 OnElements = contentEntries
             };
             return new[] { extraction };

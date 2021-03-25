@@ -38,7 +38,7 @@ namespace Gravity.UnitTests.UiWeb
         {
             AssertDocumentation<ContextClick>(
                 pluginName: PluginsList.ContextClick,
-                resource:"context_click.json");
+                resource:"ContextClick.json");
         }
         #endregion
 
@@ -54,8 +54,8 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'onElement':'//positive'}")]
-        [DataRow("{'onElement':'//negative'}")]
+        [DataRow("{\"onElement\":\"//positive\"}")]
+        [DataRow("{\"onElement\":\"//negative\"}")]
         public void ContextClickPositive(string actionRule)
         {
             // execute
@@ -66,7 +66,7 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'Argument':'{{$ --until:NoAlert}}','onElement':'//positive'}")]
+        [DataRow("{\"Argument\":\"{{$ --until:NoAlert}}\",\"onElement\":\"//positive\"}")]
         public void ContextClickUntilNoAlert(string actionRule)
         {
             // execute
@@ -80,10 +80,10 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
-        [DataRow("{'onElement':'//none'}")]
-        [DataRow("{'onElement':'//stale'}")]
-        [DataRow("{'onElement':'//exception'}")]
-        [DataRow("{'onElement':'//null'}")]
+        [DataRow("{\"onElement\":\"//none\"}")]
+        [DataRow("{\"onElement\":\"//stale\"}")]
+        [DataRow("{\"onElement\":\"//exception\"}")]
+        [DataRow("{\"onElement\":\"//null\"}")]
         public void ContextClickTimeout(string actionRule)
         {
             // execute
@@ -106,8 +106,8 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'onElement':'//positive'}")]
-        [DataRow("{'onElement':'//negative'}")]
+        [DataRow("{\"onElement\":\"//positive\"}")]
+        [DataRow("{\"onElement\":\"//negative\"}")]
         public void ContextClickElementAbsolutePositive(string actionRule)
         {
             // execute
@@ -118,7 +118,7 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'Argument':'{{$ --until:NoAlert}}','onElement':'//positive'}")]
+        [DataRow("{\"Argument\":\"{{$ --until:NoAlert}}\",\"onElement\":\"//positive\"}")]
         public void ContextClickElementUntilNoAlert(string actionRule)
         {
             // execute
@@ -132,8 +132,8 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'onElement':'.//positive'}")]
-        [DataRow("{'onElement':'.//negative'}")]
+        [DataRow("{\"onElement\":\".//positive\"}")]
+        [DataRow("{\"onElement\":\".//negative\"}")]
         public void ContextClickElementRelativePositive(string actionRule)
         {
             // execute
@@ -144,9 +144,9 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
-        [DataRow("{'onElement':'//none','locator':'Xpath'}")]
-        [DataRow("{'onElement':'//stale','locator':'Xpath'}")]
-        [DataRow("{'onElement':'//exception','locator':'Xpath'}")]
+        [DataRow("{\"onElement\":\"//none\",\"locator\":\"Xpath\"}")]
+        [DataRow("{\"onElement\":\"//stale\",\"locator\":\"Xpath\"}")]
+        [DataRow("{\"onElement\":\"//exception\",\"locator\":\"Xpath\"}")]
         public void ContextClickElementAbsoluteNoElement(string actionRule)
         {
             // execute
@@ -157,7 +157,7 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod, ExpectedException(typeof(NoSuchElementException))]
-        [DataRow("{'onElement':'.//none'}")]
+        [DataRow("{\"onElement\":\".//none\"}")]
         public void ContextClickElementRelativeNoElement(string actionRule)
         {
             // execute
@@ -168,7 +168,7 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod, ExpectedException(typeof(ArgumentException))]
-        [DataRow("{'onElement':'.//null'}")]
+        [DataRow("{\"onElement\":\".//null\"}")]
         public void ContextClickElementRelativeNull(string actionRule)
         {
             // execute
@@ -179,7 +179,7 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod, ExpectedException(typeof(StaleElementReferenceException))]
-        [DataRow("{'onElement':'.//stale'}")]
+        [DataRow("{\"onElement\":\".//stale\"}")]
         public void ContextClickElementRelativeStale(string actionRule)
         {
             // execute
@@ -190,7 +190,7 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod, ExpectedException(typeof(WebDriverException))]
-        [DataRow("{'onElement':'.//exception'}")]
+        [DataRow("{\"onElement\":\".//exception\"}")]
         public void ContextClickElementRelativeException(string actionRule)
         {
             // execute

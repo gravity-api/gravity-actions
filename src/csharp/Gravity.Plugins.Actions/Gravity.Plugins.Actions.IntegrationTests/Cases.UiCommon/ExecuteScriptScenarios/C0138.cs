@@ -6,7 +6,7 @@
 * 
 * [test-actions]
 * 1. navigate to {https://gravitymvctestapplication.azurewebsites.net/uicontrols}
-* 2. execute script {document.getElementById('input_enabled').setAttribute('value', 'foo bar')}
+* 2. execute script {document.getElementById(\"input_enabled\").setAttribute(\"value\", \"foo bar\")}
 * 3. close browser
 * 
 * [test-expected-results]
@@ -15,7 +15,7 @@
 #pragma warning restore
 using Gravity.IntegrationTests.Base;
 using Gravity.Plugins.Contracts;
-using Gravity.Plugins.Contracts;
+
 using System.Collections.Generic;
 
 namespace Gravity.IntegrationTests.Cases.UiCommon.ExecuteScriptScenarios
@@ -33,7 +33,7 @@ namespace Gravity.IntegrationTests.Cases.UiCommon.ExecuteScriptScenarios
                 new ActionRule
                 {
                     Action = PluginsList.ExecuteScript,
-                    Argument = "{document.getElementById('" + condition + "').setAttribute('value', 'foo bar')}"
+                    Argument = "{document.getElementById(\"" + condition + "\").setAttribute(\"value\", \"foo bar\")}"
                 },
                 SharedSteps.AssertInputEnabledValue(expectedPattern: "foo bar")
             };

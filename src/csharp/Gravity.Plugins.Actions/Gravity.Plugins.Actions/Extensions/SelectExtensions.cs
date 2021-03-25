@@ -35,10 +35,10 @@ namespace Gravity.Plugins.Actions.Extensions
         {
             // constants
             var script =
-                "var options = arguments[0].getElementsByTagName('option');" +
+                "var options = arguments[0].getElementsByTagName(\"option\");" +
                 "" +
                 "for(i = 0; i < options.length; i++) {" +
-                $"   if(options[i].innerText !== '{text}') {{" +
+                $"   if(options[i].innerText !== \"{text}\") {{" +
                 "       continue;" +
                 "    }" +
                 "    options[i].selected = true;" +
@@ -62,10 +62,10 @@ namespace Gravity.Plugins.Actions.Extensions
         {
             // constants
             var script =
-                "var options = arguments[0].getElementsByTagName('option');" +
+                "var options = arguments[0].getElementsByTagName(\"option\");" +
                 "" +
                 "for(i = 0; i < options.length; i++) {" +
-                $"   if(options[i].getAttribute('value') !== '{value}') {{" +
+                $"   if(options[i].getAttribute(\"value\") !== \"{value}\") {{" +
                 "       continue;" +
                 "    }" +
                 "    options[i].selected = true;" +

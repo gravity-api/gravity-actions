@@ -1,6 +1,6 @@
 {
   "cliArguments": {
-    "until": "Element condition to meet. Available values ['exists', 'visible', 'stale', 'enabled', 'attribute', 'text', 'hidden'].",
+    "until": "Element condition to meet. Available values [\"exists\", \"visible\", \"stale\", \"enabled\", \"attribute\", \"text\", \"hidden\"].",
     "timeout": "Timeout to wait before throwing [TimeoutException], value can be TimeSpan [hh:mm:ss] or in millisecond [3000]. If not provided, default will be [ElementSearchTimeout]."
   },
   "description": "Wait until the provided element conditions are met.",
@@ -50,7 +50,7 @@
       }
     },
     {
-      "description": "Wait for [//main/p/a] to be exist in the DOM and it's @name attribute to match [Create] or until [1min] timeout reached.",
+      "description": "Wait for [//main/p/a] to be exist in the DOM and it\"s @name attribute to match [Create] or until [1min] timeout reached.",
       "literalExample": "wait for element {{$ --until:attribute --timeout:00:01:00}} on {//main/p/a}",
       "actionExample": {
         "action": "WaitForElement",
@@ -61,7 +61,7 @@
       }
     },
     {
-      "description": "Wait for [//main/p/a] to be exist in the DOM and it's inner text to match [Create] or until [1min] timeout reached.",
+      "description": "Wait for [//main/p/a] to be exist in the DOM and it\"s inner text to match [Create] or until [1min] timeout reached.",
       "literalExample": "wait for element {{$ --until:text --timeout:00:01:00}} on {//main/p/a}",
       "actionExample": {
         "action": "WaitForElement",
@@ -72,10 +72,10 @@
     },
     {
       "description": "Wait for [//main/p/a] to not exists in the DOM (NoSuchElementException is thrown) or until [5000ms] timeout reached.",
-      "literalExample": "wait for element {{$ --until:notexists --timeout:5000}} on {//main/p/a}",
+      "literalExample": "wait for element {{$ --until:not_exists --timeout:5000}} on {//main/p/a}",
       "actionExample": {
         "action": "WaitForElement",
-        "argument": "{{$ --until:notexists --timeout:5000}}",
+        "argument": "{{$ --until:not_exists --timeout:5000}}",
         "onElement": "//main/p/a"
       }
     }

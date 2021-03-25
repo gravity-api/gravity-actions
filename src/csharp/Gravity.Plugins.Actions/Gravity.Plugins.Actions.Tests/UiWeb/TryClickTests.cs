@@ -35,14 +35,14 @@ namespace Gravity.UnitTests.UiWeb
         {
             AssertDocumentation<TryClick>(
                 pluginName: PluginsList.TryClick,
-                resource: "try_click.json");
+                resource: "TryClick.json");
         }
         #endregion
 
         #region *** tests: OnDriver      ***
         [DataTestMethod]
-        [DataRow("{'onElement':'//positive'}")]
-        [DataRow("{'onElement':'//negative'}")]
+        [DataRow("{\"onElement\":\"//positive\"}")]
+        [DataRow("{\"onElement\":\"//negative\"}")]
         public void TryClickPositive(string actionRule)
         {
             // execute
@@ -53,10 +53,10 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
-        [DataRow("{'onElement':'//stale'}")]
-        [DataRow("{'onElement':'//exception'}")]
-        [DataRow("{'onElement':'//null'}")]
-        [DataRow("{'onElement':'//none'}")]
+        [DataRow("{\"onElement\":\"//stale\"}")]
+        [DataRow("{\"onElement\":\"//exception\"}")]
+        [DataRow("{\"onElement\":\"//null\"}")]
+        [DataRow("{\"onElement\":\"//none\"}")]
         public void TryClickTimeout(string actionRule)
         {
             // execute
@@ -69,8 +69,8 @@ namespace Gravity.UnitTests.UiWeb
 
         #region *** tests: OnElement     ***
         [DataTestMethod]
-        [DataRow("{'onElement':'.//positive'}")]
-        [DataRow("{'onElement':'.//negative'}")]
+        [DataRow("{\"onElement\":\".//positive\"}")]
+        [DataRow("{\"onElement\":\".//negative\"}")]
         public void TryClickElementPositive(string actionRule)
         {
             // execute
@@ -81,10 +81,10 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
-        [DataRow("{'onElement':'.//stale'}")]
-        [DataRow("{'onElement':'.//exception'}")]
-        [DataRow("{'onElement':'.//null'}")]
-        [DataRow("{'onElement':'.//none'}")]
+        [DataRow("{\"onElement\":\".//stale\"}")]
+        [DataRow("{\"onElement\":\".//exception\"}")]
+        [DataRow("{\"onElement\":\".//null\"}")]
+        [DataRow("{\"onElement\":\".//none\"}")]
         public void TryClickElementTimeout(string actionRule)
         {
             // execute

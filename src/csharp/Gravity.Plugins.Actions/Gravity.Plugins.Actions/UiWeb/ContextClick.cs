@@ -17,6 +17,7 @@ using Gravity.Plugins.Actions.Extensions;
 using Gravity.Plugins.Attributes;
 using Gravity.Plugins.Base;
 using Gravity.Plugins.Contracts;
+
 using OpenQA.Selenium;
 
 // consolidate references
@@ -26,8 +27,8 @@ namespace Gravity.Plugins.Actions.UiWeb
 {
     [Plugin(
         assembly: "Gravity.Plugins.Actions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
-        resource: "Gravity.Plugins.Actions.Documentation.context_click.json",
-        Name = Contracts.PluginsList.ContextClick)]
+        resource: "Gravity.Plugins.Actions.Manifest.ContextClick.json",
+        Name = PluginsList.ContextClick)]
     public class ContextClick : WebDriverActionPlugin
     {
         // members: state

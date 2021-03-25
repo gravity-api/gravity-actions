@@ -35,13 +35,13 @@ namespace Gravity.UnitTests.UiWeb
         {
             AssertDocumentation<UploadFile>(
                 pluginName: PluginsList.UploadFile,
-                resource: "upload_file.json");
+                resource: "UploadFile.json");
         }
         #endregion
 
         #region *** tests: OnDriver      ***
         [DataTestMethod]
-        [DataRow("{'onElement':'//file'}")]
+        [DataRow("{\"onElement\":\"//file\"}")]
         public void UploadFilePositive(string actionRule)
         {
             // execute
@@ -52,10 +52,10 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
-        [DataRow("{'onElement':'//stale'}")]
-        [DataRow("{'onElement':'//exception'}")]
-        [DataRow("{'onElement':'//null'}")]
-        [DataRow("{'onElement':'//none'}")]
+        [DataRow("{\"onElement\":\"//stale\"}")]
+        [DataRow("{\"onElement\":\"//exception\"}")]
+        [DataRow("{\"onElement\":\"//null\"}")]
+        [DataRow("{\"onElement\":\"//none\"}")]
         public void UploadFileTimeout(string actionRule)
         {
             // execute
@@ -68,7 +68,7 @@ namespace Gravity.UnitTests.UiWeb
 
         #region *** tests: OnElement     ***
         [DataTestMethod]
-        [DataRow("{'onElement':'.//file'}")]
+        [DataRow("{\"onElement\":\".//file\"}")]
         public void UploadFileElementPositive(string actionRule)
         {
             // execute
@@ -79,7 +79,7 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod, ExpectedException(typeof(StaleElementReferenceException))]
-        [DataRow("{'onElement':'.//stale'}")]
+        [DataRow("{\"onElement\":\".//stale\"}")]
         public void UploadFileElementStale(string actionRule)
         {
             // execute
@@ -90,7 +90,7 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod, ExpectedException(typeof(WebDriverException))]
-        [DataRow("{'onElement':'.//exception'}")]
+        [DataRow("{\"onElement\":\".//exception\"}")]
         public void UploadFileElementException(string actionRule)
         {
             // execute
@@ -101,7 +101,7 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod, ExpectedException(typeof(NullReferenceException))]
-        [DataRow("{'onElement':'.//null'}")]
+        [DataRow("{\"onElement\":\".//null\"}")]
         public void UploadFileElementNull(string actionRule)
         {
             // execute
@@ -112,7 +112,7 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod, ExpectedException(typeof(NoSuchElementException))]
-        [DataRow("{'onElement':'.//none'}")]
+        [DataRow("{\"onElement\":\".//none\"}")]
         public void UploadFileElementNone(string actionRule)
         {
             // execute

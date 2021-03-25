@@ -3,19 +3,21 @@
  * 
  * RESOURCES
  */
+using Graivty.IntegrationTests.Converters;
 using Graivty.IntegrationTests.Extensions;
 using Gravity.Plugins.Contracts;
-using Gravity.Plugins.Contracts;
 using Gravity.Plugins.Engine;
+
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+
 using NUnit.Framework;
+
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Text.Json;
 using System.Threading;
 
 using Assert = NUnit.Framework.Assert;
@@ -35,10 +37,8 @@ namespace Gravity.IntegrationTests.Base
 
         // members: state
         private ConcurrentBag<Context> environments;
-        private int attempts =
-            TestContext.Parameters.Get(name: "Integration.NumberOfAttempts", defaultValue: 1);
-        private readonly int attemptsInterval =
-            TestContext.Parameters.Get(name: "Integration.AttemptsInterval", defaultValue: 15000);
+        private int attempts = TestContext.Parameters.Get(name: "Integration.NumberOfAttempts", defaultValue: 1);
+        private readonly int attemptsInterval = TestContext.Parameters.Get(name: "Integration.AttemptsInterval", defaultValue: 15000);
 
         #region *** Test: Properties    ***
         /// <summary>
@@ -50,6 +50,27 @@ namespace Gravity.IntegrationTests.Base
         /// Gets or sets a value indicating is this is a web test.
         /// </summary>
         public virtual bool IsWebTest { get; set; } = true;
+
+        /// <summary>
+        /// Gets the Json Options used by the test instance.
+        /// </summary>
+        public static JsonSerializerOptions SerializerOptions => GetJsonSerializerOptions();
+
+        private static JsonSerializerOptions GetJsonSerializerOptions()
+        {
+            // setup
+            var options = new JsonSerializerOptions
+            {
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+                WriteIndented = true
+            };
+
+            // build
+            options.Converters.Add(new ExceptionConverter());
+
+            // get
+            return options;
+        }
         #endregion
 
         #region *** Test: Environments  ***
@@ -189,7 +210,7 @@ namespace Gravity.IntegrationTests.Base
             try
             {
                 // environment log
-                TestContext.WriteLine(JsonConvert.SerializeObject(environment, Formatting.Indented));
+                TestContext.WriteLine(JsonSerializer.Serialize(environment, SerializerOptions));
 
                 // user
                 OnCleanup(environment);
@@ -241,7 +262,7 @@ namespace Gravity.IntegrationTests.Base
             environment.TestParams["sessions"] = results.Select(i => i.Key);
 
             // results
-            TestContext.WriteLine(JsonConvert.SerializeObject(responses, Formatting.Indented));
+            TestContext.WriteLine(JsonSerializer.Serialize(responses, SerializerOptions));
             return responses;
         }
 
@@ -282,7 +303,7 @@ namespace Gravity.IntegrationTests.Base
         }
 
         // gets driver parameters (with browserstack.com capabilities)
-        private IDictionary<string, object> GetDriverParams(Context environment)
+        private static IDictionary<string, object> GetDriverParams(Context environment)
         {
             // setup
             var driverParams = new Dictionary<string, object>
@@ -302,7 +323,7 @@ namespace Gravity.IntegrationTests.Base
         }
 
         // gets driver capabilities collection
-        private IDictionary<string, object> GetCapabilities(Context environment)
+        private static IDictionary<string, object> GetCapabilities(Context environment)
         {
             // setup: from user
             var fromUser = (IDictionary<string, object>)environment.TestParams["capabilities"];
@@ -324,8 +345,10 @@ namespace Gravity.IntegrationTests.Base
             capabilities["build"] = $"{environment.SystemParams["Build.Number"]}";
             capabilities["name"] = GetTestName();
             capabilities["browserstack.ie.enablePopups"] = true;
+            var options = ((JsonElement)fromUser["bstack:options"]).ToString();
 
-            foreach (var capability in ((JObject)fromUser["bstack:options"]).ToObject<IDictionary<string, object>>())
+            // TODO: validate for true value
+            foreach (var capability in JsonSerializer.Deserialize<IDictionary<string, object>>(options))
             {
                 capabilities[capability.Key] = capability.Value;
             }
@@ -333,7 +356,7 @@ namespace Gravity.IntegrationTests.Base
         }
 
         // gets test name from description attribute
-        private string GetTestName()
+        private static string GetTestName()
         {
             // setup
             var method = new StackFrame(9).GetMethod();
@@ -419,8 +442,8 @@ namespace Gravity.IntegrationTests.Base
         public virtual EngineConfiguration OnConfiguration(Context environment)
         {
             // setup
-            int.TryParse($"{environment.SystemParams["Integration.LoadTimeout"]}", out int loadOut);
-            int.TryParse($"{environment.SystemParams["Integration.SearchTimeout"]}", out int searchOut);
+            _ = int.TryParse($"{environment.SystemParams["Integration.LoadTimeout"]}", out int loadOut);
+            _ = int.TryParse($"{environment.SystemParams["Integration.SearchTimeout"]}", out int searchOut);
 
             // results
             return new EngineConfiguration

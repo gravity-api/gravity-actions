@@ -6,7 +6,7 @@
 * 
 * [test-actions]
 * 1. navigate to {https://gravitymvctestapplication.azurewebsites.net/uicontrols}
-* 2. Select From Combo Box {['One','Two']} on {select_menu_multiple} using {id}
+* 2. Select From Combo Box {[\"One\",\"Two\"]} on {select_menu_multiple} using {id}
 * 3. close browser
 * 
 * [test-expected-results]
@@ -14,7 +14,6 @@
 */
 #pragma warning restore
 using Gravity.IntegrationTests.Base;
-using Gravity.Plugins.Contracts;
 using Gravity.Plugins.Contracts;
 
 using System.Collections.Generic;
@@ -38,7 +37,7 @@ namespace Graivty.IntegrationTests.Cases.UiWeb.SelectFromComboBoxScenarios
                 {
                     Action = PluginsList.SelectFromComboBox,
                     OnElement = "select_menu_multiple",
-                    Argument = "['One', 'Two']",
+                    Argument = "[\"One\", \"Two\"]",
                     Locator = LocatorsList.Id
                 },
                 SharedSteps.AssertMultipleComboBoxSelectedCount(count: 2)

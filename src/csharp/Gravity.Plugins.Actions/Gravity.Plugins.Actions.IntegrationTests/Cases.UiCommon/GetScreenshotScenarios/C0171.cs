@@ -6,13 +6,13 @@
 * 
 * [test-actions]
 * 1. navigate to {https://gravitymvctestapplication.azurewebsites.net/}
-* 2. get screenshot {GetScreenshot/image_0171.png} on {//div[@class='jumbotron']}
+* 2. get screenshot {GetScreenshot/image_0171.png} on {//div[@class=\"jumbotron\"]}
 * 3. close browser
 */
 #pragma warning restore
 using Gravity.IntegrationTests.Base;
 using Gravity.Plugins.Contracts;
-using Gravity.Plugins.Contracts;
+
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -29,7 +29,7 @@ namespace Graivty.IntegrationTests.Cases.UiCommon.GetScreenshotScenarios
             {
                 Action = PluginsList.GetScreenshot,
                 Argument = $"GetScreenshot/image_0171_{Guid.NewGuid()}.png",
-                OnElement = "//div[@class='jumbotron']"
+                OnElement = "//div[@class=\"jumbotron\"]"
             };
             return new[] { action };
         }

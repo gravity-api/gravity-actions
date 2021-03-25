@@ -13,9 +13,7 @@ using OpenQA.Selenium.Extensions;
 using OpenQA.Selenium.Mock;
 
 using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
-using Gravity.Plugins.Contracts;
 
-#pragma warning disable S4144
 namespace Gravity.UnitTests.UiCommon
 {
     [TestClass]
@@ -26,23 +24,23 @@ namespace Gravity.UnitTests.UiCommon
 
         private const string RepeatRule = "" +
             "{" +
-            "   'argument':'index'," +
-            "   'actions':[" +
+            "   \"argument\":\"index\"," +
+            "   \"actions\":[" +
             "       {" +
-            "           'action':'Click'," +
-            "           'onElement':'//positive'" +
+            "           \"action\":\"Click\"," +
+            "           \"onElement\":\"//positive\"" +
             "       }" +
             "   ]" +
             "}";
 
         private const string RepeatRuleCondition = "" +
             "{" +
-            "   'argument':'condition'," +
-            "   'onElement':'random'," +
-            "   'actions':[" +
+            "   \"argument\":\"condition\"," +
+            "   \"onElement\":\"random\"," +
+            "   \"actions\":[" +
             "       {" +
-            "           'action':'Click'," +
-            "           'onElement':'//positive'" +
+            "           \"action\":\"Click\"," +
+            "           \"onElement\":\"//positive\"" +
             "       }" +
             "   ]" +
             "}";
@@ -213,7 +211,7 @@ namespace Gravity.UnitTests.UiCommon
         #region *** utilities            ***
         // assert conditional repeat. since this is a 90% success rate, inconclusive assert
         // will be thrown if no actions were executed.
-        private void AssertCondition(Plugin plugin)
+        private static void AssertCondition(Plugin plugin)
         {
             AssertCondition(plugin, 0);
         }
@@ -256,4 +254,3 @@ namespace Gravity.UnitTests.UiCommon
         #endregion
     }
 }
-#pragma warning restore S4144

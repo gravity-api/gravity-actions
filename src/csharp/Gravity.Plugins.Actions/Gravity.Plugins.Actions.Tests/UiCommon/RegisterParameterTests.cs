@@ -13,7 +13,6 @@ using System;
 using System.Text.RegularExpressions;
 
 using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
-using Gravity.Plugins.Contracts;
 
 #pragma warning disable S4144
 namespace Gravity.UnitTests.UiCommon
@@ -41,13 +40,13 @@ namespace Gravity.UnitTests.UiCommon
         {
             AssertDocumentation<RegisterParameter>(
                 pluginName: PluginsList.RegisterParameter,
-                resource: "register_parameter.json");
+                resource: "RegisterParameter.json");
         }
         #endregion
 
         #region *** tests: OnDriver      ***
         [DataTestMethod]
-        [DataRow("{'argument':'{{$ --key:test_key --value:John}}'}")]
+        [DataRow("{\"argument\":\"{{$ --key:test_key --value:John}}\"}")]
         public void RegisterParameterLiteral(string actionRule)
         {
             // execute
@@ -58,7 +57,7 @@ namespace Gravity.UnitTests.UiCommon
         }
 
         [DataTestMethod]
-        [DataRow("{'argument':'{{$ --key:test_key}}'}")]
+        [DataRow("{\"argument\":\"{{$ --key:test_key}}\"}")]
         public void RegisterParameterLiteralNoValue(string actionRule)
         {
             // execute
@@ -69,7 +68,7 @@ namespace Gravity.UnitTests.UiCommon
         }
 
         [DataTestMethod, ExpectedException(typeof(ArgumentException))]
-        [DataRow("{'argument':'{{$ --value:John}}'}")]
+        [DataRow("{\"argument\":\"{{$ --value:John}}\"}")]
         public void RegisterParameterLiteralNoKey(string actionRule)
         {
             // execute
@@ -80,8 +79,8 @@ namespace Gravity.UnitTests.UiCommon
         }
 
         [DataTestMethod]
-        [DataRow("{'argument':'test_key','onElement':'//positive'}")]
-        [DataRow("{'argument':'{{$ --key:test_key}}','onElement':'//positive'}")]
+        [DataRow("{\"argument\":\"test_key\",\"onElement\":\"//positive\"}")]
+        [DataRow("{\"argument\":\"{{$ --key:test_key}}\",\"onElement\":\"//positive\"}")]
         public void RegisterParameterText(string actionRule)
         {
             // execute
@@ -92,7 +91,7 @@ namespace Gravity.UnitTests.UiCommon
         }
 
         [DataTestMethod]
-        [DataRow("{'argument':'test_key','onElement':'//positive','onAttribute':'id'}")]
+        [DataRow("{\"argument\":\"test_key\",\"onElement\":\"//positive\",\"onAttribute\":\"id\"}")]
         public void RegisterParameterAttribute(string actionRule)
         {
             // execute
@@ -104,7 +103,7 @@ namespace Gravity.UnitTests.UiCommon
         }
 
         [DataTestMethod]
-        [DataRow("{'argument':'test_key','onElement':'//positive','regularExpression':'\\\\d+','onAttribute':'id'}")]
+        [DataRow("{\"argument\":\"test_key\",\"onElement\":\"//positive\",\"regularExpression\":\"\\\\d+\",\"onAttribute\":\"id\"}")]
         public void RegisterParameterRegex(string actionRule)
         {
             // execute
@@ -116,7 +115,7 @@ namespace Gravity.UnitTests.UiCommon
         }
 
         [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
-        [DataRow("{'argument':'test_key','onElement':'2000-12-01'}")]
+        [DataRow("{\"argument\":\"test_key\",\"onElement\":\"2000-12-01\"}")]
         public void RegisterParameterNonElement(string actionRule)
         {
             // execute
@@ -133,10 +132,10 @@ namespace Gravity.UnitTests.UiCommon
         }
 
         [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
-        [DataRow("{'argument':'test_key','onElement':'//null'}")]
-        [DataRow("{'argument':'test_key','onElement':'//stale'}")]
-        [DataRow("{'argument':'test_key','onElement':'//none'}")]
-        [DataRow("{'argument':'test_key','onElement':'//exception'}")]
+        [DataRow("{\"argument\":\"test_key\",\"onElement\":\"//null\"}")]
+        [DataRow("{\"argument\":\"test_key\",\"onElement\":\"//stale\"}")]
+        [DataRow("{\"argument\":\"test_key\",\"onElement\":\"//none\"}")]
+        [DataRow("{\"argument\":\"test_key\",\"onElement\":\"//exception\"}")]
         public void RegisterParameterTimeout(string actionRule)
         {
             // execute
@@ -149,7 +148,7 @@ namespace Gravity.UnitTests.UiCommon
 
         #region *** tests: OnDriver      ***
         [DataTestMethod]
-        [DataRow("{'argument':'test_key','onElement':'.//positive'}")]
+        [DataRow("{\"argument\":\"test_key\",\"onElement\":\".//positive\"}")]
         public void RegisterParameterElementText(string actionRule)
         {
             // execute
@@ -160,7 +159,7 @@ namespace Gravity.UnitTests.UiCommon
         }
 
         [DataTestMethod]
-        [DataRow("{'argument':'test_key','onElement':'.//positive','onAttribute':'id'}")]
+        [DataRow("{\"argument\":\"test_key\",\"onElement\":\".//positive\",\"onAttribute\":\"id\"}")]
         public void RegisterParameterElementAttribute(string actionRule)
         {
             // execute
@@ -172,7 +171,7 @@ namespace Gravity.UnitTests.UiCommon
         }
 
         [DataTestMethod]
-        [DataRow("{'argument':'test_key','onElement':'.//positive','regularExpression':'\\\\d+','onAttribute':'id'}")]
+        [DataRow("{\"argument\":\"test_key\",\"onElement\":\".//positive\",\"regularExpression\":\"\\\\d+\",\"onAttribute\":\"id\"}")]
         public void RegisterParameterElementRegex(string actionRule)
         {
             // execute
@@ -184,7 +183,7 @@ namespace Gravity.UnitTests.UiCommon
         }
 
         [DataTestMethod, ExpectedException(typeof(NoSuchElementException))]
-        [DataRow("{'argument':'test_key','onElement':'2000-12-01'}")]
+        [DataRow("{\"argument\":\"test_key\",\"onElement\":\"2000-12-01\"}")]
         public void RegisterParameterElementNonElementText(string actionRule)
         {
             try
@@ -202,7 +201,7 @@ namespace Gravity.UnitTests.UiCommon
         }
 
         [DataTestMethod]
-        [DataRow("{'argument':'test_key','onElement':'.//null'}")]
+        [DataRow("{\"argument\":\"test_key\",\"onElement\":\".//null\"}")]
         public void RegisterParameterElementNull(string actionRule)
         {
             // execute
@@ -214,7 +213,7 @@ namespace Gravity.UnitTests.UiCommon
         }
 
         [DataTestMethod, ExpectedException(typeof(StaleElementReferenceException))]
-        [DataRow("{'argument':'test_key','onElement':'.//stale'}")]
+        [DataRow("{\"argument\":\"test_key\",\"onElement\":\".//stale\"}")]
         public void RegisterParameterElementStale(string actionRule)
         {
             // execute
@@ -225,7 +224,7 @@ namespace Gravity.UnitTests.UiCommon
         }
 
         [DataTestMethod, ExpectedException(typeof(NoSuchElementException))]
-        [DataRow("{'argument':'test_key','onElement':'.//none'}")]
+        [DataRow("{\"argument\":\"test_key\",\"onElement\":\".//none\"}")]
         public void RegisterParameterElementNone(string actionRule)
         {
             // execute
@@ -236,7 +235,7 @@ namespace Gravity.UnitTests.UiCommon
         }
 
         [DataTestMethod, ExpectedException(typeof(WebDriverException))]
-        [DataRow("{'argument':'test_key','onElement':'.//exception'}")]
+        [DataRow("{\"argument\":\"test_key\",\"onElement\":\".//exception\"}")]
         public void RegisterParameterElementException(string actionRule)
         {
             // execute

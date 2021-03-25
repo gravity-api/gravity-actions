@@ -18,30 +18,30 @@ using Gravity.Plugins.Actions.Components;
 using Gravity.Plugins.Attributes;
 using Gravity.Plugins.Base;
 using Gravity.Plugins.Contracts;
-using Gravity.Plugins.Engine;
 using Gravity.Plugins.Extensions;
+
 using OpenQA.Selenium;
 using OpenQA.Selenium.Extensions;
+
 using System.Collections.Generic;
 
 namespace Gravity.Plugins.Actions.UiCommon
 {
     [Plugin(
         assembly: "Gravity.Plugins.Actions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
-        resource: "Gravity.Plugins.Actions.Documentation.repeat.json",
-        Name = Contracts.PluginsList.Repeat)]
+        resource: "Gravity.Plugins.Actions.Manifest.Repeat.json",
+        Name = PluginsList.Repeat)]
     public class Repeat : WebDriverActionPlugin
     {
         #region *** arguments    ***
         /// <summary>
-        /// Repeats the nested actions until a condition is met. Available conditions are: ['visible','hidden','exists','not_exists'].
+        /// Repeats the nested actions until a condition is met. Available conditions are: [\"visible\",\"hidden\",\"exists\",\"not_exists\"].
         /// </summary>
         public const string Until = "until";
         #endregion
 
         // members: state
         private IDictionary<string, string> arguments;
-        private readonly PluginFactory pluginFactory;
 
         #region *** constructors ***
         /// <summary>
@@ -51,9 +51,7 @@ namespace Gravity.Plugins.Actions.UiCommon
         /// <param name="driver"><see cref="IWebDriver"/> implementation by which to execute the action.</param>
         public Repeat(WebAutomation automation, IWebDriver driver)
             : base(automation, driver)
-        {
-            pluginFactory = new PluginFactory(automation, parameters: new object[] { driver });
-        }
+        { }
         #endregion
 
         /// <summary>
@@ -92,7 +90,7 @@ namespace Gravity.Plugins.Actions.UiCommon
             }
             else
             {
-                int.TryParse(action.Argument, out int iterations);
+                _ = int.TryParse(action.Argument, out int iterations);
                 ExecuteByIteration(action, element, iterations);
             }
         }

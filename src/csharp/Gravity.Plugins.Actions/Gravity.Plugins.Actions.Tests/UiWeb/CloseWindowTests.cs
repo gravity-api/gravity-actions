@@ -41,14 +41,14 @@ namespace Gravity.UnitTests.UiWeb
         {
             AssertDocumentation<CloseWindow>(
                pluginName: PluginsList.CloseWindow,
-               resource: "close_window.json");
+               resource: "CloseWindow.json");
         }
         #endregion
 
         #region *** tests: OnDriver      ***
         [DataTestMethod]
-        [DataRow("{'argument':'1'}", 1)]
-        [DataRow("{'argument':'2'}", 2)]
+        [DataRow("{\"argument\":\"1\"}", 1)]
+        [DataRow("{\"argument\":\"2\"}", 2)]
         public void CloseWindowPositive(string actionRule, int windowsHandle)
         {
             // setup
@@ -68,7 +68,7 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'argument':'10'}")]
+        [DataRow("{\"argument\":\"10\"}")]
         public void CloseWindowOutOfBound(string actionRule)
         {
             // setup
@@ -85,8 +85,8 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'argument':'1'}", 1)]
-        [DataRow("{'argument':'2'}", 2)]
+        [DataRow("{\"argument\":\"1\"}", 1)]
+        [DataRow("{\"argument\":\"2\"}", 2)]
         public void CloseWindowElementPositive(string actionRule, int windowsHandle)
         {
             // setup
@@ -106,7 +106,7 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'argument':'10'}")]
+        [DataRow("{\"argument\":\"10\"}")]
         public void CloseWindowElementOutOfBound(string actionRule)
         {
             // setup
@@ -123,7 +123,7 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'argument':'notAnumber'}")]
+        [DataRow("{\"argument\":\"notAnumber\"}")]
         public void CloseWindowNegative(string actionRule)
         {
             // execute

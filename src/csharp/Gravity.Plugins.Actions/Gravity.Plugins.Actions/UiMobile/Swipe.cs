@@ -9,10 +9,12 @@
 using Gravity.Plugins.Attributes;
 using Gravity.Plugins.Base;
 using Gravity.Plugins.Contracts;
+
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Interfaces;
 using OpenQA.Selenium.Appium.MultiTouch;
 using OpenQA.Selenium.Extensions;
+
 using System;
 using System.Collections.Generic;
 
@@ -20,8 +22,8 @@ namespace Gravity.Plugins.Actions.UiMobile
 {
     [Plugin(
         assembly: "Gravity.Plugins.Actions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
-        resource: "Gravity.Plugins.Actions.Documentation.swipe.json",
-        Name = Contracts.PluginsList.Swipe)]
+        resource: "Gravity.Plugins.Actions.Manifest.Swipe.json",
+        Name = PluginsList.Swipe)]
     public class Swipe : WebDriverActionPlugin
     {
         #region *** arguments    ***
@@ -193,7 +195,7 @@ namespace Gravity.Plugins.Actions.UiMobile
 
         // UTILITIES
         // check if arguments value is coordinates
-        private double[] TryGetCoordinates(string argument)
+        private static double[] TryGetCoordinates(string argument)
         {
             // compliance
             var factors = argument.Split(',');
@@ -206,8 +208,8 @@ namespace Gravity.Plugins.Actions.UiMobile
             }
 
             // compliance
-            double.TryParse(factors[0], out double xOut);
-            double.TryParse(factors[1], out double yOut);
+            _ = double.TryParse(factors[0], out double xOut);
+            _ = double.TryParse(factors[1], out double yOut);
 
             // result
             return new[] { xOut, yOut };

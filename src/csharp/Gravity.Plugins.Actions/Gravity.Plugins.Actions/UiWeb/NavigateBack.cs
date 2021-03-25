@@ -14,16 +14,18 @@ using Gravity.Plugins.Actions.Components;
 using Gravity.Plugins.Attributes;
 using Gravity.Plugins.Base;
 using Gravity.Plugins.Contracts;
+
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+
 using System;
 
 namespace Gravity.Plugins.Actions.UiWeb
 {
     [Plugin(
         assembly: "Gravity.Plugins.Actions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
-        resource: "Gravity.Plugins.Actions.Documentation.navigate_back.json",
-        Name = Contracts.PluginsList.NavigateBack)]
+        resource: "Gravity.Plugins.Actions.Manifest.NavigateBack.json",
+        Name = PluginsList.NavigateBack)]
     public class NavigateBack : WebDriverActionPlugin
     {
         #region *** constructors ***
@@ -38,8 +40,8 @@ namespace Gravity.Plugins.Actions.UiWeb
         #endregion
 
         /// <summary>
-        /// Move back a single entry in the browser's history.
-        /// The action will be completed when page readyState='complete' or until page loading timeout reached.
+        /// Move back a single entry in the browser\"s history.
+        /// The action will be completed when page readyState=\"complete\" or until page loading timeout reached.
         /// </summary>
         /// <param name="action">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
         public override void OnPerform(ActionRule action)
@@ -48,8 +50,8 @@ namespace Gravity.Plugins.Actions.UiWeb
         }
 
         /// <summary>
-        /// Move back a single entry in the browser's history.
-        /// The action will be completed when page readyState='complete' or until page loading timeout reached.
+        /// Move back a single entry in the browser\"s history.
+        /// The action will be completed when page readyState=\"complete\" or until page loading timeout reached.
         /// </summary>
         /// <param name="element">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
         /// <param name="element">This <see cref="IWebElement"/> instance on which to perform the action (provided by the extraction rule).</param>

@@ -10,11 +10,14 @@ using Gravity.Plugins.Contracts;
 using Gravity.Plugins.Engine;
 using Gravity.Plugins.Extensions;
 using Gravity.Plugins.Utilities;
+
 using OpenQA.Selenium;
 using OpenQA.Selenium.Extensions;
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text.RegularExpressions;
 
@@ -22,8 +25,8 @@ namespace Gravity.Plugins.Actions.UiCommon
 {
     [Plugin(
         assembly: "Gravity.Plugins.Actions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
-        resource: "Gravity.Plugins.Actions.Documentation.extract_from_dom.json",
-        Name = Contracts.PluginsList.ExtractFromDom)]
+        resource: "Gravity.Plugins.Actions.Manifest.ExtractFromDom.json",
+        Name = PluginsList.ExtractFromDom)]
     public class ExtractFromDom : WebDriverActionPlugin
     {
         // members
@@ -113,7 +116,7 @@ namespace Gravity.Plugins.Actions.UiCommon
             Extractions.Add(onExtraction);
 
             // populate
-            if (extraction.DataSource != default && !extraction.DataSource.WritePerEntity)
+            if (extraction.DataSource?.WritePerEntity == false)
             {
                 onExtraction.Populate(extraction.DataSource);
             }
@@ -128,7 +131,7 @@ namespace Gravity.Plugins.Actions.UiCommon
             {
                 Content = new Dictionary<string, object>()
             };
-            entity.Content["EntityIndex"] = i;
+            entity.Content["entityIndex"] = i;
 
             // extract
             foreach (var entry in extraction.OnElements)
@@ -139,7 +142,7 @@ namespace Gravity.Plugins.Actions.UiCommon
             }
 
             // populate
-            if (extraction.DataSource != default && extraction.DataSource.WritePerEntity)
+            if (extraction.DataSource?.WritePerEntity == true)
             {
                 entity.Populate(extraction.DataSource);
             }
@@ -182,7 +185,7 @@ namespace Gravity.Plugins.Actions.UiCommon
             return new KeyValuePair<string, object>(key: onEntry.Key, value);
         }
 
-        private string ValueFactory(ContentEntry entry, string value)
+        private static string ValueFactory(ContentEntry entry, string value)
         {
             // message configuration
             if (entry.Trim)
@@ -236,11 +239,11 @@ namespace Gravity.Plugins.Actions.UiCommon
         }
         #endregion
 
-#pragma warning disable IDE0051
         #region *** Special Attributes     ***
         [Description("html")]
+        [SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "Used by reflection, must be non-static.")]
+        [SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "Used by reflection, must be private.")]
         private string Html(IWebElement element) => element.GetSource();
         #endregion
-#pragma warning restore
     }
 }

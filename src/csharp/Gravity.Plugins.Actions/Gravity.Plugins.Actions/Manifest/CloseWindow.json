@@ -6,7 +6,7 @@
         "action": "CloseWindow",
         "argument": "2"
       },
-      "description": "Close the given window by it's position index, quitting the browser if it is the last window currently open.",
+      "description": "Close the given window by it\"s position index, quitting the browser if it is the last window currently open.",
       "literalExample": "close window {2}"
     }
   ],

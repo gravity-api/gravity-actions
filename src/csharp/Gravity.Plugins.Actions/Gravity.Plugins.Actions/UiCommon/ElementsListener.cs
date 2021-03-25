@@ -19,7 +19,9 @@ using Gravity.Plugins.Contracts;
 using Gravity.Plugins.Engine;
 using Gravity.Plugins.Extensions;
 using Gravity.Plugins.Utilities.Selenium;
+
 using OpenQA.Selenium;
+
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -31,8 +33,8 @@ namespace Gravity.Plugins.Actions.UiCommon
 {
     [Plugin(
         assembly: "Gravity.Plugins.Actions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
-        resource: "Gravity.Plugins.Actions.Documentation.elements_listener.json",
-        Name = Contracts.PluginsList.ElementsListener)]
+        resource: "Gravity.Plugins.Actions.Manifest.ElementsListener.json",
+        Name = PluginsList.ElementsListener)]
     public class ElementsListener : WebDriverActionPlugin
     {
         // constants: arguments
@@ -89,16 +91,16 @@ namespace Gravity.Plugins.Actions.UiCommon
             {
                 ActionRule = action,
                 Executor = Executor,
-                Interval = interval,
+                ListenerInterval = interval,
                 Timeout = timout,
                 Automation = Automation
             };
 
             // start listener
-            WebDriver.Listener(dto);
+            Extensions.Listener(WebDriver, dto);
         }
 
-        private int GetMilliseconds(string argument)
+        private static int GetMilliseconds(string argument)
         {
             // setup conditions
             var isArgument = int.TryParse(argument, out int argumentOut);
@@ -107,103 +109,103 @@ namespace Gravity.Plugins.Actions.UiCommon
             return isArgument ? argumentOut : (int)argument.AsTimeSpan().TotalMilliseconds;
         }
 
-        private ActionRule GetDefaultActionRule(ActionRule action) => new ActionRule
+        private static ActionRule GetDefaultActionRule(ActionRule action) => new ActionRule
         {
-            Action = Contracts.PluginsList.Click,
+            Action = PluginsList.Click,
             OnElement = action.OnElement,
             OnAttribute = action.OnAttribute,
             Locator = action.Locator,
             RegularExpression = action.RegularExpression
         };
-    }
 
-    // contract to pass information into elements listener
-    internal class ListenerDto
-    {
-        /// <summary>
-        /// <see cref="AutomationExecutor"/> instance to use for executing actions routine.
-        /// </summary>
-        public AutomationExecutor Executor { get; set; }
-
-        /// <summary>
-        /// This <see cref="ElementsListener"/> <see cref="Plugins.Contracts.ActionRule"/>
-        /// </summary>
-        public ActionRule ActionRule { get; set; }
-
-        /// <summary>
-        /// The interval time between each listener survey.
-        /// </summary>
-        public int Interval { get; set; }
-
-        /// <summary>
-        /// The timeout for the listener to expire.
-        /// If not specified, <see cref="EngineConfiguration.SearchTimeout"/> will be used.
-        /// </summary>
-        public int Timeout { get; set; }
-
-        /// <summary>
-        /// Gets or sets the <see cref="WebAutomation"/> instance used by this <see cref="ListenerDto"/>.
-        /// </summary>
-        public WebAutomation Automation { get; set; }
-    }
-
-    // extensions for attaching child process onto this IWebDriver instance
-    internal static class Extensions
-    {
-        public static void Listener(this IWebDriver d, ListenerDto dto) => Task.Run(() =>
+        // contract to pass information into elements listener
+        private class ListenerDto
         {
-            var by = new ByFactory(Plugin.Types)
-                .Get(locator: dto.ActionRule.Locator, locatorValue: dto.ActionRule.OnElement);
+            /// <summary>
+            /// <see cref="AutomationExecutor"/> instance to use for executing actions routine.
+            /// </summary>
+            public AutomationExecutor Executor { get; set; }
 
-            // execute listener
-            var expire = 0;
-            while (d != null && expire <= dto.Timeout)
-            {
-                // get elements
-                var elements = GetElements(driver: d, by).Count;
+            /// <summary>
+            /// This <see cref="ElementsListener"/> <see cref="Plugins.Contracts.ActionRule"/>
+            /// </summary>
+            public ActionRule ActionRule { get; set; }
 
-                // execute heartbeat
-                DoListenerHeartbeat(dto, elements);
+            /// <summary>
+            /// The interval time between each listener survey.
+            /// </summary>
+            public int ListenerInterval { get; set; }
 
-                // set expiration time
-                expire += dto.Interval;
-            }
-        });
+            /// <summary>
+            /// The timeout for the listener to expire.
+            /// If not specified, <see cref="EngineConfiguration.SearchTimeout"/> will be used.
+            /// </summary>
+            public int Timeout { get; set; }
 
-        // get elements > silence all exceptions for heartbeat
-        private static IReadOnlyCollection<IWebElement> GetElements(IWebDriver driver, By by)
-        {
-            try
-            {
-                return driver.FindElements(by);
-            }
-            catch (Exception e) when (e != null)
-            {
-                return new ReadOnlyCollection<IWebElement>(new List<IWebElement>());
-            }
+            /// <summary>
+            /// Gets or sets the <see cref="WebAutomation"/> instance used by this <see cref="ListenerDto"/>.
+            /// </summary>
+            public WebAutomation Automation { get; set; }
         }
 
-        // executes a single listener heartbeat
-        private static void DoListenerHeartbeat(ListenerDto dto, int elements)
+        // extensions for attaching child process onto this IWebDriver instance
+        private static class Extensions
         {
-            // execute
-            try
+            public static void Listener(IWebDriver d, ListenerDto dto) => Task.Run(() =>
             {
-                for (int i = 0; i < elements; i++)
+                var by = new ByFactory(Plugin.Types)
+                    .Get(locator: dto.ActionRule.Locator, locatorValue: dto.ActionRule.OnElement);
+
+                // execute listener
+                var expire = 0;
+                while (d != null && expire <= dto.Timeout)
                 {
-                    foreach (var action in dto.ActionRule.Actions)
-                    {
-                        dto.Executor.Execute(automation: dto.Automation, action, parameters: null);
-                    }
+                    // get elements
+                    var elements = GetElements(driver: d, by).Count;
+
+                    // execute heartbeat
+                    DoListenerHeartbeat(dto, elements);
+
+                    // set expiration time
+                    expire += dto.ListenerInterval;
+                }
+            });
+
+            // get elements > silence all exceptions for heartbeat
+            private static IReadOnlyCollection<IWebElement> GetElements(IWebDriver driver, By by)
+            {
+                try
+                {
+                    return driver.FindElements(by);
+                }
+                catch (Exception e) when (e != null)
+                {
+                    return new ReadOnlyCollection<IWebElement>(new List<IWebElement>());
                 }
             }
-            catch (Exception e) when (e is NoSuchElementException || e is StaleElementReferenceException)
+
+            // executes a single listener heartbeat
+            private static void DoListenerHeartbeat(ListenerDto dto, int elements)
             {
-                // ignore exceptions
-            }
-            finally
-            {
-                Thread.Sleep(dto.Interval);
+                // execute
+                try
+                {
+                    for (int i = 0; i < elements; i++)
+                    {
+                        foreach (var action in dto.ActionRule.Actions)
+                        {
+                            dto.Executor.Execute(automation: dto.Automation, action, parameters: null);
+                        }
+                    }
+                }
+                catch (Exception e) when (e is NoSuchElementException || e is StaleElementReferenceException)
+                {
+                    // ignore exceptions
+                }
+                finally
+                {
+                    Thread.Sleep(dto.ListenerInterval);
+                }
             }
         }
     }

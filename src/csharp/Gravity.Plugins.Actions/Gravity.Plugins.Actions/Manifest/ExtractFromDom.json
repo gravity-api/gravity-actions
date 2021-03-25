@@ -5,15 +5,14 @@
       "value": "0,1,4"
     }
   },
-  "description": "Executes the extraction rules collection provided under this WebAutomation and return or populates the data collected. Due to the nature of this action, it supports only XPath locator. This action will executes the extraction on the page source.",
+  "description": "Executes the extraction rules collection provided under this WebAutomation and return or populates the data collected. Due to the nature of this action, it supports only XPath locator. This action will executes the extraction on the page DOM.",
   "examples": [
     {
       "actionExample": {
-        "action": "ExtractFromSource"
+        "action": "ExtractFromDom"
       },
       "extractionExample": {
         "onRootElements": "//td[contains(@id,'student_first_name')]",
-        "pageSource": true,
         "onElements": [
           {
             "key": "FirstName"
@@ -25,11 +24,10 @@
     },
     {
       "actionExample": {
-        "action": "ExtractFromSource"
+        "action": "ExtractFromDom"
       },
       "extractionExample": {
         "onRootElements": "//td[contains(@id,'student_first_name')]",
-        "pageSource": true,
         "onElements": [
           {
             "key": "FirstName",
@@ -42,11 +40,10 @@
     },
     {
       "actionExample": {
-        "action": "ExtractFromSource"
+        "action": "ExtractFromDom"
       },
       "extractionExample": {
         "onRootElements": "//td[contains(@id,'student_first_name')]",
-        "pageSource": true,
         "onElements": [
           {
             "key": "FirstName",
@@ -59,11 +56,10 @@
     },
     {
       "actionExample": {
-        "action": "ExtractFromSource"
+        "action": "ExtractFromDom"
       },
       "extractionExample": {
         "onRootElements": "//tbody/tr",
-        "pageSource": true,
         "onElements": [
           {
             "key": "FirstName",
@@ -71,20 +67,19 @@
           },
           {
             "key": "LastName",
-            "onElement": ".//td[contains(@id,'student_last_name')]"
+            "onElement": ".//td[contains(@id,\"student_last_name\")]"
           }
         ]
       },
       "description": "Extract all students First Name and Last Name into a table with FirstName and Last Name columns.",
-      "literalExample": "extract from dom on {//td[contains(@id,'student_first_name')]}\n    < column {FirstName} take {.//td[contains(@id,'student_first_name')]}\n    < column {LastName} take {.//td[contains(@id,'student_last_name')]}"
+      "literalExample": "extract from dom on {//td[contains(@id,'student_first_name')]}\n    < column {FirstName} take {.//td[contains(@id,'student_first_name')]}\n    < column {LastName} take {.//td[contains(@id,\"student_last_name\")]}"
     },
     {
       "actionExample": {
-        "action": "ExtractFromSource"
+        "action": "ExtractFromDom"
       },
       "extractionExample": {
         "onRootElements": "//td[contains(@id,'student_first_name')]",
-        "pageSource": true,
         "onElements": [
           {
             "key": "FirstName",
@@ -97,7 +92,7 @@
     },
     {
       "actionExample": {
-        "action": "ExtractFromSource"
+        "action": "ExtractFromDom"
       },
       "extractionExample": {
         "dataSource": {
@@ -106,7 +101,6 @@
           "repository": "StudentsTable"
         },
         "onRootElement": "//td[contains(@id,'student_first_name')]",
-        "pageSource": true,
         "onElements": [
           {
             "key": "FirstName"
@@ -118,7 +112,7 @@
     },
     {
       "actionExample": {
-        "action": "ExtractFromSource"
+        "action": "ExtractFromDom"
       },
       "extractionExample": {
         "dataSource": {
@@ -128,7 +122,6 @@
           "writePerEntry": true
         },
         "onRootElement": "//td[contains(@id,'student_first_name')]",
-        "pageSource": true,
         "onElements": [
           {
             "key": "FirstName"
@@ -140,7 +133,7 @@
     },
     {
       "actionExample": {
-        "action": "ExtractFromSource"
+        "action": "ExtractFromDom"
       },
       "extractionExample": {
         "dataSource": {
@@ -148,7 +141,6 @@
           "source": "Data/StudentsTable.csv"
         },
         "onRootElement": "//td[contains(@id,'student_first_name')]",
-        "pageSource": true,
         "onElements": [
           {
             "key": "FirstName"
@@ -160,7 +152,7 @@
     },
     {
       "actionExample": {
-        "action": "ExtractFromSource"
+        "action": "ExtractFromDom"
       },
       "extractionExample": {
         "dataSource": {
@@ -169,7 +161,6 @@
           "writePerEntry": true
         },
         "onRootElement": "//td[contains(@id,'student_first_name')]",
-        "pageSource": true,
         "onElements": [
           {
             "key": "FirstName"
@@ -181,7 +172,7 @@
     },
     {
       "actionExample": {
-        "action": "ExtractFromSource"
+        "action": "ExtractFromDom"
       },
       "extractionExample": {
         "dataSource": {
@@ -189,7 +180,6 @@
           "source": "Data/StudentsTable.json"
         },
         "onRootElement": "//td[contains(@id,'student_first_name')]",
-        "pageSource": true,
         "onElements": [
           {
             "key": "FirstName"
@@ -201,7 +191,7 @@
     },
     {
       "actionExample": {
-        "action": "ExtractFromSource"
+        "action": "ExtractFromDom"
       },
       "extractionExample": {
         "dataSource": {
@@ -210,7 +200,6 @@
           "writePerEntry": true
         },
         "onRootElement": "//td[contains(@id,'student_first_name')]",
-        "pageSource": true,
         "onElements": [
           {
             "key": "FirstName"
@@ -222,7 +211,7 @@
     },
     {
       "actionExample": {
-        "action": "ExtractFromSource"
+        "action": "ExtractFromDom"
       },
       "extractionExample": {
         "dataSource": {
@@ -230,7 +219,6 @@
           "source": "Data/StudentsTable.xml"
         },
         "onRootElement": "//td[contains(@id,'student_first_name')]",
-        "pageSource": true,
         "onElements": [
           {
             "key": "FirstName"
@@ -242,7 +230,7 @@
     },
     {
       "actionExample": {
-        "action": "ExtractFromSource"
+        "action": "ExtractFromDom"
       },
       "extractionExample": {
         "dataSource": {
@@ -251,7 +239,6 @@
           "writePerEntry": true
         },
         "onRootElement": "//td[contains(@id,'student_first_name')]",
-        "pageSource": true,
         "onElements": [
           {
             "key": "FirstName"
@@ -263,7 +250,7 @@
     },
     {
       "actionExample": {
-        "action": "ExtractFromSource"
+        "action": "ExtractFromDom"
       },
       "extractionExample": {
         "dataSource": {
@@ -271,7 +258,6 @@
           "source": "http://www.@foo-bar.io/data"
         },
         "onRootElement": "//td[contains(@id,'student_first_name')]",
-        "pageSource": true,
         "onElements": [
           {
             "key": "FirstName"
@@ -283,7 +269,7 @@
     },
     {
       "actionExample": {
-        "action": "ExtractFromSource"
+        "action": "ExtractFromDom"
       },
       "extractionExample": {
         "dataSource": {
@@ -292,7 +278,6 @@
           "writePerEntity": true
         },
         "onRootElement": "//td[contains(@id,'student_first_name')]",
-        "pageSource": true,
         "onElements": [
           {
             "key": "FirstName"
@@ -303,7 +288,7 @@
       "literalExample": "extract from dom on {//td[contains(@id,'student_first_name')]}\n    < column {FirstName}\n    < save {{$ --write_per_entry}} on {http://www.@foo-bar.io/data} using {RestApi}"
     }
   ],
-  "name": "ExtractFromSource",
+  "name": "ExtractFromDom",
   "pluginType": "Action",
   "properties": {
     "argument": "Plugin conditions and additional information."

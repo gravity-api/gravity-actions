@@ -10,15 +10,17 @@ using Gravity.Plugins.Actions.Extensions;
 using Gravity.Plugins.Attributes;
 using Gravity.Plugins.Base;
 using Gravity.Plugins.Contracts;
+
 using OpenQA.Selenium;
+
 using System.Collections.Generic;
 
 namespace Gravity.Plugins.Actions.UiWeb
 {
     [Plugin(
         assembly: "Gravity.Plugins.Actions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
-        resource: "Gravity.Plugins.Actions.Documentation.scroll.json",
-        Name = Contracts.PluginsList.Scroll)]
+        resource: "Gravity.Plugins.Actions.Manifest.Scroll.json",
+        Name = PluginsList.Scroll)]
     public class Scroll : WebDriverActionPlugin
     {
         #region *** arguments    ***
@@ -126,7 +128,7 @@ namespace Gravity.Plugins.Actions.UiWeb
             return arguments;
         }
 
-        private string ScriptFactory(IDictionary<string, string> arguments)
+        private static string ScriptFactory(IDictionary<string, string> arguments)
         {
             // setup conditions
             var isBehavior = arguments.ContainsKey(Behavior);
@@ -135,7 +137,7 @@ namespace Gravity.Plugins.Actions.UiWeb
             if (isBehavior)
             {
                 return
-                    $"on.scroll({{top: {arguments[Top]}, left: {arguments[Left]}, behavior: '{arguments[Behavior]}'}})";
+                    $"on.scroll({{top: {arguments[Top]}, left: {arguments[Left]}, behavior: \"{arguments[Behavior]}\"}})";
             }
 
             // default

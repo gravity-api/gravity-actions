@@ -35,13 +35,13 @@ namespace Gravity.UnitTests.UiCommon
         {
             AssertDocumentation<ElementsListener>(
                 pluginName: PluginsList.ElementsListener,
-                resource: "elements_listener.json");
+                resource: "ElementsListener.json");
         }
         #endregion
 
         #region *** tests: OnDriver      ***
         [DataTestMethod]
-        [DataRow("{'argument':'{{$ --interval:500 --timeout:30000}}','onElement':'//positive'}")]
+        [DataRow("{\"argument\":\"{{$ --interval:500 --timeout:30000}}\",\"onElement\":\"//positive\"}")]
         public void ElementsListenerClickPositive(string actionRule)
         {
             // execute
@@ -52,10 +52,10 @@ namespace Gravity.UnitTests.UiCommon
         }
 
         [DataTestMethod]
-        [DataRow("{'argument':'{{$ --interval:500 --timeout:30000}}','onElement':'//null'}")]
-        [DataRow("{'argument':'{{$ --interval:500 --timeout:30000}}','onElement':'//stale'}")]
-        [DataRow("{'argument':'{{$ --interval:500 --timeout:30000}}','onElement':'//none'}")]
-        [DataRow("{'argument':'{{$ --interval:500 --timeout:30000}}','onElement':'//negative'}")]
+        [DataRow("{\"argument\":\"{{$ --interval:500 --timeout:30000}}\",\"onElement\":\"//null\"}")]
+        [DataRow("{\"argument\":\"{{$ --interval:500 --timeout:30000}}\",\"onElement\":\"//stale\"}")]
+        [DataRow("{\"argument\":\"{{$ --interval:500 --timeout:30000}}\",\"onElement\":\"//none\"}")]
+        [DataRow("{\"argument\":\"{{$ --interval:500 --timeout:30000}}\",\"onElement\":\"//negative\"}")]
         public void ElementsListenerClickNoElement(string actionRule)
         {
             // execute
@@ -66,7 +66,7 @@ namespace Gravity.UnitTests.UiCommon
         }
 
         [DataTestMethod]
-        [DataRow("{'onElement':'//positive'}")]
+        [DataRow("{\"onElement\":\"//positive\"}")]
         public void ElementsListenerClickNoArguments(string actionRule)
         {
             // execute
@@ -79,13 +79,13 @@ namespace Gravity.UnitTests.UiCommon
         [DataTestMethod]
         [DataRow("" +
             "{" +
-            "    'argument':'{{$ --interval:500 --timeout:30000}}'," +
-            "    'onElement':'//positive'," +
-            "    'actions': [" +
+            "    \"argument\":\"{{$ --interval:500 --timeout:30000}}\"," +
+            "    \"onElement\":\"//positive\"," +
+            "    \"actions\": [" +
             "        {" +
-            "            'action':'SendKeys'," +
-            "            'argument':'foo bar'," +
-            "            'onElement':'//positive'" +
+            "            \"action\":\"SendKeys\"," +
+            "            \"argument\":\"foo bar\"," +
+            "            \"onElement\":\"//positive\"" +
             "        }" +
             "    ]" +
             "}")]

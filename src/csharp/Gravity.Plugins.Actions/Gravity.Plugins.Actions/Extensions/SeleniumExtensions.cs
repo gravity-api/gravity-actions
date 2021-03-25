@@ -42,7 +42,7 @@ namespace Gravity.Plugins.Actions.Extensions
         {
             return DoGetFromDriver(
                 d,
-                byFactory: new ByFactory(Misc.GetTypes()),
+                byFactory: new ByFactory(Misc.Types),
                 action,
                 timeout);
         }
@@ -71,7 +71,7 @@ namespace Gravity.Plugins.Actions.Extensions
         {
             return DoGetFromElement(
                 e,
-                byFactory: new ByFactory(Misc.GetTypes()),
+                byFactory: new ByFactory(Misc.Types),
                 action,
                 timeout);
         }
@@ -134,7 +134,7 @@ namespace Gravity.Plugins.Actions.Extensions
         {
             return DoFindFromDriver(
                 d,
-                byFactory: new ByFactory(Misc.GetTypes()),
+                byFactory: new ByFactory(Misc.Types),
                 actionRule);
         }
 
@@ -160,7 +160,7 @@ namespace Gravity.Plugins.Actions.Extensions
         {
             return FindElementByActionRule(
                 e,
-                byFactory: new ByFactory(Misc.GetTypes()),
+                byFactory: new ByFactory(Misc.Types),
                 actionRule);
         }
 
@@ -215,7 +215,7 @@ namespace Gravity.Plugins.Actions.Extensions
         {
             return DoFindsFromDriver(
                 d,
-                byFactory: new ByFactory(Misc.GetTypes()),
+                byFactory: new ByFactory(Misc.Types),
                 actionRule);
         }
 
@@ -241,7 +241,7 @@ namespace Gravity.Plugins.Actions.Extensions
         {
             return DoFindsFromElement(
                 e,
-                byFactory: new ByFactory(Misc.GetTypes()),
+                byFactory: new ByFactory(Misc.Types),
                 actionRule);
         }
 

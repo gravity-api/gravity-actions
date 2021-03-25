@@ -50,7 +50,7 @@ namespace Gravity.UnitTests.UiCommon
 
         #region *** tests: OnDriver      ***
         [DataTestMethod]
-        [DataRow("{'argument':'1000'}")]
+        [DataRow("{\"argument\":\"1000\"}")]
         public void WaitMilliseconds(string actionRule)
         {
             // execute 
@@ -61,7 +61,7 @@ namespace Gravity.UnitTests.UiCommon
         }
 
         [DataTestMethod]
-        [DataRow("{'argument':'00:00:01'}")]
+        [DataRow("{\"argument\":\"00:00:01\"}")]
         public void WaitTimespan(string actionRule)
         {
             // execute 
@@ -72,7 +72,7 @@ namespace Gravity.UnitTests.UiCommon
         }
 
         [DataTestMethod]
-        [DataRow("{'argument':'NotTime'}")]
+        [DataRow("{\"argument\":\"NotTime\"}")]
         public void WaitInvalid(string actionRule)
         {
             // execute 

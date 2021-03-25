@@ -12,8 +12,6 @@ using Gravity.Plugins.Extensions;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-using Newtonsoft.Json;
-
 using OpenQA.Selenium;
 using OpenQA.Selenium.Mock;
 using OpenQA.Selenium.Mock.Extensions;
@@ -25,16 +23,22 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Text.Json;
 
 namespace Gravity.UnitTests.Base
 {
     [DeploymentItem("Resources/license.lcn")]
     public abstract class ActionTests
     {
-        #region *** constants      ***
+        // constants
         private const string ActionMethodName = "OnPerform";
         private const StringComparison Compare = StringComparison.OrdinalIgnoreCase;
-        #endregion
+
+        // members
+        private readonly JsonSerializerOptions serializerOptions = new JsonSerializerOptions
+        {
+            PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+        };
 
         #region *** constructors   ***
         /// <summary>
@@ -174,7 +178,7 @@ namespace Gravity.UnitTests.Base
             where T : Plugin
         {
             // setup
-            var _actionRule = JsonConvert.DeserializeObject<ActionRule>(actionRule);
+            var _actionRule = JsonSerializer.Deserialize<ActionRule>(actionRule, serializerOptions);
             _actionRule.Action = typeof(T).Name;
 
             // execute
@@ -197,7 +201,7 @@ namespace Gravity.UnitTests.Base
             where T : Plugin
         {
             // setup
-            var _actionRule = JsonConvert.DeserializeObject<ActionRule>(actionRule);
+            var _actionRule = JsonSerializer.Deserialize<ActionRule>(actionRule, serializerOptions);
             _actionRule.Action = typeof(T).Name;
 
             // setup: parameters
@@ -377,7 +381,7 @@ namespace Gravity.UnitTests.Base
 
             // validation
             Assert.IsTrue(action != default, "Plugin was not generated correctly.");
-            Assert.IsTrue(!Plugin.Types.IsEmpty, "Plugin types were not loaded.");
+            Assert.IsTrue(Plugin.Types.Any(), "Plugin types were not loaded.");
 
             if (action is WebDriverActionPlugin)
             {
@@ -393,11 +397,11 @@ namespace Gravity.UnitTests.Base
         /// </summary>
         /// <param name="actionRule"><see cref="ActionRule"/> JSON by which to create an <see cref="ActionRule"/> object.</param>
         /// <returns>A new <see cref="ActionRule"/> instance.</returns>
-        public static ActionRule GetActionRule(string actionRule)
+        public ActionRule GetActionRule(string actionRule)
         {
             return string.IsNullOrEmpty(actionRule)
                 ? new ActionRule()
-                : JsonConvert.DeserializeObject<ActionRule>(actionRule);
+                : JsonSerializer.Deserialize<ActionRule>(actionRule, serializerOptions);
         }
         #endregion
 
@@ -462,13 +466,13 @@ namespace Gravity.UnitTests.Base
         /// <typeparam name="T">Object type to create based on the embedded resource.</typeparam>
         /// <param name="assembly"><see cref="Assembly"/> from which to read the resource.</param>
         /// <param name="name">Resource name. Name must match the resource file name.</param>
-        public static T ReadEmbeddedResource<T>(Assembly assembly, string name)
+        public T ReadEmbeddedResource<T>(Assembly assembly, string name)
         {
             // read
             var resource = ReadEmbeddedResource(assembly, name);
 
             // deserialize
-            return resource.IsJson() ? JsonConvert.DeserializeObject<T>(resource) : default;
+            return resource.IsJson() ? JsonSerializer.Deserialize<T>(resource, serializerOptions) : default;
         }
 
         /// <summary>
@@ -545,11 +549,17 @@ namespace Gravity.UnitTests.Base
         /// <param name="connectionString">SQL Database connection string.</param>
         public static void DropDatabase(string connectionString)
         {
+            // exit conditions
+            if (string.IsNullOrEmpty(connectionString))
+            {
+                return;
+            }
+
             // setup
             var builder = new SqlConnectionStringBuilder(connectionString);
             var command =
                 " USE [master]; " +
-                $"IF EXISTS (SELECT [name] FROM sys.databases WHERE [name] = '{builder.InitialCatalog}')" +
+                $"IF EXISTS (SELECT [name] FROM sys.databases WHERE [name] = \"{builder.InitialCatalog}\")" +
                 " BEGIN" +
                 $"    ALTER DATABASE [{builder.InitialCatalog}] SET SINGLE_USER WITH ROLLBACK IMMEDIATE;" +
                 $"    DROP DATABASE [{builder.InitialCatalog}];" +
@@ -558,16 +568,23 @@ namespace Gravity.UnitTests.Base
             // clear initial catalog if exists
             builder.Remove("Initial Catalog");
 
-            // setup connection
-            using var connection = new SqlConnection(connectionString: builder.ConnectionString.Replace(@"\\", @"\"));
-            connection.Open();
+            try
+            {
+                // setup connection
+                using var connection = new SqlConnection(connectionString: builder.ConnectionString.Replace(@"\\", @"\"));
+                connection.Open();
 
-            // setup SQL command
-            var sqlCommand = new SqlCommand(cmdText: "EXEC sp_executesql @script", connection);
-            sqlCommand.Parameters.AddWithValue(parameterName: "script", value: command);
+                // setup SQL command
+                var sqlCommand = new SqlCommand(cmdText: "EXEC sp_executesql @script", connection);
+                sqlCommand.Parameters.AddWithValue(parameterName: "script", value: command);
 
-            // create database if not exists
-            sqlCommand.ExecuteNonQuery();
+                // create database if not exists
+                sqlCommand.ExecuteNonQuery();
+            }
+            catch (Exception e) when(e!=null)
+            {
+                Trace.TraceWarning(e.Message);
+            }
         }
         #endregion
 

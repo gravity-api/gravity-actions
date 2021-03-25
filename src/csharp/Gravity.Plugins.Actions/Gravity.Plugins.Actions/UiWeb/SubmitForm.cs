@@ -6,6 +6,7 @@
 using Gravity.Plugins.Attributes;
 using Gravity.Plugins.Base;
 using Gravity.Plugins.Contracts;
+
 using OpenQA.Selenium;
 using OpenQA.Selenium.Extensions;
 
@@ -13,8 +14,8 @@ namespace Gravity.Plugins.Actions.UiWeb
 {
     [Plugin(
         assembly: "Gravity.Plugins.Actions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
-        resource: "Gravity.Plugins.Actions.Documentation.submit_form.json",
-        Name = Contracts.PluginsList.SubmitForm)]
+        resource: "Gravity.Plugins.Actions.Manifest.SubmitForm.json",
+        Name = PluginsList.SubmitForm)]
     public class SubmitForm : WebDriverActionPlugin
     {
         #region *** constructors ***

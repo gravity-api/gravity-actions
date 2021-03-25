@@ -32,13 +32,13 @@ Clicks the mouse on the specified element.
 ```js
 {
     "action": "Click",
-    "onElement": "//a[.='Departments']"
+    "onElement": "//a[.=\"Departments\"]"
 }
 ```
 
 #### _Rhino Literal_
 ```
-click on {//a[.='Departments']}
+click on {//a[.=\"Departments\"]}
 ```
 
 #### _CSharp_
@@ -47,14 +47,14 @@ click on {//a[.='Departments']}
 var actionRule = new ActionRule
 {
     Action = PluginsList.Click,
-    OnElement = "//a[.='Departments']"
+    OnElement = "//a[.=\"Departments\"]"
 };
 
 // option no.2
 var actionRule = new
 {
     Action = "Click",
-    OnElement = "//a[.='Departments']"
+    OnElement = "//a[.=\"Departments\"]"
 };
 ```
 
@@ -62,7 +62,7 @@ var actionRule = new
 ```python
 action_rule = {
     "action": "Click",
-    "onElement": "//a[.='Departments']"
+    "onElement": "//a[.=\"Departments\"]"
 }
 ```
 
@@ -70,7 +70,7 @@ action_rule = {
 ```js
 var actionRule = {
     action: "Click",
-    onElement: "//a[.='Departments']"
+    onElement: "//a[.=\"Departments\"]"
 };
 ```
 
@@ -78,7 +78,7 @@ var actionRule = {
 ```java
 ActionRule actionRule = new ActionRule()
         .setAction("Click")
-        .setOnElement("//a[.='Departments']");
+        .setOnElement("//a[.=\"Departments\"]");
 ```
 
 ***

@@ -1,8 +1,8 @@
 ## Description
-Move back a single entry in the browser's history. The action will be completed when page ready state equals ```complete``` or until page loading timeout reached.
+Move forward a single entry in the browser\"s history. The action will be completed when page ready state equals ```complete``` or until page loading timeout reached.
 
 ## Scope
-**Web**, **Mobile Web** or any other Web Driver implementation which implements _**Back**_.
+**Web**, **Mobile Web** or any other Web Driver implementation which implements _**Forward**_.
 
 ## Properties
 | Property             | Description                                           |
@@ -17,18 +17,18 @@ _**None**_
 Can be tested on
 * https://gravitymvctestapplication.azurewebsites.net/
 
-Move back a ```single``` entry in the browser's history.
+Move forward a ```single``` entry in the browser\"s history.
 
 #### _Action Rule (JSON)_
 ```js
 {
-    "action": "NavigateBack"
+    "action": "NavigateForward"
 }
 ```
 
 #### _Rhino Literal_
 ```
-navigate back
+navigate forward
 ```
 
 #### _CSharp_
@@ -36,33 +36,33 @@ navigate back
 // option no.1
 var actionRule = new ActionRule
 {
-    Action = PluginsList.NavigateBack
+    Action = PluginsList.NavigateForward
 };
 
 // option no.2
 var actionRule = new
 {
-    Action = "NavigateBack"
+    Action = "NavigateForward"
 };
 ```
 
 #### _Python_
 ```python
 action_rule = {
-    "action": "NavigateBack"
+    "action": "NavigateForward"
 }
 ```
 
 #### _Java Script_
 ```js
 var actionRule = {
-    action: "NavigateBack"
+    action: "NavigateForward"
 };
 ```
 
 #### _Java_
 ```java
-ActionRule actionRule = new ActionRule().setAction("NavigateBack");
+ActionRule actionRule = new ActionRule().setAction("NavigateForward");
 ```
 
 ***
@@ -71,19 +71,19 @@ ActionRule actionRule = new ActionRule().setAction("NavigateBack");
 Can be tested on
 * https://gravitymvctestapplication.azurewebsites.net/
 
-Move back ```2``` entries in the browser's history.
+Move forward ```2``` entries in the browser\"s history.
 
 #### _Action Rule (JSON)_
 ```js
 {
-    "action": "NavigateBack",
+    "action": "NavigateForward",
     "argument": "2"
 }
 ```
 
 #### _Rhino Literal_
 ```
-navigate back {2}
+navigate forward {2}
 ```
 
 #### _CSharp_
@@ -91,14 +91,14 @@ navigate back {2}
 // option no.1
 var actionRule = new ActionRule
 {
-    Action = PluginsList.NavigateBack,
+    Action = PluginsList.NavigateForward,
     Argument = "2"
 };
 
 // option no.2
 var actionRule = new
 {
-    Action = "NavigateBack",
+    Action = "NavigateForward",
     Argument = "2"
 };
 ```
@@ -106,7 +106,7 @@ var actionRule = new
 #### _Python_
 ```python
 action_rule = {
-    "action": "NavigateBack",
+    "action": "NavigateForward",
     "argument": "2" 
 }
 ```
@@ -114,11 +114,11 @@ action_rule = {
 #### _Java Script_
 ```js
 var actionRule = {
-    action: "NavigateBack",
+    action: "NavigateForward",
     argument: "2"
 };
 ```
 
 #### _Java_
 ```java
-ActionRule actionRule = new ActionRule().setAction("NavigateBack").setArgument("2");
+ActionRule actionRule = new ActionRule().setAction("NavigateForward").setArgument("2");

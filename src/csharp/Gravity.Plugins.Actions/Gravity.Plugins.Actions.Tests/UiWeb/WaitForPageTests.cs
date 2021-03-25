@@ -48,7 +48,7 @@ namespace Gravity.UnitTests.UiWeb
         {
             AssertDocumentation<WaitForPage>(
                 pluginName: PluginsList.WaitForPage,
-                resource: "wait_for_page.json");
+                resource: "WaitForPage.json");
         }
         #endregion
 
@@ -64,7 +64,7 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [TestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
-        [DataRow("{'argument':'{{$ --until:false --timeout:00:00:00}}'}")]
+        [DataRow("{\"argument\":\"{{$ --until:false --timeout:00:00:00}}\"}")]
         public void WaitForPageTimeout(string actionRule)
         {
             // setup
@@ -78,7 +78,7 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'argument':'{{$ --until:uninitialized}}'}")]
+        [DataRow("{\"argument\":\"{{$ --until:uninitialized}}\"}")]
         public void WaitForPageUninitialized(string actionRule)
         {
             // execute
@@ -89,7 +89,7 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'argument':'{{$ --until:loading}}'}")]
+        [DataRow("{\"argument\":\"{{$ --until:loading}}\"}")]
         public void WaitForPageLoading(string actionRule)
         {
             // execute
@@ -100,7 +100,7 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'argument':'{{$ --until:loaded}}'}")]
+        [DataRow("{\"argument\":\"{{$ --until:loaded}}\"}")]
         public void WaitForPageLoaded(string actionRule)
         {
             // execute
@@ -111,7 +111,7 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'argument':'{{$ --until:interactive}}'}")]
+        [DataRow("{\"argument\":\"{{$ --until:interactive}}\"}")]
         public void WaitForPageInteractive(string actionRule)
         {
             // execute
@@ -122,7 +122,7 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'argument':'{{$ --until:complete}}'}")]
+        [DataRow("{\"argument\":\"{{$ --until:complete}}\"}")]
         public void WaitForPageComplete(string actionRule)
         {
             // execute
@@ -133,7 +133,7 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod, ExpectedException(typeof(InvalidOperationException))]
-        [DataRow("{'argument':'{{$ --until:not_a_state}}'}")]
+        [DataRow("{\"argument\":\"{{$ --until:not_a_state}}\"}")]
         public void WaitForPageNegative(string actionRule)
         {
             // execute
@@ -146,7 +146,7 @@ namespace Gravity.UnitTests.UiWeb
 
         #region *** tests: OnElement     ***
         [DataTestMethod]
-        [DataRow("{'argument':'{{$ --until:uninitialized}}','onElement':'.//positive'}")]
+        [DataRow("{\"argument\":\"{{$ --until:uninitialized}}\",\"onElement\":\".//positive\"}")]
         public void WaitForPageElementUninitialized(string actionRule)
         {
             // execute
@@ -157,7 +157,7 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'argument':'{{$ --until:loading}}','onElement':'.//positive'}")]
+        [DataRow("{\"argument\":\"{{$ --until:loading}}\",\"onElement\":\".//positive\"}")]
         public void WaitForPageElementLoading(string actionRule)
         {
             // execute
@@ -168,7 +168,7 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'argument':'{{$ --until:loaded}}','onElement':'.//positive'}")]
+        [DataRow("{\"argument\":\"{{$ --until:loaded}}\",\"onElement\":\".//positive\"}")]
         public void WaitForPageElementLoaded(string actionRule)
         {
             // execute
@@ -179,7 +179,7 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'argument':'{{$ --until:interactive}}','onElement':'.//positive'}")]
+        [DataRow("{\"argument\":\"{{$ --until:interactive}}\",\"onElement\":\".//positive\"}")]
         public void WaitForPageElementInteractive(string actionRule)
         {
             // execute
@@ -190,7 +190,7 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'argument':'{{$ --until:complete}}','onElement':'.//positive'}")]
+        [DataRow("{\"argument\":\"{{$ --until:complete}}\",\"onElement\":\".//positive\"}")]
         public void WaitForPageElementComplete(string actionRule)
         {
             // execute
@@ -201,7 +201,7 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod, ExpectedException(typeof(InvalidOperationException))]
-        [DataRow("{'argument':'{{$ --until:not_a_state}}','onElement':'.//positive'}")]
+        [DataRow("{\"argument\":\"{{$ --until:not_a_state}}\",\"onElement\":\".//positive\"}")]
         public void WaitForPageElementNegative(string actionRule)
         {
             // execute

@@ -11,22 +11,23 @@ using Gravity.Plugins.Attributes;
 using Gravity.Plugins.Base;
 using Gravity.Plugins.Contracts;
 using Gravity.Plugins.Extensions;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
 using System.Text.RegularExpressions;
 
 namespace Gravity.Plugins.Actions.UiWeb
 {
     [Plugin(
         assembly: "Gravity.Plugins.Actions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
-        resource: "Gravity.Plugins.Actions.Documentation.select_from_combo_box.json",
-        Name = Contracts.PluginsList.SelectFromComboBox)]
+        resource: "Gravity.Plugins.Actions.Manifest.SelectFromComboBox.json",
+        Name = PluginsList.SelectFromComboBox)]
     public class SelectFromComboBox : WebDriverActionPlugin
     {
         #region *** arguments    ***
@@ -108,9 +109,10 @@ namespace Gravity.Plugins.Actions.UiWeb
             }
         }
 
-#pragma warning disable S1144, RCS1213, IDE0051
         // select all options by the text displayed
         [Description("DEFAULT")]
+        [SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "Used by reflection, must be private.")]
+        [SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "Used by reflection, must be non-static.")]
         private void Select00(ActionRule action, SelectElement selectElement)
         {
             // single
@@ -129,6 +131,8 @@ namespace Gravity.Plugins.Actions.UiWeb
 
         // select the option by the index, as determined by the "index" attribute of the element
         [Description("INDEX")]
+        [SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "Used by reflection, must be private.")]
+        [SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "Used by reflection, must be non-static.")]
         private void Select01(ActionRule action, SelectElement selectElement)
         {
             // single
@@ -145,7 +149,7 @@ namespace Gravity.Plugins.Actions.UiWeb
             }
         }
 
-        private void DoSelect01(string option, SelectElement selectElement)
+        private static void DoSelect01(string option, SelectElement selectElement)
         {
             var index = int.TryParse(option, out int indexOut) ? indexOut : 0;
             selectElement.SelectByIndex(index);
@@ -153,6 +157,8 @@ namespace Gravity.Plugins.Actions.UiWeb
 
         // select an option by the value
         [Description("VALUE")]
+        [SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "Used by reflection, must be private.")]
+        [SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "Used by reflection, must be non-static.")]
         private void Select02(ActionRule action, SelectElement selectElement)
         {
             // single
@@ -171,6 +177,7 @@ namespace Gravity.Plugins.Actions.UiWeb
 
         // select all options which their text match to the action-rule regular-expression
         [Description("ALL")]
+        [SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "Used by reflection, must be private.")]
         private void Select03(ActionRule action, SelectElement selectElement)
         {
             foreach (var option in selectElement.Options)
@@ -182,7 +189,6 @@ namespace Gravity.Plugins.Actions.UiWeb
                 ((IJavaScriptExecutor)WebDriver).ExecuteScript("arguments[0].selected=true;", option);
             }
         }
-#pragma warning restore
 
         // JavaScript execution of select functionality for unsupported drivers.
         private void JavaScriptSelect(ActionRule action, SelectElement selectElement)
@@ -190,21 +196,21 @@ namespace Gravity.Plugins.Actions.UiWeb
             // constants
             var script =
                 "" + // setup preconditions and global values
-                $"var onAttribute = '{action.OnAttribute ?? string.Empty}';" +
-                $"var onValue = '{action.Argument ?? string.Empty}';" +
-                " var options = arguments[0].getElementsByTagName('option');" +
+                $"var onAttribute = \"{action.OnAttribute ?? string.Empty}\";" +
+                $"var onValue = \"{action.Argument ?? string.Empty}\";" +
+                " var options = arguments[0].getElementsByTagName(\"option\");" +
                 $"var isMultiple = {selectElement.IsMultiple.ToString().ToLower()};" +
                 "" + // set values for iteration
                 "var values = isMultiple ? onValue : [onValue];" +
                 "" + // by index
-                "if(onAttribute.toLowerCase() === 'index') {" +
+                "if(onAttribute.toLowerCase() === \"index\") {" +
                 "    for(i = 0; i < values.length; i++) {" +
                 "        index = parseInt(values[i]);" +
                 "        options[index].selected = true;" +
                 "    }" +
                 "}" +
                 "" + // by inner text
-                "if(onAttribute === '') {" +
+                "if(onAttribute === \"\") {" +
                 "    for(i = 0; i < values.length; i++) {" +
                 "        for(j = 0; j < options.length; j++) {" +
                 "            if(options[j].innerText !== values[i]) {" +
@@ -216,10 +222,10 @@ namespace Gravity.Plugins.Actions.UiWeb
                 "    }" +
                 "}" +
                 "" + // by options values
-                "if(onAttribute.toLowerCase() === 'value') {" +
+                "if(onAttribute.toLowerCase() === \"value\") {" +
                 "    for(i = 0; i < values.length; i++) {" +
                 "        for(j = 0; j < options.length; j++) {" +
-                "            if(options[j].getAttribute('value') !== values[i]) {" +
+                "            if(options[j].getAttribute(\"value\") !== values[i]) {" +
                 "                continue;" +
                 "            }" +
                 "            options[j].selected = true;" +
@@ -236,7 +242,7 @@ namespace Gravity.Plugins.Actions.UiWeb
         }
 
         // gets options array from argument
-        private IEnumerable<string> GetOptions(string options)
+        private static IEnumerable<string> GetOptions(string options)
         {
             // single value
             if (!options.IsJson())
@@ -245,7 +251,7 @@ namespace Gravity.Plugins.Actions.UiWeb
             }
 
             // multiple values
-            return JsonConvert.DeserializeObject<string[]>(value: options);
+            return JsonSerializer.Deserialize<IEnumerable<string>>(json: options);
         }
     }
 }

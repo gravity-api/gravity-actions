@@ -3,14 +3,15 @@
  * 
  * RESOURCES
  */
-using OpenQA.Selenium.Mock;
 using Gravity.Plugins.Actions.UiCommon;
+using Gravity.Plugins.Contracts;
 using Gravity.UnitTests.Base;
+
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Mock;
 
 using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
-using Gravity.Plugins.Contracts;
 
 #pragma warning disable S4144
 namespace Gravity.UnitTests.UiCommon
@@ -37,7 +38,7 @@ namespace Gravity.UnitTests.UiCommon
         {
             AssertDocumentation<ExecuteScript>(
                 pluginName: PluginsList.ExecuteScript,
-                resource: "execute_script.json");
+                resource: "ExecuteScript.json");
         }
         #endregion
 
@@ -83,7 +84,7 @@ namespace Gravity.UnitTests.UiCommon
         }
 
         [DataTestMethod, ExpectedException(typeof(WebDriverException))]
-        [DataRow(@"{""argument"":""{{$ --args:['argument',0,false]}}""}")]
+        [DataRow("{\"argument\":\"{{$ --args:[\\\"argument\\\",0,false]}}\"}")]
         public void ExecuteScriptArgs(string actionRule)
         {
             // execute
@@ -91,7 +92,7 @@ namespace Gravity.UnitTests.UiCommon
         }
 
         [DataTestMethod]
-        [DataRow(@"{""argument"":""{{$ --src:console.log('unitTesting'); --args:['argument',0,false]}}""}")]
+        [DataRow("{\"argument\":\"{{$ --src:console.log('unitTesting'); --args:[\\\"argument\\\",0,false]}}\"}")]
         public void ExecuteScriptSrcArgs(string actionRule)
         {
             // execute

@@ -12,11 +12,11 @@
     {
       "actionExample": {
         "action": "click",
-        "onElement": "//a[.='Departments']"
+        "onElement": "//a[.=\"Departments\"]"
       },
       "comment": "Can be tested on [https://gravitymvctestapplication.azurewebsites.net/UiControls].",
       "description": "Clicks the mouse on the specified element.",
-      "literalExample": "click on {//a[.='Departments']}"
+      "literalExample": "click on {//a[.=\"Departments\"]}"
     },
     {
       "actionExample": {

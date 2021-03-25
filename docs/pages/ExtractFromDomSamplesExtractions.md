@@ -351,7 +351,7 @@ Extract all students ```First Name``` and ```Last Name``` into a table with ```F
         },
         {
             "key": "LastName",
-            "onElement": ".//td[contains(@id,'student_last_name')]"
+            "onElement": ".//td[contains(@id,\"student_last_name\")]"
         }        
     ]
 }
@@ -361,7 +361,7 @@ Extract all students ```First Name``` and ```Last Name``` into a table with ```F
 ```
 extract from dom on {//td[contains(@id,'student_first_name')]}
     < column {FirstName} take {.//td[contains(@id,'student_first_name')]}
-    < column {LastName} take {.//td[contains(@id,'student_last_name')]}
+    < column {LastName} take {.//td[contains(@id,\"student_last_name\")]}
 ```
 
 #### _CSharp_
@@ -383,7 +383,7 @@ var contentEntries = new[]
     new ContentEntry
     { 
         Key = "LastName",
-        OnElement: ".//td[contains(@id,'student_last_name')]"
+        OnElement: ".//td[contains(@id,\"student_last_name\")]"
     }    
 };
 var extraction = new ExtractionRule
@@ -408,7 +408,7 @@ content_entries = [
     },
     {
         "key": "LastName",
-        "onElement": ".//td[contains(@id,'student_last_name')]"
+        "onElement": ".//td[contains(@id,\"student_last_name\")]"
     } 
 ]
 extraction = {
@@ -432,7 +432,7 @@ var contentEntries = [
     },
     {
         key: "LastName",
-        onElement: ".//td[contains(@id,'student_last_name')]"
+        onElement: ".//td[contains(@id,\"student_last_name\")]"
     } 
 ]
 var extraction = {
@@ -454,7 +454,7 @@ ContentEntry[] contentEntries = new EntriesBuilder()
                     .setOnElement(".//td[contains(@id,'student_first_name')]"),
             new ContentEntry()
                     .setKey("LastName")
-                    .setOnElement(".//td[contains(@id,'student_last_name')]"))
+                    .setOnElement(".//td[contains(@id,\"student_last_name\")]"))
         .build();
 
 ExtractionRule extraction = new ExtractionRule()

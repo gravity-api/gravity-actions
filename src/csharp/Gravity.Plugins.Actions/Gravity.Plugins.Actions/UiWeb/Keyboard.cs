@@ -11,7 +11,9 @@ using Gravity.Plugins.Actions.Extensions;
 using Gravity.Plugins.Attributes;
 using Gravity.Plugins.Base;
 using Gravity.Plugins.Contracts;
+
 using OpenQA.Selenium;
+
 using System.Collections.Generic;
 using System.Linq;
 
@@ -19,8 +21,8 @@ namespace Gravity.Plugins.Actions.UiWeb
 {
     [Plugin(
         assembly: "Gravity.Plugins.Actions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
-        resource: "Gravity.Plugins.Actions.Documentation.keyboard.json",
-        Name = Contracts.PluginsList.Keyboard)]
+        resource: "Gravity.Plugins.Actions.Manifest.Keyboard.json",
+        Name = PluginsList.Keyboard)]
     public class Keyboard : WebDriverActionPlugin
     {
         #region *** constructors ***

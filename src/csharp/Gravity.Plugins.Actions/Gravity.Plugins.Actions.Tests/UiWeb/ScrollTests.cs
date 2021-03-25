@@ -40,8 +40,8 @@ namespace Gravity.UnitTests.UiWeb
 
         #region *** tests: OnDriver      ***
         [DataTestMethod]
-        [DataRow("{'argument':'1000'}")]
-        [DataRow("{'argument':'{{$ --top:1000}}'}")]
+        [DataRow("{\"argument\":\"1000\"}")]
+        [DataRow("{\"argument\":\"{{$ --top:1000}}\"}")]
         public void ScrollWindowTop(string actionRule)
         {
             // execute
@@ -52,7 +52,7 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'argument':'{{$ --left:1000}}'}")]
+        [DataRow("{\"argument\":\"{{$ --left:1000}}\"}")]
         public void ScrollWindowLeft(string actionRule)
         {
             // execute
@@ -63,7 +63,7 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'argument':'{{$ --top:1000 --left:500}}'}")]
+        [DataRow("{\"argument\":\"{{$ --top:1000 --left:500}}\"}")]
         public void ScrollWindowTopLeft(string actionRule)
         {
             // execute
@@ -75,8 +75,8 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'argument':'{{$ --top:1000 --left:500, --behavior:auto}}'}")]
-        [DataRow("{'argument':'{{$ --top:1000 --left:500, --behavior:smooth}}'}")]
+        [DataRow("{\"argument\":\"{{$ --top:1000 --left:500, --behavior:auto}}\"}")]
+        [DataRow("{\"argument\":\"{{$ --top:1000 --left:500, --behavior:smooth}}\"}")]
         public void ScrollWindowTopLeftBehavior(string actionRule)
         {
             // execute
@@ -103,8 +103,8 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'argument':'1000','onElement':'//positive'}")]
-        [DataRow("{'argument':'{{$ --top:1000}}','onElement':'//positive'}")]
+        [DataRow("{\"argument\":\"1000\",\"onElement\":\"//positive\"}")]
+        [DataRow("{\"argument\":\"{{$ --top:1000}}\",\"onElement\":\"//positive\"}")]
         public void ScrollElementTop(string actionRule)
         {
             // expected
@@ -118,7 +118,7 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'argument':'{{$ --left:1000}}','onElement':'//positive'}")]
+        [DataRow("{\"argument\":\"{{$ --left:1000}}\",\"onElement\":\"//positive\"}")]
         public void ScrollElementLeft(string actionRule)
         {
             // expected
@@ -132,7 +132,7 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'argument':'{{$ --top:1000 --left:500}}','onElement':'//positive'}")]
+        [DataRow("{\"argument\":\"{{$ --top:1000 --left:500}}\",\"onElement\":\"//positive\"}")]
         public void ScrollElementTopLeft(string actionRule)
         {
             // expected
@@ -148,8 +148,8 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'argument':'{{$ --top:1000 --left:500, --behavior:auto}}','onElement':'//positive'}")]
-        [DataRow("{'argument':'{{$ --top:1000 --left:500, --behavior:smooth}}','onElement':'//positive'}")]
+        [DataRow("{\"argument\":\"{{$ --top:1000 --left:500, --behavior:auto}}\",\"onElement\":\"//positive\"}")]
+        [DataRow("{\"argument\":\"{{$ --top:1000 --left:500, --behavior:smooth}}\",\"onElement\":\"//positive\"}")]
         public void ScrollElementTopLeftBehavior(string actionRule)
         {
             // expected
@@ -165,8 +165,8 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'onElement':'//positive'}")]
-        [DataRow("{'onElement':'//negative'}")]
+        [DataRow("{\"onElement\":\"//positive\"}")]
+        [DataRow("{\"onElement\":\"//negative\"}")]
         public void ScrollElementNoArgument(string actionRule)
         {
             // expected
@@ -182,10 +182,10 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
-        [DataRow("{'onElement':'//null'}")]
-        [DataRow("{'onElement':'//none'}")]
-        [DataRow("{'onElement':'//stale'}")]
-        [DataRow("{'onElement':'//exception'}")]
+        [DataRow("{\"onElement\":\"//null\"}")]
+        [DataRow("{\"onElement\":\"//none\"}")]
+        [DataRow("{\"onElement\":\"//stale\"}")]
+        [DataRow("{\"onElement\":\"//exception\"}")]
         public void ScrollElementTimout(string actionRule)
         {
             // execute
@@ -198,8 +198,8 @@ namespace Gravity.UnitTests.UiWeb
 
         #region *** tests: OnElement     ***
         [DataTestMethod]
-        [DataRow("{'argument':'1000','onElement':'.//positive'}")]
-        [DataRow("{'argument':'{{$ --top:1000}}','onElement':'.//positive'}")]
+        [DataRow("{\"argument\":\"1000\",\"onElement\":\".//positive\"}")]
+        [DataRow("{\"argument\":\"{{$ --top:1000}}\",\"onElement\":\".//positive\"}")]
         public void ScrollNestedElementTop(string actionRule)
         {
             // expected
@@ -213,7 +213,7 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'argument':'{{$ --left:1000}}','onElement':'.//positive'}")]
+        [DataRow("{\"argument\":\"{{$ --left:1000}}\",\"onElement\":\".//positive\"}")]
         public void ScrollNestedElementLeft(string actionRule)
         {
             // expected
@@ -227,7 +227,7 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'argument':'{{$ --top:1000 --left:500}}','onElement':'.//positive'}")]
+        [DataRow("{\"argument\":\"{{$ --top:1000 --left:500}}\",\"onElement\":\".//positive\"}")]
         public void ScrollNestedElementTopLeft(string actionRule)
         {
             // expected
@@ -243,8 +243,8 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'argument':'{{$ --top:1000 --left:500, --behavior:auto}}','onElement':'.//positive'}")]
-        [DataRow("{'argument':'{{$ --top:1000 --left:500, --behavior:smooth}}','onElement':'.//positive'}")]
+        [DataRow("{\"argument\":\"{{$ --top:1000 --left:500, --behavior:auto}}\",\"onElement\":\".//positive\"}")]
+        [DataRow("{\"argument\":\"{{$ --top:1000 --left:500, --behavior:smooth}}\",\"onElement\":\".//positive\"}")]
         public void ScrollNestedElementTopLeftBehavior(string actionRule)
         {
             // expected
@@ -260,8 +260,8 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'onElement':'.//positive'}")]
-        [DataRow("{'onElement':'.//negative'}")]
+        [DataRow("{\"onElement\":\".//positive\"}")]
+        [DataRow("{\"onElement\":\".//negative\"}")]
         public void ScrollNestedElementNoArgument(string actionRule)
         {
             // expected
@@ -277,7 +277,7 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod]
-        [DataRow("{'onElement':'.//null'}")]
+        [DataRow("{\"onElement\":\".//null\"}")]
         public void ScrollNestedElementNull(string actionRule)
         {
             // expected
@@ -293,7 +293,7 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod, ExpectedException(typeof(NoSuchElementException))]
-        [DataRow("{'onElement':'.//none'}")]
+        [DataRow("{\"onElement\":\".//none\"}")]
         public void ScrollNestedElementNone(string actionRule)
         {
             // execute
@@ -304,7 +304,7 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod, ExpectedException(typeof(StaleElementReferenceException))]
-        [DataRow("{'onElement':'.//stale'}")]
+        [DataRow("{\"onElement\":\".//stale\"}")]
         public void ScrollNestedElementStale(string actionRule)
         {
             // execute
@@ -315,7 +315,7 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod, ExpectedException(typeof(WebDriverException))]
-        [DataRow("{'onElement':'.//exception'}")]
+        [DataRow("{\"onElement\":\".//exception\"}")]
         public void ScrollNestedElementException(string actionRule)
         {
             // execute

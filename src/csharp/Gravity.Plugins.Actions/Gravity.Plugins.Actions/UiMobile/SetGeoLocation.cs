@@ -15,19 +15,21 @@
  * https://github.com/gravity-api/gravity-actions/issues/20
  */
 using Gravity.Plugins.Actions.Extensions;
+using Gravity.Plugins.Attributes;
 using Gravity.Plugins.Base;
+using Gravity.Plugins.Contracts;
+
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
+
 using System.Collections.Generic;
-using Gravity.Plugins.Attributes;
-using Gravity.Plugins.Contracts;
 
 namespace Gravity.Plugins.Actions.UiMobile
 {
     [Plugin(
         assembly: "Gravity.Plugins.Actions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
-        resource: "Gravity.Plugins.Actions.Documentation.set_geo_location.json",
-        Name = Contracts.PluginsList.SetGeoLocation)]
+        resource: "Gravity.Plugins.Actions.Manifest.SetGeoLocation.json",
+        Name = PluginsList.SetGeoLocation)]
     public class SetGeoLocation : WebDriverActionPlugin
     {
         #region *** arguments    ***
@@ -126,9 +128,9 @@ namespace Gravity.Plugins.Actions.UiMobile
         private Location GetLocation()
         {
             // parse arguments
-            double.TryParse(arguments[Latitude], out double latitude);
-            double.TryParse(arguments[Longitude], out double longitude);
-            double.TryParse(arguments[Altitude], out double altitude);
+            _ = double.TryParse(arguments[Latitude], out double latitude);
+            _ = double.TryParse(arguments[Longitude], out double longitude);
+            _ = double.TryParse(arguments[Altitude], out double altitude);
 
             // set new property value
             return new Location { Altitude = altitude, Longitude = longitude, Latitude = latitude };

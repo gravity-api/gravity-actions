@@ -6,9 +6,9 @@
 * 
 * [test-actions]
 * 1. navigate to {https://gravitymvctestapplication.azurewebsites.net/uicontrols}
-* 2. elements listener {{$ --interval:500 --timeout:30000}} on {//div[./strong[contains(.,'Random Element.')]]}
+* 2. elements listener {{$ --interval:500 --timeout:30000}} on {//div[./strong[contains(.,\"Random Element.\")]]}
 *     3. type {dismissed} into {input_enabled} using {id}
-*     4. click on {//div[./strong[contains(.,'Random Element.')]]}
+*     4. click on {//div[./strong[contains(.,\"Random Element.\")]]}
 * 5. wait {30000}
 * 6. close browser
 * 
@@ -19,7 +19,7 @@
 #pragma warning restore
 using Gravity.IntegrationTests.Base;
 using Gravity.Plugins.Contracts;
-using Gravity.Plugins.Contracts;
+
 using System.Collections.Generic;
 
 namespace Gravity.IntegrationTests.Cases.UiCommon.ElementsListenerScenarios
@@ -38,7 +38,7 @@ namespace Gravity.IntegrationTests.Cases.UiCommon.ElementsListenerScenarios
                 {
                     Action = PluginsList.ElementsListener,
                     Argument = "{{$ --interval:500 --timeout:" + condition + "}}",
-                    OnElement = "//div[./strong[contains(.,'Random Element.')]]",
+                    OnElement = "//div[./strong[contains(.,\"Random Element.\")]]",
                     Actions = new[]
                     {
                         new ActionRule
@@ -51,7 +51,7 @@ namespace Gravity.IntegrationTests.Cases.UiCommon.ElementsListenerScenarios
                         new ActionRule
                         {
                             Action = PluginsList.Click,
-                            OnElement = "//div[./strong[contains(.,'Random Element.')]]"
+                            OnElement = "//div[./strong[contains(.,\"Random Element.\")]]"
                         }
                     }
                 },

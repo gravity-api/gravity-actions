@@ -35,13 +35,13 @@ namespace Gravity.UnitTests.UiMobile
         {
             AssertDocumentation<SetGeoLocation>(
                 pluginName: PluginsList.SetGeoLocation,
-                resource: "set_geo_location.json");
+                resource: "SetGeoLocation.json");
         }
         #endregion
 
         #region *** tests: OnDriver      ***
         [DataTestMethod]
-        [DataRow("{'argument':'{{$ --lat:5.5}}'}")]
+        [DataRow("{\"argument\":\"{{$ --lat:5.5}}\"}")]
         public void GeoLocationLatitudePositive(string actionRule)
         {
             // set new mock driver for mobile device
@@ -59,7 +59,7 @@ namespace Gravity.UnitTests.UiMobile
         }
 
         [DataTestMethod]
-        [DataRow("{'argument':'{{$ --lon:5.5}}'}")]
+        [DataRow("{\"argument\":\"{{$ --lon:5.5}}\"}")]
         public void GeoLocationLongitudePositive(string actionRule)
         {
             // set new mock driver for mobile device
@@ -77,7 +77,7 @@ namespace Gravity.UnitTests.UiMobile
         }
 
         [DataTestMethod]
-        [DataRow("{'argument':'{{$ --alt:5.5}}'}")]
+        [DataRow("{\"argument\":\"{{$ --alt:5.5}}\"}")]
         public void GeoLocationAltitudePositive(string actionRule)
         {
             // set new mock driver for mobile device
@@ -95,7 +95,7 @@ namespace Gravity.UnitTests.UiMobile
         }
 
         [DataTestMethod]
-        [DataRow("{'argument':''}")]
+        [DataRow("{\"argument\":\"\"}")]
         public void GeoLocationAltitudeNoArguments(string actionRule)
         {
             // set new mock driver for mobile device
@@ -113,7 +113,7 @@ namespace Gravity.UnitTests.UiMobile
         }
 
         [DataTestMethod]
-        [DataRow("{'argument':'{{$ --lon:5.5 --alt:6.5 --lat:NotNumber}}'}")]
+        [DataRow("{\"argument\":\"{{$ --lon:5.5 --alt:6.5 --lat:NotNumber}}\"}")]
         public void GeoLocationAltitudeInvalid(string actionRule)
         {
             // set new mock driver for mobile device
@@ -131,7 +131,7 @@ namespace Gravity.UnitTests.UiMobile
         }
 
         [DataTestMethod]
-        [DataRow("{'argument':'{{$ --lon:5.5 --alt:6.5 --lat:7.5}}'}")]
+        [DataRow("{\"argument\":\"{{$ --lon:5.5 --alt:6.5 --lat:7.5}}\"}")]
         public void GeoLocationAll(string actionRule)
         {
             // set new mock driver for mobile device

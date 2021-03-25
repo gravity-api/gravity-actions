@@ -3,11 +3,11 @@
  * 
  * RESOURCES
  */
-using Newtonsoft.Json;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization;
+using System.Text.Json;
 
 namespace Gravity.Plugins.Contracts
 {
@@ -87,9 +87,13 @@ namespace Gravity.Plugins.Contracts
             }
 
             // deserialize
+            var options = new JsonSerializerOptions
+            {
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+            };
             var automation = File.Exists(json)
-                ? JsonConvert.DeserializeObject<WebAutomation>(File.ReadAllText(json))
-                : JsonConvert.DeserializeObject<WebAutomation>(json);
+                ? JsonSerializer.Deserialize<WebAutomation>(File.ReadAllText(json), options)
+                : JsonSerializer.Deserialize<WebAutomation>(json, options);
 
             // apply
             DataSource = automation.DataSource;

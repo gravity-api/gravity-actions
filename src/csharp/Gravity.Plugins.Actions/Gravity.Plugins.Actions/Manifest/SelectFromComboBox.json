@@ -1,4 +1,5 @@
 {
+  "aliases": [ "SelectFromList" ],
   "cliArguments": {
     "all": "Select all values in the combo box (combo must be of type multiple)."
   },
@@ -38,20 +39,20 @@
     },
     {
       "description": "Selects multiple values from select_menu_multiple combo box, by item text.",
-      "literalExample": "select from combo box {['One', 'Two']} on {select_menu_multiple} using {id}",
+      "literalExample": "select from combo box {[\"One\", \"Two\"]} on {select_menu_multiple} using {id}",
       "actionExample": {
         "action": "SelectFromComboBox",
-        "argument": "['One', 'Two']",
+        "argument": "[\"One\", \"Two\"]",
         "onElement": "select_menu_multiple",
         "locator": "Id"
       }
     },
     {
       "description": "Selects multiple values from select_menu_multiple combo box, by item value.",
-      "literalExample": "select from combo box {['1', '2']} on {select_menu_multiple} using {id} from {value}",
+      "literalExample": "select from combo box {[\"1\", \"2\"]} on {select_menu_multiple} using {id} from {value}",
       "actionExample": {
         "action": "SelectFromComboBox",
-        "argument": "['1', '2']",
+        "argument": "[\"1\", \"2\"]",
         "onElement": "select_menu_multiple",
         "locator": "Id",
         "onAttribute": "value"
@@ -59,10 +60,10 @@
     },
     {
       "description": "Selects multiple values from select_menu_multiple combo box, by item index.",
-      "literalExample": "select from combo box {['1', '2']} on {select_menu_multiple} using {id} from {index}",
+      "literalExample": "select from combo box {[\"1\", \"2\"]} on {select_menu_multiple} using {id} from {index}",
       "actionExample": {
         "action": "SelectFromComboBox",
-        "argument": "['1', '2']",
+        "argument": "[\"1\", \"2\"]",
         "onElement": "select_menu_multiple",
         "locator": "Id",
         "onAttribute": "index"

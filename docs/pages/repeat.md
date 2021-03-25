@@ -165,7 +165,7 @@ _**None**_
 Can be tested on
 * https://gravitymvctestapplication.azurewebsites.net/student
 
-Repeat ```SendKeys``` action with ```a``` argument into ```//input[@id='SearchString']```, 10 times.
+Repeat ```SendKeys``` action with ```a``` argument into ```//input[@id=\"SearchString\"]```, 10 times.
 
 #### _Action Rule (JSON)_
 ```js
@@ -176,7 +176,7 @@ Repeat ```SendKeys``` action with ```a``` argument into ```//input[@id='SearchSt
         {
             "action": "SendKeys",
             "argument": "a",
-            "onElement": "//input[@id='SearchString']"
+            "onElement": "//input[@id=\"SearchString\"]"
         }
     ]
 }
@@ -185,7 +185,7 @@ Repeat ```SendKeys``` action with ```a``` argument into ```//input[@id='SearchSt
 #### _Rhino Literal_
 ```
 repeat {10}
-    > type {a} into {//input[@id='SearchString']}
+    > type {a} into {//input[@id=\"SearchString\"]}
 ```
 
 #### _CSharp_
@@ -200,7 +200,7 @@ var actionRule = new ActionRule
         {
             Action = "SendKeys",
             Argument = "a",
-            OnElement = "//input[@id='SearchString']"
+            OnElement = "//input[@id=\"SearchString\"]"
         }
     };
 };
@@ -215,7 +215,7 @@ action_rule = {
         {
             "action": "SendKeys",
             "argument": "a",
-            "onElement": "//input[@id='SearchString']"
+            "onElement": "//input[@id=\"SearchString\"]"
         }
     ]
 }
@@ -230,7 +230,7 @@ var actionRule = {
         {
             action: "SendKeys",
             argument: "a",
-            onElement: "//input[@id='SearchString']"
+            onElement: "//input[@id=\"SearchString\"]"
         }
     ]
 };
@@ -245,7 +245,7 @@ ActionRule actionRule = new ActionRule()
             new ActionRule()
                     .setAction("SendKeys")
                     .setArgument("a")
-                    .setOnElement("//input[@id='SearchString']"));
+                    .setOnElement("//input[@id=\"SearchString\"]"));
 ```
 
 ***
@@ -254,18 +254,18 @@ ActionRule actionRule = new ActionRule()
 Can be tested on
 * https://gravitymvctestapplication.azurewebsites.net/student
 
-Repeat ```Click``` action on ```//a[contains(.,'Next') and @class='btn btn-default ']```, until element ```//a[contains(.,'Next') and @class='btn btn-default disabled']``` exists.
+Repeat ```Click``` action on ```//a[contains(.,\"Next\") and @class=\"btn btn-default \"]```, until element ```//a[contains(.,\"Next\") and @class=\"btn btn-default disabled\"]``` exists.
 
 #### _Action Rule (JSON)_
 ```js
 {
     "action": "Repeat",
     "argument": "{{$ --until:exists}}",
-    "onElement": "//a[contains(.,'Next') and @class='btn btn-default disabled']"
+    "onElement": "//a[contains(.,\"Next\") and @class=\"btn btn-default disabled\"]"
     "actions": [
         {
             "action": "Click",
-            "onElement": "//a[contains(.,'Next') and @class='btn btn-default ']"
+            "onElement": "//a[contains(.,\"Next\") and @class=\"btn btn-default \"]"
         }
     ]
 }
@@ -273,8 +273,8 @@ Repeat ```Click``` action on ```//a[contains(.,'Next') and @class='btn btn-defau
 
 #### _Rhino Literal_
 ```
-repeat {{$ --until:exists}} on {//a[contains(.,'Next') and @class='btn btn-default disabled']}
-    > click on {//a[contains(.,'Next') and @class='btn btn-default ']}
+repeat {{$ --until:exists}} on {//a[contains(.,\"Next\") and @class=\"btn btn-default disabled\"]}
+    > click on {//a[contains(.,\"Next\") and @class=\"btn btn-default \"]}
 ```
 
 #### _CSharp_
@@ -283,13 +283,13 @@ var actionRule = new ActionRule
 {
     Action = "Repeat",
     Argument = "{{$ --until:exists}}",
-    OnElement = "//a[contains(.,'Next') and @class='btn btn-default disabled']",
+    OnElement = "//a[contains(.,\"Next\") and @class=\"btn btn-default disabled\"]",
     Actions = new[]
     {
         new ActionRule
         {
             Action = "Click",
-            OnElement = "//a[contains(.,'Next') and @class='btn btn-default ']"
+            OnElement = "//a[contains(.,\"Next\") and @class=\"btn btn-default \"]"
         }
     };
 };
@@ -300,11 +300,11 @@ var actionRule = new ActionRule
 action_rule = {
     "action": "Repeat",
     "argument": "{{$ --until:exists}}",
-    "onElement": "//a[contains(.,'Next') and @class='btn btn-default disabled']"
+    "onElement": "//a[contains(.,\"Next\") and @class=\"btn btn-default disabled\"]"
     "actions": [
         {
             "action": "Click",
-            "onElement": "//a[contains(.,'Next') and @class='btn btn-default ']"
+            "onElement": "//a[contains(.,\"Next\") and @class=\"btn btn-default \"]"
         }
     ]
 }
@@ -315,11 +315,11 @@ action_rule = {
 var actionRule = {
     action: "Repeat",
     argument: "{{$ --until:exists}}",
-    onElement: "//a[contains(.,'Next') and @class='btn btn-default disabled']",
+    onElement: "//a[contains(.,\"Next\") and @class=\"btn btn-default disabled\"]",
     actions: [
         {
             action: "Click",
-            onElement: "//a[contains(.,'Next') and @class='btn btn-default ']"
+            onElement: "//a[contains(.,\"Next\") and @class=\"btn btn-default \"]"
         }
     ]
 };
@@ -330,11 +330,11 @@ var actionRule = {
 ActionRule actionRule = new ActionRule()
         .setAction("Repeat")
         .setArgument("{{$ --until:exists}}")
-        .setOnElement("//a[contains(.,'Next') and @class='btn btn-default disabled']")
+        .setOnElement("//a[contains(.,\"Next\") and @class=\"btn btn-default disabled\"]")
         .setActions(
             new ActionRule()
                     .setAction("Click")
-                    .setOnElement("//a[contains(.,'Next') and @class='btn btn-default ']"));
+                    .setOnElement("//a[contains(.,\"Next\") and @class=\"btn btn-default \"]"));
 ```
 
 ***
@@ -343,7 +343,7 @@ ActionRule actionRule = new ActionRule()
 Can be tested on
 * https://gravitymvctestapplication.azurewebsites.net/student
 
-For each repeat ```SendKeys``` action with ```a``` argument into ```//input[@id='SearchString']```, repeat ```SendKeys``` action with ```b``` argument into ```//input[@id='SearchString']``` (repeat inside repeat)..
+For each repeat ```SendKeys``` action with ```a``` argument into ```//input[@id=\"SearchString\"]```, repeat ```SendKeys``` action with ```b``` argument into ```//input[@id=\"SearchString\"]``` (repeat inside repeat)..
 
 #### _Action Rule (JSON)_
 ```js
@@ -354,7 +354,7 @@ For each repeat ```SendKeys``` action with ```a``` argument into ```//input[@id=
         {
             "action": "SendKeys",
             "argument": "a",
-            "onElement": "//input[@id='SearchString']"
+            "onElement": "//input[@id=\"SearchString\"]"
         },
         {
             "action": "Repeat",
@@ -363,7 +363,7 @@ For each repeat ```SendKeys``` action with ```a``` argument into ```//input[@id=
                 {
                     "action": "SendKeys",
                     "argument": "b",
-                    "onElement": "//input[@id='SearchString']"
+                    "onElement": "//input[@id=\"SearchString\"]"
                 }
             ]
         }
@@ -374,9 +374,9 @@ For each repeat ```SendKeys``` action with ```a``` argument into ```//input[@id=
 #### _Rhino Literal_
 ```
 repeat {2}
-    > send keys {a} into {//input[@id='SearchString']}
+    > send keys {a} into {//input[@id=\"SearchString\"]}
           > repeat {6}
-                > send keys {b} into {//input[@id='SearchString']}
+                > send keys {b} into {//input[@id=\"SearchString\"]}
 ```
 
 #### _CSharp_
@@ -391,7 +391,7 @@ var actionRule = new ActionRule
         {
             Action = "SendKeys",
             Argument = "a",
-            OnElement = "//input[@id='SearchString']"
+            OnElement = "//input[@id=\"SearchString\"]"
         },
         new ActionRule
         {
@@ -403,7 +403,7 @@ var actionRule = new ActionRule
                 {
                     Action = "SendKeys",
                     Argument = "b",
-                    OnElement = "//input[@id='SearchString']"
+                    OnElement = "//input[@id=\"SearchString\"]"
                 }
             }
         }
@@ -420,7 +420,7 @@ action_rule = {
         {
             "action": "SendKeys",
             "argument": "a",
-            "onElement": "//input[@id='SearchString']"
+            "onElement": "//input[@id=\"SearchString\"]"
         },
         {
             "action": "Repeat",
@@ -429,7 +429,7 @@ action_rule = {
                 {
                     "action": "SendKeys",
                     "argument": "b",
-                    "onElement": "//input[@id='SearchString']"
+                    "onElement": "//input[@id=\"SearchString\"]"
                 }
             ]
         }
@@ -446,7 +446,7 @@ var actionRule = {
         {
             action: "SendKeys",
             argument: "a",
-            onElement: "//input[@id='SearchString']"
+            onElement: "//input[@id=\"SearchString\"]"
         },
         {
             action: "Repeat",
@@ -455,7 +455,7 @@ var actionRule = {
                 {
                     action: "SendKeys",
                     argument: "b",
-                    onElement: "//input[@id='SearchString']"
+                    onElement: "//input[@id=\"SearchString\"]"
                 }
             ]
         }
@@ -472,7 +472,7 @@ ActionRule actionRule = new ActionRule()
             new ActionRule()
                     .setAction("SendKeys")
                     .setArgument("a")
-                    .setOnElement("//input[@id='SearchString']"),
+                    .setOnElement("//input[@id=\"SearchString\"]"),
             new ActionRule()
                     .setAction("Repeat")
                     .setArgument("3")
@@ -480,5 +480,5 @@ ActionRule actionRule = new ActionRule()
                         new ActionRule()
                                   .setAction("SendKeys")
                                   .setArgument("a")
-                                  .setOnElement("//input[@id='SearchString']")));
+                                  .setOnElement("//input[@id=\"SearchString\"]")));
 ```

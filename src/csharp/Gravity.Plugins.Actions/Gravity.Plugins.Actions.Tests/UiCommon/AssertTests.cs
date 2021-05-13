@@ -17,7 +17,6 @@ using System.Text.Json;
 
 using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
 
-#pragma warning disable S4144 // Methods should not have identical implementations
 namespace Gravity.UnitTests.UiCommon
 {
     [TestClass]
@@ -57,7 +56,7 @@ namespace Gravity.UnitTests.UiCommon
         #endregion
 
         // members
-        private readonly JsonSerializerOptions serializerOptions = new JsonSerializerOptions
+        private readonly JsonSerializerOptions serializerOptions = new()
         {
             PropertyNamingPolicy = JsonNamingPolicy.CamelCase
         };

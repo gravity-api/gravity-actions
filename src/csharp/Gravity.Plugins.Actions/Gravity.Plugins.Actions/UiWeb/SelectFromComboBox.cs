@@ -2,9 +2,6 @@
  * CHANGE LOG - keep only last 5 threads
  * 
  * RESOURCES
- * 
- * work items
- * TODO: improve JavaScriptSelect for better readability and code reuse.
  */
 using Gravity.Extensions;
 using Gravity.Plugins.Attributes;
@@ -21,6 +18,8 @@ using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.RegularExpressions;
 using OpenQA.Selenium.Extensions;
+using System.Linq;
+using System.Reflection;
 
 namespace Gravity.Plugins.Actions.UiWeb
 {
@@ -83,8 +82,13 @@ namespace Gravity.Plugins.Actions.UiWeb
         }
 
         // execute relevant select method based on action rule on the given select element
+        [SuppressMessage("Major Code Smell", "S3011:Reflection should not be used to increase accessibility of classes, methods, or fields", Justification = "Factory for using private methods which are already allows in this scope.")]
         private void SelectFactory(ActionRule action, SelectElement selectElement)
         {
+            // constants
+            const StringComparison Compare = StringComparison.OrdinalIgnoreCase;
+            const BindingFlags Flags = BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Static;
+
             // load arguments
             var arguments = CliFactory.Parse(cli: action.Argument);
 
@@ -96,24 +100,26 @@ namespace Gravity.Plugins.Actions.UiWeb
             description = string.IsNullOrEmpty(description) ? "DEFAULT" : description;
 
             // get select method > align description
-            //var method = GetType().GetMethodByDescription(description);
+            var method = GetType()
+                .GetMethodsByAttribute<DescriptionAttribute>(Flags)
+                .FirstOrDefault(i => i.GetCustomAttribute<DescriptionAttribute>().Description.Equals(description, Compare));
 
-            //// execute
-            //try
-            //{
-            //    method.Invoke(this, new object[] { action, selectElement });
-            //}
-            //catch (Exception e) when (e != null)
-            //{
-            //    JavaScriptSelect(action, selectElement);
-            //}
+            // invoke
+            try
+            {
+                var instance = method.IsStatic ? null : this;
+                method.Invoke(instance, new object[] { action, selectElement });
+            }
+            catch (Exception e) when (e != null)
+            {
+                JavaScriptSelect(action, selectElement);
+            }
         }
 
         // select all options by the text displayed
         [Description("DEFAULT")]
-        [SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "Used by reflection, must be private.")]
-        [SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "Used by reflection, must be non-static.")]
-        private void Select00(ActionRule action, SelectElement selectElement)
+        [SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "Used by reflection")]
+        private static void Select00(ActionRule action, SelectElement selectElement)
         {
             // single
             if (!selectElement.IsMultiple)
@@ -131,9 +137,8 @@ namespace Gravity.Plugins.Actions.UiWeb
 
         // select the option by the index, as determined by the "index" attribute of the element
         [Description("INDEX")]
-        [SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "Used by reflection, must be private.")]
-        [SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "Used by reflection, must be non-static.")]
-        private void Select01(ActionRule action, SelectElement selectElement)
+        [SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "Used by reflection")]
+        private static void Select01(ActionRule action, SelectElement selectElement)
         {
             // single
             if (!selectElement.IsMultiple)
@@ -157,9 +162,8 @@ namespace Gravity.Plugins.Actions.UiWeb
 
         // select an option by the value
         [Description("VALUE")]
-        [SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "Used by reflection, must be private.")]
-        [SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "Used by reflection, must be non-static.")]
-        private void Select02(ActionRule action, SelectElement selectElement)
+        [SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "Used by reflection")]
+        private static void Select02(ActionRule action, SelectElement selectElement)
         {
             // single
             if (!selectElement.IsMultiple)
@@ -177,7 +181,7 @@ namespace Gravity.Plugins.Actions.UiWeb
 
         // select all options which their text match to the action-rule regular-expression
         [Description("ALL")]
-        [SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "Used by reflection, must be private.")]
+        [SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "Used by reflection")]
         private void Select03(ActionRule action, SelectElement selectElement)
         {
             foreach (var option in selectElement.Options)

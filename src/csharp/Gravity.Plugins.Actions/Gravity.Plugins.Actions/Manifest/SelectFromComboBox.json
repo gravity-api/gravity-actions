@@ -1,7 +1,10 @@
 {
   "aliases": [ "SelectFromList" ],
   "cliArguments": {
-    "all": "Select all values in the combo box (combo must be of type multiple)."
+    "all": {
+      "description": "Select all values in the combo box (combo must be of type multiple).",
+      "example": "select from combo box {{$ --all}} on {select_menu} by {id}"
+    }
   },
   "description": "Provides a convenience method for manipulating selections of options in an HTML select element. This action supports different selection options as well as multiple selection based on a pattern.",
   "examples": [

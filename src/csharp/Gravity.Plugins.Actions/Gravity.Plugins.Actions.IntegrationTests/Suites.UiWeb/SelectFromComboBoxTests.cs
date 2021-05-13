@@ -3,9 +3,10 @@
  * 
  * RESOURCES
  */
-using Graivty.IntegrationTests.Cases.UiWeb.SelectFromComboBoxScenarios;
 using Gravity.IntegrationTests.Base;
+using Graivty.IntegrationTests.Cases.UiWeb.SelectFromComboBoxScenarios;
 using Gravity.IntegrationTests.Providers;
+
 using NUnit.Framework;
 
 using DescriptionAttribute = System.ComponentModel.DescriptionAttribute;

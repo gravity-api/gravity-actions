@@ -8,8 +8,7 @@ using Gravity.Plugins.Contracts;
 using Gravity.Plugins.Framework;
 
 using OpenQA.Selenium;
-
-using System;
+using OpenQA.Selenium.Extensions;
 
 namespace Gravity.Plugins.Actions.UiCommon
 {
@@ -36,7 +35,7 @@ namespace Gravity.Plugins.Actions.UiCommon
         /// <param name="action">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
         public override void OnPerform(ActionRule action)
         {
-            DoAction(action, element: default);
+            ConditionalGetElement(element: default, action).TryMoveToElement();
         }
 
         /// <summary>
@@ -46,32 +45,7 @@ namespace Gravity.Plugins.Actions.UiCommon
         /// <param name="element">This <see cref="IWebElement"/> instance on which to perform the action (provided by the extraction rule).</param>
         public override void OnPerform(ActionRule action, IWebElement element)
         {
-            DoAction(action, element);
-        }
-
-        // execute action routine
-        private void DoAction(ActionRule action, IWebElement element)
-        {
-            // constants
-            const string fallbackScript =
-                "var rectangle = arguments[0].getBoundingClientRect(); " +
-                "window.scroll(rectangle.left, rectangle.top);";
-
-            // get element
-            var onElement = this.ConditionalGetElement(element, action);
-
-            // get actions
-            var actions = new OpenQA.Selenium.Interactions.Actions(WebDriver);
-
-            // move to element
-            try
-            {
-                actions.MoveToElement(onElement).Build().Perform();
-            }
-            catch (Exception e) when (e is WebDriverException)
-            {
-                ((IJavaScriptExecutor)WebDriver).ExecuteScript(script: fallbackScript, args: onElement);
-            }
+            ConditionalGetElement(element, action).TryMoveToElement();
         }
     }
 }

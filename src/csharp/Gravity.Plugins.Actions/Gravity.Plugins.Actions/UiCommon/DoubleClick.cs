@@ -25,6 +25,7 @@ using Gravity.Plugins.Contracts;
 using OpenQA.Selenium;
 
 using SeleniumActions = OpenQA.Selenium.Interactions.Actions;
+using OpenQA.Selenium.Extensions;
 
 namespace Gravity.Plugins.Actions.UiCommon
 {
@@ -80,10 +81,7 @@ namespace Gravity.Plugins.Actions.UiCommon
             }
 
             // on element action
-            var onElement = this.ConditionalGetElement(element, action);
-
-            // try to scroll into view
-            //onElement.TryScrollIntoView();
+            var onElement = ConditionalGetElement(element, action).TryMoveToElement();
 
             // perform action
             actions.DoubleClick(onElement).Build().Perform();

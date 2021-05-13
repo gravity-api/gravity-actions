@@ -6,6 +6,7 @@
 using Gravity.IntegrationTests.Base;
 using Gravity.IntegrationTests.Cases.UiCommon.ClickScenarios;
 using Gravity.IntegrationTests.Providers;
+
 using NUnit.Framework;
 
 using DescriptionAttribute = System.ComponentModel.DescriptionAttribute;

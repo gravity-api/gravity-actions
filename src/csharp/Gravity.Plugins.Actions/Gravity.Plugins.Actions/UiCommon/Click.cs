@@ -36,6 +36,7 @@ using System;
 using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Reflection;
 
 // consolidate references
 using SeleniumActions = OpenQA.Selenium.Interactions.Actions;
@@ -119,7 +120,7 @@ namespace Gravity.Plugins.Actions.UiCommon
             // special actions conditions
             if (arguments.ContainsKey(Until))
             {
-                ConditionsFactory(action, element, arguments[Until]);
+                ConditionsFactory(action, element);
                 return;
             }
 
@@ -127,24 +128,48 @@ namespace Gravity.Plugins.Actions.UiCommon
             var timeout = TimeSpan.FromMilliseconds(Automation.EngineConfiguration.SearchTimeout);
             if (element != default)
             {
-                element.GetElement(ByFactory, action, timeout).Click();
+                element.GetElement(ByFactory, action, timeout).TryMoveToElement().Click();
                 return;
             }
 
             // default
-            WebDriver.GetElement(ByFactory, action, timeout).Click();
+            WebDriver.GetElement(ByFactory, action, timeout).TryMoveToElement().Click();
         }
 
+        // TODO: reuse with other factories in similar actions to remove redundancy
         // special actions factory
-        private void ConditionsFactory(ActionRule action, IWebElement element, string condition)
+        [SuppressMessage("Major Code Smell", "S3011:Reflection should not be used to increase accessibility of classes, methods, or fields", Justification = "Factory for using private methods which are already allows in this scope.")]
+        private void ConditionsFactory(ActionRule action, IWebElement element)
         {
-            // get method
+            // constants
+            const StringComparison Compare = StringComparison.OrdinalIgnoreCase;
+            const BindingFlags Flags = BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Static;
+
+            // load arguments
+            var arguments = CliFactory.Parse(cli: action.Argument);
+
+            // get description
+            var description = arguments.ContainsKey(Until)
+                ? arguments[Until]
+                : string.Empty;
+
+            description = string.IsNullOrEmpty(description) ? "DEFAULT" : description;
+
+            // get select method > align description
             var method = GetType()
-                .GetMethodsByAttribute<DescriptionAttribute>()
-                .FirstOrDefault(i=>i.GetCustomAttribute<DescriptionAttribute>().Description.Equals(condition, StringComparison.OrdinalIgnoreCase));
+                .GetMethodsByAttribute<DescriptionAttribute>(Flags)
+                .FirstOrDefault(i => i.GetCustomAttribute<DescriptionAttribute>().Description.Equals(description, Compare));
 
             // invoke
-            method.Invoke(this, new object[] { action, element });
+            var instance = method.IsStatic ? null : this;
+            method.Invoke(instance, new object[] { action, element });
+        }
+
+        [Description("DEFAULT")]
+        [SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "Used by reflection, must be private.")]
+        private void Default(ActionRule action, IWebElement element)
+        {
+            ConditionalGetElement(element, action).TryMoveToElement().Click();
         }
 
         [Description(NoAlert)]
@@ -152,7 +177,7 @@ namespace Gravity.Plugins.Actions.UiCommon
         private void Alert(ActionRule action, IWebElement element) => wait.Until(driver =>
         {
             // click (supposed to trigger alert)
-            this.ConditionalGetElement(element, action).Click();
+            ConditionalGetElement(element, action).TryMoveToElement().Click();
 
             // dismiss if exists
             if (driver.HasAlert())

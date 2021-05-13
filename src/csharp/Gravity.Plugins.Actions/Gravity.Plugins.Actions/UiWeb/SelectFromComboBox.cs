@@ -81,6 +81,7 @@ namespace Gravity.Plugins.Actions.UiWeb
             SelectFactory(action, selectElement);
         }
 
+        // TODO: reuse with other factories in similar actions to remove redundancy
         // execute relevant select method based on action rule on the given select element
         [SuppressMessage("Major Code Smell", "S3011:Reflection should not be used to increase accessibility of classes, methods, or fields", Justification = "Factory for using private methods which are already allows in this scope.")]
         private void SelectFactory(ActionRule action, SelectElement selectElement)

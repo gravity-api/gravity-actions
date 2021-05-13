@@ -35,7 +35,7 @@ namespace Gravity.IntegrationTests.Cases.UiCommon.ExecuteScriptScenarios
                     Action = PluginsList.ExecuteScript,
                     Argument = "{arguments[0].click();}",
                     OnElement = condition,
-                    Locator = LocatorsList.Id
+                    Locator = Locators.Id
                 },
                 SharedSteps.AssertClickOutcome(expectedPattern: "click on element")
             };

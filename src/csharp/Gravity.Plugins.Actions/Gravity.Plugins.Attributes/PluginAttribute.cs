@@ -3,9 +3,9 @@
  * 
  * RESOURCES
  */
-using Gravity.Plugins.Base;
+using Gravity.Plugins.Attributes.Extensions;
 using Gravity.Plugins.Contracts;
-using Gravity.Plugins.Extensions;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +14,7 @@ using System.Reflection;
 namespace Gravity.Plugins.Attributes
 {
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Interface, AllowMultiple = false)]
-    public sealed class PluginAttribute : Attribute
+    public sealed class PluginAttribute: Attribute, IAttributeable, IExampleable
     {
         // members: state
         private readonly Assembly assembly;
@@ -45,6 +45,11 @@ namespace Gravity.Plugins.Attributes
         /// ![Mandatory] Gets or sets the <see cref="Plugin"/> name. Used to identify the <see cref="Plugin"/>.
         /// </summary>
         public string Name { get; set; }
+
+        /// <summary>
+        /// Gets or sets a literal name for the attribute.
+        /// </summary>
+        public string Literal { get; set; }
 
         /// <summary>
         /// ![Mandatory] Gets or sets the <see cref="Plugin"/> type (i.e. Macro, Action, Composed, etc.).

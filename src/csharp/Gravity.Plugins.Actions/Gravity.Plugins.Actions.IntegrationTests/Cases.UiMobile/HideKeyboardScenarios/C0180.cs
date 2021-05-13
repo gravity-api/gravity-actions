@@ -36,7 +36,7 @@ namespace Graivty.IntegrationTests.Cases.UiMobile.HideKeyboardScenarios
                 {
                     Action = PluginsList.Click,
                     OnElement = "SearchString",
-                    Locator = LocatorsList.Id
+                    Locator = Locators.Id
                 },
                 // TODO: assert keyboard visible
                 new ActionRule

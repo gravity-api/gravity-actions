@@ -54,11 +54,31 @@ namespace Gravity.UnitTests.UiCommon
             Assert.IsTrue(true);
         }
 
-        [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
+        [DataTestMethod, ExpectedException(typeof(NoSuchElementException))]
         [DataRow("{\"onElement\":\"//none\"}")]
-        [DataRow("{\"onElement\":\"//null\"}")]
-        [DataRow("{\"onElement\":\"//stale\"}")]
         public void ClickNoElement(string actionRule)
+        {
+            // execute
+            ExecuteAction<Click>(actionRule);
+
+            // assertion (no assertion here)
+            Assert.IsTrue(true);
+        }
+
+        [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
+        [DataRow("{\"onElement\":\"//null\"}")]
+        public void ClickNull(string actionRule)
+        {
+            // execute
+            ExecuteAction<Click>(actionRule);
+
+            // assertion (no assertion here)
+            Assert.IsTrue(true);
+        }
+
+        [DataTestMethod, ExpectedException(typeof(StaleElementReferenceException))]
+        [DataRow("{\"onElement\":\"//stale\"}")]
+        public void ClickStale(string actionRule)
         {
             // execute
             ExecuteAction<Click>(actionRule);
@@ -126,11 +146,31 @@ namespace Gravity.UnitTests.UiCommon
             Assert.IsTrue(true);
         }
 
-        [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
+        [DataTestMethod, ExpectedException(typeof(NoSuchElementException))]
         [DataRow("{\"onElement\":\"//none\",\"locator\":\"Xpath\"}")]
-        [DataRow("{\"onElement\":\"//null\",\"locator\":\"Xpath\"}")]
-        [DataRow("{\"onElement\":\"//stale\",\"locator\":\"Xpath\"}")]
         public void ClickElementAbsoluteNoElement(string actionRule)
+        {
+            // execute
+            ExecuteAction<Click>(MockBy.Positive(), actionRule);
+
+            // assertion (no assertion here)
+            Assert.IsTrue(true);
+        }
+
+        [DataTestMethod, ExpectedException(typeof(StaleElementReferenceException))]
+        [DataRow("{\"onElement\":\"//stale\",\"locator\":\"Xpath\"}")]
+        public void ClickElementAbsoluteStaleElement(string actionRule)
+        {
+            // execute
+            ExecuteAction<Click>(MockBy.Positive(), actionRule);
+
+            // assertion (no assertion here)
+            Assert.IsTrue(true);
+        }
+
+        [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
+        [DataRow("{\"onElement\":\"//null\",\"locator\":\"Xpath\"}")]
+        public void ClickElementAbsoluteNullElement(string actionRule)
         {
             // execute
             ExecuteAction<Click>(MockBy.Positive(), actionRule);
@@ -172,11 +212,20 @@ namespace Gravity.UnitTests.UiCommon
             Assert.IsTrue(true);
         }
 
-        [TestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
-        [DataRow("{\"onElement\":\".//null\"}")]
-        [DataRow("{\"onElement\":\".//stale\"}")]
+        [TestMethod, ExpectedException(typeof(NoSuchElementException))]
         [DataRow("{\"onElement\":\".//none\"}")]
         public void ClickElementFlatNoElement(string actionRule)
+        {
+            // execute
+            ExecuteAction<Click>(MockBy.Null(), actionRule);
+
+            // assertion (no assertion here)
+            Assert.IsTrue(true);
+        }
+
+        [TestMethod, ExpectedException(typeof(StaleElementReferenceException))]
+        [DataRow("{\"onElement\":\".//stale\"}")]
+        public void ClickElementFlatStale(string actionRule)
         {
             // execute
             ExecuteAction<Click>(MockBy.Null(), actionRule);
@@ -200,6 +249,17 @@ namespace Gravity.UnitTests.UiCommon
         {
             // execute
             ExecuteAction<Click>(MockBy.Null());
+
+            // assertion (no assertion here)
+            Assert.IsTrue(true);
+        }
+
+        [TestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
+        [DataRow("{\"onElement\":\".//null\"}")]
+        public void ClickElementFlatNull(string actionRule)
+        {
+            // execute
+            ExecuteAction<Click>(MockBy.Null(), actionRule);
 
             // assertion (no assertion here)
             Assert.IsTrue(true);

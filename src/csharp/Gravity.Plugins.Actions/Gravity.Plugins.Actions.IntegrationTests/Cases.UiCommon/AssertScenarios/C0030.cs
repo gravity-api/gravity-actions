@@ -34,7 +34,7 @@ namespace Gravity.IntegrationTests.Cases.UiCommon.AssertScenarios
                     Action = PluginsList.Assert,
                     Argument = "{{$ --text --ne:" + expected + "}}",
                     OnElement = "text for testing",
-                    Locator = LocatorsList.Name
+                    Locator = Locators.Name
                 }
             };
         }

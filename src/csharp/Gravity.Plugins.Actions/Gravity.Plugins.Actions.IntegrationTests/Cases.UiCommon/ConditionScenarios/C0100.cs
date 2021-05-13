@@ -37,7 +37,7 @@ namespace Gravity.IntegrationTests.Cases.UiCommon.ConditionScenarios
                     Action = PluginsList.Condition,
                     Argument = "{{$ --text --lt:" + condition + "}}",
                     OnElement = "number for testing",
-                    Locator = LocatorsList.Name,
+                    Locator = Locators.Name,
                     Actions = SharedSteps.SetNumberOfAlerts(numberOfAlerts: 20)
                 },
                 SharedSteps.AssertNumberOfAlerts(greaterThan: 10)

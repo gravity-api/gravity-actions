@@ -1,0 +1,34 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<!-- Project Properties. -->
+	<PropertyGroup>
+		<LangVersion>Latest</LangVersion>
+		<TargetFrameworks>net5.0</TargetFrameworks>
+		<RootNamespace>Gravity.Extensions</RootNamespace>
+	</PropertyGroup>
+
+	<!-- Package Properties. -->
+	<PropertyGroup>
+		<PackageId>Gravity.Extensions</PackageId>
+		<Title>Gravity Extensions - Extensions package for Gravity API</Title>
+		<Description>Extensions package for Gravity API products line.</Description>
+		<PackageTags>automation,crawling,crawl,selenium,appium,automation testing,automation test,qa,gravity,gravity api,scrapping,scrap</PackageTags>
+		<PackageProjectUrl>https://github.com/gravity-api/gravity-extensions</PackageProjectUrl>
+		<NeutralLanguage>en-US</NeutralLanguage>
+		<Authors>Gravity-API Community</Authors>
+	</PropertyGroup>
+
+	<!-- Dependencies Properties. -->
+	<ItemGroup>
+		<PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+		<PackageReference Include="System.Data.SqlClient" Version="4.8.2" />
+		<PackageReference Include="System.Net.Http" Version="4.3.4" />
+		<PackageReference Include="Appium.WebDriver" Version="4.3.1" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+		<PackageReference Include="Selenium.Support" Version="3.141.0" />
+	</ItemGroup>
+  
+	<ItemGroup>
+	  <ProjectReference Include="..\Gravity.Plugins.Contracts\Gravity.Plugins.Contracts.csproj" />
+	</ItemGroup>
+</Project>

@@ -37,7 +37,7 @@ namespace Gravity.IntegrationTests.Cases.UiCommon.ConditionScenarios
                     Action = PluginsList.Condition,
                     Argument = "{{$ --visible}}",
                     OnElement = condition,
-                    Locator = LocatorsList.Id,
+                    Locator = Locators.Id,
                     Actions = SharedSteps.SetNumberOfAlerts(numberOfAlerts: 20)
                 },
                 SharedSteps.AssertNumberOfAlerts(greaterThan: 10)

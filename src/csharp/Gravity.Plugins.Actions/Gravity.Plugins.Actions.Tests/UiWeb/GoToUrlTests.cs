@@ -3,15 +3,18 @@
  * 
  * RESOURCES
  */
-using Gravity.Plugins.Contracts;
 using Gravity.Plugins.Actions.UiWeb;
+using Gravity.Plugins.Contracts;
 using Gravity.UnitTests.Base;
+
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+using System.Collections.Generic;
+
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Mock;
 using OpenQA.Selenium.Mock;
 using OpenQA.Selenium.Mock.Extensions;
-using System.Collections.Generic;
 
 #pragma warning disable S4144
 namespace Gravity.UnitTests.UiWeb
@@ -135,11 +138,41 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [TestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
-        [DataRow("{\"onElement\":\"//none\"}")]
         [DataRow("{\"onElement\":\"//null\"}")]
-        [DataRow("{\"onElement\":\"//stale\"}")]
-        [DataRow("{\"onElement\":\"//exception\"}")]
         public void GoToUrlTimeout(string actionRule)
+        {
+            // execute
+            ExecuteAction<GoToUrl>(actionRule);
+
+            // assertion (no assertion here)
+            Assert.IsTrue(true);
+        }
+
+        [TestMethod, ExpectedException(typeof(NoSuchElementException))]
+        [DataRow("{\"onElement\":\"//none\"}")]
+        public void GoToUrlNone(string actionRule)
+        {
+            // execute
+            ExecuteAction<GoToUrl>(actionRule);
+
+            // assertion (no assertion here)
+            Assert.IsTrue(true);
+        }
+
+        [TestMethod, ExpectedException(typeof(StaleElementReferenceException))]
+        [DataRow("{\"onElement\":\"//stale\"}")]
+        public void GoToUrlStale(string actionRule)
+        {
+            // execute
+            ExecuteAction<GoToUrl>(actionRule);
+
+            // assertion (no assertion here)
+            Assert.IsTrue(true);
+        }
+
+        [TestMethod, ExpectedException(typeof(WebDriverException))]
+        [DataRow("{\"onElement\":\"//exception\"}")]
+        public void GoToUrlException(string actionRule)
         {
             // execute
             ExecuteAction<GoToUrl>(actionRule);

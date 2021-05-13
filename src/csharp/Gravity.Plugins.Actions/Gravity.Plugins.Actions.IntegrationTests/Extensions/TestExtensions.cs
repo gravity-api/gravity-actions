@@ -20,7 +20,7 @@ namespace Graivty.IntegrationTests.Extensions
         /// <summary>
         /// Return <see cref="true"/> if ALL assertion have passed, <see cref="false"/> if not.
         /// </summary>
-        /// <param name="responses">A collection of <see cref="OrbitResponse"/> to evaluate.</param>
+        /// <param name="responses">A collection of OrbitResponse to evaluate.</param>
         /// <returns><see cref="true"/> if ALL assertion have passed, <see cref="false"/> if not.</returns>
         public static bool Assert(this IEnumerable<OrbitResponse> responses)
         {
@@ -40,7 +40,7 @@ namespace Graivty.IntegrationTests.Extensions
         /// <summary>
         /// Throws <see cref="InconclusiveException"/> if no evaluation can be made.
         /// </summary>
-        /// <param name="responses">A collection of <see cref="OrbitResponse"/> to evaluate.</param>
+        /// <param name="responses">A collection of OrbitResponse to evaluate.</param>
         public static void AssertInconclusive(this IEnumerable<OrbitResponse> responses)
         {
             // data

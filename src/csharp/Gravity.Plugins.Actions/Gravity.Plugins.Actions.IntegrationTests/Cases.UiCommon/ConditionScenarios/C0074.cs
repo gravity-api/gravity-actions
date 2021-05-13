@@ -41,7 +41,7 @@ namespace Gravity.IntegrationTests.Cases.UiCommon.ConditionScenarios
                     OnElement = "Edit",
                     OnAttribute = "href",
                     RegularExpression = "\\d+",
-                    Locator = LocatorsList.LinkText,
+                    Locator = Locators.LinkText,
                     Actions = SharedSteps.SearchStudent(searchFor: "Carson")
                 },
                 SharedSteps.AssertStudentsCount(count: 1)

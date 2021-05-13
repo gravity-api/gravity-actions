@@ -3,10 +3,12 @@
  * 
  * RESOURCES
  */
+using Gravity.Extensions;
 using Gravity.Plugins.Actions.UiCommon;
-using Gravity.UnitTests.Base;
 using Gravity.Plugins.Contracts;
-using Gravity.Plugins.Extensions;
+using Gravity.Plugins.Framework;
+using Gravity.UnitTests.Base;
+
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 using System;
@@ -14,11 +16,10 @@ using System.Data;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Text.Json;
 using System.Text.RegularExpressions;
 
 using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
-using System.Text.Json;
-using Gravity.Extensions;
 
 #pragma warning disable S4144
 namespace Gravity.UnitTests.UiCommon
@@ -346,7 +347,7 @@ namespace Gravity.UnitTests.UiCommon
         [DataTestMethod]
         [DataRow("" +
             "{" +
-            "    \"dataSource\": {" +
+            "    \"dataProvider\": {" +
             "        \"type\":\"SQLServer\"," +
             "        \"source\":\"[Data.ConnectionString]\"," +
             "        \"repository\":\"[Data.Repository]\"" +
@@ -377,7 +378,7 @@ namespace Gravity.UnitTests.UiCommon
         [DataTestMethod]
         [DataRow("" +
             "{" +
-            "    \"dataSource\": {" +
+            "    \"dataProvider\": {" +
             "        \"type\":\"SQLServer\"," +
             "        \"source\":\"[Data.ConnectionString]\"," +
             "        \"repository\":\"[Data.Repository]\"," +
@@ -408,9 +409,8 @@ namespace Gravity.UnitTests.UiCommon
         [DataTestMethod]
         [DataRow("" +
             "{" +
-            "    \"dataSource\": {" +
+            "    \"dataProvider\": {" +
             "        \"type\":\"SQLServer\"," +
-            "        \"source\":\"[Data.ConnectionString]\"," +
             "        \"repository\":\"[Data.Repository]\"" +
             "    }," +
             "    \"onRootElements\":\"//positive\"," +
@@ -420,6 +420,7 @@ namespace Gravity.UnitTests.UiCommon
             "        }" +
             "    ]" +
             "}")]
+        [ExpectedException(typeof(ArgumentException))]
         public void ExtractFromDomSaveToSqlServerNoSource(string extractionRule)
         {
             // setup
@@ -435,14 +436,12 @@ namespace Gravity.UnitTests.UiCommon
 
         // 0: extracts inner text of all root elements and save it to SQL Server.
         //    the saving will be done when the extraction rule execution completed.
-        [Ignore(message: "MSTest Bug. Not loading settings. Consider migration to NUnit")]
         [DataTestMethod]
         [DataRow("" +
             "{" +
-            "    \"dataSource\": {" +
+            "    \"dataProvider\": {" +
             "        \"type\":\"SQLServer\"," +
-            "        \"source\":\"[Data.ConnectionString]\"," +
-            "        \"repository\":\"[Data.Repository]\"" +
+            "        \"source\":\"[Data.ConnectionString]\"" +
             "    }," +
             "    \"onRootElements\":\"//positive\"," +
             "    \"onElements\": [" +
@@ -451,6 +450,7 @@ namespace Gravity.UnitTests.UiCommon
             "        }" +
             "    ]" +
             "}")]
+        [ExpectedException(typeof(ArgumentException))]
         public void ExtractFromDomSaveToSqlServerNoRepository(string extractionRule)
         {
             // setup
@@ -471,7 +471,7 @@ namespace Gravity.UnitTests.UiCommon
         [DataTestMethod]
         [DataRow("" +
             "{" +
-            "    \"dataSource\": {" +
+            "    \"dataProvider\": {" +
             "        \"type\":\"CSV\"," +
             "        \"source\":\"data/extract_from_dom/[File.Name].csv\"" +
             "    }," +
@@ -500,7 +500,7 @@ namespace Gravity.UnitTests.UiCommon
         [DataTestMethod]
         [DataRow("" +
             "{" +
-            "    \"dataSource\": {" +
+            "    \"dataProvider\": {" +
             "        \"type\":\"CSV\"," +
             "        \"source\":\"data/extract_from_dom/[File.Name].csv\"," +
             "        \"writePerEntity\":true" +
@@ -530,7 +530,7 @@ namespace Gravity.UnitTests.UiCommon
         [DataTestMethod, ExpectedException(typeof(ArgumentException))]
         [DataRow("" +
             "{" +
-            "    \"dataSource\": {" +
+            "    \"dataProvider\": {" +
             "        \"type\":\"CSV\"," +
             "        \"source\":\"\"" +
             "    }," +
@@ -561,7 +561,7 @@ namespace Gravity.UnitTests.UiCommon
         [DataTestMethod]
         [DataRow("" +
             "{" +
-            "    \"dataSource\": {" +
+            "    \"dataProvider\": {" +
             "        \"type\":\"JSON\"," +
             "        \"source\":\"data/extract_from_dom/[File.Name].json\"" +
             "    }," +
@@ -590,7 +590,7 @@ namespace Gravity.UnitTests.UiCommon
         [DataTestMethod]
         [DataRow("" +
             "{" +
-            "    \"dataSource\": {" +
+            "    \"dataProvider\": {" +
             "        \"type\":\"JSON\"," +
             "        \"source\":\"data/extract_from_dom/[File.Name].json\"," +
             "        \"writePerEntity\":true" +
@@ -620,7 +620,7 @@ namespace Gravity.UnitTests.UiCommon
         [DataTestMethod, ExpectedException(typeof(ArgumentException))]
         [DataRow("" +
             "{" +
-            "    \"dataSource\": {" +
+            "    \"dataProvider\": {" +
             "        \"type\":\"JSON\"," +
             "        \"source\":\"\"" +
             "    }," +
@@ -651,7 +651,7 @@ namespace Gravity.UnitTests.UiCommon
         [DataTestMethod]
         [DataRow("" +
             "{" +
-            "    \"dataSource\": {" +
+            "    \"dataProvider\": {" +
             "        \"type\":\"XML\"," +
             "        \"source\":\"data/extract_from_dom/[File.Name].xml\"" +
             "    }," +
@@ -680,7 +680,7 @@ namespace Gravity.UnitTests.UiCommon
         [DataTestMethod]
         [DataRow("" +
             "{" +
-            "    \"dataSource\": {" +
+            "    \"dataProvider\": {" +
             "        \"type\":\"XML\"," +
             "        \"source\":\"data/extract_from_dom/[File.Name].xml\"," +
             "        \"writePerEntity\":true" +
@@ -710,7 +710,7 @@ namespace Gravity.UnitTests.UiCommon
         [DataTestMethod, ExpectedException(typeof(ArgumentException))]
         [DataRow("" +
             "{" +
-            "    \"dataSource\": {" +
+            "    \"dataProvider\": {" +
             "        \"type\":\"XML\"," +
             "        \"source\":\"\"" +
             "    }," +
@@ -806,14 +806,14 @@ namespace Gravity.UnitTests.UiCommon
         {
             // setup
             SetExtractionRules(extractionRule);
-            var dataSource = Automation.Extractions.ElementAt(0).DataSource;
+            var dataSource = Automation.Extractions.ElementAt(0).DataProvider;
 
             // execute
             var plugin = ExecuteAction<ExtractFromDom>();
 
             // results
             var expected = plugin.Extractions.First().ToDataTable();
-            var actual = new DataTable().Load(dataSource);
+            var actual = new DataProvidersFactory(PluginUtilities.Types).From(dataSource, Array.Empty<object>());
 
             // comparing
             var sExpected = new string(JsonSerializer.Serialize(expected.ToDictionary(), options).OrderBy(i => i).ToArray());

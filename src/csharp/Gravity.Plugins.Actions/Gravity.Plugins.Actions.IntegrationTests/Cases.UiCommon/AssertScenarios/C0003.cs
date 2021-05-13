@@ -36,7 +36,7 @@ namespace Gravity.IntegrationTests.Cases.UiCommon.AssertScenarios
                     Argument = "{{$ --attribute --ne:" + expected + "}}",
                     OnElement = "p:nth-child(3) > a",
                     OnAttribute = "class",
-                    Locator = LocatorsList.CssSelector
+                    Locator = Locators.CssSelector
                 }
             };
         }

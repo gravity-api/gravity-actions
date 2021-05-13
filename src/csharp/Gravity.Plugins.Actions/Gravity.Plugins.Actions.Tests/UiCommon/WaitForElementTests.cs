@@ -3,10 +3,12 @@
  * 
  * RESOURCES
  */
-using Gravity.Plugins.Contracts;
 using Gravity.Plugins.Actions.UiCommon;
+using Gravity.Plugins.Contracts;
 using Gravity.UnitTests.Base;
+
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+
 using OpenQA.Selenium;
 using OpenQA.Selenium.Mock;
 
@@ -229,8 +231,8 @@ namespace Gravity.UnitTests.UiCommon
         }
 
         [DataTestMethod]
-        [DataRow(@"{""onElement"":""//positive"",""argument"":""{{$ --until:attribute}}"",""regularExpression"":""^mock attribute value \\d+$""}")]
-        [DataRow(@"{""onElement"":""//negative"",""argument"":""{{$ --until:attribute}}"",""regularExpression"":""^mock attribute value \\d+$""}")]
+        [DataRow(@"{""onElement"":""//positive"",""argument"":""{{$ --until:attribute --match:^mock attribute value \\d+$}}"",""regularExpression"":""^mock attribute value \\d+$""}")]
+        [DataRow(@"{""onElement"":""//negative"",""argument"":""{{$ --until:attribute --match:^mock attribute value \\d+$}}"",""regularExpression"":""^mock attribute value \\d+$""}")]
         public void WaitForElementAttribute(string actionRule)
         {
             // execute 
@@ -255,8 +257,8 @@ namespace Gravity.UnitTests.UiCommon
         }
 
         [DataTestMethod]
-        [DataRow("{\"onElement\":\"//positive\",\"argument\":\"{{$ --until:text}}\",\"regularExpression\":\"^Mock: Positive Element$\"}")]
-        [DataRow("{\"onElement\":\"//negative\",\"argument\":\"{{$ --until:text}}\",\"regularExpression\":\"^Mock: Negative Element$\"}")]
+        [DataRow("{\"onElement\":\"//positive\",\"argument\":\"{{$ --until:text --match:^Mock: Positive Element$}}\",\"regularExpression\":\"^Mock: Positive Element$\"}")]
+        [DataRow("{\"onElement\":\"//negative\",\"argument\":\"{{$ --until:text --match:^Mock: Negative Element$}}\",\"regularExpression\":\"^Mock: Negative Element$\"}")]
         public void WaitForElementText(string actionRule)
         {
             // execute 
@@ -465,8 +467,8 @@ namespace Gravity.UnitTests.UiCommon
         }
 
         [DataTestMethod]
-        [DataRow(@"{""onElement"":"".//positive"",""argument"":""{{$ --until:attribute}}"",""regularExpression"":""^mock attribute value \\d+$""}")]
-        [DataRow(@"{""onElement"":"".//negative"",""argument"":""{{$ --until:attribute}}"",""regularExpression"":""^mock attribute value \\d+$""}")]
+        [DataRow(@"{""onElement"":"".//positive"",""argument"":""{{$ --until:attribute --match:^mock attribute value \\d+$}}"",""regularExpression"":""^mock attribute value \\d+$""}")]
+        [DataRow(@"{""onElement"":"".//negative"",""argument"":""{{$ --until:attribute --match:^mock attribute value \\d+$}}"",""regularExpression"":""^mock attribute value \\d+$""}")]
         public void WaitForElementOnElementAttribute(string actionRule)
         {
             // execute 
@@ -491,8 +493,8 @@ namespace Gravity.UnitTests.UiCommon
         }
 
         [DataTestMethod]
-        [DataRow("{\"onElement\":\".//positive\",\"argument\":\"{{$ --until:text}}\",\"regularExpression\":\"^Mock: Positive Element$\"}")]
-        [DataRow("{\"onElement\":\".//negative\",\"argument\":\"{{$ --until:text}}\",\"regularExpression\":\"^Mock: Negative Element$\"}")]
+        [DataRow("{\"onElement\":\".//positive\",\"argument\":\"{{$ --until:text --match:^Mock: Positive Element$}}\",\"regularExpression\":\"^Mock: Positive Element$\"}")]
+        [DataRow("{\"onElement\":\".//negative\",\"argument\":\"{{$ --until:text --match:^Mock: Negative Element$}}\",\"regularExpression\":\"^Mock: Negative Element$\"}")]
         public void WaitForElementOnElementText(string actionRule)
         {
             // execute 

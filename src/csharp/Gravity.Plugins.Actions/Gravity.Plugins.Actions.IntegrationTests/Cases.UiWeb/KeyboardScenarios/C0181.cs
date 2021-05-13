@@ -35,14 +35,14 @@ namespace Graivty.IntegrationTests.Cases.UiWeb.KeyboardScenarios
                     Action = PluginsList.SendKeys,
                     Argument = "Carson",
                     OnElement = "SearchString",
-                    Locator = LocatorsList.Id
+                    Locator = Locators.Id
                 },
                 new ActionRule
                 {
                     Action = PluginsList.Keyboard,
                     Argument = "Enter",
                     OnElement = "SearchString",
-                    Locator = LocatorsList.Id
+                    Locator = Locators.Id
                 },
                 SharedSteps.AssertStudentsCount(count: 1)
             };

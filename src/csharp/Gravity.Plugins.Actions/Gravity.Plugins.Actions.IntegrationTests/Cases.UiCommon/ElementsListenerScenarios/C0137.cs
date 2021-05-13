@@ -46,7 +46,7 @@ namespace Gravity.IntegrationTests.Cases.UiCommon.ElementsListenerScenarios
                             Action = PluginsList.SendKeys,
                             Argument = "dismissed",
                             OnElement = "input_enabled",
-                            Locator = LocatorsList.Id
+                            Locator = Locators.Id
                         },
                         new ActionRule
                         {
@@ -59,7 +59,7 @@ namespace Gravity.IntegrationTests.Cases.UiCommon.ElementsListenerScenarios
                 {
                     Action = PluginsList.Click,
                     OnElement = "generate_elements",
-                    Locator = LocatorsList.Id
+                    Locator = Locators.Id
                 },
                 new ActionRule
                 {

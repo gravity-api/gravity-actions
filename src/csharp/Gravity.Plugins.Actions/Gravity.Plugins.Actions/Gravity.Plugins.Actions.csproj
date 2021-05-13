@@ -64,16 +64,19 @@
   </ItemGroup>
 
   <!-- Packages -->
-  <ItemGroup>
-    <PackageReference Include="Gravity.Core" Version="2020.7.5.3" />
-    <PackageReference Include="HtmlAgilityPack" Version="1.11.31" />
+  <ItemGroup>    
+    <PackageReference Include="HtmlAgilityPack" Version="1.11.32" />
   </ItemGroup>
 
   <!-- Projects -->
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\..\gravity-mockdriver\src\csharp\Gravity.Drivers.Mock\Gravity.Drivers.Mock\Gravity.Drivers.Mock.csproj" />
+    <ProjectReference Include="..\Gravity.Extensions\Gravity.Extensions.csproj" />
     <ProjectReference Include="..\Gravity.Plugins.Contracts\Gravity.Plugins.Contracts.csproj" />
     <ProjectReference Include="..\Gravity.Plugins\Gravity.Plugins.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Framework\" />
   </ItemGroup>
   
 </Project>

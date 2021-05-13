@@ -34,7 +34,7 @@ namespace Gravity.IntegrationTests.Cases.UiCommon.AssertScenarios
                     Action = PluginsList.Assert,
                     Argument = "{{$ --not_exists}}",
                     OnElement = onElement,
-                    Locator = LocatorsList.Id
+                    Locator = Locators.Id
                 }
             };
         }

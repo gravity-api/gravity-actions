@@ -44,11 +44,11 @@ namespace Gravity.IntegrationTests.Cases.UiCommon.ExtractFromDomScenarios
         public override IEnumerable<ExtractionRule> OnExtractions(Context environment)
         {
             // data source
-            var dataSource = new DataSource
+            var dataSource = new GravityDataProvider
             {
                 WritePerEntity = (bool)environment.TestParams["is_per_entity"],
                 Source = $"{environment.SystemParams["Integration.MockApi"]}",
-                Type = DataSourcesList.RestApi
+                Type = GravityDataProviders.RestApi
             };
 
             // entity
@@ -62,7 +62,7 @@ namespace Gravity.IntegrationTests.Cases.UiCommon.ExtractFromDomScenarios
             {
                 OnRootElements = "//td[contains(@id,'student_first_name')]",
                 OnElements = contentEntries,
-                DataSource = dataSource
+                DataProvider = dataSource
             };
 
             // results

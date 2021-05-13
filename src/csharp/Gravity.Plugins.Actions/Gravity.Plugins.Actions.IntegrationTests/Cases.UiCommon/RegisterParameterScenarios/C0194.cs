@@ -33,7 +33,7 @@ namespace Graivty.IntegrationTests.Cases.UiCommon.RegisterParameterScenarios
                     Action = PluginsList.RegisterParameter,
                     Argument = "integration_parameter",
                     OnElement = "text_div_number",
-                    Locator = LocatorsList.Id,
+                    Locator = Locators.Id,
                     RegularExpression = "\\d{1}"
                 },
                 SharedSteps.AssertParameter(equal: "1"),

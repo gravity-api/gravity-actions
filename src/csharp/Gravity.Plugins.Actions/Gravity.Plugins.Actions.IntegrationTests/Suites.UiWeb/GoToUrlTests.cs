@@ -26,7 +26,7 @@ namespace Gravity.IntegrationTests.Suites.UiWeb
         }
 
         [Description(description: "P - [0173] - Go To URL, Blank")]
-        [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.Capabilities))]
+        [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.CapabilitiesNoIos))]
         public void T0173P(Context environment)
         {
             // execute
@@ -48,7 +48,7 @@ namespace Gravity.IntegrationTests.Suites.UiWeb
         }
 
         [Description(description: "P - [0175] - Go To URL, Element, Text, Blank")]
-        [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.Capabilities))]
+        [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.CapabilitiesNoIos))]
         public void T0175P(Context environment)
         {
             // execute
@@ -70,7 +70,7 @@ namespace Gravity.IntegrationTests.Suites.UiWeb
         }
 
         [Description(description: "P - [0177] - Go To URL, Element, Attribute, Blank")]
-        [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.Capabilities))]
+        [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.CapabilitiesNoIos))]
         public void T0177P(Context environment)
         {
             // execute

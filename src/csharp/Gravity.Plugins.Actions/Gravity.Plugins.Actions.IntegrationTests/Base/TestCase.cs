@@ -247,10 +247,10 @@ namespace Gravity.IntegrationTests.Base
 
         #region *** Test: Automation    ***
         /// <summary>
-        /// Executes <see cref="WebAutomation"/> sequence with a given <see cref="Context"/> context.
+        /// Executes WebAutomation sequence with a given <see cref="Context"/> context.
         /// </summary>
         /// <param name="environment"><see cref="Context"/> to use.</param>
-        /// <returns>A Collection of <see cref="OrbitResponse"/>.</returns>
+        /// <returns>A Collection of OrbitResponse.</returns>
         public IEnumerable<OrbitResponse> ExecuteAutomation(Context environment)
         {
             // execute
@@ -373,7 +373,7 @@ namespace Gravity.IntegrationTests.Base
         /// Implements assertion logics for this <see cref="AutomationTest(Context)"/>
         /// </summary>
         /// <param name="environment">Applied <see cref="Context"/>.</param>
-        /// <param name="responses"><see cref="WebAutomation"/> results after execution completed.</param>
+        /// <param name="responses">WebAutomation results after execution completed.</param>
         /// <returns><see cref="true"/> if pass; <see cref="false"/> if not.</returns>
         public virtual bool OnAfterAutomation(Context environment, IEnumerable<OrbitResponse> responses)
         {
@@ -465,20 +465,20 @@ namespace Gravity.IntegrationTests.Base
         }
 
         /// <summary>
-        /// Gets or sets a collection of <see cref="ExtractionRule"/> for this <see cref="WebAutomation"/> object.
+        /// Gets or sets a collection of ExtractionRule for this WebAutomation object.
         /// </summary>
         /// <param name="environment"><see cref="Context"/> to use.</param>
-        /// <returns>A collection of <see cref="ExtractionRule"/>.</returns>
+        /// <returns>A collection of ExtractionRule.</returns>
         public virtual IEnumerable<ExtractionRule> OnExtractions(Context environment)
         {
             return Array.Empty<ExtractionRule>();
         }
 
         /// <summary>
-        /// Gets or sets this <see cref="WebAutomation"/> object.
+        /// Gets or sets this WebAutomation object.
         /// </summary>
-        /// <param name="automation">This <see cref="WebAutomation"/> object.</param>
-        /// <returns>Updated <see cref="WebAutomation"/> object.</returns>
+        /// <param name="automation">This WebAutomation object.</param>
+        /// <returns>Updated WebAutomation object.</returns>
         public virtual void OnAutomation(WebAutomation automation)
         {
             // Take no action.

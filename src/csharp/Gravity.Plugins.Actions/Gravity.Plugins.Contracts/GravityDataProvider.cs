@@ -8,25 +8,25 @@ using System.Runtime.Serialization;
 namespace Gravity.Plugins.Contracts
 {
     /// <summary>
-    /// Describes a contract for sending gravity <see cref="DataSource"/> to Gravity Service.
+    /// Describes a contract for sending gravity <see cref="GravityDataProvider"/> to Gravity Service.
     /// </summary>
     [DataContract]
-    public class DataSource
+    public class GravityDataProvider
     {
         /// <summary>
-        /// Gets or sets the <see cref="DataSource"/> type, please refer this action KB for valid inputs.
+        /// Gets or sets the <see cref="GravityDataProvider"/> type, please refer this action KB for valid inputs.
         /// </summary>
         [DataMember]
         public string Type { get; set; }
 
         /// <summary>
-        /// Gets or sets the <see cref="DataSource"/> source (i.e. connection string or file name).
+        /// Gets or sets the <see cref="GravityDataProvider"/> source (i.e. connection string or file name).
         /// </summary>
         [DataMember]
         public object Source { get; set; }
 
         /// <summary>
-        /// Gets or sets the <see cref="DataSource"/> repository (i.e. table name).
+        /// Gets or sets the <see cref="GravityDataProvider"/> repository (i.e. table name).
         /// </summary>
         [DataMember]
         public string Repository { get; set; }

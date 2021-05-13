@@ -1,16 +1,10 @@
-﻿/*
- * CHANGE LOG - keep only last 5 threads
- * 
- * RESOURCES
- */
-using Gravity.Plugins.Attributes;
-using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.IO;
 using System.Reflection;
 using System.Text;
+using System.Text.Json;
 
-namespace Gravity.Plugins.Extensions
+namespace Gravity.Plugins.Attributes.Extensions
 {
     /// <summary>
     /// <see cref="Assembly" /> extensions package.
@@ -34,7 +28,10 @@ namespace Gravity.Plugins.Extensions
                 var data = reader.ReadToEnd();
 
                 // deserialize to PluginAttribute
-                return JsonConvert.DeserializeObject<PluginAttribute>(data);
+                return JsonSerializer.Deserialize<PluginAttribute>(data, new JsonSerializerOptions
+                {
+                    PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+                });
             }
             catch (Exception e) when (e != null)
             {

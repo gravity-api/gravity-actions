@@ -1,5 +1,5 @@
 ﻿using Gravity.Plugins.Contracts;
-using Gravity.Plugins.Extensions;
+using Gravity.Extensions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -65,7 +65,7 @@ namespace Gravity.Plugins.UnitTests.Engine
             {
                 Key = "test_extraction",
                 Entities = entities
-            }.Populate(dataSource: null);
+            };
 
             var a = "";
         }

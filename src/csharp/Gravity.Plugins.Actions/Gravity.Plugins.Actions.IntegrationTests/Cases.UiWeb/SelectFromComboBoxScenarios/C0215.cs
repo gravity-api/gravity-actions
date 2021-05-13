@@ -39,7 +39,7 @@ namespace Graivty.IntegrationTests.Cases.UiWeb.SelectFromComboBoxScenarios
                     OnElement = "select_menu_multiple",
                     OnAttribute = "index",
                     Argument = "[\"1\",\"2\"]",
-                    Locator = LocatorsList.Id
+                    Locator = Locators.Id
                 },
                 SharedSteps.AssertMultipleComboBoxSelectedCount(count: 2)
             };

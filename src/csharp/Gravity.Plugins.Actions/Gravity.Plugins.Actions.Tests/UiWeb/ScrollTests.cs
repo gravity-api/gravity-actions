@@ -183,10 +183,40 @@ namespace Gravity.UnitTests.UiWeb
 
         [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
         [DataRow("{\"onElement\":\"//null\"}")]
-        [DataRow("{\"onElement\":\"//none\"}")]
-        [DataRow("{\"onElement\":\"//stale\"}")]
-        [DataRow("{\"onElement\":\"//exception\"}")]
         public void ScrollElementTimout(string actionRule)
+        {
+            // execute
+            ExecuteAction<Scroll>(actionRule);
+
+            // assertion
+            Assert.IsTrue(true);
+        }
+
+        [DataTestMethod, ExpectedException(typeof(NoSuchElementException))]
+        [DataRow("{\"onElement\":\"//none\"}")]
+        public void ScrollElementNoElement(string actionRule)
+        {
+            // execute
+            ExecuteAction<Scroll>(actionRule);
+
+            // assertion
+            Assert.IsTrue(true);
+        }
+
+        [DataTestMethod, ExpectedException(typeof(StaleElementReferenceException))]
+        [DataRow("{\"onElement\":\"//stale\"}")]
+        public void ScrollElementStale (string actionRule)
+        {
+            // execute
+            ExecuteAction<Scroll>(actionRule);
+
+            // assertion
+            Assert.IsTrue(true);
+        }
+
+        [DataTestMethod, ExpectedException(typeof(WebDriverException))]
+        [DataRow("{\"onElement\":\"//exception\"}")]
+        public void ScrollElementException(string actionRule)
         {
             // execute
             ExecuteAction<Scroll>(actionRule);

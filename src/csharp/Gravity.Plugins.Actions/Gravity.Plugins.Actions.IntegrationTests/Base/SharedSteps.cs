@@ -26,13 +26,13 @@ namespace Gravity.IntegrationTests.Base
                 Action = PluginsList.SendKeys,
                 Argument = searchFor,
                 OnElement = "SearchString",
-                Locator = LocatorsList.Id
+                Locator = Locators.Id
             },
             new ActionRule
             {
                 Action = PluginsList.Click,
                 OnElement = "SearchButton",
-                Locator = LocatorsList.Id
+                Locator = Locators.Id
             }
         };
 
@@ -60,7 +60,7 @@ namespace Gravity.IntegrationTests.Base
                 Action = PluginsList.SendKeys,
                 Argument = $"{numberOfAlerts}",
                 OnElement = "number_of_alerts",
-                Locator = LocatorsList.Id
+                Locator = Locators.Id
             }
         };
 
@@ -74,7 +74,7 @@ namespace Gravity.IntegrationTests.Base
             {
                 Action = PluginsList.Click,
                 OnElement = "Back to List",
-                Locator = LocatorsList.LinkText
+                Locator = Locators.LinkText
             }
         };
 
@@ -100,7 +100,7 @@ namespace Gravity.IntegrationTests.Base
             Action = PluginsList.Assert,
             Argument = "{{$ --attribute --gt:" + $"{greaterThan}" + "}}",
             OnElement = "number_of_alerts",
-            Locator = LocatorsList.Id,
+            Locator = Locators.Id,
             OnAttribute = "value"
         };
 
@@ -137,7 +137,7 @@ namespace Gravity.IntegrationTests.Base
             Argument = "{{$ --attribute --match:" + expectedPattern + "}}",
             OnElement = "click_outcome",
             OnAttribute = "value",
-            Locator = LocatorsList.Id
+            Locator = Locators.Id
         };
 
         /// <summary>
@@ -150,7 +150,7 @@ namespace Gravity.IntegrationTests.Base
             Action = PluginsList.Assert,
             Argument = "{{$ --attribute --gt:" + $"{greaterThan}" + "}}",
             OnElement = "dismissed_elements",
-            Locator = LocatorsList.Id,
+            Locator = Locators.Id,
             OnAttribute = "value"
         };
 
@@ -164,7 +164,7 @@ namespace Gravity.IntegrationTests.Base
             Action = PluginsList.Assert,
             Argument = "{{$ --attribute --match:" + $"{expectedPattern}" + "}}",
             OnElement = "for_stale_element",
-            Locator = LocatorsList.Id,
+            Locator = Locators.Id,
             OnAttribute = "class"
         };
 
@@ -178,7 +178,7 @@ namespace Gravity.IntegrationTests.Base
             Action = PluginsList.Assert,
             Argument = "{{$ --attribute --match:" + expectedPattern + "}}",
             OnElement = id,
-            Locator = LocatorsList.Id,
+            Locator = Locators.Id,
             OnAttribute = "value"
         };
 
@@ -192,7 +192,7 @@ namespace Gravity.IntegrationTests.Base
             Action = PluginsList.Assert,
             Argument = "{{$ --attribute --match:" + expectedPattern + "}}",
             OnElement = "input_enabled",
-            Locator = LocatorsList.Id,
+            Locator = Locators.Id,
             OnAttribute = "value"
         };
 
@@ -207,7 +207,7 @@ namespace Gravity.IntegrationTests.Base
             Action = PluginsList.Assert,
             Argument = "{{$ --attribute --gt:" + $"{greaterThan}" + "}}",
             OnElement = $"scroll_{offset.ToLower()}_outcome",
-            Locator = LocatorsList.Id,
+            Locator = Locators.Id,
             OnAttribute = "value"
         };
 
@@ -222,7 +222,7 @@ namespace Gravity.IntegrationTests.Base
             Action = PluginsList.Assert,
             Argument = "{{$ --attribute --match:" + $"{expectedPattern}" + "}}",
             OnElement = $"scroll_{offset.ToLower()}_outcome",
-            Locator = LocatorsList.Id,
+            Locator = Locators.Id,
             OnAttribute = "value"
         };
 
@@ -248,7 +248,7 @@ namespace Gravity.IntegrationTests.Base
             Action = PluginsList.Assert,
             Argument = "{{$ --attribute --gt:" + $"{greaterThan}" + "}}",
             OnElement = $"e_scroll_{offset.ToLower()}_outcome",
-            Locator = LocatorsList.Id,
+            Locator = Locators.Id,
             OnAttribute = "value"
         };
 
@@ -263,14 +263,14 @@ namespace Gravity.IntegrationTests.Base
             Action = PluginsList.Assert,
             Argument = "{{$ --attribute --match:" + $"{expectedPattern}" + "}}",
             OnElement = $"e_scroll_{offset.ToLower()}_outcome",
-            Locator = LocatorsList.Id,
+            Locator = Locators.Id,
             OnAttribute = "value"
         };
 
         /// <summary>
         /// Assert extractions count and values (not null or empty).
         /// </summary>
-        /// <param name="responses"><see cref="OrbitResponse"/> from which to fetch entities.</param>
+        /// <param name="responses">OrbitResponse from which to fetch entities.</param>
         /// <param name="fieldsCount">Expected number of fields per entity.</param>
         /// <param name="expectedPattern">Expected pattern (regular expression) to assert content value against.</param>
         /// <returns>Assertion results.</returns>
@@ -295,7 +295,7 @@ namespace Gravity.IntegrationTests.Base
         /// <summary>
         /// Assert extractions count and values (not null or empty).
         /// </summary>
-        /// <param name="responses"><see cref="OrbitResponse"/> from which to fetch entities.</param>
+        /// <param name="responses">OrbitResponse from which to fetch entities.</param>
         /// <param name="fieldsCount">Expected number of fields per entity.</param>
         /// <param name="expectedPattern">Expected pattern (regular expression) to assert content value against.</param>
         /// <returns>Assertion results.</returns>
@@ -327,7 +327,7 @@ namespace Gravity.IntegrationTests.Base
             Action = PluginsList.Assert,
             Argument = "{{$ --attribute --match:" + expectedPattern + "}}",
             OnElement = "over_outcome",
-            Locator = LocatorsList.Id,
+            Locator = Locators.Id,
             OnAttribute = "value"
         };
 
@@ -341,7 +341,7 @@ namespace Gravity.IntegrationTests.Base
             Action = PluginsList.Assert,
             Argument = "{{$ --attribute --match:" + expectedPattern + "}}",
             OnElement = "select_menu",
-            Locator = LocatorsList.Id,
+            Locator = Locators.Id,
             OnAttribute = "value"
         };
 
@@ -356,7 +356,7 @@ namespace Gravity.IntegrationTests.Base
             Action = PluginsList.Assert,
             Argument = "{{$ --attribute --match:" + expectedPattern + "}}",
             OnElement = $"#select_menu_multiple > option:checked:nth-child({option})",
-            Locator = LocatorsList.CssSelector,
+            Locator = Locators.CssSelector,
             OnAttribute = "value"
         };
 
@@ -370,7 +370,7 @@ namespace Gravity.IntegrationTests.Base
             Action = PluginsList.Assert,
             Argument = "{{$ --count --eq:" + count + "}}",
             OnElement = "#select_menu_multiple > option:checked",
-            Locator = LocatorsList.CssSelector
+            Locator = Locators.CssSelector
         };
 
         /// <summary>
@@ -389,7 +389,7 @@ namespace Gravity.IntegrationTests.Base
                 Action = PluginsList.Assert,
                 Argument = "{{$ --" + assertions + "}}",
                 OnElement = id,
-                Locator = LocatorsList.Id
+                Locator = Locators.Id
             };
         }
     }

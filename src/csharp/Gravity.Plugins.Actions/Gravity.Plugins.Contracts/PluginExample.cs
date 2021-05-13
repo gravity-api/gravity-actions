@@ -30,7 +30,7 @@ namespace Gravity.Plugins.Contracts
         /// Gets or sets a collection of examples for this action.
         /// </summary>
         [DataMember]
-        public IEnumerable<PluginExampleLanguageModel> Examples { get; set; }
+        public IEnumerable<PluginExampleModel> Examples { get; set; }
 
         /// <summary>
         /// Gets or sets a comment for this example

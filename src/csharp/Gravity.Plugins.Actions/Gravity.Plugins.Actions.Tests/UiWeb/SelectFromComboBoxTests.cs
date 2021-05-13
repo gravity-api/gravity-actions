@@ -3,13 +3,16 @@
  * 
  * RESOURCES
  */
-using Gravity.UnitTests.Base;
 using Gravity.Plugins.Actions.UiWeb;
+using Gravity.Plugins.Contracts;
+using Gravity.UnitTests.Base;
+
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+
 using OpenQA.Selenium;
 using OpenQA.Selenium.Mock;
+
 using System;
-using Gravity.Plugins.Contracts;
 
 #pragma warning disable S4144
 namespace Gravity.UnitTests.UiWeb
@@ -87,11 +90,41 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
-        [DataRow("{\"onElement\":\"//none\",\"argument\":\"Mock: Positive Element\"}")]
-        [DataRow("{\"onElement\":\"//stale\",\"argument\":\"Mock: Positive Element\"}")]
         [DataRow("{\"onElement\":\"//null\",\"argument\":\"Mock: Positive Element\"}")]
-        [DataRow("{\"onElement\":\"//exception\",\"argument\":\"Mock: Positive Element\"}")]
         public void SelectFromComboBoxTimeout(string actionRule)
+        {
+            // execute
+            ExecuteAction<SelectFromComboBox>(actionRule);
+
+            // assertion (no assertion here)
+            Assert.IsTrue(true);
+        }
+
+        [DataTestMethod, ExpectedException(typeof(StaleElementReferenceException))]
+        [DataRow("{\"onElement\":\"//stale\",\"argument\":\"Mock: Positive Element\"}")]
+        public void SelectFromComboBoxStale(string actionRule)
+        {
+            // execute
+            ExecuteAction<SelectFromComboBox>(actionRule);
+
+            // assertion (no assertion here)
+            Assert.IsTrue(true);
+        }
+
+        [DataTestMethod, ExpectedException(typeof(NoSuchElementException))]
+        [DataRow("{\"onElement\":\"//none\",\"argument\":\"Mock: Positive Element\"}")]
+        public void SelectFromComboBoxNoSuchElement(string actionRule)
+        {
+            // execute
+            ExecuteAction<SelectFromComboBox>(actionRule);
+
+            // assertion (no assertion here)
+            Assert.IsTrue(true);
+        }
+
+        [DataTestMethod, ExpectedException(typeof(WebDriverException))]
+        [DataRow("{\"onElement\":\"//exception\",\"argument\":\"Mock: Positive Element\"}")]
+        public void SelectFromComboBoxException(string actionRule)
         {
             // execute
             ExecuteAction<SelectFromComboBox>(actionRule);

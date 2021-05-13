@@ -57,9 +57,9 @@ namespace Graivty.IntegrationTests.Cases.UiWeb.ExtractFromSourceScenarios
             }, SerializerOptions);
 
             // data source
-            automation.DataSource = new DataSource
+            automation.DataSource = new GravityDataProvider
             {
-                Type = DataSourcesList.JSON,
+                Type = GravityDataProviders.JSON,
                 Source = data
             };
 

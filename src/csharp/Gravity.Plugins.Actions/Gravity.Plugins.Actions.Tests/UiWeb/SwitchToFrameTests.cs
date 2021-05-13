@@ -3,10 +3,13 @@
  * 
  * RESOURCES
  */
-using Gravity.Plugins.Contracts;
 using Gravity.Plugins.Actions.UiWeb;
+using Gravity.Plugins.Contracts;
+
 using Gravity.UnitTests.Base;
+
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+
 using OpenQA.Selenium;
 using OpenQA.Selenium.Mock;
 
@@ -85,11 +88,41 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
-        [DataRow("{\"onElement\":\"//none\"}")]
         [DataRow("{\"onElement\":\"//null\"}")]
-        [DataRow("{\"onElement\":\"//stale\"}")]
-        [DataRow("{\"onElement\":\"//exception\"}")]
         public void SwitchToFrameTimeout(string actionRule)
+        {
+            // execute
+            ExecuteAction<SwitchToFrame>(actionRule);
+
+            // assertion (no assertion here)
+            Assert.IsTrue(true);
+        }
+
+        [DataTestMethod, ExpectedException(typeof(NoSuchElementException))]
+        [DataRow("{\"onElement\":\"//none\"}")]
+        public void SwitchToFrameNoElement (string actionRule)
+        {
+            // execute
+            ExecuteAction<SwitchToFrame>(actionRule);
+
+            // assertion (no assertion here)
+            Assert.IsTrue(true);
+        }
+
+        [DataTestMethod, ExpectedException(typeof(StaleElementReferenceException))]
+        [DataRow("{\"onElement\":\"//stale\"}")]
+        public void SwitchToFrameStale(string actionRule)
+        {
+            // execute
+            ExecuteAction<SwitchToFrame>(actionRule);
+
+            // assertion (no assertion here)
+            Assert.IsTrue(true);
+        }
+
+        [DataTestMethod, ExpectedException(typeof(WebDriverException))]
+        [DataRow("{\"onElement\":\"//exception\"}")]
+        public void SwitchToFrameException(string actionRule)
         {
             // execute
             ExecuteAction<SwitchToFrame>(actionRule);

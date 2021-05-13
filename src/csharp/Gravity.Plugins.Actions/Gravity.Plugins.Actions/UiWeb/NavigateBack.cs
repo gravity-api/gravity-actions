@@ -10,9 +10,8 @@
  *    
  * RESOURCES
  */
-using Gravity.Plugins.Actions.Components;
 using Gravity.Plugins.Attributes;
-using Gravity.Plugins.Base;
+using Gravity.Plugins.Framework;
 using Gravity.Plugins.Contracts;
 
 using OpenQA.Selenium;
@@ -32,7 +31,7 @@ namespace Gravity.Plugins.Actions.UiWeb
         /// <summary>
         /// Creates a new instance of this plugin.
         /// </summary>
-        /// <param name="automation">This <see cref="WebAutomation"/> object (the original object sent by the user).</param>
+        /// <param name="automation">This WebAutomation object (the original object sent by the user).</param>
         /// <param name="driver"><see cref="IWebDriver"/> implementation by which to execute the action.</param>
         public NavigateBack(WebAutomation automation, IWebDriver driver)
             : base(automation, driver)
@@ -65,7 +64,7 @@ namespace Gravity.Plugins.Actions.UiWeb
         {
             // setup
             var iterations = 1;
-            var factory = new PageStateFactory();
+            var factory = new PageStateFactory(WebDriver, Types);
             var timout = TimeSpan.FromMilliseconds(Automation.EngineConfiguration.LoadTimeout);
             var wait = new WebDriverWait(WebDriver, timout);
             wait.IgnoreExceptionTypes(new[]
@@ -86,7 +85,7 @@ namespace Gravity.Plugins.Actions.UiWeb
                 }
                 // wait
                 wait.Until(driver
-                    => factory.Factor("complete", new object[] { driver }));
+                    => factory.Factor(string.Empty, new object[] { driver }));
             }
         }
     }

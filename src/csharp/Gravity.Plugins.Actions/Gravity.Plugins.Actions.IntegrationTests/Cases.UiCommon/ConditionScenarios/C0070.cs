@@ -41,7 +41,7 @@ namespace Gravity.IntegrationTests.Cases.UiCommon.ConditionScenarios
                     Argument = "{{$ --attribute --match:" + condition + "}}",
                     OnElement = "SearchButton",
                     OnAttribute = "class",
-                    Locator = LocatorsList.Id,
+                    Locator = Locators.Id,
                     Actions = SharedSteps.SearchStudent(searchFor: "Carson")
                 },
                 SharedSteps.AssertStudentsCount(count: 1)

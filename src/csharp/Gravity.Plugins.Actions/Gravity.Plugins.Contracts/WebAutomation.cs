@@ -18,14 +18,14 @@ namespace Gravity.Plugins.Contracts
     public class WebAutomation
     {
         /// <summary>
-        /// Creates a new instance of <see cref="WebAutomation"/>.
+        /// Creates a new instance of WebAutomation.
         /// </summary>
         public WebAutomation() : this(default) { }
 
         /// <summary>
-        /// Creates a new instance of <see cref="WebAutomation"/>.
+        /// Creates a new instance of WebAutomation.
         /// </summary>
-        /// <param name="json">JSON file or string to create <see cref="WebAutomation"/> by.</param>
+        /// <param name="json">JSON file or string to create WebAutomation by.</param>
         public WebAutomation(string json)
         {
             CreateFromJson(json);
@@ -35,44 +35,44 @@ namespace Gravity.Plugins.Contracts
         }
 
         /// <summary>
-        /// Gets or sets the input <see cref="DataSource"/> for this <see cref="WebAutomation"/>.
+        /// Gets or sets the input <see cref="dataProvider"/> for this WebAutomation.
         /// </summary>
         [DataMember]
-        public DataSource DataSource { get; set; }
+        public GravityDataProvider DataSource { get; set; }
 
         /// <summary>
-        /// Gets or sets the authentication information for this <see cref="WebAutomation"/>.
+        /// Gets or sets the authentication information for this WebAutomation.
         /// </summary>
         [DataMember]
         public Authentication Authentication { get; set; }
 
         /// <summary>
-        /// Gets or sets the <see cref="EngineConfiguration"/> for this <see cref="WebAutomation"/>.
+        /// Gets or sets the <see cref="EngineConfiguration"/> for this WebAutomation.
         /// </summary>
         [DataMember]
         public EngineConfiguration EngineConfiguration { get; set; }
 
         /// <summary>
-        /// Gets or sets the Driver Parameters for this <see cref="WebAutomation"/>.
+        /// Gets or sets the Driver Parameters for this WebAutomation.
         /// If no parameters provided or no driver created, the engine will create a mock implementation.
         /// </summary>
         [DataMember]
         public IDictionary<string, object> DriverParams { get; set; }
 
         /// <summary>
-        /// gets or sets a collection of <see cref="ExtractionRule"/> for this <see cref="WebAutomation"/>.
+        /// gets or sets a collection of ExtractionRule for this WebAutomation.
         /// </summary>
         [DataMember]
         public IEnumerable<ExtractionRule> Extractions { get; set; }
 
         /// <summary>
-        /// Gets or sets a collection of <see cref="ActionRule"/> for this <see cref="WebAutomation"/>.
+        /// Gets or sets a collection of <see cref="ActionRule"/> for this WebAutomation.
         /// </summary>
         [DataMember]
         public IEnumerable<ActionRule> Actions { get; set; }
 
         /// <summary>
-        /// Gets or sets a context for this <see cref="WebAutomation"/>. Context can be used to save or pass extra data.
+        /// Gets or sets a context for this WebAutomation. Context can be used to save or pass extra data.
         /// </summary>
         [DataMember]
         public IDictionary<string, object> Context { get; set; }

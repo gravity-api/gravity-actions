@@ -3,12 +3,14 @@
  * 
  * RESOURCES
  */
-using Gravity.Plugins.Extensions;
+using Gravity.Extensions;
 using Gravity.Plugins.Attributes;
-using Gravity.Plugins.Base;
 using Gravity.Plugins.Contracts;
+using Gravity.Plugins.Framework;
+
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+
 using System;
 using System.Text.RegularExpressions;
 
@@ -35,7 +37,7 @@ namespace Gravity.Plugins.Actions.UiWeb
         /// <summary>
         /// Creates a new instance of this plugin.
         /// </summary>
-        /// <param name="automation">This <see cref="WebAutomation"/> object (the original object sent by the user).</param>
+        /// <param name="automation">This WebAutomation object (the original object sent by the user).</param>
         /// <param name="driver"><see cref="IWebDriver"/> implementation by which to execute the action.</param>
         public WaitForUrl(WebAutomation automation, IWebDriver driver)
             : base(automation, driver)
@@ -70,7 +72,7 @@ namespace Gravity.Plugins.Actions.UiWeb
             var arguments = CliFactory.Parse(action.Argument);
             if (arguments.ContainsKey(Timeout))
             {
-                timeout = arguments[Timeout].AsTimeSpan();
+                timeout = arguments[Timeout].ToTimeSpan();
             }
             var wait = new WebDriverWait(WebDriver, timeout);
 

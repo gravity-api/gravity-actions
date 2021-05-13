@@ -7,6 +7,7 @@ using Gravity.UnitTests.Base;
 using Gravity.Plugins.Actions.UiWeb;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Gravity.Plugins.Contracts;
+using System.Net.Http;
 
 #pragma warning disable S4144
 namespace Gravity.UnitTests.UiWeb

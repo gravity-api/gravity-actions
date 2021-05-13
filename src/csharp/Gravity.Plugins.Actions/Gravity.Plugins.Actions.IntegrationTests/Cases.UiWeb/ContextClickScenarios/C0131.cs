@@ -32,7 +32,7 @@ namespace Gravity.IntegrationTests.Cases.UiWeb.ContextClickScenarios
                 {
                     Action = PluginsList.ContextClick,
                     OnElement = "click_button",
-                    Locator = LocatorsList.Id
+                    Locator = Locators.Id
                 },
                 SharedSteps.AssertClickOutcome(expectedPattern: "context on element")
             };

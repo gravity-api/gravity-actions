@@ -42,38 +42,38 @@ namespace Gravity.Plugins.Contracts
         public int LoadTimeout { get; set; }
 
         /// <summary>
-        /// Gets or sets the parallel rows number while executing actions based <see cref="DataSource"/>.
+        /// Gets or sets the parallel rows number while executing actions based <see cref="GravityDataProvider"/>.
         /// </summary>
         [DataMember]
         public int MaxParallel { get; set; }
 
         /// <summary>
-        /// Gets or set the value indicating rather to return exceptions under <see cref="OrbitResponse"/>.
+        /// Gets or set the value indicating rather to return exceptions under OrbitResponse.
         /// </summary>
         [DataMember]
         public bool RetrunExceptions { get; set; }
 
         /// <summary>
-        /// Gets or set the value indicating rather to return performance points under <see cref="OrbitResponse"/>.
+        /// Gets or set the value indicating rather to return performance points under OrbitResponse.
         /// </summary>
         [DataMember]
         public bool ReturnPerformancePoints { get; set; }
 
         /// <summary>
         /// Gets or sets the value indicates rather or not to automatically take and return
-        /// screenshots under <see cref="OrbitResponse"/>.
+        /// screenshots under OrbitResponse.
         /// </summary>
         [DataMember]
         public bool ReturnScreenshots { get; set; }
 
         /// <summary>
-        /// Gets or set the <see cref="ScreenshotsConfiguration"/> for this <see cref="WebAutomation"/>.
+        /// Gets or set the <see cref="ScreenshotsConfiguration"/> for this WebAutomation.
         /// </summary>
         [DataMember]
         public ScreenshotsConfiguration AutoScreenshots { get; set; }
 
         /// <summary>
-        /// Get or sets a value indicating if the engine will terminate the <see cref="WebAutomation"/>
+        /// Get or sets a value indicating if the engine will terminate the WebAutomation
         /// when assertion fails, throwing Assert.Fail()
         /// </summary>
         [DataMember]

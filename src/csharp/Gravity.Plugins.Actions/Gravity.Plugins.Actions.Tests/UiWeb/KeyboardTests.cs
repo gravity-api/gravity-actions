@@ -3,13 +3,16 @@
  * 
  * RESOURCES
  */
-using Gravity.UnitTests.Base;
 using Gravity.Plugins.Actions.UiWeb;
+using Gravity.Plugins.Contracts;
+using Gravity.UnitTests.Base;
+
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+
 using OpenQA.Selenium;
 using OpenQA.Selenium.Mock;
+
 using System;
-using Gravity.Plugins.Contracts;
 
 #pragma warning disable S4144
 namespace Gravity.UnitTests.UiWeb
@@ -82,11 +85,41 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
-        [DataRow("{\"onElement\":\"//stale\",\"argument\":\"Enter\"}")]
-        [DataRow("{\"onElement\":\"//exception\",\"argument\":\"Enter\"}")]
         [DataRow("{\"onElement\":\"//null\",\"argument\":\"Enter\"}")]
-        [DataRow("{\"onElement\":\"//none\",\"argument\":\"Enter\"}")]
         public void KeyboardTimeout(string actionRule)
+        {
+            // execute
+            ExecuteAction<Keyboard>(actionRule);
+
+            // assertion (no assertion here)
+            Assert.IsTrue(true);
+        }
+
+        [DataTestMethod, ExpectedException(typeof(NoSuchElementException))]
+        [DataRow("{\"onElement\":\"//none\",\"argument\":\"Enter\"}")]
+        public void KeyboardNone(string actionRule)
+        {
+            // execute
+            ExecuteAction<Keyboard>(actionRule);
+
+            // assertion (no assertion here)
+            Assert.IsTrue(true);
+        }
+
+        [DataTestMethod, ExpectedException(typeof(StaleElementReferenceException))]
+        [DataRow("{\"onElement\":\"//stale\",\"argument\":\"Enter\"}")]
+        public void KeyboardStale(string actionRule)
+        {
+            // execute
+            ExecuteAction<Keyboard>(actionRule);
+
+            // assertion (no assertion here)
+            Assert.IsTrue(true);
+        }
+
+        [DataTestMethod, ExpectedException(typeof(WebDriverException))]
+        [DataRow("{\"onElement\":\"//exception\",\"argument\":\"Enter\"}")]
+        public void KeyboardException(string actionRule)
         {
             // execute
             ExecuteAction<Keyboard>(actionRule);

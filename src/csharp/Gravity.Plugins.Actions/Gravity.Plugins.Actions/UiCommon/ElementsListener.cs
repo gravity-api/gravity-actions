@@ -14,10 +14,10 @@
  * RESOURCES
  */
 using Gravity.Plugins.Attributes;
-using Gravity.Plugins.Base;
+using Gravity.Plugins.Framework;
 using Gravity.Plugins.Contracts;
 using Gravity.Plugins.Engine;
-using Gravity.Plugins.Extensions;
+using Gravity.Extensions;
 using Gravity.Plugins.Utilities.Selenium;
 
 using OpenQA.Selenium;
@@ -45,7 +45,7 @@ namespace Gravity.Plugins.Actions.UiCommon
         /// <summary>
         /// Creates a new instance of this plugin.
         /// </summary>
-        /// <param name="automation">This <see cref="WebAutomation"/> object (the original object sent by the user).</param>
+        /// <param name="automation">This WebAutomation object (the original object sent by the user).</param>
         /// <param name="driver"><see cref="IWebDriver"/> implementation by which to execute the action.</param>
         public ElementsListener(WebAutomation automation, IWebDriver driver)
             : base(automation, driver)
@@ -106,7 +106,7 @@ namespace Gravity.Plugins.Actions.UiCommon
             var isArgument = int.TryParse(argument, out int argumentOut);
 
             // factory
-            return isArgument ? argumentOut : (int)argument.AsTimeSpan().TotalMilliseconds;
+            return isArgument ? argumentOut : (int)argument.ToTimeSpan().TotalMilliseconds;
         }
 
         private static ActionRule GetDefaultActionRule(ActionRule action) => new ActionRule
@@ -143,7 +143,7 @@ namespace Gravity.Plugins.Actions.UiCommon
             public int Timeout { get; set; }
 
             /// <summary>
-            /// Gets or sets the <see cref="WebAutomation"/> instance used by this <see cref="ListenerDto"/>.
+            /// Gets or sets the WebAutomation instance used by this <see cref="ListenerDto"/>.
             /// </summary>
             public WebAutomation Automation { get; set; }
         }

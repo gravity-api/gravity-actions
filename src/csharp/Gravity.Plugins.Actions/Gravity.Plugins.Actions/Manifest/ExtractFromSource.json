@@ -100,7 +100,7 @@
         "action": "ExtractFromSource"
       },
       "extractionExample": {
-        "dataSource": {
+        "dataProvider": {
           "type": "SQLServer",
           "source": "Data Source=.\\SQLEXPRESS;Initial Catalog=FooDatabase;Integrated Security=True",
           "repository": "StudentsTable"
@@ -121,7 +121,7 @@
         "action": "ExtractFromSource"
       },
       "extractionExample": {
-        "dataSource": {
+        "dataProvider": {
           "type": "SQLServer",
           "source": "Data Source=.\\SQLEXPRESS;Initial Catalog=FooDatabase;Integrated Security=True",
           "repository": "StudentsTable",
@@ -143,7 +143,7 @@
         "action": "ExtractFromSource"
       },
       "extractionExample": {
-        "dataSource": {
+        "dataProvider": {
           "type": "CSV",
           "source": "Data/StudentsTable.csv"
         },
@@ -163,7 +163,7 @@
         "action": "ExtractFromSource"
       },
       "extractionExample": {
-        "dataSource": {
+        "dataProvider": {
           "type": "CSV",
           "source": "Data/StudentsTable.csv",
           "writePerEntry": true
@@ -184,7 +184,7 @@
         "action": "ExtractFromSource"
       },
       "extractionExample": {
-        "dataSource": {
+        "dataProvider": {
           "type": "JSON",
           "source": "Data/StudentsTable.json"
         },
@@ -204,7 +204,7 @@
         "action": "ExtractFromSource"
       },
       "extractionExample": {
-        "dataSource": {
+        "dataProvider": {
           "type": "JSON",
           "source": "Data/StudentsTable.json",
           "writePerEntry": true
@@ -225,7 +225,7 @@
         "action": "ExtractFromSource"
       },
       "extractionExample": {
-        "dataSource": {
+        "dataProvider": {
           "type": "XML",
           "source": "Data/StudentsTable.xml"
         },
@@ -245,7 +245,7 @@
         "action": "ExtractFromSource"
       },
       "extractionExample": {
-        "dataSource": {
+        "dataProvider": {
           "type": "XML",
           "source": "Data/StudentsTable.xml",
           "writePerEntry": true
@@ -266,7 +266,7 @@
         "action": "ExtractFromSource"
       },
       "extractionExample": {
-        "dataSource": {
+        "dataProvider": {
           "type": "RestApi",
           "source": "http://www.@foo-bar.io/data"
         },
@@ -286,7 +286,7 @@
         "action": "ExtractFromSource"
       },
       "extractionExample": {
-        "dataSource": {
+        "dataProvider": {
           "type": "RestApi",
           "source": "http://www.@foo-bar.io/data",
           "writePerEntity": true

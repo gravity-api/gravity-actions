@@ -8,18 +8,18 @@ using System.Runtime.Serialization;
 namespace Gravity.Plugins.Contracts
 {
     [DataContract]
-    public class PluginExampleLanguageModel
+    public class PluginExampleModel
     {
         /// <summary>
-        /// Gets or sets the action rule from this example.
+        /// Gets or sets a short description of the example.
+        /// </summary>
+        [DataMember]
+        public string Description { get; set; }
+
+        /// <summary>
+        /// Gets or sets a literal example of how this segment can be described in a sentence.
         /// </summary>
         [DataMember]
         public string Example { get; set; }
-
-        /// <summary>
-        /// Gets or sets a literal example of how this action is described as a sentence
-        /// </summary>
-        [DataMember]
-        public string Language { get; set; }
     }
 }

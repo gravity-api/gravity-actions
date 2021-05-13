@@ -14,5 +14,8 @@
     <Description>Gravity API - Attributes package for annotate the different Gravity plugin components.</Description>
     <PackageTags>automation,crawling,crawl,selenium,appium,automation testing,automation test,qa,gravity,gravity api,scrapping,scrap</PackageTags>
   </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Gravity.Plugins.Contracts\Gravity.Plugins.Contracts.csproj" />
+  </ItemGroup>
 
 </Project>

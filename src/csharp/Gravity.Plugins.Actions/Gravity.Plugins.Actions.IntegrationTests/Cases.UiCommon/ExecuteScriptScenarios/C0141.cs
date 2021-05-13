@@ -43,7 +43,7 @@ namespace Gravity.IntegrationTests.Cases.UiCommon.ExecuteScriptScenarios
                     Action = PluginsList.Assert,
                     Argument = "{{$ --" + condition + "}}",
                     OnElement = "input_selected",
-                    Locator = LocatorsList.Id
+                    Locator = Locators.Id
                 }
             };
         }

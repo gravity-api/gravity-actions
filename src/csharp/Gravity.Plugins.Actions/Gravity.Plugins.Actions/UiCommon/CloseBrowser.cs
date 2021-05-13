@@ -17,8 +17,8 @@
  * RESOURCES
  */
 using Gravity.Plugins.Attributes;
-using Gravity.Plugins.Base;
 using Gravity.Plugins.Contracts;
+using Gravity.Plugins.Framework;
 
 using OpenQA.Selenium;
 
@@ -34,7 +34,7 @@ namespace Gravity.Plugins.Actions.UiCommon
         /// <summary>
         /// Creates a new instance of this plugin.
         /// </summary>
-        /// <param name="automation">This <see cref="WebAutomation"/> object (the original object sent by the user).</param>
+        /// <param name="automation">This WebAutomation object (the original object sent by the user).</param>
         /// <param name="driver"><see cref="IWebDriver"/> implementation by which to execute the action.</param>
         public CloseBrowser(WebAutomation automation, IWebDriver driver)
             : base(automation, driver)

@@ -34,7 +34,7 @@ namespace Graivty.IntegrationTests.Cases.UiWeb.RefreshScenarios
                 {
                     Action = PluginsList.Click,
                     OnElement = "for_stale_element",
-                    Locator = LocatorsList.Id
+                    Locator = Locators.Id
                 },
                 SharedSteps.AssertStaleElementClass(expectedPattern: "alert-danger"),
                 new ActionRule

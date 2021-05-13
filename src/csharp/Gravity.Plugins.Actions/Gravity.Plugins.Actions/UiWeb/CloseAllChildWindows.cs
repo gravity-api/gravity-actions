@@ -16,9 +16,9 @@
  *
  * RESOURCES
  */
-using Gravity.Plugins.Actions.Extensions;
+using Gravity.Extensions;
 using Gravity.Plugins.Attributes;
-using Gravity.Plugins.Base;
+using Gravity.Plugins.Framework;
 using Gravity.Plugins.Contracts;
 
 using OpenQA.Selenium;
@@ -38,7 +38,7 @@ namespace Gravity.Plugins.Actions.UiWeb
         /// <summary>
         /// Creates a new instance of this plugin.
         /// </summary>
-        /// <param name="automation">This <see cref="WebAutomation"/> object (the original object sent by the user).</param>
+        /// <param name="automation">This WebAutomation object (the original object sent by the user).</param>
         /// <param name="driver"><see cref="IWebDriver"/> implementation by which to execute the action.</param>
         public CloseAllChildWindows(WebAutomation automation, IWebDriver driver)
             : base(automation, driver)
@@ -97,7 +97,7 @@ namespace Gravity.Plugins.Actions.UiWeb
             }
             catch (Exception e) when (e is WebDriverException)
             {
-                WebDriver.SwitchTo(windowName);
+               // WebDriver.SwitchTo(windowName);
             }
             return WebDriver;
         }

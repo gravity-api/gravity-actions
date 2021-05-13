@@ -58,7 +58,7 @@ namespace Gravity.IntegrationTests.Cases.UiCommon.ExtractFromDomScenarios
                     {
                         Action = PluginsList.Click,
                         OnElement = "Details",
-                        Locator = LocatorsList.LinkText
+                        Locator = Locators.LinkText
                     }
                 }
             };

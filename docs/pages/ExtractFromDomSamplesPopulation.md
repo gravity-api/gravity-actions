@@ -23,7 +23,7 @@ Extract all students ```First Name``` into a table with ```FirstName``` column a
 
 // extraction rule
 {
-    "dataSource": {
+    "dataProvider": {
         "type": "SQLServer",
         "source": "Data Source=.\\SQLEXPRESS;Initial Catalog=FooDatabase;Integrated Security=True",
         "repository": "StudentsTable"
@@ -81,7 +81,7 @@ action_rule = {
 
 # extraction rule
 extraction_rule = {
-    "dataSource": {
+    "dataProvider": {
         "type": "SQLServer",
         "source": "Data Source=.\\SQLEXPRESS;Initial Catalog=FooDatabase;Integrated Security=True",
         "repository": "StudentsTable"
@@ -153,7 +153,7 @@ Extract all students ```First Name``` into a table with ```FirstName``` column a
 
 // extraction rule
 {
-    "dataSource": {
+    "dataProvider": {
         "type": "SQLServer",
         "source": "Data Source=.\\SQLEXPRESS;Initial Catalog=FooDatabase;Integrated Security=True",
         "repository": "StudentsTable",
@@ -213,7 +213,7 @@ action_rule = {
 
 # extraction rule
 extraction_rule = {
-    "dataSource": {
+    "dataProvider": {
         "type": "SQLServer",
         "source": "Data Source=.\\SQLEXPRESS;Initial Catalog=FooDatabase;Integrated Security=True",
         "repository": "StudentsTable",
@@ -286,7 +286,7 @@ Extract all students ```First Name``` into a table with ```FirstName``` column a
 
 // extraction rule
 {
-    "dataSource": {
+    "dataProvider": {
         "type": "CSV",
         "source": "Data/StudentsTable.csv"
     }    
@@ -342,7 +342,7 @@ action_rule = {
 
 # extraction rule
 extraction_rule = {
-    "dataSource": {
+    "dataProvider": {
         "type": "CSV",
         "source": "Data/StudentsTable.csv"
     },    
@@ -411,7 +411,7 @@ Extract all students ```First Name``` into a table with ```FirstName``` column a
 
 // extraction rule
 {
-    "dataSource": {
+    "dataProvider": {
         "type": "CSV",
         "source": "Data/StudentsTable.csv",
         "writePerEntry": true
@@ -469,7 +469,7 @@ action_rule = {
 
 # extraction rule
 extraction_rule = {
-    "dataSource": {
+    "dataProvider": {
         "type": "CSV",
         "source": "Data/StudentsTable.csv",
         "writePerEntry": True
@@ -539,7 +539,7 @@ Extract all students ```First Name``` into a table with ```FirstName``` column a
 
 // extraction rule
 {
-    "dataSource": {
+    "dataProvider": {
         "type": "JSON",
         "source": "Data/StudentsTable.json"
     }    
@@ -595,7 +595,7 @@ action_rule = {
 
 # extraction rule
 extraction_rule = {
-    "dataSource": {
+    "dataProvider": {
         "type": "JSON",
         "source": "Data/StudentsTable.json"
     },    
@@ -664,7 +664,7 @@ Extract all students ```First Name``` into a table with ```FirstName``` column a
 
 // extraction rule
 {
-    "dataSource": {
+    "dataProvider": {
         "type": "JSON",
         "source": "Data/StudentsTable.json",
         "writePerEntry": true
@@ -722,7 +722,7 @@ action_rule = {
 
 # extraction rule
 extraction_rule = {
-    "dataSource": {
+    "dataProvider": {
         "type": "JSON",
         "source": "Data/StudentsTable.json",
         "writePerEntry": True
@@ -792,7 +792,7 @@ Extract all students ```First Name``` into a table with ```FirstName``` column a
 
 // extraction rule
 {
-    "dataSource": {
+    "dataProvider": {
         "type": "XML",
         "source": "Data/StudentsTable.xml"
     }    
@@ -848,7 +848,7 @@ action_rule = {
 
 # extraction rule
 extraction_rule = {
-    "dataSource": {
+    "dataProvider": {
         "type": "XML",
         "source": "Data/StudentsTable.xml"
     },    
@@ -917,7 +917,7 @@ Extract all students ```First Name``` into a table with ```FirstName``` column a
 
 // extraction rule
 {
-    "dataSource": {
+    "dataProvider": {
         "type": "XML",
         "source": "Data/StudentsTable.xml",
         "writePerEntry": true
@@ -975,7 +975,7 @@ action_rule = {
 
 # extraction rule
 extraction_rule = {
-    "dataSource": {
+    "dataProvider": {
         "type": "XML",
         "source": "Data/StudentsTable.xml",
         "writePerEntry": True
@@ -1051,7 +1051,7 @@ Extract all students ```First Name``` into a table with ```FirstName``` column a
 
 // extraction rule
 {
-    "dataSource": {
+    "dataProvider": {
         "type": "RestApi",
         "source": "http://www.@foo-bar.io/data"
     }    
@@ -1107,7 +1107,7 @@ action_rule = {
 
 # extraction rule
 extraction_rule = {
-    "dataSource": {
+    "dataProvider": {
         "type": "RestApi",
         "source": "http://www.@foo-bar.io/data"
     },
@@ -1182,7 +1182,7 @@ Extract all students ```First Name``` into a table with ```FirstName``` column a
 
 // extraction rule
 {
-    "dataSource": {
+    "dataProvider": {
         "type": "RestApi",
         "source": "http://www.@foo-bar.io/data",
         "writePerEntity": true
@@ -1240,7 +1240,7 @@ action_rule = {
 
 # extraction rule
 extraction_rule = {
-    "dataSource": {
+    "dataProvider": {
         "type": "RestApi",
         "source": "http://www.@foo-bar.io/data",
         "writePerEntity": True

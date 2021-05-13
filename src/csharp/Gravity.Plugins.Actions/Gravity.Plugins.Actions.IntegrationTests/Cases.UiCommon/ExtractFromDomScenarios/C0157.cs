@@ -56,9 +56,9 @@ namespace Gravity.IntegrationTests.Cases.UiCommon.ExtractFromDomScenarios
                     ColumnName = "InstructorFirstName"
                 }
             }, SerializerOptions);
-            automation.DataSource = new DataSource
+            automation.DataSource = new GravityDataProvider
             {
-                Type = DataSourcesList.JSON,
+                Type = GravityDataProviders.JSON,
                 Source = data
             };
             automation.EngineConfiguration.MaxParallel = 5;

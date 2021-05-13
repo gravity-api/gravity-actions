@@ -35,13 +35,13 @@ namespace Graivty.IntegrationTests.Cases.UiCommon.MoveToElementScenarios
                     Action = PluginsList.ExecuteScript,
                     Argument = "arguments[0].scrollIntoView();",
                     OnElement = "over_outcome",
-                    Locator = LocatorsList.Id
+                    Locator = Locators.Id
                 },
                 new ActionRule
                 {
                     Action = PluginsList.MoveToElement,
                     OnElement = "over_outcome",
-                    Locator = LocatorsList.Id
+                    Locator = Locators.Id
                 },
                 SharedSteps.AssertOverOutcomeValue(expectedPattern: "^mouse over$"),
             };

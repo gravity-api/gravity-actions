@@ -33,7 +33,7 @@ namespace Graivty.IntegrationTests.Cases.UiWeb.GoToUrlScenarios
                     Argument = "{{$ --blank}}",
                     OnElement = "url_a",
                     OnAttribute = "href",
-                    Locator = LocatorsList.Id
+                    Locator = Locators.Id
                 },
                 SharedSteps.AssertWindowsCount(greaterThan: 1)
             };

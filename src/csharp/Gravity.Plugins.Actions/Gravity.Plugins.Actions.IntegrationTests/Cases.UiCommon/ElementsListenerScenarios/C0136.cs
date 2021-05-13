@@ -41,7 +41,7 @@ namespace Gravity.IntegrationTests.Cases.UiCommon.ElementsListenerScenarios
                 {
                     Action = PluginsList.Click,
                     OnElement = "generate_elements",
-                    Locator = LocatorsList.Id
+                    Locator = Locators.Id
                 },
                 new ActionRule
                 {

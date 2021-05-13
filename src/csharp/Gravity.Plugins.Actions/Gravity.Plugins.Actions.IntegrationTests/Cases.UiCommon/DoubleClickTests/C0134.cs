@@ -32,7 +32,7 @@ namespace Gravity.IntegrationTests.Cases.UiCommon.DoubleClickTests
                 {
                     Action = PluginsList.DoubleClick,
                     OnElement = "click_button",
-                    Locator = LocatorsList.Id
+                    Locator = Locators.Id
                 },
                 SharedSteps.AssertClickOutcome(expectedPattern: "double on element")
             };

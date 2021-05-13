@@ -38,7 +38,7 @@ namespace Graivty.IntegrationTests.Cases.UiWeb.SelectFromComboBoxScenarios
                     Action = PluginsList.SelectFromComboBox,
                     OnElement = "select_menu_multiple",
                     Argument = "{{$ --all}}",
-                    Locator = LocatorsList.Id
+                    Locator = Locators.Id
                 },
                 SharedSteps.AssertMultipleComboBoxSelectedCount(count: 3)
             };

@@ -6,11 +6,10 @@
  * work items
  * TODO: improve JavaScriptSelect for better readability and code reuse.
  */
-using Gravity.Plugins.Actions.Extensions;
+using Gravity.Extensions;
 using Gravity.Plugins.Attributes;
-using Gravity.Plugins.Base;
+using Gravity.Plugins.Framework;
 using Gravity.Plugins.Contracts;
-using Gravity.Plugins.Extensions;
 
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
@@ -21,6 +20,7 @@ using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.RegularExpressions;
+using OpenQA.Selenium.Extensions;
 
 namespace Gravity.Plugins.Actions.UiWeb
 {
@@ -41,7 +41,7 @@ namespace Gravity.Plugins.Actions.UiWeb
         /// <summary>
         /// Creates a new instance of this plugin.
         /// </summary>
-        /// <param name="automation">This <see cref="WebAutomation"/> object (the original object sent by the user).</param>
+        /// <param name="automation">This WebAutomation object (the original object sent by the user).</param>
         /// <param name="driver"><see cref="IWebDriver"/> implementation by which to execute the action.</param>
         public SelectFromComboBox(WebAutomation automation, IWebDriver driver)
             : base(automation, driver)
@@ -96,17 +96,17 @@ namespace Gravity.Plugins.Actions.UiWeb
             description = string.IsNullOrEmpty(description) ? "DEFAULT" : description;
 
             // get select method > align description
-            var method = GetType().GetMethodByDescription(description);
+            //var method = GetType().GetMethodByDescription(description);
 
-            // execute
-            try
-            {
-                method.Invoke(this, new object[] { action, selectElement });
-            }
-            catch (Exception e) when (e != null)
-            {
-                JavaScriptSelect(action, selectElement);
-            }
+            //// execute
+            //try
+            //{
+            //    method.Invoke(this, new object[] { action, selectElement });
+            //}
+            //catch (Exception e) when (e != null)
+            //{
+            //    JavaScriptSelect(action, selectElement);
+            //}
         }
 
         // select all options by the text displayed

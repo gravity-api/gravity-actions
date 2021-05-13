@@ -61,7 +61,7 @@ namespace Gravity.IntegrationTests.Cases.UiCommon.ExtractFromDomScenarios
                         Argument = "{{$ --blank}}",
                         OnElement = "Details",
                         OnAttribute = "href",
-                        Locator = LocatorsList.LinkText
+                        Locator = Locators.LinkText
                     },
                     new ActionRule
                     {

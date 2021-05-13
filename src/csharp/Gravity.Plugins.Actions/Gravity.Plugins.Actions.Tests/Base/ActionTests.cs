@@ -5,10 +5,10 @@
  * https://dev.to/franndotexe/mstest-v2---new-old-kid-on-the-block
  */
 using Gravity.Plugins.Attributes;
-using Gravity.Plugins.Base;
+using Gravity.Plugins.Framework;
 using Gravity.Plugins.Contracts;
 using Gravity.Plugins.Engine;
-using Gravity.Plugins.Extensions;
+using Gravity.Extensions;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -52,7 +52,7 @@ namespace Gravity.UnitTests.Base
 
         #region *** properties     ***
         /// <summary>
-        /// Gets a basic <see cref="WebAutomation"/> instance for all tests in this domain.
+        /// Gets a basic WebAutomation instance for all tests in this domain.
         /// </summary>
         public WebAutomation Automation { get; private set; }
 
@@ -173,7 +173,7 @@ namespace Gravity.UnitTests.Base
         /// <typeparam name="T">The <see cref="Type"/> of action which will be executed.</typeparam>
         /// <param name="actionRule">ActionRule JSON from which to create an <see cref="ActionRule"/> instance.</param>
         /// <param name="parameters">Perform method parameters list excluding <see cref="ActionRule"/> parameter type.</param>
-        /// <returns>A collection of <see cref="OrbitResponse"/> based on <see cref="WebAutomation"/> execution.</returns>
+        /// <returns>A collection of OrbitResponse based on WebAutomation execution.</returns>
         public IEnumerable<OrbitResponse> ExecuteAction<T>(string actionRule, object[] parameters)
             where T : Plugin
         {
@@ -196,7 +196,7 @@ namespace Gravity.UnitTests.Base
         /// <param name="by">Provides a mechanism by which to find elements within a document.</param>
         /// <param name="actionRule">ActionRule JSON from which to create an <see cref="ActionRule"/> instance.</param>
         /// <param name="parameters">Perform method parameters list excluding <see cref="ActionRule"/> parameter type.</param>
-        /// <returns>A collection of <see cref="OrbitResponse"/> based on <see cref="WebAutomation"/> execution.</returns>
+        /// <returns>A collection of OrbitResponse based on WebAutomation execution.</returns>
         public IEnumerable<OrbitResponse> ExecuteAction<T>(By by, string actionRule, object[] parameters)
             where T : Plugin
         {
@@ -294,11 +294,7 @@ namespace Gravity.UnitTests.Base
             }
             catch (Exception e)
             {
-                if (e.InnerException != null)
-                {
-                    throw e.GetFirstNonReflection();
-                }
-                throw;
+                throw e.GetBaseException();
             }
         }
 
@@ -420,7 +416,7 @@ namespace Gravity.UnitTests.Base
         /// Generates <see cref="Plugin"/> instance based on the provided <see cref="Plugin"/> type.
         /// </summary>
         /// <typeparam name="T"><see cref="Plugin"/> type by which to generate a new <see cref="Plugin"/> instance.</typeparam>
-        /// <param name="automation"><see cref="WebAutomation"/> object by which to construct a new <see cref="Plugin"/> instance.</param>
+        /// <param name="automation">WebAutomation object by which to construct a new <see cref="Plugin"/> instance.</param>
         /// <returns><see cref="Plugin"/> instance of the specified type.</returns>
         public T ActionFactory<T>(WebAutomation automation)
             where T : Plugin
@@ -432,7 +428,7 @@ namespace Gravity.UnitTests.Base
         /// Generates <see cref="Plugin"/> instance based on the provided <see cref="Plugin"/> type.
         /// </summary>
         /// <typeparam name="T"><see cref="Plugin"/> type by which to generate a new <see cref="Plugin"/> instance.</typeparam>
-        /// <param name="automation"><see cref="WebAutomation"/> object by which to construct a new <see cref="Plugin"/> instance.</param>
+        /// <param name="automation">WebAutomation object by which to construct a new <see cref="Plugin"/> instance.</param>
         /// <param name="capabilities">Capabilities to add to the <see cref="Plugin"/> <see cref="IWebDriver"/> instance.</param>
         /// <returns><see cref="Plugin"/> instance of the specified type.</returns>
         public T ActionFactory<T>(WebAutomation automation, IDictionary<string, object> capabilities)

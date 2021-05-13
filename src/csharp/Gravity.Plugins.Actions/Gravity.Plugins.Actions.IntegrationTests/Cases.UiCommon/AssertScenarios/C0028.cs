@@ -32,7 +32,7 @@ namespace Gravity.IntegrationTests.Cases.UiCommon.AssertScenarios
                     Action = PluginsList.Assert,
                     Argument = "{{$ --stale}}",
                     OnElement = "for_stale_element",
-                    Locator = LocatorsList.Id
+                    Locator = Locators.Id
                 }
             };
         }

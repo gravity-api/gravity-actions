@@ -3,18 +3,18 @@
  * 
  * RESOURCES
  */
-using Gravity.Plugins.Actions.Extensions;
+using Gravity.Extensions;
 using Gravity.Plugins.Attributes;
-using Gravity.Plugins.Base;
+using Gravity.Plugins.Framework;
 using Gravity.Plugins.Contracts;
 
 using OpenQA.Selenium;
 using OpenQA.Selenium.Extensions;
-using OpenQA.Selenium.Remote;
 
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using Gravity.Plugins.Utilities;
 
 namespace Gravity.Plugins.Actions.UiWeb
 {
@@ -40,9 +40,9 @@ namespace Gravity.Plugins.Actions.UiWeb
         /// <summary>
         /// Creates a new instance of this plugin.
         /// </summary>
-        /// <param name="automation">This <see cref="WebAutomation"/> object (the original object sent by the user).</param>
+        /// <param name="automation">This WebAutomation object (the original object sent by the user).</param>
         /// <param name="driver"><see cref="IWebDriver"/> implementation by which to execute the action.</param>
-        public GoToUrl(WebAutomation automation, RemoteWebDriver driver)
+        public GoToUrl(WebAutomation automation, IWebDriver driver)
             : base(automation, driver)
         { }
         #endregion
@@ -86,10 +86,10 @@ namespace Gravity.Plugins.Actions.UiWeb
             WebDriver.Url = url;
 
             // maximize
-            if (WebDriver.IsAppiumDriver())
-            {
-                return;
-            }
+            //if (WebDriver.IsAppiumDriver())
+            //{
+            //    return;
+            //}
 
             try
             {
@@ -103,7 +103,7 @@ namespace Gravity.Plugins.Actions.UiWeb
             }
         }
 
-        private IDictionary<string, string> GetArguments(string cli) => Utilities.CliFactory.Compile(cli)
+        private IDictionary<string, string> GetArguments(string cli) => new CliFactory(cli).CliCompliant
             ? CliFactory.Parse(cli)
             : new Dictionary<string, string>
             {
@@ -154,7 +154,14 @@ namespace Gravity.Plugins.Actions.UiWeb
                 }
 
                 // switch to the relevant tab
-                WebDriver.SwitchToWindow(i + 1);
+                if ((i + 1) > WebDriver.WindowHandles.Count - 1)
+                {
+                    WebDriver.SwitchToWindow(i);
+                }
+                else
+                {
+                    WebDriver.SwitchToWindow(i + 1);
+                }
                 break;
             }
         }

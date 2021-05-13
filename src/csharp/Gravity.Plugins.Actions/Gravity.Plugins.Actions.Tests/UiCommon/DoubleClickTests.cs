@@ -3,16 +3,19 @@
  * 
  * RESOURCES
  */
-using OpenQA.Selenium.Mock;
 using Gravity.Plugins.Actions.UiCommon;
+using Gravity.Plugins.Contracts;
 using Gravity.UnitTests.Base;
+
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+
 using OpenQA.Selenium;
+using OpenQA.Selenium.Mock;
+
 using System;
 using System.Collections.Generic;
 
 using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
-using Gravity.Plugins.Contracts;
 
 #pragma warning disable S4144
 namespace Gravity.UnitTests.UiCommon
@@ -54,11 +57,31 @@ namespace Gravity.UnitTests.UiCommon
             Assert.IsTrue(true);
         }
 
-        [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
+        [DataTestMethod, ExpectedException(typeof(NoSuchElementException))]
         [DataRow("{\"onElement\":\"//none\"}")]
-        [DataRow("{\"onElement\":\"//null\"}")]
-        [DataRow("{\"onElement\":\"//stale\"}")]
         public void DoubleClickNoElement(string actionRule)
+        {
+            // execute
+            ExecuteAction<DoubleClick>(actionRule);
+
+            // assertion (no assertion here)
+            Assert.IsTrue(true);
+        }
+
+        [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
+        [DataRow("{\"onElement\":\"//null\"}")]
+        public void DoubleClickNull(string actionRule)
+        {
+            // execute
+            ExecuteAction<DoubleClick>(actionRule);
+
+            // assertion (no assertion here)
+            Assert.IsTrue(true);
+        }
+
+        [DataTestMethod, ExpectedException(typeof(StaleElementReferenceException))]
+        [DataRow("{\"onElement\":\"//stale\"}")]
+        public void DoubleClickStale(string actionRule)
         {
             // execute
             ExecuteAction<DoubleClick>(actionRule);
@@ -126,11 +149,31 @@ namespace Gravity.UnitTests.UiCommon
             Assert.IsTrue(true);
         }
 
-        [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
+        [DataTestMethod, ExpectedException(typeof(NoSuchElementException))]
         [DataRow("{\"onElement\":\"//none\",\"locator\":\"Xpath\"}")]
-        [DataRow("{\"onElement\":\"//null\",\"locator\":\"Xpath\"}")]
-        [DataRow("{\"onElement\":\"//stale\",\"locator\":\"Xpath\"}")]
         public void DoubleClickElementAbsoluteNoElement(string actionRule)
+        {
+            // execute
+            ExecuteAction<DoubleClick>(MockBy.Positive(), actionRule);
+
+            // assertion (no assertion here)
+            Assert.IsTrue(true);
+        }
+
+        [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
+        [DataRow("{\"onElement\":\"//null\",\"locator\":\"Xpath\"}")]
+        public void DoubleClickElementAbsoluteNull(string actionRule)
+        {
+            // execute
+            ExecuteAction<DoubleClick>(MockBy.Positive(), actionRule);
+
+            // assertion (no assertion here)
+            Assert.IsTrue(true);
+        }
+
+        [DataTestMethod, ExpectedException(typeof(StaleElementReferenceException))]
+        [DataRow("{\"onElement\":\"//stale\",\"locator\":\"Xpath\"}")]
+        public void DoubleClickElementAbsoluteStale(string actionRule)
         {
             // execute
             ExecuteAction<DoubleClick>(MockBy.Positive(), actionRule);
@@ -172,11 +215,20 @@ namespace Gravity.UnitTests.UiCommon
             Assert.IsTrue(true);
         }
 
-        [TestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
-        [DataRow("{\"onElement\":\".//null\"}")]
-        [DataRow("{\"onElement\":\".//stale\"}")]
+        [TestMethod, ExpectedException(typeof(NoSuchElementException))]
         [DataRow("{\"onElement\":\".//none\"}")]
         public void DoubleClickElementFlatNoElement(string actionRule)
+        {
+            // execute
+            ExecuteAction<DoubleClick>(MockBy.Null(), actionRule);
+
+            // assertion (no assertion here)
+            Assert.IsTrue(true);
+        }
+
+        [TestMethod, ExpectedException(typeof(StaleElementReferenceException))]
+        [DataRow("{\"onElement\":\".//stale\"}")]
+        public void DoubleClickElementFlatStale(string actionRule)
         {
             // execute
             ExecuteAction<DoubleClick>(MockBy.Null(), actionRule);
@@ -190,6 +242,17 @@ namespace Gravity.UnitTests.UiCommon
         {
             // execute
             ExecuteAction<DoubleClick>(MockBy.Positive());
+
+            // assertion (no assertion here)
+            Assert.IsTrue(true);
+        }
+
+        [TestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
+        [DataRow("{\"onElement\":\".//null\"}")]
+        public void DoubleClickElementFlatNull(string actionRule)
+        {
+            // execute
+            ExecuteAction<DoubleClick>(MockBy.Null(), actionRule);
 
             // assertion (no assertion here)
             Assert.IsTrue(true);

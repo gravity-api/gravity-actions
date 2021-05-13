@@ -4,11 +4,14 @@
  * RESOURCES
  */
 using Gravity.Plugins.Actions.UiCommon;
-using Gravity.UnitTests.Base;
 using Gravity.Plugins.Contracts;
+using Gravity.UnitTests.Base;
+
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+
 using OpenQA.Selenium;
 using OpenQA.Selenium.Mock;
+
 using System;
 using System.Text.RegularExpressions;
 
@@ -114,7 +117,6 @@ namespace Gravity.UnitTests.UiCommon
             Assert.IsTrue(Regex.IsMatch(actual, "^\\d+$"));
         }
 
-        [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
         [DataRow("{\"argument\":\"test_key\",\"onElement\":\"2000-12-01\"}")]
         public void RegisterParameterNonElement(string actionRule)
         {
@@ -131,12 +133,42 @@ namespace Gravity.UnitTests.UiCommon
             }
         }
 
-        [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
+        [DataTestMethod]
         [DataRow("{\"argument\":\"test_key\",\"onElement\":\"//null\"}")]
-        [DataRow("{\"argument\":\"test_key\",\"onElement\":\"//stale\"}")]
-        [DataRow("{\"argument\":\"test_key\",\"onElement\":\"//none\"}")]
-        [DataRow("{\"argument\":\"test_key\",\"onElement\":\"//exception\"}")]
         public void RegisterParameterTimeout(string actionRule)
+        {
+            // execute
+            ExecuteAction<RegisterParameter>(actionRule);
+
+            // assertion (no assertion here)
+            Assert.IsTrue(true);
+        }
+
+        [DataTestMethod]
+        [DataRow("{\"argument\":\"test_key\",\"onElement\":\"//stale\"}")]
+        public void RegisterParameterStale(string actionRule)
+        {
+            // execute
+            ExecuteAction<RegisterParameter>(actionRule);
+
+            // assertion (no assertion here)
+            Assert.IsTrue(true);
+        }
+
+        [DataTestMethod]
+        [DataRow("{\"argument\":\"test_key\",\"onElement\":\"//none\"}")]
+        public void RegisterParameterNoElement(string actionRule)
+        {
+            // execute
+            ExecuteAction<RegisterParameter>(actionRule);
+
+            // assertion (no assertion here)
+            Assert.IsTrue(true);
+        }
+
+        [DataTestMethod]
+        [DataRow("{\"argument\":\"test_key\",\"onElement\":\"//exception\"}")]
+        public void RegisterParameterException(string actionRule)
         {
             // execute
             ExecuteAction<RegisterParameter>(actionRule);
@@ -182,7 +214,7 @@ namespace Gravity.UnitTests.UiCommon
             Assert.IsTrue(Regex.IsMatch(actual, "^\\d+$"));
         }
 
-        [DataTestMethod, ExpectedException(typeof(NoSuchElementException))]
+        [DataTestMethod]
         [DataRow("{\"argument\":\"test_key\",\"onElement\":\"2000-12-01\"}")]
         public void RegisterParameterElementNonElementText(string actionRule)
         {
@@ -212,7 +244,7 @@ namespace Gravity.UnitTests.UiCommon
             Assert.IsTrue(string.IsNullOrEmpty(actual));
         }
 
-        [DataTestMethod, ExpectedException(typeof(StaleElementReferenceException))]
+        [DataTestMethod]
         [DataRow("{\"argument\":\"test_key\",\"onElement\":\".//stale\"}")]
         public void RegisterParameterElementStale(string actionRule)
         {
@@ -223,7 +255,7 @@ namespace Gravity.UnitTests.UiCommon
             Assert.IsTrue(true);
         }
 
-        [DataTestMethod, ExpectedException(typeof(NoSuchElementException))]
+        [DataTestMethod]
         [DataRow("{\"argument\":\"test_key\",\"onElement\":\".//none\"}")]
         public void RegisterParameterElementNone(string actionRule)
         {

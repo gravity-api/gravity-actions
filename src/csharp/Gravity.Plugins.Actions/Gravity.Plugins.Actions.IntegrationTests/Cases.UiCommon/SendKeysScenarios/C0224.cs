@@ -38,13 +38,13 @@ namespace Graivty.IntegrationTests.Cases.UiCommon.SendKeysScenarios
                 {
                     Action = PluginsList.MoveToElement,
                     OnElement = "text_area_enabled",
-                    Locator = LocatorsList.Id
+                    Locator = Locators.Id
                 },
                 new ActionRule
                 {
                     Action = PluginsList.Click,
                     OnElement = "text_area_enabled",
-                    Locator = LocatorsList.Id
+                    Locator = Locators.Id
                 },
                 SharedSteps.AssertSelectable(id: "e_text_area_selected", selected: false),
                 new ActionRule
@@ -52,7 +52,7 @@ namespace Graivty.IntegrationTests.Cases.UiCommon.SendKeysScenarios
                     Action = PluginsList.SendKeys,
                     Argument = "{{$ --down:" + downKey + " --keys:" + key + "}}",
                     OnElement = "text_area_enabled",
-                    Locator = LocatorsList.Id
+                    Locator = Locators.Id
                 },
                 SharedSteps.AssertSelectable(id: "e_text_area_selected", selected: true)
             };

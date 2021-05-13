@@ -22,9 +22,9 @@
  * RESOURCES
  * http://appium.io/docs/en/writing-running-appium/android/android-shell/
  */
-using Gravity.Plugins.Actions.Extensions;
+using Gravity.Extensions;
 using Gravity.Plugins.Attributes;
-using Gravity.Plugins.Base;
+using Gravity.Plugins.Framework;
 using Gravity.Plugins.Contracts;
 
 using OpenQA.Selenium;
@@ -79,7 +79,7 @@ namespace Gravity.Plugins.Actions.UiCommon
         /// <summary>
         /// Creates a new instance of this plugin.
         /// </summary>
-        /// <param name="automation">This <see cref="WebAutomation"/> object (the original object sent by the user).</param>
+        /// <param name="automation">This WebAutomation object (the original object sent by the user).</param>
         /// <param name="driver"><see cref="IWebDriver"/> implementation by which to execute the action.</param>
         public SendKeys(WebAutomation automation, IWebDriver driver)
             : base(automation, driver)
@@ -256,7 +256,7 @@ namespace Gravity.Plugins.Actions.UiCommon
             }
             catch (Exception e) when (e is InvalidElementStateException)
             {
-                // exit conditions
+                //exit conditions
                 if (!WebDriver.IsAppiumDriver() && !IsMobileNative())
                 {
                     throw;

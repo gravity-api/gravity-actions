@@ -34,7 +34,7 @@ namespace Graivty.IntegrationTests.Cases.UiCommon.RegisterParameterScenarios
                     Argument = "integration_parameter",
                     OnElement = "attribute_div",
                     OnAttribute = "number",
-                    Locator = LocatorsList.Id,
+                    Locator = Locators.Id,
                     RegularExpression = "\\d{1}"
                 },
                 SharedSteps.AssertParameter(equal: "1"),

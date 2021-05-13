@@ -3,10 +3,11 @@
  * 
  * RESOURCES
  */
+using Gravity.Extensions;
 using Gravity.Plugins.Actions.UiWeb;
-using Gravity.UnitTests.Base;
 using Gravity.Plugins.Contracts;
-using Gravity.Plugins.Extensions;
+using Gravity.Plugins.Framework;
+using Gravity.UnitTests.Base;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -17,7 +18,6 @@ using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Text.Json;
-using Gravity.Extensions;
 
 #pragma warning disable S4144
 namespace Gravity.UnitTests.UiWeb
@@ -425,7 +425,7 @@ namespace Gravity.UnitTests.UiWeb
         [DataTestMethod]
         [DataRow("" +
             "{" +
-            "    \"dataSource\": {" +
+            "    \"dataProvider\": {" +
             "        \"type\":\"SQLServer\"," +
             "        \"source\":\"[Data.ConnectionString]\"," +
             "        \"repository\":\"[Data.Repository]\"" +
@@ -457,7 +457,7 @@ namespace Gravity.UnitTests.UiWeb
         [DataTestMethod]
         [DataRow("" +
             "{" +
-            "    \"dataSource\": {" +
+            "    \"dataProvider\": {" +
             "        \"type\":\"SQLServer\"," +
             "        \"source\":\"[Data.ConnectionString]\"," +
             "        \"repository\":\"[Data.Repository]\"," +
@@ -486,10 +486,11 @@ namespace Gravity.UnitTests.UiWeb
 
         // 0: extracts inner text of all root elements and save it to SQL Server.
         //    the saving will be done when the extraction rule execution completed.
+        [ExpectedException(typeof(ArgumentException))]
         [DataTestMethod]
         [DataRow("" +
             "{" +
-            "    \"dataSource\": {" +
+            "    \"dataProvider\": {" +
             "        \"type\":\"SQLServer\"," +
             "        \"source\":\"[Data.ConnectionString]\"," +
             "        \"repository\":\"[Data.Repository]\"" +
@@ -521,7 +522,7 @@ namespace Gravity.UnitTests.UiWeb
         [DataTestMethod]
         [DataRow("" +
             "{" +
-            "    \"dataSource\": {" +
+            "    \"dataProvider\": {" +
             "        \"type\":\"SQLServer\"," +
             "        \"source\":\"[Data.ConnectionString]\"," +
             "        \"repository\":\"[Data.Repository]\"" +
@@ -554,7 +555,7 @@ namespace Gravity.UnitTests.UiWeb
         [DataTestMethod]
         [DataRow("" +
             "{" +
-            "    \"dataSource\": {" +
+            "    \"dataProvider\": {" +
             "        \"type\":\"CSV\"," +
             "        \"source\":\"data/extract_from_source/[File.Name].csv\"" +
             "    }," +
@@ -584,7 +585,7 @@ namespace Gravity.UnitTests.UiWeb
         [DataTestMethod]
         [DataRow("" +
             "{" +
-            "    \"dataSource\": {" +
+            "    \"dataProvider\": {" +
             "        \"type\":\"CSV\"," +
             "        \"source\":\"data/extract_from_source/[File.Name].csv\"," +
             "        \"writePerEntity\":true" +
@@ -615,7 +616,7 @@ namespace Gravity.UnitTests.UiWeb
         [DataTestMethod, ExpectedException(typeof(ArgumentException))]
         [DataRow("" +
             "{" +
-            "    \"dataSource\": {" +
+            "    \"dataProvider\": {" +
             "        \"type\":\"CSV\"," +
             "        \"source\":\"\"" +
             "    }," +
@@ -647,7 +648,7 @@ namespace Gravity.UnitTests.UiWeb
         [DataTestMethod]
         [DataRow("" +
             "{" +
-            "    \"dataSource\": {" +
+            "    \"dataProvider\": {" +
             "        \"type\":\"JSON\"," +
             "        \"source\":\"data/extract_from_source/[File.Name].json\"" +
             "    }," +
@@ -677,7 +678,7 @@ namespace Gravity.UnitTests.UiWeb
         [DataTestMethod]
         [DataRow("" +
             "{" +
-            "    \"dataSource\": {" +
+            "    \"dataProvider\": {" +
             "        \"type\":\"JSON\"," +
             "        \"source\":\"data/extract_from_source/[File.Name].json\"," +
             "        \"writePerEntity\":true" +
@@ -708,7 +709,7 @@ namespace Gravity.UnitTests.UiWeb
         [DataTestMethod, ExpectedException(typeof(ArgumentException))]
         [DataRow("" +
             "{" +
-            "    \"dataSource\": {" +
+            "    \"dataProvider\": {" +
             "        \"type\":\"JSON\"," +
             "        \"source\":\"\"" +
             "    }," +
@@ -740,7 +741,7 @@ namespace Gravity.UnitTests.UiWeb
         [DataTestMethod]
         [DataRow("" +
             "{" +
-            "    \"dataSource\": {" +
+            "    \"dataProvider\": {" +
             "        \"type\":\"XML\"," +
             "        \"source\":\"data/extract_from_source/[File.Name].xml\"" +
             "    }," +
@@ -770,7 +771,7 @@ namespace Gravity.UnitTests.UiWeb
         [DataTestMethod]
         [DataRow("" +
             "{" +
-            "    \"dataSource\": {" +
+            "    \"dataProvider\": {" +
             "        \"type\":\"XML\"," +
             "        \"source\":\"data/extract_from_source/[File.Name].xml\"," +
             "        \"writePerEntity\":true" +
@@ -801,7 +802,7 @@ namespace Gravity.UnitTests.UiWeb
         [DataTestMethod, ExpectedException(typeof(ArgumentException))]
         [DataRow("" +
             "{" +
-            "    \"dataSource\": {" +
+            "    \"dataProvider\": {" +
             "        \"type\":\"XML\"," +
             "        \"source\":\"\"" +
             "    }," +
@@ -853,14 +854,14 @@ namespace Gravity.UnitTests.UiWeb
         {
             // setup
             SetExtractionRules(extractionRule);
-            var dataSource = Automation.Extractions.ElementAt(0).DataSource;
+            var dataProvider = Automation.Extractions.ElementAt(0).DataProvider;
 
             // execute
             var plugin = ExecuteAction<ExtractFromSource>();
 
             // results
             var expected = plugin.Extractions.First().ToDataTable().ToDictionary();
-            var actual = new DataTable().Load(dataSource).ToDictionary();
+            var actual = new DataProvidersFactory(Plugin.Types).From(dataProvider, Array.Empty<object>()).ToDictionary();
 
             // comparing
             var sExpected = new string(JsonSerializer.Serialize(expected, serializerOptions).OrderBy(i => i).ToArray());

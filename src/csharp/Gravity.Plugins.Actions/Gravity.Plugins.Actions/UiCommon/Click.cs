@@ -23,11 +23,10 @@
  * 
  * RESOURCES
  */
-using Gravity.Plugins.Actions.Extensions;
+using Gravity.Extensions;
 using Gravity.Plugins.Attributes;
-using Gravity.Plugins.Base;
 using Gravity.Plugins.Contracts;
-using Gravity.Plugins.Extensions;
+using Gravity.Plugins.Framework;
 
 using OpenQA.Selenium;
 using OpenQA.Selenium.Extensions;
@@ -36,6 +35,7 @@ using OpenQA.Selenium.Support.UI;
 using System;
 using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 
 // consolidate references
 using SeleniumActions = OpenQA.Selenium.Interactions.Actions;
@@ -70,7 +70,7 @@ namespace Gravity.Plugins.Actions.UiCommon
         /// <summary>
         /// Creates a new instance of this plugin.
         /// </summary>
-        /// <param name="automation">This <see cref="WebAutomation"/> object (the original object sent by the user).</param>
+        /// <param name="automation">This WebAutomation object (the original object sent by the user).</param>
         /// <param name="driver"><see cref="IWebDriver"/> implementation by which to execute the action.</param>
         public Click(WebAutomation automation, IWebDriver driver)
             : base(automation, driver)
@@ -139,7 +139,9 @@ namespace Gravity.Plugins.Actions.UiCommon
         private void ConditionsFactory(ActionRule action, IWebElement element, string condition)
         {
             // get method
-            var method = GetType().GetMethodByDescription(condition);
+            var method = GetType()
+                .GetMethodsByAttribute<DescriptionAttribute>()
+                .FirstOrDefault(i=>i.GetCustomAttribute<DescriptionAttribute>().Description.Equals(condition, StringComparison.OrdinalIgnoreCase));
 
             // invoke
             method.Invoke(this, new object[] { action, element });

@@ -34,7 +34,7 @@ namespace Graivty.IntegrationTests.Cases.UiCommon.SendKeysScenarios
                 {
                     Action = PluginsList.MoveToElement,
                     OnElement = "input_enabled",
-                    Locator = LocatorsList.Id
+                    Locator = Locators.Id
                 },
                 new ActionRule
                 {
@@ -46,7 +46,7 @@ namespace Graivty.IntegrationTests.Cases.UiCommon.SendKeysScenarios
                     Action = PluginsList.SendKeys,
                     Argument = "{{$ --clear --keys:Lorem ipsum --interval:200}}",
                     OnElement = "input_enabled_with_text",
-                    Locator = LocatorsList.Id
+                    Locator = Locators.Id
                 },
                 SharedSteps.AssertInputEnabledValue(expectedPattern: "^Lorem ipsum$", id: "input_enabled_with_text")
             };

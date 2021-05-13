@@ -5,7 +5,7 @@
  */
 namespace Gravity.Plugins.Contracts
 {
-    public static class OperatorsList
+    public static class Operators
     {
         /// <summary>
         /// Constant for representing Equal operator.

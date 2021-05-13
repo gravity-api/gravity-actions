@@ -14,9 +14,9 @@
  * 
  * RESOURCES
  */
-using Gravity.Plugins.Extensions;
+using Gravity.Extensions;
 using Gravity.Plugins.Attributes;
-using Gravity.Plugins.Base;
+using Gravity.Plugins.Framework;
 using Gravity.Plugins.Contracts;
 
 using System.Threading;
@@ -33,7 +33,7 @@ namespace Gravity.Plugins.Actions.UiCommon
         /// <summary>
         /// Creates a new instance of this <see cref="Plugin"/>.
         /// </summary>
-        /// <param name="automation"><see cref="WebAutomation"/> data transfer object to execute.</param>
+        /// <param name="automation">WebAutomation data transfer object to execute.</param>
         public Wait(WebAutomation automation)
             : this(automation, new EnvironmentContext())
         { }
@@ -41,7 +41,7 @@ namespace Gravity.Plugins.Actions.UiCommon
         /// <summary>
         /// Creates a new instance of this <see cref="Plugin"/>.
         /// </summary>
-        /// <param name="automation"><see cref="WebAutomation"/> data transfer object to execute.</param>
+        /// <param name="automation">WebAutomation data transfer object to execute.</param>
         /// <param name="environment">Environment under this context.</param>
         public Wait(WebAutomation automation, EnvironmentContext environment)
             : base(automation, environment)
@@ -61,7 +61,7 @@ namespace Gravity.Plugins.Actions.UiCommon
         private static void DoAction(ActionRule action)
         {
             // setup
-            var timeToWait = action.Argument.AsTimeSpan();
+            var timeToWait = action.Argument.ToTimeSpan();
 
             // action
             Thread.Sleep(timeToWait);

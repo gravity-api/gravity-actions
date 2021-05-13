@@ -4,7 +4,7 @@
  * RESOURCES
  */
 using Gravity.Plugins.Attributes;
-using Gravity.Plugins.Base;
+using Gravity.Plugins.Framework;
 using Gravity.Plugins.Contracts;
 
 namespace Gravity.Plugins.UnitTests.Mocks.Plugins
@@ -18,7 +18,7 @@ namespace Gravity.Plugins.UnitTests.Mocks.Plugins
         /// <summary>
         /// Creates a new instance of this <see cref="Plugin"/>.
         /// </summary>
-        /// <param name="webAutomation"><see cref="WebAutomation"/> data transfer object to execute.</param>
+        /// <param name="webAutomation">WebAutomation data transfer object to execute.</param>
         public GenericActionWithAttribute(WebAutomation webAutomation)
             : this(webAutomation, new EnvironmentContext())
         { }
@@ -26,7 +26,7 @@ namespace Gravity.Plugins.UnitTests.Mocks.Plugins
         /// <summary>
         /// Creates a new instance of this <see cref="Plugin"/>.
         /// </summary>
-        /// <param name="webAutomation"><see cref="WebAutomation"/> data transfer object to execute.</param>
+        /// <param name="webAutomation">WebAutomation data transfer object to execute.</param>
         /// <param name="environment">Environment under this context.</param>
         public GenericActionWithAttribute(WebAutomation webAutomation, EnvironmentContext environment)
             : base(webAutomation, environment)

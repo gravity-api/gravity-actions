@@ -35,7 +35,7 @@ namespace Graivty.IntegrationTests.Cases.UiWeb.SelectFromComboBoxScenarios
                     Action = PluginsList.SelectFromComboBox,
                     OnElement = "select_menu",
                     Argument = "Two",
-                    Locator = LocatorsList.Id
+                    Locator = Locators.Id
                 },
                 SharedSteps.AssertComboBox(expectedPattern: "2")
             };

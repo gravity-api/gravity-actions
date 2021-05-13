@@ -9,10 +9,10 @@ using System.Runtime.Serialization;
 namespace Gravity.Plugins.Contracts
 {
     /// <summary>
-    /// Describes a contract for sending gravity <see cref="LocatorsList"/> to Gravity Service.
+    /// Describes a contract for sending gravity <see cref="Locators"/> to Gravity Service.
     /// </summary>
     [DataContract]
-    public static partial class LocatorsList
+    public static partial class Locators
     {
         [DataMember]
         public const string Bindings = "Bindings";

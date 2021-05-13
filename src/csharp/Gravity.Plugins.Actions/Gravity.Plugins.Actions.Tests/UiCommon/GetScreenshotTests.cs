@@ -3,17 +3,20 @@
  * 
  * RESOURCES
  */
-using OpenQA.Selenium.Mock;
 using Gravity.Plugins.Actions.UiCommon;
+using Gravity.Plugins.Contracts;
 using Gravity.UnitTests.Base;
+
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+using OpenQA.Selenium.Mock;
 using OpenQA.Selenium;
+
 using System.IO;
 using System;
 using System.Linq;
 
 using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
-using Gravity.Plugins.Contracts;
 
 #pragma warning disable S4144
 namespace Gravity.UnitTests.UiCommon
@@ -92,11 +95,31 @@ namespace Gravity.UnitTests.UiCommon
             Assert.IsTrue(screenshot.Contains(expected));
         }
 
-        [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
-        [DataRow("{\"action\":\"GetScreenshot\",\"argument\":\"" + OutputDir + "/image-b.png\",\"onElement\":\"//null\"}")]
-        [DataRow("{\"action\":\"GetScreenshot\",\"argument\":\"" + OutputDir + "/image-b.png\",\"onElement\":\"//stale\"}")]
+        [DataTestMethod, ExpectedException(typeof(NoSuchElementException))]
         [DataRow("{\"action\":\"GetScreenshot\",\"argument\":\"" + OutputDir + "/image-b.png\",\"onElement\":\"//none\"}")]
         public void GetScreenshotOnElementNoElement(string actionRule)
+        {
+            // execute
+            GetScreenshot(actionRule, by: default);
+
+            // assertion (no assertion here)
+            Assert.IsTrue(true);
+        }
+
+        [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
+        [DataRow("{\"action\":\"GetScreenshot\",\"argument\":\"" + OutputDir + "/image-b.png\",\"onElement\":\"//null\"}")]
+        public void GetScreenshotOnElementNull(string actionRule)
+        {
+            // execute
+            GetScreenshot(actionRule, by: default);
+
+            // assertion (no assertion here)
+            Assert.IsTrue(true);
+        }
+
+        [DataTestMethod, ExpectedException(typeof(StaleElementReferenceException))]
+        [DataRow("{\"action\":\"GetScreenshot\",\"argument\":\"" + OutputDir + "/image-b.png\",\"onElement\":\"//stale\"}")]
+        public void GetScreenshotOnElementStale(string actionRule)
         {
             // execute
             GetScreenshot(actionRule, by: default);
@@ -195,7 +218,8 @@ namespace Gravity.UnitTests.UiCommon
             return plugin
                 .Extractions
                 .ToArray()[0]
-                .Entities.ElementAt(0)
+                .Entities
+                .ElementAt(0)
                 .Content["screenshot"]
                 .ToString();
         }

@@ -3,8 +3,8 @@
  * 
  * RESOURCES
  */
-using Gravity.Plugins.Contracts;
 using Gravity.Plugins.Actions.UiCommon;
+using Gravity.Plugins.Contracts;
 using Gravity.UnitTests.Base;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -105,10 +105,40 @@ namespace Gravity.UnitTests.UiCommon
 
         [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
         [DataRow("{\"onElement\":\"//null\",\"argument\":\"{{$ --keys:unitTesting --force_clear}}\"}")]
+        public void SendKeysForceClearNull(string actionRule)
+        {
+            // execute
+            ExecuteAction<SendKeys>(actionRule);
+
+            // assertion (no assertion here)
+            Assert.IsTrue(true);
+        }
+
+        [DataTestMethod, ExpectedException(typeof(StaleElementReferenceException))]
         [DataRow("{\"onElement\":\"//stale\",\"argument\":\"{{$ --keys:unitTesting --force_clear}}\"}")]
+        public void SendKeysForceClearStale(string actionRule)
+        {
+            // execute
+            ExecuteAction<SendKeys>(actionRule);
+
+            // assertion (no assertion here)
+            Assert.IsTrue(true);
+        }
+
+        [DataTestMethod, ExpectedException(typeof(NoSuchElementException))]
         [DataRow("{\"onElement\":\"//none\",\"argument\":\"{{$ --keys:unitTesting --force_clear}}\"}")]
-        [DataRow("{\"onElement\":\"//exception\",\"argument\":\"{{$ --keys:unitTesting --force_clear}}\"}")]
         public void SendKeysForceClearNoElement(string actionRule)
+        {
+            // execute
+            ExecuteAction<SendKeys>(actionRule);
+
+            // assertion (no assertion here)
+            Assert.IsTrue(true);
+        }
+
+        [DataTestMethod, ExpectedException(typeof(WebDriverException))]
+        [DataRow("{\"onElement\":\"//exception\",\"argument\":\"{{$ --keys:unitTesting --force_clear}}\"}")]
+        public void SendKeysForceClearException(string actionRule)
         {
             // execute
             ExecuteAction<SendKeys>(actionRule);

@@ -4,9 +4,9 @@
  * RESOURCES
  */
 using Gravity.Plugins.Attributes;
-using Gravity.Plugins.Base;
+using Gravity.Plugins.Framework;
 using Gravity.Plugins.Contracts;
-using Gravity.Plugins.Extensions;
+using Gravity.Extensions;
 
 using OpenQA.Selenium;
 using OpenQA.Selenium.Extensions;
@@ -48,7 +48,7 @@ namespace Gravity.Plugins.Actions.UiWeb
         /// <summary>
         /// Creates a new instance of this plugin.
         /// </summary>
-        /// <param name="automation">This <see cref="WebAutomation"/> object (the original object sent by the user).</param>
+        /// <param name="automation">This WebAutomation object (the original object sent by the user).</param>
         /// <param name="driver"><see cref="IWebDriver"/> implementation by which to execute the action.</param>
         public SwitchToAlert(WebAutomation automation, IWebDriver driver)
             : base(automation, driver)
@@ -87,10 +87,10 @@ namespace Gravity.Plugins.Actions.UiWeb
             arguments = CliFactory.Parse(action.Argument);
 
             // execute
-            foreach (var method in GetType().GetMethodsByDescription(regex: action.Argument))
-            {
-                DoMethod(action, method);
-            }
+            //foreach (var method in GetType().GetMethodsByDescription(regex: action.Argument))
+            //{
+            //    DoMethod(action, method);
+            //}
         }
 
         // executes a single method routine

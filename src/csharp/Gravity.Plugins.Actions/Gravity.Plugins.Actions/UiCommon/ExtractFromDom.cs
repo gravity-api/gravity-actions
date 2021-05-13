@@ -3,12 +3,11 @@
  * 
  * RESOURCES
  */
-using Gravity.Plugins.Actions.Extensions;
+using Gravity.Extensions;
 using Gravity.Plugins.Attributes;
-using Gravity.Plugins.Base;
+using Gravity.Plugins.Framework;
 using Gravity.Plugins.Contracts;
 using Gravity.Plugins.Engine;
-using Gravity.Plugins.Extensions;
 using Gravity.Plugins.Utilities;
 
 using OpenQA.Selenium;
@@ -16,8 +15,6 @@ using OpenQA.Selenium.Extensions;
 
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text.RegularExpressions;
 
@@ -31,30 +28,34 @@ namespace Gravity.Plugins.Actions.UiCommon
     {
         // members
         private readonly MacroFactory macroFactory;
+        private readonly ExtractionSegmentsFactory segmentsFactory;
+        private readonly DataProvidersFactory providersFactory;
 
-        #region *** arguments    ***
+        #region *** arguments       ***
         /// <summary>
-        /// A list of <see cref="ExtractionRule"/> to execute. This is a zero-based index based on
+        /// A list of ExtractionRule to execute. This is a zero-based index based on
         /// <see cref="WebAutomation.Extractions"/> collection.
         /// </summary>
         public const string ExtractionsKey = "extractions";
         #endregion
 
-        #region *** constructors ***
+        #region *** constructors    ***
         /// <summary>
         /// Creates a new instance of this plugin.
         /// </summary>
-        /// <param name="automation">This <see cref="WebAutomation"/> object (the original object sent by the user).</param>
+        /// <param name="automation">This WebAutomation object (the original object sent by the user).</param>
         /// <param name="driver"><see cref="IWebDriver"/> implementation by which to execute the action.</param>
         public ExtractFromDom(WebAutomation automation, IWebDriver driver)
             : base(automation, driver)
         {
             macroFactory = new MacroFactory(Types);
+            segmentsFactory = new ExtractionSegmentsFactory(driver, Types);
+            providersFactory = new DataProvidersFactory(Types);
         }
         #endregion
 
         /// <summary>
-        /// Executes <see cref="ExtractionRule"/> collection under this <see cref="Plugin.Automation"/>.
+        /// Executes ExtractionRule collection under this <see cref="Plugin.Automation"/>.
         /// </summary>
         /// <param name="action">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
         public override void OnPerform(ActionRule action)
@@ -63,7 +64,7 @@ namespace Gravity.Plugins.Actions.UiCommon
         }
 
         /// <summary>
-        /// Executes <see cref="ExtractionRule"/> collection under this <see cref="Plugin.Automation"/>.
+        /// Executes ExtractionRule collection under this <see cref="Plugin.Automation"/>.
         /// </summary>
         /// <param name="action">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
         /// <param name="element">This <see cref="IWebElement"/> instance on which to perform the action (provided by the extraction rule).</param>
@@ -77,8 +78,10 @@ namespace Gravity.Plugins.Actions.UiCommon
         {
             // setup
             var arguments = CliFactory.Parse(action.Argument);
-            var eList = arguments.ContainsKey(ExtractionsKey) ? arguments[ExtractionsKey].Split(',') : Array.Empty<string>();
-            var extrctions = Automation.GetExtractionRules(extractions: eList);
+            var extractionsList = arguments.ContainsKey(ExtractionsKey)
+                ? arguments[ExtractionsKey].Split(',')
+                : Array.Empty<string>();
+            var extrctions = Automation.GetExtractionRules(extractions: extractionsList);
 
             for (int i = 0; i < extrctions.Count(); i++)
             {
@@ -86,21 +89,21 @@ namespace Gravity.Plugins.Actions.UiCommon
             }
         }
 
-        #region *** Data Extraction        ***
+        #region *** Data Extraction ***
         private void DoExtraction(ExtractionRule extraction, string key)
         {
             // setup
-            var onElements = GetRootElements(extraction);
+            var onElements = WebDriver.GetElements(By.XPath(extraction.OnRootElements)).ToList();
             var results = new List<Entity>();
 
             // extract from source
-            for (int i = 0; i < onElements.Count(); i++)
+            for (int i = 0; i < onElements.Count; i++)
             {
-                if (onElements.ElementAt(i).IsStale())
+                if (onElements[i].IsStale())
                 {
-                    onElements = GetRootElements(extraction);
+                    onElements = WebDriver.GetElements(By.XPath(extraction.OnRootElements)).ToList();
                 }
-                var entity = DoContentEntriesFromDom(extraction, element: onElements.ElementAt(i), i);
+                var entity = DoContentEntriesFromDom(extraction, element: onElements[i], i);
                 results.Add(entity);
             }
 
@@ -116,14 +119,14 @@ namespace Gravity.Plugins.Actions.UiCommon
             Extractions.Add(onExtraction);
 
             // populate
-            if (extraction.DataSource?.WritePerEntity == false)
+            if (extraction.DataProvider?.WritePerEntity == false)
             {
-                onExtraction.Populate(extraction.DataSource);
+                providersFactory.To(extraction.DataProvider, new[] { onExtraction });
             }
         }
         #endregion
 
-        #region *** Data Extraction Source ***
+        #region *** Data Source     ***
         private Entity DoContentEntriesFromDom(ExtractionRule extraction, IWebElement element, int i)
         {
             // setup
@@ -142,9 +145,10 @@ namespace Gravity.Plugins.Actions.UiCommon
             }
 
             // populate
-            if (extraction.DataSource?.WritePerEntity == true)
+            if (extraction.DataProvider?.WritePerEntity == true)
             {
-                entity.Populate(extraction.DataSource);
+                var onExtraction = new Extraction { Entities = new[] { entity } };
+                providersFactory.To(extraction.DataProvider, new[] { onExtraction });
             }
 
             // result
@@ -174,7 +178,12 @@ namespace Gravity.Plugins.Actions.UiCommon
             // get value, take text or attribute
             var value = string.IsNullOrEmpty(onEntry.OnAttribute)
                 ? onElement.Text
-                : GetAttributeValue(element: onElement, attribute: onEntry.OnAttribute);
+                : onElement.GetAttribute(onEntry.OnAttribute);
+
+            if (segmentsFactory.IsSegment(onEntry))
+            {
+                value = segmentsFactory.Factor(onEntry, new object[] { onElement, onEntry.OnAttribute });
+            }
 
             // normalization (before and after regular expression)
             value = ValueFactory(onEntry, value);
@@ -194,7 +203,7 @@ namespace Gravity.Plugins.Actions.UiCommon
             }
             if (entry.ClearLinesBreak)
             {
-                value = Regex.Replace(input: value, pattern: @"(\r\n|\r|\n)", " ");
+                value = value.RemoveLines();
             }
 
             // results
@@ -217,33 +226,6 @@ namespace Gravity.Plugins.Actions.UiCommon
                 Executor.Execute(automation: Automation, action, parameters: new object[] { element });
             }
         }
-        #endregion
-
-        #region *** HTML/Elements Cache    ***
-        private IEnumerable<IWebElement> GetRootElements(ExtractionRule extraction)
-        {
-            return WebDriver.GetElements(By.XPath(extraction.OnRootElements));
-        }
-        #endregion
-
-        #region *** Extraction Rules       ***
-        private string GetAttributeValue(IWebElement element, string attribute)
-        {
-            // special
-            var attributeMethod = this.GetSpecialAttributeMethod<IWebElement>(attribute);
-
-            // value
-            return attributeMethod != default
-                ? (string)attributeMethod.Invoke(this, new[] { element })
-                : element.GetAttribute(attributeName: attribute);
-        }
-        #endregion
-
-        #region *** Special Attributes     ***
-        [Description("html")]
-        [SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "Used by reflection, must be non-static.")]
-        [SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "Used by reflection, must be private.")]
-        private string Html(IWebElement element) => element.GetSource();
         #endregion
     }
 }

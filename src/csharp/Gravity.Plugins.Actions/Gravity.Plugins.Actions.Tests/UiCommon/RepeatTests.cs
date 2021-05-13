@@ -5,7 +5,7 @@
  */
 using Gravity.Plugins.Actions.UiCommon;
 using Gravity.UnitTests.Base;
-using Gravity.Plugins.Base;
+using Gravity.Plugins.Framework;
 using Gravity.Plugins.Contracts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;

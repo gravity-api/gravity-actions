@@ -36,7 +36,7 @@ namespace Gravity.IntegrationTests.Cases.UiCommon.AssertScenarios
                     Argument = "{{$ --attribute --not_match:" + expected + "}}",
                     OnElement = "See the tutorial »",
                     OnAttribute = "class",
-                    Locator = LocatorsList.LinkText
+                    Locator = Locators.LinkText
                 }
             };
         }

@@ -36,7 +36,7 @@ namespace Gravity.IntegrationTests.Cases.UiCommon.AssertScenarios
                     Action = PluginsList.Assert,
                     Argument = "{{$ --enabled}}",
                     OnElement = onElement,
-                    Locator = LocatorsList.Id
+                    Locator = Locators.Id
                 }
             };
         }

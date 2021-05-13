@@ -38,7 +38,7 @@ namespace Graivty.IntegrationTests.Cases.UiWeb.ScrollScenarios
                     Action = PluginsList.Scroll,
                     Argument = "{{$ --top:1000 --left:1000 --behavior:smooth}}",
                     OnElement = "text_area_enabled",
-                    Locator = LocatorsList.Id
+                    Locator = Locators.Id
                 },
                 SharedSteps.AssertElementScrollOutcome(offset: "x", greaterThan: 0 ),
                 SharedSteps.AssertElementScrollOutcome(offset: "y", greaterThan: 0 ),

@@ -101,6 +101,17 @@ namespace Gravity.UnitTests.UiCommon
             // assertion (no assertion here)
             Assert.IsTrue(true);
         }
+
+        [DataTestMethod]
+        [DataRow("{\"argument\":\"{{$ --src:console.log(\u0027unitTesting\u0027); --args:[\\\"argument\\\",0,false]}}\"}")]
+        public void ExecuteScriptSrcArgsUnicode(string actionRule)
+        {
+            // execute
+            ExecuteAction<ExecuteScript>(actionRule);
+
+            // assertion (no assertion here)
+            Assert.IsTrue(true);
+        }
         #endregion
 
         #region *** tests: OnElement     ***

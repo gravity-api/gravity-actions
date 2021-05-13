@@ -34,14 +34,14 @@ namespace Graivty.IntegrationTests.Cases.UiCommon.SendKeysScenarios
                 {
                     Action = PluginsList.MoveToElement,
                     OnElement = "input_enabled",
-                    Locator = LocatorsList.Id
+                    Locator = Locators.Id
                 },
                 new ActionRule
                 {
                     Action = PluginsList.SendKeys,
                     Argument = "Lorem ipsum",
                     OnElement = "input_enabled",
-                    Locator = LocatorsList.Id
+                    Locator = Locators.Id
                 },
                 SharedSteps.AssertInputEnabledValue(expectedPattern: "(?i)^Lorem ipsum$")
             };

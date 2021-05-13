@@ -3,15 +3,17 @@
  * 
  * RESOURCES
  */
-
-using Gravity.UnitTests.Base;
 using Gravity.Plugins.Actions.UiWeb;
+using Gravity.Plugins.Contracts;
+using Gravity.UnitTests.Base;
+
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+
 using OpenQA.Selenium;
 using OpenQA.Selenium.Mock;
+
 using System;
 using System.Collections.Generic;
-using Gravity.Plugins.Contracts;
 
 #pragma warning disable S4144
 namespace Gravity.UnitTests.UiWeb
@@ -79,12 +81,42 @@ namespace Gravity.UnitTests.UiWeb
             Assert.IsTrue(true);
         }
 
-        [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
-        [DataRow("{\"onElement\":\"//none\"}")]
+        [DataTestMethod, ExpectedException(typeof(StaleElementReferenceException))]
         [DataRow("{\"onElement\":\"//stale\"}")]
-        [DataRow("{\"onElement\":\"//exception\"}")]
+        public void ContextClickStale(string actionRule)
+        {
+            // execute
+            ExecuteAction<ContextClick>(actionRule);
+
+            // assertion (no assertion here)
+            Assert.IsTrue(true);
+        }
+
+        [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
         [DataRow("{\"onElement\":\"//null\"}")]
         public void ContextClickTimeout(string actionRule)
+        {
+            // execute
+            ExecuteAction<ContextClick>(actionRule);
+
+            // assertion (no assertion here)
+            Assert.IsTrue(true);
+        }
+
+        [DataTestMethod, ExpectedException(typeof(NoSuchElementException))]
+        [DataRow("{\"onElement\":\"//none\"}")]
+        public void ContextClickNone(string actionRule)
+        {
+            // execute
+            ExecuteAction<ContextClick>(actionRule);
+
+            // assertion (no assertion here)
+            Assert.IsTrue(true);
+        }
+
+        [DataTestMethod, ExpectedException(typeof(WebDriverException))]
+        [DataRow("{\"onElement\":\"//exception\"}")]
+        public void ContextClickException(string actionRule)
         {
             // execute
             ExecuteAction<ContextClick>(actionRule);
@@ -143,11 +175,31 @@ namespace Gravity.UnitTests.UiWeb
             Assert.IsTrue(true);
         }
 
-        [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
+        [DataTestMethod, ExpectedException(typeof(NoSuchElementException))]
         [DataRow("{\"onElement\":\"//none\",\"locator\":\"Xpath\"}")]
+        public void ContextClickElementAbsoluteNone(string actionRule)
+        {
+            // execute
+            ExecuteAction<ContextClick>(MockBy.Positive(), actionRule);
+
+            // assertion (no assertion here)
+            Assert.IsTrue(true);
+        }
+
+        [DataTestMethod, ExpectedException(typeof(StaleElementReferenceException))]
         [DataRow("{\"onElement\":\"//stale\",\"locator\":\"Xpath\"}")]
+        public void ContextClickElementAbsoluteStale(string actionRule)
+        {
+            // execute
+            ExecuteAction<ContextClick>(MockBy.Positive(), actionRule);
+
+            // assertion (no assertion here)
+            Assert.IsTrue(true);
+        }
+
+        [DataTestMethod, ExpectedException(typeof(WebDriverException))]
         [DataRow("{\"onElement\":\"//exception\",\"locator\":\"Xpath\"}")]
-        public void ContextClickElementAbsoluteNoElement(string actionRule)
+        public void ContextClickElementAbsoluteException(string actionRule)
         {
             // execute
             ExecuteAction<ContextClick>(MockBy.Positive(), actionRule);

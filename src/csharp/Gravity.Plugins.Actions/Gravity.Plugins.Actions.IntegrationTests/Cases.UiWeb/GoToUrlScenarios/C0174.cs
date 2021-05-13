@@ -31,7 +31,7 @@ namespace Graivty.IntegrationTests.Cases.UiWeb.GoToUrlScenarios
                 {
                     Action = PluginsList.GoToUrl,
                     OnElement = "url_div",
-                    Locator = LocatorsList.Id
+                    Locator = Locators.Id
                 },
                 SharedSteps.AssertUrl(expectedPattern: ".net/$")
             };

@@ -5,7 +5,7 @@
  */
 using Gravity.Plugins.Contracts;
 using Gravity.Plugins.Actions.UiCommon;
-using Gravity.Plugins.Base;
+using Gravity.Plugins.Framework;
 using Gravity.UnitTests.Base;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -17,6 +17,7 @@ using System.Text.Json;
 
 using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
 
+#pragma warning disable S4144 // Methods should not have identical implementations
 namespace Gravity.UnitTests.UiCommon
 {
     [TestClass]
@@ -587,6 +588,50 @@ namespace Gravity.UnitTests.UiCommon
             // execute
             var actual = GetActual(
                 actionRule, onAttribute: default, onOperator, onOperatorExpected, "windows_count", onElement: default);
+
+            // assertion
+            Assert.IsTrue(actual);
+        }
+
+        [DataTestMethod]
+        [DataRow(ActionRuleAttributeOperator, "MockAttribute", "eq", "24")]
+        [DataRow(ActionRuleAttributeOperator, "MockAttribute", "ne", "25")]
+        [DataRow(ActionRuleAttributeOperator, "MockAttribute", "gt", "23")]
+        [DataRow(ActionRuleAttributeOperator, "MockAttribute", "lt", "25")]
+        [DataRow(ActionRuleAttributeOperator, "MockAttribute", "ge", "23")]
+        [DataRow(ActionRuleAttributeOperator, "MockAttribute", "le", "25")]
+        public void AssertTextLengthFromAttribute(string actionRule, string onAttribute, string onOperator, string onOperatorExpected)
+        {
+            // execute
+            var actual = GetActual(
+                actionRule,
+                onAttribute,
+                onOperator,
+                onOperatorExpected,
+                onCondition: Conditions.TextLength,
+                onElement: "//positive");
+
+            // assertion
+            Assert.IsTrue(actual);
+        }
+
+        [DataTestMethod]
+        [DataRow(ActionRuleNoAttributeOperator, "eq", "22")]
+        [DataRow(ActionRuleNoAttributeOperator, "ne", "23")]
+        [DataRow(ActionRuleNoAttributeOperator, "gt", "21")]
+        [DataRow(ActionRuleNoAttributeOperator, "lt", "23")]
+        [DataRow(ActionRuleNoAttributeOperator, "ge", "22")]
+        [DataRow(ActionRuleNoAttributeOperator, "le", "22")]
+        public void AssertTextLength(string actionRule, string onOperator, string onOperatorExpected)
+        {
+            // execute
+            var actual = GetActual(
+                actionRule,
+                onAttribute: string.Empty,
+                onOperator,
+                onOperatorExpected,
+                onCondition: Conditions.TextLength,
+                onElement: "//positive");
 
             // assertion
             Assert.IsTrue(actual);

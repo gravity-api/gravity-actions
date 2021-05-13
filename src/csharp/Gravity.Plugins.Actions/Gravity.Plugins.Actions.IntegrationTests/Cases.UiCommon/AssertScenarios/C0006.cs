@@ -34,7 +34,7 @@ namespace Gravity.IntegrationTests.Cases.UiCommon.AssertScenarios
                     Argument = "{{$ --attribute --gt:" + expected + "}}",
                     OnElement = "#attribute_div",
                     OnAttribute = "number",
-                    Locator = LocatorsList.CssSelector
+                    Locator = Locators.CssSelector
                 }
             };
         }

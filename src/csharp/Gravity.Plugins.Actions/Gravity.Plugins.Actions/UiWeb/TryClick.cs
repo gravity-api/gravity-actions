@@ -10,9 +10,8 @@
  * 
  * RESOURCES
  */
-using Gravity.Plugins.Actions.Extensions;
 using Gravity.Plugins.Attributes;
-using Gravity.Plugins.Base;
+using Gravity.Plugins.Framework;
 using Gravity.Plugins.Contracts;
 
 using OpenQA.Selenium;
@@ -38,7 +37,7 @@ namespace Gravity.Plugins.Actions.UiWeb
         /// <summary>
         /// Creates a new instance of this plugin.
         /// </summary>
-        /// <param name="automation">This <see cref="WebAutomation"/> object (the original object sent by the user).</param>
+        /// <param name="automation">This WebAutomation object (the original object sent by the user).</param>
         /// <param name="driver"><see cref="IWebDriver"/> implementation by which to execute the action.</param>
         public TryClick(WebAutomation automation, IWebDriver driver)
             : base(automation, driver)
@@ -82,7 +81,7 @@ namespace Gravity.Plugins.Actions.UiWeb
         private void DoAction(ActionRule action, IWebElement element) => wait.Until(_ =>
         {
             // get element to act on
-            var onElement = this.ConditionalGetElement(element, action);
+            var onElement = ConditionalGetElement(element, action);
 
             // execute script
             ((IJavaScriptExecutor)WebDriver).ExecuteScript(Script, onElement);

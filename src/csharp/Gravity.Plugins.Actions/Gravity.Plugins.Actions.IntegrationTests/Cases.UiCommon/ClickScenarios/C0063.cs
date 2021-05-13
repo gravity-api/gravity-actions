@@ -32,7 +32,7 @@ namespace Gravity.IntegrationTests.Cases.UiCommon.ClickScenarios
                     Action = PluginsList.Click,
                     Argument = "{{$ --until:no_alert}}",
                     OnElement = "pop_alert",
-                    Locator = LocatorsList.Id
+                    Locator = Locators.Id
                 },
                 new ActionRule
                 {
@@ -40,7 +40,7 @@ namespace Gravity.IntegrationTests.Cases.UiCommon.ClickScenarios
                     Argument = "{{$ --attribute --gt:1}}",
                     OnElement = "pop_alert",
                     OnAttribute = "value",
-                    Locator = LocatorsList.Id
+                    Locator = Locators.Id
                 }
             };
         }

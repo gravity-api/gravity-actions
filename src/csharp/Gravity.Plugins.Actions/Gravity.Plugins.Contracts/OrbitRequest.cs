@@ -16,13 +16,13 @@ namespace Gravity.Plugins.Contracts
     public class OrbitRequest
     {
         /// <summary>
-        /// Gets or sets the serialized <see cref="WebAutomation"/> sent by the client.
+        /// Gets or sets the serialized WebAutomation sent by the client.
         /// </summary>
         [DataMember]
         public string SerializedRequest { get; set; }
 
         /// <summary>
-        /// Gets or sets the serialized <see cref="OrbitResponse"/> sent by Gravity Service.
+        /// Gets or sets the serialized OrbitResponse sent by Gravity Service.
         /// </summary>
         [DataMember]
         public string SerializedResponse { get; set; }
@@ -40,37 +40,37 @@ namespace Gravity.Plugins.Contracts
         public IEnumerable<OrbitPerformancePoint> PerformancePoints { get; set; }
 
         /// <summary>
-        /// Gets or sets <see cref="Authentication.UserName"/> used to execute this <see cref="WebAutomation"/>.
+        /// Gets or sets <see cref="Authentication.UserName"/> used to execute this WebAutomation.
         /// </summary>
         [DataMember]
         public string UserName { get; set; }
 
         /// <summary>
-        /// Gets or sets the execution start time of this <see cref="WebAutomation"/>.
+        /// Gets or sets the execution start time of this WebAutomation.
         /// </summary>
         [DataMember]
         public DateTime Start { get; set; }
 
         /// <summary>
-        /// Gets or sets the execution end time of this <see cref="WebAutomation"/>.
+        /// Gets or sets the execution end time of this WebAutomation.
         /// </summary>
         [DataMember]
         public DateTime End { get; set; }
 
         /// <summary>
-        /// Gets or sets the total <see cref="TimeSpan.Ticks"/> of this <see cref="WebAutomation"/> execution time.
+        /// Gets or sets the total <see cref="TimeSpan.Ticks"/> of this WebAutomation execution time.
         /// </summary>
         [DataMember]
         public long RunTime { get; set; }
 
         /// <summary>
-        /// Gets or sets response size in KB of this <see cref="OrbitResponse"/>.
+        /// Gets or sets response size in KB of this OrbitResponse.
         /// </summary>
         [DataMember]
         public long ResponseSize { get; set; }
 
         /// <summary>
-        /// Gets or sets response size in KB of this <see cref="WebAutomation"/>.
+        /// Gets or sets response size in KB of this WebAutomation.
         /// </summary>
         [DataMember]
         public long RequestSize { get; set; }

@@ -47,7 +47,7 @@ namespace Gravity.IntegrationTests.Cases.UiCommon.ConditionScenarios
                             Action = PluginsList.SendKeys,
                             Argument = "Carson",
                             OnElement = "SearchString",
-                            Locator = LocatorsList.Id
+                            Locator = Locators.Id
                         },
                         new ActionRule
                         {
@@ -59,7 +59,7 @@ namespace Gravity.IntegrationTests.Cases.UiCommon.ConditionScenarios
                                 {
                                     Action = PluginsList.Click,
                                     OnElement = "SearchButton",
-                                    Locator = LocatorsList.Id
+                                    Locator = Locators.Id
                                 }
                             }
                         }
@@ -71,7 +71,7 @@ namespace Gravity.IntegrationTests.Cases.UiCommon.ConditionScenarios
                     Argument = "{{$ --attribute --eq:Carson}}",
                     OnElement = "SearchString",
                     OnAttribute = "value",
-                    Locator = LocatorsList.Id
+                    Locator = Locators.Id
                 },
                 SharedSteps.AssertStudentsCount(count: 3)
             };

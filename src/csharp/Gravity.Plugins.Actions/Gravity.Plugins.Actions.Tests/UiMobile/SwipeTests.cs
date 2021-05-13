@@ -234,15 +234,54 @@ namespace Gravity.UnitTests.UiMobile
         }
 
         [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
-        [DataRow("{\"argument\":\"{{$ --source:200,200}}\",\"onElement\":\"//none\"}")]
-        [DataRow("{\"argument\":\"{{$ --source:200,200}}\",\"onElement\":\"//stale\"}")]
         [DataRow("{\"argument\":\"{{$ --source:200,200}}\",\"onElement\":\"//null\"}")]
-        [DataRow("{\"argument\":\"{{$ --source:200,200}}\",\"onElement\":\"//exception\"}")]
-        [DataRow("{\"argument\":\"{{$ --target:200,200}}\",\"onElement\":\"//none\"}")]
-        [DataRow("{\"argument\":\"{{$ --target:200,200}}\",\"onElement\":\"//stale\"}")]
         [DataRow("{\"argument\":\"{{$ --target:200,200}}\",\"onElement\":\"//null\"}")]
-        [DataRow("{\"argument\":\"{{$ --target:200,200}}\",\"onElement\":\"//exception\"}")]
         public void SwipeTimeout(string actionRule)
+        {
+            // set new mock driver for mobile device
+            WebDriver = new MockAppiumDriver<IWebElement>();
+
+            // execute
+            ExecuteAction<Swipe>(actionRule);
+
+            // assertion (no assertion here)
+            Assert.IsTrue(true);
+        }
+
+        [DataTestMethod, ExpectedException(typeof(NoSuchElementException))]
+        [DataRow("{\"argument\":\"{{$ --source:200,200}}\",\"onElement\":\"//none\"}")]
+        [DataRow("{\"argument\":\"{{$ --target:200,200}}\",\"onElement\":\"//none\"}")]
+        public void SwipeNone(string actionRule)
+        {
+            // set new mock driver for mobile device
+            WebDriver = new MockAppiumDriver<IWebElement>();
+
+            // execute
+            ExecuteAction<Swipe>(actionRule);
+
+            // assertion (no assertion here)
+            Assert.IsTrue(true);
+        }
+
+        [DataTestMethod, ExpectedException(typeof(StaleElementReferenceException))]
+        [DataRow("{\"argument\":\"{{$ --source:200,200}}\",\"onElement\":\"//stale\"}")]
+        [DataRow("{\"argument\":\"{{$ --target:200,200}}\",\"onElement\":\"//stale\"}")]
+        public void SwipeStale(string actionRule)
+        {
+            // set new mock driver for mobile device
+            WebDriver = new MockAppiumDriver<IWebElement>();
+
+            // execute
+            ExecuteAction<Swipe>(actionRule);
+
+            // assertion (no assertion here)
+            Assert.IsTrue(true);
+        }
+
+        [DataTestMethod, ExpectedException(typeof(WebDriverException))]
+        [DataRow("{\"argument\":\"{{$ --source:200,200}}\",\"onElement\":\"//exception\"}")]
+        [DataRow("{\"argument\":\"{{$ --target:200,200}}\",\"onElement\":\"//exception\"}")]
+        public void SwipeException(string actionRule)
         {
             // set new mock driver for mobile device
             WebDriver = new MockAppiumDriver<IWebElement>();

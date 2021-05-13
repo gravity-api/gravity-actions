@@ -9,16 +9,16 @@ using System.Runtime.Serialization;
 namespace Gravity.Plugins.Contracts
 {
     /// <summary>
-    /// Describes a contract for sending gravity <see cref="ExtractionRule"/> to Gravity Service.
+    /// Describes a contract for sending gravity ExtractionRule to Gravity Service.
     /// </summary>
     [DataContract]
     public class ExtractionRule
     {
         /// <summary>
-        /// Gets or sets the output <see cref="Contracts.DataSource"/> used by this rule.
+        /// Gets or sets the output <see cref="GravityDataProvider"/> used by this rule.
         /// </summary>
         [DataMember]
-        public DataSource DataSource { get; set; }
+        public GravityDataProvider DataProvider { get; set; }
 
         /// <summary>
         /// Gets or sets the element which will be extracted by this rule.

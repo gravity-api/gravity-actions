@@ -69,6 +69,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{94B210CB-B
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gravity.Drivers.Mock", "..\..\..\..\gravity-mockdriver\src\csharp\Gravity.Drivers.Mock\Gravity.Drivers.Mock\Gravity.Drivers.Mock.csproj", "{046F81A8-8725-4F2A-967B-0D5A68DF0E42}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gravity.Extensions", "Gravity.Extensions\Gravity.Extensions.csproj", "{25425EBF-18C2-4256-9B1D-76EF77E68D56}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -103,6 +105,10 @@ Global
 		{046F81A8-8725-4F2A-967B-0D5A68DF0E42}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{046F81A8-8725-4F2A-967B-0D5A68DF0E42}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{046F81A8-8725-4F2A-967B-0D5A68DF0E42}.Release|Any CPU.Build.0 = Release|Any CPU
+		{25425EBF-18C2-4256-9B1D-76EF77E68D56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{25425EBF-18C2-4256-9B1D-76EF77E68D56}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{25425EBF-18C2-4256-9B1D-76EF77E68D56}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{25425EBF-18C2-4256-9B1D-76EF77E68D56}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

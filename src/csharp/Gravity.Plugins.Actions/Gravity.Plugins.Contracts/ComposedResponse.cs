@@ -9,14 +9,14 @@ using System.Linq;
 namespace Gravity.Plugins.Contracts
 {
     /// <summary>
-    /// Bridge object for composing responses from multiple <see cref="WebAutomation"/>.
+    /// Bridge object for composing responses from multiple WebAutomation.
     /// </summary>
     public /*internal*/ class ComposedResponse
     {
         /// <summary>
         /// Creates a new <see cref="ComposedResponse"/> instance.
         /// </summary>
-        /// <param name="automation"><see cref="WebAutomation"/> by which to create this <see cref="ComposedResponse"/>.</param>
+        /// <param name="automation">WebAutomation by which to create this <see cref="ComposedResponse"/>.</param>
         public ComposedResponse(WebAutomation automation)
         {
             Exceptions ??= new ConcurrentBag<OrbitException>();
@@ -26,34 +26,34 @@ namespace Gravity.Plugins.Contracts
         }
 
         /// <summary>
-        /// Gets or sets the session on which this <see cref="WebAutomation"/> is running.
+        /// Gets or sets the session on which this WebAutomation is running.
         /// </summary>
         public string OnSession { get; set; }
 
         /// <summary>
-        /// Gets this <see cref="WebAutomation"/> instance.
+        /// Gets this WebAutomation instance.
         /// </summary>
         public WebAutomation Automation { get; }
 
         /// <summary>
-        /// Gets or sets the <see cref="OrbitException"/> collection of <see cref="OrbitResponse"/>.
+        /// Gets or sets the <see cref="OrbitException"/> collection of OrbitResponse.
         /// </summary>
         public ConcurrentBag<OrbitException> Exceptions { get; set; }
 
         /// <summary>
-        /// Gets or sets the <see cref="Extraction"/> collection of <see cref="OrbitResponse"/>.
+        /// Gets or sets the <see cref="Extraction"/> collection of OrbitResponse.
         /// </summary>
         public ConcurrentBag<Extraction> Extractions { get; set; }
 
         /// <summary>
-        /// Gets or sets the <see cref="OrbitPerformancePoint"/> collection of <see cref="OrbitResponse"/>.
+        /// Gets or sets the <see cref="OrbitPerformancePoint"/> collection of OrbitResponse.
         /// </summary>
         public ConcurrentBag<OrbitPerformancePoint> PerformancePoints { get; set; }
 
         /// <summary>
-        /// Gets a complete <see cref="OrbitResponse"/> of this <see cref="WebAutomation"/>.
+        /// Gets a complete OrbitResponse of this WebAutomation.
         /// </summary>
-        /// <returns>A complete <see cref="OrbitResponse"/> of this <see cref="WebAutomation"/>.</returns>
+        /// <returns>A complete OrbitResponse of this WebAutomation.</returns>
         public OrbitResponse GetResponse()
         {
             // setup

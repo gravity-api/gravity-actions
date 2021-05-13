@@ -55,12 +55,42 @@ namespace Gravity.UnitTests.UiCommon
             Assert.IsTrue(true);
         }
 
-        [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
-        [DataRow("{\"onElement\":\"//none\"}")]
-        [DataRow("{\"onElement\":\"//null\"}")]
+        [DataTestMethod, ExpectedException(typeof(StaleElementReferenceException))]
         [DataRow("{\"onElement\":\"//stale\"}")]
-        [DataRow("{\"onElement\":\"//exception\"}")]
+        public void MoveToElementStale(string actionRule)
+        {
+            // execute
+            ExecuteAction<MoveToElement>(actionRule);
+
+            // assertion (no assertion here)
+            Assert.IsTrue(true);
+        }
+
+        [DataTestMethod, ExpectedException(typeof(WebDriverTimeoutException))]
+        [DataRow("{\"onElement\":\"//null\"}")]
         public void MoveToElementTimeout(string actionRule)
+        {
+            // execute
+            ExecuteAction<MoveToElement>(actionRule);
+
+            // assertion (no assertion here)
+            Assert.IsTrue(true);
+        }
+
+        [DataTestMethod, ExpectedException(typeof(WebDriverException))]
+        [DataRow("{\"onElement\":\"//exception\"}")]
+        public void MoveToElementException(string actionRule)
+        {
+            // execute
+            ExecuteAction<MoveToElement>(actionRule);
+
+            // assertion (no assertion here)
+            Assert.IsTrue(true);
+        }
+
+        [DataTestMethod, ExpectedException(typeof(NoSuchElementException))]
+        [DataRow("{\"onElement\":\"//none\"}")]
+        public void MoveToElementNone(string actionRule)
         {
             // execute
             ExecuteAction<MoveToElement>(actionRule);

@@ -32,14 +32,14 @@ namespace Graivty.IntegrationTests.Cases.UiWeb.KeyboardScenarios
                     Action = PluginsList.Keyboard,
                     Argument = "Control,a",
                     OnElement = "text_area_enabled",
-                    Locator = LocatorsList.Id
+                    Locator = Locators.Id
                 },
                 new ActionRule
                 {
                     Action = PluginsList.Keyboard,
                     Argument = "Delete",
                     OnElement = "text_area_enabled",
-                    Locator = LocatorsList.Id
+                    Locator = Locators.Id
                 },
                 SharedSteps.AssertTextAreaValue(expectedPattern: "^$")
             };

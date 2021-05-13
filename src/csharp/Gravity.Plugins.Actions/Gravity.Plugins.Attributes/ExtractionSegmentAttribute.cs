@@ -3,12 +3,16 @@
  * 
  * RESOURCES
  */
+using Gravity.Plugins.Contracts;
+
 using System;
+using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace Gravity.Plugins.Attributes
 {
     [AttributeUsage(AttributeTargets.All, AllowMultiple = false)]
-    public sealed class ExtractionSegmentAttribute: Attribute, IAttributeable
+    public sealed class ExtractionSegmentAttribute: Attribute, IAttributeable, IExampleable
     {
         /// <summary>
         /// Creates a new instance of <see cref="Attribute"/>.
@@ -33,5 +37,17 @@ namespace Gravity.Plugins.Attributes
         /// Gets or sets the description of the extraction segment.
         /// </summary>
         public string Description { get; set; }
+
+        /// <summary>
+        /// Gets or sets the implementation examples of this <see cref="Plugin"/>.
+        /// </summary>
+        /// <remarks>For knowledge base purposes.</remarks>
+        public IEnumerable<PluginExample> Examples { get; set; }
+
+        /// <summary>
+        /// Gets a unique identifier for this System.Attribute.
+        /// </summary>
+        [JsonIgnore]
+        public override object TypeId => base.TypeId;
     }
 }

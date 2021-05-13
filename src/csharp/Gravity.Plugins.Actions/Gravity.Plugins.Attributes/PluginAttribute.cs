@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Text.Json.Serialization;
 
 namespace Gravity.Plugins.Attributes
 {
@@ -108,6 +109,12 @@ namespace Gravity.Plugins.Attributes
         /// </summary>
         /// <remarks>For knowledge base purposes.</remarks>
         public IDictionary<string, string> Protocol { get; set; }
+
+        /// <summary>
+        /// Gets a unique identifier for this System.Attribute.
+        /// </summary>
+        [JsonIgnore]
+        public override object TypeId => base.TypeId;
         #endregion
 
         #region *** populate     ***

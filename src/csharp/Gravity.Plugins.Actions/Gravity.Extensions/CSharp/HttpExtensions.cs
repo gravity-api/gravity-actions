@@ -1,12 +1,10 @@
 ﻿/*
  * CHANGE LOG - keep only last 5 threads
  */
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-
 using System.IO;
 using System.Net;
 using System.Net.Http;
+using System.Text.Json;
 
 namespace Gravity.Extensions
 {
@@ -41,21 +39,24 @@ namespace Gravity.Extensions
             var responseBody = GetBody(message);
 
             // deserialize
-            return JsonConvert.DeserializeObject<T>(responseBody);
+            return JsonSerializer.Deserialize<T>(responseBody, new JsonSerializerOptions
+            {
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+            });
         }
 
         /// <summary>
         /// Deserialize <see cref="HttpResponseMessage.Content"/> into a <see cref="JObject"/>.
         /// </summary>
         /// <param name="message"><see cref="HttpResponseMessage"/> to deserialize body from.</param>
-        /// <returns><see cref="JObject"/> instance.</returns>
-        public static JObject ToObject(this HttpResponseMessage message)
+        /// <returns><see cref="JsonDocument"/> instance.</returns>
+        public static JsonDocument ToObject(this HttpResponseMessage message)
         {
             // get response body
             var responseBody = GetBody(message);
 
             // deserialize
-            return JObject.Parse(responseBody);
+            return JsonDocument.Parse(responseBody);
         }
 
         private static string GetBody(HttpResponseMessage message)

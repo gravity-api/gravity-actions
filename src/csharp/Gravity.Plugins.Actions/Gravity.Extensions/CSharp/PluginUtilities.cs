@@ -3,9 +3,6 @@
  */
 using Gravity.Plugins.Contracts;
 
-using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
-
 using OpenQA.Selenium;
 
 using System;
@@ -16,6 +13,8 @@ using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Reflection;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace Gravity.Extensions
 {
@@ -249,21 +248,51 @@ namespace Gravity.Extensions
         }
 
         /// <summary>
-        /// Gets <see cref="JsonSerializerSettings"/> based on <see cref="NamingStrategy"/>.
+        /// Gets <see cref="JsonSerializerOptions"/> based on <see cref="JsonNamingPolicy"/>.
         /// </summary>
-        /// <typeparam name="T"><see cref="NamingStrategy"/> strategy type.</typeparam>
-        /// <returns>The <see cref="JsonSerializerSettings"/> applied on a <see cref="JsonSerializer"/> object.</returns>
-        public static JsonSerializerSettings GetJsonSettings<T>(Formatting formatting = Formatting.Indented) where T : NamingStrategy, new()
+        /// <typeparam name="T"><see cref="JsonNamingPolicy"/> strategy type.</typeparam>
+        /// <returns>The <see cref="JsonSerializerOptions"/> applied on a <see cref="JsonSerializer"/> object.</returns>
+        public static JsonSerializerOptions GetJsonSettings<T>(params JsonConverter[] converters)
+            where T : JsonNamingPolicy, new()
         {
-            var contractResolver = new DefaultContractResolver
+            // setup
+            var settings = new JsonSerializerOptions
             {
-                NamingStrategy = new T()
+                PropertyNamingPolicy = new T(),
+                WriteIndented = true
             };
-            return new JsonSerializerSettings
+
+            // build
+            foreach (var converter in converters)
             {
-                ContractResolver = contractResolver,
-                Formatting = formatting
+                settings.Converters.Add(converter);
+            }
+
+            // get
+            return settings;
+        }
+
+        /// <summary>
+        /// Gets <see cref="JsonSerializerOptions"/> based on <see cref="JsonNamingPolicy.CamelCase"/>.
+        /// </summary>
+        /// <returns>The <see cref="JsonSerializerOptions"/> applied on a <see cref="JsonSerializer"/> object.</returns>
+        public static JsonSerializerOptions GetJsonSettings(params JsonConverter[] converters)
+        {
+            // setup
+            var settings = new JsonSerializerOptions
+            {
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+                WriteIndented = true
             };
+
+            // build
+            foreach (var converter in converters)
+            {
+                settings.Converters.Add(converter);
+            }
+
+            // get
+            return settings;
         }
     }
 }

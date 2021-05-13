@@ -1,9 +1,6 @@
 ﻿/*
  * CHANGE LOG - keep only last 5 threads
  */
-using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
-
 using System.Collections;
 using System.Text.Json;
 
@@ -46,19 +43,11 @@ namespace Gravity.Extensions
         /// <remarks>This method use <see cref="CamelCaseNamingStrategy"/>.</remarks>
         public static string ToJson(this object obj)
         {
-            return DoToJson(obj, new CamelCaseNamingStrategy());
-        }
-
-        /// <summary>
-        /// Serializes the specified <see cref="object"/> into a JSON string.
-        /// </summary>
-        /// <param name="obj">The <see cref="object"/> to serialize.</param>
-        /// <param name="namingStrategy">Resolving how property names and dictionary keys are serialized.</param>
-        /// <returns>A JSON string representation of the object.</returns>
-        /// <remarks>This method use <see cref="CamelCaseNamingStrategy"/>.</remarks>
-        public static string ToJson(this object obj, NamingStrategy namingStrategy)
-        {
-            return DoToJson(obj, namingStrategy);
+            return DoToJson(obj, new JsonSerializerOptions
+            {
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+                WriteIndented = true
+            });
         }
 
         /// <summary>
@@ -67,24 +56,14 @@ namespace Gravity.Extensions
         /// <param name="obj">The <see cref="object"/> to serialize.</param>
         /// <param name="settings">Specifies the settings on a <see cref="JsonSerializer"/> object.</param>
         /// <returns>A JSON string representation of the object.</returns>
-        public static string ToJson(this object obj, JsonSerializerSettings settings)
+        public static string ToJson(this object obj, JsonSerializerOptions settings)
         {
-            return JsonConvert.SerializeObject(obj, settings);
+            return JsonSerializer.Serialize(obj, settings);
         }
 
-        private static string DoToJson(object obj, NamingStrategy namingStrategy)
+        private static string DoToJson(object obj, JsonSerializerOptions settings)
         {
-            // get camel-case resolver
-            var resolver = new DefaultContractResolver
-            {
-                NamingStrategy = namingStrategy
-            };
-
-            // initialize settings
-            var settings = new JsonSerializerSettings { ContractResolver = resolver };
-
-            // get body
-            return JsonConvert.SerializeObject(obj, settings);
+            return JsonSerializer.Serialize(obj, settings);
         }
         #endregion
 
@@ -96,7 +75,7 @@ namespace Gravity.Extensions
         /// <returns>A new <see cref="object"/> copy (with a different memory address).</returns>
         public static T Clone<T>(this T obj)
         {
-            return JsonConvert.DeserializeObject<T>(JsonConvert.SerializeObject(obj));
+            return JsonSerializer.Deserialize<T>(JsonSerializer.Serialize(obj));
         }
     }
 }

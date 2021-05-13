@@ -65,7 +65,7 @@
 
   <!-- Packages -->
   <ItemGroup>    
-    <PackageReference Include="HtmlAgilityPack" Version="1.11.32" />
+    <PackageReference Include="HtmlAgilityPack" Version="1.11.33" />
   </ItemGroup>
 
   <!-- Projects -->

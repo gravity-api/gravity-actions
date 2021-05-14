@@ -16,7 +16,6 @@
  *
  * RESOURCES
  */
-using Gravity.Extensions;
 using Gravity.Plugins.Attributes;
 using Gravity.Plugins.Framework;
 using Gravity.Plugins.Contracts;
@@ -25,6 +24,8 @@ using OpenQA.Selenium;
 
 using System;
 using System.Threading;
+using OpenQA.Selenium.Extensions;
+using System.Diagnostics;
 
 namespace Gravity.Plugins.Actions.UiWeb
 {
@@ -74,14 +75,20 @@ namespace Gravity.Plugins.Actions.UiWeb
 
             // action routine: close each > switch back to main window
             var mainWindow = WebDriver.WindowHandles[0];
-
             foreach (var window in WebDriver.WindowHandles)
             {
                 if (window == mainWindow)
                 {
                     continue;
                 }
-                DoSwitch(window).Close();
+                try
+                {
+                    DoSwitch(window)?.Close();
+                }
+                catch (Exception e) when (e != null)
+                {
+                    Trace.TraceError($"{e}");
+                }
                 Thread.Sleep(100);
             }
 
@@ -95,9 +102,9 @@ namespace Gravity.Plugins.Actions.UiWeb
             {
                 WebDriver.SwitchTo().Window(windowName);
             }
-            catch (Exception e) when (e is WebDriverException)
+            catch (Exception e) when (e != null)
             {
-               // WebDriver.SwitchTo(windowName);
+                WebDriver.SwitchTo(windowName);
             }
             return WebDriver;
         }

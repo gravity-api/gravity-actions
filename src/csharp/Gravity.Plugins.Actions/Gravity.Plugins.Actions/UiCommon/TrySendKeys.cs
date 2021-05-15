@@ -59,19 +59,16 @@ namespace Gravity.Plugins.Actions.UiCommon
 
             // persist send keys
             var sendKeys = new SendKeys(automation: Automation, driver: WebDriver);
-            wait.Until(_ => SendKeys(plugin: sendKeys, action, element));
+            wait.Until(_ => SendKeys(sendKeys, action, element));
         }
 
         // performs a click and return the clicked element
-        private bool SendKeys(SendKeys plugin, ActionRule action, IWebElement element)
+        private static bool SendKeys(SendKeys sendKeys, ActionRule action, IWebElement element)
         {
+            // execute SendKeys action (reuse of existing action)
             try
             {
-                // get element to act on
-                var onElement = ConditionalGetElement(element, action);
-
-                // execute SendKeys action (reuse of existing action)
-                plugin.Perform(action, onElement);
+                sendKeys.Perform(action, element);
                 return true;
             }
             catch (Exception e) when (e != null)

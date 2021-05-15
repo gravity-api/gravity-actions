@@ -108,7 +108,7 @@ namespace Gravity.Plugins.Actions.UiCommon
         private void DoAction(ActionRule action, IWebElement element)
         {
             // setup
-            var onElement = this.ConditionalGetElement(element, action);
+            var onElement = ConditionalGetElement(element, action);
             var arguments = GetArguments(action);
 
             // clear (will only clear if needed)

@@ -18,7 +18,7 @@ namespace Graivty.IntegrationTests.Suites.UiCommon
     public class TrySendKeysTests
     {
         [Description(description: "P - [0225] - Send Keys, Default")]
-        [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.Capabilities))]
+        [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.Win10Firefox))]
         public void T0225P(Context environment)
         {
             // execute

@@ -62,7 +62,7 @@
 * [Move to Element](./MoveToElement.md "Move To Element")
 * [Register Parameter](./RegisterParameter.md "Register Parameter")
 * [Send Keys](./SendKeys.md "Send Keys")
-* Try Send Keys
+* [Try Send Keys](./TrySendKeys.md "Try Send Keys")
 * Wait
 * Wait for Element
 

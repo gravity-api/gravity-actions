@@ -1,19 +1,17 @@
-﻿#pragma warning disable S125
-/*
-* TEST SCENARIO (Rhino)
-* [test-id] 0221
-* [test-scenario] - Send Keys, Clear, Interval
-* 
-* [test-actions]
-* 1. navigate to {https://gravitymvctestapplication.azurewebsites.net/uicontrols/}
-* 2. move to element on {input_enabled_with_text} using {id}
-* 3. send keys {{$ --clear --interval:200}} into {input_enabled_with_text} using {id}
-* 4. close browser
-* 
-* [test-expected-results]
-* [3] verify {attribute} on {input_enabled} using {id} from {value} match {^$}
-*/
-#pragma warning restore
+﻿/*
+ * TEST SCENARIO (Rhino)
+ * [test-id] 0221
+ * [test-scenario] - Send Keys, Clear, Interval
+ * 
+ * [test-actions]
+ * 1. navigate to {https://gravitymvctestapplication.azurewebsites.net/uicontrols/}
+ * 2. move to element on {input_enabled_with_text} using {id}
+ * 3. send keys {{$ --clear --interval:200}} into {input_enabled_with_text} using {id}
+ * 4. close browser
+ * 
+ * [test-expected-results]
+ * [3] verify {attribute} on {input_enabled} using {id} from {value} match {^$}
+ */
 using Gravity.IntegrationTests.Base;
 using Gravity.Plugins.Contracts;
 

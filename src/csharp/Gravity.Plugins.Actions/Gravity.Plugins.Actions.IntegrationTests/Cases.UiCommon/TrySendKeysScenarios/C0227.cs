@@ -1,25 +1,25 @@
 ﻿/*
  * TEST SCENARIO (Rhino)
- * [test-id] 0218
- * [test-scenario] - Send Keys, Default
+ * [test-id] 0220
+ * [test-scenario] - Send Keys, Clear
  * 
  * [test-actions]
  * 1. navigate to {https://gravitymvctestapplication.azurewebsites.net/uicontrols/}
- * 2. move to element on {input_enabled} using {id}
- * 3. send keys {Lorem ipsum} into {input_enabled} using {id}
+ * 2. move to element on {input_enabled_with_text} using {id}
+ * 3. try send keys {{$ --clear}} into {input_enabled_with_text} using {id}
  * 4. close browser
  * 
  * [test-expected-results]
- * [3] verify {attribute} on {input_enabled} using {id} from {value} match {(?i)^Lorem ipsum$}
+ * [3] verify {attribute} on {input_enabled} using {id} from {value} match {^$}
  */
 using Gravity.IntegrationTests.Base;
 using Gravity.Plugins.Contracts;
 
 using System.Collections.Generic;
 
-namespace Graivty.IntegrationTests.Cases.UiCommon.SendKeysScenarios
+namespace Graivty.IntegrationTests.Cases.UiCommon.TrySendKeysScenarios
 {
-    public class C0218 : TestCase
+    public class C0227 : TestCase
     {
         // gets the actions collection of this test
         public override IEnumerable<ActionRule> OnActions(Context environment)
@@ -36,12 +36,12 @@ namespace Graivty.IntegrationTests.Cases.UiCommon.SendKeysScenarios
                 },
                 new ActionRule
                 {
-                    Action = PluginsList.SendKeys,
-                    Argument = "Lorem ipsum",
-                    OnElement = "input_enabled",
+                    Action = PluginsList.TrySendKeys,
+                    Argument = "{{$ --clear}}",
+                    OnElement = "input_enabled_with_text",
                     Locator = Locators.Id
                 },
-                SharedSteps.AssertInputEnabledValue(expectedPattern: "(?i)^Lorem ipsum$")
+                SharedSteps.AssertInputEnabledValue(expectedPattern: "^$", id: "input_enabled_with_text")
             };
         }
     }

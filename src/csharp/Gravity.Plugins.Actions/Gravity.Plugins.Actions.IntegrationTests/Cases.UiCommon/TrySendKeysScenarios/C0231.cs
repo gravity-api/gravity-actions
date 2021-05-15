@@ -17,9 +17,9 @@ using Gravity.Plugins.Contracts;
 
 using System.Collections.Generic;
 
-namespace Graivty.IntegrationTests.Cases.UiCommon.SendKeysScenarios
+namespace Graivty.IntegrationTests.Cases.UiCommon.TrySendKeysScenarios
 {
-    public class C0224 : TestCase
+    public class C0231 : TestCase
     {
         // gets the actions collection of this test
         public override IEnumerable<ActionRule> OnActions(Context environment)
@@ -47,7 +47,7 @@ namespace Graivty.IntegrationTests.Cases.UiCommon.SendKeysScenarios
                 SharedSteps.AssertSelectable(id: "e_text_area_selected", selected: false),
                 new ActionRule
                 {
-                    Action = PluginsList.SendKeys,
+                    Action = PluginsList.TrySendKeys,
                     Argument = "{{$ --down:" + downKey + " --keys:" + key + "}}",
                     OnElement = "text_area_enabled",
                     Locator = Locators.Id

@@ -22,7 +22,6 @@
  * RESOURCES
  * http://appium.io/docs/en/writing-running-appium/android/android-shell/
  */
-using Gravity.Extensions;
 using Gravity.Plugins.Attributes;
 using Gravity.Plugins.Framework;
 using Gravity.Plugins.Contracts;

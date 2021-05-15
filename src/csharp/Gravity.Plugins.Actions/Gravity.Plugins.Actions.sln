@@ -31,7 +31,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentat
 		..\..\..\docs\pages\CloseAllChildWindows.md = ..\..\..\docs\pages\CloseAllChildWindows.md
 		..\..\..\docs\pages\CloseBrowser.md = ..\..\..\docs\pages\CloseBrowser.md
 		..\..\..\docs\pages\CloseWindow.md = ..\..\..\docs\pages\CloseWindow.md
-		..\..\..\docs\pages\condition.md = ..\..\..\docs\pages\condition.md
+		..\..\..\docs\pages\Condition.md = ..\..\..\docs\pages\Condition.md
 		..\..\..\docs\pages\ConditionSamplesNo1.md = ..\..\..\docs\pages\ConditionSamplesNo1.md
 		..\..\..\docs\pages\ConditionSamplesNo2.md = ..\..\..\docs\pages\ConditionSamplesNo2.md
 		..\..\..\docs\pages\ConditionSamplesNo3.md = ..\..\..\docs\pages\ConditionSamplesNo3.md
@@ -53,6 +53,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentat
 		..\..\..\docs\pages\MoveToElement.md = ..\..\..\docs\pages\MoveToElement.md
 		..\..\..\docs\pages\NavigateBack.md = ..\..\..\docs\pages\NavigateBack.md
 		..\..\..\docs\pages\NavigateForward.md = ..\..\..\docs\pages\NavigateForward.md
+		..\..\..\README.md = ..\..\..\README.md
 		..\..\..\docs\pages\Refresh.md = ..\..\..\docs\pages\Refresh.md
 		..\..\..\docs\pages\Register.md = ..\..\..\docs\pages\Register.md
 		..\..\..\docs\pages\RegisterParameter.md = ..\..\..\docs\pages\RegisterParameter.md
@@ -60,6 +61,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentat
 		..\..\..\docs\pages\Scroll.md = ..\..\..\docs\pages\Scroll.md
 		..\..\..\docs\pages\SelectFromComboBox.md = ..\..\..\docs\pages\SelectFromComboBox.md
 		..\..\..\docs\pages\SendKeys.md = ..\..\..\docs\pages\SendKeys.md
+		..\..\..\docs\pages\TrySendKeys.md = ..\..\..\docs\pages\TrySendKeys.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{94B210CB-BF2C-4430-A109-FEC892B59131}"

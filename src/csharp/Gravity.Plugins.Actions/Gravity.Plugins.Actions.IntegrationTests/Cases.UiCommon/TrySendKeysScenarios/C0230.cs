@@ -1,25 +1,25 @@
 ﻿/*
  * TEST SCENARIO (Rhino)
- * [test-id] 0218
- * [test-scenario] - Send Keys, Default
+ * [test-id] 0223
+ * [test-scenario] - Send Keys, Keys, Clear, Interval
  * 
  * [test-actions]
  * 1. navigate to {https://gravitymvctestapplication.azurewebsites.net/uicontrols/}
- * 2. move to element on {input_enabled} using {id}
- * 3. send keys {Lorem ipsum} into {input_enabled} using {id}
+ * 2. move to element on {input_enabled_with_text} using {id}
+ * 3. try send keys {{$ --clear --keys:Lorem ipsum --interval:200}} into {input_enabled_with_text} using {id}
  * 4. close browser
  * 
  * [test-expected-results]
- * [3] verify {attribute} on {input_enabled} using {id} from {value} match {(?i)^Lorem ipsum$}
+ * [3] verify {attribute} on {input_enabled} using {id} from {value} match {^Lorem ipsum$}
  */
 using Gravity.IntegrationTests.Base;
 using Gravity.Plugins.Contracts;
 
 using System.Collections.Generic;
 
-namespace Graivty.IntegrationTests.Cases.UiCommon.SendKeysScenarios
+namespace Graivty.IntegrationTests.Cases.UiCommon.TrySendKeysScenarios
 {
-    public class C0218 : TestCase
+    public class C0230 : TestCase
     {
         // gets the actions collection of this test
         public override IEnumerable<ActionRule> OnActions(Context environment)
@@ -36,12 +36,17 @@ namespace Graivty.IntegrationTests.Cases.UiCommon.SendKeysScenarios
                 },
                 new ActionRule
                 {
-                    Action = PluginsList.SendKeys,
-                    Argument = "Lorem ipsum",
-                    OnElement = "input_enabled",
+                    Action = PluginsList.Scroll,
+                    Argument = "800"
+                },
+                new ActionRule
+                {
+                    Action = PluginsList.TrySendKeys,
+                    Argument = "{{$ --clear --keys:Lorem ipsum --interval:200}}",
+                    OnElement = "input_enabled_with_text",
                     Locator = Locators.Id
                 },
-                SharedSteps.AssertInputEnabledValue(expectedPattern: "(?i)^Lorem ipsum$")
+                SharedSteps.AssertInputEnabledValue(expectedPattern: "^Lorem ipsum$", id: "input_enabled_with_text")
             };
         }
     }

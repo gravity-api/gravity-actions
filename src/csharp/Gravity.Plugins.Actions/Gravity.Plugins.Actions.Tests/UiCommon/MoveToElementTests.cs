@@ -99,7 +99,7 @@ namespace Gravity.UnitTests.UiCommon
             Assert.IsTrue(true);
         }
 
-        [TestMethod, ExpectedException(typeof(ArgumentException))]
+        [TestMethod]
         public void MoveToElementNoElement()
         {
             // execute
@@ -134,7 +134,7 @@ namespace Gravity.UnitTests.UiCommon
             Assert.IsTrue(true);
         }
 
-        [DataTestMethod, ExpectedException(typeof(ArgumentException))]
+        [DataTestMethod]
         [DataRow("{\"onElement\":\".//null\"}")]
         public void MoveToNestedElementNull(string actionRule)
         {

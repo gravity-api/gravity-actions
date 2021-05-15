@@ -3,7 +3,6 @@
  * 
  * RESOURCES
  */
-using Gravity.Extensions;
 using Gravity.Plugins.Attributes;
 using Gravity.Plugins.Framework;
 using Gravity.Plugins.Contracts;
@@ -69,7 +68,7 @@ namespace Gravity.Plugins.Actions.UiCommon
             try
             {
                 // get element to act on
-                var onElement = this.ConditionalGetElement(element, action);
+                var onElement = ConditionalGetElement(element, action);
 
                 // execute SendKeys action (reuse of existing action)
                 plugin.Perform(action, onElement);

@@ -41,7 +41,7 @@ namespace Gravity.IntegrationTests.Base
         /// </summary>
         /// <param name="equal">The parameter value (the key is "integration_parameter").</param>
         /// <returns>A collection of <see cref="ActionRule"/>.</returns>
-        public static ActionRule AssertParameter(string equal) => new ActionRule
+        public static ActionRule AssertParameter(string equal) => new()
         {
             Action = PluginsList.Assert,
             Argument = "{{$ --parameter --eq:" + equal + "}}",
@@ -83,7 +83,7 @@ namespace Gravity.IntegrationTests.Base
         /// </summary>
         /// <param name="count">Count expected result.</param>
         /// <returns>Assert <see cref="ActionRule"/>.</returns>
-        public static ActionRule AssertStudentsCount(int count) => new ActionRule
+        public static ActionRule AssertStudentsCount(int count) => new()
         {
             Action = PluginsList.Assert,
             Argument = "{{$ --count --eq:" + $"{count}" + "}}",
@@ -95,7 +95,7 @@ namespace Gravity.IntegrationTests.Base
         /// </summary>
         /// <param name="greaterThan">Greater than expected result.</param>
         /// <returns>Assert <see cref="ActionRule"/>.</returns>
-        public static ActionRule AssertNumberOfAlerts(int greaterThan) => new ActionRule
+        public static ActionRule AssertNumberOfAlerts(int greaterThan) => new()
         {
             Action = PluginsList.Assert,
             Argument = "{{$ --attribute --gt:" + $"{greaterThan}" + "}}",
@@ -109,7 +109,7 @@ namespace Gravity.IntegrationTests.Base
         /// </summary>
         /// <param name="expectedPattern">Expected pattern (regular expression) to assert against.</param>
         /// <returns>Assert <see cref="ActionRule"/>.</returns>
-        public static ActionRule AssertUrl(string expectedPattern) => new ActionRule
+        public static ActionRule AssertUrl(string expectedPattern) => new()
         {
             Action = PluginsList.Assert,
             Argument = "{{$ --url --match:" + expectedPattern + "}}"
@@ -120,7 +120,7 @@ namespace Gravity.IntegrationTests.Base
         /// </summary>
         /// <param name="greaterThan">Greater than expected result.</param>
         /// <returns>Assert <see cref="ActionRule"/>.</returns>
-        public static ActionRule AssertWindowsCount(int greaterThan) => new ActionRule
+        public static ActionRule AssertWindowsCount(int greaterThan) => new()
         {
             Action = PluginsList.Assert,
             Argument = "{{$ --windows_count --gt:" + greaterThan + "}}"
@@ -131,7 +131,7 @@ namespace Gravity.IntegrationTests.Base
         /// </summary>
         /// <param name="expectedPattern">Expected pattern (regular expression) to assert against.</param>
         /// <returns>Assert <see cref="ActionRule"/>.</returns>
-        public static ActionRule AssertClickOutcome(string expectedPattern) => new ActionRule
+        public static ActionRule AssertClickOutcome(string expectedPattern) => new()
         {
             Action = PluginsList.Assert,
             Argument = "{{$ --attribute --match:" + expectedPattern + "}}",
@@ -145,7 +145,7 @@ namespace Gravity.IntegrationTests.Base
         /// </summary>
         /// <param name="greaterThan">Greater than expected result.</param>
         /// <returns>Assert <see cref="ActionRule"/>.</returns>
-        public static ActionRule AssertListenerOutcome(int greaterThan) => new ActionRule
+        public static ActionRule AssertListenerOutcome(int greaterThan) => new()
         {
             Action = PluginsList.Assert,
             Argument = "{{$ --attribute --gt:" + $"{greaterThan}" + "}}",
@@ -159,7 +159,7 @@ namespace Gravity.IntegrationTests.Base
         /// </summary>
         /// <param name="expectedPattern">Expected pattern (regular expression) to assert against.</param>
         /// <returns>Assert <see cref="ActionRule"/>.</returns>
-        public static ActionRule AssertStaleElementClass(string expectedPattern) => new ActionRule
+        public static ActionRule AssertStaleElementClass(string expectedPattern) => new()
         {
             Action = PluginsList.Assert,
             Argument = "{{$ --attribute --match:" + $"{expectedPattern}" + "}}",
@@ -173,7 +173,7 @@ namespace Gravity.IntegrationTests.Base
         /// </summary>
         /// <param name="expectedPattern">Expected pattern (regular expression) to assert against.</param>
         /// <returns>Assert <see cref="ActionRule"/>.</returns>
-        public static ActionRule AssertInputEnabledValue(string expectedPattern, string id = "input_enabled") => new ActionRule
+        public static ActionRule AssertInputEnabledValue(string expectedPattern, string id = "input_enabled") => new()
         {
             Action = PluginsList.Assert,
             Argument = "{{$ --attribute --match:" + expectedPattern + "}}",
@@ -187,7 +187,7 @@ namespace Gravity.IntegrationTests.Base
         /// </summary>
         /// <param name="expectedPattern">Expected pattern (regular expression) to assert against.</param>
         /// <returns>Assert <see cref="ActionRule"/>.</returns>
-        public static ActionRule AssertTextAreaValue(string expectedPattern) => new ActionRule
+        public static ActionRule AssertTextAreaValue(string expectedPattern) => new()
         {
             Action = PluginsList.Assert,
             Argument = "{{$ --attribute --match:" + expectedPattern + "}}",
@@ -202,7 +202,7 @@ namespace Gravity.IntegrationTests.Base
         /// <param name="offset">X or Y</param>
         /// <param name="greaterThan">Greater than expected result.</param>
         /// <returns>Assert <see cref="ActionRule"/>.</returns>
-        public static ActionRule AssertScrollOutcome(string offset, int greaterThan) => new ActionRule
+        public static ActionRule AssertScrollOutcome(string offset, int greaterThan) => new()
         {
             Action = PluginsList.Assert,
             Argument = "{{$ --attribute --gt:" + $"{greaterThan}" + "}}",
@@ -217,7 +217,7 @@ namespace Gravity.IntegrationTests.Base
         /// <param name="offset">X or Y</param>
         /// <param name="expectedPattern">Expected pattern (regular expression) to assert content value against.</param>
         /// <returns>Assert <see cref="ActionRule"/>.</returns>
-        public static ActionRule AssertScrollOutcome(string offset, string expectedPattern) => new ActionRule
+        public static ActionRule AssertScrollOutcome(string offset, string expectedPattern) => new()
         {
             Action = PluginsList.Assert,
             Argument = "{{$ --attribute --match:" + $"{expectedPattern}" + "}}",
@@ -231,7 +231,7 @@ namespace Gravity.IntegrationTests.Base
         /// </summary>
         /// <param name="exists"><see cref="true"/> for exists <see cref="false"/> if not.</param>
         /// <returns>Assert <see cref="ActionRule"/>.</returns>
-        public static ActionRule AssertAlert(bool exists) => new ActionRule
+        public static ActionRule AssertAlert(bool exists) => new()
         {
             Action = PluginsList.Assert,
             Argument = exists ? "{{$ --alert_exists}}" : "{{$ --no_alert}}"
@@ -243,7 +243,7 @@ namespace Gravity.IntegrationTests.Base
         /// <param name="offset">X or Y</param>
         /// <param name="greaterThan">Greater than expected result.</param>
         /// <returns>Assert <see cref="ActionRule"/>.</returns>
-        public static ActionRule AssertElementScrollOutcome(string offset, int greaterThan) => new ActionRule
+        public static ActionRule AssertElementScrollOutcome(string offset, int greaterThan) => new()
         {
             Action = PluginsList.Assert,
             Argument = "{{$ --attribute --gt:" + $"{greaterThan}" + "}}",
@@ -258,7 +258,7 @@ namespace Gravity.IntegrationTests.Base
         /// <param name="offset">X or Y</param>
         /// <param name="expectedPattern">Expected pattern (regular expression) to assert content value against.</param>
         /// <returns>Assert <see cref="ActionRule"/>.</returns>
-        public static ActionRule AssertElementScrollOutcome(string offset, string expectedPattern) => new ActionRule
+        public static ActionRule AssertElementScrollOutcome(string offset, string expectedPattern) => new()
         {
             Action = PluginsList.Assert,
             Argument = "{{$ --attribute --match:" + $"{expectedPattern}" + "}}",
@@ -322,7 +322,7 @@ namespace Gravity.IntegrationTests.Base
         /// </summary>
         /// <param name="expectedPattern">Expected pattern (regular expression) to assert against.</param>
         /// <returns>Assert <see cref="ActionRule"/>.</returns>
-        public static ActionRule AssertOverOutcomeValue(string expectedPattern) => new ActionRule
+        public static ActionRule AssertOverOutcomeValue(string expectedPattern) => new()
         {
             Action = PluginsList.Assert,
             Argument = "{{$ --attribute --match:" + expectedPattern + "}}",
@@ -336,7 +336,7 @@ namespace Gravity.IntegrationTests.Base
         /// </summary>
         /// <param name="expectedPattern">Expected pattern (regular expression) to assert against.</param>
         /// <returns>Assert <see cref="ActionRule"/>.</returns>
-        public static ActionRule AssertComboBox(string expectedPattern) => new ActionRule
+        public static ActionRule AssertComboBox(string expectedPattern) => new()
         {
             Action = PluginsList.Assert,
             Argument = "{{$ --attribute --match:" + expectedPattern + "}}",
@@ -351,7 +351,7 @@ namespace Gravity.IntegrationTests.Base
         /// <param name="expectedPattern">Expected pattern (regular expression) to assert against.</param>
         /// <param name="option">Selected option index to assert against</param>
         /// <returns>Assert <see cref="ActionRule"/>.</returns>
-        public static ActionRule AssertMultipleComboBox(string expectedPattern, int option) => new ActionRule
+        public static ActionRule AssertMultipleComboBox(string expectedPattern, int option) => new()
         {
             Action = PluginsList.Assert,
             Argument = "{{$ --attribute --match:" + expectedPattern + "}}",
@@ -365,7 +365,7 @@ namespace Gravity.IntegrationTests.Base
         /// </summary>
         /// <param name="count">Count expected result.</param>
         /// <returns>Assert <see cref="ActionRule"/>.</returns>
-        public static ActionRule AssertMultipleComboBoxSelectedCount(int count) => new ActionRule
+        public static ActionRule AssertMultipleComboBoxSelectedCount(int count) => new()
         {
             Action = PluginsList.Assert,
             Argument = "{{$ --count --eq:" + count + "}}",

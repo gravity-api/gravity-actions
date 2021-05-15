@@ -1,39 +1,87 @@
 {
+  "aliases": [ "TryType", "TryWrite", "TryPrint" ],
   "cliArguments": {
-    "keys": "The text to type into the element.",
-    "clear": "Clears the element value, before typing into it.",
-    "interval": "The interval time between each character typing."
+    "clear": {
+      "description": "Clears the element value, before typing into it."
+    },
+    "down": {
+      "descritpion": "Array of keys to press down while sending keys (use to simulate [CRTL+A], [CTRL+SHIFT+DELETE], etc."
+    },
+    "forceClear": {
+      "description": "Clears the element value using [BACKSPACE] key, performing the clearing using real keyboard actions. This action is not supported by [Mobile Native] applications."
+    },
+    "interval": {
+      "description": "The interval time between each character typing in milliseconds."
+    },
+    "keys": {
+      "description": "The text to type into the element."
+    }
   },
   "description": "Simulates typing text into the element. This actions supports typing interval and various clearing options.",
   "examples": [
     {
-      "description": "Type [Alexander] into [//form//p/input[1]] text input.",
-      "literalExample": "try send keys {Alexander} into {//form//p/input[1]}",
+      "description": "Type [Lorem ipsum] into [input_enabled] text box, using [ID] locator.",
+      "literalExample": "try send keys {Lorem ipsum} into {input_enabled} using {id}",
       "actionExample": {
-        "action": "SendKeys",
-        "argument": "Alexander",
-        "onElement": "//form//p/input[1]"
+        "action": "TrySendKeys",
+        "argument": "Lorem ipsum",
+        "onElement": "input_enabled",
+        "locator": "Id"
       }
     },
     {
-      "description": "Type [Alexander] into [//form//p/input[1]] text input, after clearing the existing value.",
-      "literalExample": "try send keys {{$ --keys:Alexander --clear}} into {//form//p/input[1]}",
+      "description": "Type [Lorem ipsum] into [input_enabled_with_text] text box, using [ID] locator, after clearing the existing text.",
+      "literalExample": "try send keys {{$ --keys:Lorem ipsum --clear}} into {input_enabled_with_text} using {id}",
       "actionExample": {
-        "action": "SendKeys",
-        "argument": "{{$ --keys:gravity api --clear}}",
-        "onElement": "//form//p/input[1]"
+        "action": "TrySendKeys",
+        "argument": "{{$ --keys:Lorem ipsum --clear}}",
+        "onElement": "input_enabled_with_text",
+        "locator": "Id"
       }
     },
     {
-      "description": "Type [Alexander] into [//form//p/input[1]] text input with [100ms] interval between each char.",
-      "literalExample": "try send keys {{$ --keys:Alexander --interval:100}} into {//form//p/input[1]}",
+      "description": "Clear existing text from [input_enabled_with_text] text box, using [ID] locator.",
+      "literalExample": "try send keys {{$ --clear}} into {input_enabled_with_text} using {id}",
       "actionExample": {
-        "action": "SendKeys",
-        "argument": "{{$ --keys:Alexander --interval:100}}"
+        "action": "TrySendKeys",
+        "argument": "{{$ --clear}}",
+        "onElement": "input_enabled_with_text",
+        "locator": "Id"
+      }
+    },
+    {
+      "description": "Type [Lorem ipsum] into [input_enabled] text box, using [ID] locator, with [200 milliseconds] between each character.",
+      "literalExample": "try send keys {{$ --keys:Lorem ipsum --interval:200}} into {input_enabled} using {id}",
+      "actionExample": {
+        "action": "TrySendKeys",
+        "argument": "{{$ --keys:Lorem ipsum --interval:200}}",
+        "onElement": "input_enabled",
+        "locator": "Id"
+      }
+    },
+    {
+      "description": "Type [Lorem ipsum] into [input_enabled_with_text] text box, using [ID] locator, after clearing the existing text using [Force Clear] option.",
+      "literalExample": "try send keys {{$ --keys:Lorem ipsum --force_clear}} into {input_enabled_with_text} using {id}",
+      "actionExample": {
+        "action": "TrySendKeys",
+        "argument": "{{$ --keys:Lorem ipsum --force_clear}}",
+        "onElement": "input_enabled_with_text",
+        "locator": "Id"
+      }
+    },
+    {
+      "description": "Sends [CTRL]+[A] into [text_area_enabled] text box, using [ID] locator.",
+      "literalExample": "try send keys {{$ --down:control --keys:A}} into {text_area_enabled} using {id}",
+      "actionExample": {
+        "action": "TrySendKeys",
+        "argument": "{{$ --down:control --keys:A}}",
+        "onElement": "text_area_enabled",
+        "locator": "Id"
       }
     }
   ],
   "name": "TrySendKeys",
+  "pluginType": "Action",
   "properties": {
     "onElement": "The locator value by which the element will be found.",
     "locator": "The locator type by which the element will be found.",
@@ -44,5 +92,6 @@
     "w3c": "https://www.w3.org/TR/webdriver/#element-send-keys"
   },
   "scope": [ "web", "mobile-web", "mobile-native" ],
-  "summary": "Simulates typing text into the element."
+  "summary": "Simulates typing text into the element.",
+  "testOn": "https://gravitymvctestapplication.azurewebsites.net/UiControls"
 }

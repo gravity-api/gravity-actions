@@ -6,7 +6,7 @@
  * [test-actions]
  * 1. navigate to {https://gravitymvctestapplication.azurewebsites.net/uicontrols/}
  * 2. move to element on {input_enabled} using {id}
- * 3. send keys {Lorem ipsum} into {input_enabled} using {id}
+ * 3. try send keys {Lorem ipsum} into {input_enabled} using {id}
  * 4. close browser
  * 
  * [test-expected-results]
@@ -17,9 +17,9 @@ using Gravity.Plugins.Contracts;
 
 using System.Collections.Generic;
 
-namespace Graivty.IntegrationTests.Cases.UiCommon.SendKeysScenarios
+namespace Graivty.IntegrationTests.Cases.UiCommon.TrySendKeysScenarios
 {
-    public class C0218 : TestCase
+    public class C0225 : TestCase
     {
         // gets the actions collection of this test
         public override IEnumerable<ActionRule> OnActions(Context environment)
@@ -36,7 +36,7 @@ namespace Graivty.IntegrationTests.Cases.UiCommon.SendKeysScenarios
                 },
                 new ActionRule
                 {
-                    Action = PluginsList.SendKeys,
+                    Action = PluginsList.TrySendKeys,
                     Argument = "Lorem ipsum",
                     OnElement = "input_enabled",
                     Locator = Locators.Id

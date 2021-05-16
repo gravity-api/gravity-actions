@@ -1,6 +1,6 @@
 ﻿/*
  * TEST SCENARIO (Rhino)
- * [test-id] 0221
+ * [test-id] 0228
  * [test-scenario] - Send Keys, Clear, Interval
  * 
  * [test-actions]
@@ -30,13 +30,13 @@ namespace Graivty.IntegrationTests.Cases.UiCommon.TrySendKeysScenarios
                 // cannot be interacted
                 new ActionRule
                 {
-                    Action = PluginsList.MoveToElement,
+                    Action = GravityPlugin.MoveToElement,
                     OnElement = "input_enabled",
                     Locator = Locators.Id
                 },
                 new ActionRule
                 {
-                    Action = PluginsList.TrySendKeys,
+                    Action = GravityPlugin.TrySendKeys,
                     Argument = "{{$ --clear --interval:200}}",
                     OnElement = "input_enabled_with_text",
                     Locator = Locators.Id

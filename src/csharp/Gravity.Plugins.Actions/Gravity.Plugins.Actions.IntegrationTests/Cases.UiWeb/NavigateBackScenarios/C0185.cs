@@ -31,12 +31,12 @@ namespace Graivty.IntegrationTests.Cases.UiWeb.NavigateBackScenarios
             {
                 new ActionRule
                 {
-                    Action = PluginsList.GoToUrl,
+                    Action = GravityPlugin.GoToUrl,
                     Argument = "https://gravitymvctestapplication.azurewebsites.net/"
                 },
                 new ActionRule
                 {
-                    Action = PluginsList.NavigateBack
+                    Action = GravityPlugin.NavigateBack
                 },
                 SharedSteps.AssertUrl(expectedPattern: "(?i)uicontrols/?$"),
             };

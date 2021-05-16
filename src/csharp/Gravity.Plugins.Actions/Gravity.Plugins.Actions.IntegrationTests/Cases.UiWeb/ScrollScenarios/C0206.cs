@@ -32,7 +32,7 @@ namespace Graivty.IntegrationTests.Cases.UiWeb.ScrollScenarios
                 SharedSteps.AssertScrollOutcome(offset: "y", expectedPattern: "^$" ),
                 new ActionRule
                 {
-                    Action = PluginsList.Scroll,
+                    Action = GravityPlugin.Scroll,
                     Argument = "{{$ --top:1000 --behavior:smooth}}"
                 },
                 SharedSteps.AssertScrollOutcome(offset: "y", greaterThan: 0 ),

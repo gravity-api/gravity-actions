@@ -44,6 +44,28 @@ namespace Gravity.Extensions
         }
         #endregion
 
+        #region *** Response   ***
+        /// <summary>
+        /// Adds an Extraction object into an OrbitResponse object.
+        /// </summary>
+        /// <param name="response">The OrbitResponse to add an Extraction to.</param>
+        /// <param name="extraction">The Extraction object to add.</param>
+        /// <returns>Self reference.</returns>
+        public static OrbitResponse AddExtraction(this OrbitResponse response, Extraction extraction)
+        {
+            // setup
+            extraction ??= new Extraction();
+
+            // build
+            var _extractions = response.Extractions.ToList();
+            _extractions.Add(extraction);
+            response.Extractions = _extractions;
+
+            // get
+            return response;
+        }
+        #endregion
+
         #region *** Extraction ***
         /// <summary>
         /// Gets this <see cref="Extraction.Entities"/> as <see cref="DataTable"/> object.
@@ -153,6 +175,56 @@ namespace Gravity.Extensions
                 MachineName = Environment.MachineName,
                 SessionsId = session
             };
+            return extraction;
+        }
+
+        /// <summary>
+        /// Adds an entity content into the Extraction object.
+        /// </summary>
+        /// <param name="extraction">The extraction object to add content to.</param>
+        /// <param name="content">The content to add.</param>
+        /// <returns>Self reference.</returns>
+        public static Extraction AddEntityContent(this Extraction extraction, IDictionary<string, object> content)
+        {
+            return DoAddEntityContent(extraction, content);
+        }
+
+        /// <summary>
+        /// Adds an entity content into the Extraction object.
+        /// </summary>
+        /// <param name="extraction">The extraction object to add content to.</param>
+        /// <param name="content">The content to add.</param>
+        /// <returns>Self reference.</returns>
+        public static Extraction AddEntityContent(this Extraction extraction, params (string Key, object Value)[] content)
+        {
+            // setup
+            var _content = new Dictionary<string, object>();
+
+            // build
+            foreach (var item in content)
+            {
+                _content[item.Key] = item.Value;
+            }
+
+            // get
+            return DoAddEntityContent(extraction, _content);
+        }
+
+        private static Extraction DoAddEntityContent(Extraction extraction, IDictionary<string, object> content)
+        {
+            // setup
+            var entity = new Entity
+            {
+                Content = content
+            };
+            extraction.Entities ??= new List<Entity>();
+
+            // build
+            var entities = extraction.Entities.ToList();
+            entities.Add(entity);
+            extraction.Entities = entities;
+
+            // get
             return extraction;
         }
         #endregion

@@ -35,14 +35,14 @@ namespace Gravity.UnitTests.UiCommon
         public void WaitForElementDocumentation()
         {
             AssertDocumentation<WaitForElement>(
-                pluginName: PluginsList.WaitForElement);
+                pluginName: GravityPlugin.WaitForElement);
         }
 
         [TestMethod]
         public void WaitForElementDocumentationResourceFile()
         {
             AssertDocumentation<WaitForElement>(
-                pluginName: PluginsList.WaitForElement,
+                pluginName: GravityPlugin.WaitForElement,
                 resource: "WaitForElement.json");
         }
         #endregion

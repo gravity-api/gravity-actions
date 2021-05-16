@@ -76,7 +76,7 @@ print {Lorem ipsum} into {input_enabled} using {id}
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = PluginsList.SendKeys,
+    Action = GravityPlugin.SendKeys,
     Argument = "Lorem ipsum",
     OnElement = "input_enabled",
     Locator = LocatorsList.Id
@@ -144,7 +144,7 @@ print {{$ --keys:Lorem ipsum --clear}} into {input_enabled_with_text} using {id}
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = PluginsList.SendKeys,
+    Action = GravityPlugin.SendKeys,
     Argument = "{{$ --keys:Lorem ipsum --clear}}",
     OnElement = "input_enabled_with_text",
     Locator = LocatorsList.Id
@@ -212,7 +212,7 @@ print {{$ --clear}} into {input_enabled_with_text} using {id}
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = PluginsList.SendKeys,
+    Action = GravityPlugin.SendKeys,
     Argument = "{{$ --clear}}",
     OnElement = "input_enabled_with_text",
     Locator = LocatorsList.Id
@@ -280,7 +280,7 @@ print {{$ --keys:Lorem ipsum --interval:200}} into {input_enabled} using {id}
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = PluginsList.SendKeys,
+    Action = GravityPlugin.SendKeys,
     Argument = "{{$ --keys:Lorem ipsum --interval:200}}",
     OnElement = "input_enabled",
     Locator = LocatorsList.Id
@@ -348,7 +348,7 @@ print {{$ --keys:Lorem ipsum --force_clear}} into {input_enabled_with_text} usin
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = PluginsList.SendKeys,
+    Action = GravityPlugin.SendKeys,
     Argument = "{{$ --keys:Lorem ipsum --force_clear}}",
     OnElement = "input_enabled_with_text",
     Locator = LocatorsList.Id
@@ -416,7 +416,7 @@ print {{$ --down:control --keys:A}} into {text_area_enabled} using {id}
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = PluginsList.SendKeys,
+    Action = GravityPlugin.SendKeys,
     Argument = "{{$ --down:control --keys:A}}",
     OnElement = "text_area_enabled",
     Locator = LocatorsList.Id

@@ -37,7 +37,7 @@ close all child windows
 // option no.1
 var actionRule = new ActionRule
 {
-    Action = PluginsList.CloseAllChildWindows
+    Action = GravityPlugin.CloseAllChildWindows
 };
 
 // option no.2

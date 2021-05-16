@@ -39,10 +39,10 @@ The text to type into the element.
 | _**text**_ | Sends the text provided into the element or browser. |
 
 ## Aliases
-The following keywords can be used instead of ```send keys```
-1. type
-2. write
-3. print
+The following keywords can be used instead of ```try send keys```
+1. try type
+2. try write
+3. try print
 
 ## W3C Web Driver Protocol
 [https://www.w3.org/TR/webdriver/#element-send-keys](https://www.w3.org/TR/webdriver/#element-send-keys)
@@ -78,7 +78,7 @@ try print {Lorem ipsum} into {input_enabled} using {id}
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = PluginsList.TrySendKeys,
+    Action = GravityPlugin.TrySendKeys,
     Argument = "Lorem ipsum",
     OnElement = "input_enabled",
     Locator = LocatorsList.Id
@@ -146,7 +146,7 @@ try print {{$ --keys:Lorem ipsum --clear}} into {input_enabled_with_text} using 
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = PluginsList.TrySendKeys,
+    Action = GravityPlugin.TrySendKeys,
     Argument = "{{$ --keys:Lorem ipsum --clear}}",
     OnElement = "input_enabled_with_text",
     Locator = LocatorsList.Id
@@ -214,7 +214,7 @@ try print {{$ --clear}} into {input_enabled_with_text} using {id}
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = PluginsList.TrySendKeys,
+    Action = GravityPlugin.TrySendKeys,
     Argument = "{{$ --clear}}",
     OnElement = "input_enabled_with_text",
     Locator = LocatorsList.Id
@@ -282,7 +282,7 @@ try print {{$ --keys:Lorem ipsum --interval:200}} into {input_enabled} using {id
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = PluginsList.TrySendKeys,
+    Action = GravityPlugin.TrySendKeys,
     Argument = "{{$ --keys:Lorem ipsum --interval:200}}",
     OnElement = "input_enabled",
     Locator = LocatorsList.Id
@@ -350,7 +350,7 @@ try print {{$ --keys:Lorem ipsum --force_clear}} into {input_enabled_with_text} 
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = PluginsList.TrySendKeys,
+    Action = GravityPlugin.TrySendKeys,
     Argument = "{{$ --keys:Lorem ipsum --force_clear}}",
     OnElement = "input_enabled_with_text",
     Locator = LocatorsList.Id
@@ -418,7 +418,7 @@ try print {{$ --down:control --keys:A}} into {text_area_enabled} using {id}
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = PluginsList.TrySendKeys,
+    Action = GravityPlugin.TrySendKeys,
     Argument = "{{$ --down:control --keys:A}}",
     OnElement = "text_area_enabled",
     Locator = LocatorsList.Id

@@ -32,7 +32,7 @@ namespace Gravity.IntegrationTests.Cases.UiCommon.ExecuteScriptScenarios
             {
                 new ActionRule
                 {
-                    Action = PluginsList.ExecuteScript,
+                    Action = GravityPlugin.ExecuteScript,
                     Argument = "{arguments[0].click();}",
                     OnElement = condition,
                     Locator = Locators.Id

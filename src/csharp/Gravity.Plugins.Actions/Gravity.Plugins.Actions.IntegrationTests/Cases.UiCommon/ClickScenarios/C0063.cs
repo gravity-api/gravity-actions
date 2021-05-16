@@ -29,14 +29,14 @@ namespace Gravity.IntegrationTests.Cases.UiCommon.ClickScenarios
             {
                 new ActionRule
                 {
-                    Action = PluginsList.Click,
+                    Action = GravityPlugin.Click,
                     Argument = "{{$ --until:no_alert}}",
                     OnElement = "pop_alert",
                     Locator = Locators.Id
                 },
                 new ActionRule
                 {
-                    Action = PluginsList.Assert,
+                    Action = GravityPlugin.Assert,
                     Argument = "{{$ --attribute --gt:1}}",
                     OnElement = "pop_alert",
                     OnAttribute = "value",

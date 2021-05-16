@@ -30,14 +30,14 @@ namespace Gravity.UnitTests.UiCommon
         public void ExecuteScriptDocumentation()
         {
             AssertDocumentation<ExecuteScript>(
-                pluginName: PluginsList.ExecuteScript);
+                pluginName: GravityPlugin.ExecuteScript);
         }
 
         [TestMethod]
         public void ExecuteScriptDocumentationResourceFile()
         {
             AssertDocumentation<ExecuteScript>(
-                pluginName: PluginsList.ExecuteScript,
+                pluginName: GravityPlugin.ExecuteScript,
                 resource: "ExecuteScript.json");
         }
         #endregion

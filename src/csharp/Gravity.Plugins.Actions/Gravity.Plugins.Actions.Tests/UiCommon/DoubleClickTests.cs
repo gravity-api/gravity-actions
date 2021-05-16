@@ -33,14 +33,14 @@ namespace Gravity.UnitTests.UiCommon
         [TestMethod]
         public void DoubleClickDocumentation()
         {
-            AssertDocumentation<DoubleClick>(pluginName: PluginsList.DoubleClick);
+            AssertDocumentation<DoubleClick>(pluginName: GravityPlugin.DoubleClick);
         }
 
         [TestMethod]
         public void DoubleClickDocumentationResourceFile()
         {
             AssertDocumentation<DoubleClick>(
-                pluginName: PluginsList.DoubleClick,
+                pluginName: GravityPlugin.DoubleClick,
                 resource: "DoubleClick.json");
         }
         #endregion

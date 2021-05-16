@@ -36,28 +36,28 @@ namespace Gravity.IntegrationTests.Cases.UiCommon.ElementsListenerScenarios
             {
                 new ActionRule
                 {
-                    Action = PluginsList.ElementsListener,
+                    Action = GravityPlugin.ElementsListener,
                     Argument = "{{$ --interval:500 --timeout:" + condition + "}}",
                     OnElement = "//div[./strong[contains(.,\"Random Element.\")]]",
                     Actions = new[]
                     {
                         new ActionRule
                         {
-                            Action = PluginsList.SendKeys,
+                            Action = GravityPlugin.SendKeys,
                             Argument = "dismissed",
                             OnElement = "input_enabled",
                             Locator = Locators.Id
                         },
                         new ActionRule
                         {
-                            Action = PluginsList.Click,
+                            Action = GravityPlugin.Click,
                             OnElement = "//div[./strong[contains(.,\"Random Element.\")]]"
                         }
                     }
                 },
                 new ActionRule
                 {
-                    Action = PluginsList.Click,
+                    Action = GravityPlugin.Click,
                     OnElement = "generate_elements",
                     Locator = Locators.Id
                 },

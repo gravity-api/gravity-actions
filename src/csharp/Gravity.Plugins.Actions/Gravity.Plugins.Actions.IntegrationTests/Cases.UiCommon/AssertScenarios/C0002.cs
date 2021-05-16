@@ -32,7 +32,7 @@ namespace Gravity.IntegrationTests.Cases.UiCommon.AssertScenarios
             {
                 new ActionRule
                 {
-                    Action = PluginsList.Assert,
+                    Action = GravityPlugin.Assert,
                     Argument = "{{$ --attribute --eq:" + expected + "}}",
                     OnElement = "ul > li:nth-child(1) > a",
                     OnAttribute = "class",

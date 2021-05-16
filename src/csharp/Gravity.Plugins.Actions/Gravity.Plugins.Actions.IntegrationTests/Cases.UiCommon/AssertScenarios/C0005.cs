@@ -32,7 +32,7 @@ namespace Gravity.IntegrationTests.Cases.UiCommon.AssertScenarios
             {
                 new ActionRule
                 {
-                    Action = PluginsList.Assert,
+                    Action = GravityPlugin.Assert,
                     Argument = "{{$ --attribute --not_match:" + expected + "}}",
                     OnElement = "See the tutorial »",
                     OnAttribute = "class",

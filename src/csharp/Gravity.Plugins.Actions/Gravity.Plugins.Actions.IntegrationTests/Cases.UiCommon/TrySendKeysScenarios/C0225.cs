@@ -1,6 +1,6 @@
 ﻿/*
  * TEST SCENARIO (Rhino)
- * [test-id] 0218
+ * [test-id] 0225
  * [test-scenario] - Send Keys, Default
  * 
  * [test-actions]
@@ -30,13 +30,13 @@ namespace Graivty.IntegrationTests.Cases.UiCommon.TrySendKeysScenarios
                 // cannot be interacted
                 new ActionRule
                 {
-                    Action = PluginsList.MoveToElement,
+                    Action = GravityPlugin.MoveToElement,
                     OnElement = "input_enabled",
                     Locator = Locators.Id
                 },
                 new ActionRule
                 {
-                    Action = PluginsList.TrySendKeys,
+                    Action = GravityPlugin.TrySendKeys,
                     Argument = "Lorem ipsum",
                     OnElement = "input_enabled",
                     Locator = Locators.Id

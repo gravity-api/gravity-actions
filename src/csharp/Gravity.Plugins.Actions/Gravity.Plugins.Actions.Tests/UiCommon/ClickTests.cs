@@ -30,14 +30,14 @@ namespace Gravity.UnitTests.UiCommon
         [TestMethod]
         public void ClickDocumentation()
         {
-            AssertDocumentation<Click>(pluginName: PluginsList.Click);
+            AssertDocumentation<Click>(pluginName: GravityPlugin.Click);
         }
 
         [TestMethod]
         public void ClickDocumentationResourceFile()
         {
             AssertDocumentation<Click>(
-                pluginName: PluginsList.Click,
+                pluginName: GravityPlugin.Click,
                 resource: "click.json");
         }
         #endregion

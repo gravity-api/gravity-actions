@@ -21,7 +21,7 @@ namespace Gravity.Plugins.Actions.UiWeb
     [Plugin(
         assembly: "Gravity.Plugins.Actions, Version=5.0.0.0, Culture=neutral, PublicKeyToken=null",
         resource: "Gravity.Plugins.Actions.Manifest.SwitchToAlert.json",
-        Name = PluginsList.SwitchToAlert)]
+        Name = GravityPlugin.SwitchToAlert)]
     public class SwitchToAlert : WebDriverActionPlugin
     {
         #region *** arguments    ***

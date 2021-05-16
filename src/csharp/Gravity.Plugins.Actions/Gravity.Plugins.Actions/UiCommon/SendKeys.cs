@@ -43,7 +43,7 @@ namespace Gravity.Plugins.Actions.UiCommon
     [Plugin(
         assembly: "Gravity.Plugins.Actions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
         resource: "Gravity.Plugins.Actions.Manifest.SendKeys.json",
-        Name = PluginsList.SendKeys)]
+        Name = GravityPlugin.SendKeys)]
     public class SendKeys : WebDriverActionPlugin
     {
         #region *** arguments    ***

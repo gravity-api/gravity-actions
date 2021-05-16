@@ -37,14 +37,14 @@ namespace Gravity.UnitTests.UiWeb
         public void SwitchToWindowDocumentation()
         {
             AssertDocumentation<SwitchToWindow>(
-                pluginName: PluginsList.SwitchToWindow);
+                pluginName: GravityPlugin.SwitchToWindow);
         }
 
         [TestMethod]
         public void SwitchToWindowDocumentationResourceFile()
         {
             AssertDocumentation<SwitchToWindow>(
-                pluginName: PluginsList.SwitchToWindow,
+                pluginName: GravityPlugin.SwitchToWindow,
                 resource: "SwitchToWindow.json");
         }
         #endregion

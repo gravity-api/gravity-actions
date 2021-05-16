@@ -37,7 +37,7 @@ namespace Gravity.IntegrationTests.Cases.UiCommon.ConditionScenarios
             {
                 new ActionRule
                 {
-                    Action = PluginsList.Condition,
+                    Action = GravityPlugin.Condition,
                     Argument = "{{$ --text --not_match:" + condition + "}}",
                     OnElement = "//h2",
                     Actions = SharedSteps.SearchStudent(searchFor: "Carson")

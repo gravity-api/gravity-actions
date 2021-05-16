@@ -30,13 +30,13 @@ namespace Graivty.IntegrationTests.Cases.UiCommon.SendKeysScenarios
                 // cannot be interacted
                 new ActionRule
                 {
-                    Action = PluginsList.MoveToElement,
+                    Action = GravityPlugin.MoveToElement,
                     OnElement = "input_enabled",
                     Locator = Locators.Id
                 },
                 new ActionRule
                 {
-                    Action = PluginsList.SendKeys,
+                    Action = GravityPlugin.SendKeys,
                     Argument = "{{$ --clear --interval:200 --force_clear}}",
                     OnElement = "input_enabled_with_text",
                     Locator = Locators.Id

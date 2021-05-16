@@ -46,7 +46,7 @@ click on {//a[.=\"Departments\"]}
 // option no.1
 var actionRule = new ActionRule
 {
-    Action = PluginsList.Click,
+    Action = GravityPlugin.Click,
     OnElement = "//a[.=\"Departments\"]"
 };
 
@@ -106,7 +106,7 @@ click
 // option no.1
 var actionRule = new ActionRule
 {
-    Action = PluginsList.Click
+    Action = GravityPlugin.Click
 };
 
 // option no.2
@@ -167,7 +167,7 @@ click {{$ --until:no_alert}} on {pop_alert} using {id}
 // option no.1
 var actionRule = new ActionRule
 {
-    Action = PluginsList.Click,
+    Action = GravityPlugin.Click,
     Argument = "{{$ --until:no_alert}}",
     OnElement = "pop_alert",
     Locator = LocatorsList.Id

@@ -36,7 +36,7 @@ navigate forward
 // option no.1
 var actionRule = new ActionRule
 {
-    Action = PluginsList.NavigateForward
+    Action = GravityPlugin.NavigateForward
 };
 
 // option no.2
@@ -91,7 +91,7 @@ navigate forward {2}
 // option no.1
 var actionRule = new ActionRule
 {
-    Action = PluginsList.NavigateForward,
+    Action = GravityPlugin.NavigateForward,
     Argument = "2"
 };
 

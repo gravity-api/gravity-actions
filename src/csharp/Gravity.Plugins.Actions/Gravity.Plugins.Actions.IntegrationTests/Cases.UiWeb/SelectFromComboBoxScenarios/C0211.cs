@@ -31,12 +31,12 @@ namespace Graivty.IntegrationTests.Cases.UiWeb.SelectFromComboBoxScenarios
             {
                 new ActionRule
                 {
-                    Action = PluginsList.Scroll,
+                    Action = GravityPlugin.Scroll,
                     Argument = "1000"
                 },
                 new ActionRule
                 {
-                    Action = PluginsList.SelectFromComboBox,
+                    Action = GravityPlugin.SelectFromComboBox,
                     OnElement = "select_menu_multiple",
                     OnAttribute = "value",
                     Argument = $"{environment.TestParams["argument"]}",

@@ -112,14 +112,14 @@ namespace Gravity.UnitTests.UiWeb
         public void ExtractDataDocumentation()
         {
             AssertDocumentation<ExtractFromSource>(
-                pluginName: PluginsList.ExtractFromSource);
+                pluginName: GravityPlugin.ExtractFromSource);
         }
 
         [TestMethod]
         public void ExtractDataDocumentationResourceFile()
         {
             AssertDocumentation<ExtractFromSource>(
-                pluginName: PluginsList.ExtractFromSource,
+                pluginName: GravityPlugin.ExtractFromSource,
                 resource: "ExtractFromSource.json");
         }
         #endregion

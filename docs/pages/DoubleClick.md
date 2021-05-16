@@ -43,7 +43,7 @@ double click on {click_button} using {id}
 // option no.1
 var actionRule = new ActionRule
 {
-    Action = PluginsList.DoubleClick,
+    Action = GravityPlugin.DoubleClick,
     OnElement = "click_button",
     Locator = LocatorsList.Id
 };
@@ -108,7 +108,7 @@ double click
 // option no.1
 var actionRule = new ActionRule
 {
-    Action = PluginsList.DoubleClick
+    Action = GravityPlugin.DoubleClick
 };
 
 // option no.2

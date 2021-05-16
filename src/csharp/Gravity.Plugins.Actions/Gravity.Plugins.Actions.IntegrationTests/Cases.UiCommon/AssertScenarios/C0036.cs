@@ -31,7 +31,7 @@ namespace Gravity.IntegrationTests.Cases.UiCommon.AssertScenarios
             {
                 new ActionRule
                 {
-                    Action = PluginsList.Assert,
+                    Action = GravityPlugin.Assert,
                     Argument = "{{$ --text --le:" + expected + "}}",
                     OnElement = "number for testing",
                     Locator = Locators.Name

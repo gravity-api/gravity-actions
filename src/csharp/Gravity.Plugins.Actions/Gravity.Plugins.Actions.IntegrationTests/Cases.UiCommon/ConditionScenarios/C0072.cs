@@ -37,7 +37,7 @@ namespace Gravity.IntegrationTests.Cases.UiCommon.ConditionScenarios
             {
                 new ActionRule
                 {
-                    Action = PluginsList.Condition,
+                    Action = GravityPlugin.Condition,
                     Argument = "{{$ --attribute --gt:" + condition + "}}",
                     OnElement = "Edit",
                     OnAttribute = "href",

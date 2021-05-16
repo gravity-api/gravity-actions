@@ -1,6 +1,6 @@
 ﻿/*
  * TEST SCENARIO (Rhino)
- * [test-id] 0224
+ * [test-id] 0231
  * [test-scenario] - Send Keys, Combination, Control+A
  * 
  * [test-actions]
@@ -34,20 +34,20 @@ namespace Graivty.IntegrationTests.Cases.UiCommon.TrySendKeysScenarios
                 // cannot be interacted
                 new ActionRule
                 {
-                    Action = PluginsList.MoveToElement,
+                    Action = GravityPlugin.MoveToElement,
                     OnElement = "text_area_enabled",
                     Locator = Locators.Id
                 },
                 new ActionRule
                 {
-                    Action = PluginsList.Click,
+                    Action = GravityPlugin.Click,
                     OnElement = "text_area_enabled",
                     Locator = Locators.Id
                 },
                 SharedSteps.AssertSelectable(id: "e_text_area_selected", selected: false),
                 new ActionRule
                 {
-                    Action = PluginsList.TrySendKeys,
+                    Action = GravityPlugin.TrySendKeys,
                     Argument = "{{$ --down:" + downKey + " --keys:" + key + "}}",
                     OnElement = "text_area_enabled",
                     Locator = Locators.Id

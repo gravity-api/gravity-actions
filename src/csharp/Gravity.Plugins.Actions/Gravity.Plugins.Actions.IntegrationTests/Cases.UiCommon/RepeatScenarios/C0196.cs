@@ -34,7 +34,7 @@ namespace Graivty.IntegrationTests.Cases.UiCommon.RepeatScenarios
             {
                 new ActionRule
                 {
-                    Action = PluginsList.Click,
+                    Action = GravityPlugin.Click,
                     OnElement = "//a[contains(.,\"Next\") and @class=\"btn btn-default \"]"
                 }
             };
@@ -44,14 +44,14 @@ namespace Graivty.IntegrationTests.Cases.UiCommon.RepeatScenarios
             {
                 new ActionRule
                 {
-                    Action = PluginsList.Repeat,
+                    Action = GravityPlugin.Repeat,
                     Argument = "{{$ --until:exists}}",
                     OnElement = "//a[contains(.,\"Next\") and @class=\"btn btn-default disabled\"]",
                     Actions = actions
                 },
                 new ActionRule
                 {
-                    Action = PluginsList.Assert,
+                    Action = GravityPlugin.Assert,
                     Argument = "{{$ --url --gt:1}}",
                     RegularExpression = "\\d+/?$"
                 }

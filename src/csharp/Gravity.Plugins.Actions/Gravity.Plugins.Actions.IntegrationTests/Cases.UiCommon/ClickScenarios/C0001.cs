@@ -40,10 +40,10 @@ namespace Gravity.IntegrationTests.Cases.UiCommon.ClickScenarios
             }
 
             // common actions
-            actions.Add(new ActionRule { Action = PluginsList.Click, OnElement = "//a[.=\"Departments\"]" });
+            actions.Add(new ActionRule { Action = GravityPlugin.Click, OnElement = "//a[.=\"Departments\"]" });
             actions.Add(new ActionRule
             {
-                Action = PluginsList.Assert,
+                Action = GravityPlugin.Assert,
                 Argument = "{{$ --text --eq:Departments}}",
                 OnElement = "//h1[1]"
             });

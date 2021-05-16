@@ -32,7 +32,7 @@ namespace Gravity.IntegrationTests.Cases.UiCommon.ExecuteScriptScenarios
             {
                 new ActionRule
                 {
-                    Action = PluginsList.ExecuteScript,
+                    Action = GravityPlugin.ExecuteScript,
                     Argument = "{{$ --src:window.scrollTo(arguments[0], arguments[1]); --args:[0, "+ $"{condition}" +"]}}"
                 },
                 SharedSteps.AssertScrollOutcome(offset: "y", greaterThan: condition - 1)

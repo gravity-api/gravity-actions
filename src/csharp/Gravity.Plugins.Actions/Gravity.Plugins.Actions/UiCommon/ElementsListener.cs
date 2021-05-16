@@ -34,7 +34,7 @@ namespace Gravity.Plugins.Actions.UiCommon
     [Plugin(
         assembly: "Gravity.Plugins.Actions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
         resource: "Gravity.Plugins.Actions.Manifest.ElementsListener.json",
-        Name = PluginsList.ElementsListener)]
+        Name = GravityPlugin.ElementsListener)]
     public class ElementsListener : WebDriverActionPlugin
     {
         // constants: arguments
@@ -111,7 +111,7 @@ namespace Gravity.Plugins.Actions.UiCommon
 
         private static ActionRule GetDefaultActionRule(ActionRule action) => new ActionRule
         {
-            Action = PluginsList.Click,
+            Action = GravityPlugin.Click,
             OnElement = action.OnElement,
             OnAttribute = action.OnAttribute,
             Locator = action.Locator,

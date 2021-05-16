@@ -34,7 +34,7 @@ extract from dom on {//td[contains(@id,'student_first_name')]}
 // action rule
 var actionRule = new ActionRule
 {
-    Action = PluginsList.ExtractFromDom
+    Action = GravityPlugin.ExtractFromDom
 };
 
 // extraction rule
@@ -140,7 +140,7 @@ extract from dom on {//td[contains(@id,'student_first_name')]}
 // action rule
 var actionRule = new ActionRule
 {
-    Action = PluginsList.ExtractFromDom
+    Action = GravityPlugin.ExtractFromDom
 };
 
 // extraction rule
@@ -251,7 +251,7 @@ extract from dom on {//td[contains(@id,'student_first_name')]}
 // action rule
 var actionRule = new ActionRule
 {
-    Action = PluginsList.ExtractFromDom
+    Action = GravityPlugin.ExtractFromDom
 };
 
 // extraction rule
@@ -369,7 +369,7 @@ extract from dom on {//td[contains(@id,'student_first_name')]}
 // action rule
 var actionRule = new ActionRule
 {
-    Action = PluginsList.ExtractFromDom
+    Action = GravityPlugin.ExtractFromDom
 };
 
 // extraction rule
@@ -498,7 +498,7 @@ extract from dom on {//td[contains(@id,'student_first_name')]}
 // action rule
 var actionRule = new ActionRule
 {
-    Action = PluginsList.ExtractFromDom
+    Action = GravityPlugin.ExtractFromDom
 };
 
 // extraction rule
@@ -630,7 +630,7 @@ extract from dom on {//tbody/tr}
 // action rule
 var actionRule = new ActionRule
 {
-    Action = PluginsList.ExtractFromDom
+    Action = GravityPlugin.ExtractFromDom
 };
 
 // extraction rule
@@ -638,7 +638,7 @@ var firstNameEntryActions = new[]
 {
     new ActionRule
     {
-        Action = PluginsList.Click,
+        Action = GravityPlugin.Click,
         OnElement = "Details",
         Locator = LocatorsList.LinkText
     }
@@ -652,7 +652,7 @@ var firstNameEntry = new ContentEntry
 
 var courseEntryActions = new[]
 {
-    new ActionRule { Action = PluginsList.NavigateBack }
+    new ActionRule { Action = GravityPlugin.NavigateBack }
 };
 var courseEntry = new ContentEntry
 {
@@ -842,7 +842,7 @@ extract from dom on {//tbody/tr}
 // action rule
 var actionRule = new ActionRule
 {
-    Action = PluginsList.ExtractFromDom
+    Action = GravityPlugin.ExtractFromDom
 };
 
 // extraction rule
@@ -850,7 +850,7 @@ var firstNameEntryActions = new[]
 {
     new ActionRule
     {
-        Action = PluginsList.GoToUrl,
+        Action = GravityPlugin.GoToUrl,
         Argument = "{{$ --blank}}",
         OnElement = "Details",
         OnAttribute = "href",
@@ -858,7 +858,7 @@ var firstNameEntryActions = new[]
     },
     new ActionRule
     {
-        Action = PluginsList.SwitchToWindow,
+        Action = GravityPlugin.SwitchToWindow,
         Argument = "1"
     }
 };
@@ -871,7 +871,7 @@ var firstNameEntry = new ContentEntry
 
 var courseEntryActions = new[]
 {
-    new ActionRule { Action = PluginsList.CloseAllChildWindows }
+    new ActionRule { Action = GravityPlugin.CloseAllChildWindows }
 };
 var courseEntry = new ContentEntry
 {

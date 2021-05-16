@@ -10,7 +10,7 @@ namespace Gravity.Plugins.Contracts
     /// <summary>
     /// Available mobile native plugins under Gravity.Plugins.Actions.dll
     /// </summary>
-    public static partial class PluginsList
+    public static partial class GravityPlugin
     {
         [DataMember]
         public const string HideKeyboard = "HideKeyboard";

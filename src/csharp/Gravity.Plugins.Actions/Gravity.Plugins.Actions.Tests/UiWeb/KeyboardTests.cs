@@ -27,14 +27,14 @@ namespace Gravity.UnitTests.UiWeb
         [TestMethod]
         public void KeyboardDocumentation()
         {
-            AssertDocumentation<Keyboard>(pluginName: PluginsList.Keyboard);
+            AssertDocumentation<Keyboard>(pluginName: GravityPlugin.Keyboard);
         }
 
         [TestMethod]
         public void KeyboardDocumentationResourceFile()
         {
             AssertDocumentation<Keyboard>(
-                pluginName: PluginsList.Keyboard,
+                pluginName: GravityPlugin.Keyboard,
                 resource: "Keyboard.json");
         }
         #endregion

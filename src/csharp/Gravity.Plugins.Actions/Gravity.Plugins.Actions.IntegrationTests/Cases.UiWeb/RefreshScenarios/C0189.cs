@@ -32,14 +32,14 @@ namespace Graivty.IntegrationTests.Cases.UiWeb.RefreshScenarios
             {
                 new ActionRule
                 {
-                    Action = PluginsList.Click,
+                    Action = GravityPlugin.Click,
                     OnElement = "for_stale_element",
                     Locator = Locators.Id
                 },
                 SharedSteps.AssertStaleElementClass(expectedPattern: "alert-danger"),
                 new ActionRule
                 {
-                    Action = PluginsList.Refresh
+                    Action = GravityPlugin.Refresh
                 },
                 SharedSteps.AssertStaleElementClass(expectedPattern: "alert-success")
             };

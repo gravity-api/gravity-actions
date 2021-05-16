@@ -30,7 +30,7 @@ assert {{$ --driver --eq:OpenQA.Selenium.Remote.RemoteWebDriver}}
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = PluginsList.Assert,
+    Action = GravityPlugin.Assert,
     Argument = "argument": "{{$ --driver --eq:OpenQA.Selenium.Remote.RemoteWebDriver}}"
 };
 ```
@@ -80,7 +80,7 @@ assert {{$ --driver --ne:OpenQA.Selenium.Chrome.ChromeDriver}}
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = PluginsList.Assert,
+    Action = GravityPlugin.Assert,
     Argument = "argument": "{{$ --driver --ne:OpenQA.Selenium.Chrome.ChromeDriver}}"
 };
 ```
@@ -130,7 +130,7 @@ assert {{$ --driver --match:RemoteWebDriver}}
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = PluginsList.Assert,
+    Action = GravityPlugin.Assert,
     Argument = "argument": "{{$ --driver --match:RemoteWebDriver}}"
 };
 ```
@@ -180,7 +180,7 @@ assert {{$ --driver --not_match:ChromeDriver}}
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = PluginsList.Assert,
+    Action = GravityPlugin.Assert,
     Argument = "argument": "{{$ --driver --not_match:ChromeDriver}}"
 };
 ```
@@ -234,7 +234,7 @@ assert {{$ --enabled}} on {input_enabled} using {id}
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = PluginsList.Assert,
+    Action = GravityPlugin.Assert,
     Argument = "argument": "{{$ --enabled}}",
     OnElement = "input_enabled",
     Locator = LocatorsList.Id
@@ -296,7 +296,7 @@ assert {{$ --exists}} on {input_enabled} using {id}
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = PluginsList.Assert,
+    Action = GravityPlugin.Assert,
     Argument = "argument": "{{$ --exists}}",
     OnElement = "input_enabled",
     Locator = LocatorsList.Id
@@ -358,7 +358,7 @@ assert {{$ --hidden}} on {input_hidden} using {id}
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = PluginsList.Assert,
+    Action = GravityPlugin.Assert,
     Argument = "argument": "{{$ --hidden}}",
     OnElement = "input_hidden",
     Locator = LocatorsList.Id
@@ -420,7 +420,7 @@ assert {{$ --hidden}} on {{input_hidden}} using {id}
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = PluginsList.Assert,
+    Action = GravityPlugin.Assert,
     Argument = "argument": "{{$ --not_exists}}",
     OnElement = "no_element",
     Locator = LocatorsList.Id
@@ -484,7 +484,7 @@ assert {{$ --hidden}} on {{input_hidden}} using {id}
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = PluginsList.Assert,
+    Action = GravityPlugin.Assert,
     Argument = "argument": "{{$ --not_selected}}",
     OnElement = "input_not_selected",
     Locator = LocatorsList.Id
@@ -548,7 +548,7 @@ assert {{$ --parameter --eq:10}} on {my_parameter}
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = PluginsList.Assert,
+    Action = GravityPlugin.Assert,
     Argument = "{{$ --parameter --eq:10}}",
     OnElement = "my_parameter"
 };
@@ -603,7 +603,7 @@ assert {{$ --parameter --ne:1}} on {my_parameter}
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = PluginsList.Assert,
+    Action = GravityPlugin.Assert,
     Argument = "{{$ --parameter --ne:1}}",
     OnElement = "my_parameter"
 };
@@ -658,7 +658,7 @@ assert {{$ --parameter --match:^10$}} on {my_parameter}
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = PluginsList.Assert,
+    Action = GravityPlugin.Assert,
     Argument = "{{$ --parameter --match:^10$}}",
     OnElement = "my_parameter"
 };
@@ -713,7 +713,7 @@ assert {{$ --parameter --not_match:^1$}} on {my_parameter}
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = PluginsList.Assert,
+    Action = GravityPlugin.Assert,
     Argument = "{{$ --parameter --not_match:^1$}}",
     OnElement = "my_parameter"
 };
@@ -768,7 +768,7 @@ assert {{$ --parameter --gt:1}} on {my_parameter}
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = PluginsList.Assert,
+    Action = GravityPlugin.Assert,
     Argument = "{{$ --parameter --gt:1}}",
     OnElement = "my_parameter"
 };
@@ -823,7 +823,7 @@ assert {{$ --parameter --lt:11}} on {my_parameter}
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = PluginsList.Assert,
+    Action = GravityPlugin.Assert,
     Argument = "{{$ --parameter --lt:11}}",
     OnElement = "my_parameter"
 };
@@ -878,7 +878,7 @@ assert {{$ --parameter --ge:10}} on {my_parameter}
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = PluginsList.Assert,
+    Action = GravityPlugin.Assert,
     Argument = "{{$ --parameter --ge:10}}",
     OnElement = "my_parameter"
 };
@@ -933,7 +933,7 @@ assert {{$ --parameter --le:1}} on {my_parameter}
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = PluginsList.Assert,
+    Action = GravityPlugin.Assert,
     Argument = "{{$ --parameter --le:10}}",
     OnElement = "my_parameter"
 };

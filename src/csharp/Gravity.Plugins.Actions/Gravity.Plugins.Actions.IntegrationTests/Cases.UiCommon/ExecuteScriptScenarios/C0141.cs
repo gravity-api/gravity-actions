@@ -36,11 +36,11 @@ namespace Gravity.IntegrationTests.Cases.UiCommon.ExecuteScriptScenarios
             {
                 new ActionRule
                 {
-                    Action = PluginsList.ExtractFromDom,
+                    Action = GravityPlugin.ExtractFromDom,
                 },
                 new ActionRule
                 {
-                    Action = PluginsList.Assert,
+                    Action = GravityPlugin.Assert,
                     Argument = "{{$ --" + condition + "}}",
                     OnElement = "input_selected",
                     Locator = Locators.Id
@@ -61,7 +61,7 @@ namespace Gravity.IntegrationTests.Cases.UiCommon.ExecuteScriptScenarios
                     {
                         new ActionRule
                         {
-                            Action = PluginsList.ExecuteScript,
+                            Action = GravityPlugin.ExecuteScript,
                             Argument = ".checked=false;"
                         }
                     }

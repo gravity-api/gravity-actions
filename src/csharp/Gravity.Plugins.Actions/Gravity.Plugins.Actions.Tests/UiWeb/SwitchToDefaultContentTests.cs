@@ -27,14 +27,14 @@ namespace Gravity.UnitTests.UiWeb
         public void SwitchToDefaultContentDocumentation()
         {
             AssertDocumentation<SwitchToDefaultContent>(
-                pluginName: PluginsList.SwitchToDefaultContent);
+                pluginName: GravityPlugin.SwitchToDefaultContent);
         }
 
         [TestMethod]
         public void SwitchToDefaultContentDocumentationResourceFile()
         {
             AssertDocumentation<SwitchToDefaultContent>(
-                pluginName: PluginsList.SwitchToDefaultContent,
+                pluginName: GravityPlugin.SwitchToDefaultContent,
                 resource: "SwitchToDefaultContent.json");
         }
         #endregion

@@ -27,14 +27,14 @@ namespace Gravity.UnitTests.UiCommon
         public void ElementsListenerDocumentation()
         {
             AssertDocumentation<ElementsListener>(
-                pluginName: PluginsList.ElementsListener);
+                pluginName: GravityPlugin.ElementsListener);
         }
 
         [TestMethod]
         public void ElementsListenerDocumentationResourceFile()
         {
             AssertDocumentation<ElementsListener>(
-                pluginName: PluginsList.ElementsListener,
+                pluginName: GravityPlugin.ElementsListener,
                 resource: "ElementsListener.json");
         }
         #endregion

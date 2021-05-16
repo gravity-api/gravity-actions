@@ -30,7 +30,7 @@ namespace Graivty.IntegrationTests.Cases.UiCommon.RegisterParameterScenarios
             {
                 new ActionRule
                 {
-                    Action = PluginsList.RegisterParameter,
+                    Action = GravityPlugin.RegisterParameter,
                     Argument = "integration_parameter",
                     OnElement = "text_div_number",
                     Locator = Locators.Id

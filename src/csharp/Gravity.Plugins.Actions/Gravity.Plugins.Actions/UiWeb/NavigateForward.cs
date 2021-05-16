@@ -25,7 +25,7 @@ namespace Gravity.Plugins.Actions.UiWeb
     [Plugin(
         assembly: "Gravity.Plugins.Actions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
         resource: "Gravity.Plugins.Actions.Manifest.NavigateForward.json",
-        Name = PluginsList.NavigateForward)]
+        Name = GravityPlugin.NavigateForward)]
     public class NavigateForward : WebDriverActionPlugin
     {
         #region *** constructors ***

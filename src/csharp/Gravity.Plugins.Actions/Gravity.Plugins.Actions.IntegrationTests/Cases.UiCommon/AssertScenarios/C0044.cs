@@ -31,7 +31,7 @@ namespace Gravity.IntegrationTests.Cases.UiCommon.AssertScenarios
             {
                 new ActionRule
                 {
-                    Action = PluginsList.Assert,
+                    Action = GravityPlugin.Assert,
                     Argument = "{{$ --title --le:" + expected + "}}",
                     RegularExpression = "\\d+"
                 }

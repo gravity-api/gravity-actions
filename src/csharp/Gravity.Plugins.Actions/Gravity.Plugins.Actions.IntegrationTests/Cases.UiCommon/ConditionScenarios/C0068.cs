@@ -37,7 +37,7 @@ namespace Gravity.IntegrationTests.Cases.UiCommon.ConditionScenarios
             {
                 new ActionRule
                 {
-                    Action = PluginsList.Condition,
+                    Action = GravityPlugin.Condition,
                     Argument = "{{$ --attribute --eq:" + condition + "}}",
                     OnElement = "SearchButton",
                     OnAttribute = "class",

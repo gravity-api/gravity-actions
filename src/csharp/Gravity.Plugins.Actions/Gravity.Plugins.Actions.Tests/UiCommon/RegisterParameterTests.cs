@@ -35,14 +35,14 @@ namespace Gravity.UnitTests.UiCommon
         public void RegisterParameterDocumentation()
         {
             AssertDocumentation<RegisterParameter>(
-                pluginName: PluginsList.RegisterParameter);
+                pluginName: GravityPlugin.RegisterParameter);
         }
 
         [TestMethod]
         public void RegisterParameterDocumentationResourceFile()
         {
             AssertDocumentation<RegisterParameter>(
-                pluginName: PluginsList.RegisterParameter,
+                pluginName: GravityPlugin.RegisterParameter,
                 resource: "RegisterParameter.json");
         }
         #endregion

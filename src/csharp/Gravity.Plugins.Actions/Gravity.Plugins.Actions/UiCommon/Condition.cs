@@ -15,7 +15,7 @@ namespace Gravity.Plugins.Actions.UiCommon
     [Plugin(
         assembly: "Gravity.Plugins.Actions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
         resource: "Gravity.Plugins.Actions.Manifest.Condition.json",
-        Name = PluginsList.Condition)]
+        Name = GravityPlugin.Condition)]
     public class Condition : WebDriverActionPlugin
     {
         #region *** constructors ***

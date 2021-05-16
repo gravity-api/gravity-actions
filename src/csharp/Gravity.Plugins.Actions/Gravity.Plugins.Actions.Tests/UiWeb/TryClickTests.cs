@@ -29,14 +29,14 @@ namespace Gravity.UnitTests.UiWeb
         public void TryClickDocumentation()
         {
             AssertDocumentation<TryClick>(
-                pluginName: PluginsList.TryClick);
+                pluginName: GravityPlugin.TryClick);
         }
 
         [TestMethod]
         public void TryClickDocumentationResourceFile()
         {
             AssertDocumentation<TryClick>(
-                pluginName: PluginsList.TryClick,
+                pluginName: GravityPlugin.TryClick,
                 resource: "TryClick.json");
         }
         #endregion

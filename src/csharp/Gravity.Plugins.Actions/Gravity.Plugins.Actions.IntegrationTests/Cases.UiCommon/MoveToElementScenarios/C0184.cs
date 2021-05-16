@@ -32,14 +32,14 @@ namespace Graivty.IntegrationTests.Cases.UiCommon.MoveToElementScenarios
                 SharedSteps.AssertOverOutcomeValue(expectedPattern: "^no mouse over$"),
                 new ActionRule
                 {
-                    Action = PluginsList.ExecuteScript,
+                    Action = GravityPlugin.ExecuteScript,
                     Argument = "arguments[0].scrollIntoView();",
                     OnElement = "over_outcome",
                     Locator = Locators.Id
                 },
                 new ActionRule
                 {
-                    Action = PluginsList.MoveToElement,
+                    Action = GravityPlugin.MoveToElement,
                     OnElement = "over_outcome",
                     Locator = Locators.Id
                 },

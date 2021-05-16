@@ -32,7 +32,7 @@ namespace Gravity.Plugins.Actions.UiCommon
     [Plugin(
         assembly: "Gravity.Plugins.Actions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
         resource: "Gravity.Plugins.Actions.Manifest.DoubleClick.json",
-        Name = PluginsList.DoubleClick)]
+        Name = GravityPlugin.DoubleClick)]
     public class DoubleClick : WebDriverActionPlugin
     {
         // members: state

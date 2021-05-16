@@ -47,7 +47,7 @@ keyboard {Enter} into {SearchString} using {id}
 // option no.1
 var actionRule = new ActionRule
 {
-    Action = PluginsList.Keyboard,
+    Action = GravityPlugin.Keyboard,
     Argument: "Enter",
     OnElement: "SearchString",
     Locator: "Id"
@@ -120,7 +120,7 @@ keyboard {Control,a} into {text_area_enabled} using {id}
 // option no.1
 var actionRule = new ActionRule
 {
-    Action = PluginsList.Keyboard,
+    Action = GravityPlugin.Keyboard,
     Argument: "Control,a",
     OnElement: "text_area_enabled",
     Locator: "Id"

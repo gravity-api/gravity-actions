@@ -36,7 +36,7 @@ navigate back
 // option no.1
 var actionRule = new ActionRule
 {
-    Action = PluginsList.NavigateBack
+    Action = GravityPlugin.NavigateBack
 };
 
 // option no.2
@@ -91,7 +91,7 @@ navigate back {2}
 // option no.1
 var actionRule = new ActionRule
 {
-    Action = PluginsList.NavigateBack,
+    Action = GravityPlugin.NavigateBack,
     Argument = "2"
 };
 

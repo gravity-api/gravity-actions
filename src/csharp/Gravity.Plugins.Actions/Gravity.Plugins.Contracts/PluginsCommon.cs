@@ -11,7 +11,7 @@ namespace Gravity.Plugins.Contracts
     /// Available common plugins under Gravity.Plugins.Actions.dll
     /// </summary>
     [DataContract]
-    public static partial class PluginsList
+    public static partial class GravityPlugin
     {
         [DataMember]
         public const string Assert = "Assert";

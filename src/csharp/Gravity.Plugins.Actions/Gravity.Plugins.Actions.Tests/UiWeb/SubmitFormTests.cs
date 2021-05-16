@@ -25,14 +25,14 @@ namespace Gravity.UnitTests.UiWeb
         [TestMethod]
         public void SubmitFormDocumentation()
         {
-            AssertDocumentation<SubmitForm>(pluginName: PluginsList.SubmitForm);
+            AssertDocumentation<SubmitForm>(pluginName: GravityPlugin.SubmitForm);
         }
 
         [TestMethod]
         public void SubmitFormDocumentationResourceFile()
         {
             AssertDocumentation<SubmitForm>(
-                pluginName: PluginsList.SubmitForm,
+                pluginName: GravityPlugin.SubmitForm,
                 resource: "SubmitForm.json");
         }
         #endregion

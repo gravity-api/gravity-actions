@@ -19,6 +19,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\..\gravity-mockdriver\src\csharp\Gravity.Drivers.Mock\Gravity.Drivers.Mock\Gravity.Drivers.Mock.csproj" />
+    <ProjectReference Include="..\Gravity.Extensions\Gravity.Extensions.csproj" />
     <ProjectReference Include="..\Gravity.Plugins.Actions\Gravity.Plugins.Actions.csproj" />
   </ItemGroup>
 </Project>

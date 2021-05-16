@@ -36,14 +36,14 @@ namespace Gravity.UnitTests.UiCommon
         [TestMethod]
         public void WaitDocumentation()
         {
-            AssertDocumentation<Wait>(pluginName: PluginsList.Wait);
+            AssertDocumentation<Wait>(pluginName: GravityPlugin.Wait);
         }
 
         [TestMethod]
         public void WaitDocumentationResourceFile()
         {
             AssertDocumentation<Wait>(
-                pluginName: PluginsList.Wait,
+                pluginName: GravityPlugin.Wait,
                 resource: "Wait.json");
         }
         #endregion

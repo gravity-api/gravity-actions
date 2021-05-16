@@ -27,7 +27,7 @@ namespace Gravity.IntegrationTests.Cases.UiCommon.ClickScenarios
         {
             return new[]
             {
-                new ActionRule { Action = PluginsList.Click },
+                new ActionRule { Action = GravityPlugin.Click },
                 SharedSteps.AssertUrl("(?i)uicontrols")
             };
         }

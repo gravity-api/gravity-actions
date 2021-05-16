@@ -56,14 +56,14 @@ namespace Gravity.UnitTests.UiCommon
         [TestMethod]
         public void RepeatDocumentation()
         {
-            AssertDocumentation<Repeat>(pluginName: PluginsList.Repeat);
+            AssertDocumentation<Repeat>(pluginName: GravityPlugin.Repeat);
         }
 
         [TestMethod]
         public void RepeatDocumentationResourceFile()
         {
             AssertDocumentation<Repeat>(
-                pluginName: PluginsList.Repeat,
+                pluginName: GravityPlugin.Repeat,
                 resource: "repeat.json");
         }
         #endregion

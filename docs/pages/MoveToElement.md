@@ -39,7 +39,7 @@ move to element on {over_outcome} using {id}
 // option no.1
 var actionRule = new ActionRule
 {
-    Action = PluginsList.MoveToElement,
+    Action = GravityPlugin.MoveToElement,
     OnElement = "over_outcome",
     Locator = LocatorsList.Id
 };

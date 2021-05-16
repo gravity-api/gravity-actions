@@ -30,14 +30,14 @@ namespace Gravity.UnitTests.UiWeb
         public void SwitchToFrameDocumentation()
         {
             AssertDocumentation<SwitchToFrame>(
-                pluginName: PluginsList.SwitchToFrame);
+                pluginName: GravityPlugin.SwitchToFrame);
         }
 
         [TestMethod]
         public void SwitchToFrameDocumentationResourceFile()
         {
             AssertDocumentation<SwitchToFrame>(
-                pluginName: PluginsList.SwitchToFrame,
+                pluginName: GravityPlugin.SwitchToFrame,
                 resource: "SwitchToFrame.json");
         }
         #endregion

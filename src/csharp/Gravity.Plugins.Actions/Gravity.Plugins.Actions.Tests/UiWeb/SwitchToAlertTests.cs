@@ -27,14 +27,14 @@ namespace Gravity.UnitTests.UiWeb
         [TestMethod]
         public void SwitchToAlertDocumentation()
         {
-            AssertDocumentation<SwitchToAlert>(pluginName: PluginsList.SwitchToAlert);
+            AssertDocumentation<SwitchToAlert>(pluginName: GravityPlugin.SwitchToAlert);
         }
 
         [TestMethod]
         public void SwitchToAlertDocumentationResourceFile()
         {
             AssertDocumentation<SwitchToAlert>(
-                pluginName: PluginsList.SwitchToAlert,
+                pluginName: GravityPlugin.SwitchToAlert,
                 resource: "SwitchToAlert.json");
         }
         #endregion

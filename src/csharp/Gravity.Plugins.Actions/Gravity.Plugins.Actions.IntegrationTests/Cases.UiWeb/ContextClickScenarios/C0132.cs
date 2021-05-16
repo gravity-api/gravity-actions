@@ -30,7 +30,7 @@ namespace Gravity.IntegrationTests.Cases.UiWeb.ContextClickScenarios
             {
                 new ActionRule
                 {
-                    Action = PluginsList.ContextClick
+                    Action = GravityPlugin.ContextClick
                 },
                 SharedSteps.AssertClickOutcome(expectedPattern: "^$")
             };

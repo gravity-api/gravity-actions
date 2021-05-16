@@ -38,26 +38,26 @@ namespace Gravity.IntegrationTests.Cases.UiCommon.ConditionScenarios
             {
                 new ActionRule
                 {
-                    Action = PluginsList.Condition,
+                    Action = GravityPlugin.Condition,
                     Argument = "{{$ --windows_count --eq:1}}",
                     Actions = new[]
                     {
                         new ActionRule
                         {
-                            Action = PluginsList.SendKeys,
+                            Action = GravityPlugin.SendKeys,
                             Argument = "Carson",
                             OnElement = "SearchString",
                             Locator = Locators.Id
                         },
                         new ActionRule
                         {
-                            Action = PluginsList.Condition,
+                            Action = GravityPlugin.Condition,
                             Argument = "{{$ --url --match:" + condition + "}}",
                             Actions = new[]
                             {
                                 new ActionRule
                                 {
-                                    Action = PluginsList.Click,
+                                    Action = GravityPlugin.Click,
                                     OnElement = "SearchButton",
                                     Locator = Locators.Id
                                 }
@@ -67,7 +67,7 @@ namespace Gravity.IntegrationTests.Cases.UiCommon.ConditionScenarios
                 },
                 new ActionRule
                 {
-                    Action = PluginsList.Assert,
+                    Action = GravityPlugin.Assert,
                     Argument = "{{$ --attribute --eq:Carson}}",
                     OnElement = "SearchString",
                     OnAttribute = "value",

@@ -20,7 +20,7 @@ namespace Gravity.Plugins.Actions.UiWeb
     [Plugin(
         assembly: "Gravity.Plugins.Actions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
         resource: "Gravity.Plugins.Actions.Manifest.Scroll.json",
-        Name = PluginsList.Scroll)]
+        Name = GravityPlugin.Scroll)]
     public class Scroll : WebDriverActionPlugin
     {
         #region *** arguments    ***

@@ -27,14 +27,14 @@ namespace Gravity.UnitTests.UiMobile
         public void GeoLocationDocumentation()
         {
             AssertDocumentation<SetGeoLocation>(
-                pluginName: PluginsList.SetGeoLocation);
+                pluginName: GravityPlugin.SetGeoLocation);
         }
 
         [TestMethod]
         public void GeoLocationDocumentationResourceFile()
         {
             AssertDocumentation<SetGeoLocation>(
-                pluginName: PluginsList.SetGeoLocation,
+                pluginName: GravityPlugin.SetGeoLocation,
                 resource: "SetGeoLocation.json");
         }
         #endregion

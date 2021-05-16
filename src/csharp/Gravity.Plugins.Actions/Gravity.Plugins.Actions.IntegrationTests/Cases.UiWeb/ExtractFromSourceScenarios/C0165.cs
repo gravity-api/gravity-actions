@@ -36,7 +36,7 @@ namespace Graivty.IntegrationTests.Cases.UiWeb.ExtractFromSourceScenarios
         {
             new ActionRule
             {
-                Action = PluginsList.ExtractFromSource
+                Action = GravityPlugin.ExtractFromSource
             }
         };
 

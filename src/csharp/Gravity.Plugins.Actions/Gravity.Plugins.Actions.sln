@@ -62,6 +62,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentat
 		..\..\..\docs\pages\SelectFromComboBox.md = ..\..\..\docs\pages\SelectFromComboBox.md
 		..\..\..\docs\pages\SendKeys.md = ..\..\..\docs\pages\SendKeys.md
 		..\..\..\docs\pages\TrySendKeys.md = ..\..\..\docs\pages\TrySendKeys.md
+		..\..\..\docs\pages\Wait.md = ..\..\..\docs\pages\Wait.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{94B210CB-BF2C-4430-A109-FEC892B59131}"

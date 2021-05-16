@@ -63,7 +63,7 @@
 * [Register Parameter](./RegisterParameter.md "Register Parameter")
 * [Send Keys](./SendKeys.md "Send Keys")
 * [Try Send Keys](./TrySendKeys.md "Try Send Keys")
-* Wait
+* [Wait](./Wait.md "Wait")
 * Wait for Element
 
 ### User Interface Mobile

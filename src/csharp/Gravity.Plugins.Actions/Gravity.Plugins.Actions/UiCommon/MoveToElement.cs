@@ -3,6 +3,7 @@
  * 
  * RESOURCES
  */
+using Gravity.Extensions;
 using Gravity.Plugins.Attributes;
 using Gravity.Plugins.Contracts;
 using Gravity.Plugins.Framework;
@@ -35,7 +36,7 @@ namespace Gravity.Plugins.Actions.UiCommon
         /// <param name="action">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
         public override void OnPerform(ActionRule action)
         {
-            ConditionalGetElement(element: default, action).TryMoveToElement();
+            this.ConditionalGetElement(element: default, action).TryMoveToElement();
         }
 
         /// <summary>
@@ -45,7 +46,7 @@ namespace Gravity.Plugins.Actions.UiCommon
         /// <param name="element">This <see cref="IWebElement"/> instance on which to perform the action (provided by the extraction rule).</param>
         public override void OnPerform(ActionRule action, IWebElement element)
         {
-            ConditionalGetElement(element, action).TryMoveToElement();
+            this.ConditionalGetElement(element, action).TryMoveToElement();
         }
     }
 }

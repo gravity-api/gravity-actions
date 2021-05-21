@@ -18,6 +18,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 
 using System;
+using Gravity.Extensions;
 
 namespace Gravity.Plugins.Actions.UiWeb
 {
@@ -81,7 +82,7 @@ namespace Gravity.Plugins.Actions.UiWeb
         private void DoAction(ActionRule action, IWebElement element) => wait.Until(_ =>
         {
             // get element to act on
-            var onElement = ConditionalGetElement(element, action);
+            var onElement = this.ConditionalGetElement(element, action);
 
             // execute script
             ((IJavaScriptExecutor)WebDriver).ExecuteScript(Script, onElement);

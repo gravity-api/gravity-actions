@@ -1,17 +1,15 @@
-﻿#pragma warning disable S125
-/*
-* TEST SCENARIO (Rhino)
-* [test-id] 0061
-* [test-scenario] - Assert, Windows Count, Lower or Equal
-* 
-* [test-actions]
-* 1. navigate to {https://gravitymvctestapplication.azurewebsites.net/uicontrols}
-* 2. close browser
-* 
-* [test-expected-results]
-* [1] verify {windows_count} lower or equal {1}
-*/
-#pragma warning restore
+﻿/*
+ * TEST SCENARIO (Rhino)
+ * [test-id] 0061
+ * [test-scenario] - Assert, Windows Count, Lower or Equal
+ * 
+ * [test-actions]
+ * 1. navigate to {https://gravitymvctestapplication.azurewebsites.net/uicontrols}
+ * 2. close browser
+ * 
+ * [test-expected-results]
+ * [1] verify {windows_count} lower or equal {1}
+ */
 using Gravity.IntegrationTests.Base;
 using Gravity.Plugins.Contracts;
 

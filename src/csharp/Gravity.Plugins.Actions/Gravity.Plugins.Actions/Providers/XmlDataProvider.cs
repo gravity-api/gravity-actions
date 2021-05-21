@@ -21,7 +21,7 @@ namespace Gravity.Plugins.Actions.Providers
     public class XmlDataProvider : DataProvidersBase
     {
         // members
-        private static readonly ReaderWriterLockSlim readWriteLock = new ReaderWriterLockSlim();
+        private static readonly ReaderWriterLockSlim readWriteLock = new();
 
         /// <summary>
         /// Creates a new instance of DataProvider.

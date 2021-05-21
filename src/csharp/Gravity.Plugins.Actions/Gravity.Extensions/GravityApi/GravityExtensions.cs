@@ -201,9 +201,9 @@ namespace Gravity.Extensions
             var _content = new Dictionary<string, object>();
 
             // build
-            foreach (var item in content)
+            foreach (var (Key, Value) in content)
             {
-                _content[item.Key] = item.Value;
+                _content[Key] = Value;
             }
 
             // get

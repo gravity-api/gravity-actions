@@ -13,7 +13,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Mock;
 
-#pragma warning disable S4144
 namespace Gravity.UnitTests.UiWeb
 {
     [TestClass]
@@ -100,7 +99,7 @@ namespace Gravity.UnitTests.UiWeb
 
         [DataTestMethod, ExpectedException(typeof(NoSuchElementException))]
         [DataRow("{\"onElement\":\"//none\"}")]
-        public void SwitchToFrameNoElement (string actionRule)
+        public void SwitchToFrameNoElement(string actionRule)
         {
             // execute
             ExecuteAction<SwitchToFrame>(actionRule);
@@ -191,4 +190,3 @@ namespace Gravity.UnitTests.UiWeb
         #endregion
     }
 }
-#pragma warning restore S4144

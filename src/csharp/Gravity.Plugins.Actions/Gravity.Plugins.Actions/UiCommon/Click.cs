@@ -33,10 +33,6 @@ using OpenQA.Selenium.Extensions;
 using OpenQA.Selenium.Support.UI;
 
 using System;
-using System.ComponentModel;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Reflection;
 
 // consolidate references
 using SeleniumActions = OpenQA.Selenium.Interactions.Actions;
@@ -65,7 +61,6 @@ namespace Gravity.Plugins.Actions.UiCommon
 
         // members: state
         private readonly SeleniumActions actions;
-        private readonly WebDriverWait wait;
 
         #region *** constructors ***
         /// <summary>
@@ -78,10 +73,6 @@ namespace Gravity.Plugins.Actions.UiCommon
         {
             // set actions instance
             actions = new SeleniumActions(driver);
-
-            // set waiter instance
-            var timeout = Automation.EngineConfiguration.SearchTimeout;
-            wait = new WebDriverWait(driver, TimeSpan.FromMilliseconds(timeout));
         }
         #endregion
 
@@ -111,7 +102,7 @@ namespace Gravity.Plugins.Actions.UiCommon
             var arguments = CliFactory.Parse(action?.Argument);
 
             // flat conditions
-            if (PluginUtilities.IsFlatAction(action, element))
+            if (action.IsFlatAction(element))
             {
                 actions.Click().Build().Perform();
                 return;
@@ -120,74 +111,68 @@ namespace Gravity.Plugins.Actions.UiCommon
             // special actions conditions
             if (arguments.ContainsKey(Until))
             {
-                ConditionsFactory(action, element);
+                InvokeConditionalClick(action, element);
                 return;
             }
-
-            // on element action
-            var timeout = TimeSpan.FromMilliseconds(Automation.EngineConfiguration.SearchTimeout);
-            if (element != default)
-            {
-                element.GetElement(ByFactory, action, timeout).TryMoveToElement().Click();
-                return;
-            }
-
-            // default
-            WebDriver.GetElement(ByFactory, action, timeout).TryMoveToElement().Click();
-        }
-
-        // TODO: reuse with other factories in similar actions to remove redundancy
-        // special actions factory
-        [SuppressMessage("Major Code Smell", "S3011:Reflection should not be used to increase accessibility of classes, methods, or fields", Justification = "Factory for using private methods which are already allows in this scope.")]
-        private void ConditionsFactory(ActionRule action, IWebElement element)
-        {
-            // constants
-            const StringComparison Compare = StringComparison.OrdinalIgnoreCase;
-            const BindingFlags Flags = BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Static;
-
-            // load arguments
-            var arguments = CliFactory.Parse(cli: action.Argument);
-
-            // get description
-            var description = arguments.ContainsKey(Until)
-                ? arguments[Until]
-                : string.Empty;
-
-            description = string.IsNullOrEmpty(description) ? "DEFAULT" : description;
-
-            // get select method > align description
-            var method = GetType()
-                .GetMethodsByAttribute<DescriptionAttribute>(Flags)
-                .FirstOrDefault(i => i.GetCustomAttribute<DescriptionAttribute>().Description.Equals(description, Compare));
 
             // invoke
-            var instance = method.IsStatic ? null : this;
-            method.Invoke(instance, new object[] { action, element });
+            this.ConditionalGetElement(element, action).TryMoveToElement().Click();
         }
 
-        [Description("DEFAULT")]
-        [SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "Used by reflection, must be private.")]
-        private void Default(ActionRule action, IWebElement element)
+        private void InvokeConditionalClick(ActionRule action, IWebElement element)
         {
-            ConditionalGetElement(element, action).TryMoveToElement().Click();
-        }
-
-        [Description(NoAlert)]
-        [SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "Used by reflection, must be private.")]
-        private void Alert(ActionRule action, IWebElement element) => wait.Until(driver =>
-        {
-            // click (supposed to trigger alert)
-            ConditionalGetElement(element, action).TryMoveToElement().Click();
-
-            // dismiss if exists
-            if (driver.HasAlert())
+            // setup
+            var factory = new ConditionsFactory(WebDriver, Types);
+            var timeout = TimeSpan.FromSeconds(Automation.EngineConfiguration.LoadTimeout);
+            var wait = new WebDriverWait(WebDriver, timeout);
+            var ignored = new[]
             {
-                driver.SwitchTo().Alert().Dismiss();
-                return null;
+                 typeof(NoSuchElementException),
+                 typeof(StaleElementReferenceException),
+                 typeof(WebDriverException),
+                 typeof(ElementClickInterceptedException),
+                 typeof(ElementNotInteractableException),
+                 typeof(ElementNotSelectableException),
+                 typeof(ElementNotVisibleException),
+                 typeof(InvalidElementStateException)
+            };
+            wait.IgnoreExceptionTypes(ignored);
+            wait.PollingInterval = TimeSpan.FromSeconds(1.5);
+
+            // first action
+            this.ConditionalGetElement(element, action).TryMoveToElement().Click();
+            var isCondition = GetEvaluation(factory, action, element);
+
+            // exit conditions
+            if (isCondition)
+            {
+                return;
             }
 
-            // results
-            return driver;
-        });
+            // click until
+            wait.Until(d =>
+            {
+                // remove page/click blockers
+                if (WebDriver.HasAlert())
+                {
+                    WebDriver.SwitchTo().Alert().Dismiss();
+                }
+                this.ConditionalGetElement(element, action).TryMoveToElement().Click();
+                return GetEvaluation(factory, action, element);
+            });
+        }
+
+        private static bool GetEvaluation(
+            ConditionsFactory factory,ActionRule action, IWebElement element)
+        {
+            // setup
+            var arguments = new object[] { action, element };
+
+            // invoke condition
+            var results = factory.Factor(action.Argument, arguments);
+
+            // get
+            return (bool)results["evaluation"];
+        }
     }
 }

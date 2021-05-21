@@ -3,16 +3,18 @@
  * 
  * RESOURCES
  */
-using Gravity.UnitTests.Base;
 using Gravity.Plugins.Actions.UiWeb;
+using Gravity.Plugins.Contracts;
+using Gravity.UnitTests.Base;
+
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+
 using OpenQA.Selenium.Mock;
 using OpenQA.Selenium.Mock.Extensions;
+
 using System.Collections.Generic;
 using System.Linq;
-using Gravity.Plugins.Contracts;
 
-#pragma warning disable S4144
 namespace Gravity.UnitTests.UiWeb
 {
     [TestClass]
@@ -241,4 +243,3 @@ namespace Gravity.UnitTests.UiWeb
         #endregion
     }
 }
-#pragma warning restore S4144

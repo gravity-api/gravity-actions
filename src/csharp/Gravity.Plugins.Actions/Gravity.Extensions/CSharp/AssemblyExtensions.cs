@@ -61,7 +61,7 @@ namespace Gravity.Extensions
             }
 
             var stream = assembly.GetManifestResourceStream(fileReference);
-            using StreamReader reader = new StreamReader(stream);
+            using StreamReader reader = new(stream);
             return reader.ReadToEnd();
         }
     }

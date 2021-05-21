@@ -75,8 +75,5 @@
     <ProjectReference Include="..\Gravity.Plugins.Contracts\Gravity.Plugins.Contracts.csproj" />
     <ProjectReference Include="..\Gravity.Plugins\Gravity.Plugins.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Framework\" />
-  </ItemGroup>
   
 </Project>

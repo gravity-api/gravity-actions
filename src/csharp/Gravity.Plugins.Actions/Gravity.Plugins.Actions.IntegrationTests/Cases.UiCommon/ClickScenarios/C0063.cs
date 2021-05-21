@@ -1,18 +1,16 @@
-﻿#pragma warning disable S125
-/*
-* TEST SCENARIO (Rhino)
-* [test-id] 0063
-* [test-scenario] - Click Element Until No Alert, ID
-* 
-* [test-actions]
-* 1. navigate to {https://gravitymvctestapplication.azurewebsites.net/uicontrols/}
-* 2. click {{$ --until:no_alert}} on {pop_alert} using {id}
-* 3. close browser
-* 
-* [test-expected-results]
-* [2] verify {attribute} on {pop_alert} from {value} using {id} greater than {1}
-*/
-#pragma warning restore
+﻿/*
+ * TEST SCENARIO (Rhino)
+ * [test-id] 0063
+ * [test-scenario] - Click Element Until No Alert, ID
+ * 
+ * [test-actions]
+ * 1. navigate to {https://gravitymvctestapplication.azurewebsites.net/uicontrols/}
+ * 2. click {{$ --until:no_alert}} on {pop_alert} using {id}
+ * 3. close browser
+ * 
+ * [test-expected-results]
+ * [2] verify {attribute} on {pop_alert} from {value} using {id} greater than {1}
+ */
 using Gravity.IntegrationTests.Base;
 using Gravity.Plugins.Contracts;
 

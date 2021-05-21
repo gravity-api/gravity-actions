@@ -19,7 +19,6 @@ using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Text.Json;
 
-#pragma warning disable S4144
 namespace Gravity.UnitTests.UiWeb
 {
     [TestClass]
@@ -58,7 +57,7 @@ namespace Gravity.UnitTests.UiWeb
         #endregion
 
         // members
-        private readonly JsonSerializerOptions serializerOptions = new JsonSerializerOptions
+        private readonly JsonSerializerOptions serializerOptions = new()
         {
             PropertyNamingPolicy = JsonNamingPolicy.CamelCase
         };
@@ -891,4 +890,3 @@ namespace Gravity.UnitTests.UiWeb
         #endregion
     }
 }
-#pragma warning restore

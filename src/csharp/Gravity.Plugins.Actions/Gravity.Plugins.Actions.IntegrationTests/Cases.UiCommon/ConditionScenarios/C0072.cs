@@ -1,20 +1,18 @@
-﻿#pragma warning disable S125
-/*
-* TEST SCENARIO (Rhino)
-* [test-id] 0072
-* [test-scenario] - Condition, Attribute, Greater Than, Link Text, Regular Expression
-* 
-* [test-actions]
-* 1. navigate to {https://gravitymvctestapplication.azurewebsites.net/student}
-* 2. condition {{$ --attribute --gt:0}} on {Edit} from {href} using {link text} filter {\d+}
-*     3. type {Carson} into {SearchString} using {id}
-*     4. click on {SearchButton} using {id}
-* 5. close browser
-* 
-* [test-expected-results]
-* [4] verify {count} on {//tr[./td[@id]]} equal {1}
-*/
-#pragma warning restore
+﻿/*
+ * TEST SCENARIO (Rhino)
+ * [test-id] 0072
+ * [test-scenario] - Condition, Attribute, Greater Than, Link Text, Regular Expression
+ * 
+ * [test-actions]
+ * 1. navigate to {https://gravitymvctestapplication.azurewebsites.net/student}
+ * 2. condition {{$ --attribute --gt:0}} on {Edit} from {href} using {link text} filter {\d+}
+ *     3. type {Carson} into {SearchString} using {id}
+ *     4. click on {SearchButton} using {id}
+ * 5. close browser
+ * 
+ * [test-expected-results]
+ * [4] verify {count} on {//tr[./td[@id]]} equal {1}
+ */
 using Gravity.IntegrationTests.Base;
 using Gravity.Plugins.Contracts;
 

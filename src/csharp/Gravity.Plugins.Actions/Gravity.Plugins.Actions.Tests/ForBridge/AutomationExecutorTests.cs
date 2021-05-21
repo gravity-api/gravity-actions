@@ -49,7 +49,7 @@ namespace Gravity.Plugins.UnitTests.Engine
             automation.Actions = actions;
             automation.EngineConfiguration.MaxParallel = 5;
 
-            var actual = new AutomationExecutor(automation).Execute();
+            var actual = new AutomationExecutor(automation).Invoke();
             Assert.IsTrue(actual.All(i => i.Value.Extractions.Count() == 7));
         }
     }

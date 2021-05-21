@@ -35,7 +35,7 @@ namespace Gravity.UnitTests.Base
         private const StringComparison Compare = StringComparison.OrdinalIgnoreCase;
 
         // members
-        private readonly JsonSerializerOptions serializerOptions = new JsonSerializerOptions
+        private readonly JsonSerializerOptions serializerOptions = new()
         {
             PropertyNamingPolicy = JsonNamingPolicy.CamelCase
         };
@@ -506,7 +506,7 @@ namespace Gravity.UnitTests.Base
 
             // read
             var stream = assembly.GetManifestResourceStream(fileReference);
-            using StreamReader reader = new StreamReader(stream);
+            using StreamReader reader = new(stream);
             return reader.ReadToEnd();
         }
         #endregion

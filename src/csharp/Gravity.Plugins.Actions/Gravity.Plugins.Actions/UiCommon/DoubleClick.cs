@@ -23,9 +23,9 @@ using Gravity.Plugins.Framework;
 using Gravity.Plugins.Contracts;
 
 using OpenQA.Selenium;
+using OpenQA.Selenium.Extensions;
 
 using SeleniumActions = OpenQA.Selenium.Interactions.Actions;
-using OpenQA.Selenium.Extensions;
 
 namespace Gravity.Plugins.Actions.UiCommon
 {
@@ -74,14 +74,14 @@ namespace Gravity.Plugins.Actions.UiCommon
         private void DoAction(ActionRule action, IWebElement element)
         {
             // flat conditions
-            if (PluginUtilities.IsFlatAction(action, element))
+            if (action.IsFlatAction(element))
             {
                 actions.DoubleClick().Build().Perform();
                 return;
             }
 
             // on element action
-            var onElement = ConditionalGetElement(element, action).TryMoveToElement();
+            var onElement = this.ConditionalGetElement(element, action).TryMoveToElement();
 
             // perform action
             actions.DoubleClick(onElement).Build().Perform();

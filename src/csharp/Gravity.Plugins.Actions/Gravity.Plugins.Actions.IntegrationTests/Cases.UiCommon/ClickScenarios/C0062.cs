@@ -1,18 +1,16 @@
-﻿#pragma warning disable S125
-/*
-* TEST SCENARIO (Rhino)
-* [test-id] 0062
-* [test-scenario] - Click at the Last Known Mouse Coordinates
-* 
-* [test-actions]
-* 1. navigate to {https://gravitymvctestapplication.azurewebsites.net/uicontrols/}
-* 2. click
-* 3. close browser
-* 
-* [test-expected-results]
-* [2] verify {text} on {//h2[1]} equal {UI Controls}
-*/
-#pragma warning restore
+﻿/*
+ * TEST SCENARIO (Rhino)
+ * [test-id] 0062
+ * [test-scenario] - Click at the Last Known Mouse Coordinates
+ * 
+ * [test-actions]
+ * 1. navigate to {https://gravitymvctestapplication.azurewebsites.net/uicontrols/}
+ * 2. click
+ * 3. close browser
+ * 
+ * [test-expected-results]
+ * [2] verify {text} on {//h2[1]} equal {UI Controls}
+ */
 using Gravity.IntegrationTests.Base;
 using Gravity.Plugins.Contracts;
 

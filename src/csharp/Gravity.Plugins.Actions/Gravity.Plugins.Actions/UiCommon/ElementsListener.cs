@@ -109,7 +109,7 @@ namespace Gravity.Plugins.Actions.UiCommon
             return isArgument ? argumentOut : (int)argument.ToTimeSpan().TotalMilliseconds;
         }
 
-        private static ActionRule GetDefaultActionRule(ActionRule action) => new ActionRule
+        private static ActionRule GetDefaultActionRule(ActionRule action) => new()
         {
             Action = GravityPlugin.Click,
             OnElement = action.OnElement,

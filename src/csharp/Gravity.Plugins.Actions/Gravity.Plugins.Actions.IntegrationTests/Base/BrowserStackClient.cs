@@ -17,7 +17,7 @@ namespace Gravity.IntegrationTests.Base
     public class BrowserStackClient
     {
         // members: state
-        private static readonly HttpClient client = new HttpClient();
+        private static readonly HttpClient client = new();
 
         public BrowserStackClient()
         {

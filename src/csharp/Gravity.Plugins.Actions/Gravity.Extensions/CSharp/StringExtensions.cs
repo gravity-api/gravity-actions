@@ -230,7 +230,7 @@ namespace Gravity.Extensions
             var result = new StringBuilder(words[0].ToLower());
             for (int i = 1; i < words.Length; i++)
             {
-                result.Append(words[i].Substring(0, 1).ToUpper()).Append(words[i].Substring(1));
+                result.Append(words[i].Substring(0, 1).ToUpper()).Append(words[i][1..]);
             }
             return $"{result}";
         }

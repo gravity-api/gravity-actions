@@ -23,7 +23,7 @@ namespace Gravity.Plugins.Actions.Providers
     public class RestDataProvider : DataProvidersBase
     {
         // members
-        private static readonly HttpClient httpClient = new HttpClient();
+        private static readonly HttpClient httpClient = new();
 
         /// <summary>
         /// Creates a new instance of DataProvider.

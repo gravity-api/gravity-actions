@@ -255,7 +255,7 @@ namespace Gravity.IntegrationTests.Base
         {
             // execute
             var automation = GetAutomation(environment);
-            var results = new AutomationExecutor(automation).Execute();
+            var results = GetExecutor(automation).Invoke();
             var responses = results.Select(i => i.Value);
 
             // add sessions to environment
@@ -482,6 +482,31 @@ namespace Gravity.IntegrationTests.Base
         public virtual void OnAutomation(WebAutomation automation)
         {
             // Take no action.
+        }
+        #endregion
+
+        #region *** Plugins: Executor   ***
+        private AutomationExecutor GetExecutor(WebAutomation automation)
+        {
+            // setup
+            var executor = new AutomationExecutor(automation);
+
+            // build
+            executor.ActionStart += Executor_ActionStart;
+            executor.ActionComplete += Executor_ActionComplete;
+
+            // get
+            return executor;
+        }
+
+        private void Executor_ActionStart(object sender, WebAutomationEventArgs e)
+        {
+            Console.WriteLine($"Invoke-Event -Name ActionStart -Action {e.ActionRule.Action} = OK");
+        }
+
+        private void Executor_ActionComplete(object sender, WebAutomationEventArgs e)
+        {
+            Console.WriteLine($"Invoke-Event -Name ActionComplete -Action {e.ActionRule.Action} = OK");
         }
         #endregion
     }

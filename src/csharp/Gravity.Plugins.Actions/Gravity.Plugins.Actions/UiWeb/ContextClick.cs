@@ -22,6 +22,7 @@ using OpenQA.Selenium;
 
 // consolidate references
 using SeleniumActions = OpenQA.Selenium.Interactions.Actions;
+using OpenQA.Selenium.Extensions;
 
 namespace Gravity.Plugins.Actions.UiWeb
 {
@@ -70,7 +71,7 @@ namespace Gravity.Plugins.Actions.UiWeb
         private void DoAction(ActionRule action, IWebElement element)
         {
             // flat conditions
-            if (PluginUtilities.IsFlatAction(action, element))
+            if (action.IsFlatAction(element))
             {
                 actions.ContextClick().Build().Perform();
                 return;
@@ -80,7 +81,7 @@ namespace Gravity.Plugins.Actions.UiWeb
             var onElement = this.ConditionalGetElement(element, action);
 
             // try to scroll into view
-            //onElement.TryScrollIntoView();
+            onElement.TryMoveToElement();
 
             // on element action
             actions.ContextClick(onElement).Build().Perform();

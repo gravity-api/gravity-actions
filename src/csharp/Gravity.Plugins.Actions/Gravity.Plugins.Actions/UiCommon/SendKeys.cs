@@ -22,6 +22,7 @@
  * RESOURCES
  * http://appium.io/docs/en/writing-running-appium/android/android-shell/
  */
+using Gravity.Extensions;
 using Gravity.Plugins.Attributes;
 using Gravity.Plugins.Framework;
 using Gravity.Plugins.Contracts;
@@ -108,7 +109,7 @@ namespace Gravity.Plugins.Actions.UiCommon
         private void DoAction(ActionRule action, IWebElement element)
         {
             // setup
-            var onElement = ConditionalGetElement(element, action);
+            var onElement = this.ConditionalGetElement(element, action);
             var arguments = GetArguments(action);
 
             // clear (will only clear if needed)

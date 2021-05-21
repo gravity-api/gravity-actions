@@ -17,7 +17,7 @@ namespace Gravity.IntegrationTests.Suites.UiCommon
     public class ClickTests
     {
         [Description(description: "P - [0001] - Click on Element")]
-        [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.Capabilities))]
+        [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.Win10Chrome))]
         public void T0001P(Context environment)
         {
             // execute

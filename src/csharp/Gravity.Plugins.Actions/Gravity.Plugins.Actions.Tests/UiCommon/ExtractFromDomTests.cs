@@ -21,7 +21,6 @@ using System.Text.RegularExpressions;
 
 using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
 
-#pragma warning disable S4144
 namespace Gravity.UnitTests.UiCommon
 {
     [TestClass]
@@ -30,7 +29,7 @@ namespace Gravity.UnitTests.UiCommon
     {
         // members state
         private static string connectionString;
-        private static readonly JsonSerializerOptions options = new JsonSerializerOptions
+        private static readonly JsonSerializerOptions options = new()
         {
             PropertyNamingPolicy = JsonNamingPolicy.CamelCase
         };
@@ -825,4 +824,3 @@ namespace Gravity.UnitTests.UiCommon
         #endregion
     }
 }
-#pragma warning restore S4144

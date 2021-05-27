@@ -33,7 +33,7 @@ namespace Gravity.IntegrationTests.Cases.UiCommon.AssertScenarios
             {
                 new ActionRule
                 {
-                    Action = GravityPlugin.Assert,
+                    Action = GravityPlugins.Assert,
                     Argument = "{{$ --exists}}",
                     OnElement = onElement,
                     Locator = Locators.Id

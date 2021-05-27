@@ -72,14 +72,14 @@ namespace Gravity.UnitTests.UiCommon
         public void AssertDocumentation()
         {
             AssertDocumentation<Plugins.Actions.UiCommon.Assert>(
-                pluginName: GravityPlugin.Assert);
+                pluginName: GravityPlugins.Assert);
         }
 
         [TestMethod]
         public void AssertDocumentationResourceFile()
         {
             AssertDocumentation<Plugins.Actions.UiCommon.Assert>(
-                pluginName: GravityPlugin.Assert,
+                pluginName: GravityPlugins.Assert,
                 resource: "assert.json");
         }
         #endregion

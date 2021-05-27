@@ -16,7 +16,7 @@ namespace Gravity.Plugins.Actions.UiWeb
     [Plugin(
         assembly: "Gravity.Plugins.Actions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
         resource: "Gravity.Plugins.Actions.Manifest.UploadFile.json",
-        Name = GravityPlugin.UploadFile)]
+        Name = GravityPlugins.UploadFile)]
     public class UploadFile : WebDriverActionPlugin
     {
         #region *** constructors ***

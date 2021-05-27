@@ -39,14 +39,14 @@ namespace Gravity.UnitTests.UiWeb
         public void NavigateBackDocumentation()
         {
             AssertDocumentation<NavigateBack>(
-                pluginName: GravityPlugin.NavigateBack);
+                pluginName: GravityPlugins.NavigateBack);
         }
 
         [TestMethod]
         public void NavigateBackDocumentationResourceFile()
         {
             AssertDocumentation<NavigateBack>(
-                pluginName: GravityPlugin.NavigateBack,
+                pluginName: GravityPlugins.NavigateBack,
                 resource: "NavigateBack.json");
         }
         #endregion

@@ -29,7 +29,7 @@ namespace Gravity.IntegrationTests.Cases.UiCommon.AssertScenarios
             {
                 new ActionRule
                 {
-                    Action = GravityPlugin.Assert,
+                    Action = GravityPlugins.Assert,
                     Argument = "{{$ --windows_count --le:" + expected + "}}"
                 }
             };

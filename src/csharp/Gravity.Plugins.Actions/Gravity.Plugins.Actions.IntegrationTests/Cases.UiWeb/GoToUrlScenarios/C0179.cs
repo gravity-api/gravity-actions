@@ -29,7 +29,7 @@ namespace Graivty.IntegrationTests.Cases.UiWeb.GoToUrlScenarios
             {
                 new ActionRule
                 {
-                    Action = GravityPlugin.GoToUrl,
+                    Action = GravityPlugins.GoToUrl,
                     OnElement = "url_div_text",
                     Locator = Locators.Id,
                     RegularExpression = "http.*$"

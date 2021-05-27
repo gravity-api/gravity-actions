@@ -34,7 +34,7 @@ namespace Gravity.IntegrationTests.Cases.UiCommon.ConditionScenarios
             {
                 new ActionRule
                 {
-                    Action = GravityPlugin.Condition,
+                    Action = GravityPlugins.Condition,
                     Argument = "{{$ --hidden}}",
                     OnElement = condition,
                     Locator = Locators.Id,

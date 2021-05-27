@@ -52,14 +52,14 @@ namespace Gravity.UnitTests.UiCommon
         public void GetScreenshotDocumentation()
         {
             AssertDocumentation<GetScreenshot>(
-                pluginName: GravityPlugin.GetScreenshot);
+                pluginName: GravityPlugins.GetScreenshot);
         }
 
         [TestMethod]
         public void GetScreenshotDocumentationResourceFile()
         {
             AssertDocumentation<GetScreenshot>(
-                pluginName: GravityPlugin.GetScreenshot,
+                pluginName: GravityPlugins.GetScreenshot,
                 resource: "GetScreenshot.json");
         }
         #endregion

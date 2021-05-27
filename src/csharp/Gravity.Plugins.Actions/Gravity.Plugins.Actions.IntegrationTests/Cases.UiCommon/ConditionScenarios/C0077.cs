@@ -37,7 +37,7 @@ namespace Gravity.IntegrationTests.Cases.UiCommon.ConditionScenarios
             {
                 new ActionRule
                 {
-                    Action = GravityPlugin.Condition,
+                    Action = GravityPlugins.Condition,
                     Argument = "{{$ --count --ne:" + condition + "}}",
                     OnElement = "//tr[./td[@id]]",
                     Actions = SharedSteps.SearchStudent(searchFor: "Carson")

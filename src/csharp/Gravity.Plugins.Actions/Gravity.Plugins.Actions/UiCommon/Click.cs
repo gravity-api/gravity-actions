@@ -42,7 +42,7 @@ namespace Gravity.Plugins.Actions.UiCommon
     [Plugin(
         assembly: "Gravity.Plugins.Actions, Version=5.0.0.0, Culture=neutral, PublicKeyToken=null",
         resource: "Gravity.Plugins.Actions.Manifest.Click.json",
-        Name = GravityPlugin.Click)]
+        Name = GravityPlugins.Click)]
     public class Click : WebDriverActionPlugin
     {
         #region *** conditions   ***

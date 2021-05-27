@@ -31,14 +31,14 @@ namespace Gravity.UnitTests.UiWeb
         public void SelectFromComboBoxDocumentation()
         {
             AssertDocumentation<SelectFromComboBox>(
-                pluginName: GravityPlugin.SelectFromComboBox);
+                pluginName: GravityPlugins.SelectFromComboBox);
         }
 
         [TestMethod]
         public void SelectFromComboBoxDocumentationResourceFile()
         {
             AssertDocumentation<SelectFromComboBox>(
-                pluginName: GravityPlugin.SelectFromComboBox,
+                pluginName: GravityPlugins.SelectFromComboBox,
                 resource: "SelectFromComboBox.json");
         }
         #endregion

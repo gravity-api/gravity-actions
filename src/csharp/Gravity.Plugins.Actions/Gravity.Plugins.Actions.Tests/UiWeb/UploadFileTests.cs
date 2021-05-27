@@ -29,14 +29,14 @@ namespace Gravity.UnitTests.UiWeb
         [TestMethod]
         public void UploadFileDocumentation()
         {
-            AssertDocumentation<UploadFile>(pluginName: GravityPlugin.UploadFile);
+            AssertDocumentation<UploadFile>(pluginName: GravityPlugins.UploadFile);
         }
 
         [TestMethod]
         public void UploadFileDocumentationResourceFile()
         {
             AssertDocumentation<UploadFile>(
-                pluginName: GravityPlugin.UploadFile,
+                pluginName: GravityPlugins.UploadFile,
                 resource: "UploadFile.json");
         }
         #endregion

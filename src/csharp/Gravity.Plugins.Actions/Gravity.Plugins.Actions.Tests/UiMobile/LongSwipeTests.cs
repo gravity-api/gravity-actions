@@ -26,14 +26,14 @@ namespace Gravity.UnitTests.UiMobile
         public void LongSwipeDocumentation()
         {
             AssertDocumentation<LongSwipe>(
-                pluginName: GravityPlugin.LongSwipe);
+                pluginName: GravityPlugins.LongSwipe);
         }
 
         [TestMethod]
         public void LongSwipeDocumentationResourceFile()
         {
             AssertDocumentation<LongSwipe>(
-                pluginName: GravityPlugin.LongSwipe,
+                pluginName: GravityPlugins.LongSwipe,
                 resource: "LongSwipe.json");
         }
         #endregion

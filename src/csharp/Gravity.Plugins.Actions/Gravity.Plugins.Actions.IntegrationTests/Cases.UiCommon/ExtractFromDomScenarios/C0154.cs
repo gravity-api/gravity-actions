@@ -41,7 +41,7 @@ namespace Gravity.IntegrationTests.Cases.UiCommon.ExtractFromDomScenarios
         {
             new ActionRule
             {
-                Action = GravityPlugin.ExtractFromDom
+                Action = GravityPlugins.ExtractFromDom
             }
         };
 
@@ -57,7 +57,7 @@ namespace Gravity.IntegrationTests.Cases.UiCommon.ExtractFromDomScenarios
                 {
                     new ActionRule
                     {
-                        Action = GravityPlugin.GoToUrl,
+                        Action = GravityPlugins.GoToUrl,
                         Argument = "{{$ --blank}}",
                         OnElement = "Details",
                         OnAttribute = "href",
@@ -65,7 +65,7 @@ namespace Gravity.IntegrationTests.Cases.UiCommon.ExtractFromDomScenarios
                     },
                     new ActionRule
                     {
-                        Action = GravityPlugin.SwitchToWindow,
+                        Action = GravityPlugins.SwitchToWindow,
                         Argument = "1"
                     }
                 }
@@ -76,7 +76,7 @@ namespace Gravity.IntegrationTests.Cases.UiCommon.ExtractFromDomScenarios
                 OnElement = "//tbody/tr/td[1]",
                 Actions = new[]
                 {
-                    new ActionRule { Action = GravityPlugin.CloseAllChildWindows }
+                    new ActionRule { Action = GravityPlugins.CloseAllChildWindows }
                 }
             };
             var contentEntries = new[] { getFirstName, getFirstCourse };

@@ -15,13 +15,16 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
+using System.Linq;
+using System;
+using System.Text.RegularExpressions;
 
 namespace Gravity.Plugins.Actions.UiWeb
 {
     [Plugin(
         assembly: "Gravity.Plugins.Actions, Version=5.0.0.0, Culture=neutral, PublicKeyToken=null",
         resource: "Gravity.Plugins.Actions.Manifest.SwitchToAlert.json",
-        Name = GravityPlugin.SwitchToAlert)]
+        Name = GravityPlugins.SwitchToAlert)]
     public class SwitchToAlert : WebDriverActionPlugin
     {
         #region *** arguments    ***
@@ -83,37 +86,42 @@ namespace Gravity.Plugins.Actions.UiWeb
                 return;
             }
 
-            // arguments
+            // setup
+            const BindingFlags Flags = BindingFlags.Instance | BindingFlags.NonPublic;
             arguments = CliFactory.Parse(action.Argument);
 
-            // execute
-            //foreach (var method in GetType().GetMethodsByDescription(regex: action.Argument))
-            //{
-            //    DoMethod(action, method);
-            //}
-        }
+            // build
+            var methods = GetType()
+                .GetMethods(Flags)
+                .Select(i => Search(i, action.Argument))
+                .Where(i => i.Priority != -1)
+                .OrderBy(i => i.Priority)
+                .Select(i => i.Method);
 
-        // executes a single method routine
-        private void DoMethod(ActionRule action, MethodInfo method)
-        {
-            if (method.GetParameters().Length == 0)
+            // execute
+            foreach (var method in methods)
             {
                 method.Invoke(obj: this, parameters: null);
-                return;
             }
-            method.Invoke(obj: this, parameters: new object[] { action });
         }
 
-        // FACTORY
-        [Description("^dismiss$")]
-        [SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "Used by reflection, must be private.")]
-        private void Dismiss() => WebDriver.SwitchTo().Alert().Dismiss();
+        private static (MethodInfo Method, int Priority) Search(MethodInfo method, string input)
+        {
+            // setup
+            var attribute = method.GetCustomAttribute<AlertAttribute>();
 
-        [Description("^accept$")]
-        [SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "Used by reflection, must be private.")]
-        private void Accept() => WebDriver.SwitchTo().Alert().Accept();
+            // not found
+            if (attribute == default)
+            {
+                return (default, -1);
+            }
 
-        [Description("--user:[^(--)]*|--pass:[^(--)]*")]
+            // assert
+            return Regex.IsMatch(input, attribute.Pattern) ? (method, attribute.Priority) : (default, -1);
+        }
+
+        // Factory
+        [Alert("--user:[^(--)]*|--pass:[^(--)]*", Priority = 1)]
         [SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "Used by reflection, must be private.")]
         private void Credentials()
         {
@@ -128,7 +136,7 @@ namespace Gravity.Plugins.Actions.UiWeb
                 .SetAuthenticationCredentials(userName: user, password: pass);
         }
 
-        [Description("--keys:[^(--)]*")]
+        [Alert("--keys:[^(--)]*", Priority = 1)]
         [SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "Used by reflection, must be private.")]
         private void SendKeys()
         {
@@ -139,6 +147,26 @@ namespace Gravity.Plugins.Actions.UiWeb
 
             // set keys
             WebDriver.SwitchTo().Alert().SendKeys(arguments[Keys]);
+        }
+
+        [Alert("^dismiss$|--dismiss", Priority = 2)]
+        [SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "Used by reflection, must be private.")]
+        private void Dismiss() => WebDriver.SwitchTo().Alert().Dismiss();
+
+        [Alert("^accept$|--accept", Priority = 2)]
+        [SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "Used by reflection, must be private.")]
+        private void Accept() => WebDriver.SwitchTo().Alert().Accept();
+
+        [AttributeUsage(AttributeTargets.Method)]
+        private class AlertAttribute : Attribute
+        {
+            public AlertAttribute(string pattern)
+            {
+                Pattern = pattern;
+            }
+
+            public string Pattern { get; }
+            public int Priority { get; set; }
         }
     }
 }

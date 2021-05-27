@@ -32,14 +32,14 @@ namespace Graivty.IntegrationTests.Cases.UiWeb.KeyboardScenarios
             {
                 new ActionRule
                 {
-                    Action = GravityPlugin.SendKeys,
+                    Action = GravityPlugins.SendKeys,
                     Argument = "Carson",
                     OnElement = "SearchString",
                     Locator = Locators.Id
                 },
                 new ActionRule
                 {
-                    Action = GravityPlugin.Keyboard,
+                    Action = GravityPlugins.Keyboard,
                     Argument = "Enter",
                     OnElement = "SearchString",
                     Locator = Locators.Id

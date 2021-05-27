@@ -32,7 +32,7 @@ namespace Graivty.IntegrationTests.Cases.UiWeb.SelectFromComboBoxScenarios
                 SharedSteps.AssertComboBox(expectedPattern: "Open this select menu"),
                 new ActionRule
                 {
-                    Action = GravityPlugin.SelectFromComboBox,
+                    Action = GravityPlugins.SelectFromComboBox,
                     OnElement = "select_menu",
                     Argument = "Two",
                     Locator = Locators.Id

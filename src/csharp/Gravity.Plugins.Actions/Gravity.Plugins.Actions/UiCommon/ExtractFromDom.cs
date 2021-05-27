@@ -23,7 +23,7 @@ namespace Gravity.Plugins.Actions.UiCommon
     [Plugin(
         assembly: "Gravity.Plugins.Actions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
         resource: "Gravity.Plugins.Actions.Manifest.ExtractFromDom.json",
-        Name = GravityPlugin.ExtractFromDom)]
+        Name = GravityPlugins.ExtractFromDom)]
     public class ExtractFromDom : WebDriverActionPlugin
     {
         // members

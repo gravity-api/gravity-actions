@@ -25,14 +25,14 @@ namespace Gravity.UnitTests.UiMobile
         [TestMethod]
         public void SwipeDocumentation()
         {
-            AssertDocumentation<Swipe>(pluginName: GravityPlugin.Swipe);
+            AssertDocumentation<Swipe>(pluginName: GravityPlugins.Swipe);
         }
 
         [TestMethod]
         public void SwipeDocumentationResourceFile()
         {
             AssertDocumentation<Swipe>(
-                pluginName: GravityPlugin.Swipe,
+                pluginName: GravityPlugins.Swipe,
                 resource: "swipe.json");
         }
         #endregion

@@ -31,7 +31,7 @@ namespace Graivty.IntegrationTests.Cases.UiCommon.WaitScenarios
             {
                 new ActionRule
                 {
-                    Action = GravityPlugin.Wait,
+                    Action = GravityPlugins.Wait,
                     Argument = time
                 }
             };
@@ -42,7 +42,7 @@ namespace Graivty.IntegrationTests.Cases.UiCommon.WaitScenarios
         {
             // setup
             var preformance = responses.Select(i => i.OrbitRequest).SelectMany(i => i.PerformancePoints);
-            var waits = preformance.Where(i => i.Action == GravityPlugin.Wait);
+            var waits = preformance.Where(i => i.Action == GravityPlugins.Wait);
             var time = $"{environment.TestParams["time"]}";
 
             // setup conditions

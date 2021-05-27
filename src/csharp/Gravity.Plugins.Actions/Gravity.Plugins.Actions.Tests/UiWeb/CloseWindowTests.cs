@@ -33,14 +33,14 @@ namespace Gravity.UnitTests.UiWeb
         public void CloseWindowDocumentation()
         {
             AssertDocumentation<CloseWindow>(
-                pluginName: GravityPlugin.CloseWindow);
+                pluginName: GravityPlugins.CloseWindow);
         }
 
         [TestMethod]
         public void CloseWindowDocumentationResourceFile()
         {
             AssertDocumentation<CloseWindow>(
-               pluginName: GravityPlugin.CloseWindow,
+               pluginName: GravityPlugins.CloseWindow,
                resource: "CloseWindow.json");
         }
         #endregion

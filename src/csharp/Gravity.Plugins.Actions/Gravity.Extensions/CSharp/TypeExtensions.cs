@@ -5,8 +5,10 @@
  */
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
+using System.Text.RegularExpressions;
 
 namespace Gravity.Extensions
 {
@@ -46,6 +48,28 @@ namespace Gravity.Extensions
         #endregion
 
         #region *** Method ***
+        /// <summary>
+        /// Get a value indicating if the <see cref="DescriptionAttribute.Description"/> of the method
+        /// can be matched to an input.
+        /// </summary>
+        /// <param name="method">The method to get <see cref="Attribute"/> from.</param>
+        /// <param name="input">An input to search.</param>
+        /// <returns><see cref="true"/> if match <see cref="false"/> if not.</returns>
+        public static bool SearchDescription(this MethodInfo method, string input)
+        {
+            // setup
+            var attribute = method.GetCustomAttribute<DescriptionAttribute>();
+
+            // not found
+            if(attribute == default)
+            {
+                return false;
+            }
+
+            // assert
+            return Regex.IsMatch(input, pattern: attribute.Description);
+        }
+
         /// <summary>
         /// Gets an <see cref="Attribute"/> from a method.
         /// </summary>

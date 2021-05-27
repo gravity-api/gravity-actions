@@ -28,14 +28,14 @@ namespace Gravity.UnitTests.UiMobile
         public void HideKeyboardDocumentation()
         {
             AssertDocumentation<HideKeyboard>(
-                pluginName: GravityPlugin.HideKeyboard);
+                pluginName: GravityPlugins.HideKeyboard);
         }
 
         [TestMethod]
         public void HideKeyboardDocumentationResourceFile()
         {
             AssertDocumentation<HideKeyboard>(
-                pluginName: GravityPlugin.HideKeyboard,
+                pluginName: GravityPlugins.HideKeyboard,
                 resource: "HideKeyboard.json");
         }
         #endregion

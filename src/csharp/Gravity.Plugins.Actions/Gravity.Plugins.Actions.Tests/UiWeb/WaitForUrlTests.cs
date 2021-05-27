@@ -28,14 +28,14 @@ namespace Gravity.UnitTests.UiWeb
         public void WaitForUrlDocumentation()
         {
             AssertDocumentation<WaitForUrl>(
-                pluginName: GravityPlugin.WaitForUrl);
+                pluginName: GravityPlugins.WaitForUrl);
         }
 
         [TestMethod]
         public void WaitForUrlDocumentationResourceFile()
         {
             AssertDocumentation<WaitForUrl>(
-                pluginName: GravityPlugin.WaitForUrl,
+                pluginName: GravityPlugins.WaitForUrl,
                 resource: "WaitForUrl.json");
         }
         #endregion

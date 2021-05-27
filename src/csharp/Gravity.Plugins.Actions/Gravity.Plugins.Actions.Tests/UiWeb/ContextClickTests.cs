@@ -32,14 +32,14 @@ namespace Gravity.UnitTests.UiWeb
         public void ContextClickDocumentation()
         {
             AssertDocumentation<ContextClick>(
-                pluginName: GravityPlugin.ContextClick);
+                pluginName: GravityPlugins.ContextClick);
         }
 
         [TestMethod]
         public void ContextClickDocumentationResourceFile()
         {
             AssertDocumentation<ContextClick>(
-                pluginName: GravityPlugin.ContextClick,
+                pluginName: GravityPlugins.ContextClick,
                 resource:"ContextClick.json");
         }
         #endregion

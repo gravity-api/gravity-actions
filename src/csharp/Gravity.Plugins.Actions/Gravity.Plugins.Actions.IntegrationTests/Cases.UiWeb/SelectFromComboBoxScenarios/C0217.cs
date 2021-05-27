@@ -1,18 +1,16 @@
-﻿#pragma warning disable S125
-/*
-* TEST SCENARIO (Rhino)
-* [test-id] 0215
-* [test-scenario] - Select From Combo Box, Index, Multiple, All Values, Regular Expression
-* 
-* [test-actions]
-* 1. navigate to {https://gravitymvctestapplication.azurewebsites.net/uicontrols}
-* 2. Select From Combo Box {{$ --all}} on {select_menu_multiple} using {id} filter {T}
-* 3. close browser
-* 
-* [test-expected-results]
-* [2] verify {attribute} on {select_menu_multiple} from {value} using {id} match {2}
-*/
-#pragma warning restore
+﻿/*
+ * TEST SCENARIO (Rhino)
+ * [test-id] 0215
+ * [test-scenario] - Select From Combo Box, Index, Multiple, All Values, Regular Expression
+ * 
+ * [test-actions]
+ * 1. navigate to {https://gravitymvctestapplication.azurewebsites.net/uicontrols}
+ * 2. Select From Combo Box {{$ --all}} on {select_menu_multiple} using {id} filter {T}
+ * 3. close browser
+ * 
+ * [test-expected-results]
+ * [2] verify {attribute} on {select_menu_multiple} from {value} using {id} match {2}
+ */
 using Gravity.IntegrationTests.Base;
 using Gravity.Plugins.Contracts;
 
@@ -30,12 +28,12 @@ namespace Graivty.IntegrationTests.Cases.UiWeb.SelectFromComboBoxScenarios
             {
                 new ActionRule
                 {
-                    Action = GravityPlugin.Scroll,
+                    Action = GravityPlugins.Scroll,
                     Argument = "1000"
                 },
                 new ActionRule
                 {
-                    Action = GravityPlugin.SelectFromComboBox,
+                    Action = GravityPlugins.SelectFromComboBox,
                     OnElement = "select_menu_multiple",
                     Argument = "{{$ --all}}",
                     Locator = Locators.Id,

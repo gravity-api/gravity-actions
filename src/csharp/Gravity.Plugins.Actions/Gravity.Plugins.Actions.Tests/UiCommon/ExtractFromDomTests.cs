@@ -67,14 +67,14 @@ namespace Gravity.UnitTests.UiCommon
         public void ExtractDataDocumentation()
         {
             AssertDocumentation<ExtractFromDom>(
-                pluginName: GravityPlugin.ExtractFromDom);
+                pluginName: GravityPlugins.ExtractFromDom);
         }
 
         [TestMethod]
         public void ExtractDataDocumentationResourceFile()
         {
             AssertDocumentation<ExtractFromDom>(
-                pluginName: GravityPlugin.ExtractFromDom,
+                pluginName: GravityPlugins.ExtractFromDom,
                 resource: "ExtractFromDom.json");
         }
         #endregion

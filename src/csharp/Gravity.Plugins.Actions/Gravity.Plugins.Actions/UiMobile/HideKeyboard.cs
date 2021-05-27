@@ -15,7 +15,7 @@ namespace Gravity.Plugins.Actions.UiMobile
     [Plugin(
         assembly: "Gravity.Plugins.Actions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
         resource: "Gravity.Plugins.Actions.Manifest.HideKeyboard.json",
-        Name = GravityPlugin.HideKeyboard)]
+        Name = GravityPlugins.HideKeyboard)]
     public class HideKeyboard : WebDriverActionPlugin
     {
         #region *** constructors ***

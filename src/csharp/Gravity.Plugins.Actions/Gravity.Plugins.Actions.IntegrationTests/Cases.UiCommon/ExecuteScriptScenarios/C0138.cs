@@ -32,10 +32,10 @@ namespace Gravity.IntegrationTests.Cases.UiCommon.ExecuteScriptScenarios
             {
                 new ActionRule
                 {
-                    Action = GravityPlugin.ExecuteScript,
+                    Action = GravityPlugins.ExecuteScript,
                     Argument = "{document.getElementById(\"" + condition + "\").setAttribute(\"value\", \"foo bar\")}"
                 },
-                SharedSteps.AssertInputEnabledValue(expectedPattern: "foo bar")
+                SharedSteps.AssertInputTextValue(expectedPattern: "foo bar")
             };
         }
     }

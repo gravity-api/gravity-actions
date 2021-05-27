@@ -10,7 +10,7 @@ namespace Gravity.Plugins.Contracts
     /// <summary>
     /// Available web plugins under Gravity.Plugins.Actions.dll
     /// </summary>
-    public static partial class GravityPlugin
+    public static partial class GravityPlugins
     {
         [DataMember]
         public const string CloseAllChildWindows = "CloseAllChildWindows";

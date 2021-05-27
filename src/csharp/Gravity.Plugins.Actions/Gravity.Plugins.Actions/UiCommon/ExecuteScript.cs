@@ -36,7 +36,7 @@ namespace Gravity.Plugins.Actions.UiCommon
     [Plugin(
         assembly: "Gravity.Plugins.Actions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
         resource: "Gravity.Plugins.Actions.Manifest.ExecuteScript.json",
-        Name = GravityPlugin.ExecuteScript)]
+        Name = GravityPlugins.ExecuteScript)]
     public class ExecuteScript : WebDriverActionPlugin
     {
         #region *** constants    ***

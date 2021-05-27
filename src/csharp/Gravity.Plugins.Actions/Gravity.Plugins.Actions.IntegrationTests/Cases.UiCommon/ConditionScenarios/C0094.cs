@@ -31,7 +31,7 @@ namespace Gravity.IntegrationTests.Cases.UiCommon.ConditionScenarios
             {
                 new ActionRule
                 {
-                    Action = GravityPlugin.Condition,
+                    Action = GravityPlugins.Condition,
                     Argument = "{{$ --stale}}",
                     OnElement = "for_stale_element",
                     Locator = Locators.Id,

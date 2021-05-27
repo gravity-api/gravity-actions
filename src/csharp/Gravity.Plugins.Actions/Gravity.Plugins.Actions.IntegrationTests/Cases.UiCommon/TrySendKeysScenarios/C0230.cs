@@ -30,23 +30,23 @@ namespace Graivty.IntegrationTests.Cases.UiCommon.TrySendKeysScenarios
                 // cannot be interacted
                 new ActionRule
                 {
-                    Action = GravityPlugin.MoveToElement,
+                    Action = GravityPlugins.MoveToElement,
                     OnElement = "input_enabled",
                     Locator = Locators.Id
                 },
                 new ActionRule
                 {
-                    Action = GravityPlugin.Scroll,
+                    Action = GravityPlugins.Scroll,
                     Argument = "800"
                 },
                 new ActionRule
                 {
-                    Action = GravityPlugin.TrySendKeys,
+                    Action = GravityPlugins.TrySendKeys,
                     Argument = "{{$ --clear --keys:Lorem ipsum --interval:200}}",
                     OnElement = "input_enabled_with_text",
                     Locator = Locators.Id
                 },
-                SharedSteps.AssertInputEnabledValue(expectedPattern: "^Lorem ipsum$", id: "input_enabled_with_text")
+                SharedSteps.AssertInputTextValue(expectedPattern: "^Lorem ipsum$", id: "input_enabled_with_text")
             };
         }
     }

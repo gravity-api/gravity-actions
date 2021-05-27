@@ -34,14 +34,14 @@ namespace Graivty.IntegrationTests.Cases.UiMobile.HideKeyboardScenarios
             {
                 new ActionRule
                 {
-                    Action = GravityPlugin.Click,
+                    Action = GravityPlugins.Click,
                     OnElement = "SearchString",
                     Locator = Locators.Id
                 },
                 // TODO: assert keyboard visible
                 new ActionRule
                 {
-                    Action = GravityPlugin.HideKeyboard
+                    Action = GravityPlugins.HideKeyboard
                 }
                 // TODO: assert keyboard hidden
             };

@@ -40,14 +40,14 @@ namespace Gravity.UnitTests.UiWeb
         [TestMethod]
         public void GoToUrlDocumentation()
         {
-            AssertDocumentation<GoToUrl>(pluginName: GravityPlugin.GoToUrl);
+            AssertDocumentation<GoToUrl>(pluginName: GravityPlugins.GoToUrl);
         }
 
         [TestMethod]
         public void GoToUrlDocumentationResourceFile()
         {
             AssertDocumentation<GoToUrl>(
-                pluginName: GravityPlugin.GoToUrl,
+                pluginName: GravityPlugins.GoToUrl,
                 resource: "GoToUrl.json");
         }
         #endregion

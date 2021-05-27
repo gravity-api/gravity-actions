@@ -26,14 +26,14 @@ namespace Gravity.UnitTests.UiWeb
         [TestMethod]
         public void ScrollDocumentation()
         {
-            AssertDocumentation<Scroll>(pluginName: GravityPlugin.Scroll);
+            AssertDocumentation<Scroll>(pluginName: GravityPlugins.Scroll);
         }
 
         [TestMethod]
         public void ScrollDocumentationResourceFile()
         {
             AssertDocumentation<Scroll>(
-                pluginName: GravityPlugin.Scroll,
+                pluginName: GravityPlugins.Scroll,
                 resource: "scroll.json");
         }
         #endregion

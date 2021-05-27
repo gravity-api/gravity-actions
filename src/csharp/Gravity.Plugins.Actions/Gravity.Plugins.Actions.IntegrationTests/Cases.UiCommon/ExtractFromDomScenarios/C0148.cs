@@ -36,7 +36,7 @@ namespace Gravity.IntegrationTests.Cases.UiCommon.ExtractFromDomScenarios
         {
             new ActionRule
             {
-                Action = GravityPlugin.ExtractFromDom
+                Action = GravityPlugins.ExtractFromDom
             }
         };
 

@@ -34,7 +34,7 @@ namespace Gravity.IntegrationTests.Cases.UiCommon.ConditionScenarios
             {
                 new ActionRule
                 {
-                    Action = GravityPlugin.Condition,
+                    Action = GravityPlugins.Condition,
                     Argument = "{{$ --windows_count --lt:" + condition + "}}",
                     Actions = SharedSteps.SetNumberOfAlerts(numberOfAlerts: 20)
                 },

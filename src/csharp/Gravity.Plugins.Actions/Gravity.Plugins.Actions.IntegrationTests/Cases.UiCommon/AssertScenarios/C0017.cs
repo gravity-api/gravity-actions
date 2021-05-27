@@ -32,7 +32,7 @@ namespace Gravity.IntegrationTests.Cases.UiCommon.AssertScenarios
             {
                 new ActionRule
                 {
-                    Action = GravityPlugin.Assert,
+                    Action = GravityPlugins.Assert,
                     Argument = "{{$ --count --le:" + expected + "}}",
                     OnElement = "//tbody/tr"
                 }

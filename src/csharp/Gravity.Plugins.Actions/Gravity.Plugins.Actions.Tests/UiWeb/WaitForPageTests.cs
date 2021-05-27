@@ -43,14 +43,14 @@ namespace Gravity.UnitTests.UiWeb
         public void WaitForPageDocumentation()
         {
             AssertDocumentation<WaitForPage>(
-                pluginName: GravityPlugin.WaitForPage);
+                pluginName: GravityPlugins.WaitForPage);
         }
 
         [TestMethod]
         public void WaitForPageDocumentationResourceFile()
         {
             AssertDocumentation<WaitForPage>(
-                pluginName: GravityPlugin.WaitForPage,
+                pluginName: GravityPlugins.WaitForPage,
                 resource: "WaitForPage.json");
         }
         #endregion

@@ -29,14 +29,14 @@ namespace Graivty.IntegrationTests.Cases.UiWeb.KeyboardScenarios
             {
                 new ActionRule
                 {
-                    Action = GravityPlugin.Keyboard,
+                    Action = GravityPlugins.Keyboard,
                     Argument = "Control,a",
                     OnElement = "text_area_enabled",
                     Locator = Locators.Id
                 },
                 new ActionRule
                 {
-                    Action = GravityPlugin.Keyboard,
+                    Action = GravityPlugins.Keyboard,
                     Argument = "Delete",
                     OnElement = "text_area_enabled",
                     Locator = Locators.Id

@@ -29,7 +29,7 @@ namespace Gravity.Plugins.Actions.UiWeb
     [Plugin(
         assembly: "Gravity.Plugins.Actions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
         resource: "Gravity.Plugins.Actions.Manifest.ContextClick.json",
-        Name = GravityPlugin.ContextClick)]
+        Name = GravityPlugins.ContextClick)]
     public class ContextClick : WebDriverActionPlugin
     {
         // members: state

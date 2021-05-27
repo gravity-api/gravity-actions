@@ -70,14 +70,14 @@ namespace Gravity.UnitTests.UiCommon
         public void ConditionDocumentation()
         {
             AssertDocumentation<Condition>(
-                pluginName: GravityPlugin.Condition);
+                pluginName: GravityPlugins.Condition);
         }
 
         [TestMethod]
         public void ConditionDocumentationResourceFile()
         {
             AssertDocumentation<Condition>(
-                pluginName: GravityPlugin.Condition,
+                pluginName: GravityPlugins.Condition,
                 resource: "condition.json");
         }
         #endregion

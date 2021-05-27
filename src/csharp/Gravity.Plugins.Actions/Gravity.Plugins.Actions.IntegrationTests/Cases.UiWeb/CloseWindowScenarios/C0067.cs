@@ -30,17 +30,17 @@ namespace Gravity.IntegrationTests.Cases.UiWeb.CloseWindowScenarios
             {
                 new ActionRule
                 {
-                    Action = GravityPlugin.Assert,
+                    Action = GravityPlugins.Assert,
                     Argument = "{{$ --windows_count --eq:1}}"
                 },
                 new ActionRule
                 {
-                    Action = GravityPlugin.CloseWindow,
+                    Action = GravityPlugins.CloseWindow,
                     Argument = "2"
                 },
                 new ActionRule
                 {
-                    Action = GravityPlugin.Assert,
+                    Action = GravityPlugins.Assert,
                     Argument = "{{$ --windows_count --eq:1}}"
                 },
             };

@@ -32,14 +32,14 @@ namespace Gravity.UnitTests.UiCommon
         public void TrySendKeysDocumentation()
         {
             AssertDocumentation<TrySendKeys>(
-                pluginName: GravityPlugin.TrySendKeys);
+                pluginName: GravityPlugins.TrySendKeys);
         }
 
         [TestMethod]
         public void TrySendKeysDocumentationResourceFile()
         {
             AssertDocumentation<TrySendKeys>(
-                pluginName: GravityPlugin.TrySendKeys,
+                pluginName: GravityPlugins.TrySendKeys,
                 resource: "TrySendKeys.json");
         }
         #endregion

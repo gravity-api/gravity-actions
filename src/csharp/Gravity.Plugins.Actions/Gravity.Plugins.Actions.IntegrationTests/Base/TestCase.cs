@@ -278,10 +278,10 @@ namespace Gravity.IntegrationTests.Base
             var actionsList = new List<ActionRule>();
             if (IsWebTest)
             {
-                actionsList.Add(new ActionRule { Action = GravityPlugin.GoToUrl, Argument = ApplicationUnderTest });
+                actionsList.Add(new ActionRule { Action = GravityPlugins.GoToUrl, Argument = ApplicationUnderTest });
             }
             actionsList.AddRange(actions);
-            actionsList.Add(new ActionRule { Action = GravityPlugin.CloseBrowser });
+            actionsList.Add(new ActionRule { Action = GravityPlugins.CloseBrowser });
 
             // setup: driver parameters
             var driverParams = GetDriverParams(environment);

@@ -32,7 +32,7 @@ namespace Graivty.IntegrationTests.Cases.UiWeb.ScrollScenarios
                 SharedSteps.AssertElementScrollOutcome(offset: "y", expectedPattern: "^$" ),
                 new ActionRule
                 {
-                    Action = GravityPlugin.Scroll,
+                    Action = GravityPlugins.Scroll,
                     Argument = "{{$ --top:1000}}",
                     OnElement = "text_area_enabled",
                     Locator = Locators.Id

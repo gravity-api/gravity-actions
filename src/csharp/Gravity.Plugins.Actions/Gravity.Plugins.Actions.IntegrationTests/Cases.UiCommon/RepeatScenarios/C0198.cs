@@ -36,19 +36,19 @@ namespace Graivty.IntegrationTests.Cases.UiCommon.RepeatScenarios
             {
                 new ActionRule
                 {
-                    Action = GravityPlugin.SendKeys,
+                    Action = GravityPlugins.SendKeys,
                     Argument = "a",
                     OnElement = "//input[@id=\"SearchString\"]"
                 },
                 new ActionRule
                 {
-                    Action = GravityPlugin.Repeat,
+                    Action = GravityPlugins.Repeat,
                     Argument = "3",
                     Actions = new[]
                     {
                         new ActionRule
                         {
-                            Action = GravityPlugin.SendKeys,
+                            Action = GravityPlugins.SendKeys,
                             Argument = "b",
                             OnElement = "//input[@id=\"SearchString\"]"
                         }
@@ -61,13 +61,13 @@ namespace Graivty.IntegrationTests.Cases.UiCommon.RepeatScenarios
             {
                 new ActionRule
                 {
-                    Action = GravityPlugin.Repeat,
+                    Action = GravityPlugins.Repeat,
                     Argument = "2",
                     Actions = actions
                 },
                 new ActionRule
                 {
-                    Action = GravityPlugin.Assert,
+                    Action = GravityPlugins.Assert,
                     Argument = "{{$ --attribute --eq:abbbabbb}}",
                     OnElement = "//input[@id=\"SearchString\"]",
                     OnAttribute = "value"

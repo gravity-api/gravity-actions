@@ -30,7 +30,7 @@ namespace Graivty.IntegrationTests.Cases.UiCommon.RegisterParameterScenarios
             {
                 new ActionRule
                 {
-                    Action = GravityPlugin.RegisterParameter,
+                    Action = GravityPlugins.RegisterParameter,
                     Argument = "{{$ --key:integration_parameter --value:10}}"
                 },
                 SharedSteps.AssertParameter(equal: "10")

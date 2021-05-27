@@ -31,22 +31,22 @@ namespace Gravity.IntegrationTests.Cases.UiWeb.CloseAllChildWindowsScenarios
             {
                 new ActionRule
                 {
-                    Action = GravityPlugin.Click,
+                    Action = GravityPlugins.Click,
                     OnElement = "pop_windows",
                     Locator = Locators.Id
                 },
                 new ActionRule
                 {
-                    Action = GravityPlugin.Assert,
+                    Action = GravityPlugins.Assert,
                     Argument = "{{$ --windows_count --gt:1}}"
                 },
                 new ActionRule
                 {
-                    Action = GravityPlugin.CloseAllChildWindows
+                    Action = GravityPlugins.CloseAllChildWindows
                 },
                 new ActionRule
                 {
-                    Action = GravityPlugin.Assert,
+                    Action = GravityPlugins.Assert,
                     Argument = "{{$ --windows_count --eq:1}}"
                 },
             };

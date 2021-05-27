@@ -27,7 +27,7 @@ namespace Graivty.IntegrationTests.Cases.UiCommon.GetScreenshotScenarios
         {
             var action = new ActionRule
             {
-                Action = GravityPlugin.GetScreenshot,
+                Action = GravityPlugins.GetScreenshot,
                 Argument = $"GetScreenshot/image_0171_{Guid.NewGuid()}.png",
                 OnElement = "//div[@class=\"jumbotron\"]"
             };

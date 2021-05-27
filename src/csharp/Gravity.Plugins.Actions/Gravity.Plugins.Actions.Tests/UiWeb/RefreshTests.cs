@@ -39,14 +39,14 @@ namespace Gravity.UnitTests.UiWeb
         [TestMethod]
         public void RefreshDocumentation()
         {
-            AssertDocumentation<Refresh>(pluginName: GravityPlugin.Refresh);
+            AssertDocumentation<Refresh>(pluginName: GravityPlugins.Refresh);
         }
 
         [TestMethod]
         public void RefreshDocumentationResourceFile()
         {
             AssertDocumentation<Refresh>(
-                pluginName: GravityPlugin.Refresh,
+                pluginName: GravityPlugins.Refresh,
                 resource: "refresh.json");
         }
         #endregion

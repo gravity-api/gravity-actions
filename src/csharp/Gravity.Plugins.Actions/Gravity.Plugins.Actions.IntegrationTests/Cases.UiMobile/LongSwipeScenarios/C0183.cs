@@ -33,7 +33,7 @@ namespace Graivty.IntegrationTests.Cases.UiMobile.LongSwipeScenarios
             {
                 new ActionRule
                 {
-                    Action = GravityPlugin.Wait,
+                    Action = GravityPlugins.Wait,
                     Argument = "3000"
                 },
                 //new ActionRule

@@ -29,7 +29,7 @@ namespace Graivty.IntegrationTests.Cases.UiWeb.GoToUrlScenarios
             {
                 new ActionRule
                 {
-                    Action = GravityPlugin.GoToUrl,
+                    Action = GravityPlugins.GoToUrl,
                     Argument ="{{$ --url:https://gravitymvctestapplication.azurewebsites.net/uicontrols/ --blank}}"
                 },
                 SharedSteps.AssertWindowsCount(greaterThan: 1)

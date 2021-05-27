@@ -34,14 +34,14 @@ namespace Gravity.UnitTests.UiWeb
         public void CloseAllChildWindowsDocumentation()
         {
             AssertDocumentation<CloseAllChildWindows>(
-                pluginName: GravityPlugin.CloseAllChildWindows);
+                pluginName: GravityPlugins.CloseAllChildWindows);
         }
 
         [TestMethod]
         public void CloseAllChildWindowsDocumentationResourceFile()
         {
             AssertDocumentation<CloseAllChildWindows>(
-                pluginName: GravityPlugin.CloseAllChildWindows,
+                pluginName: GravityPlugins.CloseAllChildWindows,
                 resource: "CloseAllChildWindows.json");
         }
         #endregion

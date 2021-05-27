@@ -30,7 +30,7 @@ namespace Gravity.IntegrationTests.Cases.UiCommon.DoubleClickTests
             {
                 new ActionRule
                 {
-                    Action = GravityPlugin.DoubleClick
+                    Action = GravityPlugins.DoubleClick
                 },
                 SharedSteps.AssertClickOutcome(expectedPattern: "^$")
             };

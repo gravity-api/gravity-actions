@@ -43,6 +43,12 @@ namespace Gravity.Plugins.Attributes
 
         #region *** properties   ***
         /// <summary>
+        /// Gets or sets a collection of values that can be used as an argument for the Plugin.
+        /// </summary>
+        /// <remarks>For knowledge base purposes.</remarks>
+        public IDictionary<string, object> Enum { get; set; }
+
+        /// <summary>
         /// ![Mandatory] Gets or sets the <see cref="Plugin"/> name. Used to identify the <see cref="Plugin"/>.
         /// </summary>
         public string Name { get; set; }
@@ -58,48 +64,48 @@ namespace Gravity.Plugins.Attributes
         public string PluginType { get; set; }
 
         /// <summary>
-        /// Gets or sets a collection of alternate keywords which can be used to identify this <see cref="Plugin"/>.
+        /// Gets or sets a collection of alternate keywords which can be used to identify the Plugin.
         /// </summary>
         public IEnumerable<string> Aliases { get; set; }
 
         /// <summary>
-        /// Gets or sets an application (name or address) on which the examples of this <see cref="Plugin"/> can be tested.
+        /// Gets or sets an application (name or address) on which the examples of the Plugin can be tested.
         /// </summary>
         /// <remarks>For knowledge base purposes.</remarks>
         public string TestOn { get; set; }
 
         /// <summary>
-        /// Gets or sets the implementation examples of this <see cref="Plugin"/>.
+        /// Gets or sets the implementation examples of the Plugin.
         /// </summary>
         /// <remarks>For knowledge base purposes.</remarks>
         public IEnumerable<PluginExample> Examples { get; set; }
 
         /// <summary>
-        /// Gets or sets a short description about this <see cref="Plugin"/>.
+        /// Gets or sets a short description about the Plugin.
         /// </summary>
         /// <remarks>For knowledge base purposes.</remarks>
         public string Summary { get; set; }
 
         /// <summary>
-        /// Gets or sets a full description about this <see cref="Plugin"/>.
+        /// Gets or sets a full description about the Plugin.
         /// </summary>
         /// <remarks>For knowledge base purposes.</remarks>
         public string Description { get; set; }
 
         /// <summary>
-        /// Gets or sets this <see cref="Plugin"/> execution scopes (i.e. [mobile-native, mobile-web, web]).
+        /// Gets or sets the Plugin execution scopes (i.e. [mobile-native, mobile-web, web]).
         /// </summary>
         /// <remarks>For knowledge base purposes.</remarks>
         public IEnumerable<string> Scope { get; set; }
 
         /// <summary>
-        /// Gets or sets the properties list supported by this <see cref="Plugin"/> (key: action rule property, value: description).
+        /// Gets or sets the properties list supported by the Plugin (key: action rule property, value: description).
         /// </summary>
         /// <remarks>For knowledge base purposes.</remarks>
-        public IDictionary<string, string> Properties { get; set; }
+        public IDictionary<string, object> Properties { get; set; }
 
         /// <summary>
-        /// Gets or sets the arguments list supported by this <see cref="Plugin"/> (key: name, value: description).
+        /// Gets or sets the arguments list supported by the Plugin (key: name, value: description).
         /// </summary>
         /// <remarks>For knowledge base purposes.</remarks>
         public IDictionary<string, object> CliArguments { get; set; }
@@ -108,7 +114,7 @@ namespace Gravity.Plugins.Attributes
         /// Gets or sets the W3C WebDriver Protocol endpoints information (key: end point, value: description) - if applicable.
         /// </summary>
         /// <remarks>For knowledge base purposes.</remarks>
-        public IDictionary<string, string> Protocol { get; set; }
+        public IDictionary<string, object> Protocol { get; set; }
 
         /// <summary>
         /// Gets a unique identifier for this System.Attribute.

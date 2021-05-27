@@ -27,7 +27,7 @@ namespace Graivty.IntegrationTests.Cases.UiCommon.AssertScenarios
             {
                 new ActionRule
                 {
-                    Action = GravityPlugin.Assert,
+                    Action = GravityPlugins.Assert,
                     Argument = $"{environment.TestParams["argument"]}",
                     OnElement = "attribute_div",
                     OnAttribute = "class",

@@ -15,7 +15,7 @@ namespace Gravity.Plugins.Actions.UiWeb
     [Plugin(
         assembly: "Gravity.Plugins.Actions, Version=5.0.0.0, Culture=neutral, PublicKeyToken=null",
         resource: "Gravity.Plugins.Actions.Manifest.SwitchToFrame.json",
-        Name = GravityPlugin.SwitchToFrame)]
+        Name = GravityPlugins.SwitchToFrame)]
     public class SwitchToFrame : WebDriverActionPlugin
     {
         #region *** constructors ***

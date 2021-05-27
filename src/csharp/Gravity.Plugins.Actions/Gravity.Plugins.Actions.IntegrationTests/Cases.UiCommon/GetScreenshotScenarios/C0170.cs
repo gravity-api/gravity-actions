@@ -27,7 +27,7 @@ namespace Graivty.IntegrationTests.Cases.UiCommon.GetScreenshotScenarios
         {
             var action = new ActionRule
             {
-                Action = GravityPlugin.GetScreenshot,
+                Action = GravityPlugins.GetScreenshot,
                 Argument = $"GetScreenshot/image_0170_{Guid.NewGuid()}.png"
             };
             return new[] { action };

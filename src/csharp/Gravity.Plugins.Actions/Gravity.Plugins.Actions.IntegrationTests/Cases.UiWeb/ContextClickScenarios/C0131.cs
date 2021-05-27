@@ -30,7 +30,7 @@ namespace Gravity.IntegrationTests.Cases.UiWeb.ContextClickScenarios
             {
                 new ActionRule
                 {
-                    Action = GravityPlugin.ContextClick,
+                    Action = GravityPlugins.ContextClick,
                     OnElement = "click_button",
                     Locator = Locators.Id
                 },

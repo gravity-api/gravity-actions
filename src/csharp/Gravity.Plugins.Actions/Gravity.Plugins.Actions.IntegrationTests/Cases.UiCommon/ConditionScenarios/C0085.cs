@@ -39,7 +39,7 @@ namespace Gravity.IntegrationTests.Cases.UiCommon.ConditionScenarios
             {
                 new ActionRule
                 {
-                    Action = GravityPlugin.Condition,
+                    Action = GravityPlugins.Condition,
                     Argument = "{{$ --driver --eq:" + onDriver + "}}",
                     OnElement = "//tr[./td[@id]]",
                     Actions = SharedSteps.SearchStudent(searchFor: "Carson")

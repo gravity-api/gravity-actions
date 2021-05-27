@@ -38,13 +38,13 @@ namespace Gravity.IntegrationTests.Cases.UiCommon.ConditionScenarios
             {
                 new ActionRule
                 {
-                    Action = GravityPlugin.Condition,
+                    Action = GravityPlugins.Condition,
                     Argument = "{{$ --windows_count --eq:1}}",
                     Actions = new[]
                     {
                         new ActionRule
                         {
-                            Action = GravityPlugin.Condition,
+                            Action = GravityPlugins.Condition,
                             Argument = "{{$ --url --match:" + condition + "}}",
                             Actions = SharedSteps.SearchStudent(searchFor: "Carson")
                         }

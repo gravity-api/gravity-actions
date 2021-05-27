@@ -26,7 +26,7 @@ namespace Gravity.Plugins.Actions.UiWeb
     [Plugin(
         assembly: "Gravity.Plugins.Actions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
         resource: "Gravity.Plugins.Actions.Manifest.SelectFromComboBox.json",
-        Name = GravityPlugin.SelectFromComboBox)]
+        Name = GravityPlugins.SelectFromComboBox)]
     public class SelectFromComboBox : WebDriverActionPlugin
     {
         #region *** arguments    ***

@@ -29,7 +29,7 @@ namespace Gravity.Plugins.Actions.UiCommon
     [Plugin(
         assembly: "Gravity.Plugins.Actions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
         resource: "Gravity.Plugins.Actions.Manifest.Repeat.json",
-        Name = GravityPlugin.Repeat)]
+        Name = GravityPlugins.Repeat)]
     public class Repeat : WebDriverActionPlugin
     {
         #region *** arguments    ***

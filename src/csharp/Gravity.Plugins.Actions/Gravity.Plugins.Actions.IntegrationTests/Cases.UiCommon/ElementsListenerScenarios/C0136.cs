@@ -33,13 +33,13 @@ namespace Gravity.IntegrationTests.Cases.UiCommon.ElementsListenerScenarios
             {
                 new ActionRule
                 {
-                    Action = GravityPlugin.ElementsListener,
+                    Action = GravityPlugins.ElementsListener,
                     Argument = "{{$ --interval:500 --timeout:" + condition + "}}",
                     OnElement = "//div[./strong[contains(.,\"Random Element.\")]]"
                 },
                 new ActionRule
                 {
-                    Action = GravityPlugin.Click,
+                    Action = GravityPlugins.Click,
                     OnElement = "generate_elements",
                     Locator = Locators.Id
                 },

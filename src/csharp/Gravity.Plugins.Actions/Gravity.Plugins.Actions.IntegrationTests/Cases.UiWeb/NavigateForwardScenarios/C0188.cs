@@ -33,22 +33,22 @@ namespace Graivty.IntegrationTests.Cases.UiWeb.NavigateForwardScenarios
             {
                 new ActionRule
                 {
-                    Action = GravityPlugin.GoToUrl,
+                    Action = GravityPlugins.GoToUrl,
                     Argument = "https://gravitymvctestapplication.azurewebsites.net/student"
                 },
                 new ActionRule
                 {
-                    Action = GravityPlugin.GoToUrl,
+                    Action = GravityPlugins.GoToUrl,
                     Argument = "https://gravitymvctestapplication.azurewebsites.net/"
                 },
                 new ActionRule
                 {
-                    Action = GravityPlugin.NavigateBack,
+                    Action = GravityPlugins.NavigateBack,
                     Argument = "2"
                 },
                 new ActionRule
                 {
-                    Action = GravityPlugin.NavigateForward,
+                    Action = GravityPlugins.NavigateForward,
                     Argument = "2"
                 },
                 SharedSteps.AssertUrl(expectedPattern: ".net/?$"),

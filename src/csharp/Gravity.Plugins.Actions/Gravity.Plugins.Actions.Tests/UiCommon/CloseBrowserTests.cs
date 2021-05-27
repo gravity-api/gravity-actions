@@ -29,14 +29,14 @@ namespace Gravity.UnitTests.UiCommon
         public void CloseBrowserDocumentation()
         {
             AssertDocumentation<CloseBrowser>(
-                pluginName: GravityPlugin.CloseBrowser);
+                pluginName: GravityPlugins.CloseBrowser);
         }
 
         [TestMethod]
         public void CloseBrowserDocumentationResourceFile()
         {
             AssertDocumentation<CloseBrowser>(
-                pluginName: GravityPlugin.CloseBrowser,
+                pluginName: GravityPlugins.CloseBrowser,
                 resource: "CloseBrowser.json");
         }
         #endregion

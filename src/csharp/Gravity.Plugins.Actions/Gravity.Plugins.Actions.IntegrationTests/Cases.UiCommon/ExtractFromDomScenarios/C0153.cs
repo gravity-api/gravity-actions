@@ -40,7 +40,7 @@ namespace Gravity.IntegrationTests.Cases.UiCommon.ExtractFromDomScenarios
         {
             new ActionRule
             {
-                Action = GravityPlugin.ExtractFromDom
+                Action = GravityPlugins.ExtractFromDom
             }
         };
 
@@ -56,7 +56,7 @@ namespace Gravity.IntegrationTests.Cases.UiCommon.ExtractFromDomScenarios
                 {
                     new ActionRule
                     {
-                        Action = GravityPlugin.Click,
+                        Action = GravityPlugins.Click,
                         OnElement = "Details",
                         Locator = Locators.LinkText
                     }
@@ -68,7 +68,7 @@ namespace Gravity.IntegrationTests.Cases.UiCommon.ExtractFromDomScenarios
                 OnElement = "//tbody/tr/td[1]",
                 Actions = new[]
                 {
-                    new ActionRule { Action = GravityPlugin.NavigateBack }
+                    new ActionRule { Action = GravityPlugins.NavigateBack }
                 }
             };
             var contentEntries = new[] { getFirstName, getFirstCourse };

@@ -3,15 +3,18 @@
  * 
  * RESOURCES
  */
-using Gravity.UnitTests.Base;
 using Gravity.Plugins.Actions.UiWeb;
+using Gravity.Plugins.Contracts;
+using Gravity.UnitTests.Base;
+
+
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+
 using OpenQA.Selenium.Mock;
 using OpenQA.Selenium.Mock.Extensions;
-using System.Collections.Generic;
-using Gravity.Plugins.Contracts;
 
-#pragma warning disable S4144
+using System.Collections.Generic;
+
 namespace Gravity.UnitTests.UiWeb
 {
     [TestClass]
@@ -27,14 +30,14 @@ namespace Gravity.UnitTests.UiWeb
         [TestMethod]
         public void SwitchToAlertDocumentation()
         {
-            AssertDocumentation<SwitchToAlert>(pluginName: GravityPlugin.SwitchToAlert);
+            AssertDocumentation<SwitchToAlert>(pluginName: GravityPlugins.SwitchToAlert);
         }
 
         [TestMethod]
         public void SwitchToAlertDocumentationResourceFile()
         {
             AssertDocumentation<SwitchToAlert>(
-                pluginName: GravityPlugin.SwitchToAlert,
+                pluginName: GravityPlugins.SwitchToAlert,
                 resource: "SwitchToAlert.json");
         }
         #endregion
@@ -155,4 +158,3 @@ namespace Gravity.UnitTests.UiWeb
         #endregion
     }
 }
-#pragma warning restore S4144

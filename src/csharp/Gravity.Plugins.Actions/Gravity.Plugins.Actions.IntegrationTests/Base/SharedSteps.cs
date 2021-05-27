@@ -23,14 +23,14 @@ namespace Gravity.IntegrationTests.Base
         {
             new ActionRule
             {
-                Action = GravityPlugin.SendKeys,
+                Action = GravityPlugins.SendKeys,
                 Argument = searchFor,
                 OnElement = "SearchString",
                 Locator = Locators.Id
             },
             new ActionRule
             {
-                Action = GravityPlugin.Click,
+                Action = GravityPlugins.Click,
                 OnElement = "SearchButton",
                 Locator = Locators.Id
             }
@@ -43,7 +43,7 @@ namespace Gravity.IntegrationTests.Base
         /// <returns>A collection of <see cref="ActionRule"/>.</returns>
         public static ActionRule AssertParameter(string equal) => new()
         {
-            Action = GravityPlugin.Assert,
+            Action = GravityPlugins.Assert,
             Argument = "{{$ --parameter --eq:" + equal + "}}",
             OnElement = "integration_parameter"
         };
@@ -57,7 +57,7 @@ namespace Gravity.IntegrationTests.Base
         {
             new ActionRule
             {
-                Action = GravityPlugin.SendKeys,
+                Action = GravityPlugins.SendKeys,
                 Argument = $"{numberOfAlerts}",
                 OnElement = "number_of_alerts",
                 Locator = Locators.Id
@@ -72,7 +72,7 @@ namespace Gravity.IntegrationTests.Base
         {
             new ActionRule
             {
-                Action = GravityPlugin.Click,
+                Action = GravityPlugins.Click,
                 OnElement = "Back to List",
                 Locator = Locators.LinkText
             }
@@ -85,7 +85,7 @@ namespace Gravity.IntegrationTests.Base
         /// <returns>Assert <see cref="ActionRule"/>.</returns>
         public static ActionRule AssertStudentsCount(int count) => new()
         {
-            Action = GravityPlugin.Assert,
+            Action = GravityPlugins.Assert,
             Argument = "{{$ --count --eq:" + $"{count}" + "}}",
             OnElement = "//tr[./td[@id]]"
         };
@@ -97,7 +97,7 @@ namespace Gravity.IntegrationTests.Base
         /// <returns>Assert <see cref="ActionRule"/>.</returns>
         public static ActionRule AssertNumberOfAlerts(int greaterThan) => new()
         {
-            Action = GravityPlugin.Assert,
+            Action = GravityPlugins.Assert,
             Argument = "{{$ --attribute --gt:" + $"{greaterThan}" + "}}",
             OnElement = "number_of_alerts",
             Locator = Locators.Id,
@@ -111,7 +111,7 @@ namespace Gravity.IntegrationTests.Base
         /// <returns>Assert <see cref="ActionRule"/>.</returns>
         public static ActionRule AssertUrl(string expectedPattern) => new()
         {
-            Action = GravityPlugin.Assert,
+            Action = GravityPlugins.Assert,
             Argument = "{{$ --url --match:" + expectedPattern + "}}"
         };
 
@@ -122,7 +122,7 @@ namespace Gravity.IntegrationTests.Base
         /// <returns>Assert <see cref="ActionRule"/>.</returns>
         public static ActionRule AssertWindowsCount(int greaterThan) => new()
         {
-            Action = GravityPlugin.Assert,
+            Action = GravityPlugins.Assert,
             Argument = "{{$ --windows_count --gt:" + greaterThan + "}}"
         };
 
@@ -133,7 +133,7 @@ namespace Gravity.IntegrationTests.Base
         /// <returns>Assert <see cref="ActionRule"/>.</returns>
         public static ActionRule AssertClickOutcome(string expectedPattern) => new()
         {
-            Action = GravityPlugin.Assert,
+            Action = GravityPlugins.Assert,
             Argument = "{{$ --attribute --match:" + expectedPattern + "}}",
             OnElement = "click_outcome",
             OnAttribute = "value",
@@ -147,7 +147,7 @@ namespace Gravity.IntegrationTests.Base
         /// <returns>Assert <see cref="ActionRule"/>.</returns>
         public static ActionRule AssertListenerOutcome(int greaterThan) => new()
         {
-            Action = GravityPlugin.Assert,
+            Action = GravityPlugins.Assert,
             Argument = "{{$ --attribute --gt:" + $"{greaterThan}" + "}}",
             OnElement = "dismissed_elements",
             Locator = Locators.Id,
@@ -161,7 +161,7 @@ namespace Gravity.IntegrationTests.Base
         /// <returns>Assert <see cref="ActionRule"/>.</returns>
         public static ActionRule AssertStaleElementClass(string expectedPattern) => new()
         {
-            Action = GravityPlugin.Assert,
+            Action = GravityPlugins.Assert,
             Argument = "{{$ --attribute --match:" + $"{expectedPattern}" + "}}",
             OnElement = "for_stale_element",
             Locator = Locators.Id,
@@ -173,9 +173,9 @@ namespace Gravity.IntegrationTests.Base
         /// </summary>
         /// <param name="expectedPattern">Expected pattern (regular expression) to assert against.</param>
         /// <returns>Assert <see cref="ActionRule"/>.</returns>
-        public static ActionRule AssertInputEnabledValue(string expectedPattern, string id = "input_enabled") => new()
+        public static ActionRule AssertInputTextValue(string expectedPattern, string id = "input_enabled") => new()
         {
-            Action = GravityPlugin.Assert,
+            Action = GravityPlugins.Assert,
             Argument = "{{$ --attribute --match:" + expectedPattern + "}}",
             OnElement = id,
             Locator = Locators.Id,
@@ -189,7 +189,7 @@ namespace Gravity.IntegrationTests.Base
         /// <returns>Assert <see cref="ActionRule"/>.</returns>
         public static ActionRule AssertTextAreaValue(string expectedPattern) => new()
         {
-            Action = GravityPlugin.Assert,
+            Action = GravityPlugins.Assert,
             Argument = "{{$ --attribute --match:" + expectedPattern + "}}",
             OnElement = "input_enabled",
             Locator = Locators.Id,
@@ -204,7 +204,7 @@ namespace Gravity.IntegrationTests.Base
         /// <returns>Assert <see cref="ActionRule"/>.</returns>
         public static ActionRule AssertScrollOutcome(string offset, int greaterThan) => new()
         {
-            Action = GravityPlugin.Assert,
+            Action = GravityPlugins.Assert,
             Argument = "{{$ --attribute --gt:" + $"{greaterThan}" + "}}",
             OnElement = $"scroll_{offset.ToLower()}_outcome",
             Locator = Locators.Id,
@@ -219,7 +219,7 @@ namespace Gravity.IntegrationTests.Base
         /// <returns>Assert <see cref="ActionRule"/>.</returns>
         public static ActionRule AssertScrollOutcome(string offset, string expectedPattern) => new()
         {
-            Action = GravityPlugin.Assert,
+            Action = GravityPlugins.Assert,
             Argument = "{{$ --attribute --match:" + $"{expectedPattern}" + "}}",
             OnElement = $"scroll_{offset.ToLower()}_outcome",
             Locator = Locators.Id,
@@ -233,7 +233,7 @@ namespace Gravity.IntegrationTests.Base
         /// <returns>Assert <see cref="ActionRule"/>.</returns>
         public static ActionRule AssertAlert(bool exists) => new()
         {
-            Action = GravityPlugin.Assert,
+            Action = GravityPlugins.Assert,
             Argument = exists ? "{{$ --alert_exists}}" : "{{$ --no_alert}}"
         };
 
@@ -245,7 +245,7 @@ namespace Gravity.IntegrationTests.Base
         /// <returns>Assert <see cref="ActionRule"/>.</returns>
         public static ActionRule AssertElementScrollOutcome(string offset, int greaterThan) => new()
         {
-            Action = GravityPlugin.Assert,
+            Action = GravityPlugins.Assert,
             Argument = "{{$ --attribute --gt:" + $"{greaterThan}" + "}}",
             OnElement = $"e_scroll_{offset.ToLower()}_outcome",
             Locator = Locators.Id,
@@ -260,7 +260,7 @@ namespace Gravity.IntegrationTests.Base
         /// <returns>Assert <see cref="ActionRule"/>.</returns>
         public static ActionRule AssertElementScrollOutcome(string offset, string expectedPattern) => new()
         {
-            Action = GravityPlugin.Assert,
+            Action = GravityPlugins.Assert,
             Argument = "{{$ --attribute --match:" + $"{expectedPattern}" + "}}",
             OnElement = $"e_scroll_{offset.ToLower()}_outcome",
             Locator = Locators.Id,
@@ -324,7 +324,7 @@ namespace Gravity.IntegrationTests.Base
         /// <returns>Assert <see cref="ActionRule"/>.</returns>
         public static ActionRule AssertOverOutcomeValue(string expectedPattern) => new()
         {
-            Action = GravityPlugin.Assert,
+            Action = GravityPlugins.Assert,
             Argument = "{{$ --attribute --match:" + expectedPattern + "}}",
             OnElement = "over_outcome",
             Locator = Locators.Id,
@@ -338,7 +338,7 @@ namespace Gravity.IntegrationTests.Base
         /// <returns>Assert <see cref="ActionRule"/>.</returns>
         public static ActionRule AssertComboBox(string expectedPattern) => new()
         {
-            Action = GravityPlugin.Assert,
+            Action = GravityPlugins.Assert,
             Argument = "{{$ --attribute --match:" + expectedPattern + "}}",
             OnElement = "select_menu",
             Locator = Locators.Id,
@@ -353,7 +353,7 @@ namespace Gravity.IntegrationTests.Base
         /// <returns>Assert <see cref="ActionRule"/>.</returns>
         public static ActionRule AssertMultipleComboBox(string expectedPattern, int option) => new()
         {
-            Action = GravityPlugin.Assert,
+            Action = GravityPlugins.Assert,
             Argument = "{{$ --attribute --match:" + expectedPattern + "}}",
             OnElement = $"#select_menu_multiple > option:checked:nth-child({option})",
             Locator = Locators.CssSelector,
@@ -367,7 +367,7 @@ namespace Gravity.IntegrationTests.Base
         /// <returns>Assert <see cref="ActionRule"/>.</returns>
         public static ActionRule AssertMultipleComboBoxSelectedCount(int count) => new()
         {
-            Action = GravityPlugin.Assert,
+            Action = GravityPlugins.Assert,
             Argument = "{{$ --count --eq:" + count + "}}",
             OnElement = "#select_menu_multiple > option:checked",
             Locator = Locators.CssSelector
@@ -386,7 +386,7 @@ namespace Gravity.IntegrationTests.Base
 
             return new ActionRule
             {
-                Action = GravityPlugin.Assert,
+                Action = GravityPlugins.Assert,
                 Argument = "{{$ --" + assertions + "}}",
                 OnElement = id,
                 Locator = Locators.Id

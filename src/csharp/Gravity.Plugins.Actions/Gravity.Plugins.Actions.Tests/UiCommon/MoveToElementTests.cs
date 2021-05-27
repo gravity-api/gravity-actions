@@ -30,14 +30,14 @@ namespace Gravity.UnitTests.UiCommon
         public void MoveToElementDocumentation()
         {
             AssertDocumentation<MoveToElement>(
-                pluginName: GravityPlugin.MoveToElement);
+                pluginName: GravityPlugins.MoveToElement);
         }
 
         [TestMethod]
         public void MoveToElementDocumentationResourceFile()
         {
             AssertDocumentation<MoveToElement>(
-                pluginName: GravityPlugin.MoveToElement,
+                pluginName: GravityPlugins.MoveToElement,
                 resource: "MoveToElement.json");
         }
         #endregion

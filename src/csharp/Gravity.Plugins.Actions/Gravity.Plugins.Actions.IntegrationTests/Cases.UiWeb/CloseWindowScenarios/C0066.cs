@@ -32,29 +32,29 @@ namespace Gravity.IntegrationTests.Cases.UiWeb.CloseWindowScenarios
             {
                 new ActionRule
                 {
-                    Action = GravityPlugin.Click,
+                    Action = GravityPlugins.Click,
                     OnElement = "pop_window",
                     Locator = Locators.Id
                 },
                 new ActionRule
                 {
-                    Action = GravityPlugin.Click,
+                    Action = GravityPlugins.Click,
                     OnElement = "pop_window",
                     Locator = Locators.Id
                 },
                 new ActionRule
                 {
-                    Action = GravityPlugin.Assert,
+                    Action = GravityPlugins.Assert,
                     Argument = "{{$ --windows_count --gt:1}}"
                 },
                 new ActionRule
                 {
-                    Action = GravityPlugin.CloseWindow,
+                    Action = GravityPlugins.CloseWindow,
                     Argument = "1"
                 },
                 new ActionRule
                 {
-                    Action = GravityPlugin.Assert,
+                    Action = GravityPlugins.Assert,
                     Argument = "{{$ --windows_count --gt:0}}"
                 },
             };

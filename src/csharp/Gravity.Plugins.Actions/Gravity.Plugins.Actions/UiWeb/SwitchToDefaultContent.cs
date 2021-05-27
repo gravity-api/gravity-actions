@@ -14,7 +14,7 @@ namespace Gravity.Plugins.Actions.UiWeb
     [Plugin(
         assembly: "Gravity.Plugins.Actions, Version=5.0.0.0, Culture=neutral, PublicKeyToken=null",
         resource: "Gravity.Plugins.Actions.Manifest.SwitchToDefaultContent.json",
-        Name = GravityPlugin.SwitchToDefaultContent)]
+        Name = GravityPlugins.SwitchToDefaultContent)]
     public class SwitchToDefaultContent : WebDriverActionPlugin
     {
         #region *** constructors ***

@@ -36,28 +36,28 @@ namespace Gravity.IntegrationTests.Cases.UiCommon.ElementsListenerScenarios
             {
                 new ActionRule
                 {
-                    Action = GravityPlugin.ElementsListener,
+                    Action = GravityPlugins.ElementsListener,
                     Argument = "{{$ --interval:500 --timeout:" + condition + "}}",
                     OnElement = "//div[./strong[contains(.,\"Random Element.\")]]",
                     Actions = new[]
                     {
                         new ActionRule
                         {
-                            Action = GravityPlugin.SendKeys,
+                            Action = GravityPlugins.SendKeys,
                             Argument = "dismissed",
                             OnElement = "input_enabled",
                             Locator = Locators.Id
                         },
                         new ActionRule
                         {
-                            Action = GravityPlugin.Click,
+                            Action = GravityPlugins.Click,
                             OnElement = "//div[./strong[contains(.,\"Random Element.\")]]"
                         }
                     }
                 },
                 new ActionRule
                 {
-                    Action = GravityPlugin.Click,
+                    Action = GravityPlugins.Click,
                     OnElement = "generate_elements",
                     Locator = Locators.Id
                 },
@@ -66,7 +66,7 @@ namespace Gravity.IntegrationTests.Cases.UiCommon.ElementsListenerScenarios
                     Action = "Wait",
                     Argument = $"{condition}"
                 },
-                SharedSteps.AssertInputEnabledValue(expectedPattern: "dismissed"),
+                SharedSteps.AssertInputTextValue(expectedPattern: "dismissed"),
                 SharedSteps.AssertListenerOutcome(greaterThan: 1)
             };
         }

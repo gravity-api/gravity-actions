@@ -30,18 +30,18 @@ namespace Graivty.IntegrationTests.Cases.UiCommon.SendKeysScenarios
                 // cannot be interacted
                 new ActionRule
                 {
-                    Action = GravityPlugin.MoveToElement,
+                    Action = GravityPlugins.MoveToElement,
                     OnElement = "input_enabled",
                     Locator = Locators.Id
                 },
                 new ActionRule
                 {
-                    Action = GravityPlugin.SendKeys,
+                    Action = GravityPlugins.SendKeys,
                     Argument = "{{$ --clear --interval:200}}",
                     OnElement = "input_enabled_with_text",
                     Locator = Locators.Id
                 },
-                SharedSteps.AssertInputEnabledValue(expectedPattern: "^$", id: "input_enabled_with_text")
+                SharedSteps.AssertInputTextValue(expectedPattern: "^$", id: "input_enabled_with_text")
             };
         }
     }

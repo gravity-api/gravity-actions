@@ -3,6 +3,7 @@
  * 
  * RESOURCES
  */
+using Gravity.Extensions;
 using Gravity.Plugins.Attributes;
 using Gravity.Plugins.Framework;
 using Gravity.Plugins.Contracts;
@@ -35,7 +36,7 @@ namespace Gravity.Plugins.Actions.UiWeb
         /// <param name="action">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
         public override void OnPerform(ActionRule action)
         {
-            DoAction(action);
+            DoAction(action, element: default);
         }
 
         /// <summary>
@@ -45,14 +46,25 @@ namespace Gravity.Plugins.Actions.UiWeb
         /// <param name="element">This <see cref="IWebElement"/> instance on which to perform the action (provided by the extraction rule).</param>
         public override void OnPerform(ActionRule action, IWebElement element)
         {
-            DoAction(action);
+            DoAction(action, element);
         }
 
         // execute action routine
-        private void DoAction(ActionRule action)
+        private void DoAction(ActionRule action, IWebElement element)
         {
-            // parse form index
+            // setup
+            var _element = this.ConditionalGetElement(element, action);
+
+            // setup conditions
             var isNumeric = int.TryParse(action.Argument, out int indexOut);
+            var isElement = _element != default;
+
+            // submit by element
+            if (isElement)
+            {
+                ((IJavaScriptExecutor)WebDriver).ExecuteScript("arguments[0].submit();", _element);
+                return;
+            }
 
             // submit by index
             if (isNumeric)

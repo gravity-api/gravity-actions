@@ -1,18 +1,16 @@
-﻿#pragma warning disable S125
-/*
-* TEST SCENARIO (Rhino)
-* [test-id] 0183
-* [test-scenario] - Long Swipe, Element to Coordinates
-* 
-* [test-actions]
-* 1. navigate to {https://gravitymvctestapplication.azurewebsites.net/uicontrols/}
-* 2. long swipt {{$ --target:#input_range --source:200,200}} using {css selector}
-* 3. close browser
-* 
-* [test-expected-results]
-* [2] verify {attribute} on {} greater than {50}
-*/
-#pragma warning restore
+﻿/*
+ * TEST SCENARIO (Rhino)
+ * [test-id] 0183
+ * [test-scenario] - Long Swipe, Element to Coordinates
+ * 
+ * [test-actions]
+ * 1. navigate to {https://gravitymvctestapplication.azurewebsites.net/uicontrols/}
+ * 2. long swipt {{$ --target:#input_range --source:200,200}} using {css selector}
+ * 3. close browser
+ * 
+ * [test-expected-results]
+ * [2] verify {attribute} on {} greater than {50}
+ */
 using Gravity.IntegrationTests.Base;
 using Gravity.Plugins.Contracts;
 
@@ -20,6 +18,7 @@ using System.Collections.Generic;
 
 namespace Graivty.IntegrationTests.Cases.UiMobile.LongSwipeScenarios
 {
+    // TODO: not completed
     public class C0183 : TestCase
     {
         // set to mobile native

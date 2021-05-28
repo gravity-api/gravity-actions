@@ -2,7 +2,7 @@
   "description": "Submits the form (same as clicking the Submit button).",
   "examples": [
     {
-      "description": "Submits the form with [searchForm] id.",
+      "description": "Submits the form which its id is searchForm.",
       "literalExample": "submit form {searchForm}",
       "actionExample": {
         "action": "SubmitForm",
@@ -10,7 +10,7 @@
       }
     },
     {
-      "description": "Submits the form which it\"s index is [0] (counting from the first form in the DOM).",
+      "description": "Submits the form which its index is 0 (counting from the first form in the DOM).",
       "literalExample": "submit form {1}",
       "actionExample": {
         "action": "SubmitForm",
@@ -18,7 +18,7 @@
       }
     },
     {
-      "description": "Submits [//form]",
+      "description": "Submits the form found by the locator //form",
       "literalExample": "submit form on {//form}",
       "actionExample": {
         "action": "SubmitForm",
@@ -31,7 +31,7 @@
   "properties": {
     "onElement": "The locator value by which the element will be found.",
     "locator": "The locator type by which the element will be found.",
-    "argument": "The (zero based) index of the form or it\"s [id] property."
+    "argument": "The (zero based) index of the form or its id property value."
   },
   "protocol": {
     "endpoint": "/session/{session-id}/execute/sync",

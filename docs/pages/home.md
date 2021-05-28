@@ -82,7 +82,7 @@
 * [Refresh](./Refresh.md "Refresh")
 * [Scroll](./Scroll.md "Scroll")
 * [Select From Combo Box](./SelectFromComboBox.md "Select From Combo Box")
-* Submit Form
+* [Submit Form](./SubmitForm.md "Submit Form")
 * [Switch to Alert](./SwitchToAlert.md "Switch to Alert")
 * Switch to Default Content
 * Switch to Frame

@@ -46,7 +46,7 @@ right click on {click_button} using {id}
 // option no.1
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.ContextClick,
+    Action = GravityPlugins.ContextClick,
     OnElement = "click_button",
     Locator = LocatorsList.Id
 };
@@ -114,7 +114,7 @@ right click
 // option no.1
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.ContextClick
+    Action = GravityPlugins.ContextClick
 };
 
 // option no.2

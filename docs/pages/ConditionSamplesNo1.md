@@ -45,7 +45,7 @@ condition {{$ --attribute --eq:btn btn-default}} on {SearchButton} from {class} 
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.Condition,
+    Action = GravityPlugins.Condition,
     Argument = "{{$ --attribute --eq:btn btn-default}}",
     OnElement = "SearchButton",
     OnAttribute = "class",
@@ -54,14 +54,14 @@ var actionRule = new ActionRule
     {
         new ActionRule
         {
-            Action = GravityPlugin.SendKeys,
+            Action = GravityPlugins.SendKeys,
             Argument = "Carson",
             OnElement = "SearchString",
             Locator = LocatorsList.Id,
         },
         new ActionRule
         {
-            Action = GravityPlugin.Click,
+            Action = GravityPlugins.Click,
             OnElement = "SearchButton",
             Locator = LocatorsList.Id,
         }
@@ -180,7 +180,7 @@ condition {{$ --attribute --ne:btn-default btn}} on {SearchButton} from {class} 
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.Condition,
+    Action = GravityPlugins.Condition,
     Argument = "{{$ --attribute --ne:btn-default btn}}",
     OnElement = "SearchButton",
     OnAttribute = "class",
@@ -189,14 +189,14 @@ var actionRule = new ActionRule
     {
         new ActionRule
         {
-            Action = GravityPlugin.SendKeys,
+            Action = GravityPlugins.SendKeys,
             Argument = "Carson",
             OnElement = "SearchString",
             Locator = LocatorsList.Id,
         },
         new ActionRule
         {
-            Action = GravityPlugin.Click,
+            Action = GravityPlugins.Click,
             OnElement = "SearchButton",
             Locator = LocatorsList.Id,
         }
@@ -315,7 +315,7 @@ condition {{$ --attribute --match:^btn btn-default$}} on {SearchButton} from {cl
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.Condition,
+    Action = GravityPlugins.Condition,
     Argument = "{{$ --attribute --match:^btn btn-default$}}",
     OnElement = "SearchButton",
     OnAttribute = "class",
@@ -324,14 +324,14 @@ var actionRule = new ActionRule
     {
         new ActionRule
         {
-            Action = GravityPlugin.SendKeys,
+            Action = GravityPlugins.SendKeys,
             Argument = "Carson",
             OnElement = "SearchString",
             Locator = LocatorsList.Id,
         },
         new ActionRule
         {
-            Action = GravityPlugin.Click,
+            Action = GravityPlugins.Click,
             OnElement = "SearchButton",
             Locator = LocatorsList.Id,
         }
@@ -450,7 +450,7 @@ condition {{$ --attribute --not_match:^btn-default btn$}} on {SearchButton} from
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.Condition,
+    Action = GravityPlugins.Condition,
     Argument = "{{$ --attribute --not_match:^btn-default btn$}}",
     OnElement = "SearchButton",
     OnAttribute = "class",
@@ -459,14 +459,14 @@ var actionRule = new ActionRule
     {
         new ActionRule
         {
-            Action = GravityPlugin.SendKeys,
+            Action = GravityPlugins.SendKeys,
             Argument = "Carson",
             OnElement = "SearchString",
             Locator = LocatorsList.Id,
         },
         new ActionRule
         {
-            Action = GravityPlugin.Click,
+            Action = GravityPlugins.Click,
             OnElement = "SearchButton",
             Locator = LocatorsList.Id,
         }
@@ -586,7 +586,7 @@ condition {{$ --attribute --gt:0}} on {Edit} from {href} using {link text} filte
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.Condition,
+    Action = GravityPlugins.Condition,
     Argument = "{{$ --attribute --gt:0}}",
     OnElement = "Edit",
     OnAttribute = "href",
@@ -596,14 +596,14 @@ var actionRule = new ActionRule
     {
         new ActionRule
         {
-            Action = GravityPlugin.SendKeys,
+            Action = GravityPlugins.SendKeys,
             Argument = "Carson",
             OnElement = "SearchString",
             Locator = LocatorsList.Id,
         },
         new ActionRule
         {
-            Action = GravityPlugin.Click,
+            Action = GravityPlugins.Click,
             OnElement = "SearchButton",
             Locator = LocatorsList.Id,
         }
@@ -726,7 +726,7 @@ condition {{$ --attribute --lt:1000}} on {Edit} from {href} using {link text} fi
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.Condition,
+    Action = GravityPlugins.Condition,
     Argument = "{{$ --attribute --lt:1000}}",
     OnElement = "Edit",
     OnAttribute = "href",
@@ -736,14 +736,14 @@ var actionRule = new ActionRule
     {
         new ActionRule
         {
-            Action = GravityPlugin.SendKeys,
+            Action = GravityPlugins.SendKeys,
             Argument = "Carson",
             OnElement = "SearchString",
             Locator = LocatorsList.Id,
         },
         new ActionRule
         {
-            Action = GravityPlugin.Click,
+            Action = GravityPlugins.Click,
             OnElement = "SearchButton",
             Locator = LocatorsList.Id,
         }
@@ -866,7 +866,7 @@ condition {{$ --attribute --ge:0}} on {Edit} from {href} using {link text} filte
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.Condition,
+    Action = GravityPlugins.Condition,
     Argument = "{{$ --attribute --ge:0}}",
     OnElement = "Edit",
     OnAttribute = "href",
@@ -876,14 +876,14 @@ var actionRule = new ActionRule
     {
         new ActionRule
         {
-            Action = GravityPlugin.SendKeys,
+            Action = GravityPlugins.SendKeys,
             Argument = "Carson",
             OnElement = "SearchString",
             Locator = LocatorsList.Id,
         },
         new ActionRule
         {
-            Action = GravityPlugin.Click,
+            Action = GravityPlugins.Click,
             OnElement = "SearchButton",
             Locator = LocatorsList.Id,
         }
@@ -1006,7 +1006,7 @@ condition {{$ --attribute --le:1}} on {Edit} from {href} using {link text} filte
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.Condition,
+    Action = GravityPlugins.Condition,
     Argument = "{{$ --attribute --le:1}}",
     OnElement = "Edit",
     OnAttribute = "href",
@@ -1016,14 +1016,14 @@ var actionRule = new ActionRule
     {
         new ActionRule
         {
-            Action = GravityPlugin.SendKeys,
+            Action = GravityPlugins.SendKeys,
             Argument = "Carson",
             OnElement = "SearchString",
             Locator = LocatorsList.Id,
         },
         new ActionRule
         {
-            Action = GravityPlugin.Click,
+            Action = GravityPlugins.Click,
             OnElement = "SearchButton",
             Locator = LocatorsList.Id,
         }
@@ -1142,21 +1142,21 @@ condition {{$ --count --eq:3}} on {//tr[./td[@id]]}
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.Condition,
+    Action = GravityPlugins.Condition,
     Argument = "{{$ --count --eq:3}}",
     OnElement = "//tr[./td[@id]]",
     Actions = new[]
     {
         new ActionRule
         {
-            Action = GravityPlugin.SendKeys,
+            Action = GravityPlugins.SendKeys,
             Argument = "Carson",
             OnElement = "SearchString",
             Locator = LocatorsList.Id,
         },
         new ActionRule
         {
-            Action = GravityPlugin.Click,
+            Action = GravityPlugins.Click,
             OnElement = "SearchButton",
             Locator = LocatorsList.Id,
         }
@@ -1267,21 +1267,21 @@ condition {{$ --count --ne:1}} on {//tr[./td[@id]]}
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.Condition,
+    Action = GravityPlugins.Condition,
     Argument = "{{$ --count --ne:1}}",
     OnElement = "//tr[./td[@id]]",
     Actions = new[]
     {
         new ActionRule
         {
-            Action = GravityPlugin.SendKeys,
+            Action = GravityPlugins.SendKeys,
             Argument = "Carson",
             OnElement = "SearchString",
             Locator = LocatorsList.Id,
         },
         new ActionRule
         {
-            Action = GravityPlugin.Click,
+            Action = GravityPlugins.Click,
             OnElement = "SearchButton",
             Locator = LocatorsList.Id,
         }
@@ -1392,21 +1392,21 @@ condition {{$ --count --match:\d{1}}} on {//tr[./td[@id]]}
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.Condition,
+    Action = GravityPlugins.Condition,
     Argument = "{{$ --count --match:\\d{1}}}",
     OnElement = "//tr[./td[@id]]",
     Actions = new[]
     {
         new ActionRule
         {
-            Action = GravityPlugin.SendKeys,
+            Action = GravityPlugins.SendKeys,
             Argument = "Carson",
             OnElement = "SearchString",
             Locator = LocatorsList.Id,
         },
         new ActionRule
         {
-            Action = GravityPlugin.Click,
+            Action = GravityPlugins.Click,
             OnElement = "SearchButton",
             Locator = LocatorsList.Id,
         }
@@ -1517,21 +1517,21 @@ condition {{$ --count --not_match:\d{2}}} on {//tr[./td[@id]]}
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.Condition,
+    Action = GravityPlugins.Condition,
     Argument = "{{$ --count --not_match:\\d{2}}}",
     OnElement = "//tr[./td[@id]]",
     Actions = new[]
     {
         new ActionRule
         {
-            Action = GravityPlugin.SendKeys,
+            Action = GravityPlugins.SendKeys,
             Argument = "Carson",
             OnElement = "SearchString",
             Locator = LocatorsList.Id,
         },
         new ActionRule
         {
-            Action = GravityPlugin.Click,
+            Action = GravityPlugins.Click,
             OnElement = "SearchButton",
             Locator = LocatorsList.Id,
         }
@@ -1642,21 +1642,21 @@ condition {{$ --count --gt:1}} on {//tr[./td[@id]]}
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.Condition,
+    Action = GravityPlugins.Condition,
     Argument = "{{$ --count --gt:1}}",
     OnElement = "//tr[./td[@id]]",
     Actions = new[]
     {
         new ActionRule
         {
-            Action = GravityPlugin.SendKeys,
+            Action = GravityPlugins.SendKeys,
             Argument = "Carson",
             OnElement = "SearchString",
             Locator = LocatorsList.Id,
         },
         new ActionRule
         {
-            Action = GravityPlugin.Click,
+            Action = GravityPlugins.Click,
             OnElement = "SearchButton",
             Locator = LocatorsList.Id,
         }
@@ -1767,21 +1767,21 @@ condition {{$ --count --lt:1000}} on {//tr[./td[@id]]}
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.Condition,
+    Action = GravityPlugins.Condition,
     Argument = "{{$ --count --lt:1000}}",
     OnElement = "//tr[./td[@id]]",
     Actions = new[]
     {
         new ActionRule
         {
-            Action = GravityPlugin.SendKeys,
+            Action = GravityPlugins.SendKeys,
             Argument = "Carson",
             OnElement = "SearchString",
             Locator = LocatorsList.Id,
         },
         new ActionRule
         {
-            Action = GravityPlugin.Click,
+            Action = GravityPlugins.Click,
             OnElement = "SearchButton",
             Locator = LocatorsList.Id,
         }
@@ -1892,21 +1892,21 @@ condition {{$ --count --ge:1}} on {//tr[./td[@id]]}
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.Condition,
+    Action = GravityPlugins.Condition,
     Argument = "{{$ --count --ge:1}}",
     OnElement = "//tr[./td[@id]]",
     Actions = new[]
     {
         new ActionRule
         {
-            Action = GravityPlugin.SendKeys,
+            Action = GravityPlugins.SendKeys,
             Argument = "Carson",
             OnElement = "SearchString",
             Locator = LocatorsList.Id,
         },
         new ActionRule
         {
-            Action = GravityPlugin.Click,
+            Action = GravityPlugins.Click,
             OnElement = "SearchButton",
             Locator = LocatorsList.Id,
         }
@@ -2017,21 +2017,21 @@ condition {{$ --count --le:1000}} on {//tr[./td[@id]]}
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.Condition,
+    Action = GravityPlugins.Condition,
     Argument = "{{$ --count --le:1000}}",
     OnElement = "//tr[./td[@id]]",
     Actions = new[]
     {
         new ActionRule
         {
-            Action = GravityPlugin.SendKeys,
+            Action = GravityPlugins.SendKeys,
             Argument = "Carson",
             OnElement = "SearchString",
             Locator = LocatorsList.Id,
         },
         new ActionRule
         {
-            Action = GravityPlugin.Click,
+            Action = GravityPlugins.Click,
             OnElement = "SearchButton",
             Locator = LocatorsList.Id,
         }
@@ -2136,7 +2136,7 @@ condition {{$ --disabled}} on {input_disabled} using {id}
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.Condition,
+    Action = GravityPlugins.Condition,
     Argument = "argument": "{{$ --disabled}}",
     OnElement = "input_disabled",
     Locator = LocatorsList.Id,
@@ -2144,7 +2144,7 @@ var actionRule = new ActionRule
     {
         new ActionRule
         {
-            Action = GravityPlugin.SendKeys,
+            Action = GravityPlugins.SendKeys,
             Argument = "20",
             OnElement = "number_of_alerts",
             Locator = LocatorsList.Id

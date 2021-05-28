@@ -36,7 +36,7 @@ refresh
 // option no.1
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.Refresh
+    Action = GravityPlugins.Refresh
 };
 
 // option no.2
@@ -91,7 +91,7 @@ refresh {2}
 // option no.1
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.Refresh,
+    Action = GravityPlugins.Refresh,
     Argument = "2"
 };
 

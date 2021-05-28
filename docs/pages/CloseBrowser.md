@@ -37,7 +37,7 @@ close browser
 // option no.1
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.CloseBrowser
+    Action = GravityPlugins.CloseBrowser
 };
 
 // option no.2

@@ -57,7 +57,7 @@ go to {https://gravitymvctestapplication.azurewebsites.net/uicontrols/}
 // option no.1
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.GoToUrl,
+    Action = GravityPlugins.GoToUrl,
     Argument = "https://gravitymvctestapplication.azurewebsites.net/uicontrols/"
 };
 
@@ -120,7 +120,7 @@ go to {{$ --url:https://gravitymvctestapplication.azurewebsites.net/uicontrols/ 
 // option no.1
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.GoToUrl,
+    Action = GravityPlugins.GoToUrl,
     Argument = "{{$ --url:https://gravitymvctestapplication.azurewebsites.net/uicontrols/ --blank}}"
 };
 
@@ -184,7 +184,7 @@ go to on {url_div} using {id}
 // option no.1
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.GoToUrl,
+    Action = GravityPlugins.GoToUrl,
     OnElement = "url_div",
     Locator = LocatorsList.Id
 };
@@ -254,7 +254,7 @@ go to {{$ --blank}} on {url_div} using {id}
 // option no.1
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.GoToUrl,
+    Action = GravityPlugins.GoToUrl,
     Argument = "{{$ --blank}}",
     OnElement: "url_div",
     Locator: LocatorsList.Id
@@ -329,7 +329,7 @@ go to on {url_div} using {id} from {href}
 // option no.1
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.GoToUrl,
+    Action = GravityPlugins.GoToUrl,
     OnElement = "url_div",
     OnAttribute = "href",
     Locator = LocatorsList.Id
@@ -405,7 +405,7 @@ go to on {url_div_text} using {id} filter {http.*$}
 // option no.1
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.GoToUrl,
+    Action = GravityPlugins.GoToUrl,
     OnElement: "url_div_text",
     OnAttribute: "href",
     Locator: "LocatorsList.Id",

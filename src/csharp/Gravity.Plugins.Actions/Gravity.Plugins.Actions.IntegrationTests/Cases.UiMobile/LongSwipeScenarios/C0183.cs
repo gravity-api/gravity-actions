@@ -38,7 +38,7 @@ namespace Graivty.IntegrationTests.Cases.UiMobile.LongSwipeScenarios
                 },
                 //new ActionRule
                 //{
-                //    Action = GravityPlugin.LongSwipe,
+                //    Action = GravityPlugins.LongSwipe,
                 //    Argument = "{{$ --source:org.wikipedia.alpha:id/view_card_header_image --target:200,200}}",
                 //    Locator = LocatorsList.Id
                 //},

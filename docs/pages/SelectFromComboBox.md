@@ -46,7 +46,7 @@ select from combo box {Two} on {select_menu} using {id}
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.SelectFromComboBox,
+    Action = GravityPlugins.SelectFromComboBox,
     Argument = "Two",
     OnElement: "select_menu",
     Locator: "Id"
@@ -110,7 +110,7 @@ select from combo box {2} on {select_menu} using {id} from {value}
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.SelectFromComboBox,
+    Action = GravityPlugins.SelectFromComboBox,
     Argument = "2",
     OnElement: "select_menu",
     Locator: "Id",
@@ -178,7 +178,7 @@ select from combo box {2} on {select_menu} using {id} from {index}
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.SelectFromComboBox,
+    Action = GravityPlugins.SelectFromComboBox,
     Argument = "2",
     OnElement: "select_menu",
     Locator: "Id",
@@ -243,7 +243,7 @@ select from combo box {[\"One\", \"Two\"]} on {select_menu_multiple} using {id}
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.SelectFromComboBox,
+    Action = GravityPlugins.SelectFromComboBox,
     Argument = "[\"One\", \"Two\"]",
     OnElement: "select_menu_multiple",
     Locator: "Id"
@@ -305,7 +305,7 @@ select from combo box {[\"1\", \"2\"]} on {select_menu_multiple} using {id} from
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.SelectFromComboBox,
+    Action = GravityPlugins.SelectFromComboBox,
     Argument = "[\"1\", \"2\"]",
     OnElement: "select_menu_multiple",
     Locator: "Id",
@@ -371,7 +371,7 @@ select from combo box {[\"1\", \"2\"]} on {select_menu_multiple} using {id} from
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.SelectFromComboBox,
+    Action = GravityPlugins.SelectFromComboBox,
     Argument = "[\"1\", \"2\"]",
     OnElement: "select_menu_multiple",
     Locator: "Id",
@@ -436,7 +436,7 @@ select from combo box {{$ --all}} on {select_menu_multiple} using {id}
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.SelectFromComboBox,
+    Action = GravityPlugins.SelectFromComboBox,
     Argument = "{{$ --all}}",
     OnElement: "select_menu_multiple",
     Locator: "Id"
@@ -498,7 +498,7 @@ select from combo box {{$ --all}} on {select_menu_multiple} using {id} filter {T
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.SelectFromComboBox,
+    Action = GravityPlugins.SelectFromComboBox,
     Argument = "{{$ --all}}",
     OnElement: "select_menu_multiple",
     Locator: "Id",

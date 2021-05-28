@@ -34,7 +34,7 @@ assert {{$ --selected}} on {input_selected} using {id}
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.Assert,
+    Action = GravityPlugins.Assert,
     Argument = "{{$ --selected}}",
     OnElement = "input_selected",
     Locator = LocatorsList.Id
@@ -96,7 +96,7 @@ assert {{$ --selected}} on {input_selected} using {id}
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.Assert,
+    Action = GravityPlugins.Assert,
     Argument = "{{$ --stale}}",
     OnElement = "for_stale_element",
     Locator = LocatorsList.Id
@@ -158,7 +158,7 @@ assert {{$ --text --eq:Foo Bar}} on {text for testing} using {name}
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.Assert,
+    Action = GravityPlugins.Assert,
     Argument = "{{$ --text --eq:Foo Bar}}",
     OnElement = "text for testing",
     Locator = LocatorsList.Name
@@ -221,7 +221,7 @@ assert {{$ --text --ne:Bar Foo}} on {text for testing} using {name}
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.Assert,
+    Action = GravityPlugins.Assert,
     Argument = "{{$ --text --ne:Bar Foo}}",
     OnElement = "text for testing",
     Locator = LocatorsList.Name
@@ -284,7 +284,7 @@ assert {{$ --text --match:^Foo Bar$}} on {text for testing} using {name}
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.Assert,
+    Action = GravityPlugins.Assert,
     Argument = "{{$ --text --match:^Foo Bar$}}",
     OnElement = "text for testing",
     Locator = LocatorsList.Name
@@ -347,7 +347,7 @@ assert {{$ --text --not_match:^Bar Foo$}} on {text for testing} using {name}
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.Assert,
+    Action = GravityPlugins.Assert,
     Argument = "{{$ --text --not_match:^Bar Foo$}}",
     OnElement = "text for testing",
     Locator = LocatorsList.Name
@@ -410,7 +410,7 @@ assert {{$ --text --gt:1}} on {number for testing} using {name}
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.Assert,
+    Action = GravityPlugins.Assert,
     Argument = "{{$ --text --gt:1}}",
     OnElement = "number for testing",
     Locator = LocatorsList.Name
@@ -473,7 +473,7 @@ assert {{$ --text --lt:100}} on {number for testing} using {name}
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.Assert,
+    Action = GravityPlugins.Assert,
     Argument = "{{$ --text --lt:100}}",
     OnElement = "number for testing",
     Locator = LocatorsList.Name
@@ -536,7 +536,7 @@ assert {{$ --text --ge:10}} on {number for testing} using {name}
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.Assert,
+    Action = GravityPlugins.Assert,
     Argument = "{{$ --text --ge:10}}",
     OnElement = "number for testing",
     Locator = LocatorsList.Name
@@ -599,7 +599,7 @@ assert {{$ --text --ge:10}} on {number for testing} using {name}
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.Assert,
+    Action = GravityPlugins.Assert,
     Argument = "{{$ --text --le:10}}",
     OnElement = "number for testing",
     Locator = LocatorsList.Name
@@ -659,7 +659,7 @@ assert {{$ --title --eq:UI Controls v10 - Contoso University}}
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.Assert,
+    Action = GravityPlugins.Assert,
     Argument = "{{$ --title --eq:UI Controls v10 - Contoso University}}"
 };
 ```
@@ -712,7 +712,7 @@ assert {{$ --title --ne:Contoso University - UI Controls v10}}
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.Assert,
+    Action = GravityPlugins.Assert,
     Argument = "{{$ --title --ne:Contoso University - UI Controls v10}}"
 };
 ```
@@ -765,7 +765,7 @@ assert {{$ --title --match:^UI Controls}}
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.Assert,
+    Action = GravityPlugins.Assert,
     Argument = "{{$ --title --match:^UI Controls}}"
 };
 ```
@@ -818,7 +818,7 @@ assert {{$ --title --not_match:UI Controls v10$}}
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.Assert,
+    Action = GravityPlugins.Assert,
     Argument = "{{$ --title --not_match:UI Controls v10$}}"
 };
 ```
@@ -872,7 +872,7 @@ assert {{$ --title --gt:1}} filter {\d+}
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.Assert,
+    Action = GravityPlugins.Assert,
     Argument = "{{$ --title --gt:1}}",
     RegularExpression = "\\d+"
 };
@@ -930,7 +930,7 @@ assert {{$ --title --gt:100}} filter {\d+}
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.Assert,
+    Action = GravityPlugins.Assert,
     Argument = "{{$ --title --lt:100}}",
     RegularExpression = "\\d+"
 };
@@ -988,7 +988,7 @@ assert {{$ --title --ge:10}} filter {\d+}
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.Assert,
+    Action = GravityPlugins.Assert,
     Argument = "{{$ --title --ge:10}}",
     RegularExpression = "\\d+"
 };
@@ -1046,7 +1046,7 @@ assert {{$ --title --ge:10}} filter {\d+}
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.Assert,
+    Action = GravityPlugins.Assert,
     Argument = "{{$ --title --le:10}}",
     RegularExpression = "\\d+"
 };
@@ -1102,7 +1102,7 @@ assert {{$ --url --eq:https://gravitymvctestapplication.azurewebsites.net/course
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.Assert,
+    Action = GravityPlugins.Assert,
     Argument = "{{$ --url --eq:https://gravitymvctestapplication.azurewebsites.net/course/}}"
 };
 ```
@@ -1155,7 +1155,7 @@ assert {{$ --title --ne:https://gravitymvctestapplication.azurewebsites.net/}}
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.Assert,
+    Action = GravityPlugins.Assert,
     Argument = "{{$ --url --ne:https://gravitymvctestapplication.azurewebsites.net/}}"
 };
 ```
@@ -1208,7 +1208,7 @@ assert {{$ --url --match:course/$}}
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.Assert,
+    Action = GravityPlugins.Assert,
     Argument = "{{$ --url --match:course/$}}"
 };
 ```
@@ -1261,7 +1261,7 @@ assert {{$ --title --not_match:^course/}}
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.Assert,
+    Action = GravityPlugins.Assert,
     Argument = "{{$ --url --not_match:^course/}}"
 };
 ```
@@ -1315,7 +1315,7 @@ assert {{$ --title --gt:1000}} filter {\\d+}
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.Assert,
+    Action = GravityPlugins.Assert,
     Argument = "{{$ --url --gt:1000}}",
     RegularExpression = "\\d+"
 };
@@ -1373,7 +1373,7 @@ assert {{$ --url --lt:2000}} filter {\d+}
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.Assert,
+    Action = GravityPlugins.Assert,
     Argument = "{{$ --url --lt:2000}}",
     RegularExpression = "\\d+"
 };
@@ -1431,7 +1431,7 @@ assert {{$ --url --ge:1045}} filter {\d+}
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.Assert,
+    Action = GravityPlugins.Assert,
     Argument = "{{$ --url --ge:1045}}",
     RegularExpression = "\\d+"
 };
@@ -1489,7 +1489,7 @@ assert {{$ --url --le:1045}} filter {\d+}
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.Assert,
+    Action = GravityPlugins.Assert,
     Argument = "{{$ --url --le:1045}}",
     RegularExpression = "\\d+"
 };
@@ -1547,7 +1547,7 @@ assert {{$ --visible}} on {input_enabled} using {id}
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.Assert,
+    Action = GravityPlugins.Assert,
     Argument = "{{$ --visible}}",
     OnElement = "input_enabled",
     Locator = LocatorsList.Id
@@ -1607,7 +1607,7 @@ assert {{$ --windows_count --eq:1}}
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.Assert,
+    Action = GravityPlugins.Assert,
     Argument = "{{$ --windows_count --eq:1}}"
 };
 ```
@@ -1660,7 +1660,7 @@ assert {{$ --windows_count --ne:0}}
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.Assert,
+    Action = GravityPlugins.Assert,
     Argument = "{{$ --windows_count --ne:0}}"
 };
 ```
@@ -1710,7 +1710,7 @@ assert {{$ --windows_count --match:\d{1}}}
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.Assert,
+    Action = GravityPlugins.Assert,
     Argument = "{{$ --windows_count --match:\\d{1}}}"
 };
 ```
@@ -1763,7 +1763,7 @@ assert {{$ --windows_count --not_match:1\d+}}
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.Assert,
+    Action = GravityPlugins.Assert,
     Argument = "{{$ --windows_count --not_match:1\\d+}}"
 };
 ```
@@ -1811,7 +1811,7 @@ Assert that ```IWebDriver.WindowHandles``` count is _**greater than**_ ```0```.
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.Assert,
+    Action = GravityPlugins.Assert,
     Argument = "{{$ --windows_count --gt:0}}"
 };
 ```
@@ -1864,7 +1864,7 @@ assert {{$ --windows_count --lt:10}}
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.Assert,
+    Action = GravityPlugins.Assert,
     Argument = "{{$ --windows_count --lt:10}}"
 };
 ```
@@ -1917,7 +1917,7 @@ assert {{$ --windows_count --ge:1}}
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.Assert,
+    Action = GravityPlugins.Assert,
     Argument = "{{$ --windows_count --ge:1}}"
 };
 ```
@@ -1970,7 +1970,7 @@ assert {{$ --windows_count --le:1}}
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.Assert,
+    Action = GravityPlugins.Assert,
     Argument = "{{$ --windows_count --le:1}}"
 };
 ```

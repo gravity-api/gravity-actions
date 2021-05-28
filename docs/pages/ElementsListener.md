@@ -61,7 +61,7 @@ elements listener {500} on {//div[./strong[contains(.,\"Random Element.\")]]}
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.ElementsListener,
+    Action = GravityPlugins.ElementsListener,
     Argument = "500",
     OnElement = "//div[./strong[contains(.,\"Random Element.\")]]"
 };
@@ -119,7 +119,7 @@ elements listener {{$ --interval:500 --timeout:30000}} on {//div[./strong[contai
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.ElementsListener,
+    Action = GravityPlugins.ElementsListener,
     Argument = "{{$ --interval:500 --timeout:30000}}",
     OnElement = "//div[./strong[contains(.,\"Random Element.\")]]"
 };
@@ -191,7 +191,7 @@ elements listener {{$ --interval:00:00:01 --timeout:00:00:30}} on {//div[./stron
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.ElementsListener,
+    Action = GravityPlugins.ElementsListener,
     Argument = "{{$ --interval:00:00:01 --timeout:00:00:30}}",
     OnElement = "//div[./strong[contains(.,\"Random Element.\")]]"
     actions: [

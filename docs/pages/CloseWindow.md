@@ -40,7 +40,7 @@ close window {2}
 // option no.1
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.CloseWindow,
+    Action = GravityPlugins.CloseWindow,
     Argument = "2"
 };
 

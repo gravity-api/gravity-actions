@@ -31,7 +31,7 @@ assert {{$ --attribute --eq:btn btn-default}} from {class} on {ul > li:nth-child
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.Assert,
+    Action = GravityPlugins.Assert,
     Argument = "{{$ --attribute --eq:nav-link text-dark}}",
     OnElement = "ul > li:nth-child(1) > a",
     Locator: LocatorsList.CssSelector,
@@ -96,7 +96,7 @@ assert {{$ --attribute --ne:btn btn-default}} from {class} on {ul > li:nth-child
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.Assert,
+    Action = GravityPlugins.Assert,
     Argument = "{{$ --attribute --ne:btn-default btn}}",
     OnElement = "p:nth-child(3) > a",
     Locator = LocatorsList.CssSelector,
@@ -161,7 +161,7 @@ assert {{$ --attribute --match:^btn btn-default$}} from {class} on {See the tuto
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.Assert,
+    Action = GravityPlugins.Assert,
     Argument = "{{$ --attribute --match:^btn btn-default$}}",
     OnElement = "See the tutorial »",
     Locator = LocatorsList.LinkText,
@@ -226,7 +226,7 @@ assert {{$ --attribute --not_match:^btn-default btn$}} from {class} on {See the 
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.Assert,
+    Action = GravityPlugins.Assert,
     Argument = "{{$ --attribute --not_match:^btn-default btn$}}",
     OnElement = "See the tutorial »",
     Locator = LocatorsList.LinkText,
@@ -291,7 +291,7 @@ assert {{$ --attribute --gt:1}} from {number} on {#attribute_div} using {css sel
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.Assert,
+    Action = GravityPlugins.Assert,
     Argument = "{{$ --attribute --gt:1}}",
     OnElement = "#attribute_div",
     Locator = LocatorsList.CssSelector,
@@ -356,7 +356,7 @@ assert {{$ --attribute --lt:1}} from {number} on {#attribute_div} using {css sel
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.Assert,
+    Action = GravityPlugins.Assert,
     Argument = "{{$ --attribute --lt:1}}",
     OnElement = "#attribute_div",
     Locator = LocatorsList.CssSelector,
@@ -421,7 +421,7 @@ assert {{$ --attribute --ge:1}} from {number} on {#attribute_div} using {css sel
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.Assert,
+    Action = GravityPlugins.Assert,
     Argument = "{{$ --attribute --ge:1}}",
     OnElement = "#attribute_div",
     Locator = LocatorsList.CssSelector,
@@ -486,7 +486,7 @@ assert {{$ --attribute --le:1}} from {number} on {#attribute_div} using {css sel
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.Assert,
+    Action = GravityPlugins.Assert,
     Argument = "{{$ --attribute --le:1}}",
     OnElement = "#attribute_div",
     Locator = LocatorsList.CssSelector,
@@ -551,7 +551,7 @@ assert {{$ --count --eq:7}} on {//tbody/tr}
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.Assert,
+    Action = GravityPlugins.Assert,
     Argument = "{{$ --count --eq:7}}",
     OnElement = "//tbody/tr"
 };
@@ -606,7 +606,7 @@ assert {{$ --count --ne:10}} on {//tbody/tr}
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.Assert,
+    Action = GravityPlugins.Assert,
     Argument = "{{$ --count --ne:10}}",
     OnElement = "//tbody/tr"
 };
@@ -661,7 +661,7 @@ assert {{$ --count --match:^\d{1}$}} on {//tbody/tr}
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.Assert,
+    Action = GravityPlugins.Assert,
     Argument = "{{$ --count --match:^\\d{1}$}}",
     OnElement = "//tbody/tr"
 };
@@ -716,7 +716,7 @@ assert {{$ --count --not_match:^1\d+$}} on {//tbody/tr}
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.Assert,
+    Action = GravityPlugins.Assert,
     Argument = "{{$ --count --not_match:^1\\d+$}}",
     OnElement = "//tbody/tr"
 };
@@ -771,7 +771,7 @@ assert {{$ --count --gt:1}} on {//tbody/tr}
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.Assert,
+    Action = GravityPlugins.Assert,
     Argument = "{{$ --count --gt:1}}",
     OnElement = "//tbody/tr"
 };
@@ -826,7 +826,7 @@ assert {{$ --count --lt:10}} on {//tbody/tr}
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.Assert,
+    Action = GravityPlugins.Assert,
     Argument = "{{$ --count --lt:10}}",
     OnElement = "//tbody/tr"
 };
@@ -881,7 +881,7 @@ assert {{$ --count --ge:1}} on {//tbody/tr}
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.Assert,
+    Action = GravityPlugins.Assert,
     Argument = "{{$ --count --ge:1}}",
     OnElement = "//tbody/tr"
 };
@@ -936,7 +936,7 @@ assert {{$ --count --le:1}} on {//tbody/tr}
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.Assert,
+    Action = GravityPlugins.Assert,
     Argument = "{{$ --count --le:10}}",
     OnElement = "//tbody/tr"
 };
@@ -994,7 +994,7 @@ assert {{$ --disabled}} on {input_disabled} using {id}
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.Assert,
+    Action = GravityPlugins.Assert,
     Argument = "{{$ --disabled}}",
     OnElement = "input_disabled",
     Locator = LocatorsList.Id

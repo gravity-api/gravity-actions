@@ -2,15 +2,18 @@
   "cliArguments": {
     "keys": {
       "description": "Keys to send to the alert.",
-      "values": []
-    },
-    "user": {
-      "description": "User name in an alert prompting for credentials.",
-      "values": []
+      "values": [
+      ]
     },
     "password": {
       "decription": "Password in an alert prompting for credentials.",
-      "values": []
+      "values": [
+      ]
+    },
+    "user": {
+      "description": "User name in an alert prompting for credentials.",
+      "values": [
+      ]
     }
   },
   "description": "Switches to the currently active modal dialog for this particular driver instance.",
@@ -37,39 +40,41 @@
     },
     {
       "description": "Sends keys to the alert.",
-      "literalExample": "switch to alert {{$ --keys:hello}}",
+      "literalExample": "switch to alert {{$ --keys:Foo Bar}}",
       "actionExample": {
         "action": "SwitchToAlert",
-        "argument": "{{$ --keys:hello}}"
+        "argument": "{{$ --keys:Foo Bar}}"
+      }
+    },
+    {
+      "description": "Sends keys to the alert and accept it.",
+      "literalExample": "switch to alert {{$ --keys:Foo Bar --accept}}",
+      "actionExample": {
+        "action": "SwitchToAlert",
+        "argument": "{{$ --keys:Foo Bar --accept}}"
       }
     },
     {
       "description": "Sets the user name and password in an alert prompting for credentials.",
-      "literalExample": "switch to alert {{$ --user:userName --pass:userPassword}}",
+      "literalExample": "switch to alert {{$ --user:Foo --pass:Bar}}",
       "actionExample": {
         "action": "SwitchToAlert",
-        "argument": "{{$ --user:userName --pass:userPassword}}"
-      }
-    },
-    {
-      "description": "Sends keys to the alert & sets the user name and password in an alert prompting for credentials (sends keys first).",
-      "literalExample": "switch to alert {{$ --keys:hello --user:userName --pass:userPassword}}",
-      "actionExample": {
-        "action": "SwitchToAlert",
-        "argument": "{{$ --keys:hello --user:userName --pass:userPassword}}"
+        "argument": "{{$ --user:Foo --pass:Bar}}"
       }
     }
   ],
   "name": "SwitchToAlert",
   "pluginType": "Action",
   "properties": {
-    "argument": "The action that will be taken on the alert dialog."
+    "argument": "The action(s) that will be taken on the alert dialog."
   },
   "protocol": {
     "endpoint": "/session/{session-id}/alert/{action}",
     "w3c": "https://www.w3.org/TR/webdriver/#user-prompts"
   },
-  "scope": [ "web" ],
+  "scope": [
+    "web"
+  ],
   "summary": "Switches to the currently active modal dialog for this particular driver instance.",
   "testOn": "https://gravitymvctestapplication.azurewebsites.net/instructor"
 }

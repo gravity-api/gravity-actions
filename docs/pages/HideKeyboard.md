@@ -34,7 +34,7 @@ hide keyboard
 // option no.1
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.HideKeyboard
+    Action = GravityPlugins.HideKeyboard
 };
 
 // option no.2

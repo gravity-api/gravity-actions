@@ -55,7 +55,7 @@ execute script {document.getElementById(\"input_enabled\").setAttribute(\"value\
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.ExecuteScript,
+    Action = GravityPlugins.ExecuteScript,
     Argument = "{document.getElementById(\"input_enabled\").setAttribute(\"value\", \"foo bar\")}"
 };
 ```
@@ -110,7 +110,7 @@ execute script {arguments[0].click();} on {click_button} using {id}
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.ExecuteScript,
+    Action = GravityPlugins.ExecuteScript,
     Argument = "{arguments[0].click();}",
     OnElement = "click_button",
     Locator = LocatorsList.Id
@@ -171,7 +171,7 @@ execute script {{$ --src:window.scrollTo(arguments[0], arguments[1]); --args:[0,
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.ExecuteScript,
+    Action = GravityPlugins.ExecuteScript,
     Argument = "{{$ --src:window.scrollTo(arguments[0], arguments[1]); --args:[0, 100]}}",  
 };
 ```
@@ -243,7 +243,7 @@ extract from page on {//input[@id=\"input_selected\"]}
 // action rule
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.ExtractFromDom
+    Action = GravityPlugins.ExtractFromDom
 };
 
 // extraction rule
@@ -259,7 +259,7 @@ var extraction = new ExtractionRule
             {
                 new ActionRule
                 {
-                    Action = GravityPlugin.ExecuteScript,
+                    Action = GravityPlugins.ExecuteScript,
                     Argument = ".checked=false;"
                 }
             }

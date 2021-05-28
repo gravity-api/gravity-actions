@@ -50,7 +50,7 @@ extract from dom on {//td[contains(@id,'student_first_name')]}
 // action rule - option no.1
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.ExtractFromSource
+    Action = GravityPlugins.ExtractFromSource
 };
 
 // extraction rule - option no.1
@@ -186,7 +186,7 @@ extract from dom on {//td[contains(@id,'student_first_name')]}
 // action rule - option no.1
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.ExtractFromSource
+    Action = GravityPlugins.ExtractFromSource
 };
 
 // extraction rule - option no.1
@@ -322,7 +322,7 @@ extract from dom on {//td[contains(@id,'student_first_name')]}
 // action rule - option no.1
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.ExtractFromSource
+    Action = GravityPlugins.ExtractFromSource
 };
 
 // extraction rule - option no.1
@@ -453,7 +453,7 @@ extract from dom on {//td[contains(@id,'student_first_name')]}
 // action rule - option no.1
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.ExtractFromSource
+    Action = GravityPlugins.ExtractFromSource
 };
 
 // extraction rule - option no.1
@@ -584,7 +584,7 @@ extract from dom on {//td[contains(@id,'student_first_name')]}
 // action rule - option no.1
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.ExtractFromSource
+    Action = GravityPlugins.ExtractFromSource
 };
 
 // extraction rule - option no.1
@@ -715,7 +715,7 @@ extract from dom on {//td[contains(@id,'student_first_name')]}
 // action rule - option no.1
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.ExtractFromSource
+    Action = GravityPlugins.ExtractFromSource
 };
 
 // extraction rule - option no.1
@@ -847,7 +847,7 @@ extract from dom on {//td[contains(@id,'student_first_name')]}
 // action rule - option no.1
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.ExtractFromSource
+    Action = GravityPlugins.ExtractFromSource
 };
 
 // extraction rule - option no.1
@@ -978,7 +978,7 @@ extract from dom on {//td[contains(@id,'student_first_name')]}
 // action rule - option no.1
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.ExtractFromSource
+    Action = GravityPlugins.ExtractFromSource
 };
 
 // extraction rule - option no.1
@@ -1116,7 +1116,7 @@ extract from dom on {//td[contains(@id,'student_first_name')]}
 // action rule - option no.1
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.ExtractFromSource
+    Action = GravityPlugins.ExtractFromSource
 };
 
 // extraction rule - option no.1
@@ -1253,7 +1253,7 @@ extract from dom on {//td[contains(@id,'student_first_name')]}
 // action rule - option no.1
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.ExtractFromSource
+    Action = GravityPlugins.ExtractFromSource
 };
 
 // extraction rule - option no.1

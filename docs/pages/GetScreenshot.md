@@ -42,7 +42,7 @@ get screenshot {GetScreenshot/image.png}
 // option no.1
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.GetScreenshot,
+    Action = GravityPlugins.GetScreenshot,
     Argument = "GetScreenshot/image.png"
 };
 
@@ -104,7 +104,7 @@ get screenshot {GetScreenshot/image.png} on {//div[@class=\"jumbotron\"]}
 // option no.1
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.GetScreenshot,
+    Action = GravityPlugins.GetScreenshot,
     Argument = "GetScreenshot/image.png",
     OnElement = "//div[@class=\"jumbotron\"]"
 };

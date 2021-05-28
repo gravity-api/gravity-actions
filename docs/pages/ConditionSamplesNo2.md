@@ -44,20 +44,20 @@ condition {{$ --driver --eq:OpenQA.Selenium.Remote.RemoteWebDriver}}
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.Condition,
+    Action = GravityPlugins.Condition,
     Argument = "{{$ --driver --eq:OpenQA.Selenium.Remote.RemoteWebDriver}}",
     Actions = new[]
     {
         new ActionRule
         {
-            Action = GravityPlugin.SendKeys,
+            Action = GravityPlugins.SendKeys,
             Argument = "Carson",
             OnElement = "SearchString",
             Locator = LocatorsList.Id,
         },
         new ActionRule
         {
-            Action = GravityPlugin.Click,
+            Action = GravityPlugins.Click,
             OnElement = "SearchButton",
             Locator = LocatorsList.Id,
         }
@@ -164,20 +164,20 @@ condition {{$ --driver --ne:not_a_driver}}
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.Condition,
+    Action = GravityPlugins.Condition,
     Argument = "{{$ --driver --ne:not_a_driver}}",
     Actions = new[]
     {
         new ActionRule
         {
-            Action = GravityPlugin.SendKeys,
+            Action = GravityPlugins.SendKeys,
             Argument = "Carson",
             OnElement = "SearchString",
             Locator = LocatorsList.Id,
         },
         new ActionRule
         {
-            Action = GravityPlugin.Click,
+            Action = GravityPlugins.Click,
             OnElement = "SearchButton",
             Locator = LocatorsList.Id,
         }
@@ -284,20 +284,20 @@ condition {{$ --driver --match:RemoteWebDriver}}
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.Condition,
+    Action = GravityPlugins.Condition,
     Argument = "{{$ --driver --match:RemoteWebDriver}}",
     Actions = new[]
     {
         new ActionRule
         {
-            Action = GravityPlugin.SendKeys,
+            Action = GravityPlugins.SendKeys,
             Argument = "Carson",
             OnElement = "SearchString",
             Locator = LocatorsList.Id,
         },
         new ActionRule
         {
-            Action = GravityPlugin.Click,
+            Action = GravityPlugins.Click,
             OnElement = "SearchButton",
             Locator = LocatorsList.Id,
         }
@@ -404,20 +404,20 @@ condition {{$ --driver --not_match:not_a_driver}}
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.Condition,
+    Action = GravityPlugins.Condition,
     Argument = "{{$ --driver --not_match:not_a_driver}}",
     Actions = new[]
     {
         new ActionRule
         {
-            Action = GravityPlugin.SendKeys,
+            Action = GravityPlugins.SendKeys,
             Argument = "Carson",
             OnElement = "SearchString",
             Locator = LocatorsList.Id,
         },
         new ActionRule
         {
-            Action = GravityPlugin.Click,
+            Action = GravityPlugins.Click,
             OnElement = "SearchButton",
             Locator = LocatorsList.Id,
         }
@@ -519,7 +519,7 @@ condition {{$ --enabled}} on {input_enabled} using {id}
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.Condition,
+    Action = GravityPlugins.Condition,
     Argument = "argument": "{{$ --enabled}}",
     OnElement = "input_enabled",
     Locator = LocatorsList.Id,
@@ -527,7 +527,7 @@ var actionRule = new ActionRule
     {
         new ActionRule
         {
-            Action = GravityPlugin.SendKeys,
+            Action = GravityPlugins.SendKeys,
             Argument = "20",
             OnElement = "number_of_alerts",
             Locator = LocatorsList.Id
@@ -622,7 +622,7 @@ condition {{$ --exists}} on {input_hidden} using {id}
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.Condition,
+    Action = GravityPlugins.Condition,
     Argument = "argument": "{{$ --exists}}",
     OnElement = "input_hidden",
     Locator = LocatorsList.Id,
@@ -630,7 +630,7 @@ var actionRule = new ActionRule
     {
         new ActionRule
         {
-            Action = GravityPlugin.SendKeys,
+            Action = GravityPlugins.SendKeys,
             Argument = "20",
             OnElement = "number_of_alerts",
             Locator = LocatorsList.Id
@@ -725,7 +725,7 @@ condition {{$ --hidden}} on {input_hidden} using {id}
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.Condition,
+    Action = GravityPlugins.Condition,
     Argument = "argument": "{{$ --hidden}}",
     OnElement = "input_hidden",
     Locator = LocatorsList.Id,
@@ -733,7 +733,7 @@ var actionRule = new ActionRule
     {
         new ActionRule
         {
-            Action = GravityPlugin.SendKeys,
+            Action = GravityPlugins.SendKeys,
             Argument = "20",
             OnElement = "number_of_alerts",
             Locator = LocatorsList.Id
@@ -828,7 +828,7 @@ condition {{$ --not_exists}} on {no_element} using {id}
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.Condition,
+    Action = GravityPlugins.Condition,
     Argument = "argument": "{{$ --not_exists}}",
     OnElement = "no_element",
     Locator = LocatorsList.Id,
@@ -836,7 +836,7 @@ var actionRule = new ActionRule
     {
         new ActionRule
         {
-            Action = GravityPlugin.SendKeys,
+            Action = GravityPlugins.SendKeys,
             Argument = "20",
             OnElement = "number_of_alerts",
             Locator = LocatorsList.Id
@@ -933,7 +933,7 @@ condition {{$ --not_selected}} on {input_not_selected} using {id}
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.Condition,
+    Action = GravityPlugins.Condition,
     Argument = "argument": "{{$ --not_selected}}",
     OnElement = "input_not_selected",
     Locator = LocatorsList.Id,
@@ -941,7 +941,7 @@ var actionRule = new ActionRule
     {
         new ActionRule
         {
-            Action = GravityPlugin.SendKeys,
+            Action = GravityPlugins.SendKeys,
             Argument = "20",
             OnElement = "number_of_alerts",
             Locator = LocatorsList.Id

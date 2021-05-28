@@ -42,7 +42,7 @@ wait {3000}
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.Wait,
+    Action = GravityPlugins.Wait,
     Argument = "3000"
 };
 ```
@@ -95,7 +95,7 @@ wait {00:05:30}
 ```csharp
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.Wait,
+    Action = GravityPlugins.Wait,
     Argument = "00:05:30"
 };
 ```

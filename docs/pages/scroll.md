@@ -59,7 +59,7 @@ scroll {1000}
 // option no.1
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.Scroll,
+    Action = GravityPlugins.Scroll,
     Argument = "1000"
 };
 
@@ -120,7 +120,7 @@ scroll {{$ --top:1000}}
 // option no.1
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.Scroll,
+    Action = GravityPlugins.Scroll,
     Argument = "{{$ --top:1000}}"
 };
 
@@ -183,7 +183,7 @@ scroll {1000} on {text_area_enabled} using {id}
 // option no.1
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.Scroll,
+    Action = GravityPlugins.Scroll,
     Argument = "1000",
     OnElement = "text_area_enabled",
     Locator = LocatorsList.Id
@@ -256,7 +256,7 @@ scroll {{$ --top:1000}} on {text_area_enabled} using {id}
 // option no.1
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.Scroll,
+    Action = GravityPlugins.Scroll,
     Argument = "{{$ --top:1000}}",
     OnElement = "text_area_enabled",
     Locator = LocatorsList.Id
@@ -329,7 +329,7 @@ scroll {{$ --left:1000}} on {text_area_enabled} using {id}
 // option no.1
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.Scroll,
+    Action = GravityPlugins.Scroll,
     Argument = "{{$ --left:1000}}",
     OnElement = "text_area_enabled",
     Locator = LocatorsList.Id
@@ -402,7 +402,7 @@ scroll {{$ --top:1000 --left:1000}} on {text_area_enabled} using {id}
 // option no.1
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.Scroll,
+    Action = GravityPlugins.Scroll,
     Argument = "{{$ --top:1000 --left:1000}}",
     OnElement = "text_area_enabled",
     Locator = LocatorsList.Id
@@ -475,7 +475,7 @@ scroll {{$ --top:1000 --left:1000 --behavior:smooth}} on {text_area_enabled} usi
 // option no.1
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.Scroll,
+    Action = GravityPlugins.Scroll,
     Argument = "{{$ --top:1000 --left:1000 --behavior:smooth}}",
     OnElement = "text_area_enabled",
     Locator = LocatorsList.Id
@@ -546,7 +546,7 @@ scroll {{$ --top:1000 --behavior:smooth}}
 // option no.1
 var actionRule = new ActionRule
 {
-    Action = GravityPlugin.Scroll,
+    Action = GravityPlugins.Scroll,
     Argument = "{{$ --top:1000 --behavior:smooth}}"
 };
 

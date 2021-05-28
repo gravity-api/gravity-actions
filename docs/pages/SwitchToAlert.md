@@ -283,7 +283,11 @@ ActionRule actionRule = new ActionRule()
 Can be tested on
 * https://gravitymvctestapplication.azurewebsites.net/uicontrols
 
-Sets the user name and password in an alert prompting for credentials.
+Sets the user name and password in an alert prompting for credentials.  
+
+> !Important
+>
+> Currently as of Selenium 3.14.59 this feature is not fully supported and cannot be used to bypass credentials prompts when opening a web page.
 
 #### _Action Rule (JSON)_
 ```js

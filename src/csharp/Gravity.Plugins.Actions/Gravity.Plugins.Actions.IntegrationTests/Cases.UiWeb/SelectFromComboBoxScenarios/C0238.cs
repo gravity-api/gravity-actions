@@ -1,12 +1,12 @@
 ﻿#pragma warning disable S125
 /*
 * TEST SCENARIO (Rhino)
-* [test-id] 0212
+* [test-id] 0238
 * [test-scenario] - Select From Combo Box, Index, Multiple, Single Value
 * 
 * [test-actions]
 * 1. navigate to {https://gravitymvctestapplication.azurewebsites.net/uicontrols}
-* 2. Select From Combo Box {1} on {select_menu_multiple} using {id} from {index}
+* 2. Select From Combo Box {1} on {select_menu_multiple} using {id} from {value}
 * 3. close browser
 * 
 * [test-expected-results]
@@ -21,7 +21,7 @@ using System.Collections.Generic;
 
 namespace Graivty.IntegrationTests.Cases.UiWeb.SelectFromComboBoxScenarios
 {
-    public class C0212 : TestCase
+    public class C0238 : TestCase
     {
         // gets the actions collection of this test
         public override IEnumerable<ActionRule> OnActions(Context environment)
@@ -38,7 +38,7 @@ namespace Graivty.IntegrationTests.Cases.UiWeb.SelectFromComboBoxScenarios
                 {
                     Action = GravityPlugins.SelectFromComboBox,
                     OnElement = "select_menu_multiple",
-                    OnAttribute = "index",
+                    OnAttribute = "value",
                     Argument = $"{environment.TestParams["argument"]}",
                     Locator = Locators.Id
                 },

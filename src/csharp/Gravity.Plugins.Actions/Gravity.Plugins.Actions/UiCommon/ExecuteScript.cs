@@ -68,7 +68,7 @@ namespace Gravity.Plugins.Actions.UiCommon
         /// <param name="action">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
         public override void OnPerform(ActionRule action)
         {
-            DoAction(action, element: default);
+            InvokeAction(action, element: default);
         }
 
         /// <summary>
@@ -80,11 +80,11 @@ namespace Gravity.Plugins.Actions.UiCommon
         /// <example>{ "argument": ".checked = true" } The element will be injected before the ".".</example>
         public override void OnPerform(ActionRule action, IWebElement element)
         {
-            DoAction(action, element);
+            InvokeAction(action, element);
         }
 
         // execute action routine
-        private void DoAction(ActionRule action, IWebElement element)
+        private void InvokeAction(ActionRule action, IWebElement element)
         {
             // setup
             var cliArgs = CliFactory.Parse(action.Argument);
@@ -122,7 +122,7 @@ namespace Gravity.Plugins.Actions.UiCommon
             }
 
             // get element by actionRule
-            var onElement = this.ConditionalGetElement(element, action);
+            var onElement = this.ConditionalGetElement(action, element);
 
             // return arguments
             return new List<object> { onElement };

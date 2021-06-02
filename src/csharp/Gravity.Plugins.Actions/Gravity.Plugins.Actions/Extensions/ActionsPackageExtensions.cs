@@ -55,7 +55,7 @@ namespace Gravity.Extensions
         /// <param name="element">An <see cref="IWebElement"/> instance to evaluate rather to get an element from.</param>
         /// <param name="actionRule">An <see cref="ActionRule"/> by which to evaluate how to get an element.</param>
         /// <returns>The first matching <see cref="IWebElement"/> on the current context.</returns>
-        public static IWebElement ConditionalGetElement(this WebDriverActionPlugin plugin, IWebElement element, ActionRule actionRule)
+        public static IWebElement ConditionalGetElement(this WebDriverActionPlugin plugin, ActionRule actionRule, IWebElement element)
         {
             // exit conditions
             if (element == default && string.IsNullOrEmpty(actionRule.OnElement))

@@ -17,10 +17,6 @@
     }
   },
   "description": "Switches to the currently active modal dialog for this particular driver instance.",
-  "enum": {
-    "dismiss": "Dismisses the alert.",
-    "accept": "Accepts the alert."
-  },
   "examples": [
     {
       "description": "Dismisses the alert.",
@@ -66,7 +62,13 @@
   "name": "SwitchToAlert",
   "pluginType": "Action",
   "properties": {
-    "argument": "The action(s) that will be taken on the alert dialog."
+    "argument": {
+      "description": "The action(s) that will be taken on the alert dialog.",
+      "values": {
+        "dismiss": "Dismisses the alert.",
+        "accept": "Accepts the alert."
+      }
+    }
   },
   "protocol": {
     "endpoint": "/session/{session-id}/alert/{action}",

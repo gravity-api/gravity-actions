@@ -35,7 +35,7 @@ namespace Gravity.Plugins.Actions.UiMobile
         /// <param name="action">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
         public override void OnPerform(ActionRule action)
         {
-            DoAction();
+            InvokeAction();
         }
 
         /// <summary>
@@ -45,11 +45,11 @@ namespace Gravity.Plugins.Actions.UiMobile
         /// <param name="element">This <see cref="IWebElement"/> instance on which to perform the action (provided by the extraction rule).</param>
         public override void OnPerform(ActionRule action, IWebElement element)
         {
-            DoAction();
+            InvokeAction();
         }
 
         // execute action routine
-        private void DoAction()
+        private void InvokeAction()
         {
             if (!(WebDriver is IHidesKeyboard))
             {

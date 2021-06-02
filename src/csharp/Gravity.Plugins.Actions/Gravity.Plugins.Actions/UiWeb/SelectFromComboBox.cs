@@ -13,11 +13,9 @@ using OpenQA.Selenium.Support.UI;
 
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.RegularExpressions;
-using OpenQA.Selenium.Extensions;
 using System.Linq;
 using System.Reflection;
 
@@ -53,7 +51,7 @@ namespace Gravity.Plugins.Actions.UiWeb
         /// <param name="actionRule">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
         public override void OnPerform(ActionRule action)
         {
-            DoAction(action, element: default);
+            InvokeAction(action, element: default);
         }
 
         /// <summary>
@@ -63,53 +61,31 @@ namespace Gravity.Plugins.Actions.UiWeb
         /// <param name="actionRule">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
         public override void OnPerform(ActionRule action, IWebElement element)
         {
-            DoAction(action, element);
+            InvokeAction(action, element);
         }
 
         // execute action routine
-        private void DoAction(ActionRule action, IWebElement element)
+        private void InvokeAction(ActionRule action, IWebElement element)
         {
-            // get element to act on
-            var timeout = TimeSpan.FromMilliseconds(Automation.EngineConfiguration.SearchTimeout);
-            var webElement = element != default
-                ? element.GetElement(ByFactory, action, timeout)
-                : WebDriver.GetElement(ByFactory, action, timeout);
+            // setup
+            var _element = this.ConditionalGetElement(action, element);
+            var selectElement = new SelectElement(_element);
 
-            var selectElement = new SelectElement(webElement);
-
-            // execute action routine
-            SelectFactory(action, selectElement);
-        }
-
-        // TODO: reuse with other factories in similar actions to remove redundancy
-        // execute relevant select method based on action rule on the given select element
-        [SuppressMessage("Major Code Smell", "S3011:Reflection should not be used to increase accessibility of classes, methods, or fields", Justification = "Factory for using private methods which are already allows in this scope.")]
-        private void SelectFactory(ActionRule action, SelectElement selectElement)
-        {
-            // constants
-            const StringComparison Compare = StringComparison.OrdinalIgnoreCase;
+            // setup
             const BindingFlags Flags = BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Static;
+            var arguments = CliFactory.Parse(action.Argument);
+            var input = arguments.ContainsKey(All) ? "ALL" : action.OnAttribute.ToUpper();
+            input = string.IsNullOrEmpty(input) ? "DEFAULT" : input;
 
-            // load arguments
-            var arguments = CliFactory.Parse(cli: action.Argument);
+            // build
+            var _method = GetType().GetMethods(Flags).FirstOrDefault(i => Search(i, input));
+            _method = _method == default ? GetType().GetMethod("", Flags) : _method;
 
-            // get description
-            var description = arguments.ContainsKey(All)
-                ? "ALL"
-                : action.OnAttribute.ToUpper();
-
-            description = string.IsNullOrEmpty(description) ? "DEFAULT" : description;
-
-            // get select method > align description
-            var method = GetType()
-                .GetMethodsByAttribute<DescriptionAttribute>(Flags)
-                .FirstOrDefault(i => i.GetCustomAttribute<DescriptionAttribute>().Description.Equals(description, Compare));
-
-            // invoke
+            // execute
             try
             {
-                var instance = method.IsStatic ? null : this;
-                method.Invoke(instance, new object[] { action, selectElement });
+                var instance = _method.IsStatic ? null : this;
+                _method.Invoke(obj: instance, parameters: new object[] { action, selectElement });
             }
             catch (Exception e) when (e != null)
             {
@@ -117,10 +93,25 @@ namespace Gravity.Plugins.Actions.UiWeb
             }
         }
 
+        private static bool Search(MethodInfo method, string input)
+        {
+            // setup
+            var attribute = method.GetCustomAttribute<SelectOptionAttribute>();
+
+            // not found
+            if (attribute == default)
+            {
+                return false;
+            }
+
+            // get
+            return attribute.Name.Equals(input, StringComparison.OrdinalIgnoreCase);
+        }
+
         // select all options by the text displayed
-        [Description("DEFAULT")]
+        [SelectOption("DEFAULT")]
         [SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "Used by reflection")]
-        private static void Select00(ActionRule action, SelectElement selectElement)
+        private static void SelectByText(ActionRule action, SelectElement selectElement)
         {
             // single
             if (!selectElement.IsMultiple)
@@ -137,34 +128,35 @@ namespace Gravity.Plugins.Actions.UiWeb
         }
 
         // select the option by the index, as determined by the "index" attribute of the element
-        [Description("INDEX")]
+        [SelectOption("INDEX")]
         [SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "Used by reflection")]
-        private static void Select01(ActionRule action, SelectElement selectElement)
+        private static void SelectByIndex(ActionRule action, SelectElement selectElement)
         {
+            // local funtion
+            static void InvokeSelect(string option, SelectElement selectElement)
+            {
+                var index = int.TryParse(option, out int indexOut) ? indexOut : 0;
+                selectElement.SelectByIndex(index);
+            }
+
             // single
             if (!selectElement.IsMultiple)
             {
-                DoSelect01(action.Argument, selectElement);
+                InvokeSelect(action.Argument, selectElement);
                 return;
             }
 
             // multiple
             foreach (var option in GetOptions(options: action.Argument))
             {
-                DoSelect01(option, selectElement);
+                InvokeSelect(option, selectElement);
             }
         }
 
-        private static void DoSelect01(string option, SelectElement selectElement)
-        {
-            var index = int.TryParse(option, out int indexOut) ? indexOut : 0;
-            selectElement.SelectByIndex(index);
-        }
-
         // select an option by the value
-        [Description("VALUE")]
+        [SelectOption("VALUE")]
         [SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "Used by reflection")]
-        private static void Select02(ActionRule action, SelectElement selectElement)
+        private static void SelectByValue(ActionRule action, SelectElement selectElement)
         {
             // single
             if (!selectElement.IsMultiple)
@@ -181,9 +173,9 @@ namespace Gravity.Plugins.Actions.UiWeb
         }
 
         // select all options which their text match to the action-rule regular-expression
-        [Description("ALL")]
+        [SelectOption("ALL")]
         [SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "Used by reflection")]
-        private void Select03(ActionRule action, SelectElement selectElement)
+        private void SelectAll(ActionRule action, SelectElement selectElement)
         {
             foreach (var option in selectElement.Options)
             {
@@ -195,27 +187,27 @@ namespace Gravity.Plugins.Actions.UiWeb
             }
         }
 
-        // JavaScript execution of select functionality for unsupported drivers.
+        // Utilities
         private void JavaScriptSelect(ActionRule action, SelectElement selectElement)
         {
             // constants
             var script =
                 "" + // setup preconditions and global values
-                $"var onAttribute = \"{action.OnAttribute ?? string.Empty}\";" +
-                $"var onValue = \"{action.Argument ?? string.Empty}\";" +
-                " var options = arguments[0].getElementsByTagName(\"option\");" +
+                $"var onAttribute = '{action.OnAttribute ?? string.Empty}';" +
+                $"var onValue = '{action.Argument ?? string.Empty}';" +
+                " var options = arguments[0].getElementsByTagName('option');" +
                 $"var isMultiple = {selectElement.IsMultiple.ToString().ToLower()};" +
                 "" + // set values for iteration
                 "var values = isMultiple ? onValue : [onValue];" +
                 "" + // by index
-                "if(onAttribute.toLowerCase() === \"index\") {" +
+                "if(onAttribute.toLowerCase() === 'index') {" +
                 "    for(i = 0; i < values.length; i++) {" +
                 "        index = parseInt(values[i]);" +
                 "        options[index].selected = true;" +
                 "    }" +
                 "}" +
                 "" + // by inner text
-                "if(onAttribute === \"\") {" +
+                "if(onAttribute === '') {" +
                 "    for(i = 0; i < values.length; i++) {" +
                 "        for(j = 0; j < options.length; j++) {" +
                 "            if(options[j].innerText !== values[i]) {" +
@@ -227,10 +219,10 @@ namespace Gravity.Plugins.Actions.UiWeb
                 "    }" +
                 "}" +
                 "" + // by options values
-                "if(onAttribute.toLowerCase() === \"value\") {" +
+                "if(onAttribute.toLowerCase() === 'value') {" +
                 "    for(i = 0; i < values.length; i++) {" +
                 "        for(j = 0; j < options.length; j++) {" +
-                "            if(options[j].getAttribute(\"value\") !== values[i]) {" +
+                "            if(options[j].getAttribute('value') !== values[i]) {" +
                 "                continue;" +
                 "            }" +
                 "            options[j].selected = true;" +
@@ -246,7 +238,6 @@ namespace Gravity.Plugins.Actions.UiWeb
             ((IJavaScriptExecutor)WebDriver).ExecuteScript(script, onElement);
         }
 
-        // gets options array from argument
         private static IEnumerable<string> GetOptions(string options)
         {
             // single value
@@ -257,6 +248,18 @@ namespace Gravity.Plugins.Actions.UiWeb
 
             // multiple values
             return JsonSerializer.Deserialize<IEnumerable<string>>(json: options);
+        }
+
+        // Attributes
+        [AttributeUsage(AttributeTargets.Method)]
+        private class SelectOptionAttribute : Attribute
+        {
+            public SelectOptionAttribute(string name)
+            {
+                Name = name;
+            }
+
+            public string Name { get; }
         }
     }
 }

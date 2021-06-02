@@ -345,7 +345,8 @@ namespace Gravity.Plugins.Utilities
         {
             // setup
             var arguments = CliFactory.Parse(actionRule.Argument);
-            var input = this.ConditionalGetElement(actionRule, element).GetAttribute(actionRule.OnAttribute);
+            var _element = this.ConditionalGetElement(actionRule, element);
+            var input = actionRule.OnAttribute == "value" ? _element.GetValue() : _element.GetAttribute(actionRule.OnAttribute);
             var actual = Regex.Match(input, pattern: actionRule.RegularExpression).Value;
             var _operator = GetOperator(operatorsFactory, arguments);
 

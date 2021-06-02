@@ -41,7 +41,7 @@ namespace Gravity.Plugins.Actions.UiCommon
         /// <param name="action">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
         public override void OnPerform(ActionRule action)
         {
-            DoAction(action, element: default);
+            InvokeAction(action, element: default);
         }
 
         /// <summary>
@@ -52,11 +52,11 @@ namespace Gravity.Plugins.Actions.UiCommon
         /// <param name="element">This <see cref="IWebElement"/> instance on which to perform the action (provided by the extraction rule).</param>
         public override void OnPerform(ActionRule action, IWebElement element)
         {
-            DoAction(action, element);
+            InvokeAction(action, element);
         }
 
         // executes Wait routine
-        private void DoAction(ActionRule actionRule, IWebElement element)
+        private void InvokeAction(ActionRule actionRule, IWebElement element)
         {
             // setup
             var wait = new WebDriverWait(

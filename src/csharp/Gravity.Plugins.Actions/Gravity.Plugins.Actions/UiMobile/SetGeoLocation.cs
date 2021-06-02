@@ -69,7 +69,7 @@ namespace Gravity.Plugins.Actions.UiMobile
         /// <param name="action">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
         public override void OnPerform(ActionRule action)
         {
-            DoAction(action);
+            InvokeAction(action);
         }
 
         /// <summary>
@@ -79,11 +79,11 @@ namespace Gravity.Plugins.Actions.UiMobile
         /// <param name="element">This <see cref="IWebElement"/> instance on which to perform the action (provided by the extraction rule).</param>
         public override void OnPerform(ActionRule action, IWebElement element)
         {
-            DoAction(action);
+            InvokeAction(action);
         }
 
         // sets the current GEO location
-        private void DoAction(ActionRule action)
+        private void InvokeAction(ActionRule action)
         {
             // exit conditions
             if (!WebDriver.IsAppiumDriver())

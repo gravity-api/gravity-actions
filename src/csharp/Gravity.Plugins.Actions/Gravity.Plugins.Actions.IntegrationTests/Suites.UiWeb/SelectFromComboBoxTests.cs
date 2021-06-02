@@ -92,7 +92,7 @@ namespace Graivty.IntegrationTests.Suites.UiWeb
         }
 
         [Description(description: "P - [0211] - (B) Select From Combo Box, Value, Multiple, Single Value")]
-        [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.Win10Chrome))]
+        [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.Capabilities))]
         public void T0211B(Context environment)
         {
             // setup
@@ -105,7 +105,7 @@ namespace Graivty.IntegrationTests.Suites.UiWeb
             Assert.IsTrue(actual);
         }
 
-        [Description(description: "P - [0212] - (A) Select From Combo Box, Index, Multiple, Single Value")]
+        [Description(description: "P - [0212] - Select From Combo Box, Index, Multiple, Single Value")]
         [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.Capabilities))]
         public void T0212A(Context environment)
         {
@@ -119,12 +119,15 @@ namespace Graivty.IntegrationTests.Suites.UiWeb
             Assert.IsTrue(actual);
         }
 
-        [Description(description: "P - [0212] - (B) Select From Combo Box, Value, Multiple, Single Value")]
-        [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.Win10Chrome))]
-        public void T0212B(Context environment)
+        [Description(description: "P - [0238] - Select From Combo Box, Value, Multiple, Single Value")]
+        [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.Capabilities))]
+        public void T0238(Context environment)
         {
+            // setup
+            environment.TestParams["argument"] = "2";
+
             // execute
-            var actual = new C0212().AddEnvironments(environment).Execute();
+            var actual = new C0238().AddEnvironments(environment).Execute();
 
             // assertion
             Assert.IsTrue(actual);

@@ -16,7 +16,6 @@
  * work items
  * TODO: remove "EDGE WORKAROUND - UNTIL SELENIUM 4" region when close extension method is available on Gravity.Core 
  */
-using Gravity.Extensions;
 using Gravity.Plugins.Attributes;
 using Gravity.Plugins.Framework;
 using Gravity.Plugins.Contracts;
@@ -50,7 +49,7 @@ namespace Gravity.Plugins.Actions.UiWeb
         /// <param name="action">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
         public override void OnPerform(ActionRule action)
         {
-            DoAction(action);
+            InvokeAction(action);
         }
 
         /// <summary>
@@ -60,11 +59,11 @@ namespace Gravity.Plugins.Actions.UiWeb
         /// <param name="element">This <see cref="IWebElement"/> instance on which to perform the action (provided by the extraction rule).</param>
         public override void OnPerform(ActionRule action, IWebElement element)
         {
-            DoAction(action);
+            InvokeAction(action);
         }
 
         // executes CloseWindow routine
-        private void DoAction(ActionRule action)
+        private void InvokeAction(ActionRule action)
         {
             // exit conditions
             if (!int.TryParse(action.Argument, out int indexOut))
@@ -91,10 +90,10 @@ namespace Gravity.Plugins.Actions.UiWeb
             var window = WebDriver.WindowHandles[indexOut];
 
             // action routine: close > switch back to main window
-            //WebDriver.SwitchTo(windowName: window).Close();
+            WebDriver.SwitchTo(windowName: window).Close();
             if (WebDriver.WindowHandles?.Count > 0)
             {
-                //WebDriver.SwitchTo(windowName: mainWindow);
+                WebDriver.SwitchTo(windowName: mainWindow);
             }
         }
 

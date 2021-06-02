@@ -3,7 +3,9 @@
   "cliArguments": {
     "all": {
       "description": "Select all values in the combo box (combo must be of type multiple).",
-      "example": "select from combo box {{$ --all}} on {select_menu} by {id}"
+      "example": "select from combo box {{$ --all}} on {select_menu} by {id}",
+      "values": [
+      ]
     }
   },
   "description": "Provides a convenience method for manipulating selections of options in an HTML select element. This action supports different selection options as well as multiple selection based on a pattern.",
@@ -86,11 +88,24 @@
   "name": "SelectFromComboBox",
   "pluginType": "Action",
   "properties": {
-    "onElement": "The locator value by which the element will be found.",
-    "locator": "The locator type by which the element will be found.",
-    "onAttribute": "The element attribute from which to extract information for action execution. If not specified, information will be taken from the element inner text.",
-    "regularExpression": "A pattern by which the extracted information will be evaluated. Returns the first match.",
-    "argument": "The value to be used by the requested selecting attribute."
+    "onElement": {
+      "description": "The locator value by which the element will be found."
+    },
+    "locator": { "description": "The locator type by which the element will be found." },
+    "onAttribute": {
+      "descriptions": "The element attribute from which to extract information for action execution. If not specified, information will be taken from the element inner text.",
+      "values": {
+        "index": "Select an item based on it's zero based index.",
+        "value": "Select an item based on it's value property.",
+        "default": "Select an item based on it's visible text."
+      }
+    },
+    "regularExpression": {
+      "description": "A pattern by which the extracted information will be evaluated. Returns the first match."
+    },
+    "argument": {
+      "description": "The value to be used by the requested selecting attribute."
+    }
   },
   "protocol": {
     "endpoint": "none",

@@ -61,11 +61,11 @@ namespace Gravity.Plugins.Actions.UiCommon
         /// <remarks>Only works with action which overrides <see cref="ActionPlugin.OnPerform(IWebElement, ActionRule)"/>.</remarks>
         public override void OnPerform(ActionRule action)
         {
-            DoAction(action);
+            InvokeAction(action);
         }
 
         // execute action routine
-        private void DoAction(ActionRule action)
+        private void InvokeAction(ActionRule action)
         {
             // setup: values
             var arguments = CliFactory.Parse(action.Argument);

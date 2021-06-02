@@ -82,7 +82,7 @@ namespace Gravity.Plugins.Actions.UiCommon
         /// <param name="action">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
         public override void OnPerform(ActionRule action)
         {
-            DoAction(action, element: default);
+            InvokeAction(action, element: default);
         }
 
         /// <summary>
@@ -92,11 +92,11 @@ namespace Gravity.Plugins.Actions.UiCommon
         /// <param name="element">This <see cref="IWebElement"/> instance on which to perform the action (provided by the extraction rule).</param>
         public override void OnPerform(ActionRule action, IWebElement element)
         {
-            DoAction(action, element);
+            InvokeAction(action, element);
         }
 
         // execute action routine
-        private void DoAction(ActionRule action, IWebElement element)
+        private void InvokeAction(ActionRule action, IWebElement element)
         {
             // parse arguments
             var arguments = CliFactory.Parse(action?.Argument);
@@ -116,7 +116,7 @@ namespace Gravity.Plugins.Actions.UiCommon
             }
 
             // invoke
-            this.ConditionalGetElement(element, action).TryMoveToElement().Click();
+            this.ConditionalGetElement(action, element).TryMoveToElement().Click();
         }
 
         private void InvokeConditionalClick(ActionRule action, IWebElement element)
@@ -140,7 +140,7 @@ namespace Gravity.Plugins.Actions.UiCommon
             wait.PollingInterval = TimeSpan.FromSeconds(1.5);
 
             // first action
-            this.ConditionalGetElement(element, action).TryMoveToElement().Click();
+            this.ConditionalGetElement(action, element).TryMoveToElement().Click();
             var isCondition = GetEvaluation(factory, action, element);
 
             // exit conditions
@@ -157,7 +157,7 @@ namespace Gravity.Plugins.Actions.UiCommon
                 {
                     WebDriver.SwitchTo().Alert().Dismiss();
                 }
-                this.ConditionalGetElement(element, action).TryMoveToElement().Click();
+                this.ConditionalGetElement(action, element).TryMoveToElement().Click();
                 return GetEvaluation(factory, action, element);
             });
         }

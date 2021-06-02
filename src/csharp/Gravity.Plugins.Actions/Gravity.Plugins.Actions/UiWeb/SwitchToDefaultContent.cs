@@ -34,7 +34,7 @@ namespace Gravity.Plugins.Actions.UiWeb
         /// <param name="action">This <see cref="ActionRule"/> instance (the original object sent by the user).</param>
         public override void OnPerform(ActionRule action)
         {
-            DoAction();
+            InvokeAction();
         }
 
         /// <summary>
@@ -44,10 +44,10 @@ namespace Gravity.Plugins.Actions.UiWeb
         /// <param name="element">This <see cref="IWebElement"/> instance on which to perform the action (provided by the extraction rule).</param>
         public override void OnPerform(ActionRule action, IWebElement element)
         {
-            DoAction();
+            InvokeAction();
         }
 
         // execute action routine
-        private void DoAction() => WebDriver.SwitchTo().DefaultContent();
+        private void InvokeAction() => WebDriver.SwitchTo().DefaultContent();
     }
 }

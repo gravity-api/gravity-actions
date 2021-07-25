@@ -14,17 +14,12 @@ using OpenQA.Selenium.Mock;
 
 using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
 
-#pragma warning disable S4144
 namespace Gravity.UnitTests.UiCommon
 {
     [TestClass]
-    public class WaitForElementTests: ActionTests
+    public class WaitForElementTests : ActionTests
     {
-        #region *** tests: properties    ***
-        public TestContext Context { get; set; }
-        #endregion
-
-        #region *** tests: documentation ***
+        #region *** Tests: Documentation ***
         [TestMethod]
         public void WaitForElementCreate()
         {
@@ -47,7 +42,7 @@ namespace Gravity.UnitTests.UiCommon
         }
         #endregion
 
-        #region *** tests: OnDriver      ***
+        #region *** Tests: OnDriver      ***
         [DataTestMethod]
         [DataRow("{\"onElement\":\"//positive\"}")]
         [DataRow("{\"onElement\":\"//negative\"}")]
@@ -283,7 +278,7 @@ namespace Gravity.UnitTests.UiCommon
         }
         #endregion
 
-        #region *** tests: OnElement     ***
+        #region *** Tests: OnElement     ***
         [DataTestMethod]
         [DataRow("{\"onElement\":\".//positive\"}")]
         [DataRow("{\"onElement\":\".//negative\"}")]
@@ -520,4 +515,3 @@ namespace Gravity.UnitTests.UiCommon
         #endregion
     }
 }
-#pragma warning restore S4144

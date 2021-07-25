@@ -595,7 +595,7 @@ namespace Gravity.UnitTests.UiCommon
         [DataTestMethod]
         [DataRow(ActionRuleAttributeOperator, "MockAttribute", "eq", "24")]
         [DataRow(ActionRuleAttributeOperator, "MockAttribute", "ne", "25")]
-        [DataRow(ActionRuleAttributeOperator, "MockAttribute", "gt", "23")]
+        [DataRow(ActionRuleAttributeOperator, "MockAttribute", "gt", "22")]
         [DataRow(ActionRuleAttributeOperator, "MockAttribute", "lt", "25")]
         [DataRow(ActionRuleAttributeOperator, "MockAttribute", "ge", "23")]
         [DataRow(ActionRuleAttributeOperator, "MockAttribute", "le", "25")]

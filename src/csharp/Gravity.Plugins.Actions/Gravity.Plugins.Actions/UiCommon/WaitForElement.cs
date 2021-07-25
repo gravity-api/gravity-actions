@@ -80,7 +80,7 @@ namespace Gravity.Plugins.Actions.UiCommon
         {
             // setup
             var cli = GetCli(action);
-            var factory = new ConditionsFactory(driver: WebDriver, types: Types);
+            var factory = new ConditionsFactory(Environment, driver: WebDriver, types: Types);
             var wait = new WebDriverWait(WebDriver, timeout);
 
             // wait

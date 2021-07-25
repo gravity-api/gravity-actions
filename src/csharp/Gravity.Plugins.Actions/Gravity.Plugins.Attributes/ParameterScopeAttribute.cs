@@ -12,19 +12,19 @@ using System.Text.Json.Serialization;
 namespace Gravity.Plugins.Attributes
 {
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = false)]
-    public sealed class OperatorMethodAttribute: Attribute, IAttributeable, IExampleable
+    public sealed class ParameterScopeAttribute : Attribute, IAttributeable, IExampleable
     {
         /// <summary>
         /// Creates a new instance of <see cref="Attribute"/>.
         /// </summary>
-        /// <param name="name">The assertion name that will be used to find and execute the operator method.</param>
-        public OperatorMethodAttribute(string name)
+        /// <param name="name">The scope name that will be used to find and invoke the scope method.</param>
+        public ParameterScopeAttribute(string name)
         {
             Name = name;
         }
 
         /// <summary>
-        /// Gets the operator name.
+        /// Gets the assertion name.
         /// </summary>
         public string Name { get; }
 
@@ -34,12 +34,12 @@ namespace Gravity.Plugins.Attributes
         public string Literal { get; set; }
 
         /// <summary>
-        /// Gets or sets the description of the operator method.
+        /// Gets or sets the description of the ParameterScope.
         /// </summary>
         public string Description { get; set; } = "TBD";
 
         /// <summary>
-        /// Gets or sets the implementation examples of this <see cref="Plugin"/>.
+        /// Gets or sets the implementation examples of the Plugin.
         /// </summary>
         /// <remarks>For knowledge base purposes.</remarks>
         public IEnumerable<PluginExample> Examples { get; set; }

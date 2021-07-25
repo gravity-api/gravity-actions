@@ -23,7 +23,7 @@ namespace Gravity.IntegrationTests.Suites.UiCommon
             environment.TestParams["negative"] = false;
 
             // execute
-            var actual = new C0019().AddEnvironments(environment).Execute();
+            var actual = new C0019().AddEnvironments(environment).Invoke();
 
             // assertion
             Assert.IsTrue(actual);
@@ -37,7 +37,7 @@ namespace Gravity.IntegrationTests.Suites.UiCommon
             environment.TestParams["negative"] = true;
 
             // execute
-            var actual = new C0019().AddEnvironments(environment).Execute();
+            var actual = new C0019().AddEnvironments(environment).Invoke();
 
             // assertion
             Assert.IsTrue(actual);
@@ -51,7 +51,7 @@ namespace Gravity.IntegrationTests.Suites.UiCommon
             environment.TestParams["negative"] = false;
 
             // execute
-            var actual = new C0020().AddEnvironments(environment).Execute();
+            var actual = new C0020().AddEnvironments(environment).Invoke();
 
             // assertion
             Assert.IsTrue(actual);
@@ -65,7 +65,7 @@ namespace Gravity.IntegrationTests.Suites.UiCommon
             environment.TestParams["negative"] = true;
 
             // execute
-            var actual = new C0020().AddEnvironments(environment).Execute();
+            var actual = new C0020().AddEnvironments(environment).Invoke();
 
             // assertion
             Assert.IsTrue(actual);
@@ -79,7 +79,7 @@ namespace Gravity.IntegrationTests.Suites.UiCommon
             environment.TestParams["negative"] = false;
 
             // execute
-            var actual = new C0021().AddEnvironments(environment).Execute();
+            var actual = new C0021().AddEnvironments(environment).Invoke();
 
             // assertion
             Assert.IsTrue(actual);
@@ -93,7 +93,7 @@ namespace Gravity.IntegrationTests.Suites.UiCommon
             environment.TestParams["negative"] = true;
 
             // execute
-            var actual = new C0021().AddEnvironments(environment).Execute();
+            var actual = new C0021().AddEnvironments(environment).Invoke();
 
             // assertion
             Assert.IsTrue(actual);
@@ -107,7 +107,7 @@ namespace Gravity.IntegrationTests.Suites.UiCommon
             environment.TestParams["negative"] = false;
 
             // execute
-            var actual = new C0022().AddEnvironments(environment).Execute();
+            var actual = new C0022().AddEnvironments(environment).Invoke();
 
             // assertion
             Assert.IsTrue(actual);
@@ -121,7 +121,7 @@ namespace Gravity.IntegrationTests.Suites.UiCommon
             environment.TestParams["negative"] = true;
 
             // execute
-            var actual = new C0022().AddEnvironments(environment).Execute();
+            var actual = new C0022().AddEnvironments(environment).Invoke();
 
             // assertion
             Assert.IsTrue(actual);

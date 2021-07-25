@@ -20,7 +20,7 @@ namespace Gravity.IntegrationTests.Suites.UiCommon
         public void T0184P(Context environment)
         {
             // execute
-            var actual = new C0184().AddEnvironments(environment).Execute();
+            var actual = new C0184().AddEnvironments(environment).Invoke();
 
             // assertion
             Assert.IsTrue(actual);

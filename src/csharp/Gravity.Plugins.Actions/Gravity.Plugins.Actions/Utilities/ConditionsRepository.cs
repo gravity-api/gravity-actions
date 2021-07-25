@@ -4,6 +4,7 @@
  * RESOURCES
  */
 using Gravity.Extensions;
+using Gravity.Plugins.Actions.UiCommon;
 using Gravity.Plugins.Attributes;
 using Gravity.Plugins.Contracts;
 using Gravity.Plugins.Extensions;
@@ -29,16 +30,19 @@ namespace Gravity.Plugins.Utilities
 
         // members: state
         private readonly OperatorsFactory operatorsFactory;
+        private readonly ParameterScopeFactory parameterScopeFactory;
 
         /// <summary>
         /// Creates a new instance of ConditionsRepository.
         /// </summary>
+        /// <param name="context">An EnvironmentContext instance to use with the repository.</param>
         /// <param name="driver">The IWebDriver (session) for using with the repository.</param>
         /// <param name="types">A collection of <see cref="Type"/> to use with the repository.</param>
-        public ConditionsRepository(IWebDriver driver, IEnumerable<Type> types)
-            : base(driver, types)
+        public ConditionsRepository(EnvironmentContext context, IWebDriver driver, IEnumerable<Type> types)
+            :base(driver, types)
         {
             operatorsFactory = new OperatorsFactory(types);
+            parameterScopeFactory = new ParameterScopeFactory(context, types);
         }
 
         #region *** Alerts      ***
@@ -592,7 +596,9 @@ namespace Gravity.Plugins.Utilities
         {
             // setup
             var arguments = CliFactory.Parse(actionRule.Argument);
-            var input = EnvironmentContext.ApplicationParams.Get(actionRule.OnElement, string.Empty);
+            var name = actionRule.OnElement;
+            var scope = arguments.ContainsKey("scope") ? arguments["scope"] : ParameterScopes.Application;
+            var input = parameterScopeFactory.FactorGet(name, scope, Array.Empty<object>());
             var actual = Regex.Match(input, pattern: actionRule.RegularExpression).Value;
             var _operator = GetOperator(operatorsFactory, arguments);
 

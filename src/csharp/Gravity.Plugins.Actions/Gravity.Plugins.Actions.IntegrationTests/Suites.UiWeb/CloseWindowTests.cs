@@ -20,18 +20,18 @@ namespace Gravity.IntegrationTests.Suites.UiWeb
         public void T0066P(Context environment)
         {
             // execute
-            var actual = new C0066().AddEnvironments(environment).Execute();
+            var actual = new C0066().AddEnvironments(environment).Invoke();
 
             // assertion
             Assert.IsTrue(actual);
         }
 
         [Description(description: "N - [0067] - Close Window, No Child Windows")]
-        [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.CapabilitiesNoIos))]
+        [Test, TestCaseSource(typeof(CapabilitiesProvider), nameof(CapabilitiesProvider.Capabilities))]
         public void T0067P(Context environment)
         {
             // execute
-            var actual = new C0067().AddEnvironments(environment).Execute();
+            var actual = new C0067().AddEnvironments(environment).Invoke();
 
             // assertion
             Assert.IsTrue(actual);

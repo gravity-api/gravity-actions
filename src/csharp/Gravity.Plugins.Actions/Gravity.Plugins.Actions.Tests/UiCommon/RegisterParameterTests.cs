@@ -5,6 +5,7 @@
  */
 using Gravity.Plugins.Actions.UiCommon;
 using Gravity.Plugins.Contracts;
+using Gravity.Plugins.Framework;
 using Gravity.UnitTests.Base;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -17,7 +18,6 @@ using System.Text.RegularExpressions;
 
 using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
 
-#pragma warning disable S4144
 namespace Gravity.UnitTests.UiCommon
 {
     [TestClass]
@@ -53,10 +53,10 @@ namespace Gravity.UnitTests.UiCommon
         public void RegisterParameterLiteral(string actionRule)
         {
             // execute
-            ExecuteAction<RegisterParameter>(actionRule);
+            var plugin = ExecuteAction<RegisterParameter>(actionRule);
 
             // assertion
-            Assert.AreEqual("John", $"{EnvironmentContext.ApplicationParams["test_key"]}");
+            Assert.AreEqual("John", $"{plugin.Environment.SessionParams["test_key"]}");
         }
 
         [DataTestMethod]
@@ -64,10 +64,10 @@ namespace Gravity.UnitTests.UiCommon
         public void RegisterParameterLiteralNoValue(string actionRule)
         {
             // execute
-            ExecuteAction<RegisterParameter>(actionRule);
+            var plugin = ExecuteAction<RegisterParameter>(actionRule);
 
             // assertion
-            Assert.AreEqual(string.Empty, EnvironmentContext.ApplicationParams["test_key"]);
+            Assert.AreEqual(string.Empty, plugin.Environment.SessionParams["test_key"]);
         }
 
         [DataTestMethod, ExpectedException(typeof(ArgumentException))]
@@ -87,10 +87,10 @@ namespace Gravity.UnitTests.UiCommon
         public void RegisterParameterText(string actionRule)
         {
             // execute
-            ExecuteAction<RegisterParameter>(actionRule);
+            var plugin = ExecuteAction<RegisterParameter>(actionRule);
 
             // assertion
-            Assert.AreEqual("Mock: Positive Element", $"{EnvironmentContext.ApplicationParams["test_key"]}");
+            Assert.AreEqual("Mock: Positive Element", $"{plugin.Environment.SessionParams["test_key"]}");
         }
 
         [DataTestMethod]
@@ -98,10 +98,10 @@ namespace Gravity.UnitTests.UiCommon
         public void RegisterParameterAttribute(string actionRule)
         {
             // execute
-            ExecuteAction<RegisterParameter>(actionRule);
+            var plugin = ExecuteAction<RegisterParameter>(actionRule);
 
             // assertion
-            var actual = $"{EnvironmentContext.ApplicationParams["test_key"]}";
+            var actual = $"{plugin.Environment.SessionParams["test_key"]}";
             Assert.IsTrue(Regex.IsMatch(actual, "^mock attribute value \\d+$"));
         }
 
@@ -110,10 +110,8 @@ namespace Gravity.UnitTests.UiCommon
         public void RegisterParameterRegex(string actionRule)
         {
             // execute
-            ExecuteAction<RegisterParameter>(actionRule);
-
-            // assertion
-            var actual = $"{EnvironmentContext.ApplicationParams["test_key"]}";
+            var plugin = ExecuteAction<RegisterParameter>(actionRule);
+            var actual = $"{plugin.Environment.SessionParams["test_key"]}";
             Assert.IsTrue(Regex.IsMatch(actual, "^\\d+$"));
         }
 
@@ -178,16 +176,16 @@ namespace Gravity.UnitTests.UiCommon
         }
         #endregion
 
-        #region *** tests: OnDriver      ***
+        #region *** tests: OnElement     ***
         [DataTestMethod]
         [DataRow("{\"argument\":\"test_key\",\"onElement\":\".//positive\"}")]
         public void RegisterParameterElementText(string actionRule)
         {
             // execute
-            ExecuteAction<RegisterParameter>(MockBy.Positive(), actionRule);
+            var plugin = ExecuteAction<RegisterParameter>(MockBy.Positive(), actionRule);
 
             // assertion
-            Assert.AreEqual("Mock: Positive Element", $"{EnvironmentContext.ApplicationParams["test_key"]}");
+            Assert.AreEqual("Mock: Positive Element", $"{plugin.Environment.SessionParams["test_key"]}");
         }
 
         [DataTestMethod]
@@ -195,10 +193,10 @@ namespace Gravity.UnitTests.UiCommon
         public void RegisterParameterElementAttribute(string actionRule)
         {
             // execute
-            ExecuteAction<RegisterParameter>(MockBy.Positive(), actionRule);
+            var plugin = ExecuteAction<RegisterParameter>(MockBy.Positive(), actionRule);
 
             // assertion
-            var actual = $"{EnvironmentContext.ApplicationParams["test_key"]}";
+            var actual = $"{plugin.Environment.SessionParams["test_key"]}";
             Assert.IsTrue(Regex.IsMatch(actual, "^mock attribute value \\d+$"));
         }
 
@@ -207,10 +205,10 @@ namespace Gravity.UnitTests.UiCommon
         public void RegisterParameterElementRegex(string actionRule)
         {
             // execute
-            ExecuteAction<RegisterParameter>(MockBy.Positive(), actionRule);
+            var plugin = ExecuteAction<RegisterParameter>(MockBy.Positive(), actionRule);
 
             // assertion
-            var actual = $"{EnvironmentContext.ApplicationParams["test_key"]}";
+            var actual = $"{plugin.Environment.SessionParams["test_key"]}";
             Assert.IsTrue(Regex.IsMatch(actual, "^\\d+$"));
         }
 
@@ -218,15 +216,16 @@ namespace Gravity.UnitTests.UiCommon
         [DataRow("{\"argument\":\"test_key\",\"onElement\":\"2000-12-01\"}")]
         public void RegisterParameterElementNonElementText(string actionRule)
         {
+            Plugin plugin = null;
             try
             {
                 // execute
-                ExecuteAction<RegisterParameter>(MockBy.Positive(), actionRule);
+                plugin = ExecuteAction<RegisterParameter>(MockBy.Positive(), actionRule);
             }
             catch (Exception)
             {
                 // assertion
-                var actual = $"{EnvironmentContext.ApplicationParams["test_key"]}";
+                var actual = $"{plugin.Environment.SessionParams["test_key"]}";
                 Assert.IsTrue(Regex.IsMatch(actual, "^\\d{4}-\\d{2}-\\d{2}$"));
                 throw;
             }
@@ -237,10 +236,10 @@ namespace Gravity.UnitTests.UiCommon
         public void RegisterParameterElementNull(string actionRule)
         {
             // execute
-            ExecuteAction<RegisterParameter>(MockBy.Positive(), actionRule);
+            var plugin = ExecuteAction<RegisterParameter>(MockBy.Positive(), actionRule);
 
             // assertion (no assertion here)
-            var actual = $"{EnvironmentContext.ApplicationParams["test_key"]}";
+            var actual = $"{plugin.Environment.SessionParams["test_key"]}";
             Assert.IsTrue(string.IsNullOrEmpty(actual));
         }
 
@@ -279,4 +278,3 @@ namespace Gravity.UnitTests.UiCommon
         #endregion
     }
 }
-#pragma warning restore S4144

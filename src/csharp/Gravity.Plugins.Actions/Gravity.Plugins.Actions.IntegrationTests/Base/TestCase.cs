@@ -111,18 +111,18 @@ namespace Gravity.IntegrationTests.Base
         /// Executes a <see cref="TestCase"/> against each applied environment.
         /// </summary>
         /// <returns><see cref="true"/> if pass; <see cref="false"/> if not.</returns>
-        public bool Execute()
+        public bool Invoke()
         {
             // no environments conditions
             if (environments == null)
             {
-                return ExecuteTestCase(environment: default);
+                return InvokeTestCase(environment: default);
             }
 
             // execute test-case for all environments
             foreach (var environment in environments)
             {
-                var actual = ExecuteTestCase(environment);
+                var actual = InvokeTestCase(environment);
                 if (actual)
                 {
                     return actual;
@@ -134,7 +134,7 @@ namespace Gravity.IntegrationTests.Base
         }
 
         // executes test-case against a single applied environment
-        private bool ExecuteTestCase(Context environment)
+        private bool InvokeTestCase(Context environment)
         {
             // extract number of retires
             attempts = environment.SystemParams.ContainsKey("attempts")
@@ -144,7 +144,7 @@ namespace Gravity.IntegrationTests.Base
             // execute test-case
             for (int i = 1; i <= attempts; i++)
             {
-                var actual = ExecuteIteration(environment);
+                var actual = InvokeIteration(environment);
                 if (actual)
                 {
                     return actual;
@@ -156,7 +156,7 @@ namespace Gravity.IntegrationTests.Base
         }
 
         // executes test-case iteration against a single applied environment
-        private bool ExecuteIteration(Context environment)
+        private bool InvokeIteration(Context environment)
         {
             try
             {

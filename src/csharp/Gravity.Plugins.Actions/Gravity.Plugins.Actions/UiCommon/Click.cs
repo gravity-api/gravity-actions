@@ -122,7 +122,7 @@ namespace Gravity.Plugins.Actions.UiCommon
         private void InvokeConditionalClick(ActionRule action, IWebElement element)
         {
             // setup
-            var factory = new ConditionsFactory(WebDriver, Types);
+            var factory = new ConditionsFactory(Environment, WebDriver, Types);
             var timeout = TimeSpan.FromSeconds(Automation.EngineConfiguration.LoadTimeout);
             var wait = new WebDriverWait(WebDriver, timeout);
             var ignored = new[]

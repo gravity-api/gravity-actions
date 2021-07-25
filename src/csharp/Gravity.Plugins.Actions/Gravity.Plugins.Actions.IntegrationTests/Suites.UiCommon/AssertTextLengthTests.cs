@@ -26,7 +26,7 @@ namespace Graivty.IntegrationTests.Suites.UiCommon
             environment.TestParams["argument"] = "{{$ --text_length --eq:10}}";
 
             // execute
-            var actual = new C0218().AddEnvironments(environment).Execute();
+            var actual = new C0218().AddEnvironments(environment).Invoke();
 
             // assertion
             Assert.IsTrue(actual);
@@ -41,7 +41,7 @@ namespace Graivty.IntegrationTests.Suites.UiCommon
             environment.TestParams["argument"] = "{{$ --text_length --ne:10}}";
 
             // execute
-            var actual = new C0218().AddEnvironments(environment).Execute();
+            var actual = new C0218().AddEnvironments(environment).Invoke();
 
             // assertion
             Assert.IsFalse(actual);
@@ -56,7 +56,7 @@ namespace Graivty.IntegrationTests.Suites.UiCommon
             environment.TestParams["argument"] = "{{$ --text_length --gt:9}}";
 
             // execute
-            var actual = new C0218().AddEnvironments(environment).Execute();
+            var actual = new C0218().AddEnvironments(environment).Invoke();
 
             // assertion
             Assert.IsTrue(actual);
@@ -71,7 +71,7 @@ namespace Graivty.IntegrationTests.Suites.UiCommon
             environment.TestParams["argument"] = "{{$ --text_length --lt:11}}";
 
             // execute
-            var actual = new C0218().AddEnvironments(environment).Execute();
+            var actual = new C0218().AddEnvironments(environment).Invoke();
 
             // assertion
             Assert.IsTrue(actual);
@@ -86,7 +86,7 @@ namespace Graivty.IntegrationTests.Suites.UiCommon
             environment.TestParams["argument"] = "{{$ --text_length --ge:10}}";
 
             // execute
-            var actual = new C0218().AddEnvironments(environment).Execute();
+            var actual = new C0218().AddEnvironments(environment).Invoke();
 
             // assertion
             Assert.IsTrue(actual);
@@ -101,7 +101,7 @@ namespace Graivty.IntegrationTests.Suites.UiCommon
             environment.TestParams["argument"] = "{{$ --text_length --ge:9}}";
 
             // execute
-            var actual = new C0218().AddEnvironments(environment).Execute();
+            var actual = new C0218().AddEnvironments(environment).Invoke();
 
             // assertion
             Assert.IsTrue(actual);
@@ -116,7 +116,7 @@ namespace Graivty.IntegrationTests.Suites.UiCommon
             environment.TestParams["argument"] = "{{$ --text_length --le:10}}";
 
             // execute
-            var actual = new C0218().AddEnvironments(environment).Execute();
+            var actual = new C0218().AddEnvironments(environment).Invoke();
 
             // assertion
             Assert.IsTrue(actual);
@@ -131,7 +131,7 @@ namespace Graivty.IntegrationTests.Suites.UiCommon
             environment.TestParams["argument"] = "{{$ --text_length --le:11}}";
 
             // execute
-            var actual = new C0218().AddEnvironments(environment).Execute();
+            var actual = new C0218().AddEnvironments(environment).Invoke();
 
             // assertion
             Assert.IsTrue(actual);
@@ -146,7 +146,7 @@ namespace Graivty.IntegrationTests.Suites.UiCommon
             environment.TestParams["argument"] = "{{$ --text_length --eq:9}}";
 
             // execute
-            var actual = new C0219().AddEnvironments(environment).Execute();
+            var actual = new C0219().AddEnvironments(environment).Invoke();
 
             // assertion
             Assert.IsTrue(actual);
@@ -161,7 +161,7 @@ namespace Graivty.IntegrationTests.Suites.UiCommon
             environment.TestParams["argument"] = "{{$ --text_length --ne:9}}";
 
             // execute
-            var actual = new C0219().AddEnvironments(environment).Execute();
+            var actual = new C0219().AddEnvironments(environment).Invoke();
 
             // assertion
             Assert.IsFalse(actual);
@@ -176,7 +176,7 @@ namespace Graivty.IntegrationTests.Suites.UiCommon
             environment.TestParams["argument"] = "{{$ --text_length --gt:8}}";
 
             // execute
-            var actual = new C0219().AddEnvironments(environment).Execute();
+            var actual = new C0219().AddEnvironments(environment).Invoke();
 
             // assertion
             Assert.IsTrue(actual);
@@ -191,7 +191,7 @@ namespace Graivty.IntegrationTests.Suites.UiCommon
             environment.TestParams["argument"] = "{{$ --text_length --lt:10}}";
 
             // execute
-            var actual = new C0219().AddEnvironments(environment).Execute();
+            var actual = new C0219().AddEnvironments(environment).Invoke();
 
             // assertion
             Assert.IsTrue(actual);
@@ -206,7 +206,7 @@ namespace Graivty.IntegrationTests.Suites.UiCommon
             environment.TestParams["argument"] = "{{$ --text_length --ge:9}}";
 
             // execute
-            var actual = new C0219().AddEnvironments(environment).Execute();
+            var actual = new C0219().AddEnvironments(environment).Invoke();
 
             // assertion
             Assert.IsTrue(actual);
@@ -221,7 +221,7 @@ namespace Graivty.IntegrationTests.Suites.UiCommon
             environment.TestParams["argument"] = "{{$ --text_length --ge:8}}";
 
             // execute
-            var actual = new C0219().AddEnvironments(environment).Execute();
+            var actual = new C0219().AddEnvironments(environment).Invoke();
 
             // assertion
             Assert.IsTrue(actual);
@@ -236,7 +236,7 @@ namespace Graivty.IntegrationTests.Suites.UiCommon
             environment.TestParams["argument"] = "{{$ --text_length --le:9}}";
 
             // execute
-            var actual = new C0219().AddEnvironments(environment).Execute();
+            var actual = new C0219().AddEnvironments(environment).Invoke();
 
             // assertion
             Assert.IsTrue(actual);
@@ -251,7 +251,7 @@ namespace Graivty.IntegrationTests.Suites.UiCommon
             environment.TestParams["argument"] = "{{$ --text_length --le:10}}";
 
             // execute
-            var actual = new C0219().AddEnvironments(environment).Execute();
+            var actual = new C0219().AddEnvironments(environment).Invoke();
 
             // assertion
             Assert.IsTrue(actual);

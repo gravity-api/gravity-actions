@@ -11,6 +11,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 
 using System;
+using Gravity.Extensions;
 
 namespace Gravity.Plugins.Actions.UiCommon
 {
@@ -63,12 +64,13 @@ namespace Gravity.Plugins.Actions.UiCommon
         }
 
         // performs a click and return the clicked element
-        private static bool SendKeys(SendKeys sendKeys, ActionRule action, IWebElement element)
+        private bool SendKeys(SendKeys sendKeys, ActionRule action, IWebElement element)
         {
             // execute SendKeys action (reuse of existing action)
             try
             {
-                sendKeys.Perform(action, element);
+                var _element = this.ConditionalFindElement(action, element);
+                sendKeys.Perform(action, _element);
                 return true;
             }
             catch (Exception e) when (e != null)

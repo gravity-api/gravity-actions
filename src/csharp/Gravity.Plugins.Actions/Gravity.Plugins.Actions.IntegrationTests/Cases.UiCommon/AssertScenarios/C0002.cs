@@ -1,17 +1,15 @@
-﻿#pragma warning disable S125
-/*
-* TEST SCENARIO (Rhino)
-* [test-id] 0002
-* [test-scenario] - Assert, Attribute, Equal, CSS Selector
-* 
-* [test-actions]
-* 1. navigate to {https://gravitymvctestapplication.azurewebsites.net/}
-* 2. close browser
-* 
-* [test-expected-results]
-* [1] verify {attribute} on {ul > li:nth-child(1) > a} from {class} using {css selector} equal {nav-link text-dark}
-*/
-#pragma warning restore
+﻿/*
+ * TEST SCENARIO (Rhino)
+ * [test-id] 0002
+ * [test-scenario] - Assert, Attribute, Equal, CSS Selector
+ * 
+ * [test-actions]
+ * 1. navigate to {https://gravitymvctestapplication.azurewebsites.net/}
+ * 2. close browser
+ * 
+ * [test-expected-results]
+ * [1] verify {attribute} on {ul > li:nth-child(1) > a} from {class} using {css selector} equal {nav-link text-dark}
+ */
 using Gravity.IntegrationTests.Base;
 using Gravity.Plugins.Contracts;
 using System.Collections.Generic;

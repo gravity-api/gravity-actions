@@ -72,5 +72,25 @@ namespace Gravity.Extensions
                 ? element.GetElement(plugin.ByFactory, actionRule, timeout)
                 : plugin.WebDriver.GetElement(plugin.ByFactory, actionRule, timeout);
         }
+
+        /// <summary>
+        /// Conditionally get an <see cref="IWebElement"/> based on values from <see cref="ActionRule"/> and <see cref="IWebElement"/>.
+        /// </summary>
+        /// <param name="element">An <see cref="IWebElement"/> instance to evaluate rather to get an element from.</param>
+        /// <param name="actionRule">An <see cref="ActionRule"/> by which to evaluate how to get an element.</param>
+        /// <returns>The first matching <see cref="IWebElement"/> on the current context.</returns>
+        public static IWebElement ConditionalFindElement(this WebDriverActionPlugin plugin, ActionRule actionRule, IWebElement element)
+        {
+            // exit conditions
+            if (element == default && string.IsNullOrEmpty(actionRule.OnElement))
+            {
+                return default;
+            }
+
+            // get element
+            return element != default
+                ? element.FindElementByActionRule(plugin.ByFactory, actionRule)
+                : plugin.WebDriver.FindElement(plugin.ByFactory, actionRule);
+        }
     }
 }

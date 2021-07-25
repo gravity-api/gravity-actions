@@ -19,7 +19,7 @@ namespace Gravity.IntegrationTests.Suites.UiWeb
         public void T0172P(Context environment)
         {
             // execute
-            var actual = new C0172().AddEnvironments(environment).Execute();
+            var actual = new C0172().AddEnvironments(environment).Invoke();
 
             // assertion
             Assert.IsTrue(actual);
@@ -30,7 +30,7 @@ namespace Gravity.IntegrationTests.Suites.UiWeb
         public void T0173P(Context environment)
         {
             // execute
-            var actual = new C0173().AddEnvironments(environment).Execute();
+            var actual = new C0173().AddEnvironments(environment).Invoke();
 
             // assertion
             Assert.IsTrue(actual);
@@ -41,7 +41,7 @@ namespace Gravity.IntegrationTests.Suites.UiWeb
         public void T0174P(Context environment)
         {
             // execute
-            var actual = new C0174().AddEnvironments(environment).Execute();
+            var actual = new C0174().AddEnvironments(environment).Invoke();
 
             // assertion
             Assert.IsTrue(actual);
@@ -52,7 +52,7 @@ namespace Gravity.IntegrationTests.Suites.UiWeb
         public void T0175P(Context environment)
         {
             // execute
-            var actual = new C0175().AddEnvironments(environment).Execute();
+            var actual = new C0175().AddEnvironments(environment).Invoke();
 
             // assertion
             Assert.IsTrue(actual);
@@ -63,7 +63,7 @@ namespace Gravity.IntegrationTests.Suites.UiWeb
         public void T0176P(Context environment)
         {
             // execute
-            var actual = new C0176().AddEnvironments(environment).Execute();
+            var actual = new C0176().AddEnvironments(environment).Invoke();
 
             // assertion
             Assert.IsTrue(actual);
@@ -74,7 +74,7 @@ namespace Gravity.IntegrationTests.Suites.UiWeb
         public void T0177P(Context environment)
         {
             // execute
-            var actual = new C0177().AddEnvironments(environment).Execute();
+            var actual = new C0177().AddEnvironments(environment).Invoke();
 
             // assertion
             Assert.IsTrue(actual);
@@ -88,7 +88,7 @@ namespace Gravity.IntegrationTests.Suites.UiWeb
             environment.TestParams["action"] = "NavigateTo";
 
             // execute
-            var actual = new C0178().AddEnvironments(environment).Execute();
+            var actual = new C0178().AddEnvironments(environment).Invoke();
 
             // assertion
             Assert.IsTrue(actual);
@@ -102,7 +102,7 @@ namespace Gravity.IntegrationTests.Suites.UiWeb
             environment.TestParams["action"] = "Open";
 
             // execute
-            var actual = new C0178().AddEnvironments(environment).Execute();
+            var actual = new C0178().AddEnvironments(environment).Invoke();
 
             // assertion
             Assert.IsTrue(actual);
@@ -116,7 +116,7 @@ namespace Gravity.IntegrationTests.Suites.UiWeb
             environment.TestParams["action"] = "GoTo";
 
             // execute
-            var actual = new C0178().AddEnvironments(environment).Execute();
+            var actual = new C0178().AddEnvironments(environment).Invoke();
 
             // assertion
             Assert.IsTrue(actual);
@@ -127,7 +127,7 @@ namespace Gravity.IntegrationTests.Suites.UiWeb
         public void T0179C(Context environment)
         {
             // execute
-            var actual = new C0179().AddEnvironments(environment).Execute();
+            var actual = new C0179().AddEnvironments(environment).Invoke();
 
             // assertion
             Assert.IsTrue(actual);

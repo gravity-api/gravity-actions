@@ -8,13 +8,14 @@ using Gravity.Plugins.Actions.UiWeb;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium.Mock;
 using Gravity.Plugins.Contracts;
+using OpenQA.Selenium;
 
 namespace Gravity.UnitTests.UiWeb
 {
     [TestClass]
     public class SubmitFormTests: ActionTests
     {
-        #region *** tests: documentation ***
+        #region *** Tests: Documentation ***
         [TestMethod]
         public void SubmitFormCreate()
         {
@@ -36,7 +37,7 @@ namespace Gravity.UnitTests.UiWeb
         }
         #endregion
 
-        #region *** tests: OnDriver      ***
+        #region *** Tests: OnDriver      ***
         [DataTestMethod]
         [DataRow("{\"argument\":\"mock_form\"}")]
         public void SubmitFormNamePositive(string actionRule)
@@ -104,7 +105,7 @@ namespace Gravity.UnitTests.UiWeb
         }
         #endregion
 
-        #region *** tests: OnElement     ***
+        #region *** Tests: OnElement     ***
         [DataTestMethod]
         [DataRow("{\"onElement\":\".//positive\",\"argument\":\"mock-form\"}")]
         public void SubmitFormElementNamePositive(string actionRule)
@@ -128,6 +129,7 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod]
+        [ExpectedException(typeof(NoSuchElementException))]
         [DataRow("{\"onElement\":\".//none\",\"argument\":\"mock-form\"}")]
         public void SubmitFormElementNameNone(string actionRule)
         {
@@ -139,6 +141,7 @@ namespace Gravity.UnitTests.UiWeb
         }
 
         [DataTestMethod]
+        [ExpectedException(typeof(StaleElementReferenceException))]
         [DataRow("{\"onElement\":\".//stale\",\"argument\":\"mock-form\"}")]
         public void SubmitFormElementNameStale(string actionRule)
         {

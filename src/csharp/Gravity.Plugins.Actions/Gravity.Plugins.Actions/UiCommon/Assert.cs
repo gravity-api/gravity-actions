@@ -67,7 +67,7 @@ namespace Gravity.Plugins.Actions.UiCommon
             try
             {
                 assertion = wait.Until(d
-                    => new ConditionsFactory(d, Types).Factor(actionRule.Argument, new object[] { actionRule, element }));
+                    => new ConditionsFactory(Environment, d, Types).Factor(actionRule.Argument, new object[] { actionRule, element }));
             }
             catch (Exception e) when (e != null)
             {

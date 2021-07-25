@@ -43,7 +43,7 @@ namespace Graivty.IntegrationTests.Suites.UiMobile
             environment.TestParams[nameof(AppUrl)] = AppUrl;
 
             // execute
-            var actual = new C0183().AddEnvironments(environment).Execute();
+            var actual = new C0183().AddEnvironments(environment).Invoke();
 
             // assertion
             Assert.IsTrue(actual);

@@ -21,7 +21,7 @@ namespace Graivty.IntegrationTests.Suites.UiWeb
         public void T0207P(Context environment)
         {
             // execute
-            var actual = new C0207().AddEnvironments(environment).Execute();
+            var actual = new C0207().AddEnvironments(environment).Invoke();
 
             // assertion
             Assert.IsTrue(actual);
@@ -32,7 +32,7 @@ namespace Graivty.IntegrationTests.Suites.UiWeb
         public void T0208P(Context environment)
         {
             // execute
-            var actual = new C0208().AddEnvironments(environment).Execute();
+            var actual = new C0208().AddEnvironments(environment).Invoke();
 
             // assertion
             Assert.IsTrue(actual);
@@ -43,7 +43,7 @@ namespace Graivty.IntegrationTests.Suites.UiWeb
         public void T0209P(Context environment)
         {
             // execute
-            var actual = new C0209().AddEnvironments(environment).Execute();
+            var actual = new C0209().AddEnvironments(environment).Invoke();
 
             // assertion
             Assert.IsTrue(actual);
@@ -57,7 +57,7 @@ namespace Graivty.IntegrationTests.Suites.UiWeb
             environment.TestParams["argument"] = "Two";
 
             // execute
-            var actual = new C0210().AddEnvironments(environment).Execute();
+            var actual = new C0210().AddEnvironments(environment).Invoke();
 
             // assertion
             Assert.IsTrue(actual);
@@ -71,7 +71,7 @@ namespace Graivty.IntegrationTests.Suites.UiWeb
             environment.TestParams["argument"] = "[\"Two\"]";
 
             // execute
-            var actual = new C0210().AddEnvironments(environment).Execute();
+            var actual = new C0210().AddEnvironments(environment).Invoke();
 
             // assertion
             Assert.IsTrue(actual);
@@ -85,7 +85,7 @@ namespace Graivty.IntegrationTests.Suites.UiWeb
             environment.TestParams["argument"] = "2";
 
             // execute
-            var actual = new C0211().AddEnvironments(environment).Execute();
+            var actual = new C0211().AddEnvironments(environment).Invoke();
 
             // assertion
             Assert.IsTrue(actual);
@@ -99,7 +99,7 @@ namespace Graivty.IntegrationTests.Suites.UiWeb
             environment.TestParams["argument"] = "[\"2\"]";
 
             // execute
-            var actual = new C0211().AddEnvironments(environment).Execute();
+            var actual = new C0211().AddEnvironments(environment).Invoke();
 
             // assertion
             Assert.IsTrue(actual);
@@ -113,7 +113,7 @@ namespace Graivty.IntegrationTests.Suites.UiWeb
             environment.TestParams["argument"] = "1";
 
             // execute
-            var actual = new C0212().AddEnvironments(environment).Execute();
+            var actual = new C0212().AddEnvironments(environment).Invoke();
 
             // assertion
             Assert.IsTrue(actual);
@@ -127,7 +127,7 @@ namespace Graivty.IntegrationTests.Suites.UiWeb
             environment.TestParams["argument"] = "2";
 
             // execute
-            var actual = new C0238().AddEnvironments(environment).Execute();
+            var actual = new C0238().AddEnvironments(environment).Invoke();
 
             // assertion
             Assert.IsTrue(actual);
@@ -138,7 +138,7 @@ namespace Graivty.IntegrationTests.Suites.UiWeb
         public void T0213(Context environment)
         {
             // execute
-            var actual = new C0213().AddEnvironments(environment).Execute();
+            var actual = new C0213().AddEnvironments(environment).Invoke();
 
             // assertion
             Assert.IsTrue(actual);
@@ -149,7 +149,7 @@ namespace Graivty.IntegrationTests.Suites.UiWeb
         public void T0214(Context environment)
         {
             // execute
-            var actual = new C0214().AddEnvironments(environment).Execute();
+            var actual = new C0214().AddEnvironments(environment).Invoke();
 
             // assertion
             Assert.IsTrue(actual);
@@ -160,7 +160,7 @@ namespace Graivty.IntegrationTests.Suites.UiWeb
         public void T0215(Context environment)
         {
             // execute
-            var actual = new C0215().AddEnvironments(environment).Execute();
+            var actual = new C0215().AddEnvironments(environment).Invoke();
 
             // assertion
             Assert.IsTrue(actual);
@@ -171,7 +171,7 @@ namespace Graivty.IntegrationTests.Suites.UiWeb
         public void T0216(Context environment)
         {
             // execute
-            var actual = new C0216().AddEnvironments(environment).Execute();
+            var actual = new C0216().AddEnvironments(environment).Invoke();
 
             // assertion
             Assert.IsTrue(actual);
@@ -182,7 +182,7 @@ namespace Graivty.IntegrationTests.Suites.UiWeb
         public void T0217(Context environment)
         {
             // execute
-            var actual = new C0217().AddEnvironments(environment).Execute();
+            var actual = new C0217().AddEnvironments(environment).Invoke();
 
             // assertion
             Assert.IsTrue(actual);

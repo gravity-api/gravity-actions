@@ -54,7 +54,7 @@ namespace Gravity.Plugins.Actions.UiCommon
         private void InvokeAction(ActionRule action, IWebElement element)
         {
             // execute condition
-            var factory = new ConditionsFactory(WebDriver, Types);
+            var factory = new ConditionsFactory(Environment, WebDriver, Types);
             var results = factory.Factor(action.Argument, new object[] { action, element });
 
             // apply to context

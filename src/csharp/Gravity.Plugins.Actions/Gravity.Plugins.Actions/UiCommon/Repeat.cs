@@ -114,7 +114,7 @@ namespace Gravity.Plugins.Actions.UiCommon
         private void ExecuteByCondition(ActionRule action, IWebElement element)
         {
             // setup
-            var factory = new ConditionsFactory(driver: WebDriver, types: Types);
+            var factory = new ConditionsFactory(Environment, driver: WebDriver, types: Types);
 
             // initialize
             var repeatReference = 0;

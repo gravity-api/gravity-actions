@@ -19,7 +19,7 @@
     <parameter name="Integration.AttemptsInterval" value="15000" />
     <Parameter name="Integration.LoadTimeout" value="60000" />
     <Parameter name="Integration.SearchTimeout" value="15000" />
-    <Parameter name="Integration.NumberOfAttempts" value="3" />
+    <Parameter name="Integration.NumberOfAttempts" value="1" />
     <Parameter name="Integration.ApplicationUnderTest" value="https://gravitymvctestapplication.azurewebsites.net/" />
     <Parameter name="Integration.MockApi" value="https://gravitymvctestapplication.azurewebsites.net/api/mock" />
     <Parameter name="Gravity.UserName" value="pyhBifB6z1YxJv53xLip" />

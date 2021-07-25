@@ -47,7 +47,15 @@ namespace Gravity.Plugins.Actions.UiCommon
         /// Parameter value to save. Can be a literal string or <see cref="WebDriverMacroPlugin"/>.
         /// </summary>
         public const string Value = "value";
+
+        /// <summary>
+        /// Parameter scope to use (session or application).
+        /// </summary>
+        public const string Scope = "scope";
         #endregion
+
+        // members
+        private readonly ParameterScopeFactory factory;
 
         #region *** constructors ***
         /// <summary>
@@ -57,7 +65,9 @@ namespace Gravity.Plugins.Actions.UiCommon
         /// <param name="driver"><see cref="IWebDriver"/> implementation by which to execute the action.</param>
         public RegisterParameter(WebAutomation automation, IWebDriver driver)
             : base(automation, driver)
-        { }
+        {
+            factory = new ParameterScopeFactory(Environment, Types);
+        }
         #endregion
 
         /// <summary>
@@ -94,19 +104,20 @@ namespace Gravity.Plugins.Actions.UiCommon
             }
 
             // by name
-            var key = arguments.ContainsKey(Key) ? arguments[Key] : action.Argument;
-            var result = string.Empty;
+            var name = arguments.ContainsKey(Key) ? arguments[Key] : action.Argument;
+            var scope = arguments.ContainsKey(Scope) ? arguments[Scope] : ParameterScopes.Application;
+            var value = string.Empty;
             try
             {
                 // get element
                 var onElement = this.ConditionalGetElement(action, element);
 
                 // get parameter value
-                result = GetTextOrAttribute(action, element: onElement);
+                value = GetTextOrAttribute(action, element: onElement);
             }
             catch (Exception e) when (e is NoSuchElementException || e is WebDriverTimeoutException || e is StaleElementReferenceException)
             {
-                result = Regex.Match(action.OnElement, action.RegularExpression).Value;
+                value = Regex.Match(action.OnElement, action.RegularExpression).Value;
             }
             catch (Exception)
             {
@@ -116,7 +127,7 @@ namespace Gravity.Plugins.Actions.UiCommon
             finally
             {
                 // save the value
-                EnvironmentContext.ApplicationParams[key] = result;
+                factory.FactorSet(name, scope, new object[] { value });
             }
         }
 
@@ -153,14 +164,15 @@ namespace Gravity.Plugins.Actions.UiCommon
             Environment.SessionParams[action.Argument] = string.Empty;
         }
 
-        private static bool TryGetFromCli(IDictionary<string, string> arguments)
+        private bool TryGetFromCli(IDictionary<string, string> arguments)
         {
             // setup conditions
             var isKey = arguments.ContainsKey(Key);
             var isValue = arguments.ContainsKey(Value);
+            var isScope = arguments.ContainsKey(Scope);
 
             // by CLI
-            if (isKey && isValue)
+            if (isKey && isValue && !isScope)
             {
                 EnvironmentContext.ApplicationParams[arguments[Key]] = arguments[Value];
                 return true;

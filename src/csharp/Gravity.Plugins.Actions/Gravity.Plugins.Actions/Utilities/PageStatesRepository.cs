@@ -17,9 +17,9 @@ namespace Gravity.Plugins.Actions.Utilities
     /// <summary>
     /// A collection of page state assertion methods.
     /// </summary>
-    public class PageStateRepository : PageStateBase
+    public class PageStatesRepository : PageStateBase
     {
-        public PageStateRepository(IWebDriver driver, IEnumerable<Type> types)
+        public PageStatesRepository(IWebDriver driver, IEnumerable<Type> types)
             : base(driver, types)
         { }
 

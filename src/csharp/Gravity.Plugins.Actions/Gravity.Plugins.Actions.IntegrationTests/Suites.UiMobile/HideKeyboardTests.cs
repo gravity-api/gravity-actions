@@ -20,7 +20,7 @@ namespace Graivty.IntegrationTests.Suites.UiMobile
         public void T180P(Context environment)
         {
             // execute
-            var actual = new C0180().AddEnvironments(environment).Execute();
+            var actual = new C0180().AddEnvironments(environment).Invoke();
 
             // assertion
             Assert.IsTrue(actual);

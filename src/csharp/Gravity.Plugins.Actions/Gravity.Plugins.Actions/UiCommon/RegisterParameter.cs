@@ -164,7 +164,7 @@ namespace Gravity.Plugins.Actions.UiCommon
             Environment.SessionParams[action.Argument] = string.Empty;
         }
 
-        private bool TryGetFromCli(IDictionary<string, string> arguments)
+        private static bool TryGetFromCli(IDictionary<string, string> arguments)
         {
             // setup conditions
             var isKey = arguments.ContainsKey(Key);
